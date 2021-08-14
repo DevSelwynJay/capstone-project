@@ -1,0 +1,162 @@
+/*
+=================
+     Globals
+=================
+*/
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  line-height: 1.3;
+  font-family: "Poppins";
+}
+
+/*
+=================
+     Colors
+=================
+*/
+
+:root {
+  --primary-color: #02a9f7;
+  --secondary-color: #fff;
+  --third-color: rgb(109, 109, 109);
+}
+
+/*
+=================
+     Utilities
+=================
+*/
+
+.wrapper {
+  width: 80%;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  justify-content: flex-end;
+}
+
+.margin-top-1 {
+  margin-top: 0.5rem;
+}
+
+.margin-top-3 {
+  margin-top: 1.5rem;
+}
+
+/*
+=================
+     Buttons
+=================
+*/
+
+.primary-btn {
+  padding: 0.6rem 1rem;
+  border: none;
+  background-color: var(--primary-color);
+  width: 100%;
+  color: var(--secondary-color);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/*
+=================
+     Layouts
+=================
+*/
+
+section.login-form .logo img {
+  width: 12rem;
+  margin-top: 0.5rem;
+}
+
+section.login-form h1 {
+  font-size: 2rem;
+  color: var(--third-color);
+}
+
+section.login-form input[type="text"] {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--third-color);
+  border-radius: 10px;
+}
+
+section.login-form input[type="checkbox"] {
+  cursor: pointer;
+}
+
+section.login-form .hero-image {
+  background-color: var(--primary-color);
+}
+
+section.login-form a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+section.login-form form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6rem;
+}
+
+section.login-form .hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/*
+=================
+   Media Query
+=================
+*/
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 60%;
+  }
+}
