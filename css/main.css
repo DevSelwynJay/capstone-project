@@ -1,4 +1,10 @@
 /*
+=====================
+add new styling here
+=====================
+*/
+
+/*
 =================
      Globals
 =================
@@ -95,24 +101,6 @@ body {
 =================
 */
 
-@media (min-width: 576px) {
-  section.login-form .hero-image {
-    display: none;
-  }
-}
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
-  .wrapper {
-    width: 60%;
-  }
-}
-
 /* Login Form */
 section.login-form .logo img {
   width: 12rem;
@@ -149,7 +137,7 @@ section.login-form form {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 6rem;
+  padding-top: 4rem;
 }
 
 section.login-form .hero-image {
@@ -157,4 +145,25 @@ section.login-form .hero-image {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+@media (max-width: 576px) {
+  section.login-form .hero-image {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  section.login-form .hero-image {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 60%;
+  }
 }
