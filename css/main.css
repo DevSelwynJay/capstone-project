@@ -107,6 +107,11 @@ body {
   padding: 0 !important;
 }
 
+input[type="text"],
+input[type="password"] {
+  font-family: poppins !important;
+}
+
 /*
 =================
      Colors
@@ -155,6 +160,10 @@ body {
   margin-top: 0.5rem;
 }
 
+.margin-top-2 {
+  margin-top: 1rem;
+}
+
 .margin-top-3 {
   margin-top: 1.5rem;
 }
@@ -200,7 +209,8 @@ section.login-form h1 {
   color: var(--third-color);
 }
 
-section.login-form input[type="text"] {
+section.login-form input[type="text"],
+input[type="password"] {
   width: 100%;
   margin-top: 1rem;
   padding: 0.6rem 1rem;
@@ -209,7 +219,8 @@ section.login-form input[type="text"] {
   outline: none;
 }
 
-section.login-form input[type="text"]:focus {
+section.login-form input[type="text"]:focus,
+input[type="password"]:focus {
   border-color: var(--primary-color);
 }
 
