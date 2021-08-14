@@ -95,6 +95,25 @@ body {
 =================
 */
 
+@media (min-width: 576px) {
+  section.login-form .hero-image {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 60%;
+  }
+}
+
+/* Login Form */
 section.login-form .logo img {
   width: 12rem;
   margin-top: 0.5rem;
@@ -138,25 +157,4 @@ section.login-form .hero-image {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-/*
-=================
-   Media Query
-=================
-*/
-
-@media (min-width: 576px) {
-}
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
-  .wrapper {
-    width: 60%;
-  }
 }
