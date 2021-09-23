@@ -34,6 +34,8 @@ class loginProcess{
      while($row = mysqli_fetch_assoc($result)){
            $OTP = $row['OTP'];
      }
+     require '../sendEmail.php';
+
 
     }
 
