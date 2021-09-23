@@ -72,6 +72,8 @@ function handleCredentialResponse(response) {
 * ===========================
 * Functions that add content to modal
 * just call it
+* modalPopupMain() will be called if the email is in the database
+* else error prompt message will show
 * ===========================
 * */
 function modalPopupPrompt(){
