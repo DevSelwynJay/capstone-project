@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['email'])){
     //redirect to main page
-    header("location:redirect.php");
+    header("location:php/loginProcesses/redirect.php");
     exit();
 }
 ?>
