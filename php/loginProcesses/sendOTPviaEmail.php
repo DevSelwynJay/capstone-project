@@ -11,6 +11,7 @@ $email = $_POST['email'];
 $con=null;
 require '../DB_Connect.php';
 
+//get first the OTP of the user in the database
 $result = mysqli_query($con,"SELECT OTP FROM admin WHERE email = '$email'");
 $OTP="";
 while($row = mysqli_fetch_assoc($result)){
