@@ -28,17 +28,6 @@ class loginProcess{
 
     }
 
-    public function send_OTP_To_User_Email($con,$email){
-     $result = mysqli_query($con,"SELECT OTP FROM admin WHERE email = '$email'");
-     $OTP="";
-     while($row = mysqli_fetch_assoc($result)){
-           $OTP = $row['OTP'];
-     }
-     require '../sendEmail.php';
-
-
-    }
-
     public function verifyOTP($con,$email,$inputtedOTP): bool
     {
         $result = mysqli_query($con,"SELECT*FROM admin WHERE email = '$email' AND OTP = '$inputtedOTP'");
