@@ -2,6 +2,6 @@
 $host = "localhost";
 $uname = "root";
 $pwd = "";
-$dbname = "cappractice";
+$dbname = "capstonehis";
 $con = mysqli_connect($host,$uname,$pwd,$dbname);
 ?>
