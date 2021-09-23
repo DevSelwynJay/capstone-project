@@ -19,7 +19,7 @@ if(!isset($_SESSION['email'])){
     <!--User-defined JS-->
     <script>
         function logout(){
-            window.location.href = "../capstone-project/php/sessionDestroy.php";
+            window.location.href = "php/sessionDestroy.php";
         }
     </script>
 
