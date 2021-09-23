@@ -6,5 +6,5 @@
 //user is patient -> will go to patient part
 //need to add some codes later
 session_start();
-header("location:main.php",true);
+header("location:../../main.php",true);
 exit();
