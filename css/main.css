@@ -31,7 +31,7 @@ p {
 
 body {
   line-height: 1.3;
-  font-family: "Poppins";
+  font-family: Arial;
 }
 
 .col-1,
@@ -123,6 +123,7 @@ input[type="password"] {
   --secondary-color: #fff;
   --third-color: rgb(109, 109, 109);
   --hover-color: #1486bb;
+  --ligt-grey: #D4D7D9;
 }
 
 /*
@@ -259,6 +260,103 @@ section.login-form .hero-image {
   align-items: center;
   height: 100vh;
 }
+
+/*
+====================
+pop-up modal design
+====================
+*/
+
+
+/*===pop-up modal===*/
+
+#modal-icon{
+  display: flex;
+  justify-content: center;
+}
+#modal-icon img{
+  width: 10%;
+  height: 10%;
+}
+
+#modal-content h3{/*modal title*/
+  font-weight: lighter;
+  text-align: center;
+  color: var(--primary-color);
+  margin: 0.5em;
+}
+#modal-content h5{/*modal sub-title*/
+  width: 100%;
+  text-align: center;
+  margin: 0.5em;
+}
+#email-txt{
+  font-weight: bold;
+  color: var(--primary-color);
+
+}
+#modal-content p{/*modal paragraph*/
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: justify;
+  color: var(--third-color);
+  margin: 0.5em;
+}
+
+#modal-content form{/*input form parent*/
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#otp-input{
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  text-align: center;
+  width: 50%;
+  padding: 0.3em 1em;
+  border-radius: 0.5em;
+  border: 2px solid var(--third-color);
+  outline: none;
+}
+
+/*first pop to show after successful login*/
+#choose-authentication .col-sm{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid #c5bebe;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+}
+#choose-authentication .col-sm img{
+  width: 25%;
+  height: 35%;
+  margin: 1.3rem;
+}
+#choose-authentication .col-sm p{
+  color: var(--primary-color);
+  font-size: large;
+}
+.toggle-cont{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  background: #D4D7D9;
+  margin: 0;
+}
+input[type="radio"]{
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/*.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
+.toggle.ios .toggle-handle { border-radius: 20rem; }
+*/
 
 /*
 =================
