@@ -11,13 +11,15 @@ if(!$con){
     exit();
 }
 
-require './loginProcess.php';
-$loginProcess = new loginProcess();
-$result =  $loginProcess->checkEmailInDatabase($con,$email);
-if(mysqli_num_rows($result)>0){
+$result =  mysqli_query($con,"SELECT * FROM admin WHERE email='$email'");
+if(mysqli_num_rows($result)>0){//email is in the database
 
-    $_6DigitCode = $loginProcess->generate6DigitCode();
-    $loginProcess->put_OTP_To_User_Record($con,$email,$_6DigitCode);
+    //generate 6 digit code OTP
+    $key = random_int(0, 999999);
+    $_6DigitCode = str_pad($key, 6, 0, STR_PAD_LEFT);
+
+    //put the OTP in user's record
+    mysqli_query($con,"UPDATE admin SET OTP = '$_6DigitCode' WHERE email = '$email'");
 
     echo 1;//notify the js callback function that gmail account is in the database
 
