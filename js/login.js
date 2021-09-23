@@ -146,7 +146,7 @@ function modalPopupEmailConfirmation(){
           console.log(data)
             if(data.result){
                 console.log("tama ang OTP");
-                location.href="redirect.php";
+                location.href="php/loginProcesses/redirect.php";
             }
         }, "json");
     })
