@@ -1,4 +1,5 @@
 <?php
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -12,7 +13,8 @@ $con=null;
 require '../DB_Connect.php';
 
 //get first the OTP of the user in the database
-$result = mysqli_query($con,"SELECT OTP FROM admin WHERE email = '$email'");
+$userTable = $_SESSION['userTable'];
+$result = mysqli_query($con,"SELECT OTP FROM $userTable WHERE email = '$email'");
 $OTP="";
 while($row = mysqli_fetch_assoc($result)){
     $OTP = $row['OTP'];
