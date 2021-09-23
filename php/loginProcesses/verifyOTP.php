@@ -5,6 +5,7 @@ $verificationType=$_POST['verificationType'];
 $inputtedOTP=$_POST['OTP'];
 
 if($verificationType=="email"){
+
     $con=null;
     require '../DB_Connect.php';
     require 'loginProcess.php';
