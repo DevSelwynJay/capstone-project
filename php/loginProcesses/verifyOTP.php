@@ -16,6 +16,9 @@ if($verificationType=="email"){
 
         echo json_encode(array("result"=> true));
     }
+    else{
+        echo json_encode(array("result"=> false));
+    }
 
 
     //echo json_encode(array("name"=>$email,"time"=>$verificationType,"OTP"=>$isValidOTP));//pang debug lang
