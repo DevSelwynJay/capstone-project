@@ -125,7 +125,7 @@ function modalPopupEmailConfirmation(){
         "                            <input type=\"text\" maxlength=\"6\" id=\"otp-input\">\n" +
         "                        </form>");
 
-    //put random '*' in a number
+    //put random '*' in an email
     var at = logged_gmail.indexOf("@");
     var displayedGmail = logged_gmail.split("");
     console.log(at);
