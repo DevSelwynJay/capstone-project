@@ -1,7 +1,7 @@
 <?php
 session_start();
 $email=$_POST['email'];
-$verificationType=$_POST['verificationType'];
+$verificationType=$_POST['verificationType'];//the possible value is email or sms
 $inputtedOTP=$_POST['OTP'];
 
 if($verificationType=="email"){

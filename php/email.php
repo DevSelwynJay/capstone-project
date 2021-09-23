@@ -1,6 +1,4 @@
 <?php
-$email_address = $_POST['email_address'];
-$login_verification_code = $_POST['login_verification_code'];
 
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;

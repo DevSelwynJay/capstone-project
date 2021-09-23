@@ -35,7 +35,6 @@ class loginProcess{
            $OTP = $row['OTP'];
      }
 
-
     }
 
     public function verifyOTP($con,$email,$inputtedOTP): bool

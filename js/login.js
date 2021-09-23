@@ -138,7 +138,7 @@ function modalPopupEmailConfirmation(){
     }
     $("#email-txt").html(displayedGmail.join(""));
 
-    //send OTP
+    //send OTP via email
     $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail});
 
     //confirm 6 Digit Code OTP
