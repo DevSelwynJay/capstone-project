@@ -124,7 +124,18 @@ function modalPopupEmailConfirmation(){
         "                        <form autocomplete=\"off\">\n" +
         "                            <input type=\"text\" maxlength=\"6\" id=\"otp-input\">\n" +
         "                        </form>");
-    $("#email-txt").html(logged_gmail);
+
+    //put random '*' in a number
+    var at = logged_gmail.indexOf("@");
+    var displayedGmail = logged_gmail.split("");
+    console.log(at);
+    var start = (at-1)/2;
+    displayedGmail[0]='*'
+    for(a=start;a<at;a++){
+       displayedGmail[a]='*';
+    }
+
+    $("#email-txt").html(displayedGmail.join(""));
     //confirm 6 Digit Code OTP
     $("#pop-up-ok-btn").click(function (){
 
