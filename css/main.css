@@ -267,7 +267,9 @@ pop-up modal design
 ====================
 */
 
-
+.modal-footer{
+  justify-content: center;
+}
 /*===pop-up modal===*/
 
 #modal-icon{

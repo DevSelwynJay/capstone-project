@@ -107,16 +107,22 @@ function  modalPopupMain(){
 
     //radio button to choose for authentication sms or email
     $("#pop-up-ok-btn").click(function (){
+
         var radioValue = $("input[name=toggle]:checked").val();
+
        if(radioValue=="isSMS"){
            console.log("SMS was selected")
        }
        else if(radioValue=="isEmail"){
            console.log("Email was selected");
+           $(".modal-footer").css("display","none");
+           $("#modal-content").html("Please Wait!");
+
            //send OTP via email
            $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
 
                if(data==1){//otp successfully sent in email
+
                    modalPopupEmailConfirmation();
                }
                else {
@@ -124,10 +130,16 @@ function  modalPopupMain(){
                }
            });
 
+           //pag itetest ng maraming beses ung login
+           //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
+           //baka kasi maubos ung 500email sent per 24 hours
+           //modalPopupEmailConfirmation();
        }
     })
 }
 function modalPopupEmailConfirmation(){
+
+    $(".modal-footer").css("display","flex");
     $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/email.png\"/></div>\n" +
         "                        <h3>Email Confirmation</h3>\n" +
         "                        <h5>A verification code has been sent to your email</h5>\n" +

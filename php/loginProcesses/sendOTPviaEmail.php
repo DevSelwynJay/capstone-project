@@ -64,6 +64,7 @@ $bodyContent = '<h1>'.$OTP.'</h1>';
 $bodyContent .= '<p>Please Enter the number above</p>';
 $mail->Body    = $bodyContent;
 
+
 // Send email
 if(!$mail->send()) {
    // echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
