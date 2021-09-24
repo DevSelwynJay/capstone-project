@@ -59,7 +59,7 @@ function handleCredentialResponse(response) {
                 else{
                     //alert("Google Account is not registered !!!");
                     $("#pop-up").modal('toggle');
-                    modalPopupPrompt();
+                    modalPopupPrompt("Account doesn't exist");
                 }
             }
         }
@@ -77,8 +77,8 @@ function handleCredentialResponse(response) {
 * else error prompt message will show
 * ===========================
 * */
-function modalPopupPrompt(){
-    $("#modal-content").html("Account does not exist!");
+function modalPopupPrompt(message){
+    $("#modal-content").html(message);
 }
 function  modalPopupMain(){
     $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/authentication.png\"/></div>\n" +
@@ -113,7 +113,17 @@ function  modalPopupMain(){
        }
        else if(radioValue=="isEmail"){
            console.log("Email was selected");
-           modalPopupEmailConfirmation();
+           //send OTP via email
+           $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
+
+               if(data==1){//otp successfully sent in email
+                   modalPopupEmailConfirmation();
+               }
+               else {
+                   modalPopupPrompt("Error Sending OTP");
+               }
+           });
+
        }
     })
 }
@@ -138,9 +148,6 @@ function modalPopupEmailConfirmation(){
        displayedGmail[a]='*';
     }
     $("#email-txt").html(displayedGmail.join(""));
-
-    //send OTP via email
-    $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail});
 
     //confirm 6 Digit Code OTP
     $("#pop-up-ok-btn").click(function (){

@@ -66,9 +66,11 @@ $mail->Body    = $bodyContent;
 
 // Send email
 if(!$mail->send()) {
-    echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
+   // echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
+    echo 0;
 } else {
-    echo 'Message has been sent.';
+    //echo 'Message has been sent.';
+    echo 1;
 }
 
 ?>
