@@ -4,6 +4,7 @@ if(!isset($_SESSION['email'])){
     header("location:index.php",true);
     exit();
 }
+echo $_SESSION['account_type'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -88,8 +88,7 @@ if(isset($_SESSION['email'])){
                   <div class="col-sm-12 margin-top-3">
                     <p class="text-center">
                       Not yet Registered?&nbsp;<span
-                        ><a href="#">Create Account</a></span
-                      >
+                        ><a href="#">Create Account</a></span>
                     </p>
                   </div>
                 </div>
@@ -99,7 +98,7 @@ if(isset($_SESSION['email'])){
 
           <div class="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <div class="hero-image">
-              <img src="../capstone-project/img/hero-image-1.png" />
+              <img src="../capstone-project/img/hero-image-1.png"/>
             </div>
           </div>
         </div>
