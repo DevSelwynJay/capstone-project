@@ -78,7 +78,7 @@ function handleCredentialResponse(response) {
 * ===========================
 * */
 function modalPopupPrompt(){
-    $("#modal-content").html("Error");
+    $("#modal-content").html("Account does not exist!");
 }
 function  modalPopupMain(){
     $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/authentication.png\"/></div>\n" +
