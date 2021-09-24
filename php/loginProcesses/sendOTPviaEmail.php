@@ -23,18 +23,28 @@ while($row = mysqli_fetch_assoc($result)){
     $OTP = $row['OTP'];
 }
 
-$mail = new PHPMailer;
+/**
+ * @return PHPMailer
+ * @throws Exception
+ */
+function getMail(): PHPMailer
+{
+    $mail = new PHPMailer;
 
-$mail->isSMTP();                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;               // Enable SMTP authentication
-$mail->Username = 'projectcapstone3m@gmail.com';   // SMTP username
-$mail->Password = 'mukamo11';   // SMTP password
-$mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                    // TCP port to connect to
+    $mail->isSMTP();                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;               // Enable SMTP authentication
+    $mail->Username = 'projectcapstone3m@gmail.com';   // SMTP username
+    $mail->Password = 'mukamo11';   // SMTP password
+    $mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                    // TCP port to connect to
 
 // Sender info
-$mail->setFrom('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
+    $mail->setFrom('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
+    return $mail;
+}
+
+$mail = getMail();
 //$mail->addReplyTo('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
 
 // Add a recipient

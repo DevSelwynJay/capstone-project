@@ -8,18 +8,7 @@ require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
-$mail = new PHPMailer;
-
-$mail->isSMTP();                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;               // Enable SMTP authentication
-$mail->Username = 'projectcapstone3m@gmail.com';   // SMTP username
-$mail->Password = 'mukamo11';   // SMTP password
-$mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                    // TCP port to connect to
-
-// Sender info
-$mail->setFrom('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
+$mail = getMail();
 //$mail->addReplyTo('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
 
 // Add a recipient
