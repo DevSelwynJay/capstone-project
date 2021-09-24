@@ -52,6 +52,7 @@ function handleCredentialResponse(response) {
             if(xhr.readyState==4 && xhr.status==200){ //gmail successfully found in database
                 if(xhr.responseText==1){
                     //window.location.href="main.php"
+                    //prevent from clicking outside
                     $("#pop-up").modal('toggle');
                     modalPopupMain();
 
@@ -134,6 +135,7 @@ function  modalPopupMain(){
            //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
            //baka kasi maubos ung 500email sent per 24 hours
            //modalPopupEmailConfirmation();
+           //tignan nalang sa database ung OTP muna para maka pag login
        }
     })
 }
@@ -176,6 +178,9 @@ function modalPopupEmailConfirmation(){
 }
 
 $(document).ready(function (){
+
+    //prevent from clicking outside
+    $('#pop-up').modal({backdrop: 'static', keyboard: false});
 
     /*
     ====== actions =========

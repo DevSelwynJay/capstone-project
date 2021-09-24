@@ -115,7 +115,7 @@ if(isset($_SESSION['email'])){
     <!--
     ======== Modal ===========
     -->
-    <div class="modal fade" id="pop-up" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true">
+    <div class="modal fade" id="pop-up" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
