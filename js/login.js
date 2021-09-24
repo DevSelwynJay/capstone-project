@@ -1,11 +1,12 @@
-//to make google login button and prompt
-let logged_gmail;
+let logged_gmail;//the gmail of logged account to be sent in back-end
+
 window.onload = function () {
     google.accounts.id.initialize({
         client_id: "373815557222-68l0i08iuj7i2j5iq5inrt54550nm6fp.apps.googleusercontent.com",
         callback: handleCredentialResponse
 
     });
+    //to make google login button and prompt
     google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
         { size: "large",shape:"circle",theme:"filled_blue",text:"continue_with"

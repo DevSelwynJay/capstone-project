@@ -29,7 +29,7 @@ foreach ($userTables as $userTable){
         $_SESSION['userTable'] = $userTable;
 
         //get account type, then put also in session variable
-        //0->superadmin 1->admin 2->patient
+        //possible value, 0->superadmin 1->admin 2->patient
         //needed para malaman kung saan ireredirect sa patient view ba or sa admin view...
         while ($row=mysqli_fetch_assoc($result)){
                $_SESSION['account_type'] =  $row['account_type'];

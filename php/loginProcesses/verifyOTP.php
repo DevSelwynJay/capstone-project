@@ -9,7 +9,10 @@ require '../DB_Connect.php';
 
 if($verificationType=="email"){
 
+    //can be admin,super admin or patient
+    //it depends on what database table where the email is found
     $userTable = $_SESSION['userTable'];
+
     $result = mysqli_query($con,"SELECT*FROM $userTable WHERE email = '$email' AND OTP = '$inputtedOTP'");
     if(mysqli_num_rows($result)>0){//verified OTP
 
