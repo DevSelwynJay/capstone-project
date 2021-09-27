@@ -16,6 +16,7 @@ if($verificationType=="email"){
     $result = mysqli_query($con,"SELECT*FROM $userTable WHERE email = '$email' AND OTP = '$inputtedOTP'");
     if(mysqli_num_rows($result)>0){//verified OTP
 
+        //saka palang ilalagay sa session variable si email kapag na verify na
         $_SESSION['email']=$email;
 
         echo json_encode(array("result"=> true));
