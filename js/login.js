@@ -85,13 +85,14 @@ function loginProcess(){
         return;
     }
 
-        $.post("php/loginProcesses/loginProcess.php",
-            {email:email,password:password,signInType:0/* 0 for regular login*/})
+        $.post("php/loginProcesses/loginProcess.php", {email:email,password:password,signInType:0/* 0 for regular login*/})
             .done(function (data){
+
                 $("#pop-up").modal('toggle');
-                $("#pop-up-ok-btn").css("display","flex");
+
                 if(data==1){
                     modalPopupMain();
+                    $("#pop-up-ok-btn").css("display","flex");
                 }
                 else {
                     modalPopupPrompt("Invalid Credentials");
