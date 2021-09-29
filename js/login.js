@@ -53,12 +53,12 @@ function handleCredentialResponse(response) {
             if(xhr.readyState==4 && xhr.status==200){ //gmail successfully found in database
 
                 $("#pop-up").modal('toggle');
-                $("#pop-up-ok-btn").css("display","flex");
 
                 if(xhr.responseText==1){
                     //window.location.href="main.php"
                     //prevent from clicking outside
                     modalPopupMain();
+                    $("#pop-up-ok-btn").css("display","flex");
                 }
                 else{
                     //alert("Google Account is not registered !!!");
