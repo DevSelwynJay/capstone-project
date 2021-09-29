@@ -45,29 +45,58 @@ function handleCredentialResponse(response) {
         return JSON.parse(jsonPayload);
     };
 
+    //function for google sign in no need a password
     //check gmail if exist in database
     function checkEmailInDatabase(email){
         xhr = new XMLHttpRequest();
         xhr.onreadystatechange = ()=>{
             if(xhr.readyState==4 && xhr.status==200){ //gmail successfully found in database
+
+                $("#pop-up").modal('toggle');
+                $("#pop-up-ok-btn").css("display","flex");
+
                 if(xhr.responseText==1){
                     //window.location.href="main.php"
                     //prevent from clicking outside
-                    $("#pop-up").modal('toggle');
                     modalPopupMain();
-
                 }
                 else{
                     //alert("Google Account is not registered !!!");
-                    $("#pop-up").modal('toggle');
                     modalPopupPrompt("Account doesn't exist");
                 }
             }
         }
-        xhr.open("POST","php/loginProcesses/checkEmail.php",true);
+        xhr.open("POST","php/loginProcesses/loginProcess.php",true);
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-        xhr.send("email="+email);
+        xhr.send("email="+email+"&signInType="+1);// 1 for google sign in
     }
+}
+
+//for regular login process
+function loginProcess(){
+
+    var email = $('input[type="text"]').val();
+    var password = $('input[type="password"]').val();
+
+    if(email==""||password==""){
+        $("#pop-up").modal('toggle');
+        modalPopupPrompt("Please fill all the fields");
+        $("#pop-up-ok-btn").css("display","none")
+        return;
+    }
+
+        $.post("php/loginProcesses/loginProcess.php",
+            {email:email,password:password,signInType:0/* 0 for regular login*/})
+            .done(function (data){
+                $("#pop-up").modal('toggle');
+                $("#pop-up-ok-btn").css("display","flex");
+                if(data==1){
+                    modalPopupMain();
+                }
+                else {
+                    modalPopupPrompt("Invalid Credentials");
+                }
+            })
 }
 
 /*
@@ -79,6 +108,7 @@ function handleCredentialResponse(response) {
 * ===========================
 * */
 function modalPopupPrompt(message){
+    $("#pop-up-ok-btn").css("display","none");
     $("#modal-content").html(message);
 }
 function  modalPopupMain(){
@@ -187,7 +217,8 @@ $(document).ready(function (){
     */
     //login button
     $("#login-btn").click(function (){
-        //$("#dialog-email-confirmation").dialog("open")
+        console.log("fffffff")
+        loginProcess();
     })
 
 

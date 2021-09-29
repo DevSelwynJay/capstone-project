@@ -1,7 +1,9 @@
 <?php
-//this code is to check if the gmail is in the database
+//this code is to check if the gmail is in the database for google sign in
+//check email and password for regular login
 session_start();
 $email = $_POST['email'];
+$signInType = $_POST['signInType'];//possible value: 0 regular sign in, 1 sign in with google
 
 $con=null;
 require '../DB_Connect.php';
@@ -20,9 +22,16 @@ $userTables = array(/*'superadmin',*/'admin'/*,'patient'*/);
 $isFound=false;
 foreach ($userTables as $userTable){
 
-    $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email'");
+    $result=null;
+    if($signInType==0){//regular sign in
+        $password=$_POST['password'];
+        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email' AND password='$password'");
+    }
+    else if($signInType==1){//sign in with google
+        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email'");
+    }
 
-    if(mysqli_num_rows($result)>0){//email is in the database
+    if(mysqli_num_rows($result)>0){//email or both email w/password is in the database
 
         //put the table name where you found the email in the session variable
         //it is needed to send and verify the otp

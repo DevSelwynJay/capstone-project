@@ -80,7 +80,7 @@ if(isset($_SESSION['email'])){
                   </div>
 
                   <div class="col-sm-12 margin-top-2">
-                    <button class="primary-btn" id="login-btn">Login</button>
+                    <button class="primary-btn" id="login-btn" type="button">Login</button>
                   </div>
                     <div class="col-sm-12 margin-top-2" id="buttonDiv">
 
