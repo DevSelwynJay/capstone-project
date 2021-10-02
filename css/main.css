@@ -24,6 +24,8 @@ h3,
 h4,
 h5,
 h6,
+a,
+ul,
 p {
   padding: 0;
   margin: 0;
@@ -31,7 +33,8 @@ p {
 
 body {
   line-height: 1.3;
-  font-family: Arial;
+  font-family:'Poppins', sans-serif;
+  color:white;
 }
 
 .col-1,
@@ -155,6 +158,10 @@ input[type="password"] {
 
 .text-right {
   justify-content: flex-end;
+}
+
+.margin-a{
+  margin: 0 auto;
 }
 
 .margin-top-1 {
@@ -354,6 +361,37 @@ pop-up modal design
 input[type="radio"]{
   width: 1.3rem;
   height: 1.3rem;
+}
+
+/* About Page */
+.about .inner-sidenav{
+  background-color:var(--primary-color);
+  height: 100vh;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about .profile-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin: 0 auto;
+  background-color:var(--third-color);
+}
+.about .menu li{
+  list-style: none;
+}
+.about .menu li a{
+  color: white;
+}
+
+.about .social-media-links{
+  text-align: center;
+}
+.about .social-media-links i{
+  font-size: 1.5rem;
+  margin: .4rem;
 }
 
 /*.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
