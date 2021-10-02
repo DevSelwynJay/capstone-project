@@ -53,7 +53,7 @@ if(isset($_SESSION['email'])){
               <div class="form-wrapper">
                 <div class="row">
                   <div class="col-sm-12">
-                    <h1 class="text-center">Login</h1>
+                    <h1 class="text-center" style="font-weight:700">Login</h1>
                   </div>
                   <div class="col-sm-12">
                     <input id="dialog-root" type="text" placeholder="Email" />
@@ -63,8 +63,8 @@ if(isset($_SESSION['email'])){
                   </div>
 
                   <div class="flex margin-top-1">
-                    <div class="col-sm-6 v-center">
-                      <input type="checkbox" name="rememberMe" id="remember-me" />&nbsp;<label for="remember-me"
+                    <div class="col-sm-6 d-flex align-items-center">
+                      <input type="checkbox" name="rememberMe" id="remember-me" />&nbsp;<label style="color:#6d6d6d; margin:0" for="remember-me"
                         >Remember Me</label
                       >
                     </div>
@@ -80,7 +80,7 @@ if(isset($_SESSION['email'])){
 
                     </div>
                   <div class="col-sm-12 margin-top-3">
-                    <p class="text-center">
+                    <p class="text-center" style="color:#6d6d6d;">
                       Not yet Registered?&nbsp;<span
                         ><a href="#">Create Account</a></span>
                     </p>
