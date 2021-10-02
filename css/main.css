@@ -391,7 +391,7 @@ input[type="radio"]{
 }
 .about .profile h4{
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 .about .social-media-links{
   text-align: center;
@@ -426,10 +426,11 @@ input[type="radio"]{
   padding: 2rem 0 0 0;
 }
 .about .inner-page-content .content .line{
-  width: 95px;
+  width: 80px;
   height: 3px;
   background-color: var(--third-color);
   margin: 0 .3rem;
+  color: #383838;
 }
 .about .inner-page-content .content .heading-holder{
   display: flex;
