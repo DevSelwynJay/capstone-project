@@ -366,9 +366,15 @@ input[type="radio"]{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  moz-box-shadow: 5px 0 5px var(--third-color);
-  -webkit-box-shadow: 5px 0 5px var(--third-color);
-  box-shadow: 5px 0 10px var(--third-color);
+  moz-box-shadow: 2px 0 12px var(--third-color);
+  -webkit-box-shadow: 2px 0 12px var(--third-color);
+  box-shadow: 2px 0 12px var(--third-color);
+}
+
+.about .profile h4{
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 600;
 }
 .about .profile-img{
   height: 100px;
@@ -377,6 +383,11 @@ input[type="radio"]{
   margin: 0 auto;
   background-color:var(--third-color);
 }
+.about .profile-img img{
+  width: 100%;
+  border-radius: inherit;
+}
+
 .about .menu{
   margin-top: 2rem;
 }
@@ -384,12 +395,34 @@ input[type="radio"]{
   list-style: none;
 }
 .about .menu li a{
-  color: white;
+  color: #ffffff;
   margin: 1rem 0;
   display: block;
   text-decoration: none;
   cursor: pointer;
 }
+.about .menu li a::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: .2rem;
+}
+.about .menu li .dashboard::before{
+  content: "\f0db";
+}
+.about .menu li .patient::before{
+  content: "\f007";
+}
+.about .menu li .reports::before{
+  content: "\f080";
+}
+.about .menu li .trackMap::before{
+  content: "\f041";
+}
+.about .menu li .inventory::before{
+  content: "\f466";
+}
+
+f007
 .about .profile h4{
   font-size: 1.2rem;
   font-weight: 700;
@@ -400,6 +433,7 @@ input[type="radio"]{
 .about .social-media-links i{
   font-size: 1.5rem;
   margin: .4rem;
+  cursor: pointer;
 }
 .about .spacer{
   margin: 0 auto;
@@ -449,12 +483,13 @@ input[type="radio"]{
   display: flex;
   align-items: center;
 }
-.about .inner-page-content .settings .circle{
-  height: 30px;
-  width: 30px;
-  border-radius: 100%;
+.about .inner-page-content .settings a{
+   cursor: pointer;
+}
+.about .inner-page-content .settings i{
+  font-size: 1.7rem;
   margin-right: .4rem;
-  background-color: var(--third-color);
+ color: #383838;
 }
 .about .inner-page-nav {
   width: 100%;
@@ -492,7 +527,7 @@ input[type="radio"]{
 }
 @media (max-width: 992px) {
   .about .inner-sidenav{
-    display: none;
+  display: none;
   }
 }
 @media (min-width: 1200px) {
@@ -500,3 +535,4 @@ input[type="radio"]{
     width: 100%;
   }
 }
+

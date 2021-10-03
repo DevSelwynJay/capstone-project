@@ -69,7 +69,7 @@ if(isset($_SESSION['email'])){
                       >
                     </div>
                     <div class="col-sm-6 text-right">
-                      <a href="#">Forgot Password?</a>
+                      <a href="/">Forgot Password?</a>
                     </div>
                   </div>
 
