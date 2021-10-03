@@ -375,6 +375,7 @@ input[type="radio"]{
   font-size: 1.2rem;
   text-align: center;
   font-weight: 600;
+  margin-top: .3rem;
 }
 .about .profile-img{
   height: 100px;
@@ -422,7 +423,6 @@ input[type="radio"]{
   content: "\f466";
 }
 
-f007
 .about .profile h4{
   font-size: 1.2rem;
   font-weight: 700;
@@ -471,6 +471,9 @@ f007
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.about .inner-page-content .content h1{
+  margin-bottom:.4rem ;
 }
 .about .inner-page-content .content h2{
   display: inline;
