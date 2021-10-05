@@ -110,7 +110,7 @@ function loginProcess(){
 * */
 function modalPopupPrompt(message){
     $("#pop-up-ok-btn").css("display","none");
-    $("#modal-content").html(message);
+    $("#modal-content").html("<div><p>"+message+"</p></div>");
 }
 function  modalPopupMain(){
     $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/authentication.png\"/></div>\n" +
