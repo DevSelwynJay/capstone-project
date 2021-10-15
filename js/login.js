@@ -16,7 +16,7 @@ window.onload = function () {
     google.accounts.id.prompt(); // also display the One Tap dialog
 
 }
-
+//
 //to handle google logged account's credential
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
