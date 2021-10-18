@@ -109,6 +109,28 @@ if(isset($_SESSION['email'])){
     ======== Modal ===========
     -->
 
+    <!--modal for error-->
+    <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content">
+                        <p id="pop-up-error-message">Error</p>
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--first pop that will show show kapag valid ang credentials-->
     <div class="modal fade" id="pop-up-main" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">

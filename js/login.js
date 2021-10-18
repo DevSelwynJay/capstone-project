@@ -78,7 +78,8 @@ function loginProcess(){
     var password = $('input[type="password"]').val();
 
     if(email==""||password==""){
-        //$("#pop-up").modal('toggle'); toggle pop-up error prompt
+        $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+        $("#pop-up-error-message").html("Please fill all the field")
         return;
     }
 
@@ -89,20 +90,19 @@ function loginProcess(){
                     modalPopupMain();
                 }
                 else {
-                    //$("#pop-up").modal('toggle'); toggle pop-up error prompt
+                    $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                    $("#pop-up-error-message").html("Invalid Credentials")
                 }
             })
 }
 
 /*
 * ===========================
-* Functions that add content to modal
-* just call it
-* modalPopupMain() will be called if the email is in the database
-* else error prompt message will show
+* Functions that calls the modal
 * ===========================
 * */
 
+//pop-up where you will select sms or email
 function  modalPopupMain(){
     $("#pop-up-main").modal('toggle');
     //get the value of selected radio button (isSMS,isEmail)
@@ -127,7 +127,8 @@ function  modalPopupMain(){
                         modalPopupEmailConfirmation();
                     }
                     else {
-                        //$("#pop-up").modal('toggle'); toggle pop-up error prompt
+                        $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                        $("#pop-up-error-message").html("Can't send OTP")
                     }
                 });
 
@@ -140,6 +141,7 @@ function  modalPopupMain(){
         },0);
     })
 }
+//if email was selected to send OTP
 function modalPopupEmailConfirmation(){
 
     $("#pop-up-main").modal('hide');
@@ -164,8 +166,17 @@ function modalPopupEmailConfirmation(){
           console.log(data)
             if(data.result){
                 console.log("tama ang OTP");
-                //location.href="php/loginProcesses/redirect.php";
+                location.href="php/loginProcesses/redirect.php";
             }
+            else{
+                $("#pop-up-email").modal('hide');
+                $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                $("#pop-up-error-message").html("Invalid OTP")
+                $("#pop-up-error-cancel-btn").click(function (){
+                    $("#pop-up-email").modal('show');
+                });
+            }
+
 
         }, "json");
     })

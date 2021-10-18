@@ -73,6 +73,7 @@ $mail->Body    = $bodyContent;
     //echo 'Message has been sent.';
     echo 1;
 }*/
-echo 1;
+echo 1
+
 
 ?>
