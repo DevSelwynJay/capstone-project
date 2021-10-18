@@ -137,39 +137,47 @@ function  modalPopupMain(){
         "                        </div>\n" +
         "                        <input type=\"radio\" name=\"toggle\" style=\"display: none\" checked value=\"none\" id=\"isNone\">");
 
-    //radio button to choose for authentication sms or email
+    //get the value of selected radio button (isSMS,isEmail)
     $("#pop-up-ok-btn").click(function (){
 
         var radioValue = $("input[name=toggle]:checked").val();
 
-       if(radioValue=="isSMS"){
-           console.log("SMS was selected")
-       }
-       else if(radioValue=="isEmail"){
-           console.log("Email was selected");
-           $(".modal-footer").css("display","none");
-           $("#modal-content").html("Please Wait!");
+        $(".modal-footer").css("display","none");
+        modalPopupPrompt("Please Wait!!!");
 
-           //send OTP via email
-           $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
-
-               if(data==1){//otp successfully sent in email
-
-                   modalPopupEmailConfirmation();
-               }
-               else {
-                   modalPopupPrompt("Error Sending OTP");
-               }
-           });
-
-           //pag itetest ng maraming beses ung login
-           //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
-           //baka kasi maubos ung 500email sent per 24 hours
-           //modalPopupEmailConfirmation();
-           //tignan nalang sa database ung OTP muna para maka pag login
-       }
+        setTimeout(function (){selectAuthenticationType(radioValue);},3000)
     })
 }
+function selectAuthenticationType(radioValue){
+    console.log("selectAuthenticationType"+radioValue)
+
+    if(radioValue=="isSMS"){
+        console.log("SMS was selected")
+    }
+    else if(radioValue=="isEmail"){
+        console.log("Email was selected");
+
+
+        //send OTP via email
+         $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
+
+             if(data==1){//otp successfully sent in email
+
+                 modalPopupEmailConfirmation();
+             }
+             else {
+                 modalPopupPrompt("Error Sending OTP");
+             }
+         });
+
+        //pag itetest ng maraming beses ung login
+        //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
+        //baka kasi maubos ung 500email sent per 24 hours
+        //modalPopupEmailConfirmation();
+        //tignan nalang sa database ung OTP muna para maka pag login
+    }
+}
+//======================================
 function modalPopupEmailConfirmation(){
 
     $(".modal-footer").css("display","flex");
