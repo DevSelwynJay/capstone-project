@@ -108,7 +108,9 @@ if(isset($_SESSION['email'])){
     <!--
     ======== Modal ===========
     -->
-    <div class="modal fade" id="pop-up" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false">
+
+    <!--first pop that will show show kapag valid ang credentials-->
+    <div class="modal fade" id="pop-up-main" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -120,24 +122,10 @@ if(isset($_SESSION['email'])){
                 <div class="modal-body">
 
                     <div id="modal-content">
-                        <!--for email popup-->
-                        <!--
-                        <div id="modal-icon"><img src="./img/hero-image-1.png"/></div>
-                        <h3>Email Confirmation</h3>
-                        <h5>A verification code has been sent to your email</h5>
-                        <h5 id="email-txt">sample@gmail.com</h5>
-                        <p>To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
-                        <h5>Enter 6-digit code</h5>
-                        <form autocomplete="off">
-                            <input type="text" maxlength="6" id="otp-input">
-                        </form>-->
 
-                        <!--for first popup after logging in-->
-                        <!--
                         <div id="modal-icon"><img src="./img/authentication.png"/></div>
                         <h3>Two-Step Authentication</h3>
                         <p>Please choose one of the following where to send your login verification code to continue.</p>
-
                         <div class="container">
                             <div class="row" id="choose-authentication">
                                 <div class="col-sm">
@@ -157,15 +145,46 @@ if(isset($_SESSION['email'])){
                             </div>
                         </div>
                         <input type="radio" name="toggle" style="display: none" checked value="none" id="isNone">
-                         -->
-
-
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-ok-btn">Confirm</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-cancel-btn">Back</button>
+                    <button type="button" class="btn btn-primary" id="pop-up-main-ok-btn">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-main-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Email OTP Confirmation Pop-up-->
+    <div class="modal fade" id="pop-up-email" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="modal-content">
+
+                        <div id="modal-icon"><img src="./img/email.png"/></div>
+                        <h3>Email Confirmation</h3>
+                        <h5>A verification code has been sent to your email</h5>
+                        <h5 id="email-txt">sample@gmail.com</h5>
+                        <p>To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
+                        <h5>Enter 6-digit code</h5>
+                        <form autocomplete="off">
+                            <input type="text" maxlength="6" id="otp-input">
+                        </form>
+
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="pop-up-email-ok-btn">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-email-cancel-btn">Back</button>
                 </div>
             </div>
         </div>

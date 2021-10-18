@@ -58,11 +58,10 @@ function handleCredentialResponse(response) {
                     //window.location.href="main.php"
                     //prevent from clicking outside
                     modalPopupMain();
-                    $("#pop-up-ok-btn").css("display","flex");
                 }
                 else{
                     //alert("Google Account is not registered !!!");
-                    modalPopupPrompt("Account doesn't exist");
+                    //$("#pop-up").modal('toggle'); toggle pop-up error prompt
                 }
             }
         }
@@ -79,23 +78,18 @@ function loginProcess(){
     var password = $('input[type="password"]').val();
 
     if(email==""||password==""){
-        $("#pop-up").modal('toggle');
-        modalPopupPrompt("Please fill all the fields");
-        $("#pop-up-ok-btn").css("display","none")
+        //$("#pop-up").modal('toggle'); toggle pop-up error prompt
         return;
     }
 
         $.post("php/loginProcesses/loginProcess.php", {email:email,password:password,signInType:0/* 0 for regular login*/})
             .done(function (data){
 
-                $("#pop-up").modal('toggle');
-
                 if(data==1){
                     modalPopupMain();
-                    $("#pop-up-ok-btn").css("display","flex");
                 }
                 else {
-                    modalPopupPrompt("Invalid Credentials");
+                    //$("#pop-up").modal('toggle'); toggle pop-up error prompt
                 }
             })
 }
@@ -108,88 +102,48 @@ function loginProcess(){
 * else error prompt message will show
 * ===========================
 * */
-function modalPopupPrompt(message){
-    $("#pop-up-ok-btn").css("display","none");
-    $("#modal-content").html("<div><p>"+message+"</p></div>");
-}
+
 function  modalPopupMain(){
-    $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/authentication.png\"/></div>\n" +
-        "                        <h3>Two-Step Authentication</h3>\n" +
-        "                        <p>Please choose one of the following where to send your login verification code to continue.</p>\n" +
-        "\n" +
-        "                        <div class=\"container\">\n" +
-        "                            <div class=\"row\" id=\"choose-authentication\">\n" +
-        "                                <div class=\"col-sm\">\n" +
-        "                                    <img src=\"img/email.png\">\n" +
-        "                                    <p>Code to be sent by email</p>\n" +
-        "                                    <div class=\"toggle-cont\">\n" +
-        "                                        <input type=\"radio\" name=\"toggle\" value=\"isEmail\" id=\"isEmail\">\n" +
-        "                                    </div>\n" +
-        "                                </div>\n" +
-        "                                <div class=\"col-sm\">\n" +
-        "                                    <img src=\"img/sms.png\" id=\"sms-icon\">\n" +
-        "                                    <p style=\"margin-top: 1rem\">Code to be sent by SMS</p>\n" +
-        "                                    <div class=\"toggle-cont\">\n" +
-        "                                        <input type=\"radio\" name=\"toggle\" value=\"isSMS\" id=\"isSMS\">\n" +
-        "                                    </div>\n" +
-        "                                </div>\n" +
-        "                            </div>\n" +
-        "                        </div>\n" +
-        "                        <input type=\"radio\" name=\"toggle\" style=\"display: none\" checked value=\"none\" id=\"isNone\">");
-
+    $("#pop-up-main").modal('toggle');
     //get the value of selected radio button (isSMS,isEmail)
-    $("#pop-up-ok-btn").click(function (){
-
+    $("#pop-up-main-ok-btn").click(function (){
         var radioValue = $("input[name=toggle]:checked").val();
 
-        $(".modal-footer").css("display","none");
-        modalPopupPrompt("Please Wait!!!");
+        setTimeout(function (){
+            console.log("selectAuthenticationType"+radioValue)
 
-        setTimeout(function (){selectAuthenticationType(radioValue);},3000)
+            if(radioValue=="isSMS"){
+                console.log("SMS was selected")
+            }
+            else if(radioValue=="isEmail"){
+                console.log("Email was selected");
+
+
+                //send OTP via email
+                $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
+
+                    if(data==1){//otp successfully sent in email
+
+                        modalPopupEmailConfirmation();
+                    }
+                    else {
+                        //$("#pop-up").modal('toggle'); toggle pop-up error prompt
+                    }
+                });
+
+                //pag itetest ng maraming beses ung login
+                //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
+                //baka kasi maubos ung 500email sent per 24 hours
+                //modalPopupEmailConfirmation();
+                //tignan nalang sa database ung OTP muna para maka pag login
+            }
+        },0);
     })
 }
-function selectAuthenticationType(radioValue){
-    console.log("selectAuthenticationType"+radioValue)
-
-    if(radioValue=="isSMS"){
-        console.log("SMS was selected")
-    }
-    else if(radioValue=="isEmail"){
-        console.log("Email was selected");
-
-
-        //send OTP via email
-         $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
-
-             if(data==1){//otp successfully sent in email
-
-                 modalPopupEmailConfirmation();
-             }
-             else {
-                 modalPopupPrompt("Error Sending OTP");
-             }
-         });
-
-        //pag itetest ng maraming beses ung login
-        //pa comment ung buong post method sa taas at pa uncomment ung line sa baba
-        //baka kasi maubos ung 500email sent per 24 hours
-        //modalPopupEmailConfirmation();
-        //tignan nalang sa database ung OTP muna para maka pag login
-    }
-}
-//======================================
 function modalPopupEmailConfirmation(){
 
-    $(".modal-footer").css("display","flex");
-    $("#modal-content").html("<div id=\"modal-icon\"><img src=\"./img/email.png\"/></div>\n" +
-        "                        <h3>Email Confirmation</h3>\n" +
-        "                        <h5>A verification code has been sent to your email</h5>\n" +
-        "                        <h5 id=\"email-txt\">sample@gmail.com</h5>\n" +
-        "                        <p>To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>\n" +
-        "                        <h5>Enter 6-digit code</h5>\n" +
-        "                        <form autocomplete=\"off\">\n" +
-        "                            <input type=\"text\" maxlength=\"6\" id=\"otp-input\">\n" +
-        "                        </form>");
+    $("#pop-up-main").modal('hide');
+    $("#pop-up-email").modal('show');
 
     //put random '*' in an email
     var at = logged_gmail.indexOf("@");
@@ -203,23 +157,21 @@ function modalPopupEmailConfirmation(){
     $("#email-txt").html(displayedGmail.join(""));
 
     //confirm 6 Digit Code OTP
-    $("#pop-up-ok-btn").click(function (){
+    $("#pop-up-email-ok-btn").click(function (){
 
        var otp = $("#otp-input").val();
         $.post( "php/loginProcesses/verifyOTP.php", { email: logged_gmail,verificationType:"email",OTP:otp }, function( data ) {
           console.log(data)
             if(data.result){
                 console.log("tama ang OTP");
-                location.href="php/loginProcesses/redirect.php";
+                //location.href="php/loginProcesses/redirect.php";
             }
+
         }, "json");
     })
 }
 
 $(document).ready(function (){
-
-    //prevent from clicking outside
-    $('#pop-up').modal({backdrop: 'static', keyboard: false});
 
     /*
     ====== actions =========
