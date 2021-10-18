@@ -279,8 +279,8 @@ pop-up modal design
   justify-content: center;
 }
 #modal-icon img{
-  width: 10%;
-  height: 10%;
+  width: 20%;
+  height: 20%;
 }
 
 #modal-content h3{/*modal title*/
@@ -335,9 +335,9 @@ pop-up modal design
   margin: 0.2rem;
 }
 #choose-authentication .col-sm img{
-  width: 25%;
-  height: 35%;
-  margin: 1.3rem;
+  width: 4.5rem;
+  height: 3rem;
+  margin: 1.1rem;
 }
 #choose-authentication .col-sm p{
   color: var(--primary-color);

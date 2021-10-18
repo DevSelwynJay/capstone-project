@@ -61,7 +61,8 @@ function handleCredentialResponse(response) {
                 }
                 else{
                     //alert("Google Account is not registered !!!");
-                    //$("#pop-up").modal('toggle'); toggle pop-up error prompt
+                    $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                    $("#pop-up-error-message").html("Invalid credentials")
                 }
             }
         }
@@ -74,16 +75,16 @@ function handleCredentialResponse(response) {
 //for regular login process
 function loginProcess(){
 
-    var email = $('input[type="text"]').val();
+    logged_gmail = $('input[type="text"]').val();
     var password = $('input[type="password"]').val();
 
-    if(email==""||password==""){
+    if(logged_gmail==""||password==""){
         $("#pop-up-error").modal('show'); //toggle pop-up error prompt
         $("#pop-up-error-message").html("Please fill all the field")
         return;
     }
 
-        $.post("php/loginProcesses/loginProcess.php", {email:email,password:password,signInType:0/* 0 for regular login*/})
+        $.post("php/loginProcesses/loginProcess.php", {email:logged_gmail,password:password,signInType:0/* 0 for regular login*/})
             .done(function (data){
 
                 if(data==1){
@@ -126,7 +127,8 @@ function  modalPopupMain(){
 
                         modalPopupEmailConfirmation();
                     }
-                    else {
+                    else{
+                        $("#pop-up-main").modal('hide');
                         $("#pop-up-error").modal('show'); //toggle pop-up error prompt
                         $("#pop-up-error-message").html("Can't send OTP")
                     }
