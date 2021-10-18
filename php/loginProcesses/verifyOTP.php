@@ -1,6 +1,6 @@
 <?php
 session_start();
-$email=$_POST['email'];
+
 $verificationType=$_POST['verificationType'];//the possible value is email or SMS
 $inputtedOTP=$_POST['OTP'];
 
@@ -8,7 +8,7 @@ $con=null;
 require '../DB_Connect.php';
 
 if($verificationType=="email"){
-
+    $email=$_POST['email'];
     //can be admin,super admin or patient
     //it depends on what database table where the email is found
     $userTable = $_SESSION['userTable'];
