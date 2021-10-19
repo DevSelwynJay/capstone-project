@@ -17,7 +17,7 @@ if(isset($_SESSION['email'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <!--CSS Styling-->
-    <link rel="stylesheet" href="../capstone-project/css/main.css"/>
+    <link rel="stylesheet" href="scss/main.css"/>
 
     <!--JS-->
       <!--Google sign in api-->
@@ -39,6 +39,7 @@ if(isset($_SESSION['email'])){
       <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
        -->
+       
       <title>Login</title>
   </head>
   <body>
@@ -49,6 +50,47 @@ if(isset($_SESSION['email'])){
             <div class="logo">
               <img src="../capstone-project/img/HIS%20logo%20blue.png" alt="" />
             </div>
+            <div id="show" class="modal">
+                           <form>
+                                <div class="row">
+                                  
+                                    <input type="text" placeholder="First Name" />
+                              
+                               
+                                    <input type="text" placeholder="Middle Name" />
+                              
+                             
+                                    <input type="text" placeholder="Last Name" />
+                           
+                                </div>
+                                <div class="row">
+                              
+                                   <input type="text" placeholder="Email" />
+                            
+                            
+                                    <input type="text" placeholder="Gender" />
+                           
+                               </div>
+                               <div class="row">
+                               
+                                    <input type="password" placeholder="Password" />
+                             
+                            
+                                    <input type="password" placeholder=" Confirm Password" />
+                              
+                               </div>
+                               <div class="row">
+                               
+                                   <input type="text" placeholder="Work Category" />
+                            
+                                   <input type="text" placeholder="Contact No." />
+                             
+                              </div>
+                              
+                                 <a href="#show" rel="modal:open" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
+                            
+                            </form>
+                         </div>
             <form>
               <div class="form-wrapper">
                 <div class="row">
@@ -82,7 +124,7 @@ if(isset($_SESSION['email'])){
                   <div class="col-sm-12 margin-top-3">
                     <p class="text-center" style="color:#6d6d6d;">
                       Not yet Registered?&nbsp;<span
-                        ><a href="#">Create Account</a></span>
+                        ><a href="#show" rel="modal:open" >Create Account</a></span>
                     </p>
                   </div>
                 </div>

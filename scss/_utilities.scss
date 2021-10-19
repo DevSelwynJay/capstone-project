@@ -1,0 +1,59 @@
+.flex {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .flex-end{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .h-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .v-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-right {
+    justify-content: flex-end;
+  }
+  
+  .margin-a{
+    margin: 0 auto;
+  }
+  
+  .margin-top-1 {
+    margin-top: 0.5rem;
+  }
+  
+  .margin-top-2 {
+    margin-top: 1rem;
+  }
+  
+  .margin-top-3 {
+    margin-top: 1.5rem;
+  }
+  
+
+
+  //TEXT COLORS
+  
+.color-black{
+  color: var(--third-color);
+}
+
+.color-white{
+  color: var(--secondary-color);
+}

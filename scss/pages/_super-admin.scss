@@ -1,0 +1,96 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+td, th {
+  color: var(--third-color);
+  padding: .5rem 1rem;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #b7c6d1;
+}
+
+
+.cta-wrapper{
+margin-top: 1rem;
+display: flex;
+justify-content: flex-end;
+    .square-btn{
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        padding: .6rem .8rem;
+        display: block;
+        text-align: center;
+        width: 20%;
+
+        i{
+            margin-right: .3rem;
+        }
+
+        &:hover{
+            background-color: var(--hover-color);
+        }
+    }
+}
+
+
+.button-square{
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: .6rem .8rem;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    
+
+    i{
+        margin-right: .3rem;
+    }
+
+    &:hover{
+        background-color: var(--hover-color);
+    }
+}
+
+.cta-wrapper2{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+        .square-btn{
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: .6rem .8rem;
+            display: block;
+            text-align: center;
+            width: 20%;
+    
+            &:hover{
+                background-color: var(--hover-color);
+            }
+        }
+        .red-square-btn{
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            padding: .6rem .8rem;
+            display: block;
+            text-align: center;
+            width: 20%;
+
+            i{
+                margin-right: .3rem;
+            }
+    
+            &:hover{
+                background-color: #cf0404;
+            }
+        }
+    }

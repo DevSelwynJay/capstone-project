@@ -1,0 +1,82 @@
+
+/*
+=================
+  Change Email Settings
+=================
+*/
+
+#content{
+    color: var(--third-color);
+    display: flex;
+  }
+  #settings-left{
+    margin-left: 20px;
+  }
+  #settings-left h1{
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  #settings-left ul{
+    list-style-type: none;
+  }
+  #settings-left ul li{
+    line-height: 30px;
+  }
+  #settings-left ul li a{
+    color: var(--third-color);
+  }
+  #settings-left ul li a:hover{
+    text-decoration: none;
+  }
+  
+  /*
+  #settings-right{
+    margin-left: 20%;
+    margin-top: 7%;
+  }
+  #settings-right h1{
+    font-weight: bold;
+    font-size: 30px;
+  }
+  #settings-right input[type = "email"]{
+    border: 3px solid var(--ligt-grey);
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+  }
+  #settings-right input[type = "password"]{
+    border: 3px solid var(--ligt-grey);
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+  }
+  #settings-right label, #settings-right input[type = "email"]{
+    margin-top: 30px;
+  }
+  #settings-right label, #settings-right input[type = "password"]{
+    margin-top: 30px;
+  }
+  #settings-right button{
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    padding: 15px;
+    color: white;
+    margin: 30% 0 0 60%;
+  }
+  #settings-right button:hover{
+    background-color: var(--hover-color);
+  }
+  table td:nth-child(odd){
+    font-weight: bold;
+  }
+  table td:nth-child(even){
+    padding-left: 30%;
+    width: 400px;
+  }
+  td, tr{
+    padding: 10px 0 0 10px;
+  }
+  */
+  

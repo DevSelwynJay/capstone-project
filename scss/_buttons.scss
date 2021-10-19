@@ -1,0 +1,17 @@
+
+.primary-btn {
+    padding: 0.6rem 1rem;
+    border: none;
+    background-color: var(--primary-color);
+    width: 100%;
+    color: var(--secondary-color);
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    display: block;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--hover-color);
+  }
+  

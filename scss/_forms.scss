@@ -1,0 +1,24 @@
+input[type="text"],
+input[type="password"] {
+  font-family: poppins !important;
+}
+
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--third-color);
+  border-radius: 10px;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--primary-color);
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}

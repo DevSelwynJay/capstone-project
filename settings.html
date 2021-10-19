@@ -7,7 +7,7 @@
     <!--CSS Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!--custom CSS-->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="scss/main.css">
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
     <!-- Font Family Poppins -->
@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <section class="about">
+    <section>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-2">
@@ -60,54 +60,59 @@
                             </div>
                         </div>
                         </div>
+
+                        <div class="col-sm-12">
+                               
                         <div id = "content">
-                        <div id = settings-left>
-                            <h1>Settings</h1>
-                            <ul class = "settings-sub">
-                                <li><a href = "#">Change Personal Information</a></li>
-                                <li><a href = "#">Update Existing Email</a></li>
-                                <li><a href = "#">Change Password</a></li>
-                            </ul>
+                            <div id = settings-left>
+                                <h1>Settings</h1>
+                                <ul class = "settings-sub">
+                                    <li><a href = "#">Change Personal Information</a></li>
+                                    <li><a href = "#">Update Existing Email</a></li>
+                                    <li><a href = "#">Change Password</a></li>
+                                </ul>
+                            </div>
+                            <div id = "settings-right">
+                                <h1>Change Password</h1>
+                                <table>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td>Juan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Middle Name</td>
+                                        <td>Santos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Surname</td>
+                                        <td>Dela Cruz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>Male</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Age</td>
+                                        <td>21</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birthday</td>
+                                        <td>01/01/1999</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td>Guinhawa, Malolos, Bulacan</td>
+                                    </tr>
+                                    
+                                </table>
+                                <button>Save Changes</button>
+                            </div>
+                            
                         </div>
-                        <div id = "settings-right">
-                            <h1>Change Password</h1>
-                            <table>
-                                <tr>
-                                    <td>First Name</td>
-                                    <td>Juan</td>
-                                </tr>
-                                <tr>
-                                    <td>Middle Name</td>
-                                    <td>Santos</td>
-                                </tr>
-                                <tr>
-                                    <td>Surname</td>
-                                    <td>Dela Cruz</td>
-                                </tr>
-                                <tr>
-                                    <td>Gender</td>
-                                    <td>Male</td>
-                                </tr>
-                                <tr>
-                                    <td>Age</td>
-                                    <td>21</td>
-                                </tr>
-                                <tr>
-                                    <td>Birthday</td>
-                                    <td>01/01/1999</td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>Guinhawa, Malolos, Bulacan</td>
-                                </tr>
-                                
-                            </table>
-                            <button>Save Changes</button>
+    
+    
                         </div>
-                        
-                    </div>
-
-
+                     
                     </div>
                 </div>
             </div>

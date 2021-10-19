@@ -1,0 +1,145 @@
+.inner-sidenav{
+    background-color:var(--primary-color);
+    height: 100vh;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    moz-box-shadow: 2px 0 12px var(--third-color);
+    -webkit-box-shadow: 2px 0 12px var(--third-color);
+    box-shadow: 2px 0 12px var(--third-color);
+  }
+  
+  section .profile h4{
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    margin-top: .3rem;
+  }
+  section .profile-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    margin: 0 auto;
+    background-color:var(--third-color);
+  }
+  section .profile-img img{
+    width: 100%;
+    border-radius: inherit;
+  }
+  
+  section .menu{
+    margin-top: 2rem;
+  }
+  section .menu li{
+    list-style: none;
+  }
+  section .menu li a{
+    color: #ffffff;
+    margin: 1rem 0;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  section .menu li a::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: .2rem;
+  }
+  section .menu li .dashboard::before{
+    content: "\f0db";
+  }
+  section .menu li .patient::before{
+    content: "\f007";
+  }
+  section .menu li .reports::before{
+    content: "\f080";
+  }
+  section .menu li .trackMap::before{
+    content: "\f041";
+  }
+  section .menu li .inventory::before{
+    content: "\f466";
+  }
+  
+  section .profile h4{
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  section .social-media-links{
+    text-align: center;
+  }
+  section .social-media-links i{
+    font-size: 1.5rem;
+    margin: .4rem;
+    cursor: pointer;
+  }
+  section .spacer{
+    margin: 0 auto;
+  }
+  section .content, span{
+    color: var(--third-color);
+  }
+  section .content h1, h2{
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  section .content h2{
+    font-size: 1.5rem;
+  }
+  section .logo img{
+    width: 9rem;
+  }
+  section .inner-page-content{
+    width: 100%;
+    padding: 1rem;
+  }
+  section .inner-page-content .content{
+    text-align: center;
+    color: #383838;;
+    padding: 2rem 0 0 0;
+  }
+  section .inner-page-content .content .line{
+    width: 80px;
+    height: 3px;
+    background-color: var(--third-color);
+    margin: 0 .3rem;
+    color: #383838;
+  }
+  section .inner-page-content .content .heading-holder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  section .inner-page-content .content h1{
+    margin-bottom:.4rem ;
+  }
+  section .inner-page-content .content h2{
+    display: inline;
+  }
+  section .inner-page-content .content p{
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  section .inner-page-content .settings{
+    display: flex;
+    align-items: center;
+  }
+  section .inner-page-content .settings a{
+     cursor: pointer;
+  }
+  section .inner-page-content .settings i{
+    font-size: 1.7rem;
+    margin-right: .4rem;
+   color: #383838;
+  }
+  section .inner-page-nav {
+    width: 100%;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  section .inner-page-content .dropdown-settings{
+    font-size: 1.9rem;
+  }
