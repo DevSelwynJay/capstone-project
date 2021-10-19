@@ -201,6 +201,7 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>
+                        <h5 id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ">Invalid OTP</h5>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
