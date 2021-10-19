@@ -171,10 +171,6 @@ function modalPopupEmailConfirmation(){
     //confirm 6 Digit Code OTP
     $("#pop-up-email-ok-btn").click(function (){
 
-        $("#otp-input").keyup(function (){
-            $("#invalid-OTP-indicator").css("visibility","hidden")
-        })
-
        var otp = $("#otp-input").val();
         $.post( "php/loginProcesses/verifyOTP.php", { email: logged_gmail,verificationType:"email",OTP:otp }, function( data ) {
           console.log(data)
@@ -206,6 +202,12 @@ $(document).ready(function (){
         console.log("fffffff")
         loginProcess();
     })
+    //#otp-input
+    $('#otp-input').keypress(function(event){
+        if ( event.which == 13 ) {
+            event.preventDefault();
+        }
+    }).keyup(function (){ $("#invalid-OTP-indicator").css("visibility","hidden")});
 
 
 
