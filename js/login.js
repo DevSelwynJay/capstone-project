@@ -105,9 +105,13 @@ function loginProcess(){
 
 //pop-up where you will select sms or email
 function  modalPopupMain(){
+
+    //show pop-up-main
     $("#pop-up-main").modal('toggle');
-    //get the value of selected radio button (isSMS,isEmail)
+
     $("#pop-up-main-ok-btn").click(function (){
+
+        //get the value of selected radio button, possible value 'isSMS' or 'isEmail'
         var radioValue = $("input[name=toggle]:checked").val();
 
         setTimeout(function (){
@@ -118,7 +122,6 @@ function  modalPopupMain(){
             }
             else if(radioValue=="isEmail"){
                 console.log("Email was selected");
-
 
                 //send OTP via email
                 $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
@@ -143,11 +146,16 @@ function  modalPopupMain(){
         },0);
     })
 }
-//if email was selected to send OTP
+//if email was selected where to send OTP
+//pop-up where to input OTP
 function modalPopupEmailConfirmation(){
 
     $("#pop-up-main").modal('hide');
     $("#pop-up-email").modal('show');
+
+    //reset pop-up email form
+    $("#invalid-OTP-indicator").css("visibility","hidden")
+    $("#otp-input").val("")
 
     //put random '*' in an email
     var at = logged_gmail.indexOf("@");
@@ -171,17 +179,17 @@ function modalPopupEmailConfirmation(){
                 location.href="php/loginProcesses/redirect.php";
             }
             else{
-                $("#pop-up-email").modal('hide');
-                $("#pop-up-error").modal('show'); //toggle pop-up error prompt
-                $("#pop-up-error-message").html("Invalid OTP")
-                $("#pop-up-error-cancel-btn").click(function (){
-                    $("#pop-up-email").modal('show');
-                });
+                $("#invalid-OTP-indicator").css("visibility","visible")
             }
 
 
         }, "json");
     })
+}
+//if SMS was selected where to send OTP
+//pop-up where to input contact number and OTP
+function modalPopupSMSConfirmation(){
+
 }
 
 $(document).ready(function (){
@@ -194,6 +202,14 @@ $(document).ready(function (){
         console.log("fffffff")
         loginProcess();
     })
+    //#otp-input
+    $('#otp-input').keypress(function(event){
+        if ( event.which == 13 ) {
+            event.preventDefault();
+        }
+    }).keyup(function (){ $("#invalid-OTP-indicator").css("visibility","hidden")});
+
+
 
 
 
