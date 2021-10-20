@@ -105,12 +105,12 @@ body {
   --ligt-grey: #D4D7D9;
 }
 
-input[type=text],
+input[type=text], input[type=number],
 input[type=password] {
   font-family: poppins !important;
 }
 
-input[type=text], select,
+input[type=text], select, input[type=number],
 input[type=password] {
   width: 100%;
   margin-top: 1rem;
@@ -124,7 +124,7 @@ select {
   padding: 0.4rem 0.8rem;
 }
 
-input[type=text]:focus, select,
+input[type=text]:focus, select, input[type=text],
 input[type=password]:focus {
   border-color: var(--primary-color);
 }
