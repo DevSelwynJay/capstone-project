@@ -98,10 +98,10 @@ if(isset($_SESSION['email'])){
                     <h1 class="text-center" style="font-weight:700">Login</h1>
                   </div>
                   <div class="col-sm-12">
-                    <input id="dialog-root" type="text" placeholder="Email" />
+                    <input type="text" placeholder="Email" id="login-email"/>
                   </div>
                   <div class="col-sm-12">
-                    <input type="password" placeholder="Password" />
+                    <input type="password" placeholder="Password" id="login-pwd"/>
                   </div>
 
                   <div class="flex margin-top-1">
@@ -190,7 +190,7 @@ if(isset($_SESSION['email'])){
                         <div id="modal-icon"><img src="./img/authentication.png"/></div>
                         <h3>Two-Step Authentication</h3>
                         <p>Please choose one of the following where to send your login verification code to continue.</p>
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row" id="choose-authentication">
                                 <div class="col-sm">
                                     <img src="img/email.png">
@@ -201,6 +201,7 @@ if(isset($_SESSION['email'])){
                                 </div>
                                 <div class="col-sm">
                                     <img src="img/sms.png" id="sms-icon">
+
                                     <p style="margin-top: 1rem">Code to be sent by SMS</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isSMS" id="isSMS">
