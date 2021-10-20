@@ -1,4 +1,4 @@
-input[type="text"],input[type="number"],
+input[type="text"],select,input[type="number"],
 input[type="password"] {
   font-family: poppins !important;
 }
@@ -18,7 +18,7 @@ select{
   padding: 0.4rem 0.8rem;
 }
 
-input[type="text"]:focus,select,input[type="text"],
+input[type="text"]:focus,select:focus,input[type="number"]:focus,
 input[type="password"]:focus {
   border-color: var(--primary-color);
 }
