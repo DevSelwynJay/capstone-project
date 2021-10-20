@@ -1,0 +1,38 @@
+.registration-form{
+
+    color: var(--third-color);
+    &__container{
+        display: flex;
+        @media (max-width:900px) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    &__wrapper{
+        flex: 1 1 50%;
+    }
+
+    &__image{
+        flex: 1 1 50%;
+       height: 100vh;
+       background-color: var(--primary-color);
+       display: grid;
+       place-items: center;
+       img{
+           width:70%;
+           height: 70%;
+           @media (max-width:900px) {
+            display: none;
+         }
+       }
+    }
+
+}
+
+.logo{
+    padding: 1rem;
+    img{
+       width: 12rem !important;
+      
+    }
+}

@@ -48,7 +48,7 @@ if(isset($_SESSION['email'])){
         <div class="row">
           <div class="col-12 col-xs-12 col-sm-12 col-md-7 col-lg-7">
             <div class="logo">
-              <img src="../capstone-project/img/HIS%20logo%20blue.png" alt="" />
+              <img src="../capstone-project/img/HIS%20logo%20blue.png" alt="logo" />
             </div>
             <div id="show" class="modal">
                            <form>

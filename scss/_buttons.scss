@@ -9,9 +9,13 @@
     cursor: pointer;
     border-radius: 10px;
     display: block;
-  }
+    margin: 1rem 0;
+    text-align: center;
+    }
   
   .primary-btn:hover {
     background-color: var(--hover-color);
+    color: white;
+    text-decoration: none;
   }
   
