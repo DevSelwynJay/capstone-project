@@ -4,7 +4,7 @@ input[type="password"] {
 }
 
 
-input[type="text"],
+input[type="text"],select,
 input[type="password"] {
   width: 100%;
   margin-top: 1rem;
@@ -14,7 +14,11 @@ input[type="password"] {
   outline: none;
 }
 
-input[type="text"]:focus,
+select{
+  padding: 0.4rem 0.8rem;
+}
+
+input[type="text"]:focus,select,
 input[type="password"]:focus {
   border-color: var(--primary-color);
 }

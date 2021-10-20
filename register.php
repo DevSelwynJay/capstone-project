@@ -37,18 +37,35 @@
                            <div class="col-sm-6">  <input type="text" placeholder="Suffix" /></div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-12">
+                           <div class="col-sm-6">
                               <input type="text" placeholder="Email" />
                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Contact No." />
+                            </div>
                         </div>
                         <div class="row">
                            <div class="col-sm-6"> <input type="password" placeholder="Password" /></div>
                            <div class="col-sm-6"> <input type="password" placeholder=" Confirm Password" /></div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-6"><input type="text" placeholder="Work Category" /></div>
-                           <div class="col-sm-6"> <input type="text" placeholder="Contact No." /></div>
+                            <div class="col-sm-3">
+                                <select type="text" placeholder="Purok" >
+                                    <?php
+                                    for($a=1;$a<=7;$a++){
+                                        echo "<option>$a</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                           <div class="col-sm-3"><input type="text" placeholder="House #" /></div>
+                           <div class="col-sm-6"><input type="text" placeholder="" value="Sto. Rosario" readonly/></div>
                         </div>
+                         <div class="row">
+                             <div class="col-sm-6"><input type="text" placeholder="" value="Paombong" readonly/></div>
+                             <div class="col-sm-6"><input type="text" placeholder="" value="Bulacan" readonly/></div>
+
+                         </div>
                         <a class="primary-btn">Register</a>
                      </div>
                   </form>

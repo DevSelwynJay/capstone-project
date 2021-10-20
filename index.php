@@ -125,7 +125,7 @@ if(isset($_SESSION['email'])){
                   <div class="col-sm-12 margin-top-3">
                     <p class="text-center" style="color:#6d6d6d;">
                       Not yet Registered?&nbsp;<span
-                        ><a href="#show" rel="modal:open" >Create Account</a></span>
+                        ><a href="register.php">Create Account</a></span>
                     </p>
                   </div>
                 </div>
