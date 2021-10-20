@@ -17,7 +17,8 @@
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
       <title>Register</title>
       <!--Jquery-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
    </head>
    <body>
       <section class="registration-form">
@@ -67,7 +68,7 @@
                              <div class="col-sm-6"><input type="text" placeholder="" value="Bulacan" readonly/></div>
 
                          </div>
-                        <a class="primary-btn">Register</a>
+                        <a class="primary-btn" id="reg">Register</a>
                      </div>
                   </form>
                </div>
@@ -77,5 +78,10 @@
             </div>
          </div>
       </section>
+      <script>
+          $(".logo").click(function (){
+             location.href="index.php";
+          })
+      </script>
    </body>
 </html>
