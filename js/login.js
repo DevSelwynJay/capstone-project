@@ -75,8 +75,8 @@ function handleCredentialResponse(response) {
 //for regular login process
 function loginProcess(){
 
-    logged_gmail = $('input[type="text"]').val();
-    var password = $('input[type="password"]').val();
+    logged_gmail = $('#login-email').val();
+    var password = $('#login-pwd').val();
 
     if(logged_gmail==""||password==""){
         $("#pop-up-error").modal('show'); //toggle pop-up error prompt
