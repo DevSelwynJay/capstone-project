@@ -5,6 +5,7 @@ if(isset($_SESSION['email'])){
     header("location:php/loginProcesses/redirect.php");
     exit();
 }
+//test 123
 ?>
 <!DOCTYPE html>
 <html lang="en">
