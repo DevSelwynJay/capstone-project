@@ -105,38 +105,32 @@ if(!isset($_SESSION['email'])){
                            <th>Admin ID</th>
                            <th>Name</th>
                            <th>Email</th>
+                           <th>Contact No.</th>
                            <th>Work Category</th>
                         </tr>
-                        <tr>
-                           <td>01</td>
-                           <td>Sample Name</td>
-                           <td>samplename@gmail.com</td>
-                           <td>Health Worker</td>
-                        </tr>
-                        <tr>
-                           <td>02</td>
-                           <td>Sample Name</td>
-                           <td>samplename@gmail.com</td>
-                           <td>Health Worker</td>
-                        </tr>
-                        <tr>
-                           <td>03</td>
-                           <td>Sample Name</td>
-                           <td>samplename@gmail.com</td>
-                           <td>Health Worker</td>
-                        </tr>
-                         <tr>
-                             <td>04</td>
-                             <td>Sample Name</td>
-                             <td>samplename@gmail.com</td>
-                             <td>Health Worker</td>
-                         </tr>
-                         <tr>
-                             <td>05</td>
-                             <td>Sample Name</td>
-                             <td>samplename@gmail.com</td>
-                             <td>Health Worker</td>
-                         </tr>
+                         <!--Query Admin accounts-->
+                         <?php
+                         $con=null;
+                         include 'php/DB_Connect.php';
+                         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role FROM super_admin");
+                         while ($row=mysqli_fetch_array($result)){
+                             $id = $row[0];
+                             $name = $row[1].", ".$row[2]." ".$row[3];
+                             $email = $row[4];
+                             $contact_no = $row[5];
+                             $role = $row[6];
+                             echo "
+                             <tr>
+                               <td>$id</td>
+                               <td>$name</td>
+                               <td>$email</td>
+                               <td>$contact_no</td>
+                               <td>$role</td>
+                            </tr>
+                             ";
+                         }
+                         mysqli_close($con);
+                         ?>
                      </table>
                      </div>
                      <div class="cta-wrapper">
