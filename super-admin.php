@@ -77,18 +77,18 @@ if(!isset($_SESSION['email'])){
                   </div>
                   <div class="col-sm-12">
                      <div id="show" class="modal">
-                        <form>
+                        <form autocomplete="off">
                            <div class="row">
                               <input type="text" placeholder="First Name" />
                               <input type="text" placeholder="Middle Name" />
                               <input type="text" placeholder="Last Name" />
                            </div>
                            <div class="row">
-                              <input type="text" placeholder="Email" />
                               <input type="text" placeholder="Gender" />
+                              <input type="text" placeholder="Email" id="email"/>
                            </div>
                            <div class="row">
-                              <input type="password" placeholder="Password" />
+                              <input type="password" placeholder="Password" id="password"/>
                               <input type="password" placeholder=" Confirm Password" />
                            </div>
                            <div class="row">
@@ -134,7 +134,7 @@ if(!isset($_SESSION['email'])){
                      </table>
                      </div>
                      <div class="cta-wrapper">
-                        <a href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
+                        <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
                      </div>
                   </div>
                   <div class="col-sm-12">
@@ -222,5 +222,17 @@ if(!isset($_SESSION['email'])){
             </div>
          </div>
       </section>
+   <script>
+       //additional script for autocomplete form problem
+        $("#add-admin-modal").on("click",function (){
+
+            setTimeout(function (){
+                $("#email").val("")
+                $("#password").val("")
+            },500)
+
+
+        })
+   </script>
    </body>
 </html>
