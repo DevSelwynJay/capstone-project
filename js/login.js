@@ -113,8 +113,9 @@ function  modalPopupMain(){
 
         //get the value of selected radio button, possible value 'isSMS' or 'isEmail'
         var radioValue = $("input[name=toggle]:checked").val();
+        //then hide the main modal
+        $("#pop-up-main").modal('hide');
 
-        setTimeout(function (){
             console.log("selectAuthenticationType"+radioValue)
 
             if(radioValue=="isSMS"){
@@ -123,15 +124,18 @@ function  modalPopupMain(){
             else if(radioValue=="isEmail"){
                 console.log("Email was selected");
 
+                $("#pop-up-loading").modal('show');
+
                 //send OTP via email
                 $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data){
 
+                    //hide loading modal after ajax request
+                    $("#pop-up-loading").modal('hide');
                     if(data==1){//otp successfully sent in email
-
                         modalPopupEmailConfirmation();
                     }
                     else{
-                        $("#pop-up-main").modal('hide');
+
                         $("#pop-up-error").modal('show'); //toggle pop-up error prompt
                         $("#pop-up-error-message").html("Can't send OTP")
                     }
@@ -143,14 +147,14 @@ function  modalPopupMain(){
                 //modalPopupEmailConfirmation();
                 //tignan nalang sa database ung OTP muna para maka pag login
             }
-        },0);
+
     })
 }
 //if email was selected where to send OTP
 //pop-up where to input OTP
 function modalPopupEmailConfirmation(){
 
-    $("#pop-up-main").modal('hide');
+
     $("#pop-up-email").modal('show');
 
     //reset pop-up email form
@@ -202,6 +206,11 @@ $(document).ready(function (){
         console.log("fffffff")
         loginProcess();
     })
+    //hides loading screen in OTP modal when cancel button is triggered
+    let hideLoadingModal = function (){
+        $("#pop-up-loading").modal("hide");
+    }
+    $("#pop-up-email-cancel-btn").click(hideLoadingModal)
     //#otp-input
     $('#otp-input').keypress(function(event){
         if ( event.which == 13 ) {
