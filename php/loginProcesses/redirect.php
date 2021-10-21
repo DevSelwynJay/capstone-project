@@ -12,7 +12,7 @@ session_start();
 //make a condition kung saang page ireredirect using the session variable SESSION['account_type']
 $type = $_SESSION['account_type'];
 if($type==0){
-    //header("location:../../super-admin.php",true);
+    header("location:../../super-admin.php",true);
 }
 else{
 header("location:../../main.php",true);}
