@@ -99,6 +99,7 @@ if(!isset($_SESSION['email'])){
                         </form>
                      </div>
                      <h3 class="color-black">Manage Admin Accounts</h3>
+                      <div style="max-height: 50vh;overflow-y: auto">
                      <table>
                         <tr>
                            <th>Admin ID</th>
@@ -124,13 +125,27 @@ if(!isset($_SESSION['email'])){
                            <td>samplename@gmail.com</td>
                            <td>Health Worker</td>
                         </tr>
+                         <tr>
+                             <td>04</td>
+                             <td>Sample Name</td>
+                             <td>samplename@gmail.com</td>
+                             <td>Health Worker</td>
+                         </tr>
+                         <tr>
+                             <td>05</td>
+                             <td>Sample Name</td>
+                             <td>samplename@gmail.com</td>
+                             <td>Health Worker</td>
+                         </tr>
                      </table>
+                     </div>
                      <div class="cta-wrapper">
                         <a href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
                      </div>
                   </div>
                   <div class="col-sm-12">
                      <h3 class="color-black">Manage User Accounts</h3>
+                      <div style="max-height: 50vh;overflow-y: auto">
                      <table>
                         <tr>
                            <th>User/Patient ID</th>
@@ -203,6 +218,7 @@ if(!isset($_SESSION['email'])){
                            <td>Email</td>
                         </tr>
                      </table>
+                      </div>
                      <div class="cta-wrapper2">
                         <a href="" class="square-btn">Show More</a>
                         <a href="" class="red-square-btn"><i class="fas fa-trash-alt"></i>Delete Selected</a>
