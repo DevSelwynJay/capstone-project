@@ -17,7 +17,7 @@ if(!$con){
 //pag wala, search the email to admin table
 //pag wala parin, sa patient table hanapin
 
-$userTables = array(/*'superadmin',*/'admin'/*,'patient'*/);
+$userTables = array('super_admin','admin'/*,'patient'*/);
 
 $isFound=false;
 foreach ($userTables as $userTable){

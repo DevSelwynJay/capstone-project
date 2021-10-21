@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 06:38 AM
+-- Generation Time: Oct 22, 2021 at 01:22 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,33 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-('1', 1, 'Benitez', 'Alfredo', 'Bas', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '738167');
+('1', 1, 'Benitez', 'Alfredo', 'Bas', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '725855');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `super_admin`
+--
+
+CREATE TABLE `super_admin` (
+  `account_type` char(1) NOT NULL COMMENT '0 superAdmin, 1 admin, 2 patient	',
+  `id` int(11) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `middle_name` varchar(50) NOT NULL,
+  `email` char(50) NOT NULL,
+  `password` char(50) NOT NULL,
+  `contact_no` varchar(20) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `OTP` varchar(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `super_admin`
+--
+
+INSERT INTO `super_admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
+('0', 1, 'benitez', 'alfredo', 'bas', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', 'Admin', '164879');
 
 --
 -- Indexes for dumped tables
@@ -59,6 +85,12 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `gmail` (`email`);
 
 --
+-- Indexes for table `super_admin`
+--
+ALTER TABLE `super_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -66,6 +98,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `super_admin`
+--
+ALTER TABLE `super_admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 

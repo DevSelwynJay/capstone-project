@@ -10,5 +10,10 @@ need to add some codes later*/
 session_start();
 //0->superadmin 1->admin 2->patient
 //make a condition kung saang page ireredirect using the session variable SESSION['account_type']
-header("location:../../main.php",true);
+$type = $_SESSION['account_type'];
+if($type==0){
+    //header("location:../../super-admin.php",true);
+}
+else{
+header("location:../../main.php",true);}
 exit();
