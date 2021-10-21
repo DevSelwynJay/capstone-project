@@ -41,6 +41,12 @@ body {
   margin-bottom: 10vh;
 }
 
+/*.tooltip-inner {
+  background-color: #00cc00;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+  border-right-color: #00cc00 !important;
+}*/
 .flex {
   display: flex;
   width: 100%;
