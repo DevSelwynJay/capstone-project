@@ -37,7 +37,7 @@ function getMail(): PHPMailer
     $mail->Username = 'projectcapstone3m@gmail.com';   // SMTP username
     $mail->Password = 'mukamo11';   // SMTP password
     $mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                    // TCP port to connect to
+    $mail->Port = 587;                    // TCP port to connect to //587 is old // 465 is new
 
 // Sender info
     $mail->setFrom('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
@@ -66,14 +66,14 @@ $mail->Body    = $bodyContent;
 
 
 // Send email
-/*if(!$mail->send()) {
+if(!$mail->send()) {
    // echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
     echo 0;
 } else {
     //echo 'Message has been sent.';
     echo 1;
-}*/
-echo 1
+}
+//echo 1
 
 
 ?>

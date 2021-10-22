@@ -164,7 +164,7 @@ if(isset($_SESSION['email'])){
                 </div>
                 <div class="modal-body">
                     <div id="modal-content">
-                        <p id="pop-up-error-message">Loading</p>
+                        <p id="pop-up-loading-message">Loading</p>
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
             </div>
