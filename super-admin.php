@@ -107,7 +107,7 @@ if(!isset($_SESSION['email'])){
                          <?php
                          $con=null;
                          include 'php/DB_Connect.php';
-                         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role FROM super_admin");
+                         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role FROM admin");
                          while ($row=mysqli_fetch_array($result)){
                              $id = $row[0];
                              $name = $row[1].", ".$row[2]." ".$row[3];
@@ -129,7 +129,8 @@ if(!isset($_SESSION['email'])){
                      </table>
                      </div>
                      <div class="cta-wrapper">
-                        <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
+                         <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
+                         <!--Palagyan ng Disable Account na button din dito.  -->
                      </div>
                   </div>
                   <div class="col-sm-12">
@@ -209,8 +210,9 @@ if(!isset($_SESSION['email'])){
                      </table>
                       </div>
                      <div class="cta-wrapper2">
-                        <a href="" class="square-btn">Show More</a>
-                        <a href="" class="red-square-btn"><i class="fas fa-trash-alt"></i>Delete Selected</a>
+                         <!--Patanggal nung show more kasi scrollable naman na  -->
+                         <a href="" class="square-btn">Show More</a>
+                         <a href="" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
                </div>
