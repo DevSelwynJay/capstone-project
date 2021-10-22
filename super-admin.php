@@ -26,6 +26,8 @@ if(!isset($_SESSION['email'])){
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+       <!--Super Admin JS-->
+       <script src="js/super-admin.js"></script>
    </head>
    <body>
       <section>
@@ -74,23 +76,23 @@ if(!isset($_SESSION['email'])){
                      <div id="show" class="modal">
                         <form autocomplete="off">
                            <div class="row">
-                              <input type="text" placeholder="First Name" />
-                              <input type="text" placeholder="Middle Name" />
-                              <input type="text" placeholder="Last Name" />
+                              <input type="text" id="fname" placeholder="First Name" />
+                              <input type="text" id="mname"  placeholder="Middle Name" />
+                              <input type="text" id="lname"  placeholder="Last Name" />
                            </div>
                            <div class="row">
-                              <input type="text" placeholder="Gender" />
-                              <input type="text" placeholder="Email" id="email"/>
+                              <input type="text" id="gender"  placeholder="Gender" />
+                              <input type="text" placeholder="Email" id="admin-email"/>
                            </div>
                            <div class="row">
                               <input type="password" placeholder="Password" id="password"/>
-                              <input type="password" placeholder=" Confirm Password" />
+                              <input type="password" id="conf-pass"  placeholder=" Confirm Password" />
                            </div>
                            <div class="row">
-                              <input type="text" placeholder="Work Category" />
-                              <input type="text" placeholder="Contact No." />
+                              <input type="text" id="work-cat" placeholder="Work Category" />
+                              <input type="text" id="contact" placeholder="Contact No." />
                            </div>
-                           <a href="#show" rel="modal:open" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
+                           <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
                         </form>
                      </div>
                      <h3 class="color-black">Manage Admin Accounts</h3>
