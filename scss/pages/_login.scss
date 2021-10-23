@@ -51,7 +51,10 @@ section.login-form .logo img {
   pop-up modal design
   ====================
   */
-  
+  #modal-content{
+    height: fit-content;
+    padding-top: 1rem;
+  }
   .modal-footer{
     justify-content: center;
   }
@@ -94,6 +97,8 @@ section.login-form .logo img {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
   #otp-input{
     font-size: 1rem;
@@ -105,9 +110,21 @@ section.login-form .logo img {
     border-radius: 0.5em;
     border: 2px solid var(--third-color);
     outline: none;
+    margin: 0;
+  }
+  #otp-input:focus{
+    border-color: var(--primary-color);
   }
   
   /*first pop to show after successful login*/
+#choose-authentication{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+}
+
   #choose-authentication .col-sm{
     display: flex;
     flex-direction: column;
@@ -116,6 +133,8 @@ section.login-form .logo img {
     border: 2px solid #c5bebe;
     border-radius: 0.5rem;
     margin: 0.2rem;
+    padding: 0;
+    max-width: 80%;
   }
   #choose-authentication .col-sm img{
     width: 4.5rem;
@@ -133,10 +152,22 @@ section.login-form .logo img {
     justify-content: center;
     align-items: center;
     padding: 0.3rem;
-    background: #D4D7D9;
     margin: 0;
+    background: #c9cece;
   }
   input[type="radio"]{
     width: 1.3rem;
     height: 1.3rem;
+  }
+  .subtitle{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    color: var(--third-color);
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+
   }

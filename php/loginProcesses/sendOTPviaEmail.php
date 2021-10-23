@@ -77,12 +77,14 @@ $messageBody.=  '<h1 style="text-align: center">'.$OTP.'</h1>';
 $mail->Body = $messageBody;
 $mail->addAttachment('../../img/jay.jpg',"jay");
 //send the message, check for errors
-if (!$mail->send()) {
+/*if (!$mail->send()) {
    // echo 'Mailer Error: ' . $mail->ErrorInfo;
     echo 0;
 } else {
    // echo 'Message sent!';
     echo 1;
 }
+*/
+echo 1;
 
 ?>
