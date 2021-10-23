@@ -175,12 +175,12 @@ if(isset($_SESSION['email'])){
     <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <!--<h5 class="modal-title" id="pop-upLabel">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>-->
-                </div>
+                <!--<div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>-->
                 <div class="modal-body">
                     <div id="modal-content">
                         <p id="pop-up-error-message">Error</p>
@@ -260,7 +260,7 @@ if(isset($_SESSION['email'])){
                         <h5 class="subtitle">A verification code has been sent to your email</h5>
                         <h5 id="email-txt">sample@gmail.com</h5>
                         <p class="paragraph">To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
-                        <h5 class="subtitle">Enter 6-digit code</h5>
+                        <h5 class="subtitle">Enter 6-digit OTP code</h5>
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>

@@ -71,20 +71,32 @@ $mail->setOAuth(
 $mail->setFrom($email, 'Sto. Rosario Health Information System Paombong Bulacan');
 $mail->addAddress($logged_email/*, 'RECIPIENT_NAME'*/);
 $mail->isHTML(true);
-$mail->Subject = 'OTP Verification Code';
-$messageBody = '<h4 style="text-align: center"><b>Please enter the code below</b></h4>';
-$messageBody.=  '<h1 style="text-align: center">'.$OTP.'</h1>';
+$mail->Subject = 'Login OTP Verification';
+
+$messageBody= '
+                <div  style="background: #eaeef3;padding: 20px;margin: 5px 0 0 0 ">
+                    <h2 style="font-family: Arial;color: #4d4949">Hello Sample User</h2>
+                    <p style="font-family: Arial;font-size: large;color: #4d4949">Here is your login OTP verification code:</p>
+                    <h1 style="font-family: Arial;color: #3f3b3b">'.$OTP.'</h1>
+                    <div style="max-height: fit-content;background: #d4dce3;padding: 5px 10px">
+                        <p style="font-family: Arial;color: #3f3b3b">Please copy the code above and enter it into the login page to proceed. OTP code is always generated everytime that you will login into the system</p>
+                    </div>
+                    <p style="font-family: Arial;color: #3f3b3b;padding: 10px;font-size: large">Not the one who logged the account? <a href="http://localhost/capstone-project">Secure your account now</a></p>
+                </div>
+';
+
+
 $mail->Body = $messageBody;
 $mail->addAttachment('../../img/jay.jpg',"jay");
 //send the message, check for errors
-/*if (!$mail->send()) {
+if (!$mail->send()) {
    // echo 'Mailer Error: ' . $mail->ErrorInfo;
     echo 0;
 } else {
    // echo 'Message sent!';
     echo 1;
 }
-*/
-echo 1;
+
+//echo 1;
 
 ?>
