@@ -159,7 +159,7 @@ section.login-form .logo img {
     width: 1.3rem;
     height: 1.3rem;
   }
-  .subtitle{
+  .subtitle{/** the h5 in modal*/
     display: flex;
     width: 100%;
     text-align: center;
@@ -170,4 +170,7 @@ section.login-form .logo img {
     margin: 0;
     font-size: 1.2rem;
 
+  }
+  .paragraph{/*the <p> in modal*/
+    margin: 0.5rem 0;
   }

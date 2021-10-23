@@ -598,6 +598,7 @@ input[type=radio] {
 }
 
 .subtitle {
+  /** the h5 in modal*/
   display: flex;
   width: 100%;
   text-align: center;
@@ -607,6 +608,11 @@ input[type=radio] {
   padding: 0;
   margin: 0;
   font-size: 1.2rem;
+}
+
+.paragraph {
+  /*the <p> in modal*/
+  margin: 0.5rem 0;
 }
 
 .super-admin {
