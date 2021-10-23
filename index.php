@@ -260,7 +260,7 @@ if(isset($_SESSION['email'])){
                         <h5 class="subtitle">A verification code has been sent to your email</h5>
                         <h5 id="email-txt">sample@gmail.com</h5>
                         <p class="paragraph">To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
-                        <h5 class="subtitle" style="margin-top: 1.3rem">Enter 6-digit code</h5>
+                        <h5 class="subtitle">Enter 6-digit code</h5>
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>
