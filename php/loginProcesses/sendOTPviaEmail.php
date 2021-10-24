@@ -1,13 +1,13 @@
 <?php
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\OAuth;
+use League\OAuth2\Client\Provider\Google;
 
-require '../PHPMailer-master/src/Exception.php';
-require '../PHPMailer-master/src/PHPMailer.php';
-require '../PHPMailer-master/src/SMTP.php';
-
-$email = $_POST['email'];
+require_once '../../vendor/autoload.php';
+require_once '../../class-db.php';
+$logged_email = $_POST['email'];
 
 $con=null;
 require '../DB_Connect.php';
@@ -17,7 +17,7 @@ require '../DB_Connect.php';
 $userTable = $_SESSION['userTable'];
 
 //get first the OTP of the user in the database
-$result = mysqli_query($con,"SELECT OTP FROM $userTable WHERE email = '$email'");
+$result = mysqli_query($con,"SELECT OTP FROM $userTable WHERE email = '$logged_email'");
 $OTP="";
 while($row = mysqli_fetch_assoc($result)){
     $OTP = $row['OTP'];
@@ -27,53 +27,76 @@ while($row = mysqli_fetch_assoc($result)){
  * @return PHPMailer
  * @throws Exception
  */
-function getMail(): PHPMailer
-{
-    $mail = new PHPMailer;
+$mail = new PHPMailer();
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->Port = 587;
 
-    $mail->isSMTP();                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;               // Enable SMTP authentication
-    $mail->Username = 'projectcapstone3m@gmail.com';   // SMTP username
-    $mail->Password = 'mukamo11';   // SMTP password
-    $mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                    // TCP port to connect to //587 is old // 465 is new
+//Set the encryption mechanism to use:
+// - SMTPS (implicit TLS on port 465) or
+// - STARTTLS (explicit TLS on port 587)
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
-// Sender info
-    $mail->setFrom('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
-    return $mail;
-}
+$mail->SMTPAuth = true;
+$mail->AuthType = 'XOAUTH2';
 
-$mail = getMail();
-//$mail->addReplyTo('projectcapstone3m@gmail.com', 'Sto. Rosario Health Information System');
+$email = 'projectcapstone3m@gmail.com'; // the email used to register google app
+$clientId = '373815557222-68l0i08iuj7i2j5iq5inrt54550nm6fp.apps.googleusercontent.com';
+$clientSecret = 'ZKYd1Vg_ItboNx7oUKqlfqmU';
 
-// Add a recipient
-$mail->addAddress($email);
+$db = new DB();
+$refreshToken = $db->get_refersh_token();
 
-//$mail->addCC('cc@example.com');
-//$mail->addBCC('bcc@example.com');
+//Create a new OAuth2 provider instance
+$provider = new Google(
+    [
+        'clientId' => $clientId,
+        'clientSecret' => $clientSecret,
+    ]
+);
 
-// Set email format to HTML
+//Pass the OAuth provider instance to PHPMailer
+$mail->setOAuth(
+    new OAuth(
+        [
+            'provider' => $provider,
+            'clientId' => $clientId,
+            'clientSecret' => $clientSecret,
+            'refreshToken' => $refreshToken,
+            'userName' => $email,
+        ]
+    )
+);
+
+$mail->setFrom($email, 'Sto. Rosario Health Information System Paombong Bulacan');
+$mail->addAddress($logged_email/*, 'RECIPIENT_NAME'*/);
 $mail->isHTML(true);
+$mail->Subject = 'Login OTP Verification';
 
-// Mail subject
-$mail->Subject = 'Login Verification Code';
+$messageBody= '
+                <div  style="background: #eaeef3;padding: 20px;margin: 5px 0 0 0 ">
+                    <h2 style="font-family: Arial;color: #4d4949">Hello Sample User</h2>
+                    <p style="font-family: Arial;font-size: large;color: #4d4949">Here is your login OTP verification code:</p>
+                    <h1 style="font-family: Arial;color: #3f3b3b">'.$OTP.'</h1>
+                    <div style="max-height: fit-content;background: #d4dce3;padding: 5px 10px">
+                        <p style="font-family: Arial;color: #3f3b3b">Please copy the code above and enter it into the login page to proceed. OTP code is always generated everytime that you will login into the system</p>
+                    </div>
+                    <p style="font-family: Arial;color: #3f3b3b;padding: 10px;font-size: large">Not the one who logged the account? <a href="http://localhost/capstone-project">Secure your account now</a></p>
+                </div>
+';
 
-// Mail body content
-$bodyContent = '<h1>'.$OTP.'</h1>';
-$bodyContent .= '<p>Please Enter the number above</p>';
-$mail->Body    = $bodyContent;
 
-/*
-// Send email
-if(!$mail->send()) {
-   // echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
+$mail->Body = $messageBody;
+$mail->addAttachment('../../img/jay.jpg',"jay");
+//send the message, check for errors
+if (!$mail->send()) {
+   // echo 'Mailer Error: ' . $mail->ErrorInfo;
     echo 0;
 } else {
-    //echo 'Message has been sent.';
+   // echo 'Message sent!';
     echo 1;
 }
-//*/echo 1;
 
+//echo 1;
 
 ?>

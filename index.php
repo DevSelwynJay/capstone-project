@@ -40,7 +40,7 @@ if(isset($_SESSION['email'])){
       <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
        -->
-       
+
       <title>Login</title>
   </head>
   <body>
@@ -157,10 +157,10 @@ if(isset($_SESSION['email'])){
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                    <!--<h5 class="modal-title" id="pop-upLabel">Message</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button>-->
                 </div>
                 <div class="modal-body">
                     <div id="modal-content">
@@ -175,12 +175,12 @@ if(isset($_SESSION['email'])){
     <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <!--<div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>-->
                 <div class="modal-body">
                     <div id="modal-content">
                         <p id="pop-up-error-message">Error</p>
@@ -197,12 +197,12 @@ if(isset($_SESSION['email'])){
     <div class="modal fade" id="pop-up-main" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <!--<div class="modal-header">
                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                </div>-->
                 <div class="modal-body">
 
                     <div id="modal-content">
@@ -222,7 +222,7 @@ if(isset($_SESSION['email'])){
                                 <div class="col-sm">
                                     <img src="img/sms.png" id="sms-icon">
 
-                                    <p style="margin-top: 1rem">Code to be sent by SMS</p>
+                                    <p>Code to be sent by SMS</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isSMS" id="isSMS">
                                     </div>
@@ -245,26 +245,26 @@ if(isset($_SESSION['email'])){
     <div class="modal fade" id="pop-up-email" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <!-- <div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>-->
                 <div class="modal-body">
 
                     <div id="modal-content">
 
                         <div id="modal-icon"><img src="./img/email.png"/></div>
                         <h3>Email Confirmation</h3>
-                        <h5>A verification code has been sent to your email</h5>
+                        <h5 class="subtitle">A verification code has been sent to your email</h5>
                         <h5 id="email-txt">sample@gmail.com</h5>
-                        <p>To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
-                        <h5>Enter 6-digit code</h5>
+                        <p class="paragraph">To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>
+                        <h5 class="subtitle">Enter 6-digit OTP code</h5>
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>
-                        <h5 id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ">Invalid OTP</h5>
+                        <h5 id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ">Invalid OTP</h5>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->

@@ -29,10 +29,10 @@ $bodyContent .= '<p>Please Enter the number above</p>';
 $mail->Body    = $bodyContent;
 
 // Send email
-/*if(!$mail->send()) {
+if(!$mail->send()) {
     echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
 } else {
     echo 'Message has been sent.';
-}*/
+}
 
 ?>

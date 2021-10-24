@@ -165,9 +165,9 @@ function modalPopupEmailConfirmation(){
     var at = logged_gmail.indexOf("@");
     var displayedGmail = logged_gmail.split("");
     console.log(at);
-    var start = (at-1)/2;
-    displayedGmail[0]='*'
-    for(a=start;a<at;a++){
+    //var start = (at-1)/2;
+    displayedGmail[0]=displayedGmail[0];
+    for(a=1;a<at;a++){
        displayedGmail[a]='*';
     }
     $("#email-txt").html(displayedGmail.join(""));
