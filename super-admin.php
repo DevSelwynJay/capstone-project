@@ -96,7 +96,7 @@ if(!isset($_SESSION['email'])){
                         </form>
                      </div>
                      <h3 class="color-black">Manage Admin Accounts</h3>
-                      <div style="max-height: 50vh;overflow-y: auto">
+                      <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
                      <table>
                         <tr>
                            <th>Admin ID</th>
