@@ -7,7 +7,9 @@ use League\OAuth2\Client\Provider\Google;
 
 require_once '../../vendor/autoload.php';
 require_once '../../class-db.php';
+
 $logged_email = $_POST['email'];
+$user_full_name = $_SESSION['user_full_name'];
 
 $con=null;
 require '../DB_Connect.php';
@@ -75,7 +77,7 @@ $mail->Subject = 'Login OTP Verification';
 
 $messageBody= '
                 <div  style="background: #eaeef3;padding: 20px;margin: 5px 0 0 0 ">
-                    <h2 style="font-family: Arial;color: #4d4949">Hello Sample User</h2>
+                    <h2 style="font-family: Arial;color: #4d4949">Hello '.$user_full_name.'</h2>
                     <p style="font-family: Arial;font-size: large;color: #4d4949">Here is your login OTP verification code:</p>
                     <h1 style="font-family: Arial;color: #3f3b3b">'.$OTP.'</h1>
                     <div style="max-height: fit-content;background: #d4dce3;padding: 5px 10px">
