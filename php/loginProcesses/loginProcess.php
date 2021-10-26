@@ -42,6 +42,7 @@ foreach ($userTables as $userTable){
         //needed para malaman kung saan ireredirect sa patient view ba or sa admin view...
         while ($row=mysqli_fetch_assoc($result)){
                $_SESSION['account_type'] =  $row['account_type'];
+               $_SESSION['user_full_name'] =  $row['last_name'].", ". $row['first_name']." ". $row['middle_name'];
         }
 
         //generate 6 digit code OTP
