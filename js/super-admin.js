@@ -42,33 +42,38 @@ function checkEmpty(){
                 console.log('I was closed by the timer')
             }
         })
-    }else if(password != confirmpass){
-        let timerInterval
-        Swal.fire({
-            title: 'Password does not match!!!',
-            timer: 2000,
-            timerProgressBar: true,
-            willClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
-            }
-        })
     }else{
-        checkEmailValidation(ademail);
+        checkEmailValidation(ademail,password,confirmpass);
     }
 }
 //check kung may email talaga na nag eexist
-function checkEmailValidation(email){
+function checkEmailValidation(email,password,confirmpass){
     xhr = new XMLHttpRequest();
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState==4 && xhr.status==200){
             if(xhr.responseText==1){
                 //nag eexist ung email
-                addAdmin();
+                if(password != confirmpass){
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Password does not match!!!',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            console.log('I was closed by the timer')
+                        }
+                    })
+                    $('#password').val("");
+                    $('#conf-pass').val("");
+                }else{
+                    addAdmin();
+                }
+
             } else{
                     let timerInterval
                     Swal.fire({
@@ -84,6 +89,9 @@ function checkEmailValidation(email){
                             console.log('I was closed by the timer')
                         }
                     })
+                $('#admin-email').val("");
+                $('#password').val("");
+                $('#conf-pass').val("");
             }
         }
     }
@@ -108,6 +116,7 @@ function addAdmin(){
         .done(function (data){
 
             if(data==1){//walang pang data sa admin db
+                //reloadTableAdmin();
                 let timerInterval
                 Swal.fire({
                     title: 'Admin is added successfully...',
@@ -122,6 +131,7 @@ function addAdmin(){
                         console.log('I was closed by the timer')
                     }
                 })
+                $('.modal').hide();
 
             }
             else {//may data na sa admin db
@@ -139,6 +149,21 @@ function addAdmin(){
                         console.log('I was closed by the timer')
                     }
                 })
+                //$('#admin-email').set;
+                $('#admin-email').val("");
+                $('#password').val("");
+                $('#conf-pass').val("");
             }
         })
+}
+
+function reloadTableAdmin() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("tableAdmin").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "php/superAdminProcesses/tableLoad.php", true);
+    xhttp.send();
 }

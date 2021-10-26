@@ -2,14 +2,14 @@
 //this code is to check if the gmail is already in the database for adding admin
 session_start();
 $email = $_POST['email'];
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$mname = $_POST['mname'];
+$fname = ucfirst($_POST['fname']);
+$lname = ucfirst($_POST['lname']);
+$mname = ucfirst($_POST['mname']);
 $password = $_POST['password'];
-$gender = $_POST['gender'];
+$gender = ucfirst($_POST['gender']);
 $confirmpass = $_POST['confirmpass'];
 $contactno = $_POST['contactno'];
-$workcat = $_POST['workcat'];
+$workcat = ucwords($_POST['workcat']);
 
 $con=null;
 require '../DB_Connect.php';
