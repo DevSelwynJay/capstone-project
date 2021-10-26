@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2021 at 01:22 AM
+-- Generation Time: Oct 26, 2021 at 02:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -45,7 +45,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-('1', 1, 'Benitez', 'Alfredo', 'Bas', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '725855');
+('1', 1, 'Benitez', 'Alfredo', 'Bas', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '725855'),
+('1', 2, 'galvez', 'irish', 'dizon ', 'galvez.irishnicole.d.0533@gmail.com', '1234', '09224880988', 'Health Worker', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,27 @@ CREATE TABLE `super_admin` (
 --
 
 INSERT INTO `super_admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-('0', 1, 'benitez', 'alfredo', 'bas', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', 'Admin', '164879');
+('0', 1, 'benitez', 'alfredo', 'bas', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', 'Admin', '797978'),
+('0', 2, 'galvez', 'irish', 'dizon', 'galvezirish17@gmail.com', 'tukmol21', '09199480837', 'worker', '152736');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tokens`
+--
+
+CREATE TABLE `tokens` (
+  `id` int(11) NOT NULL,
+  `provider` varchar(255) NOT NULL,
+  `provider_value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tokens`
+--
+
+INSERT INTO `tokens` (`id`, `provider`, `provider_value`) VALUES
+(2, 'google', '1//0eWgEcEfJR8kvCgYIARAAGA4SNwF-L9IrLB9OPJsiURVVq21j3PCVhocM2Jh0Z7gF9oJr1zMdpuhCQyscqi8Z884yn6lJ2PG5ZCs');
 
 --
 -- Indexes for dumped tables
@@ -91,6 +112,12 @@ ALTER TABLE `super_admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tokens`
+--
+ALTER TABLE `tokens`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -98,13 +125,19 @@ ALTER TABLE `super_admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `super_admin`
 --
 ALTER TABLE `super_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tokens`
+--
+ALTER TABLE `tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

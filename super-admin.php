@@ -28,6 +28,9 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
        <!--Super Admin JS-->
        <script src="js/super-admin.js"></script>
+       <!--Sweet Alert-->
+       <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
+       <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
    </head>
    <body>
       <section>

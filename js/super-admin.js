@@ -23,11 +23,41 @@ function checkEmpty(){
     var workcat = $('#work-cat').val();
 
     if(fname == "" || lname == "" || mname == "" || password == "" || ademail == "" || gender == "" || confirmpass == "" || contactno == "" || workcat == ""){
-        console.log("walang laman");
+        //shows alerts
+        let timerInterval
+        Swal.fire({
+            title: 'Please fill out all the fields!!!',
+            //html: 'I will close in <b></b> milliseconds.',
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: () => {
+                //Swal.showLoading()
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
     }else if(password != confirmpass){
-        console.log("di tugma pass!");
+        let timerInterval
+        Swal.fire({
+            title: 'Password does not match!!!',
+            timer: 2000,
+            timerProgressBar: true,
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
     }else{
-        console.log("sa else ni empty");
         checkEmailValidation(ademail);
     }
 }
@@ -36,13 +66,24 @@ function checkEmailValidation(email){
     xhr = new XMLHttpRequest();
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState==4 && xhr.status==200){
-            console.log("dumaan sa check email");
             if(xhr.responseText==1){
-                //dito tatawag ng another function na magcoconfirm kung nag eexist na ba ung account sa data base
-                console.log("nag eexist");
+                //nag eexist ung email
                 addAdmin();
             } else{
-                console.log("di nag eexist");
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Email is non-existent!',
+                        timer: 2500,
+                        timerProgressBar: true,
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            console.log('I was closed by the timer')
+                        }
+                    })
             }
         }
     }
@@ -51,6 +92,7 @@ function checkEmailValidation(email){
     xhr.send("email="+email);
 }
 
+// Adds the admin account as well as filtering datas
 function addAdmin(){
     var fname = $('#fname').val();
     var lname = $('#lname').val();
@@ -61,14 +103,42 @@ function addAdmin(){
     var confirmpass = $('#conf-pass').val();
     var contactno = $('#contact').val();
     var workcat = $('#work-cat').val();
+
     $.post("php/superAdminProcesses/addingProcess.php", {email:ademail,password:password,confirmpass:confirmpass,lname:lname,fname:fname,mname:mname,gender:gender,workcat:workcat,contactno:contactno})
         .done(function (data){
 
             if(data==1){//walang pang data sa admin db
-                console.log("added na sa db");
+                let timerInterval
+                Swal.fire({
+                    title: 'Admin is added successfully...',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+
             }
             else {//may data na sa admin db
-                console.log("email is already in the database.");
+                let timerInterval
+                Swal.fire({
+                    title: 'Email is already in the database!',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
             }
         })
 }
