@@ -120,6 +120,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                              $contact_no = $row[5];
                              $role = $row[6];
                              echo "
+                             <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }</style>
                              <tr>
                                <td>$id</td>
                                <td>$name</td>
