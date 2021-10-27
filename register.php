@@ -35,22 +35,22 @@
                      <div class="container">
                         <h1 class="text-center" style="font-weight:700">Create patient account</h1>
                         <div class="row">
-                           <div class="col-sm-6"> <input type="text" placeholder="First Name" /></div>
-                           <div class="col-sm-6"> <input type="text" placeholder="Middle Name" /></div>
-                           <div class="col-sm-6"> <input type="text" placeholder="Last Name" /></div>
-                           <div class="col-sm-6">  <input type="text" placeholder="Suffix" /></div>
+                           <div class="col-sm-6"> <input type="text" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" /></div>
+                           <div class="col-sm-6"> <input type="text" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" /></div>
+                           <div class="col-sm-6"> <input type="text" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" /></div>
+                           <div class="col-sm-6">  <input type="text" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/></div>
                         </div>
                         <div class="row">
                            <div class="col-sm-6">
-                              <input type="text" placeholder="Email" />
+                              <input type="text" placeholder="Email" data-toggle="tooltip" data-placement="top" title="E-mail" data-container="body" />
                            </div>
                            <div class="col-sm-6">
-                                <input type="text" placeholder="Contact No." />
+                                <input type="number" placeholder="Contact No." data-toggle="tooltip" data-placement="top" title="Contact no" data-container="body" />
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-6"> <input type="password" placeholder="Password" /></div>
-                           <div class="col-sm-6"> <input type="password" placeholder=" Confirm Password" /></div>
+                           <div class="col-sm-6"> <input type="password" placeholder="Password" data-toggle="tooltip" data-placement="top" title="Password" data-container="body" /></div>
+                           <div class="col-sm-6"> <input type="password" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body"/></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
