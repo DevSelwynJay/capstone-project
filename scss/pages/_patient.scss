@@ -1,0 +1,285 @@
+//SEARCH BAR
+.search-tab{
+    display: flex;
+    justify-content: flex-end;
+}
+.search-container{
+    display: flex;
+    align-items: center;
+    
+    a{
+        padding: .7rem;
+        background-color: var(--primary-color);
+        color: white;
+        transition: all 300ms ease-in-out;
+
+        i{
+            font-size: 1.3rem;
+        }
+
+        &:hover{
+            background-color: var(--hover-color);
+        }
+    }
+}
+
+.search-bar{
+    margin-top: 0 !important;
+    border-radius: unset !important;
+    border: 3px solid var(--light-grey) !important;
+
+    &:focus{
+        border: 3px solid var(--primary-color) !important;
+    }
+}
+
+
+
+//SETTINGS PART
+.search-tab .details-settings{
+
+    padding: 0 2rem 0 2rem;
+    a{
+        display: block;
+        text-decoration: none;
+        color: var(--primary-color);
+        transition: all 300ms ease-in-out;
+
+        &:hover{
+            color: var(--hover-color);
+        }
+    }
+}
+
+
+//GRID LAYOUT
+.patient-content{
+    &__container{
+       display: grid;
+      
+       padding: 0 1.5rem 2rem 1.5rem;
+       grid-template-columns: repeat(4, 1fr);
+       grid-template-rows: repeat(4, min-content);
+
+       .holder{
+        background-color: #eeeeee;
+        margin: .8rem;
+        border-radius: .5rem;
+        padding: 1rem;
+       }
+    }
+
+    &__name{
+        grid-column: 1/2;
+        grid-row: 1/3;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        i{
+            font-size: 5.5rem;
+            color: var(--third-color);
+            margin-bottom: 1rem;
+        }
+
+        p{
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        a{
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: .7rem;
+            text-decoration: none;
+            padding: .3rem 1.2rem;
+            display: inline-block;
+            border-radius: .5rem;
+            transition: all 300ms ease-in-out;
+
+            &:hover{
+                background-color: var(--hover-color);
+            }
+        }
+    }
+
+    &__name-container{
+        text-align: center;
+        p{
+            text-align: center;
+        }
+    }
+
+    &__information{
+        grid-column: 1/2;
+        grid-row: 3/4;
+       
+        
+    td, th {
+        color:unset !important;
+        padding: .5rem 1rem;
+        text-align: left;
+      }
+      
+      tr:nth-child(even) {
+        background-color: unset !important;
+      }
+    }
+
+    &__blood-type{
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
+    &__height{
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+
+    &__weight{
+        grid-column: 4/5;
+        grid-row: 1/2;
+    }
+
+    &__blood-type-container{
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        align-items: center;
+    }
+
+    &__height-container{
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        align-items: center;
+    }
+
+    &__weight-container{
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        align-items: center;
+    }
+
+    &__medical-history{
+  
+            grid-column: 2/6;
+            grid-row: 2/3;
+      
+
+        .group{
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem;
+        }
+    }
+
+    &__medical-history-container{
+        display: flex;
+        gap: 1.3rem;
+        justify-content: space-around;
+        padding: 1rem 0;
+    }
+
+    &__medication{
+     
+        grid-column: 2/6;
+        grid-row: 3/5;
+
+        P{
+            padding: 0 0 1rem 0;
+        }
+       
+
+        td, th {
+            color:unset !important;
+            padding: .5rem 1rem;
+            text-align: left;
+          }
+          
+          tr:nth-child(even) {
+            background-color: unset !important;
+          }
+
+          .cta-prescription-container{
+              display: grid;
+              place-items: center;
+
+              i{
+                  margin-right: .5rem;
+              }
+          }
+        
+          .cta-prescription{
+              text-align: center;
+              margin-top: 1rem;
+              display: inline-block;
+              text-decoration: none;
+              padding: .7rem 1rem;
+              color: var(--primary-color);
+              transition: color 300ms ease-in-out;
+              font-size: 1.1rem;
+
+              &:hover{
+                  color: var(--hover-color);
+              }
+          }
+        
+    }
+
+    &__medication-container{
+        max-height: 25rem;
+        overflow: scroll;
+    }
+}
+
+
+//ICONS
+.blood-type-icon{
+   height: 100%;
+   max-width: 100%;
+   width: 40px;
+}
+
+
+.height-icon{
+    height: 100%;
+    max-width: 100%;
+    width: 37px;
+ }
+
+ 
+.weight-icon{
+    height: 100%;
+    max-width: 100%;
+    width: 60px;
+ }
+
+ .temperature-icon{
+    height: auto;
+    max-width: 100%;
+    width: 30px;
+ }
+
+ .blood-pressure-icon{
+    height: auto;
+    max-width: 100%;
+    width: 43px;
+ }
+
+ .illness-icon{
+    height: auto;
+    max-width: 100%;
+    width: 43px;
+ }
+
+ .medicine-icon{
+    height: auto;
+    max-width: 100%;
+    width: 43px;
+    min-width: 23px;
+ }
