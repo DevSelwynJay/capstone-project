@@ -25,7 +25,6 @@ if(!$con){
 
 $userTables = array('admin'/*,'patient'*/);
 
-
 foreach ($userTables as $userTable){
 
     $result =  mysqli_query($con,"SELECT email FROM $userTable WHERE email='$email'");
@@ -36,8 +35,8 @@ foreach ($userTables as $userTable){
         //add sa db
         // Performing insert query execution to admin db
 
-        $sql = "INSERT INTO admin (account_type, last_name, first_name, middle_name, email, password, contact_no, role) VALUES
-        ('1', '$lname', '$fname', '$mname ', '$email', '$password', '$contactno', '$workcat')";
+        $sql = "INSERT INTO admin (account_type, last_name, first_name, middle_name, gender, email, password, contact_no, role) VALUES
+        ('1', '$lname', '$fname', '$mname ', '$gender', '$email', '$password', '$contactno', '$workcat')";
 
         //mysqli_query($sql);
 

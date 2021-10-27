@@ -84,15 +84,32 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                               <input type="text" id="lname"  placeholder="Last Name" />
                            </div>
                            <div class="row">
-                              <input type="text" id="gender"  placeholder="Gender" />
-                              <input type="text" placeholder="Email" id="admin-email"/>
+                          <!--    <input type="text" id="gender"  placeholder="Gender" />  -->
+                               <style>#gender,#work-cat {
+                               width: 100%;
+                               margin-top: 1rem;
+                               padding: 0.6rem 1rem;
+                               border: 2px solid var(--third-color);
+                               border-radius: 10px;
+                               outline: none;
+                               }</style>
+                               <select name="type" id="gender" title="Gender">
+                                   <option value="" disabled selected>Gender</option>
+                                   <option value="Male">Male</option>
+                                   <option value="Female">Female</option>
+                               </select>
+                               <input type="text" placeholder="Email" id="admin-email"/>
                            </div>
                            <div class="row">
                               <input type="password" placeholder="Password" id="password"/>
                               <input type="password" id="conf-pass"  placeholder=" Confirm Password" />
                            </div>
                            <div class="row">
-                              <input type="text" id="work-cat" placeholder="Work Category" />
+                               <select name="type" id="work-cat" title="Work Category" >
+                                   <option value="" disabled selected>Work Category</option>
+                                   <option value="Midwife">Midwife</option>
+                                   <option value="Health Worker">Health Worker</option>
+                               </select>
                               <input type="text" id="contact" placeholder="Contact No." />
                            </div>
                            <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>

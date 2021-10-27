@@ -116,7 +116,7 @@ function addAdmin(){
         .done(function (data){
 
             if(data==1){//walang pang data sa admin db
-                //reloadTableAdmin();
+                //appendTableAdmin();
                 let timerInterval
                 Swal.fire({
                     title: 'Admin is added successfully...',
@@ -131,8 +131,18 @@ function addAdmin(){
                         console.log('I was closed by the timer')
                     }
                 })
-                $('.modal').hide();
+                //Clear all of the fields upon closing
+                $('#admin-email').val("");
+                $('#password').val("");
+                $('#conf-pass').val("");
+                $('#lname').val("");
+                $('#mname').val("");
+                $('#fname').val("");
+                $('#contact').val("");
+                $('#work-cat').val("");
+                $('#gender').val("");
 
+                $.modal.close();
             }
             else {//may data na sa admin db
                 let timerInterval
@@ -157,7 +167,7 @@ function addAdmin(){
         })
 }
 
-function reloadTableAdmin() {
+function appendTableAdmin() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
