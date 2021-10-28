@@ -1083,148 +1083,118 @@ tr:nth-child(even) {
 .inventory__container {
   padding: 1rem;
 }
-
 .inventory__container h1 {
   font-weight: 400 !important;
   color: var(--third-color);
 }
-
 .inventory__container i {
   cursor: pointer !important;
 }
-
 .inventory__container .td-spacer {
   background-color: white;
 }
-
 .inventory table {
   margin-top: 0 !important;
 }
-
 .inventory__table-toexpire-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0 !important;
 }
-
 .inventory__table-toexpire-container td {
   font-weight: 300 !important;
   width: 200px;
 }
-
 .inventory__table-toexpire-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
-
 .inventory__table-toexpire-container td.expired-text {
   color: red !important;
 }
-
 .inventory__table-toexpire-container td.warning-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
   text-align: left !important;
 }
-
 .inventory__table-toexpire-container td.warning-btn i {
   color: #ff1515 !important;
-  padding: .6rem;
-  border-radius: .4rem;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   font-size: 1.4rem !important;
   cursor: unset !important;
 }
-
 .inventory__table-expired-container {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
 }
-
 .inventory__table-expired-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0 !important;
 }
-
 .inventory__table-expired-container td {
   font-weight: 300 !important;
   width: 200px;
 }
-
 .inventory__table-expired-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
-
 .inventory__table-expired-container td.expired-text {
   color: red !important;
 }
-
 .inventory__table-expired-container td.delete-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
   text-align: left !important;
 }
-
 .inventory__table-expired-container td.delete-btn i {
   background-color: red;
   color: white !important;
-  padding: .6rem;
-  border-radius: .4rem;
-  -webkit-transition: all 200ms ease-in-out;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   transition: all 200ms ease-in-out;
   font-size: 1.1rem !important;
 }
-
 .inventory__table-expired-container td.delete-btn i:hover {
   background-color: #ac0202 !important;
 }
-
 .inventory__table-main-container tr.title {
   background-color: var(--primary-color);
 }
-
 .inventory__table-main-container tr.title th {
   color: white !important;
   font-weight: 400;
 }
-
 .inventory__table-main-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 1rem;
 }
-
 .inventory__table-main-container td, .inventory__table-main-container th {
   color: var(--third-color);
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
-
 .inventory__table-main-container td {
   font-weight: 300 !important;
 }
-
 .inventory__table-main-container td.add-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
 }
-
 .inventory__table-main-container td.add-btn i {
   background-color: var(--primary-color);
   color: white !important;
-  padding: .6rem;
-  border-radius: .4rem;
-  -webkit-transition: all 200ms ease-in-out;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   transition: all 200ms ease-in-out;
 }
-
 .inventory__table-main-container td.add-btn i:hover {
   background-color: var(--hover-color) !important;
 }
-
 .inventory__table-main-container th.add-row {
   background-color: white;
 }
-
 .inventory__table-main-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
