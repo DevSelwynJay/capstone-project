@@ -14,6 +14,8 @@ $type = $_SESSION['account_type'];
 if($type==0){
     header("location:../../super-admin.php",true);
 }
-else{
-header("location:../../main.php",true);}
+else if($type==1){
+header("location:../../patient.php",true);}
+else if($type==2){
+    header("location:../../dashboard.php",true);}
 exit();

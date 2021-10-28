@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-<title>Reports</title>
+<title>Inventory</title>
 <!--Jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -32,10 +32,10 @@
 </div>
 <ul class="menu">
 <li><a href="" class="dashboard">Dashboard</a></li>
-<li><a href="" class="patient">Patient</a></li>
-<li><a href="" class="reports">Reports</a></li>
+<li><a href="patient.php" class="patient">Patient</a></li>
+<li><a href="reports.php" class="reports">Reports</a></li>
 <li><a href="" class="trackMap">Track Map</a></li>
-<li><a href="" class="inventory">Inventory</a></li>
+<li><a href="inventory.php" class="inventory">Inventory</a></li>
 </ul>
 </div>
 <div class="social-media-links">
