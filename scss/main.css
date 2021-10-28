@@ -21,7 +21,7 @@ p {
 }
 
 html {
-  font-size: 100%;
+  font-size: 110%;
 }
 
 body {
@@ -1276,6 +1276,118 @@ tr:nth-child(even) {
   max-width: 100%;
   width: 43px;
   min-width: 23px;
+}
+
+.reports__downloads {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+.reports__downloads-container a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  padding: .6rem 1rem;
+  color: white;
+  margin-left: .7rem;
+  border-radius: .5rem;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.reports__downloads-container a i {
+  margin-right: .3rem;
+}
+
+.reports__downloads-container a:hover {
+  background-color: var(--hover-color);
+}
+
+.reports__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reports__left-col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 60%;
+          flex: 1 1 60%;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.reports__left-col table {
+  margin-top: unset !important;
+}
+
+.reports__left-col td:first-child {
+  font-weight: unset !important;
+}
+
+.reports__left-col td, .reports__left-col th {
+  color: unset !important;
+}
+
+.reports__left-col th {
+  font-size: 1.2rem;
+}
+
+.reports__left-col-container {
+  background-color: #eeeeee;
+  border-radius: .5rem;
+  height: 100%;
+  padding: .5rem 0;
+}
+
+.reports__right-col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 40%;
+          flex: 1 1 40%;
+  margin: 1rem 1rem 1rem 0;
+}
+
+.reports__right-col-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+.reports__right-col-container .total-medicine-released h2 {
+  color: var(--primary-color);
+}
+
+.reports__right-col-container .current-sick-paient h2 {
+  color: red;
+}
+
+.reports__right-col-container .cured-patient h2 {
+  color: #05ac05;
+}
+
+.reports__right-col-container .card {
+  background-color: #eeeeee;
+  border-radius: .5rem;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.reports__right-col-container .card h2 {
+  font-weight: 300;
+  font-size: 2.5rem;
 }
 
 .left {
