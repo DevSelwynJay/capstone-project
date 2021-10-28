@@ -116,12 +116,12 @@ h5 {
 }
 
 input[type=text], select, input[type=number],
-input[type=password] {
+input[type=password], input[type=date] {
   font-family: poppins !important;
 }
 
 input[type=text], select, input[type=number],
-input[type=password] {
+input[type=password], input[type=date] {
   width: 100%;
   margin-top: 1rem;
   padding: 0.6rem 1rem;
@@ -135,7 +135,7 @@ select {
 }
 
 input[type=text]:focus, select:focus, input[type=number]:focus,
-input[type=password]:focus {
+input[type=password]:focus, input[type=date]:focus {
   border-color: var(--primary-color);
 }
 

@@ -53,6 +53,8 @@
                            <div class="col-sm-6"> <input type="password" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body"/></div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-3"><input type="text" placeholder="Gender" value="" data-toggle="tooltip" data-placement="top" title="Gender" data-container="body" /></div>
+                            <div class="col-sm-3"><input type="date" placeholder="Birthday" value="" data-toggle="tooltip" data-placement="top" title="Birthday" data-container="body"/></div>
                             <div class="col-sm-3">
                                 <select data-toggle="tooltip" data-placement="top" title="Purok" data-container="body">
                                     <option value="" disabled selected>Purok</option>
@@ -64,11 +66,11 @@
                                 </select>
                             </div>
                            <div class="col-sm-3"><input type="number" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/></div>
-                           <div class="col-sm-6"><input type="text" placeholder="" value="Sto. Rosario" readonly/></div>
                         </div>
                          <div class="row">
-                             <div class="col-sm-6"><input type="text" placeholder="" value="Paombong" readonly/></div>
-                             <div class="col-sm-6"><input type="text" placeholder="" value="Bulacan" readonly/></div>
+                             <div class="col-sm-6"><input type="text" placeholder="" value="Barangay Sto. Rosario" readonly/></div>
+                             <div class="col-sm-3"><input type="text" placeholder="" value="Paombong" readonly/></div>
+                             <div class="col-sm-3"><input type="text" placeholder="" value="Bulacan" readonly/></div>
                          </div>
                         <a class="primary-btn" id="reg">Register</a>
                      </div>
