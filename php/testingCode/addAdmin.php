@@ -24,14 +24,15 @@ function generate_6_Digits(): string
 
 $_6DigitCode = generate_6_Digits();
 $_6DigitCode = "112123";//in overwrite ko lang gamit ung 6Digit last part of ID ng isang account
+//para matesting kung mag gegenerate ba sya ng bago pag duplicate at kung mag loloop ang function
 
 //ung last 6 digit lang ng ID ung i checheck for duplication
 function check($con,$_6DigitCode)
 {
-    $ex=0;
-    echo $ex;
-    //select all id in database to check for duplication
+    //this function is recursive it means we call this current function within this function
+    //mauulit hanngat may kamukang ID ung na generate na 6 Digit
 
+    //select all id in database to check for duplication
     $result = mysqli_query($con, "SELECT id FROM admin");
     while ($row = mysqli_fetch_array($result)) {
 
@@ -51,8 +52,8 @@ function check($con,$_6DigitCode)
             echo "Generating new One<br><br>";
             $_6DigitCode = generate_6_Digits();
             echo "The new 6 Digit Generated is $_6DigitCode<br>";
-            echo "Repeat the loop again<br>";
-            $ex+=1;
+            echo "Repeating the loop again<br><br>";
+            //recursive function is another way of looping
             check($con,$_6DigitCode);
 
         }
@@ -62,9 +63,7 @@ function check($con,$_6DigitCode)
 }
 
 check($con,$_6DigitCode);
-/*if(!$isDuplicated){
-    echo "Generated 6 Digit is Unique $_6DigitCode<br>";
-}*/
+echo "<br><br>Thank You";
 
 mysqli_close($con);
 ?>
