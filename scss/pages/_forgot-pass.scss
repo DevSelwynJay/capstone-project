@@ -1,3 +1,27 @@
-#modal-content{
-  margin-top: 1rem;
+.forgot-cont {
+  p{
+    display: flex;
+    justify-content: center;
+  }
+  h5{
+    margin-top: 1.5rem;
+  }
+  form{
+    margin: 0 0;
+    #email-input{
+      max-width: 80%;
+      font-family: poppins !important;
+      letter-spacing: 0.1rem;
+      margin: 0;
+    }
+  }
+  #invalid-email-indicator{
+    color: darkred;
+    visibility: hidden;
+    margin: 5px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
 }
