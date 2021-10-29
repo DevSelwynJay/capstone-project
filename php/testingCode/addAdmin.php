@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con=null;
 require '../DB_Connect.php';
 
@@ -25,6 +26,8 @@ function generate_6_Digits(): string
 $_6DigitCode = generate_6_Digits();
 $_6DigitCode = "112123";//in overwrite ko lang gamit ung 6Digit last part of ID ng isang account
 //para matesting kung mag gegenerate ba sya ng bago pag duplicate at kung mag loloop ang function
+
+$_SESSION['final_generated_code']=$_6DigitCode;
 
 //ung last 6 digit lang ng ID ung i checheck for duplication
 function check($con,$_6DigitCode)
@@ -53,6 +56,7 @@ function check($con,$_6DigitCode)
             $_6DigitCode = generate_6_Digits();
             echo "The new 6 Digit Generated is $_6DigitCode<br>";
             echo "Repeating the loop again<br><br>";
+            $_SESSION['final_generated_code']=$_6DigitCode;
             //recursive function is another way of looping
             check($con,$_6DigitCode);
 
@@ -63,7 +67,7 @@ function check($con,$_6DigitCode)
 }
 
 check($con,$_6DigitCode);
-echo "<br><br>Thank You";
-
+echo "<br><br>Thank You<br>";
+echo $_SESSION['final_generated_code'];
 mysqli_close($con);
 ?>
