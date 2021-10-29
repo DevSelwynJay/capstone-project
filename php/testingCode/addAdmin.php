@@ -68,9 +68,17 @@ function check($con,$_6DigitCode)
 
 check($con,$_6DigitCode);
 echo "<br><br>Thank You<br>";
-echo $_SESSION['final_generated_code'];
+echo "The final generated code:".$_SESSION['final_generated_code']."<br><br>";
+
+$final_generated_code = $_SESSION['final_generated_code'];
 
 //may idadagdag pa hahaha
+
+//generate the ID Prefix for specific user
+//FORMAT yearRegistered-accountType-xxxxxx ex. 2021-01-xxxxxx
+
+$new_id = date('Y')."-01-".$final_generated_code;
+echo "The new ID is: $new_id";
 
 mysqli_close($con);
 ?>
