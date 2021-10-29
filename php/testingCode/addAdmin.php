@@ -69,5 +69,8 @@ function check($con,$_6DigitCode)
 check($con,$_6DigitCode);
 echo "<br><br>Thank You<br>";
 echo $_SESSION['final_generated_code'];
+
+//may idadagdag pa hahaha
+
 mysqli_close($con);
 ?>
