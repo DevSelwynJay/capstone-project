@@ -1515,4 +1515,8 @@ td:nth-child(1) {
   background-color: var(--hover-color);
 }
 
+#modal-content {
+  margin-top: 1rem;
+}
+
 /*# sourceMappingURL=main.css.map */
