@@ -32,7 +32,8 @@ foreach ($userTables as $userTable){
         //put the OTP in user's record
         mysqli_query($con,"UPDATE $userTable SET OTP = '$_6DigitCode' WHERE email = '$email'");
 
-        echo 1;//notify the js callback function that gmail account is in the database
+        //echo 1;//notify the js callback function that gmail account is in the database
+        echo json_encode(array("status"=>1,"full_name"=> $_SESSION['user_full_name'],"email"=>$email));
         $isFound=true;
         break;
     }

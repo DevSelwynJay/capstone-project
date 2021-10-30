@@ -298,7 +298,7 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>
-                        <h5 id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ">Invalid OTP</h5>
+                        <p id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ;display: flex;justify-content: center">Invalid OTP</p>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
@@ -329,22 +329,54 @@ if(isset($_SESSION['email'])){
                         <h3>Forgot your password?</h3>
                         <p>Please enter your email to search for your account</p>
                         <form autocomplete="off">
-                            <input type="text" id="email-input" placeholder="E-mail" data-toggle="tooltip" data-placement="right" title="You need to enter your email to proceed" data-container="body"/>
+                            <input type="text" id="email-input" placeholder="E-mail"/>
                         </form>
                         <p id="invalid-email-indicator">Invalid Email</p>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-forgot-ok-btn">Confirm</button>
+                    <button type="button" class="btn btn-primary" id="pop-up-forgot-ok-btn">Search</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
     </div>
 
-  <script>
-      $('[data-toggle="tooltip"]').tooltip()
-  </script>
+    <!--Forgot Password OTP Part-->
+    <div class="modal fade" id="pop-up-forgot-otp" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>-->
+                <div class="modal-body">
+
+                    <div id="modal-content" class="forgot-cont">
+
+                        <div id="modal-icon"><img src="./img/Icons/question.png"/></div>
+                        <h3 class="forgot-pwd-otp-header">Hello Sample User</h3>
+                        <p class="forgot-pwd-otp-email">sample@gmail.com</p>
+                        <p style="margin-bottom: 2rem">To reset your password, you must enter the 6-Digit code that has been sent to your email.
+                        </p>
+                        <p>Enter 6 Digit Reset Code</p>
+                        <form autocomplete="off">
+                            <input type="text" id="forgot-pwd-otp-input" maxlength="6"/>
+                        </form>
+                        <p id="invalid-otp-indicator" style="color: darkred">Invalid OTP</p>
+
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="pop-up-forgot-otp-ok-btn">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
   </body>
 </html>
