@@ -1,5 +1,5 @@
 let logged_gmail;//the gmail of logged account to be sent in back-end
-
+let ctr=0;
 window.onload = function () {
     google.accounts.id.initialize({
         client_id: "373815557222-68l0i08iuj7i2j5iq5inrt54550nm6fp.apps.googleusercontent.com",
@@ -109,6 +109,7 @@ function  modalPopupMain(){
     //show pop-up-main
     $("#pop-up-main").modal('toggle');
 
+    $("#pop-up-main-ok-btn").off('click');
     $("#pop-up-main-ok-btn").click(function (){
 
         //get the value of selected radio button, possible value 'isSMS' or 'isEmail'
@@ -154,7 +155,6 @@ function  modalPopupMain(){
 //pop-up where to input OTP
 function modalPopupEmailConfirmation(){
 
-
     $("#pop-up-email").modal('show');
 
     //reset pop-up email form
@@ -173,6 +173,7 @@ function modalPopupEmailConfirmation(){
     $("#email-txt").html(displayedGmail.join(""));
 
     //confirm 6 Digit Code OTP
+    $("#pop-up-email-ok-btn").off('click');
     $("#pop-up-email-ok-btn").click(function (){
 
        var otp = $("#otp-input").val();
@@ -206,7 +207,8 @@ $(document).ready(function (){
         console.log("fffffff")
         loginProcess();
     })
-    $("#trigger-forgot-modal").click(function (){//forgot-password
+    //forgot-password
+    $("#trigger-forgot-modal").click(function (){
      $("#pop-up-forgot").modal('show');
     })
     //hides loading screen in OTP modal when cancel button is triggered

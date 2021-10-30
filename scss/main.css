@@ -1566,4 +1566,8 @@ td:nth-child(1) {
   align-items: center;
 }
 
+#pop-up-forgot-otp-ok-btn {
+  border-radius: 0;
+}
+
 /*# sourceMappingURL=main.css.map */
