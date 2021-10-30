@@ -1,0 +1,53 @@
+.forgot-cont {
+  p{
+    display: flex;
+    justify-content: center;
+  }
+  h5{
+    margin-top: 1.5rem;
+  }
+  form{
+    margin: 0 0;
+    #email-input{
+      max-width: 80%;
+      font-family: poppins !important;
+      letter-spacing: 0.1rem;
+      margin: 0;
+
+    }
+  }
+  #invalid-email-indicator{
+    color: darkred;
+    visibility: hidden;
+    margin: 5px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+}
+
+#forgot-pwd-otp-input{
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  text-align: center;
+  width: 50%;
+  padding: 0.3em 1em;
+  border-radius: 0.5em;
+  border: 2px solid var(--third-color);
+  outline: none;
+  margin: 0;
+}
+#forgot-pwd-otp-input:focus{
+  border-color: var(--primary-color);
+}
+#invalid-otp-indicator{
+  color: darkred;
+  visibility: hidden;
+  margin: 5px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

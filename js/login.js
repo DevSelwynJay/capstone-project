@@ -206,6 +206,9 @@ $(document).ready(function (){
         console.log("fffffff")
         loginProcess();
     })
+    $("#trigger-forgot-modal").click(function (){//forgot-password
+     $("#pop-up-forgot").modal('show');
+    })
     //hides loading screen in OTP modal when cancel button is triggered
     let hideLoadingModal = function (){
         $("#pop-up-loading").modal("hide");
@@ -217,6 +220,7 @@ $(document).ready(function (){
             event.preventDefault();
         }
     }).keyup(function (){ $("#invalid-OTP-indicator").css("visibility","hidden")});
+
 
 
 

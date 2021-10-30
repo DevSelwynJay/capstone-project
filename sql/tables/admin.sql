@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2021 at 04:09 PM
+-- Generation Time: Oct 29, 2021 at 09:04 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -28,12 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `account_type` char(1) NOT NULL COMMENT '0 superAdmin, 1 admin, 2 patient',
-  `id` int(11) NOT NULL,
+  `account_type` int(1) NOT NULL DEFAULT 1 COMMENT '0 superAdmin, 1 admin, 2 patient',
+  `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
+  `gender` varchar(20) NOT NULL COMMENT 'Male Female',
+  `birthday` date DEFAULT NULL,
+  `address` varchar(50) NOT NULL,
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
@@ -45,9 +47,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-('1', 1, 'Benitez', 'Alfredo', 'Bas', 'Male', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '725855'),
-('1', 2, 'galvez', 'irish', 'dizon ', 'Female', 'galvez.irishnicole.d.0533@gmail.com', '1234', '09224880988', 'Health Worker', NULL);
+INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
+(1, '2021-01-1', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '2  Sto. Rosario Paombong Bulacan', 'alfredogiebenitez@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '738500'),
+(1, '2021-01-2', 'Benitez', 'Ogie', 'Bas ', 'Male', '2005-12-31', '3 Sto. Rosario Paombong Bulacan', 'alfredo.benitez.b@bulsu.edu.ph', 'mukamo11', '09542120321', 'Health Worker', '506901');
 
 --
 -- Indexes for dumped tables
@@ -59,16 +61,6 @@ INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_na
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `gmail` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

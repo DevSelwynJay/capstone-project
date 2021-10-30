@@ -1,0 +1,97 @@
+.reports{
+
+    &__downloads{
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 1rem;
+    }
+    &__downloads-container{
+       a{
+           display: inline-block;
+           text-decoration: none;
+           background-color: var(--primary-color);
+           padding: .6rem 1rem;
+           color: white;
+           margin-left: .7rem;
+           border-radius: .5rem;
+           transition: all 300ms ease-in-out;
+           margin-bottom: 1rem;
+           i{
+               margin-right: .3rem;
+           }
+
+           &:hover{
+               background-color: var(--hover-color);
+           }
+       }
+    }
+
+    &__container{
+        display: flex;
+    }
+    &__left-col{
+       flex: 1 1 60%;
+        margin: 1rem 1rem 1rem 1rem;
+       table{
+           margin-top: unset !important;
+       }
+        td{
+            &:first-child{
+                font-weight: unset !important;
+            }
+        }
+        td,th{
+            color: unset !important;
+        }
+        th{
+            font-size: 1.2rem;
+        }
+    }
+    &__left-col-container{
+        background-color: #eeeeee;
+        border-radius: .5rem;
+        height: 100%;
+        padding: .5rem 0;
+    }
+    &__right-col{
+        flex: 1 1 40%;
+        margin: 1rem 1rem 1rem 0;
+    }
+    &__right-col-container{
+       display: flex;
+       justify-content: space-evenly;
+       flex-direction: column;
+       height: 100%;
+       gap: 1rem;
+
+       .total-medicine-released{
+          h2{
+              color: var(--primary-color);
+          }
+       }
+
+       .current-sick-paient{
+        h2{
+            color: red;
+        }
+       }
+      
+       .cured-patient{
+        h2{
+            color: rgb(5, 172, 5);
+        }
+       }
+
+       .card{
+        background-color: #eeeeee;
+        border-radius: .5rem;
+        text-align: center;
+        padding: 4rem 0;
+
+        h2{
+            font-weight: 300;
+            font-size: 2.5rem;
+        }
+       }
+    }
+}
