@@ -117,7 +117,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                      </div>
                      <h3 class="color-black">Manage Admin Accounts</h3>
                       <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
-                     <table>
+                     <table id="adminTable">
                         <tr>
                            <th>Admin ID</th>
                            <th>Name</th>
@@ -126,6 +126,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <th>Work Category</th>
                         </tr>
                          <!--Query Admin accounts-->
+                         <tbody>
                          <?php
                          $con=null;
                          include 'php/DB_Connect.php';
@@ -149,6 +150,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                          }
                          mysqli_close($con);
                          ?>
+                         </tbody>
                      </table>
                      </div>
                      <div class="cta-wrapper">

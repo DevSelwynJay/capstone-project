@@ -1,18 +1,9 @@
 <?php
 //wala pato saling pusa hahhaa
-echo "
-    <table>
-        <tr>
-            <th>Admin ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact No.</th>
-            <th>Work Category</th>
-        </tr>
-";
         $con=null;
-        include 'php/DB_Connect.php';
+        require '../DB_Connect.php';
         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role FROM admin");
+        //$c=mysqli_num_rows();$ctr=0;
         while ($row=mysqli_fetch_array($result)){
             $id = $row[0];
             $name = $row[1].", ".$row[2]." ".$row[3];
@@ -20,8 +11,11 @@ echo "
             $contact_no = $row[5];
             $role = $row[6];
 
-            echo "
-                                 <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }</style>
+        }
+
+        mysqli_close($con);
+$html= "
+                                
                                  <tr>
                                    <td>$id</td>
                                    <td>$name</td>
@@ -30,10 +24,6 @@ echo "
                                    <td>$role</td>
                                 </tr>
                                  ";
-        }
-        mysqli_close($con);
-        echo"
-    </table>
 
-";
+    echo $html;
 ?>

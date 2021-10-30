@@ -116,7 +116,7 @@ function addAdmin(){
         .done(function (data){
 
             if(data==1){//walang pang data sa admin db
-                //appendTableAdmin();
+                appendTableAdmin();
                 let timerInterval
                 Swal.fire({
                     title: 'Admin is added successfully...',
@@ -166,14 +166,14 @@ function addAdmin(){
             }
         })
 }
-
+//Appends the new added admin to the row
 function appendTableAdmin() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("tableAdmin").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "php/superAdminProcesses/tableLoad.php", true);
-    xhttp.send();
+    $.post("php/superAdminProcesses/tableLoad.php")
+        .done(function (data){
+                var result = data.toString();
+                //console.log(result);
+
+            $("#adminTable>tbody").append(result).preventDefault();
+            //$(result).appendTo( "#adminTable>tbody" );
+        })
 }
