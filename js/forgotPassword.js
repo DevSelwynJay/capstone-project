@@ -76,6 +76,19 @@ function  showForgotPasswordOTP_Input(full_name,email){
         $("#invalid-otp-indicator").css("visibility","hidden");
     })
 
+    $("#pop-up-forgot-resend-OTP-btn").off('click');
+    $("#pop-up-forgot-resend-OTP-btn").on('click',function (){
+        let seconds = 60;
+        $(this).prop('disabled',true);
+        setInterval(function () {
+            if(seconds==0){
+                $(this).prop('disabled',false);
+                return;
+            }
+            $("#pop-up-forgot-resend-OTP-btn").html("Resend Code "+seconds);
+            seconds-=1;
+        },1000)
+    })
 
 
 }
