@@ -173,7 +173,7 @@ function appendTableAdmin() {
                 var result = data.toString();
                 //console.log(result);
 
-            $("#adminTable>tbody").append(result).preventDefault();
+          //  $("#adminTable>tbody").append(result).preventDefault();
             //$(result).appendTo( "#adminTable>tbody" );
         })
 }
