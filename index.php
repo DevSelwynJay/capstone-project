@@ -14,6 +14,10 @@ if(isset($_SESSION['email'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+      <meta http-equiv='cache-control' content='no-cache'>
+      <meta http-equiv='expires' content='0'>
+      <meta http-equiv='pragma' content='no-cache'>
+
     <!--CSS Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -357,7 +361,7 @@ if(isset($_SESSION['email'])){
 
                     <div id="modal-content" class="forgot-cont">
 
-                        <div id="modal-icon"><img src="./img/Icons/question.png"/></div>
+                        <div id="modal-icon"><img src="./img/Icons/locked.png"/></div>
                         <h3 class="forgot-pwd-otp-header">Hello Sample User</h3>
                         <p class="forgot-pwd-otp-email">sample@gmail.com</p>
                         <p style="margin-bottom: 2rem">To reset your password, you must enter the 6-Digit code that has been sent to your email.
@@ -366,12 +370,14 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" id="forgot-pwd-otp-input" maxlength="6"/>
                         </form>
-                        <p id="invalid-otp-indicator" style="color: darkred">Invalid OTP</p>
-
-                    </div><!--end of modal content-->
+                        <p id="invalid-otp-indicator" style="color: darkred">Invalid Code</p>
+                        <div class="flex">
+                            <button type="button" class="btn btn-primary" id="pop-up-forgot-otp-ok-btn">Verify</button>
+                        </div>
+                         </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-forgot-otp-ok-btn">Confirm</button>
+                    <button type="button" class="btn btn-primary" id="pop-up-forgot-resend-OTP-btn">Resend Code</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
                 </div>
             </div>
