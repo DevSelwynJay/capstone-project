@@ -1177,6 +1177,10 @@ tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
 
+.modal-title, .form-group label {
+  color: var(--third-color);
+}
+
 .left {
   margin-left: 2%;
 }
