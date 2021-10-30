@@ -52,8 +52,6 @@ function handleCredentialResponse(response) {
         xhr.onreadystatechange = ()=>{
             if(xhr.readyState==4 && xhr.status==200){ //gmail successfully found in database
 
-                $("#pop-up").modal('toggle');
-
                 if(xhr.responseText==1){
                     //window.location.href="main.php"
                     //prevent from clicking outside

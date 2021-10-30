@@ -335,7 +335,7 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" id="email-input" placeholder="E-mail"/>
                         </form>
-                        <p id="invalid-email-indicator">Invalid Email</p>
+                        <p id="invalid-email-indicator">Can't recognize e-mail</p>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
@@ -377,7 +377,7 @@ if(isset($_SESSION['email'])){
                          </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-forgot-resend-OTP-btn">Resend Code 60</button>
+                    <button type="button" class="btn btn-primary" id="pop-up-forgot-resend-OTP-btn">Resend Code</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
                 </div>
             </div>
