@@ -33,13 +33,15 @@ $(document).ready(function (){
              const result = JSON.parse(data);
              if(result.status==1){
                 console.log("nakita ang email")
+                 console.log("mag sesend na ng Code")
 
-                 //show loading modal before going to next modal
-
-                 setTimeout(function () {
-                     $("#pop-up-loading").modal('hide');
-                     showForgotPasswordOTP_Input(result.full_name,result.email);
-                 },1000)
+                 $.post("php/forgotPasswordProcesses/sendPwdResetCode.php",{email:email}).done(function (data){
+                     console.log(data)
+                     setTimeout(function () {
+                         $("#pop-up-loading").modal('hide');
+                         showForgotPasswordOTP_Input(result.full_name,result.email);
+                     },1000)
+                 });
 
              }
              else{
