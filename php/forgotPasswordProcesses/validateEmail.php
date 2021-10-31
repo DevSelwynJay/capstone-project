@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $con=null;
 require '../DB_Connect.php';
 
-$userTables = array('admin','patient');
+$userTables = array('admin','patient','super_admin');
 
 $isFound=false;
 foreach ($userTables as $userTable){
