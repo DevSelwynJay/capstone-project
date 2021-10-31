@@ -427,9 +427,9 @@ if(isset($_SESSION['email'])){
     </div>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
         Launch demo modal
-    </button>
+    </button>-->
   <script>
 
       $('[data-toggle="tooltip"]').focus(function () {

@@ -96,6 +96,12 @@ $(document).ready(function (){
             setTimeout(function () {
                 $("#pop-up-loading").modal("hide")
                 console.log(data)
+                if(data==1){
+                    $(".pwd-reset").val("");
+                }
+                else {
+                    show_pwd_reset_modal();
+                }
             },1000)
 
 
@@ -103,6 +109,10 @@ $(document).ready(function (){
 
 
     })
+    $("#pop-up-reset-pwd-cancel-btn").click(function () {
+        $(".pwd-reset").val("");
+    })
+
 })//end of document ready
 
 //===========functions to call
@@ -212,9 +222,11 @@ function  showForgotPasswordOTP_Input(full_name,email){
 }
 
 function show_pwd_reset_modal(){
+    //reset the modal, it will remove all the value in text-box then show it
+    $(".pwd-reset").val("");
+    $("#invalid-pwd-indicator").css('visibility','hidden').html("Sample Text");
     $("#pop-up-reset-pwd").modal('show');
-    $(".pwd-reset").html("");
-    $("#invalid-pwd-indicator").css('visibility','hidden').html("");
+
 }
 
 

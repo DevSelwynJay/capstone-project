@@ -10,5 +10,7 @@ require '../DB_Connect.php';
 
 $result = mysqli_query($con,"UPDATE $userTable SET password = '$new_password' WHERE email = '$email'");
 echo $result;
+
 mysqli_close($con);
+unset($_SESSION['email_in_forgot_pwd'],$_SESSION['userTable']);
 ?>
