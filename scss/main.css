@@ -1534,6 +1534,7 @@ td:nth-child(1) {
 .forgot-cont p {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .forgot-cont h5 {
   margin-top: 1.5rem;
@@ -1584,6 +1585,21 @@ td:nth-child(1) {
 
 #pop-up-forgot-otp-ok-btn {
   border-radius: 0;
+}
+
+.reset-pwd-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reset-pwd-cont .input-cont {
+  max-width: 80%;
+}
+.reset-pwd-cont .input-cont .input-label {
+  padding-left: 0.5rem;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 /*# sourceMappingURL=main.css.map */

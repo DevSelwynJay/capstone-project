@@ -2,6 +2,7 @@
   p{
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   h5{
     margin-top: 1.5rem;
@@ -55,3 +56,22 @@
 #pop-up-forgot-otp-ok-btn{
   border-radius: 0;
 }
+
+.reset-pwd-cont{
+display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  .input-cont{
+    max-width: 80%;
+
+    .input-label{
+      padding-left: 0.5rem;
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+}
+

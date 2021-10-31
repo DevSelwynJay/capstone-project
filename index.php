@@ -169,11 +169,11 @@ if(isset($_SESSION['email'])){
       </div>
     </section>
 
-    <!--
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
         Launch demo modal
     </button>
-    -->
+
 
     <!--
     ======== Modal ===========
@@ -379,6 +379,49 @@ if(isset($_SESSION['email'])){
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="pop-up-forgot-resend-OTP-btn">Resend Code</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Reset Password-->
+    <div class="modal fade" id="pop-up-reset-pwd" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>-->
+                <div class="modal-body">
+
+                    <div id="modal-content" class="forgot-cont">
+
+                        <div id="modal-icon"><img src="./img/Icons/rotation-lock.png"/></div>
+                        <h3>Reset Password</h3>
+                        <p style="margin-bottom: 1.5rem">Hello! Benitez, Alfredo Bas (sample@gmail.com). Please input your new password</p>
+
+                        <div class="reset-pwd-cont">
+                            <div class="input-cont">
+                                <p class="input-label"  style="margin: 0.3rem 0">New Password</p>
+                                <input type="password" class="pwd-reset"  style="margin: 0"/>
+                            </div>
+                            <p></p>
+                            <div class="input-cont">
+                                <p  class="input-label"  style="margin: 0.3rem 0">Confirm Password</p>
+                                <input type="password" class="pwd-reset" style="margin: 0"/>
+                            </div>
+
+                            <p id="invalid-otp-indicator" style="color: darkred;font-size: smaller">Invalid Code</p>
+                        </div>
+
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="pop-up-reset-pwd-ok-btn">Verify</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-reset-pwd-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
