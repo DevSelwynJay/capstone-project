@@ -12,7 +12,7 @@ foreach ($userTables as $userTable){
         $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email'");
 
     if(mysqli_num_rows($result)>0){//email or is in the database
-
+        $_SESSION['email_in_forgot_pwd'] = $email;
         //put the table name where you found the email in the session variable
         //it is needed to send and verify the otp
         $_SESSION['userTable'] = $userTable;

@@ -113,6 +113,7 @@ h5 {
   --third-color: #6d6d6d;
   --hover-color: #1486bb;
   --light-grey: #D4D7D9;
+  --dark-grey: #4d4949;
 }
 
 input[type=text], select, input[type=number],
@@ -1601,6 +1602,9 @@ td:nth-child(1) {
   display: flex;
   width: 100%;
   justify-content: flex-start;
+}
+.reset-pwd-cont #invalid-pwd-indicator {
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=main.css.map */

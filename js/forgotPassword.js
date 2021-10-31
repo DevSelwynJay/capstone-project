@@ -55,12 +55,57 @@ $(document).ready(function (){
          });
 
      })
-    $("#pop-up-forgot-cancel-btn").off('click')
     $("#pop-up-forgot-cancel-btn").on('click',function (){
         $("#email-input").val("");
         $("#invalid-email-indicator").css("visibility","hidden");
     })
-})
+    
+    //===ACTIONS FOR PASSWORD RESET MODAL
+    $(".pwd-reset").on('keyup',function (){
+        $("#invalid-pwd-indicator").css("visibility","hidden");
+        let pwd = $("#pwd-reset").val();
+        let cpwd = $("#cpwd-reset").val();
+        if(cpwd!=""&&pwd!=""){
+            if(pwd!=cpwd){
+                $("#invalid-pwd-indicator").css("visibility","visible").html("Password did not matched!")
+                return;
+            }
+            else if(pwd==cpwd){
+                if(pwd.length<8){
+                    $("#invalid-pwd-indicator").css("visibility","visible").html("Minimum of 8 characters")
+                    return;
+                }
+            }
+        }
+    })
+    $("#pop-up-reset-pwd-ok-btn").click(function () {
+        let pwd = $("#pwd-reset").val();
+        let cpwd = $("#cpwd-reset").val();
+
+        if(pwd==""||cpwd==""){
+            $("#invalid-pwd-indicator").css("visibility","visible").html("Please fill all the field!")
+            return;
+        }
+        if(pwd!=cpwd||pwd.length<8){
+            return;
+        }
+
+        $("#pop-up-reset-pwd").modal("hide")
+        $("#pop-up-loading").modal("show")
+        $.post("php/forgotPasswordProcesses/changePassword.php",{new_password:pwd}).done(function (data){
+            setTimeout(function () {
+                $("#pop-up-loading").modal("hide")
+                console.log(data)
+            },1000)
+
+
+        })
+
+
+    })
+})//end of document ready
+
+//===========functions to call
 //Tips and trick reset the modal to its default state every time you call it to avoid problems
 function  showForgotPasswordOTP_Input(full_name,email){
 
@@ -114,6 +159,8 @@ function  showForgotPasswordOTP_Input(full_name,email){
                 setTimeout(function () {
                     console.log("tama ang OTP na ininput")
                     clearInterval(interval);
+                    $("#pop-up-forgot-otp").modal('hide');
+                    show_pwd_reset_modal()
                 },1500)
 
             }
@@ -163,3 +210,11 @@ function  showForgotPasswordOTP_Input(full_name,email){
 
 
 }
+
+function show_pwd_reset_modal(){
+    $("#pop-up-reset-pwd").modal('show');
+    $(".pwd-reset").html("");
+    $("#invalid-pwd-indicator").css('visibility','hidden').html("");
+}
+
+

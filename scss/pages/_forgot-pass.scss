@@ -74,5 +74,8 @@ display: flex;
       justify-content: flex-start;
     }
   }
+  #invalid-pwd-indicator{
+    visibility: hidden;
+  }
 }
 

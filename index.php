@@ -170,9 +170,7 @@ if(isset($_SESSION['email'])){
     </section>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
-        Launch demo modal
-    </button>
+
 
 
     <!--
@@ -362,9 +360,9 @@ if(isset($_SESSION['email'])){
                     <div id="modal-content" class="forgot-cont">
 
                         <div id="modal-icon"><img src="./img/Icons/locked.png"/></div>
-                        <h3 class="forgot-pwd-otp-header">Hello Sample User</h3>
-                        <p class="forgot-pwd-otp-email">sample@gmail.com</p>
-                        <p style="margin-bottom: 2rem">To reset your password, you must enter the 6-Digit code that has been sent to your email.
+                        <h3 class="forgot-pwd-otp-header" >Hello Sample User</h3>
+                        <p class="forgot-pwd-otp-email" style="color: var(--dark-grey)">sample@gmail.com</p>
+                        <p style="margin-bottom: 2rem;text-align: center">To reset your password, you must enter the 6-Digit code that has been sent to your email.
                         </p>
                         <p>Enter 6 Digit Reset Code</p>
                         <form autocomplete="off">
@@ -401,20 +399,21 @@ if(isset($_SESSION['email'])){
 
                         <div id="modal-icon"><img src="./img/Icons/rotation-lock.png"/></div>
                         <h3>Reset Password</h3>
-                        <p style="margin-bottom: 1.5rem">Hello! Benitez, Alfredo Bas (sample@gmail.com). Please input your new password</p>
+                        <p style="color: var(--dark-grey)">Hello! Benitez, Alfredo Bas</p>
+                        <p style="margin-bottom: 1.5rem;text-align: center;font-size: smaller">sample@gmail.com</p>
 
                         <div class="reset-pwd-cont">
                             <div class="input-cont">
-                                <p class="input-label"  style="margin: 0.3rem 0">New Password</p>
-                                <input type="password" class="pwd-reset"  style="margin: 0"/>
+                                <p class="input-label"  style="margin: 0.3rem 0" >New Password</p>
+                                <input type="password" id="pwd-reset" class="pwd-reset"  style="margin: 0" data-toggle="tooltip" data-placement="top" title="Minimum of 8 characters." data-container="body"/>
                             </div>
                             <p></p>
                             <div class="input-cont">
                                 <p  class="input-label"  style="margin: 0.3rem 0">Confirm Password</p>
-                                <input type="password" class="pwd-reset" style="margin: 0"/>
+                                <input type="password" id="cpwd-reset" class="pwd-reset" style="margin: 0"/>
                             </div>
 
-                            <p id="invalid-otp-indicator" style="color: darkred;font-size: smaller">Invalid Code</p>
+                            <p id="invalid-pwd-indicator" style="color: darkred;font-size: smaller">Password did not matched!</p>
                         </div>
 
                     </div><!--end of modal content-->
@@ -427,5 +426,21 @@ if(isset($_SESSION['email'])){
         </div>
     </div>
 
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
+        Launch demo modal
+    </button>
+  <script>
+
+      $('[data-toggle="tooltip"]').focus(function () {
+          $('[data-toggle="tooltip"]').tooltip('show')
+      })
+      $('[data-toggle="tooltip"]').hover(function () {
+          $('[data-toggle="tooltip"]').tooltip('show')
+      },function (){
+          $('[data-toggle="tooltip"]').tooltip('hide')
+      })
+
+  </script>
   </body>
 </html>
