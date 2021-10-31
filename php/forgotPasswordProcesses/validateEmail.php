@@ -21,16 +21,6 @@ foreach ($userTables as $userTable){
             $_SESSION['user_full_name'] =  $row['last_name'].", ". $row['first_name']." ". $row['middle_name'];
         }
 
-        //generate 6 digit code OTP
-        $key=0;
-        try {
-            $key = random_int(0, 999999);
-        } catch (Exception $e) {
-        }
-        $_6DigitCode = str_pad($key, 6, 0, STR_PAD_LEFT);
-
-        //put the OTP in user's record
-        mysqli_query($con,"UPDATE $userTable SET OTP = '$_6DigitCode' WHERE email = '$email'");
 
         //echo 1;//notify the js callback function that gmail account is in the database
         echo json_encode(array("status"=>1,"full_name"=> $_SESSION['user_full_name'],"email"=>$email));

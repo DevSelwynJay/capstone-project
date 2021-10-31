@@ -139,14 +139,17 @@ function  showForgotPasswordOTP_Input(full_name,email){
     $("#pop-up-forgot-resend-OTP-btn").off('click');
     $("#pop-up-forgot-resend-OTP-btn").on('click',function (){
         buttonTimer();
+        $.post("php/forgotPasswordProcesses/sendPwdResetCode.php",{email:email}).done(function (data){
+                console.log(data)
+        });
+
     })
     function buttonTimer(){
-        let seconds = 30;
+        let seconds = 5;
         $("#pop-up-forgot-resend-OTP-btn").prop('disabled',true);
             interval = setInterval(function () {
             if(seconds==-1){
                 $("#pop-up-forgot-resend-OTP-btn").prop('disabled',false).html("Resend Code");
-                seconds = 30;
                 clearInterval(interval);
                 interval=null;
                 return;

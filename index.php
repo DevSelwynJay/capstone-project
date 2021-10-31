@@ -302,7 +302,7 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" maxlength="6" id="otp-input">
                         </form>
-                        <p id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ;display: flex;justify-content: center">Invalid OTP</p>
+                        <p id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ;display: flex;justify-content: center;font-size: smaller">Invalid OTP</p>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
@@ -335,7 +335,7 @@ if(isset($_SESSION['email'])){
                         <form autocomplete="off">
                             <input type="text" id="email-input" placeholder="E-mail"/>
                         </form>
-                        <p id="invalid-email-indicator">Can't recognize e-mail</p>
+                        <p id="invalid-email-indicator" style="font-size: smaller">Can't recognize e-mail</p>
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
