@@ -3,8 +3,7 @@
 *::before {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1,
@@ -26,14 +25,13 @@ html {
 
 body {
   line-height: 1.3;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   padding: 0;
   margin: 0;
 }
 
 .sidenav {
-  position: -webkit-sticky !important;
   position: sticky !important;
   top: 0;
   left: 0;
@@ -54,47 +52,27 @@ h5 {
 }
 
 .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .flex-end {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .h-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .v-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .text-center {
@@ -102,9 +80,7 @@ h5 {
 }
 
 .text-right {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .margin-a {
@@ -137,15 +113,16 @@ h5 {
   --third-color: #6d6d6d;
   --hover-color: #1486bb;
   --light-grey: #D4D7D9;
+  --dark-grey: #4d4949;
 }
 
-input[type="text"], select, input[type="number"],
-input[type="password"], input[type="date"] {
+input[type=text], select, input[type=number],
+input[type=password], input[type=date] {
   font-family: poppins !important;
 }
 
-input[type="text"], select, input[type="number"],
-input[type="password"], input[type="date"] {
+input[type=text], select, input[type=number],
+input[type=password], input[type=date] {
   width: 100%;
   margin-top: 1rem;
   padding: 0.6rem 1rem;
@@ -158,12 +135,12 @@ select {
   padding: 0.4rem 0.8rem;
 }
 
-input[type="text"]:focus, select:focus, input[type="number"]:focus,
-input[type="password"]:focus, input[type="date"]:focus {
+input[type=text]:focus, select:focus, input[type=number]:focus,
+input[type=password]:focus, input[type=date]:focus {
   border-color: var(--primary-color);
 }
 
-input[type="checkbox"] {
+input[type=checkbox] {
   cursor: pointer;
 }
 
@@ -203,16 +180,9 @@ input[type=number] {
   background-color: var(--primary-color);
   height: 100vh;
   padding: 1.2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
 }
 
@@ -220,7 +190,7 @@ section .profile h4 {
   font-size: 1.2rem;
   text-align: center;
   font-weight: 600;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
 section .profile-img {
@@ -255,7 +225,7 @@ section .menu li a {
 section .menu li a::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  margin-right: .2rem;
+  margin-right: 0.2rem;
 }
 
 section .menu li .dashboard::before {
@@ -289,7 +259,7 @@ section .social-media-links {
 
 section .social-media-links i {
   font-size: 1.5rem;
-  margin: .4rem;
+  margin: 0.4rem;
   cursor: pointer;
 }
 
@@ -328,24 +298,18 @@ section .inner-page-content .content .line {
   width: 80px;
   height: 3px;
   background-color: var(--third-color);
-  margin: 0 .3rem;
+  margin: 0 0.3rem;
   color: #383838;
 }
 
 section .inner-page-content .content .heading-holder {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 section .inner-page-content .content h1 {
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
 }
 
 section .inner-page-content .content h2 {
@@ -358,12 +322,8 @@ section .inner-page-content .content p {
 }
 
 section .inner-page-content .settings {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 section .inner-page-content .settings a {
@@ -372,22 +332,16 @@ section .inner-page-content .settings a {
 
 section .inner-page-content .settings i {
   font-size: 1.7rem;
-  margin-right: .4rem;
+  margin-right: 0.4rem;
   color: #383838;
 }
 
 section .inner-page-nav {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: .5rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
 section .inner-page-content .dropdown-settings {
@@ -398,42 +352,25 @@ section .inner-page-content .dropdown-settings {
   max-width: unset !important;
   margin: unset !important;
 }
-
 .global .content {
   text-align: left !important;
 }
-
 .global__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .global__sidenav {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 20%;
-          flex: 1 1 20%;
+  flex: 1 1 20%;
   background-color: var(--primary-color);
-  -webkit-box-shadow: 2px 0 12px var(--third-color);
-          box-shadow: 2px 0 12px var(--third-color);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 2px 0 12px var(--third-color);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   min-height: 100vh;
 }
-
 .global__main-content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 80%;
-          flex: 1 1 80%;
+  flex: 1 1 80%;
 }
 
 .text-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -524,15 +461,9 @@ section.login-form a:hover {
 }
 
 section.login-form form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 70vh;
 }
 
@@ -542,44 +473,30 @@ section.login-form form .form-wrapper {
 }
 
 section.login-form .hero-image {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
 /*
-  ====================
-  pop-up modal design
-  ====================
-  */
+====================
+pop-up modal design
+====================
+*/
 #modal-content {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding-top: 1rem;
 }
 
 .modal-footer {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 /*===pop-up modal===*/
 #modal-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 #modal-icon img {
@@ -618,12 +535,8 @@ section.login-form .hero-image {
 
 #modal-content form {
   /*input form parent*/
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -648,36 +561,18 @@ section.login-form .hero-image {
 
 /*first pop to show after successful login*/
 #choose-authentication {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border: 2px solid;
 }
 
 #choose-authentication .col-sm {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   border: 2px solid #c5bebe;
   border-radius: 0.5rem;
   margin: 0.2rem;
@@ -699,39 +594,27 @@ section.login-form .hero-image {
 .toggle-cont {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   padding: 0.3rem;
   margin: 0;
   background: #c9cece;
 }
 
-input[type="radio"] {
+input[type=radio] {
   width: 1.3rem;
   height: 1.3rem;
 }
 
 .subtitle {
   /** the h5 in modal*/
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   text-align: center;
   color: var(--third-color);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   margin: 1.3rem 0 0 0;
   font-size: 1.2rem;
@@ -743,22 +626,16 @@ input[type="radio"] {
 }
 
 .super-admin {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .super-admin .sidenav {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 20%;
-          flex: 1 1 20%;
+  flex: 1 1 20%;
   height: 100vh;
 }
 
 .super-admin .main {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 80%;
-          flex: 1 1 80%;
+  flex: 1 1 80%;
 }
 
 table {
@@ -769,7 +646,7 @@ table {
 
 td, th {
   color: var(--third-color);
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
 
@@ -779,28 +656,21 @@ tr:nth-child(even) {
 
 .cta-wrapper {
   margin-top: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
-
 .cta-wrapper .square-btn {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
-  padding: .6rem .8rem;
+  padding: 0.6rem 0.8rem;
   display: block;
   text-align: center;
   width: 20%;
 }
-
 .cta-wrapper .square-btn i {
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
-
 .cta-wrapper .square-btn:hover {
   background-color: var(--hover-color);
 }
@@ -809,58 +679,47 @@ tr:nth-child(even) {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
-  padding: .6rem .8rem;
+  padding: 0.6rem 0.8rem;
   display: block;
   text-align: center;
   margin-top: 1rem;
 }
-
 .button-square i {
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
-
 .button-square:hover {
   background-color: var(--hover-color);
 }
 
 .cta-wrapper2 {
   margin-top: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 .cta-wrapper2 .square-btn {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
-  padding: .6rem .8rem;
+  padding: 0.6rem 0.8rem;
   display: block;
   text-align: center;
   width: 20%;
 }
-
 .cta-wrapper2 .square-btn:hover {
   background-color: var(--hover-color);
 }
-
 .cta-wrapper2 .red-square-btn {
   background-color: #ff0000;
   color: white;
   text-decoration: none;
-  padding: .6rem .8rem;
+  padding: 0.6rem 0.8rem;
   display: block;
   text-align: center;
   width: 20%;
 }
-
 .cta-wrapper2 .red-square-btn i {
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
-
 .cta-wrapper2 .red-square-btn:hover {
   background-color: #cf0404;
 }
@@ -868,47 +727,29 @@ tr:nth-child(even) {
 .registration-form {
   color: var(--third-color);
 }
-
 .registration-form__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 @media (max-width: 900px) {
   .registration-form__container {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
-
 .registration-form__wrapper {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+  flex: 1 1 50%;
 }
-
 .registration-form__image {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+  flex: 1 1 50%;
   height: 100vh;
   background-color: var(--primary-color);
-  display: -ms-grid;
   display: grid;
   place-items: center;
 }
-
 .registration-form__image img {
   width: 70%;
   height: 70%;
 }
-
 @media (max-width: 900px) {
   .registration-form__image img {
     display: none;
@@ -920,35 +761,23 @@ tr:nth-child(even) {
 }
 
 .search-tab {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .search-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .search-container a {
-  padding: .65rem;
+  padding: 0.65rem;
   background-color: var(--primary-color);
   color: white;
-  -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
-
 .search-container a i {
   font-size: 1.3rem;
 }
-
 .search-container a:hover {
   background-color: var(--hover-color);
 }
@@ -958,7 +787,6 @@ tr:nth-child(even) {
   border-radius: unset !important;
   border: 3px solid var(--light-grey) !important;
 }
-
 .search-bar:focus {
   border: 3px solid var(--primary-color) !important;
 }
@@ -966,259 +794,157 @@ tr:nth-child(even) {
 .search-tab .details-settings {
   padding: 0 2rem 0 2rem;
 }
-
 .search-tab .details-settings a {
   display: block;
   text-decoration: none;
   color: var(--primary-color);
-  -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
-
 .search-tab .details-settings a:hover {
   color: var(--hover-color);
 }
 
 .patient-content__container {
-  display: -ms-grid;
   display: grid;
   padding: 0 1.5rem 2rem 1.5rem;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
-  -ms-grid-rows: (min-content)[4];
-      grid-template-rows: repeat(4, -webkit-min-content);
-      grid-template-rows: repeat(4, min-content);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, min-content);
 }
-
 .patient-content__container .holder {
   background-color: #eeeeee;
-  margin: .8rem;
-  border-radius: .5rem;
+  margin: 0.8rem;
+  border-radius: 0.5rem;
   padding: 1rem;
 }
-
 .patient-content__name {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
   grid-column: 1/2;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
   grid-row: 1/3;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
-
 .patient-content__name i {
   font-size: 5.5rem;
   color: var(--third-color);
   margin-bottom: 1rem;
 }
-
 .patient-content__name p {
   font-weight: 900;
   text-transform: uppercase;
   font-size: 1.2rem;
 }
-
 .patient-content__name a {
   background-color: var(--primary-color);
   color: white;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
   text-decoration: none;
-  padding: .3rem 1.2rem;
+  padding: 0.3rem 1.2rem;
   display: inline-block;
-  border-radius: .5rem;
-  -webkit-transition: all 300ms ease-in-out;
+  border-radius: 0.5rem;
   transition: all 300ms ease-in-out;
 }
-
 .patient-content__name a:hover {
   background-color: var(--hover-color);
 }
-
 .patient-content__name-container {
   text-align: center;
 }
-
 .patient-content__name-container p {
   text-align: center;
 }
-
 .patient-content__information {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
   grid-column: 1/2;
-  -ms-grid-row: 3;
-  -ms-grid-row-span: 1;
   grid-row: 3/4;
 }
-
 .patient-content__information td, .patient-content__information th {
   color: unset !important;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: left;
 }
-
 .patient-content__information tr:nth-child(even) {
   background-color: unset !important;
 }
-
 .patient-content__blood-type {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
   grid-column: 2/3;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
   grid-row: 1/2;
 }
-
 .patient-content__height {
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 1;
   grid-column: 3/4;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
   grid-row: 1/2;
 }
-
 .patient-content__weight {
-  -ms-grid-column: 4;
-  -ms-grid-column-span: 1;
   grid-column: 4/5;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
   grid-row: 1/2;
 }
-
 .patient-content__blood-type-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: .8rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
 }
-
 .patient-content__height-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: .8rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
 }
-
 .patient-content__weight-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: .8rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
 }
-
 .patient-content__medical-history {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 4;
   grid-column: 2/6;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
   grid-row: 2/3;
 }
-
 .patient-content__medical-history .group {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: .5rem;
-  padding: .4rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
 }
-
 .patient-content__medical-history-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1.3rem;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   padding: 1rem 0;
 }
-
 .patient-content__medication {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 4;
   grid-column: 2/6;
-  -ms-grid-row: 3;
-  -ms-grid-row-span: 2;
   grid-row: 3/5;
 }
-
 .patient-content__medication P {
   padding: 0 0 1rem 0;
 }
-
 .patient-content__medication td, .patient-content__medication th {
   color: unset !important;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: left;
 }
-
 .patient-content__medication tr:nth-child(even) {
   background-color: unset !important;
 }
-
 .patient-content__medication .cta-prescription-container {
-  display: -ms-grid;
   display: grid;
   place-items: center;
 }
-
 .patient-content__medication .cta-prescription-container i {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
-
 .patient-content__medication .cta-prescription {
   text-align: center;
   margin-top: 1rem;
   display: inline-block;
   text-decoration: none;
-  padding: .7rem 1rem;
+  padding: 0.7rem 1rem;
   color: var(--primary-color);
-  -webkit-transition: color 300ms ease-in-out;
   transition: color 300ms ease-in-out;
   font-size: 1.1rem;
 }
-
 .patient-content__medication .cta-prescription:hover {
   color: var(--hover-color);
 }
-
 .patient-content__medication-container {
   max-height: 25rem;
   overflow: scroll;
@@ -1268,113 +994,78 @@ tr:nth-child(even) {
 }
 
 .reports__downloads {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   padding: 0 1rem;
 }
-
 .reports__downloads-container a {
   display: inline-block;
   text-decoration: none;
   background-color: var(--primary-color);
-  padding: .6rem 1rem;
+  padding: 0.6rem 1rem;
   color: white;
-  margin-left: .7rem;
-  border-radius: .5rem;
-  -webkit-transition: all 300ms ease-in-out;
+  margin-left: 0.7rem;
+  border-radius: 0.5rem;
   transition: all 300ms ease-in-out;
   margin-bottom: 1rem;
 }
-
 .reports__downloads-container a i {
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
-
 .reports__downloads-container a:hover {
   background-color: var(--hover-color);
 }
-
 .reports__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .reports__left-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 60%;
-          flex: 1 1 60%;
+  flex: 1 1 60%;
   margin: 1rem 1rem 1rem 1rem;
 }
-
 .reports__left-col table {
   margin-top: unset !important;
 }
-
 .reports__left-col td:first-child {
   font-weight: unset !important;
 }
-
 .reports__left-col td, .reports__left-col th {
   color: unset !important;
 }
-
 .reports__left-col th {
   font-size: 1.2rem;
 }
-
 .reports__left-col-container {
   background-color: #eeeeee;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: 100%;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 }
-
 .reports__right-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 40%;
-          flex: 1 1 40%;
+  flex: 1 1 40%;
   margin: 1rem 1rem 1rem 0;
 }
-
 .reports__right-col-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: space-evenly;
+  flex-direction: column;
   height: 100%;
   gap: 1rem;
 }
-
 .reports__right-col-container .total-medicine-released h2 {
   color: var(--primary-color);
 }
-
 .reports__right-col-container .current-sick-paient h2 {
   color: red;
 }
-
 .reports__right-col-container .cured-patient h2 {
   color: #05ac05;
 }
-
 .reports__right-col-container .card {
   background-color: #eeeeee;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   text-align: center;
   padding: 4rem 0;
 }
-
 .reports__right-col-container .card h2 {
   font-weight: 300;
   font-size: 2.5rem;
@@ -1383,148 +1074,118 @@ tr:nth-child(even) {
 .inventory__container {
   padding: 1rem;
 }
-
 .inventory__container h1 {
   font-weight: 400 !important;
   color: var(--third-color);
 }
-
 .inventory__container i {
   cursor: pointer !important;
 }
-
 .inventory__container .td-spacer {
   background-color: white;
 }
-
 .inventory table {
   margin-top: 0 !important;
 }
-
 .inventory__table-toexpire-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0 !important;
 }
-
 .inventory__table-toexpire-container td {
   font-weight: 300 !important;
   width: 200px;
 }
-
 .inventory__table-toexpire-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
-
 .inventory__table-toexpire-container td.expired-text {
   color: red !important;
 }
-
 .inventory__table-toexpire-container td.warning-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
   text-align: left !important;
 }
-
 .inventory__table-toexpire-container td.warning-btn i {
   color: #ff1515 !important;
-  padding: .6rem;
-  border-radius: .4rem;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   font-size: 1.4rem !important;
   cursor: unset !important;
 }
-
 .inventory__table-expired-container {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
 }
-
 .inventory__table-expired-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0 !important;
 }
-
 .inventory__table-expired-container td {
   font-weight: 300 !important;
   width: 200px;
 }
-
 .inventory__table-expired-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
-
 .inventory__table-expired-container td.expired-text {
   color: red !important;
 }
-
 .inventory__table-expired-container td.delete-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
   text-align: left !important;
 }
-
 .inventory__table-expired-container td.delete-btn i {
   background-color: red;
   color: white !important;
-  padding: .6rem;
-  border-radius: .4rem;
-  -webkit-transition: all 200ms ease-in-out;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   transition: all 200ms ease-in-out;
   font-size: 1.1rem !important;
 }
-
 .inventory__table-expired-container td.delete-btn i:hover {
   background-color: #ac0202 !important;
 }
-
 .inventory__table-main-container tr.title {
   background-color: var(--primary-color);
 }
-
 .inventory__table-main-container tr.title th {
   color: white !important;
   font-weight: 400;
 }
-
 .inventory__table-main-container table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 1rem;
 }
-
 .inventory__table-main-container td, .inventory__table-main-container th {
   color: var(--third-color);
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
-
 .inventory__table-main-container td {
   font-weight: 300 !important;
 }
-
 .inventory__table-main-container td.add-btn {
   background-color: white;
-  padding-left: .3rem !important;
+  padding-left: 0.3rem !important;
 }
-
 .inventory__table-main-container td.add-btn i {
   background-color: var(--primary-color);
   color: white !important;
-  padding: .6rem;
-  border-radius: .4rem;
-  -webkit-transition: all 200ms ease-in-out;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
   transition: all 200ms ease-in-out;
 }
-
 .inventory__table-main-container td.add-btn i:hover {
   background-color: var(--hover-color) !important;
 }
-
 .inventory__table-main-container th.add-row {
   background-color: white;
 }
-
 .inventory__table-main-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
@@ -1541,8 +1202,6 @@ tr:nth-child(even) {
   background-color: #cdefff;
   height: 20%;
   width: 60%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border-radius: 10px;
   padding: 0 5% 5% 5%;
@@ -1583,24 +1242,14 @@ tr:nth-child(even) {
 }
 
 .symptoms-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .symp {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   margin: 4%;
 }
 
@@ -1614,12 +1263,8 @@ tr:nth-child(even) {
 }
 
 .pres-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .prescription-container {
@@ -1631,17 +1276,11 @@ tr:nth-child(even) {
 }
 
 .sub-prescription {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-color: #cdefff;
   width: 40%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   margin: 5%;
   padding: 2%;
   border-radius: 10px;
@@ -1658,21 +1297,13 @@ tr:nth-child(even) {
 }
 
 .medication-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .medication {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 5%;
 }
 
@@ -1682,8 +1313,7 @@ tr:nth-child(even) {
 }
 
 .patient-details-container {
-  -webkit-transform: translateY(-860px);
-          transform: translateY(-860px);
+  transform: translateY(-860px);
   margin-right: 20px;
   float: right;
   background-color: var(--light-grey);
@@ -1698,8 +1328,6 @@ tr:nth-child(even) {
 }
 
 .patient-details-container img {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-left: 25%;
   width: 150px;
@@ -1723,8 +1351,6 @@ td:nth-child(1) {
 }
 
 .text-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -1781,8 +1407,6 @@ td:nth-child(1) {
 }
 
 .text-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -1846,8 +1470,6 @@ td:nth-child(1) {
 }
 
 .text-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -1911,46 +1533,30 @@ td:nth-child(1) {
 }
 
 .forgot-cont p {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-
 .forgot-cont h5 {
   margin-top: 1.5rem;
 }
-
 .forgot-cont form {
   margin: 0 0;
 }
-
 .forgot-cont form #email-input {
   max-width: 80%;
   font-family: poppins !important;
   letter-spacing: 0.1rem;
   margin: 0;
 }
-
 .forgot-cont #invalid-email-indicator {
   color: darkred;
   visibility: hidden;
   margin: 5px 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 #forgot-pwd-otp-input {
@@ -1974,15 +1580,9 @@ td:nth-child(1) {
   color: darkred;
   visibility: hidden;
   margin: 5px 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 #pop-up-forgot-otp-ok-btn {
@@ -1990,30 +1590,21 @@ td:nth-child(1) {
 }
 
 .reset-pwd-cont {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
-
 .reset-pwd-cont .input-cont {
   max-width: 80%;
 }
-
 .reset-pwd-cont .input-cont .input-label {
   padding-left: 0.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
 }
+.reset-pwd-cont #invalid-pwd-indicator {
+  visibility: hidden;
+}
+
 /*# sourceMappingURL=main.css.map */
