@@ -66,25 +66,43 @@ function  showForgotPasswordOTP_Input(full_name,email){
     $("#email-input").val("");
     $("#invalid-otp-indicator").html('Invalid code').css('visibility','hidden');
     $("#pop-up-forgot-otp-ok-btn").prop('disabled',false);
-    $("#forgot-pwd-otp-input").prop('readonly',false)
+    $("#forgot-pwd-otp-input").prop('readonly',false).val("")
 
+    buttonTimer();
+
+    //show the next modal(otp input) then display the email and fullname
     $("#pop-up-forgot-otp").modal('show');
     console.log(full_name+" "+email)
     $(".forgot-pwd-otp-header").html("Hello! "+full_name);
     $(".forgot-pwd-otp-email").html(email);
 
-    buttonTimer();//wait a seconds before resending the OTP
+    $("#forgot-pwd-otp-input").off('keypress');
+    $("#forgot-pwd-otp-input").on('keypress',function (event) {
+       if($(this).val().length==6){
+           event.preventDefault()
+       }
+
+    })
 
     $("#pop-up-forgot-otp-ok-btn").off('click');//remove click tapos set uli
     // kasi nauulit ng maraming beses ung click function
     $("#pop-up-forgot-otp-ok-btn").on('click',function () {
 
+        //get the inputted OTP
+        let inputtedOTP = $("#forgot-pwd-otp-input").val();
+        if(inputtedOTP==""||inputtedOTP.length<6){
+            $("#invalid-otp-indicator").html('It must be a 6-Digit').css('visibility','visible');
+            return;
+        }
+
+        //clicking verify button will disable it with the OTP text box and resend OTP button temporarily
         $("#forgot-pwd-otp-input").prop('readonly',true)
         $("#pop-up-forgot-otp-ok-btn").prop('disabled',true);
+        $("#pop-up-forgot-resend-OTP-btn").prop('disabled',true)
 
-        let inputtedOTP = $("#forgot-pwd-otp-input").val();
 
-        $("#invalid-otp-indicator").html('<img width="30" height="30" src="img/Icons/loadingLine.gif"/>').css('visibility','visible')
+        //show the loading icon
+        $("#invalid-otp-indicator").html('<img width="30" height="30" style="margin: 0" src="img/Icons/loadingLine.gif"/>').css('visibility','visible')
 
         $.post("php/forgotPasswordProcesses/verifyCode.php",{inputtedOTP: inputtedOTP,email:email}).done(function (data){
             console.log("server process finished")
@@ -102,6 +120,9 @@ function  showForgotPasswordOTP_Input(full_name,email){
                     $("#invalid-otp-indicator").html('Invalid code').css('visibility','visible');
                     $("#forgot-pwd-otp-input").prop('readonly',false)
                     $("#pop-up-forgot-otp-ok-btn").prop('disabled',false);
+                    if(interval==null){
+                        $("#pop-up-forgot-resend-OTP-btn").prop('disabled',false)
+                    }
 
                 },1500)
 
@@ -110,10 +131,9 @@ function  showForgotPasswordOTP_Input(full_name,email){
     })
     $("#pop-up-forgot-otp-cancel-btn").off('click');
     $("#pop-up-forgot-otp-cancel-btn").on('click',function () {
-        $("#forgot-pwd-otp-input").val("");
-        $("#invalid-otp-indicator").css("visibility","hidden");
         $("#pop-up-forgot-resend-OTP-btn").html("Resend Code")
         clearInterval(interval);
+        interval=null;
     })
 
     $("#pop-up-forgot-resend-OTP-btn").off('click');
@@ -128,6 +148,7 @@ function  showForgotPasswordOTP_Input(full_name,email){
                 $("#pop-up-forgot-resend-OTP-btn").prop('disabled',false).html("Resend Code");
                 seconds = 30;
                 clearInterval(interval);
+                interval=null;
                 return;
             }
             $("#pop-up-forgot-resend-OTP-btn").html("Resend Code in "+seconds);

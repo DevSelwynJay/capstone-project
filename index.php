@@ -368,9 +368,9 @@ if(isset($_SESSION['email'])){
                         </p>
                         <p>Enter 6 Digit Reset Code</p>
                         <form autocomplete="off">
-                            <input type="text" id="forgot-pwd-otp-input" maxlength="6"/>
+                            <input type="number" id="forgot-pwd-otp-input" maxlength="6"/>
                         </form>
-                        <p id="invalid-otp-indicator" style="color: darkred">Invalid Code</p>
+                        <p id="invalid-otp-indicator" style="color: darkred;font-size: smaller">Invalid Code</p>
                         <div class="flex">
                             <button type="button" class="btn btn-primary" id="pop-up-forgot-otp-ok-btn">Verify</button>
                         </div>

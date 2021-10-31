@@ -143,6 +143,18 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .primary-btn {
   padding: 0.6rem 1rem;
   border: none;
