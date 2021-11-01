@@ -458,10 +458,18 @@ section.login-form .hero-image {
 }
 @media (max-width: 424px) {
   [for=remember-me], #trigger-forgot-modal, #login-p, #login-a {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  #login-title {
+    font-size: 1.8rem;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 388px) {
+  [for=remember-me], #trigger-forgot-modal, #login-p, #login-a {
+    font-size: 0.8rem;
+  }
+
   #login-title {
     font-size: 1.5rem;
   }
