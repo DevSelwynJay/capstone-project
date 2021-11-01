@@ -399,8 +399,8 @@ if(isset($_SESSION['email'])){
 
                         <div id="modal-icon"><img src="./img/Icons/rotation-lock.png"/></div>
                         <h3>Reset Password</h3>
-                        <p style="color: var(--dark-grey)">Hello! Benitez, Alfredo Bas</p>
-                        <p style="margin-bottom: 1.5rem;text-align: center;font-size: smaller">sample@gmail.com</p>
+                        <p id="forgot-pwd-greetings" style="color: var(--dark-grey)">Hello! Benitez, Alfredo Bas</p>
+                        <p id="forgot-pwd-email" style="margin-bottom: 1.5rem;text-align: center;font-size: smaller">sample@gmail.com</p>
 
                         <div class="reset-pwd-cont">
                             <div class="input-cont">

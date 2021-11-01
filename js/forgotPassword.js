@@ -170,7 +170,7 @@ function  showForgotPasswordOTP_Input(full_name,email){
                     console.log("tama ang OTP na ininput")
                     clearInterval(interval);
                     $("#pop-up-forgot-otp").modal('hide');
-                    show_pwd_reset_modal()
+                    show_pwd_reset_modal(email,full_name)
                 },1500)
 
             }
@@ -221,10 +221,12 @@ function  showForgotPasswordOTP_Input(full_name,email){
 
 }
 
-function show_pwd_reset_modal(){
+function show_pwd_reset_modal(email,full_name){
     //reset the modal, it will remove all the value in text-box then show it
     $(".pwd-reset").val("");
     $("#invalid-pwd-indicator").css('visibility','hidden').html("Sample Text");
+    $("#forgot-pwd-greetings").html("Hello!, "+full_name)
+    $("#forgot-pwd-email").html(email)
     $("#pop-up-reset-pwd").modal('show');
 
 }
