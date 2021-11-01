@@ -123,7 +123,7 @@ if(isset($_SESSION['email'])){
               <div class="form-wrapper">
                 <div class="row">
                   <div class="col-sm-12">
-                    <h1 class="text-center" style="font-weight:700">Login</h1>
+                    <h1 id="login-title" class="text-center" style="font-weight:700">Login</h1>
                   </div>
                   <div class="col-sm-12">
                     <input type="text" placeholder="Email" id="login-email"/>
@@ -150,9 +150,9 @@ if(isset($_SESSION['email'])){
 
                     </div>
                   <div class="col-sm-12 margin-top-3">
-                    <p class="text-center" style="color:#6d6d6d;">
+                    <p id="login-p" class="text-center" style="color:#6d6d6d;">
                       Not yet Registered?&nbsp;<span
-                        ><a href="register.php">Create Account</a></span>
+                        ><a id="login-a" href="register.php">Create Account</a></span>
                     </p>
                   </div>
                 </div>
@@ -160,7 +160,7 @@ if(isset($_SESSION['email'])){
             </form>
           </div>
 
-          <div class="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-5">
+          <div class="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-5" id="login-pic-cont">
             <div class="hero-image">
               <img src="img/hero-image-1.png"/>
             </div>
@@ -426,10 +426,31 @@ if(isset($_SESSION['email'])){
         </div>
     </div>
 
+    <!--Modal for notifying user the password was successfully changed-->
+    <div class="modal fade" id="pop-up-reset-pwd-success" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
 
-    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">
+                    <div id="modal-content" class="forgot-cont">
+
+                        <div id="modal-icon"><img src="./img/Icons/checked.png"/></div>
+                        <h3>Password Successfully Changed</h3>
+                        <div class="reset-pwd-cont">
+                            <p style="text-align: center;margin-bottom: 1rem">You can now login using your new password</p>
+                            <button type="button" class="btn btn-primary" id="pop-up-reset-pwd-success-ok-btn" data-dismiss="modal">OK</button>
+                        </div>
+
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+            </div>
+        </div>
+    </div>
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd-success">
         Launch demo modal
-    </button>-->
+    </button>
   <script>
 
       $('[data-toggle="tooltip"]').focus(function () {

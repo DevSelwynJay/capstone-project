@@ -451,6 +451,21 @@ section.login-form .hero-image {
   background-color: var(--primary-color);
 }
 
+@media (max-width: 767px) {
+  section.login-form .hero-image, .hero-image img, #login-pic-cont {
+    display: none;
+  }
+}
+@media (max-width: 424px) {
+  [for=remember-me], #trigger-forgot-modal, #login-p, #login-a {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 380px) {
+  #login-title {
+    font-size: 1.5rem;
+  }
+}
 section.login-form a {
   text-decoration: none;
   color: var(--primary-color);

@@ -98,6 +98,7 @@ $(document).ready(function (){
                 console.log(data)
                 if(data==1){
                     $(".pwd-reset").val("");
+                    $("#pop-up-reset-pwd-success").modal('show')
                 }
                 else {
                     show_pwd_reset_modal();
