@@ -77,6 +77,25 @@
                              <div class="col-sm-3"><input type="text" placeholder="" value="Paombong" readonly/></div>
                              <div class="col-sm-3"><input type="text" placeholder="" value="Bulacan" readonly/></div>
                          </div>
+                         <div class="row">
+                             <div class="col-sm-12">
+                                 <p style="color: var(--dark-grey);margin: 1rem 0 0 0;text-align: center">
+                                     To make your account approved by admin, please attach a photo of your <b>VALID ID</b>
+                                 </p>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-sm-6">
+                                 <div class="custom-file" style="margin: 1rem 0">
+                                     <input type="file" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" capture="environment">
+                                     <label class="custom-file-label" for="customFileInput">Select file</label>
+                                     <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Selected no pictures</p>
+                                 </div>
+                             </div>
+                             <div class="col-sm-6">
+                                 <button type="button" class="primary-btn" style="background: var(--dark-grey);margin: 1rem 0">Preview Image</button>
+                             </div>
+                         </div>
                         <a class="primary-btn" id="reg">Register</a>
                      </div>
                   </form>
@@ -87,11 +106,66 @@
             </div>
          </div>
       </section>
+
+      <!--testing button only-->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-preview-id">
+       test modal only
+      </button>
+
+      <!--Modal to preview images uploaded-->
+      <div class="modal fade" id="pop-up-preview-id" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+          <div class="modal-dialog  modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-body">
+
+                      <div id="modal-content" class="preview-id-cont" style="display: flex;flex-flow: column;align-items: center">
+                          <style>
+                              #gallery img{
+                                  width: 20rem;
+                                  height: 20rem;
+                              }
+                          </style>
+                          <div id="gallery" style="max-height: 60vh;overflow-y: auto;display: flex;flex-flow: column;align-items: center">
+
+                          </div>
+                          <button type="button" class="btn btn-primary" id="pop-up-reset-pwd-success-ok-btn" data-dismiss="modal">OK</button>
+
+                      </div><!--end of preview-->
+                  </div><!--end of modal body-->
+              </div>
+          </div>
+      </div>
+
       <script>
           $(".logo").click(function (){
              location.href="index.php";
           })
           $('[data-toggle="tooltip"]').tooltip()
+
+          $(function() {
+              // Multiple images preview in browser
+              var imagesPreview = function(input, placeToInsertImagePreview) {
+
+                  if (input.files) {
+                      var filesAmount = input.files.length;
+                      console.log("no if image selected"+filesAmount)
+                      for (i = 0; i < filesAmount; i++) {
+                          var reader = new FileReader();
+
+                          reader.onload = function(event) {
+                              $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                          }
+
+                          reader.readAsDataURL(input.files[i]);
+                      }
+                  }
+
+              };
+
+              $('#customFileInput').on('change', function() {
+                  imagesPreview(this, '#gallery');
+              });
+          });
       </script>
    </body>
 </html>
