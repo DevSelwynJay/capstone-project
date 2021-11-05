@@ -2107,4 +2107,35 @@ td:nth-child(1) {
 .lower-part table tr td {
   text-align: left;
 }
+
+.admin-upper {
+  background-color: var(--light-grey);
+}
+
+.admin-upper .upper-left {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.admin-upper .upper-left .stats-box {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  background-color: var(--secondary-color);
+}
+
+.admin-upper .upper-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.admin-upper .upper-right .stats-big-box {
+  background-color: var(--secondary-color);
+  width: 200px;
+  height: 300px;
+  margin: 10px;
+}
 /*# sourceMappingURL=main.css.map */

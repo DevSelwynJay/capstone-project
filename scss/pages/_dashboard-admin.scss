@@ -1,0 +1,23 @@
+.admin-upper{
+    background-color: var(--light-grey);
+    .upper-left{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .stats-box{
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            background-color: var(--secondary-color);
+        }
+    }
+    .upper-right{
+        display: flex;
+        .stats-big-box{
+            background-color: var(--secondary-color);
+            width: 200px;
+            height: 300px;
+            margin: 10px;
+        }
+
+    }
+}
