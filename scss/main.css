@@ -2108,34 +2108,57 @@ td:nth-child(1) {
   text-align: left;
 }
 
+.dashboard-admin-content {
+  padding: 0 4rem;
+  color: black;
+}
+
 .admin-upper {
+  border-radius: .4rem;
   background-color: var(--light-grey);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem 3rem;
 }
 
 .admin-upper .upper-left {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 350px;
+          flex: 0 0 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .admin-upper .upper-left .stats-box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc(100% / 12 * 4);
+          flex: 1 0 calc(100% / 12 * 4);
   width: 150px;
   height: 150px;
-  margin: 10px;
+  border-radius: .4rem;
   background-color: var(--secondary-color);
 }
 
 .admin-upper .upper-right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc(100% / 12 * 6);
+          flex: 1 0 calc(100% / 12 * 6);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 1rem;
 }
 
 .admin-upper .upper-right .stats-big-box {
   background-color: var(--secondary-color);
-  width: 200px;
-  height: 300px;
-  margin: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: .4rem;
 }
 /*# sourceMappingURL=main.css.map */
