@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/main.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+    <!-- Font Family Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Patient</title>
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],
+          ['July', 200, 150, 20],
+          ['August', 400, 200, 25],
+          ['September', 660, 50, 10],
+          ['October', 300, 100, 20]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Vaccine Tracking',
+            subtitle: 'as of July - October 2021',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+</head>
+
+<body>
+
+    <section class="global">
+        <div class="global__container">
+            <div class="global__sidenav">
+                <div class="inner-sidenav">
+                    <div class="spacer">
+                        <div class="profile">
+                            <div class="profile-img">
+                                <img src="img/jay.jpg" alt="">
+                            </div>
+                            <h4>Your Name</h4>
+                        </div>
+                        <ul class="menu">
+                            <li><a href="" class="dashboard">Dashboard</a></li>
+                            <li><a href="patient.php" class="patient">Patient</a></li>
+                            <li><a href="reports.php" class="reports">Reports</a></li>
+                            <li><a href="" class="trackMap">Track Map</a></li>
+                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                        </ul>
+                    </div>
+                    <div class="social-media-links">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="global__main-content">
+                <div class="inner-page-content">
+                    <div class="col-sm-12">
+                        <div class="inner-page-nav">
+                            <div class="logo">
+                                <img src="img/HIS logo blue.png" alt="">
+                            </div>
+                            <div class="settings">
+                                <a><i class="fas fa-user-circle"></i></a>
+                                <a><i class="fas fa-ellipsis-h"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="dashboard-admin-content">
+
+                        <div class="admin-upper">
+
+                            <div class="upper-left">
+                                <div class="stats-box">
+                                    <p>6</p>
+                                    <p>Minor Patients</p>
+                                </div>
+                                <div class="stats-box">
+                                    <p>15</p>
+                                    <p>Senior Citizen Patients</p>
+                                </div>
+                                <div class="stats-box">
+                                    <p>8</p>
+                                    <p>Pregnant Patients</p>
+                                </div>
+                                <div class="stats-box">
+                                    <p>7</p>
+                                    <p>PWD Patients</p>
+                                </div>
+                            </div>
+
+                            <div class="upper-right">
+                                <div class="stats-big-box">
+                                    <p class = "green-color">36</p>
+                                    <p>Overall Number of Patients</p>
+                                </div>
+                                <div class="stats-big-box">
+                                    <p class = "red-color">20</p>
+                                    <p>Overall Number of Cured Patients</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="admin-lower">
+                            <div class="patient-list-container">
+                                <p>Patients</p>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                            </div>
+                            <div class="vaccine-graph-container">
+                                <div id="barchart_material" style="width: 450px; height: 500px;"></div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </section>
+</body>
+
+</html>
