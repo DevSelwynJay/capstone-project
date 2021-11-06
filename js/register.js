@@ -76,7 +76,7 @@ $(document).ready(function (){
         console.log($(this).val())
     })
 
-    $("#trigger-reg-modal").click(function () {
+    $("#trigger-reg-modal").click(function (e) {
         let fname = $('[name="fname"]').val()
         let mname = $('[name="mname"]').val()
         let lname = $('[name="lname"]').val()
@@ -100,11 +100,14 @@ $(document).ready(function (){
         else {
             if(pwd!=cpwd){
                 console.log("Password did not matched")
+                e.preventDefault()
                 return;
             }
             else {
                 //call the register modal
+                e.preventDefault()
                 $("#pop-up-reg").modal('toggle')
+
             }
         }
     })

@@ -79,7 +79,12 @@ if(!empty($fileNames)){
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $lname = $_POST['lname'];
+
     $suffix = $_POST['suffix'];
+    if($suffix!=""){
+        $lname.=" ".$suffix;
+    }
+
     $occupation = $_POST['occupation'];
     $civil_status = $_POST['civil_status'];
     $email = $_POST['email'];
@@ -89,6 +94,8 @@ if(!empty($fileNames)){
     $bday = $_POST['bday'];
     $purok = $_POST['purok'];
     $house_no = $_POST['house_no'];
+
+
 
     $address = $house_no." Purok ".$purok." Sto. Rosario Paombong Bulacan";
 
