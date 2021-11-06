@@ -3,12 +3,38 @@ $(document).ready(function (){
 
     $(function() {
         // Multiple images preview in browser
-        var imagesPreview = function(input, placeToInsertImagePreview) {
+        var imagesPreview = function(input, placeToInsertImagePreview,e) {
 
             $("#gallery").html("")//reset the preview
 
             if (input.files) {
 
+                //validate file format
+                let valid = false;
+                let files = e.target.files;
+                for(let file of files){
+                    let ext = file.name.substring(file.name.lastIndexOf('.')+1)
+                    let correctExt = ['png','jpg','jpeg']
+
+                    for (let ce of correctExt){
+                        if(ce==ext){
+                            valid = true;
+                            break;
+                        }
+                        else {
+                            valid = false;
+                        }
+
+                    }
+
+                    if(!valid){
+                        console.log("Invalid file format")
+                        $("#pop-up-error").modal('toggle')
+                        $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
+                        return;
+                    }
+                }
+                
                 var filesAmount = input.files.length;
                 noOfPicture = filesAmount
                 console.log("no if image selected"+filesAmount)
@@ -21,8 +47,9 @@ $(document).ready(function (){
 
                 for (i = 0; i < filesAmount; i++) {
                     var reader = new FileReader();
-
+                    console.log(e.target.files[i].name)
                     reader.onload = function(event) {
+
                         $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                     }
 
@@ -32,8 +59,8 @@ $(document).ready(function (){
 
         };
 
-        $('#customFileInput').on('change', function() {
-            imagesPreview(this, '#gallery');
+        $('#customFileInput').on('change', function(e) {
+            imagesPreview(this, '#gallery',e);
         });
     });
 
@@ -77,9 +104,12 @@ $(document).ready(function (){
             }
             else {
                 //call the register modal
+                $("#pop-up-reg").modal('toggle')
             }
         }
+    })
 
-
+    $("#pop-up-reg-ok-btn").click(function () {
+       $("#reg-form").submit()
     })
 })//end

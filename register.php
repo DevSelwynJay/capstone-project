@@ -61,7 +61,7 @@
                </div>
                <div class="registration-form__form-wrapper" >
                    <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem">Create patient account</h1>
-                  <form method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto;height: 70vh">
+                  <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto;height: 70vh">
                      <div class="container">
 
                         <div class="row">
@@ -331,7 +331,43 @@
           }
           $("#defaultCheck1").click(chClicked)
           $("#defaultCheck2").click(chClicked)
+
+          $('#pop-up-reg').on('hidden.bs.modal', function (event) {
+              // do something...
+              console.log("tago modal")
+               $("#defaultCheck1").prop('checked',false)
+               $("#defaultCheck2").prop('checked',false)
+               $("#pop-up-reg-ok-btn").prop('disabled',true)
+          })
       </script>
+
+
+      <!--modal for error-->
+      <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+          <div class="modal-dialog  modal-dialog-centered">
+              <div class="modal-content">
+                  <!--<div class="modal-header">
+                       <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>-->
+                  <div class="modal-body">
+                      <div id="modal-content">
+                          <div style="display: flex;align-items: center;justify-content: center">
+                              <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
+                              <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                                  Invalid file format!<br>.png, .jpg, and .jpeg only
+                              </p>
+                          </div>
+                      </div><!--end of modal content-->
+                  </div><!--end of modal body-->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
    </body>
 </html>
