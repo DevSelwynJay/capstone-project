@@ -42,10 +42,10 @@ $_6DigitCode = generate_6_Digits();
 $_SESSION['final_id'] = $new_id = generateID($_6DigitCode);
 validateID($con,$new_id);
 
+$patientID = $_SESSION['final_id'];
 
 $allowTypes = array('jpg','png','jpeg','gif');
 $userFolder = mkdir('../../ID/'.$_SESSION['final_id']);//to create specific folder for user using ID
-
 echo $userFolder;
 $targetDir = "../../ID/".$_SESSION['final_id']."/";
 $fileNames = array_filter($_FILES['upload']['name']);
@@ -65,7 +65,7 @@ if(!empty($fileNames)){
             if(move_uploaded_file($_FILES["upload"]["tmp_name"][$key], $targetFilePath)){
                 // Image db insert sql
                 //$insertValuesSQL .= "('".$fileName."', NOW()),";
-                $patientID = $_SESSION['final_id'];
+
                 $result = mysqli_query($con,"INSERT INTO patient_id (id,file_path) VALUES ('$patientID','ID/$patientID/$fileName')");
             }else{
                 //$errorUpload .= $_FILES['files']['name'][$key].' | ';
@@ -76,7 +76,25 @@ if(!empty($fileNames)){
 
     }//for
 
-    //insert photo of ID
+    $fname = $_POST['fname'];
+    $mname = $_POST['mname'];
+    $lname = $_POST['lname'];
+    $suffix = $_POST['suffix'];
+    $occupation = $_POST['occupation'];
+    $civil_status = $_POST['civil_status'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $pwd = $_POST['pwd'];
+    $gender = $_POST['gender'];
+    $bday = $_POST['bday'];
+    $purok = $_POST['purok'];
+    $house_no = $_POST['house_no'];
+
+    $address = $house_no." Purok ".$purok." Sto. Rosario Paombong Bulacan";
+
+    mysqli_query($con,
+        "INSERT INTO pending_patient VALUES ('$patientID','$lname','$fname','$mname','$gender','$bday','$address','$occupation','$civil_status',NULL,'$email','$pwd','$contact' )");
+    //insert the records in pending_patient table
 
 }
 

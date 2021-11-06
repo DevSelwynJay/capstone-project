@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2021 at 02:51 PM
+-- Generation Time: Nov 06, 2021 at 02:52 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -24,44 +24,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient`
+-- Table structure for table `pending_patient`
 --
 
-CREATE TABLE `patient` (
-  `account_type` int(1) NOT NULL DEFAULT 2 COMMENT '2 patient',
+CREATE TABLE `pending_patient` (
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
-  `gender` varchar(20) NOT NULL COMMENT 'Male Female',
+  `gender` varchar(20) NOT NULL,
   `birthday` date NOT NULL,
   `address` varchar(50) NOT NULL,
-  `occupation` varchar(50) NOT NULL,
+  `occupation` varchar(50) DEFAULT NULL,
   `civil_status` varchar(30) NOT NULL,
   `blood_type` varchar(20) DEFAULT NULL,
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
-  `contact_no` varchar(20) NOT NULL,
-  `OTP` varchar(6) DEFAULT NULL
+  `contact_no` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `patient`
+-- Dumping data for table `pending_patient`
 --
 
-INSERT INTO `patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `OTP`) VALUES
-(2, '2021-02-111222', 'Cruz', 'Bebang', 'Biler', 'Female', '2002-10-10', '1 Sto. Rosario Paombong Bulacan', 'Sales Lady', 'Single', 'O', 'alfredpogiebenitez@gmail.com', 'mukamo11', '09422454512', '125749');
+INSERT INTO `pending_patient` (`id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`) VALUES
+('2021-02-538075', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1 Purok 1 Sto. Rosario Paombong Bulacan', 'none', 'Single', NULL, 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `patient`
+-- Indexes for table `pending_patient`
 --
-ALTER TABLE `patient`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`,`contact_no`);
+ALTER TABLE `pending_patient`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
