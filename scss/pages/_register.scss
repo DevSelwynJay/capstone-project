@@ -9,11 +9,11 @@
         }
     }
     &__wrapper{
-        flex: 1 1 50%;
+        flex: 1 1 60%;
     }
 
     &__image{
-        flex: 1 1 50%;
+        flex: 1 1 40%;
        height: 100vh;
        background-color: var(--primary-color);
        display: grid;
@@ -34,3 +34,4 @@
        width: 12rem !important;
     }
 }
+
