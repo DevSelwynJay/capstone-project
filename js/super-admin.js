@@ -168,12 +168,12 @@ function addAdmin(){
 }
 //Appends the new added admin to the row
 function appendTableAdmin() {
-    $.post("php/superAdminProcesses/tableLoad.php")
-        .done(function (data){
-                var result = data.toString();
+    //$.post("php/superAdminProcesses/tableLoad.php")
+       // .done(function (data){
+                //var result = data.toString();
                 //console.log(result);
-
-          //  $("#adminTable>tbody").append(result).preventDefault();
+            location.reload();
+            //$("#adminTable>tbody").append(result).preventDefault();
             //$(result).appendTo( "#adminTable>tbody" );
-        })
+       // })
 }
