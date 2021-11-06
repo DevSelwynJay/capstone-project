@@ -25,6 +25,17 @@
             height: 150px;
             border-radius: .4rem;
             background-color: var(--secondary-color);
+            padding: 4px;
+
+            p{
+                text-align: center;
+            }
+            p:nth-child(1){
+                font-size: 4.5em;
+            }
+            p:nth-child(2){
+                font-size: 0.8em;
+            }
         }
     }
 
@@ -40,6 +51,7 @@
             height:100%;
             border-radius: .4rem;
         }
+      
 
     }
 

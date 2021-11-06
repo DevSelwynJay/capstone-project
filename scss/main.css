@@ -2143,6 +2143,19 @@ td:nth-child(1) {
   height: 150px;
   border-radius: .4rem;
   background-color: var(--secondary-color);
+  padding: 4px;
+}
+
+.admin-upper .upper-left .stats-box p {
+  text-align: center;
+}
+
+.admin-upper .upper-left .stats-box p:nth-child(1) {
+  font-size: 4.5em;
+}
+
+.admin-upper .upper-left .stats-box p:nth-child(2) {
+  font-size: 0.8em;
 }
 
 .admin-upper .upper-right {
