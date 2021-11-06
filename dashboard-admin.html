@@ -19,6 +19,33 @@
     <title>Patient</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],
+          ['July', 200, 150, 20],
+          ['August', 400, 200, 25],
+          ['September', 660, 50, 10],
+          ['October', 300, 100, 20]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Vaccine Tracking',
+            subtitle: 'as of July - October 2021',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 </head>
 
 <body>
@@ -89,18 +116,45 @@
 
                             <div class="upper-right">
                                 <div class="stats-big-box">
-
+                                    <p class = "green-color">36</p>
+                                    <p>Overall Number of Patients</p>
                                 </div>
                                 <div class="stats-big-box">
-
+                                    <p class = "red-color">20</p>
+                                    <p>Overall Number of Cured Patients</p>
                                 </div>
                             </div>
 
                         </div>
-
                         <div class="admin-lower">
-
+                            <div class="patient-list-container">
+                                <p>Patients</p>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                                <div class="patient-list">
+                                    <img src="img/jay.jpg" alt="">
+                                    <p>Patient Name</p>
+                                </div>
+                            </div>
+                            <div class="vaccine-graph-container">
+                                <div id="barchart_material" style="width: 450px; height: 500px;"></div>
+                            </div>
                         </div>
+                        
 
                     </div>
                 </div>
