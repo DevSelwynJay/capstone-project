@@ -1,4 +1,4 @@
-$(document).ready(function (){
+$(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger( "click" );
     let noOfPicture=0;
 
     $(function() {
@@ -208,6 +208,14 @@ $(document).ready(function (){
                 $("#pop-up-error").modal('toggle')
                 console.log(errMessage)
 
+                $("#pop-up-error-cancel-btn").off('click')
+                $("#pop-up-error-cancel-btn").click(function (){
+                    $('#reg-form').animate({
+                        scrollTop: $('[name="email"]').offset().top
+                    }, 500);
+                    $(this).off('click')
+                });
+
             }
             else {
                 $("#pop-up-reg").modal('toggle')
@@ -220,4 +228,10 @@ $(document).ready(function (){
     $("#pop-up-reg-ok-btn").click(function () {
        $("#reg-form").submit()
     })
+
+
+
+
 })//end
+
+

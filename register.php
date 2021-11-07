@@ -190,9 +190,9 @@
                       </div>
 
                      </div>
-                      <!--testing button only-->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-error">
-                          test modal only
+                      <!--testing button only
+                      <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
+                          test modal only-->
                       </button>
                   </form>
                </div>
