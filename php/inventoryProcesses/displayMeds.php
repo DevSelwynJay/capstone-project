@@ -28,10 +28,11 @@ if (isset($_POST['displayMedData'])) {
         $mfgdate = $row['mfgdate'];
         $expdate = $row['expdate'];
         $dateadded = $row['dateadded'];
+        $datetoday = date("Y-m-d");
+        $days = datediff($datetoday,$expdate);
 
-
-
-        $medtable .= '<tr>
+        if($days >= 2){
+            $medtable .= '<tr>
         <td scope="row">' . $id . '</td>
         <td>' . $medname . '</td>
         <td>' . $category . '</td>
@@ -41,10 +42,20 @@ if (isset($_POST['displayMedData'])) {
         <td>' . $dateadded . '</td>
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal('.$id.')"></i></td>
         </tr>';
+
+        }
+
+
+
+
     }
     $medtable .= '</tbody></tabel>';
     echo $medtable;
 }
+function datediff($datetoday, $expdate){
+    $diff = strtotime($expdate) - strtotime($datetoday);
 
+    return abs(round($diff/86400));
+}
 
 ?>
