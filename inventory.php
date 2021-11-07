@@ -71,9 +71,10 @@
 <div class="col-sm-12">
 <div class="">
    <div class="inventory__container">
-    <div class="inventory__table-toexpire-container">
-        <h1>Medicine to Expire</h1>
-        <table>
+    <div class="inventory__table-toexpire-container"  >
+        <div id="toExptab">
+
+        <!--<table>
             <tbody>
                 <tr>
                     <td>01</td>
@@ -88,11 +89,13 @@
                     <td class="warning-btn"><i class="fas fa-exclamation"></i></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
+        </div>
     </div>
    
-    <div class="inventory__table-expired-container">
-        <h1>Expired Medicines</h1>
+    <div class="inventory__table-expired-container" >
+        <div id="exptab">
+        <!--<h1>Expired Medicines</h1>
         <table>
             <tbody>
                 <tr>
@@ -108,7 +111,8 @@
                     <td class="delete-btn"><i class="fas fa-trash"></i></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
+        </div>
     </div>
 
 <!--Modals-->
@@ -125,23 +129,23 @@
                    <div class="modal-body">
                        <div class="form-group">
                            <label for="medicineName">Medicine Name</label>
-                           <input type="text" class="form-control" id="medicineName" autocomplete="off" placeholder="Enter Medicine Name">
+                           <input type="text" class="form-control" id="medicineName"  autocomplete="off" placeholder="Enter Medicine Name" required>
                        </div>
                        <div class="form-group">
                            <label for="medicineCategory">Category</label>
-                           <input type="text" class="form-control" id="medicineCategory" autocomplete="off" placeholder="Enter Category">
+                           <input type="text" class="form-control" id="medicineCategory" autocomplete="off" placeholder="Enter Category" required>
                        </div>
                        <div class="form-group">
                            <label for="medicineStocks">Stocks</label>
-                           <input type="text" class="form-control" id="medicineStocks" autocomplete="off" placeholder="Enter Stocks">
+                           <input type="text" class="form-control" id="medicineStocks" autocomplete="off" placeholder="Enter Stocks" required>
                        </div>
                        <div class="form-group">
                            <label for="medicineMfgDate">Mfg. Date</label>
-                           <input type="date" class="form-control" id="medicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date">
+                           <input type="date" class="form-control" id="medicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
                        </div>
                        <div class="form-group">
                            <label for="medicineExpDate">Exp. Date</label>
-                           <input type="date" class="form-control" id="medicineExpDate" autocomplete="off" placeholder="Enter Expiration Date">
+                           <input type="date" class="form-control" id="medicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
                        </div>
 
                    </div>
@@ -175,15 +179,15 @@
                        </div>
                        <div class="form-group">
                            <label for="updatemedicineStocks">Stocks</label>
-                           <input type="text" class="form-control" id="updatemedicineStocks" autocomplete="off" placeholder="Enter Stocks">
+                           <input type="text" class="form-control" id="updatemedicineStocks" autocomplete="off" placeholder="Enter Stocks" required>
                        </div>
                        <div class="form-group">
                            <label for="updatemedicineMfgDate">Mfg. Date</label>
-                           <input type="date" class="form-control" id="updatemedicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date">
+                           <input type="date" class="form-control" id="updatemedicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
                        </div>
                        <div class="form-group">
                            <label for="updatemedicineExpDate">Exp. Date</label>
-                           <input type="date" class="form-control" id="updatemedicineExpDate" autocomplete="off" placeholder="Enter Expiration Date">
+                           <input type="date" class="form-control" id="updatemedicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
                        </div>
 
                    </div>
@@ -289,23 +293,61 @@
     //Display Automatically
     $(document).ready(function(){
         displayMedicines();
+        displayToExpTab()
+        displayExpTab();
+
     });
+    setInterval(function() {
+        displayMedicines();
+        displayToExpTab()
+        displayExpTab();
+    }, 1000);
 
 
-<!--    Display Function ng MEDS-->
-function displayMedicines() {
-    var displayData = true;
+    <!--    Display Function ng MEDS-->
+    function displayMedicines() {
+        var displayData = true;
+        $.ajax({
+            url: 'php/inventoryProcesses/displayMeds.php',
+            type: 'POST',
+            data: {
+                displayMedData: displayData
+            },
+            success: function(data, status) {
+                $('#displayMedicineDataTable').html(data);
+            }
+        });
+    }
+
+    //Display To Expire Table
+    function displayToExpTab(){
+    var displayToExpData = true;
     $.ajax({
-        url: 'php/inventoryProcesses/displayMeds.php',
-        type: 'POST',
-        data: {
-            displayMedData: displayData
+        url:'php/inventoryProcesses/displayToExpTab.php',
+        type:'POST',
+        data:{
+            displayToExpData: displayToExpData
         },
-        success: function(data, status) {
-            $('#displayMedicineDataTable').html(data);
+        success:function(data, status){
+            $('#toExptab').html(data);
         }
-    })
-}
+    });
+    }
+
+    //Display Expired Table
+    function displayExpTab(){
+        var displayExpTab = true;
+        $.ajax({
+            url:'php/inventoryProcesses/displayExpTab.php',
+            type:'POST',
+            data:{
+                displayExpTab: displayExpTab
+            },
+            success:function(data,status){
+                $('#exptab').html(data);
+            }
+        });
+    }
 
 
     //Add New Medicine Function

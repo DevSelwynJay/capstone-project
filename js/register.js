@@ -1,4 +1,4 @@
-$(document).ready(function (){
+$(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger( "click" );
     let noOfPicture=0;
 
     $(function() {
@@ -30,6 +30,7 @@ $(document).ready(function (){
                     if(!valid){
                         console.log("Invalid file format")
                         $("#pop-up-error").modal('toggle')
+                        $("#err-title").html('Invalid file format!<br>.png, .jpg, and .jpeg only')
                         $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
                         return;
                     }
@@ -76,40 +77,161 @@ $(document).ready(function (){
         console.log($(this).val())
     })
 
-    $("#trigger-reg-modal").click(function () {
+    //validation of some input
+
+    let isValidEmail = false
+    $('[name="email"]').blur(function (){
+        let email = $(this).val()
+        $.post("php/registerProcesses/validateEmail.php",{email:email }).done(function (data){
+
+            if(data==1){
+                console.log("valid email");
+                $('[name="email"]').css("border-color","#6d6d6d");
+                isValidEmail = true
+            }
+            else{
+                console.log("invalid email");
+                $('[name="email"]').css("border-color","#B10000");
+                isValidEmail = false
+
+            }
+
+        });
+    })
+
+    let isValidContact=false
+    $('[name="contact"]').blur(function () {
+        let val = $(this).val();
+        if(val==""){
+            $(this).css("border-color","#6d6d6d");return;
+            isValidContact=false
+        }
+
+        if(Number.isNaN(val)||val.length!=11||val.charAt(0)!=0){
+            $(this).css("border-color","#B10000")
+            isValidContact=false
+
+        }
+        else {
+            $(this).css("border-color","#6d6d6d")
+            isValidContact=true
+        }
+    })
+
+    let chk_pwd = function (e) {
+        let pwd = $('[name="pwd"]').val()
+        let cpwd =$('[name="cpwd"]').val()
+
+        if(cpwd==""||pwd==""){
+            $('[name="pwd"]').css("border-color","#6d6d6d")
+            $('[name="cpwd"]').css("border-color","#6d6d6d")
+            return
+        }
+        if(cpwd!=pwd){
+            $('[name="pwd"]').css("border-color","#B10000")
+            $('[name="cpwd"]').css("border-color","#B10000")
+        }
+        if(cpwd==pwd){
+            if(pwd.length<8){
+                $('[name="pwd"]').css("border-color","#B10000")
+                $('[name="cpwd"]').css("border-color","#B10000")
+                return;
+            }
+            $('[name="pwd"]').css("border-color","#6d6d6d")
+            $('[name="cpwd"]').css("border-color","#6d6d6d")
+        }
+    }
+    $('[name="cpwd"]').blur(chk_pwd)
+    $('[name="pwd"]').blur(chk_pwd)
+
+
+
+
+
+
+    $("#trigger-reg-modal").click(function (e) {//nauuna to tawagin bago ung  default action ng submit button
         let fname = $('[name="fname"]').val()
         let mname = $('[name="mname"]').val()
         let lname = $('[name="lname"]').val()
         //let suffix =$('[name="suffix"]').val() // not required
-        let occu = $('[name="occupation"]').val()
+        //let occu = $('[name="occupation"]').val()
         let civil = $('[name="civil_status"]').val()
         let email = $('[name="email"]').val()
-        let contact =$('[name="contact"]').val()
+        let contact = $('[name="contact"]').val()
         let pwd = $('[name="pwd"]').val()
-        let cpwd =$('[name="cpwd"]').val()
-        let gender =$('[name="gender"]').val()
+        let cpwd = $('[name="cpwd"]').val()
+        let gender = $('[name="gender"]').val()
         let bday = $('[name="bday"]').val()
         let purok = $('[name="purok"]').val()
         let house_no = $('[name="house_no"]').val()
 
-        if(fname==""||mname==""||lname==""||occu==""||civil==""||email==""||
-            contact==""||pwd==""||cpwd==""||gender==""||bday==""||purok==""||house_no==""||noOfPicture==0){
-            console.log("fill all the field")
+        if (fname == "" || mname == "" || lname == "" || civil == "" || email == "" ||
+            contact == "" || pwd == "" || cpwd == "" || gender == "" || bday == "" || purok == "" || house_no == "" || noOfPicture == 0) {
+            console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
             return
-        }
-        else {
+        } else {
+            e.preventDefault()//para di magsubmit kasi i vavalidate pa ni js
+            //may laman na ung forms, si js na bahala
+
+            let errCount=0;
+            let errMessage="";
             if(pwd!=cpwd){
-                console.log("Password did not matched")
-                return;
+                //$("#pop-up-error").modal('toggle')
+               // $("#pop-up-error-message").html('<p>Password did not matched</p>')
+                errMessage+="<p>Password did not matched</p>";
+                errCount+=1
+                if(pwd.length<8){
+                    errMessage+="<p>Password must be 8 or more characters</p>";
+                    errCount+=1
+                }
+            }
+            else  if(pwd==cpwd){
+                if(pwd.length<8){
+                    errMessage+="<p>Password must be 8 or more characters</p>";
+                    errCount+=1
+                }
+            }
+            if(!isValidContact){
+                errMessage+="<p>Contact number is invalid</p>";
+                errCount+=1
+            }
+            if(!isValidEmail){
+                errMessage+="<p>Email is invalid</p>";
+                errCount+=1
+            }
+
+
+
+            if(errCount!=0){
+                $("#err-title").html("Can't sign up")
+                $("#pop-up-error-message").html($.parseHTML(errMessage))
+                $("#pop-up-error").modal('toggle')
+                console.log(errMessage)
+
+                $("#pop-up-error-cancel-btn").off('click')
+                $("#pop-up-error-cancel-btn").click(function (){
+                    $('#reg-form').animate({
+                        scrollTop: $('[name="email"]').offset().top
+                    }, 500);
+                    $(this).off('click')
+                });
+
             }
             else {
-                //call the register modal
                 $("#pop-up-reg").modal('toggle')
             }
-        }
-    })
+
+        }//main else
+
+    });
 
     $("#pop-up-reg-ok-btn").click(function () {
        $("#reg-form").submit()
     })
+
+
+
+
 })//end
+
+

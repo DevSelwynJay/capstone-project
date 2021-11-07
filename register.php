@@ -65,9 +65,9 @@
                      <div class="container">
 
                         <div class="row">
-                           <div class="col-sm-6"> <input type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" /></div>
-                           <div class="col-sm-6"> <input type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" /></div>
-                           <div class="col-sm-6"> <input type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" /></div>
+                           <div class="col-sm-6"> <input type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/></div>
+                           <div class="col-sm-6"> <input type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" required/></div>
+                           <div class="col-sm-6"> <input type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" required/></div>
                            <div class="col-sm-6">  <input type="text" name="suffix" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/></div>
                            </div>
                          <div class="row">
@@ -83,15 +83,17 @@
                          </div>
                          <div class="row">
                            <div class="col-sm-6">
-                              <input type="text" name="email" inputmode="email"  placeholder="Email" data-toggle="tooltip" data-placement="top" title="E-mail" data-container="body" />
+                              <input type="text" name="email" inputmode="email"  placeholder="Email" data-toggle="tooltip" data-placement="top" title="E-mail (name@gmail.com)" data-container="body" required/>
                            </div>
                            <div class="col-sm-6">
-                                <input type="number" name="contact" inputmode="tel" placeholder="Contact No." data-toggle="tooltip" data-placement="top" title="Contact no" data-container="body" />
+                                <input type="number" name="contact" inputmode="tel" placeholder="Contact No." data-toggle="tooltip" data-placement="top" title="Contact no (11-digit number)" data-container="body" required/>
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-6"> <input type="password" name="pwd" placeholder="Password" data-toggle="tooltip" data-placement="top" title="Password" data-container="body" /></div>
-                           <div class="col-sm-6"> <input type="password" name="cpwd" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body"/></div>
+                           <div class="col-sm-6"> <input type="password" name="pwd" placeholder="Password" data-toggle="tooltip" data-placement="top"
+                                                         title="Password (Recommended: 8 or more characters)" data-container="body" required/>
+                           </div>
+                           <div class="col-sm-6"> <input type="password" name="cpwd" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body" minlength="8" required/></div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
@@ -101,10 +103,10 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body"/>
+                                <input type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body" required/>
                             </div>
                             <div class="col-sm-3">
-                                <select data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body">
+                                <select data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body" required>
                                     <option value="" disabled selected>Purok</option>
                                     <?php
                                     for($a=1;$a<=7;$a++){
@@ -113,7 +115,7 @@
                                     ?>
                                 </select>
                             </div>
-                           <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/></div>
+                           <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body" required/></div>
                         </div>
                          <div class="row">
                              <div class="col-sm-6"><input type="text" placeholder="" value="Barangay Sto. Rosario" readonly/></div>
@@ -161,7 +163,7 @@
                                      <img src="img/sms.png">
                                  </div>-->
                                  <div class="custom-file" style="margin: 1rem 0">
-                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*">
+                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" required>
                                      <label class="custom-file-label" for="customFileInput">Select Photo</label>
                                      <!--<p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload first photo</p>-->
                                      <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
@@ -184,13 +186,13 @@
                              </div>
                          </div>
                       <div style="display: flex;justify-content: center">
-                          <button class="primary-btn" id="trigger-reg-modal" type="button" style="width: 100%">Register</button>
+                          <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
                       </div>
 
                      </div>
-                      <!--testing button only-->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reg">
-                          test modal only
+                      <!--testing button only
+                      <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
+                          test modal only-->
                       </button>
                   </form>
                </div>
@@ -356,9 +358,17 @@
                       <div id="modal-content">
                           <div style="display: flex;align-items: center;justify-content: center">
                               <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-                              <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
-                                  Invalid file format!<br>.png, .jpg, and .jpeg only
+                              <p id="err-title" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                                 Can't Sign up
                               </p>
+                          </div>
+                          <style>
+                              #pop-up-error-message p{
+                                  text-align: center;
+                              }
+                          </style>
+                          <div id="pop-up-error-message" style="display: flex;flex-flow: column;justify-content: center;align-items: center;margin: 0.5rem 0">
+
                           </div>
                       </div><!--end of modal content-->
                   </div><!--end of modal body-->
