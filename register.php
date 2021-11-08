@@ -41,6 +41,26 @@
            ::-webkit-scrollbar-thumb:hover {
                background: #555;
            }
+           .loader {
+               border: 16px solid #f3f3f3;
+               border-radius: 50%;
+               border-top: 16px solid #3498db;
+               width: 3rem;
+               height: 3rem;
+               -webkit-animation: spin 2s linear infinite; /* Safari */
+               animation: spin 2s linear infinite;
+           }
+
+           /* Safari */
+           @-webkit-keyframes spin {
+               0% { -webkit-transform: rotate(0deg); }
+               100% { -webkit-transform: rotate(360deg); }
+           }
+
+           @keyframes spin {
+               0% { transform: rotate(0deg); }
+               100% { transform: rotate(360deg); }
+           }
        </style>
       <!--Jquery UI css and js-->
        <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
@@ -163,7 +183,7 @@
                                      <img src="img/sms.png">
                                  </div>-->
                                  <div class="custom-file" style="margin: 1rem 0">
-                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" required>
+                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" data-toggle="tooltip" data-placement="top" title="Photo of ID" data-container="body" required>
                                      <label class="custom-file-label" for="customFileInput">Select Photo</label>
                                      <!--<p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload first photo</p>-->
                                      <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
@@ -312,7 +332,7 @@
                           </div>
 
 
-                          <button type="button" class="btn btn-primary" id="pop-up-reg-ok-btn" style="font-weight: bold;font-size: 0.8rem;margin-top: 2rem;margin-bottom: 5rem" disabled>Sign Up</button>
+                          <button type="button" class="btn btn-primary" id="pop-up-reg-ok-btn" style="font-weight: bold;font-size: 0.8rem;margin-top: 2rem" disabled>Sign Up</button>
                       </div><!--end of preview-->
                   </div><!--end of modal body-->
               </div>
