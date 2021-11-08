@@ -4,6 +4,7 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
     $(function() {
         // Multiple images preview in browser
         var imagesPreview = function(input, placeToInsertImagePreview,e) {
+            let filesAmount = input.files.length;
 
             $("#gallery").html("")//reset the preview
 
@@ -31,12 +32,16 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
                         console.log("Invalid file format")
                         $("#pop-up-error").modal('toggle')
                         $("#err-title").html('Invalid file format!<br>.png, .jpg, and .jpeg only')
+                        $("#pop-up-error-message").html("")
                         $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
+                        $('#customFileInput').val('')
+                        noOfPicture = 0
+                        $("#reg-pic-no").html("Image Selected: 0")
                         return;
                     }
                 }
                 
-                var filesAmount = input.files.length;
+
                 noOfPicture = filesAmount
                 console.log("no if image selected"+filesAmount)
                 $("#reg-pic-no").html("Image Selected: "+filesAmount)
@@ -170,11 +175,15 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
             console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
             return
         } else {
+            //for drop down that has default value that is not valid
+
             e.preventDefault()//para di magsubmit kasi i vavalidate pa ni js
             //may laman na ung forms, si js na bahala
 
+
             let errCount=0;
             let errMessage="";
+            $("#err-title").html("Can't sign up")
             if(pwd!=cpwd){
                 //$("#pop-up-error").modal('toggle')
                // $("#pop-up-error-message").html('<p>Password did not matched</p>')
@@ -199,26 +208,42 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
                 errMessage+="<p>Email is invalid</p>";
                 errCount+=1
             }
+            if(purok==null){
+                errMessage+="<p>No purok selected</p>";
+                errCount+=1
+            }
 
 
 
             if(errCount!=0){
-                $("#err-title").html("Can't sign up")
                 $("#pop-up-error-message").html($.parseHTML(errMessage))
                 $("#pop-up-error").modal('toggle')
                 console.log(errMessage)
 
                 $("#pop-up-error-cancel-btn").off('click')
                 $("#pop-up-error-cancel-btn").click(function (){
+
                     $('#reg-form').animate({
-                        scrollTop: $('[name="email"]').offset().top
+                        scrollTop: $('[name="pwd"]').offset().top
                     }, 500);
                     $(this).off('click')
                 });
 
             }
             else {
-                $("#pop-up-reg").modal('toggle')
+                //final validation
+                //check for validity of email and phone
+                //show the loading modal
+                $("#pop-up-loading").modal('toggle')
+
+                let validated=false
+                //check first if email is existing in internet
+
+
+                if(validated){
+                    $("#pop-up-reg").modal('toggle')
+                }
+
             }
 
         }//main else
