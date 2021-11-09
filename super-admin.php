@@ -31,6 +31,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
        <!--Sweet Alert-->
        <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
        <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
+
    </head>
    <body>
       <section>
@@ -92,7 +93,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                border: 2px solid var(--third-color);
                                border-radius: 10px;
                                outline: none;
-                               }</style>
+                               }
+                               tr:not(:first-child) { cursor: pointer; }</style>
                                <select name="type" id="gender" title="Gender">
                                    <option value="" disabled selected>Gender</option>
                                    <option value="Male">Male</option>
@@ -115,6 +117,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
                         </form>
                      </div>
+
                      <h3 class="color-black">Manage Admin Accounts</h3>
                       <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
                      <table id="adminTable">
@@ -153,15 +156,17 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                          </tbody>
                      </table>
                      </div>
-                     <div class="cta-wrapper">
+                     <div class="cta-wrapper2">
                          <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
                          <!--Palagyan ng Disable Account na button din dito.  -->
+                         <a href="#show-del2" rel="modal:open" id="disable-admin1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
+
                   <div class="col-sm-12">
                      <h3 class="color-black">Manage User Accounts</h3>
                       <div style="max-height: 50vh;overflow-y: auto">
-                     <table>
+                     <table id="patientTable">
                         <tr>
                            <th>User/Patient ID</th>
                            <th>First Name</th>
@@ -169,75 +174,37 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <th>Last Name</th>
                            <th>Email</th>
                         </tr>
-                        <tr>
-                           <td>01</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>02</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>03</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>04</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>05</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>06</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>07</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>08</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
-                        <tr>
-                           <td>09</td>
-                           <td>First Name</td>
-                           <td>Middle Name</td>
-                           <td>Last Name</th>
-                           <td>Email</td>
-                        </tr>
+                         <tbody>
+                            <?php
+                            $con=null;
+                            include 'php/DB_Connect.php';
+                            $result = mysqli_query($con,"SELECT id, first_name, middle_name, last_name, email FROM patient");
+                            while ($row=mysqli_fetch_array($result)){
+                                $ids = $row[0];
+                                $fnames = $row[1];
+                                $mnames = $row[2];
+                                $lnames = $row[3];
+                                $ems = $row[4];
+                                echo "
+                             <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }</style>
+                             <tr>
+                               <td>$ids</td>
+                               <td>$fnames</td>
+                               <td>$mnames</td>
+                               <td>$lnames</td>
+                               <td>$ems</td>
+                            </tr>
+                             ";
+                            }
+                            mysqli_close($con);
+                            ?>
+                         </tbody>
                      </table>
                       </div>
                      <div class="cta-wrapper2">
                          <!--Patanggal nung show more kasi scrollable naman na  -->
                          <a href="" class="square-btn">Show More</a>
-                         <a href="" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
+                         <a href="#show-delpat2" rel="modal:open"  id="disable-patient1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
                </div>
@@ -245,7 +212,10 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
          </div>
       </section>
    <script>
+
+
        //additional script for autocomplete form problem
+       //$('#show-del').modal.open();
         $("#add-admin-modal").on("click",function (){
 
             setTimeout(function (){

@@ -7,6 +7,38 @@ $(document).ready(function (){
         checkEmpty();
     })
 })
+//click table to get admin ID
+$(document).ready(function (){
+    var table = document.getElementById('adminTable');
+    for(var i = 1; i < table.rows.length; i++)
+    {
+        $(table.rows[i]).on("click",function (){
+            document.getElementById("idno").value = this.cells[0].innerHTML;
+            document.getElementById("adminname").value = this.cells[1].innerHTML;
+            $('#show-del').modal();
+        })
+    }
+})
+$(document).ready(function (){
+    var pattable = document.getElementById('patientTable');
+    for(var i = 1; i < pattable.rows.length; i++)
+    {
+        $(pattable.rows[i]).on("click",function (){
+            document.getElementById("patidno").value = this.cells[0].innerHTML;
+            document.getElementById("patname").value = this.cells[1].innerHTML;
+            $('#show-delpat').modal();
+        })
+    }
+
+})
+//$(document).ready(function (){
+    //$("#disable-admin2").click(function (){
+    //    console.log("clicked");
+    //    checkEmptyDis();
+    //})
+
+//})
+
 
 
 //check if the fields are empty
