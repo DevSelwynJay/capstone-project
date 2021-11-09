@@ -117,7 +117,38 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
                         </form>
                      </div>
-
+                      //TRY
+                      <div class="col-sm-12">
+                          <div id="show-del" class="modal2">
+                              <style>#show-del{
+                                      display: none;
+                                  }</style>
+                              <form autocomplete="off">
+                                  <div class="row">
+                                      <label for="idno" style="color:#6D6D6DFF">User ID:</label>
+                                      <input type="text" id="idno" disabled placeholder="Enter Admin ID" />
+                                      <label for="adminname" style="color:#6D6D6DFF">Admin:</label>
+                                      <input type="text" id="adminname" disabled placeholder="" />
+                                  </div>
+                                  <a href="#show-del" rel="modal:open" id="disable-admin2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                              </form>
+                          </div>
+                      </div>
+                          <div class="col-sm-12">
+                              <div id="show-del2" class="modal2">
+                                  <style>#show-del2{
+                                          display: none;
+                                      }</style>
+                                  <form autocomplete="off">
+                                      <div class="row">
+                                          <label for="idno2" style="color:#6D6D6DFF">User ID:</label>
+                                          <input type="text" id="idno2" placeholder="Enter Admin ID" />
+                                      </div>
+                                      <a href="#show-del2" rel="modal:open" id="disable-admin2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                  </form>
+                              </div>
+                          </div>
+                      //END TRY
                      <h3 class="color-black">Manage Admin Accounts</h3>
                       <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
                      <table id="adminTable">
@@ -162,7 +193,38 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                          <a href="#show-del2" rel="modal:open" id="disable-admin1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
-
+                      //TRY
+                      <div class="col-sm-12">
+                          <div id="show-delpat" class="modal2">
+                              <style>#show-delpat{
+                                      display: none;
+                                  }</style>
+                              <form autocomplete="off">
+                                  <div class="row">
+                                      <label for="patidno" style="color:#6D6D6DFF">User ID:</label>
+                                      <input type="text" id="patidno" disabled placeholder="Enter Patient ID" />
+                                      <label for="patname" style="color:#6D6D6DFF">Patient:</label>
+                                      <input type="text" id="patname" disabled placeholder="" />
+                                  </div>
+                                  <a href="#show-delpat" rel="modal:open" id="disable-patient2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                              </form>
+                          </div>
+                      </div>
+                       <div class="col-sm-12">
+                           <div id="show-delpat2" class="modal2">
+                               <style>#show-delpat2{
+                                       display: none;
+                                   }</style>
+                               <form autocomplete="off">
+                                   <div class="row">
+                                       <label for="patidno2" style="color:#6D6D6DFF">User ID:</label>
+                                       <input type="text" id="patidno2" placeholder="Enter Patient ID" />
+                                   </div>
+                                   <a href="#show-delpat2" rel="modal:open" id="disable-patient2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                               </form>
+                           </div>
+                       </div>
+                          //END TRY
                   <div class="col-sm-12">
                      <h3 class="color-black">Manage User Accounts</h3>
                       <div style="max-height: 50vh;overflow-y: auto">

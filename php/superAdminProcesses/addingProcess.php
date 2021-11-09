@@ -25,12 +25,12 @@ if(!$con){
 //pag wala parin, sa patient table hanapin
 
 $userTables = array('admin'/*,'patient'*/);
-$userTabs = array('patient'/*,'patient'*/);
+//$userTabs = array('patient'/*,'patient'*/);
 
 //TRY CODES
 
 //generate 6 digit random number
-function generate_2_Digits(): string
+function generate_6_Digits(): string
 {
     $key=0;
     try {
