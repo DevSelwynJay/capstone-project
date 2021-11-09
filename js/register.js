@@ -175,6 +175,7 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
             console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
             return
         } else {
+
             //for drop down that has default value that is not valid
 
             e.preventDefault()//para di magsubmit kasi i vavalidate pa ni js
@@ -234,16 +235,29 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
                 //final validation
                 //check for validity of email and phone
                 //show the loading modal
-                $("#pop-up-loading").modal('toggle')
-
-                let validated=false
-                //check first if email is existing in internet
+                $("#pop-up-loading").modal('toggle');
 
 
-                if(validated){
-                    $("#pop-up-reg").modal('toggle')
-                }
+                //check
+                $.post("php/registerProcesses/finalValidation.php", {contact:contact,email:email})
+                    .done(function (data){
 
+                        setTimeout(function () {
+                            $("#pop-up-loading").modal('hide');
+                            const result = JSON.parse(data);
+                            if(result.success==true){//valid
+                                $("#pop-up-reg").modal('toggle')
+                                console.log("valid form")
+                            }
+                            else {//invalid
+                                console.log("invalid form")
+                                console.log(result.message)
+                                $("#pop-up-error-message").html($.parseHTML(result.message))
+                                $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                            }
+                        },1000)
+
+                    })
             }
 
         }//main else

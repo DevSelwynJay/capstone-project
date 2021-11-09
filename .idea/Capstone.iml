@@ -21,7 +21,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JQuery" level="application" />
-    <orderEntry type="library" name="jQuery" level="application" />
     <orderEntry type="library" name="Jquery" level="application" />
     <orderEntry type="library" name="medium-zoom.min.js" level="application" />
   </component>
