@@ -70,8 +70,8 @@
                                 <p>Settings</p>
                                 <ul>
                                     <li><a href="#">Change Personal Information</a></li>
-                                    <li><a href="#">Update Existing Email</a></li>
-                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="change-email-settings.php">Update Existing Email</a></li>
+                                    <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>
                             </div>
                             <div class="right-text">
