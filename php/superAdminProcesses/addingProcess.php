@@ -24,8 +24,8 @@ if(!$con){
 //pag wala, search the email to admin table
 //pag wala parin, sa patient table hanapin
 
-$userTables = array('admin'/*,'patient'*/);
-//$userTabs = array('patient'/*,'patient'*/);
+
+//$userTabs = array('admin_archive'/*,'patient'*/);
 
 //TRY CODES
 
@@ -47,7 +47,7 @@ function generateID($_6DigitCode): string
 
 function validateID($con,$new_id){//check the generated ID if existing
 
-    $tables = array('admin');
+    $tables = array('admin','admin_archive');
     foreach ($tables as $table){
         $result = mysqli_query($con,"SELECT id FROM $table WHERE id = '$new_id'");
         if(mysqli_num_rows($result)>0){
@@ -64,12 +64,14 @@ $_SESSION['final_id'] = $new_id = generateID($_6DigitCode);
 validateID($con,$new_id);
 //END TRY CODES
 
+$userTables = array('admin_archive','admin');
+//pending problem nadadagdag padin kahit may existing na kay archive
 foreach ($userTables as $userTable){
     $adminID = $_SESSION['final_id'];
     $result =  mysqli_query($con,"SELECT email FROM $userTable WHERE email='$email'");
-    if($email==$result){// the email is already in the database
+    if(mysqli_num_rows($result)>0){// the email is already in the database
         echo 0;
-
+        break;
     }else{// the email is to be added
         //add sa db
         // Performing insert query execution to admin db
@@ -80,8 +82,10 @@ foreach ($userTables as $userTable){
 
         if(mysqli_query($con, $sql)){
             echo 1;
+            break;
         } else{
             echo 0;
+            break;
         }
 
     }

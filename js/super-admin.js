@@ -1,13 +1,18 @@
+//wala pa way para mawala laman ni fields upon closing
+/*$(document).ready(function(){
+    $("#show").on("hidden.bs.modal", function(){
+        $(this).removeData();
+    });
 
-
-
+})*/
+//
 $(document).ready(function (){
     $("#confirmation-addmin").click(function (){
         console.log("clicked");
         checkEmpty();
     })
 })
-//click table to get admin ID
+//click table to get admin ID and name
 $(document).ready(function (){
     var table = document.getElementById('adminTable');
     for(var i = 1; i < table.rows.length; i++)
@@ -19,6 +24,7 @@ $(document).ready(function (){
         })
     }
 })
+//click table to get patient ID and name
 $(document).ready(function (){
     var pattable = document.getElementById('patientTable');
     for(var i = 1; i < pattable.rows.length; i++)
@@ -29,17 +35,15 @@ $(document).ready(function (){
             $('#show-delpat').modal();
         })
     }
-
 })
-//$(document).ready(function (){
-    //$("#disable-admin2").click(function (){
-    //    console.log("clicked");
-    //    checkEmptyDis();
-    //})
-
-//})
-
-
+//trigger if disable admin modal button is clicked
+$(document).ready(function (){
+    $("#disable-admin2").click(function (){
+        var adminIds = $('#idno').val();
+        var adminname = $('#adminname').val();
+        adminDisableCheck(adminIds,adminname);
+    })
+})
 
 //check if the fields are empty
 function checkEmpty(){
@@ -208,4 +212,75 @@ function appendTableAdmin() {
             //$("#adminTable>tbody").append(result).preventDefault();
             //$(result).appendTo( "#adminTable>tbody" );
        // })
+}
+
+function adminDisableCheck(adminIds,adminname){
+    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds,adminName:adminname})
+        .done(function (data){
+            if(data == 1){
+
+                Swal.fire({
+                    title: 'Are you sure you want to archive this account?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        disableAdmin(adminIds,adminname);
+                        let timerInterval
+                        Swal.fire({
+                            title: adminname+' Archived!',
+                            timer: 2500,
+                            timerProgressBar: true,
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                appendTableAdmin();
+                            }
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log('I was closed by the timer')
+                                appendTableAdmin();
+                            }
+                        })
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved!', '', 'info')
+                    }
+                })
+
+            }else{
+                let timerInterval
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User ID is already in the database!',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+            }
+
+        })
+}
+
+//Disable Admin
+function disableAdmin(adminIds,adminname){
+    $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds,adminName:adminname})
+        .done(function (data){
+            if(data == 1){
+
+            }else{
+                Swal.fire('Unsuccesful!', '', 'error')
+            }
+
+        })
 }
