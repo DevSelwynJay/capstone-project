@@ -45,3 +45,52 @@
 .save-changes:hover{
     background-color: var(--hover-color);
 }
+
+.inner-page-nav{
+    position: relative;
+}
+//DROPDOWN SETTINGS
+
+.open{
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0%) !important;
+}
+#close-dropdown{
+    display: none;
+}
+.drop-down-settings{
+
+    visibility: hidden;
+    background-color: var(--primary-color);
+    border-radius: .4rem;
+    position: absolute;
+    right: 2rem;
+    top: 6rem;
+    opacity: 0;
+    transform: translateY(-5%);
+    transition: all 300ms ease-in-out;
+
+    ul{
+        padding: 2rem;
+        width: 20rem;
+    }
+
+    ul li{
+        list-style: none;
+        text-align: center;
+        transition: all 300ms ease-in;
+
+        &:hover{
+            background-color: var(--hover-color);
+        }
+    }
+
+    ul li a{
+        text-decoration: none;
+        color: white;
+        padding: .5rem 0;
+        display: inline-block;
+        text-align: center;
+    }
+}

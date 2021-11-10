@@ -373,7 +373,7 @@ section .inner-page-content .settings a {
 
 section .inner-page-content .settings i {
   font-size: 1.7rem;
-  margin-right: .4rem;
+  margin-right: 1rem;
   color: #383838;
 }
 
@@ -914,14 +914,14 @@ tr:nth-child(even) {
 
 .registration-form__wrapper {
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+      -ms-flex: 1 1 60%;
+          flex: 1 1 60%;
 }
 
 .registration-form__image {
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+      -ms-flex: 1 1 40%;
+          flex: 1 1 40%;
   height: 100vh;
   background-color: var(--primary-color);
   display: -ms-grid;
@@ -1803,6 +1803,59 @@ td:nth-child(1) {
 
 .save-changes:hover {
   background-color: var(--hover-color);
+}
+
+.inner-page-nav {
+  position: relative;
+}
+
+.open {
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-transform: translateY(0%) !important;
+          transform: translateY(0%) !important;
+}
+
+#close-dropdown {
+  display: none;
+}
+
+.drop-down-settings {
+  visibility: hidden;
+  background-color: var(--primary-color);
+  border-radius: .4rem;
+  position: absolute;
+  right: 2rem;
+  top: 6rem;
+  opacity: 0;
+  -webkit-transform: translateY(-5%);
+          transform: translateY(-5%);
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.drop-down-settings ul {
+  padding: 2rem;
+  width: 20rem;
+}
+
+.drop-down-settings ul li {
+  list-style: none;
+  text-align: center;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
+}
+
+.drop-down-settings ul li:hover {
+  background-color: var(--hover-color);
+}
+
+.drop-down-settings ul li a {
+  text-decoration: none;
+  color: white;
+  padding: .5rem 0;
+  display: inline-block;
+  text-align: center;
 }
 
 .text-content {

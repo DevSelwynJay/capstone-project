@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <title>Change Password Settings</title>
+    <title>Settings</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -70,19 +70,43 @@
                                 <p>Settings</p>
                                 <ul>
                                     <li><a href="#">Change Personal Information</a></li>
-                                    <li><a href="#">Update Existing Email</a></li>
-                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="change-email-settings.php">Update Existing Email</a></li>
+                                    <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>
                             </div>
                             <div class="right-text">
-                                <p>Change Password</p>
-                                <label for="current-pass">Current Password</label>
-                                <input type="password" name = "current-pass" id = "current-pass"><br>
-                                <label for="new-pass">New Password</label>
-                                <input type="password" name = "new-pass" id = "new-pass"><br>
-                                <label for="confirm-pass">Confirm Password</label>
-                                <input type="password" name = "confirm-pass" id = "confirm-pass">
-                                <button class = "save-changes3">Save Changes</button>
+                                <p>Personal Information</p>
+                                <table>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>First Name:</td>
+                                        <td>Juan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Middle Name:</td>
+                                        <td>Santos</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Surname:</td>
+                                        <td>Dela Cruz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Gender:</td>
+                                        <td>Male</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Age:</td>
+                                        <td>21</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Birthday:</td>
+                                        <td>01/01/1999</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-edit"></i>Address:</td>
+                                        <td>Guinhawa, Malolos, Bulacan</td>
+                                    </tr>
+                                </table>
+                                <button class = "save-changes">Save Changes</button>
                             </div>
                         </div>
 

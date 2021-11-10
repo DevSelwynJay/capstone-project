@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <title>Change Email Settings</title>
+    <title>Change Password Settings</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -35,11 +35,11 @@
                             <h4>Your Name</h4>
                         </div>
                         <ul class="menu">
-                            <li><a href="" class="dashboard">Dashboard</a></li>
-                            <li><a href="" class="patient">Patient</a></li>
-                            <li><a href="" class="reports">Reports</a></li>
-                            <li><a href="" class="trackMap">Track Map</a></li>
-                            <li><a href="" class="inventory">Inventory</a></li>
+                            <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                            <li><a href="patient.php" class="patient">Patient</a></li>
+                            <li><a href="reports.php" class="reports">Reports</a></li>
+                            <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
                         </ul>
                     </div>
                     <div class="social-media-links">
@@ -75,12 +75,14 @@
                                 </ul>
                             </div>
                             <div class="right-text">
-                                <p>Modify Email Address</p>
-                                <label for="current-email">Current Email</label>
-                                <input type="email" name = "current-email" id = "current-email"><br>
-                                <label for="new-email">New Email</label>
-                                <input type="email" name = "new-email" id = "new-email">
-                                <button class = "save-changes2">Save Changes</button>
+                                <p>Change Password</p>
+                                <label for="current-pass">Current Password</label>
+                                <input type="password" name = "current-pass" id = "current-pass"><br>
+                                <label for="new-pass">New Password</label>
+                                <input type="password" name = "new-pass" id = "new-pass"><br>
+                                <label for="confirm-pass">Confirm Password</label>
+                                <input type="password" name = "confirm-pass" id = "confirm-pass">
+                                <button class = "save-changes3">Save Changes</button>
                             </div>
                         </div>
 
