@@ -20,10 +20,15 @@ if(isset($_SESSION['email'])){
 
     <!--CSS Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
     <!--CSS Styling-->
     <link rel="stylesheet" href="scss/main.css"/>
-
+      <!--Font Awesome-->
+      <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+      <!-- Font Family Poppins -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <!--JS-->
       <!--Google sign in api-->
       <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -66,6 +71,25 @@ if(isset($_SESSION['email'])){
           @keyframes spin {
               0% { transform: rotate(0deg); }
               100% { transform: rotate(360deg); }
+          }
+          <!---->
+          /*override scss*/
+          #modal-content h3{
+              font-weight: normal;
+          }
+          @media all and (max-width: 468px){
+              #modal-content h3{
+                  font-size: clamp(1rem,1.5rem,1.8rem);
+              }
+              input{
+                  font-size: clamp(0.5rem,0.8rem,1rem);
+              }
+          }
+          @media all and (max-width: 381px){
+              #modal-content h3{
+                  font-size: clamp(0.8rem,1.3rem,1.5rem);
+              }
+
           }
       </style>
       <title>Login</title>
@@ -250,7 +274,7 @@ if(isset($_SESSION['email'])){
                             <div class="row" id="choose-authentication">
                                 <div class="col-sm">
                                     <img src="img/email.png">
-                                    <p>Code to be sent by email</p>
+                                    <p style="text-align: center">Code to be sent by email</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isEmail" id="isEmail">
                                     </div>
@@ -258,7 +282,7 @@ if(isset($_SESSION['email'])){
                                 <div class="col-sm">
                                     <img src="img/sms.png" id="sms-icon">
 
-                                    <p>Code to be sent by SMS</p>
+                                    <p style="text-align: center">Code to be sent by SMS</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isSMS" id="isSMS">
                                     </div>
