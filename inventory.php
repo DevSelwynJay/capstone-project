@@ -7,6 +7,17 @@
     <!--Bootstrap Css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+    <!--Jquery-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+
     <!--Custom CSS-->
 <link rel="stylesheet" href="scss/main.css">
 <!--Font Awesome-->
@@ -17,14 +28,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <title>Inventory</title>
-<!--Jquery-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- Bootstrap JS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+
 
 
 </head>
@@ -119,7 +124,7 @@
 <!--Modals-->
        <!-- Add New Meds Modal -->
        <div class="modal fade" id="getAddMedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog">
+           <div class="modal-dialog modal-dialog-centered">
                <div class="modal-content">
                    <div class="modal-header">
                        <h5 class="modal-title" id="addNewMedicineLabel">Add New Medicine</h5>
@@ -142,11 +147,11 @@
                        </div>
                        <div class="form-group">
                            <label for="medicineMfgDate">Mfg. Date</label>
-                           <input type="date" class="form-control" id="medicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
+                           <input type="text" name="medMfgDate" inputmode="none" class="form-control datepicker" id="medicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
                        </div>
                        <div class="form-group">
                            <label for="medicineExpDate">Exp. Date</label>
-                           <input type="date" class="form-control" id="medicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
+                           <input type="text" name="medExpDate" inputmode="none"  class="form-control datepicker" id="medicineExpDate" autocomplete="off" placeholder="Enter Expiration Date"  required>
                        </div>
 
                    </div>
@@ -161,7 +166,7 @@
 
        <!-- Update Meds Modal -->
        <div class="modal fade" id="getUpdateMedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog">
+           <div class="modal-dialog modal-dialog-centered">
                <div class="modal-content">
                    <div class="modal-header">
                        <h5 class="modal-title" id="UpdateMedicineLabel">Update Medicine Stocks</h5>
@@ -184,11 +189,11 @@
                        </div>
                        <div class="form-group">
                            <label for="updatemedicineMfgDate">Mfg. Date</label>
-                           <input type="date" class="form-control" id="updatemedicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
+                           <input type="text" name="upMfgDate" inputmode="none" class="form-control-datepicker" id="updatemedicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
                        </div>
                        <div class="form-group">
                            <label for="updatemedicineExpDate">Exp. Date</label>
-                           <input type="date" class="form-control" id="updatemedicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
+                           <input type="text" name="upExpDate" inputmode="none" class="form-control-datepicker" id="updatemedicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
                        </div>
 
                    </div>
@@ -203,79 +208,32 @@
 
     <div class="inventory__table-main-container">
             <!--Add Button para sa MEDS-->
+
+
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#getAddMedModal">
                 Add Medicine</button>
+        <div class="container-text-dark">
+            <input type="text" name="meds" id="meds" class="form-control" placeholder="Search Medicines">
+            <div id="medlist">
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
 
 <!--        Display ko dito yung Table of MEDS-->
         <div id="displayMedicineDataTable"></div>
 
-<!--        <table>-->
-<!--            <tbody>-->
-<!--                <tr class="title">-->
-<!--                    <th>Medicine ID</th>-->
-<!--                    <th>Medicine Name</th>-->
-<!--                    <th>Category</th>-->
-<!--                    <th>No. of Stocks</th>-->
-<!--                    <th>Mfg. Date</th>-->
-<!--                    <th>Exp. Date</th>-->
-<!--                    <th class="add-row"></th>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>01</td>-->
-<!--                    <td>Medicine Name</td>-->
-<!--                    <td>Category</th>-->
-<!--                    <td>XXX</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td>MM/DD/YYYY</td>-->
-<!--                    <td class="add-btn"><i class="fas fa-plus"></i></td>-->
-<!--                </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
+
 
     </div>
    </div>
@@ -289,7 +247,7 @@
 
 
 
-<script>
+<script type="text/javascript">
 
 
 
@@ -299,12 +257,102 @@
         displayToExpTab()
         displayExpTab();
 
+
+
     });
-    setInterval(function() {
-        displayMedicines();
-        displayToExpTab()
-        displayExpTab();
-    }, 1000);
+    //Sort function
+    $(document).ready(function(){
+        $(document).on('click','.column_sort', function (){
+            var column_name = $(this).attr("id");
+            var order = $(this).data("order");
+            var arrow = '';
+            if(order == 'desc'){
+                arrow = '&nbsp;<i class="fas fa-arrow-down"></i>';
+            }
+            else {
+                arrow = '&nbsp;<i class="fas fa-arrow-up"></i>';
+            }
+            $.ajax({
+                url:"php/inventoryProcesses/medSort.php",
+                method:"POST",
+                data:{column_name:column_name, order:order},
+                success:function(data){
+                    $('#displayMedicineDataTable').html(data);
+                    $('#'+column_name+'').append(arrow);
+                }
+            })
+
+        })
+    });
+
+    $(document).ready(function(){
+        $('#meds').keyup(function(){
+            var query = $(this).val();
+            if(query != ''){
+                $.ajax({
+                    url:"php/inventoryProcesses/medSearch.php",
+                    method: "POST",
+                    data:{query:query},
+                    success:function(data){
+                        $('#medlist').fadeIn();
+                        $('#medlist').html(data);
+                    }
+                })
+            }
+            else {
+                $('#medlist').html("");
+            }
+        })
+    })
+
+
+    //Validation of DatePicker
+    //Note: hindi ko alam ayusin ang css neto.
+    $('[name=\"medExpDate\"]').datepicker({
+        minDate: new Date(),
+    }).datepicker("option","dateFormat","yy-mm-dd")
+
+
+    $('[name=\"medMfgDate\"]').datepicker({
+        widgetPositioning: {
+            horizontal: "auto",
+            vertical: "auto"
+        },
+        maxDate: new Date(),
+        orientation: "auto"
+
+    }).datepicker("option","dateFormat","yy-mm-dd")
+    $('[name=\"upExpDate\"]').datepicker({
+        widgetPositioning: {
+            horizontal: "auto",
+            vertical: "auto"
+        },
+        minDate: new Date(),
+        orientation: "auto"
+
+    }).datepicker("option","dateFormat","yy-mm-dd")
+
+    $('[name=\"upMfgDate\"]').datepicker({
+        widgetPositioning: {
+            horizontal: "auto",
+            vertical: "auto"
+        },
+        maxDate: new Date(),
+        orientation: "auto"
+    }).datepicker("option","dateFormat","yy-mm-dd")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!--    Display Function ng MEDS-->
@@ -321,6 +369,8 @@
             }
         });
     }
+
+
 
     //Display To Expire Table
     function displayToExpTab(){
@@ -426,6 +476,7 @@
         });
 
     }
+
 
 
 </script>
