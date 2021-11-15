@@ -60,13 +60,13 @@ $mail->setOAuth(
 $mail->setFrom($email, 'Sto. Rosario Health Information System Paombong Bulacan');
 $mail->addAddress($new_email/*, 'RECIPIENT_NAME'*/);
 $mail->isHTML(true);
-$mail->Subject = 'new email';
+$mail->Subject = 'New Email';
 
 $messageBody= '
                 <div  style="background: #eaeef3;padding: 20px;margin: 5px 0 0 0 ">
                     <h2 style="font-family: Arial;color: #4d4949">Hello '.$user_full_name.'</h2>
-                    <p style="font-family: Arial;font-size: large;color: #4d4949">Your new email is now:</p>
-                    <h1 style="font-family: Arial;color: #3f3b3b">'.$new_email.'</h1>
+                    <p style="font-family: Arial;font-size: large;color: #4d4949">From now on, you will now use '.$new_email.' to log in to the system</p>
+                 
                     <div style="max-height: fit-content;background: #d4dce3;padding: 5px 10px">
                         <p style="font-family: Arial;color: #3f3b3b">Your old email ('.$logged_email.') was replaced successfully</p>
                     </div>
@@ -75,6 +75,7 @@ $messageBody= '
 
 
 $mail->Body = $messageBody;
+$validEmail=false;
 $mail->addAttachment('../../img/jay.jpg',"jay");
 //send the message, check for errors
 if (!$mail->send()) {
@@ -82,6 +83,16 @@ if (!$mail->send()) {
     echo 0;
 } else {
     // echo 'Message sent!';
+    $validEmail = true;
+}
+
+if($validEmail) {
+    $table = $_SESSION['userTable'];
+    $_SESSION['email'] = $new_email;
+    $con = null;
+    require '../DB_Connect.php';
+    $result = mysqli_query($con, "UPDATE $table SET email = '$new_email' WHERE email = '$logged_email' ");
     echo 1;
+    mysqli_close($con);
 }
 ?>

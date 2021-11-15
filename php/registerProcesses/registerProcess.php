@@ -76,9 +76,9 @@ if(!empty($fileNames)){
 
     }//for
 
-    $fname = $_POST['fname'];
-    $mname = $_POST['mname'];
-    $lname = $_POST['lname'];
+    $fname = strtoupper(substr($_POST['fname'],0,1)).strtolower(substr($_POST['fname'],1));
+    $mname = strtoupper(substr($_POST['mname'],0,1)).strtolower(substr($_POST['mname'],1));
+    $lname = strtoupper(substr($_POST['lname'],0,1)).strtolower(substr($_POST['lname'],1));
 
     $suffix = $_POST['suffix'];
     if($suffix!=""){
