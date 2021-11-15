@@ -1,7 +1,6 @@
 <?php
 session_start();
     $adminId = $_POST['adminId'];
-    $adminName = $_POST['adminName'];
 
     $con=null;
     require '../DB_Connect.php';
@@ -17,7 +16,7 @@ session_start();
         $result =  mysqli_query($con,"SELECT id FROM $userData WHERE id='$adminId'");
         if($adminId==$result){// the email is already in the database
             echo 0;
-
+            break;
         }else{// the record is to be added to archive and deleted to original record
             //add sa db
             // Performing insert query execution to admin db
@@ -27,11 +26,14 @@ session_start();
                 $sql = "DELETE FROM admin WHERE id='$adminId'";
                 if(mysqli_query($con, $sql)){
                     echo 1;
+                    break;
                 }else{
                     echo 0;
+                    break;
                 }
             } else{
                 echo 0;
+                break;
             }
 
         }

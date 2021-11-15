@@ -24,6 +24,7 @@ $(document).ready(function (){
         })
     }
 })
+
 //click table to get patient ID and name
 $(document).ready(function (){
     var pattable = document.getElementById('patientTable');
@@ -42,6 +43,13 @@ $(document).ready(function (){
         var adminIds = $('#idno').val();
         var adminname = $('#adminname').val();
         adminDisableCheck(adminIds,adminname);
+    })
+})
+//By button disable ADMIN
+$(document).ready(function (){
+    $("#disable-admin").click(function (){
+        var adminIds = $('#idno2').val();
+        adminDisableCheck2(adminIds);
     })
 })
 
@@ -213,16 +221,16 @@ function appendTableAdmin() {
             //$(result).appendTo( "#adminTable>tbody" );
        // })
 }
-
+//Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminDisableCheck(adminIds,adminname){
-    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds,adminName:adminname})
+    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
         .done(function (data){
             if(data == 1){
 
                 Swal.fire({
                     title: 'Are you sure you want to archive this account?',
                     showDenyButton: true,
-                    showCancelButton: true,
+                    //showCancelButton: true,
                     confirmButtonText: 'Yes',
                     denyButtonText: `No`,
                 }).then((result) => {
@@ -248,6 +256,7 @@ function adminDisableCheck(adminIds,adminname){
 
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved!', '', 'info')
+                        $.modal.close();
                     }
                 })
 
@@ -267,14 +276,89 @@ function adminDisableCheck(adminIds,adminname){
                         console.log('I was closed by the timer')
                     }
                 })
+                $.modal.close();
             }
 
         })
 }
 
-//Disable Admin
-function disableAdmin(adminIds,adminname){
-    $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds,adminName:adminname})
+//Disable Admin and transfer the disabled to new DB
+function disableAdmin(adminIds){
+    $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds})
+        .done(function (data){
+            if(data == 1){
+
+            }else{
+                Swal.fire('Unsuccesful!', '', 'error')
+            }
+
+        })
+}
+//// DISABLE ADMIN BY BUTTON
+function adminDisableCheck2(adminIds){
+    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
+        .done(function (data){
+            if(data == 1){
+
+                Swal.fire({
+                    title: 'Are you sure you want to archive this account?',
+                    showDenyButton: true,
+                    //showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        disableAdmin2(adminIds);
+                        $.post("php/superAdminProcesses/adminNameCaller.php", {adminId:adminIds})
+                            .done(function (data){
+                                let timerInterval
+                                Swal.fire({
+                                    title: data+' Archived!',
+                                    timer: 2500,
+                                    timerProgressBar: true,
+                                    willClose: () => {
+                                        clearInterval(timerInterval)
+                                        appendTableAdmin();
+                                    }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        console.log('I was closed by the timer')
+                                        appendTableAdmin();
+                                    }
+                                })
+                            })
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved!', '', 'info')
+                        $.modal.close();
+                    }
+                })
+            }else{
+                let timerInterval
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User ID is already in the database!',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+                $.modal.close();
+            }
+
+        })
+}
+
+//Disable Admin and transfer the disabled to new DB
+function disableAdmin2(adminIds){
+    $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds})
         .done(function (data){
             if(data == 1){
 

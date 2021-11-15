@@ -144,7 +144,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                           <label for="idno2" style="color:#6D6D6DFF">User ID:</label>
                                           <input type="text" id="idno2" placeholder="Enter Admin ID" />
                                       </div>
-                                      <a href="#show-del2" rel="modal:open" id="disable-admin2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                      <a href="#show-del2" rel="modal:open" id="disable-admin" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
                                   </form>
                               </div>
                           </div>
@@ -220,7 +220,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                        <label for="patidno2" style="color:#6D6D6DFF">User ID:</label>
                                        <input type="text" id="patidno2" placeholder="Enter Patient ID" />
                                    </div>
-                                   <a href="#show-delpat2" rel="modal:open" id="disable-patient2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                   <a href="#show-delpat2" rel="modal:open" id="disable-patient" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
                                </form>
                            </div>
                        </div>
