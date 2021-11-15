@@ -12,6 +12,9 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
 
@@ -49,6 +52,11 @@ if(!isset($_SESSION['email'])){
             }
         });
     </script>
+
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -184,19 +192,41 @@ if(!isset($_SESSION['email'])){
         })
 
         $("#save").click(function () {
+            $("#pop-up-loading").modal("show")
             if(is_valid_new_email_format||is_valid_email_format){
+
                 $.post("php/settingsProcesses/finalEmailValidation.php",{new_email: $("#new-email").val(),logged_email: $("#current-email").val()})
                     .done(function (data) {
-                        if(data==1){
-                            console.log("change email success")
-                        }
-                        else{
-                            console.log("email is not valid")
-                        }
+
+
+                            if(data==1){
+                                setTimeout(function () {
+                                    $("#pop-up-loading").modal("hide")
+                                    console.log("change email success")
+                                },700)
+
+                            }
+                            else{
+                                setTimeout(function () {
+                                    $("#pop-up-loading").modal("hide")
+                                    $("#pop-up-error").modal("show")
+                                    $("#pop-up-error-message").html("Either of the two email is invalid!")
+                                    console.log("email is not valid")
+                                },5000)
+
+                            }
+
+
                     })
             }
             else {
-                console.log("Please double check the form")
+                setTimeout(function () {
+                    $("#pop-up-loading").modal("hide")
+                    $("#pop-up-error").modal("show")
+                    $("#pop-up-error-message").html("Please double check the form!")
+                    console.log("Please double check the form")
+                },500)
+
             }
         })
             //will send confirmation to email to know if it is really existing
@@ -205,6 +235,81 @@ if(!isset($_SESSION['email'])){
 
 
     </script>
+
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 3rem;
+            height: 3rem;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!--modal for loading-->
+    <div class="modal fade" id="pop-up-loading" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                  <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>-->
+                <div class="modal-body">
+                    <div id="modal-content">
+                        <div style="display: flex;align-items: center;justify-content: center">
+                            <div class="loader"></div>
+                            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                                Processing Request...
+                            </p>
+                        </div>
+
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+            </div>
+        </div>
+    </div>
+
+    <!--modal for error-->
+    <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>-->
+                <div class="modal-body">
+                    <div id="modal-content">
+                        <div style="display: flex;align-items: center;justify-content: center">
+                            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
+                            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                                Error
+                            </p>
+                        </div>
+                    </div><!--end of modal content-->
+                </div><!--end of modal body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
