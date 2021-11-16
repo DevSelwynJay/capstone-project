@@ -22,7 +22,7 @@ if(isset($_POST['displayExpTab'])){
 
 
 
-            $expiretab .= '<tr>
+        $expiredtab .= '<tr>
                     <td>'.$id.'</td>
                     <td>'.$name.'</td>
                     <td class="expired-text">Expired</td>
@@ -30,7 +30,7 @@ if(isset($_POST['displayExpTab'])){
                 </tr>';
 
     }
-    $expiredtab .= $expiretab;
+
     $expiredtab .= '</tbody>
         </table>';
 

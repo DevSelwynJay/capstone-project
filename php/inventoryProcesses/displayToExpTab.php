@@ -23,7 +23,7 @@ if(isset($_POST['displayToExpData'])){
         $remaindays=datediff($datetoday,$date);
 
 
-                $expiretab .= '<tr>
+        $exptable .= '<tr>
                     <td class="expired-text">'.$id.'</td>
                     <td class="expired-text">'.$name.'</td>
                     <td class="expired-text">'.$remaindays.'</td>
@@ -33,7 +33,7 @@ if(isset($_POST['displayToExpData'])){
 
 
     }
-    $exptable .= $expiretab;
+
     $exptable .= '</tbody>
         </table>';
     echo  $exptable;
