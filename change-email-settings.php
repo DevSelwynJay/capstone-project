@@ -32,7 +32,7 @@ if(!isset($_SESSION['email'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <!--Jquery UI css and js-->
+    <!--Jquery UI css and js
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="scss/tooltip.css">
     <script src="jquery-ui/jquery-ui.js"></script>
@@ -51,7 +51,7 @@ if(!isset($_SESSION['email'])){
                 }
             }
         });
-    </script>
+    </script>-->
 
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -112,13 +112,32 @@ if(!isset($_SESSION['email'])){
                                     <li><a href="#">Change Password</a></li>
                                 </ul>
                             </div>
-                            <div class="right-text">
-                                <p>Modify Email Address</p>
-                                <label for="current-email">Current Email</label>
-                                <input type="email" name = "current-email" id = "current-email" title="Please type your current email"><br>
-                                <label for="new-email">New Email</label>
-                                <input type="email" name = "new-email" id = "new-email" title="Please type your new email">
-                                <button class = "save-changes2" id="save">Save Changes</button>
+                            <div class="right-text" style="margin-right: 5rem">
+                                    <style>
+                                        @media (max-width: 991px){
+                                            #new-email,#current-email{
+                                                margin-top: 5px;
+                                            }
+                                        }
+                                    </style>
+                                    <p>Modify Email Address</p>
+                                    <div class="row">
+                                        <div class="col-lg-4 d-flex align-items-end"> <label for="current-email">Current Email</label></div>
+                                        <div class="col-lg-8 d-flex" style="justify-content: flex-end;padding: 0 0"><input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 d-flex align-items-end"> <label for="new-email">New Email</label></div>
+                                        <div class="col-lg-8 d-flex" style="justify-content: flex-end;padding: 0 0"><input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 d-flex" style="justify-content: flex-end;padding: 0 0">
+                                            <button class="primary-btn" id="save" style="max-width: 10rem;border-radius: 0px">Save Changes</button>
+                                        </div>
+
+                                    </div>
+
+
+
                             </div>
                         </div>
 
@@ -133,6 +152,7 @@ if(!isset($_SESSION['email'])){
     </section>
     <!--Change email script-->
     <script>
+        $('[data-toggle="tooltip"]').tooltip()
         let email="";
         $.post("php/settingsProcesses/retrieveCurrentEmail.php").done(function (data) {
            email= data
@@ -193,7 +213,7 @@ if(!isset($_SESSION['email'])){
 
         $("#save").click(function () {
             $("#pop-up-loading").modal("show")
-            if(is_valid_new_email_format||is_valid_email_format){
+            if(is_valid_new_email_format &&  is_valid_email_format){
 
                 $.post("php/settingsProcesses/finalEmailValidation.php",{new_email: $("#new-email").val(),logged_email: $("#current-email").val()})
                     .done(function (data) {
@@ -310,6 +330,7 @@ if(!isset($_SESSION['email'])){
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
