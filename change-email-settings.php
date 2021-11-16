@@ -92,7 +92,17 @@ if(!isset($_SESSION['email'])){
                             </div>
                             <div class="settings">
                                 <a><i class="fas fa-user-circle"></i></a>
-                                <a><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+                                <div class="drop-down-settings" id="dropdown">
+                                    <ul>
+                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="">settings</a></li>
+                                        <li><a href="">About</a></li>
+                                        <li><a href="">Logout</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,9 +137,37 @@ if(!isset($_SESSION['email'])){
 
 
     </section>
+    <!--Drop down script-->
+    <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+
+        dropdownToggle.addEventListener('click',function(){//Conditions
+            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+                dropdown.classList.remove('open');
+            }
+            else{ // Open Mobile Menu
+                dropdown.classList.add('open');
+            }});
+
+
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+
+        Closedropdown.addEventListener('click',function(){
+            dropdown.classList.remove('open');
+            Closedropdown.style.display = "none"
+            dropdownToggle.style.display = "block";
+        });
+
+    </script>
     <!--Change email script-->
     <script>
-        $('[data-toggle="tooltip"]').tooltip()
+        //$('[data-toggle="tooltip"]').tooltip()
         let email="";
         $.post("php/settingsProcesses/retrieveCurrentEmail.php").done(function (data) {
            email= data
@@ -265,56 +303,9 @@ if(!isset($_SESSION['email'])){
     </style>
 
     <!--modal for loading-->
-    <div class="modal fade" id="pop-up-loading" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <!--<div class="modal-header">
-                  <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                   </button>
-               </div>-->
-                <div class="modal-body">
-                    <div id="modal-content">
-                        <div style="display: flex;align-items: center;justify-content: center">
-                            <div class="loader"></div>
-                            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
-                                Processing Request...
-                            </p>
-                        </div>
-
-                    </div><!--end of modal content-->
-                </div><!--end of modal body-->
-            </div>
-        </div>
-    </div>
 
     <!--modal for error-->
-    <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <!--<div class="modal-header">
-                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>-->
-                <div class="modal-body">
-                    <div id="modal-content">
-                        <div style="display: flex;align-items: center;justify-content: center">
-                            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-                            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
-                                Error
-                            </p>
-                        </div>
-                    </div><!--end of modal content-->
-                </div><!--end of modal body-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </body>
 
