@@ -12,9 +12,6 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
 
@@ -28,8 +25,7 @@ if(!isset($_SESSION['email'])){
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Change Email Settings</title>
-    <!--Jquery
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <!--Jquery UI css and js
@@ -53,10 +49,10 @@ if(!isset($_SESSION['email'])){
         });
     </script>-->
 
-    <!--Bootstrap-->
+    <!--Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+     -->
 </head>
 
 <body>
@@ -112,32 +108,13 @@ if(!isset($_SESSION['email'])){
                                     <li><a href="#">Change Password</a></li>
                                 </ul>
                             </div>
-                            <div class="right-text" style="margin-right: 5rem">
-                                    <style>
-                                        @media (max-width: 991px){
-                                            #new-email,#current-email{
-                                                margin-top: 5px;
-                                            }
-                                        }
-                                    </style>
+                            <div class="right-text">
                                     <p>Modify Email Address</p>
-                                    <div class="row">
-                                        <div class="col-lg-4 d-flex align-items-end"> <label for="current-email">Current Email</label></div>
-                                        <div class="col-lg-8 d-flex" style="justify-content: flex-end;padding: 0 0"><input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4 d-flex align-items-end"> <label for="new-email">New Email</label></div>
-                                        <div class="col-lg-8 d-flex" style="justify-content: flex-end;padding: 0 0"><input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 d-flex" style="justify-content: flex-end;padding: 0 0">
-                                            <button class="primary-btn" id="save" style="max-width: 10rem;border-radius: 0px">Save Changes</button>
-                                        </div>
-
-                                    </div>
-
-
-
+                                    <label for="current-email">Current Email</label>
+                                    <input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br>
+                                    <label for="new-email">New Email</label>
+                                    <input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body">
+                                    <button class="save-changes2" id="save">Save Changes</button>
                             </div>
                         </div>
 
@@ -226,13 +203,21 @@ if(!isset($_SESSION['email'])){
                                 },700)
 
                             }
+                            else if(data==-1){
+                                setTimeout(function () {
+                                    $("#pop-up-loading").modal("hide")
+                                    $("#pop-up-error").modal("show")
+                                    $("#pop-up-error-message").html("Email is already taken!")
+                                    console.log("email is not valid")
+                                },700)
+                            }
                             else{
                                 setTimeout(function () {
                                     $("#pop-up-loading").modal("hide")
                                     $("#pop-up-error").modal("show")
                                     $("#pop-up-error-message").html("Either of the two email is invalid!")
                                     console.log("email is not valid")
-                                },5000)
+                                },700)
 
                             }
 
