@@ -101,9 +101,9 @@ if(!isset($_SESSION['email'])){
                                 <div class="drop-down-settings" id="dropdown">
                                     <ul>
                                         <li><a href="">Approve EMR</a></li>
-                                        <li><a href="">settings</a></li>
-                                        <li><a href="">About</a></li>
-                                        <li><a href="">Logout</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -116,9 +116,9 @@ if(!isset($_SESSION['email'])){
                             <div class="left-text">
                                 <p>Settings</p>
                                 <ul>
-                                    <li><a href="#">Change Personal Information</a></li>
-                                    <li><a href="#" style="color: #0c6893">Update Existing Email</a></li>
-                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="settings.php">Change Personal Information</a></li>
+                                    <li><a href="change-email-settings.php" style="color: #0c6893">Update Existing Email</a></li>
+                                    <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>
                             </div>
                             <style>
@@ -319,8 +319,9 @@ if(!isset($_SESSION['email'])){
             justify-content: center;
             align-items: center;
         }
-        .modal p,.modal h1,.modal h2,.modal h3,.modal h4,.modal h5{
+        .modal-p{
             color: #2b2b2b;
+            font-size: clamp(1rem,1.2rem,1.4rem);
         }
         .flex-box-column{
             display: flex;
@@ -334,15 +335,15 @@ if(!isset($_SESSION['email'])){
             justify-content: center;
             align-items: center;
         }
-        .modal-button{
-            padding: 0.5em 1em;
+        .modal-primary-button{
+            padding: 0.6em 1em;
             font-size: clamp(0.8rem,1rem,1.2rem);
             color: aliceblue;
             background: var(--dark-grey);
             border: none;
             border-radius: 0.5rem;
         }
-        .modal-button:hover{
+        .modal-primary-button:hover{
             background: #6d6868;
             cursor: pointer;
         }
@@ -355,7 +356,7 @@ if(!isset($_SESSION['email'])){
     <div id="pop-up-loading" class="modal">
         <div style="display: flex;align-items: center;justify-content: center">
             <div class="loader"></div>
-            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+            <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
                 Processing Request...
             </p>
         </div>
@@ -365,12 +366,12 @@ if(!isset($_SESSION['email'])){
     <div id="pop-up-error" class="modal">
         <div style="display: flex;align-items: center;justify-content: center">
             <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+            <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;">
                 Error
             </p>
         </div>
         <div class="flex-box-row">
-            <a href="#pop-up-error" rel="modal:close"><button class="modal-button">Okay</button></a>
+            <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
         </div>
 
     </div>

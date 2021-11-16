@@ -58,7 +58,17 @@
                             </div>
                             <div class="settings">
                                 <a><i class="fas fa-user-circle"></i></a>
-                                <a><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+                                <div class="drop-down-settings" id="dropdown">
+                                    <ul>
+                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,9 +79,9 @@
                             <div class="left-text">
                                 <p>Settings</p>
                                 <ul>
-                                    <li><a href="#">Change Personal Information</a></li>
-                                    <li><a href="#">Update Existing Email</a></li>
-                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="settings.php">Change Personal Information</a></li>
+                                    <li><a href="change-email-settings.php">Update Existing Email</a></li>
+                                    <li><a href="change-password-settings.php" style="color: #0c6893">Change Password</a></li>
                                 </ul>
                             </div>
                             <div class="right-text">
@@ -95,6 +105,34 @@
 
 
     </section>
+    <!--Drop down script-->
+    <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+
+        dropdownToggle.addEventListener('click',function(){//Conditions
+            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+                dropdown.classList.remove('open');
+            }
+            else{ // Open Mobile Menu
+                dropdown.classList.add('open');
+            }});
+
+
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+
+        Closedropdown.addEventListener('click',function(){
+            dropdown.classList.remove('open');
+            Closedropdown.style.display = "none"
+            dropdownToggle.style.display = "block";
+        });
+
+    </script>
 </body>
 
 </html>
