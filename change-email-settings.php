@@ -49,6 +49,9 @@ if(!isset($_SESSION['email'])){
         });
     </script>
 
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
@@ -118,13 +121,18 @@ if(!isset($_SESSION['email'])){
                                     <li><a href="#">Change Password</a></li>
                                 </ul>
                             </div>
+                            <style>
+                                a{
+                                    text-decoration: none;
+                                }
+                            </style>
                             <div class="right-text">
                                     <p>Modify Email Address</p>
                                     <label for="current-email">Current Email</label>
                                     <input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br>
                                     <label for="new-email">New Email</label>
                                     <input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body">
-                                    <button class="save-changes2" id="save">Save Changes</button>
+                                    <a><button class="save-changes2" id="save">Save Changes</button></a>
                             </div>
                         </div>
 
@@ -227,7 +235,11 @@ if(!isset($_SESSION['email'])){
         })
 
         $("#save").click(function () {
-            $("#pop-up-loading").modal("show")
+            $("#pop-up-loading").modal({
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            })
             if(is_valid_new_email_format &&  is_valid_email_format){
 
                 $.post("php/settingsProcesses/finalEmailValidation.php",{new_email: $("#new-email").val(),logged_email: $("#current-email").val()})
@@ -243,7 +255,6 @@ if(!isset($_SESSION['email'])){
                             }
                             else if(data==-1){
                                 setTimeout(function () {
-                                    $("#pop-up-loading").modal("hide")
                                     $("#pop-up-error").modal("show")
                                     $("#pop-up-error-message").html("Email is already taken!")
                                     console.log("email is not valid")
@@ -251,7 +262,6 @@ if(!isset($_SESSION['email'])){
                             }
                             else{
                                 setTimeout(function () {
-                                    $("#pop-up-loading").modal("hide")
                                     $("#pop-up-error").modal("show")
                                     $("#pop-up-error-message").html("Either of the two email is invalid!")
                                     console.log("email is not valid")
@@ -264,11 +274,11 @@ if(!isset($_SESSION['email'])){
             }
             else {
                 setTimeout(function () {
-                    $("#pop-up-loading").modal("hide")
-                    $("#pop-up-error").modal("show")
+                    //$("#pop-up-loading").modal("hide")
+                    $("#pop-up-error").modal()
                     $("#pop-up-error-message").html("Please double check the form!")
                     console.log("Please double check the form")
-                },500)
+                },700)
 
             }
         })
@@ -301,12 +311,74 @@ if(!isset($_SESSION['email'])){
             100% { transform: rotate(360deg); }
         }
     </style>
+    <!--style sheet for modal-->
+    <style>
+        .modal-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal p,.modal h1,.modal h2,.modal h3,.modal h4,.modal h5{
+            color: #2b2b2b;
+        }
+        .flex-box-column{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex-box-row{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-button{
+            padding: 0.5em 1em;
+            font-size: clamp(0.8rem,1rem,1.2rem);
+            color: aliceblue;
+            background: var(--dark-grey);
+            border: none;
+            border-radius: 0.5rem;
+        }
+        .modal-button:hover{
+            background: #6d6868;
+            cursor: pointer;
+        }
+        .modal{
+            padding: 1.5rem 2rem;
+        }
+    </style>
 
     <!--modal for loading-->
+    <div id="pop-up-loading" class="modal">
+        <div style="display: flex;align-items: center;justify-content: center">
+            <div class="loader"></div>
+            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                Processing Request...
+            </p>
+        </div>
+    </div>
 
     <!--modal for error-->
+    <div id="pop-up-error" class="modal">
+        <div style="display: flex;align-items: center;justify-content: center">
+            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
+            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                Error
+            </p>
+        </div>
+        <div class="flex-box-row">
+            <a href="#pop-up-error" rel="modal:close"><button class="modal-button">Okay</button></a>
+        </div>
 
+    </div>
 
+    <!--Jquery modal script-->
+    <script>
+
+    </script>
 </body>
 
 </html>
