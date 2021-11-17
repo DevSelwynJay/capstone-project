@@ -29,14 +29,14 @@ if(!isset($_SESSION['email'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--CustomJS-->
     <script src="js/settings.js"></script>
-
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="scss/tooltip.css">
     <script src="jquery-ui/jquery-ui.js"></script>
+    <!-- jQuery Modal-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="scss/modal.css">
     <!--Override some CSS-->
     <style>
         .fa-edit:hover{
@@ -45,6 +45,29 @@ if(!isset($_SESSION['email'])){
         }
         .fa-edit{
             transition: all 700ms;
+        }
+    </style>
+    <!--loading animation-->
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 3rem;
+            height: 3rem;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -156,32 +179,59 @@ if(!isset($_SESSION['email'])){
         </div>
 
     </section>
+
+    <!--Edit modal CSS-->
     <style>
-        .ui-dialog-titlebar{
-            display: none;
+        .modal{
+            width: 80vw;
+        }
+        @media (max-width: 720px) {
+            .modal{
+                width: 100vw;
+            }
+            #edit-modal-content label{
+                font-size: larger;
+            }
+            #edit-modal-content input{
+                font-size: larger;
+            }
+        }
+        @media (max-width: 480px) {
+            .modal{
+                width: 100vw;
+            }
+            #edit-modal-content label{
+                font-size: x-large;
+            }
+            #edit-modal-content input{
+                font-size: x-large;
+            }
+        }
+        #edit-modal-content {
+            padding: 0 0.5rem;
+            text-align: left;
+        }
+        #edit-modal-content label{
+            font-weight: normal;
+            padding-left: 0.8rem;
+            color: var(--third-color);
+        }
+        #edit-modal-content input{
+            margin: 0.3rem;
+            padding: 0.5rem;
         }
     </style>
-    <div id="gender-modal" title="Gender">
-        <select style="width: fit-content;margin: 0">
-            <optgroup label="Gender">
-                <option>Male</option>
-                <option>Female</option>
-            </optgroup>
-        </select>
+    <!--Edit modal-->
+    <div id="edit-modal" class="modal">
+        <div class="flex-box-column" id="edit-modal-content" style="align-items: flex-start">
+                    <label for="fname-edit">First Name:</label><input type="text" id="fname-edit">
+                    <label for="mname-edit">Middle Name:</label><input type="text" id="mname-edit">
+                    <label for="lname-edit">Last Name:</label> <input type="text" id="lname-edit">
+                    <label for="bday-edit">Birthday:</label><input type="text" id="bday-edit">
+            <label for="gender-edit">Gender:</label><input type="text" id="gender-edit">
+            <label for="address-edit">Address:</label><input type="text" id="address-edit">
+        </div>
     </div>
-    <!--modal script-->
-    <script>
-        $("#gender-modal").dialog({
-            autoOpen:false,
-            show:{
-                effect:"blind",
-                duration:500
-            },modal: true,
-            position: { my: "left top", at: "left top", of: "#gender" },
-            draggable:false,
-            width:"auto",
-        })
-    </script>
 
     <!--Drop down script-->
     <script>

@@ -16,34 +16,30 @@ $.post("php/settingsProcesses/showInfo.php").done(function (data) {
 $(document).ready(function () {
 
     //click
-    $("#fname-edit").click(function () {
-       $("#fname").prop('contenteditable','true')
-        $("#fname").trigger('focus')
-    })
-    $("#fname").on('blur',function () {
-        $("#fname").prop('contenteditable','false')
-    })
-    //
-    $("#mname-edit").click(function () {
-        $("#mname").prop('contenteditable','true')
-        $("#mname").trigger('focus')
-    })
-    $("#mname").on('blur',function () {
-        $("#mname").prop('contenteditable','false')
-    })
-    //
-    $("#lname-edit").click(function () {
-        $("#lname").prop('contenteditable','true')
-        $("#lname").trigger('focus')
-    })
-    $("#lname").on('blur',function () {
-        $("#lname").prop('contenteditable','false')
-    })
-    //
-    $("#gender-edit").click(function () {
-        $("#gender-modal").dialog("open")
-    })
-    $("#gender").on('blur',function () {
+    $("tr .fa-edit").click(function () {
+       let selected_ID = $(this).prop('id')
+        setTimeout(function () {
+            $("#edit-modal").modal({
+                //escapeClose: false,
+                clickClose: false,
+                //showClose: false
+            })
+            $("#edit-modal-content #"+selected_ID).trigger('focus')
+        },300)
 
     })
+
+    $("#edit-modal-content #bday-edit").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'1900:new Date()',
+        maxDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#edit-modal-content #bday-edit").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem")
+        $(".ui-datepicker-year").css("padding","1px")
+        console.log($(this).val())
+    })
+
+
 })

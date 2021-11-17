@@ -1,0 +1,37 @@
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-p{
+    color: #2b2b2b;
+    font-size: clamp(1rem,1.2rem,1.4rem);
+}
+.flex-box-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex-box-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.modal-primary-button{
+    padding: 0.6em 1em;
+    font-size: clamp(0.8rem,1rem,1.2rem);
+    color: aliceblue;
+    background: var(--dark-grey);
+    border: none;
+    border-radius: 0.5rem;
+}
+.modal-primary-button:hover{
+    background: #6d6868;
+    cursor: pointer;
+}
+.modal{
+    padding: 1.5rem 2rem;
+}

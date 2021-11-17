@@ -52,6 +52,9 @@ if(!isset($_SESSION['email'])){
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <!--style sheet for modal-->
+    <link rel="stylesheet" href="scss/modal.css">
     <!--Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
@@ -309,46 +312,6 @@ if(!isset($_SESSION['email'])){
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-    </style>
-    <!--style sheet for modal-->
-    <style>
-        .modal-container{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-p{
-            color: #2b2b2b;
-            font-size: clamp(1rem,1.2rem,1.4rem);
-        }
-        .flex-box-column{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .flex-box-row{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-primary-button{
-            padding: 0.6em 1em;
-            font-size: clamp(0.8rem,1rem,1.2rem);
-            color: aliceblue;
-            background: var(--dark-grey);
-            border: none;
-            border-radius: 0.5rem;
-        }
-        .modal-primary-button:hover{
-            background: #6d6868;
-            cursor: pointer;
-        }
-        .modal{
-            padding: 1.5rem 2rem;
         }
     </style>
 

@@ -13,7 +13,7 @@ require_once '../../class-db.php';
 
 $con = null;
 require '../DB_Connect.php';
-$tables = array("admin");
+$tables = array("admin","admin_archive");
 $result="";
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT email FROM $table WHERE email = '$new_email'");
