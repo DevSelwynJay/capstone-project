@@ -29,6 +29,24 @@ if(!isset($_SESSION['email'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--CustomJS-->
     <script src="js/settings.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="scss/tooltip.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <!--Override some CSS-->
+    <style>
+        .fa-edit:hover{
+            color: #969191;
+            transform: scale(1.5,1.5);
+        }
+        .fa-edit{
+            transition: all 700ms;
+        }
+    </style>
 </head>
 
 <body>
@@ -98,19 +116,19 @@ if(!isset($_SESSION['email'])){
                                 <p>Personal Information</p>
                                 <table>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>First Name:</td>
-                                        <td contenteditable="true" id="fname">Juan</td>
+                                        <td><i class="fas fa-edit" id="fname-edit"></i>First Name:</td>
+                                        <td id="fname">Juan</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Middle Name:</td>
+                                        <td><i class="fas fa-edit" id="mname-edit"></i>Middle Name:</td>
                                         <td id="mname">Santos</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Surname:</td>
+                                        <td><i class="fas fa-edit" id="lname-edit"></i>Surname:</td>
                                         <td id="lname">Dela Cruz</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Gender:</td>
+                                        <td><i class="fas fa-edit" id="gender-edit"></i>Gender:</td>
                                         <td id="gender">Male</td>
                                     </tr>
                                     <tr>
@@ -118,11 +136,11 @@ if(!isset($_SESSION['email'])){
                                         <td id="age">21</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Birthday:</td>
+                                        <td><i class="fas fa-edit" id="bday-edit"></i>Birthday:</td>
                                         <td id="bday">01/01/1999</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Address:</td>
+                                        <td><i class="fas fa-edit" id="address-edit"></i>Address:</td>
                                         <td id="address">Guinhawa, Malolos, Bulacan</td>
                                     </tr>
                                 </table>
@@ -137,8 +155,34 @@ if(!isset($_SESSION['email'])){
         </div>
         </div>
 
-
     </section>
+    <style>
+        .ui-dialog-titlebar{
+            display: none;
+        }
+    </style>
+    <div id="gender-modal" title="Gender">
+        <select style="width: fit-content;margin: 0">
+            <optgroup label="Gender">
+                <option>Male</option>
+                <option>Female</option>
+            </optgroup>
+        </select>
+    </div>
+    <!--modal script-->
+    <script>
+        $("#gender-modal").dialog({
+            autoOpen:false,
+            show:{
+                effect:"blind",
+                duration:500
+            },modal: true,
+            position: { my: "left top", at: "left top", of: "#gender" },
+            draggable:false,
+            width:"auto",
+        })
+    </script>
+
     <!--Drop down script-->
     <script>
         const dropdown = document.querySelector('#dropdown');
