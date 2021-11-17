@@ -24,42 +24,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_archive`
+-- Table structure for table `patient_archive`
 --
 
-CREATE TABLE `admin_archive` (
-  `account_type` int(1) NOT NULL DEFAULT 1 COMMENT '0 superAdmin, 1 admin, 2 patient',
+CREATE TABLE `patient_archive` (
+  `account_type` int(1) NOT NULL DEFAULT 2 COMMENT '2 patient',
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `gender` varchar(20) NOT NULL COMMENT 'Male Female',
-  `birthday` date DEFAULT NULL,
+  `birthday` date NOT NULL,
   `address` varchar(50) NOT NULL,
+  `occupation` varchar(50) NOT NULL,
+  `civil_status` varchar(30) NOT NULL,
+  `blood_type` varchar(20) DEFAULT NULL,
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
-  `role` varchar(50) NOT NULL,
   `OTP` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin_archive`
+-- Dumping data for table `patient_archive`
 --
 
-INSERT INTO `admin_archive` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-(1, '2021-01-1', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '2  Sto. Rosario Paombong Bulacan', 'alfredogiebenitezz@gmail.com', 'mukamo11!', '09422697900', 'Health Worker', '738500');
+INSERT INTO `patient_archive` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `OTP`) VALUES
+(2, '2021-02-111242', 'Galvez', 'Irish', 'D.', 'Female', '2000-09-27', 'Sto. Rosario Paombong Bulacan', 'Doctor', 'Single', 'O', 'galvezirish144@gmail.com', 'qwer', '09199480221', NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin_archive`
+-- Indexes for table `patient_archive`
 --
-ALTER TABLE `admin_archive`
+ALTER TABLE `patient_archive`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `gmail` (`email`);
+  ADD UNIQUE KEY `email` (`email`,`contact_no`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

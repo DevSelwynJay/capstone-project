@@ -1,5 +1,5 @@
 <?php
-
+//calls name sana kaso dko pa napapagana to ignore muna
 session_start();
 $adminId = $_POST['adminId'];
 
@@ -14,12 +14,13 @@ if(!$con){
 $userDatas = array('admin'/*,'patient'*/);
 foreach ($userDatas as $userData) {
 
-    $result = mysqli_query($con, "SELECT first_name,middle_name,last_name FROM $userData WHERE id='$adminId'");
+    $result = mysqli_query($con, "SELECT last_name,first_name,middle_name FROM $userData WHERE id='$adminId'");
     if (mysqli_num_rows($result)>0) {// the id is in the database fetch result
-        foreach ($result as $ress){
-            $name.=$ress;
+        while($row=mysqli_fetch_array($result)){
+            $name = $row[0].", ".$row[1]." ".$row[2];
         }
-        echo $name;
+        $_SESSION['adminCall']=$name;
+        echo "$name";
         break;
     }
 }

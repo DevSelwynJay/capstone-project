@@ -32,8 +32,8 @@ tr:nth-child(even) {
 margin-top: 1rem;
 display: flex;
 justify-content: flex-end;
-    .square-btn{
-        background-color: var(--primary-color);
+    .red-square-btn{
+        background-color: #ff0000;
         color: white;
         text-decoration: none;
         padding: .6rem .8rem;
@@ -46,7 +46,7 @@ justify-content: flex-end;
         }
 
         &:hover{
-            background-color: var(--hover-color);
+            background-color: #cf0404;
         }
     }
 }

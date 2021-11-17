@@ -124,7 +124,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
                         </form>
                      </div>
-                      //TRY
+
                       <div class="col-sm-12">
                           <div id="show-del" class="modal2">
                               <style>#show-del{
@@ -155,7 +155,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                   </form>
                               </div>
                           </div>
-                      //END TRY
+
                      <h3 class="color-black">Manage Admin Accounts</h3>
                       <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
                      <table id="adminTable">
@@ -200,7 +200,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                          <a href="#show-del2" rel="modal:open" id="disable-admin1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
-                      //TRY
+
                       <div class="col-sm-12">
                           <div id="show-delpat" class="modal2">
                               <style>#show-delpat{
@@ -231,7 +231,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                </form>
                            </div>
                        </div>
-                          //END TRY
+                   <br> <br>
+
                   <div class="col-sm-12">
                      <h3 class="color-black">Manage User Accounts</h3>
                       <div style="max-height: 50vh;overflow-y: auto">
@@ -272,7 +273,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                       </div>
                      <div class="cta-wrapper2">
                          <!--Patanggal nung show more kasi scrollable naman na  -->
-                         <a href="" class="square-btn">Show More</a>
+                         <a href="#blank"/>
                          <a href="#show-delpat2" rel="modal:open"  id="disable-patient1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
                      </div>
                   </div>
