@@ -12,9 +12,6 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
 
@@ -28,8 +25,7 @@ if(!isset($_SESSION['email'])){
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Change Email Settings</title>
-    <!--Jquery
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <!--Jquery UI css and js-->
@@ -53,10 +49,13 @@ if(!isset($_SESSION['email'])){
         });
     </script>
 
-    <!--Bootstrap-->
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+     -->
 </head>
 
 <body>
@@ -96,7 +95,17 @@ if(!isset($_SESSION['email'])){
                             </div>
                             <div class="settings">
                                 <a><i class="fas fa-user-circle"></i></a>
-                                <a><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+                                <div class="drop-down-settings" id="dropdown">
+                                    <ul>
+                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,18 +116,23 @@ if(!isset($_SESSION['email'])){
                             <div class="left-text">
                                 <p>Settings</p>
                                 <ul>
-                                    <li><a href="#">Change Personal Information</a></li>
-                                    <li><a href="#" style="color: #0c6893">Update Existing Email</a></li>
-                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="settings.php">Change Personal Information</a></li>
+                                    <li><a href="change-email-settings.php" style="color: #0c6893">Update Existing Email</a></li>
+                                    <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>
                             </div>
+                            <style>
+                                a{
+                                    text-decoration: none;
+                                }
+                            </style>
                             <div class="right-text">
-                                <p>Modify Email Address</p>
-                                <label for="current-email">Current Email</label>
-                                <input type="email" name = "current-email" id = "current-email" title="Please type your current email"><br>
-                                <label for="new-email">New Email</label>
-                                <input type="email" name = "new-email" id = "new-email" title="Please type your new email">
-                                <button class = "save-changes2" id="save">Save Changes</button>
+                                    <p>Modify Email Address</p>
+                                    <label for="current-email">Current Email</label>
+                                    <input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br>
+                                    <label for="new-email">New Email</label>
+                                    <input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body">
+                                    <a><button class="save-changes2" id="save">Save Changes</button></a>
                             </div>
                         </div>
 
@@ -131,8 +145,37 @@ if(!isset($_SESSION['email'])){
 
 
     </section>
+    <!--Drop down script-->
+    <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+
+        dropdownToggle.addEventListener('click',function(){//Conditions
+            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+                dropdown.classList.remove('open');
+            }
+            else{ // Open Mobile Menu
+                dropdown.classList.add('open');
+            }});
+
+
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+
+        Closedropdown.addEventListener('click',function(){
+            dropdown.classList.remove('open');
+            Closedropdown.style.display = "none"
+            dropdownToggle.style.display = "block";
+        });
+
+    </script>
     <!--Change email script-->
     <script>
+        //$('[data-toggle="tooltip"]').tooltip()
         let email="";
         $.post("php/settingsProcesses/retrieveCurrentEmail.php").done(function (data) {
            email= data
@@ -192,8 +235,12 @@ if(!isset($_SESSION['email'])){
         })
 
         $("#save").click(function () {
-            $("#pop-up-loading").modal("show")
-            if(is_valid_new_email_format||is_valid_email_format){
+            $("#pop-up-loading").modal({
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            })
+            if(is_valid_new_email_format &&  is_valid_email_format){
 
                 $.post("php/settingsProcesses/finalEmailValidation.php",{new_email: $("#new-email").val(),logged_email: $("#current-email").val()})
                     .done(function (data) {
@@ -206,13 +253,19 @@ if(!isset($_SESSION['email'])){
                                 },700)
 
                             }
+                            else if(data==-1){
+                                setTimeout(function () {
+                                    $("#pop-up-error").modal("show")
+                                    $("#pop-up-error-message").html("Email is already taken!")
+                                    console.log("email is not valid")
+                                },700)
+                            }
                             else{
                                 setTimeout(function () {
-                                    $("#pop-up-loading").modal("hide")
                                     $("#pop-up-error").modal("show")
                                     $("#pop-up-error-message").html("Either of the two email is invalid!")
                                     console.log("email is not valid")
-                                },5000)
+                                },700)
 
                             }
 
@@ -221,11 +274,11 @@ if(!isset($_SESSION['email'])){
             }
             else {
                 setTimeout(function () {
-                    $("#pop-up-loading").modal("hide")
-                    $("#pop-up-error").modal("show")
+                    //$("#pop-up-loading").modal("hide")
+                    $("#pop-up-error").modal()
                     $("#pop-up-error-message").html("Please double check the form!")
                     console.log("Please double check the form")
-                },500)
+                },700)
 
             }
         })
@@ -258,58 +311,75 @@ if(!isset($_SESSION['email'])){
             100% { transform: rotate(360deg); }
         }
     </style>
+    <!--style sheet for modal-->
+    <style>
+        .modal-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-p{
+            color: #2b2b2b;
+            font-size: clamp(1rem,1.2rem,1.4rem);
+        }
+        .flex-box-column{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex-box-row{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-primary-button{
+            padding: 0.6em 1em;
+            font-size: clamp(0.8rem,1rem,1.2rem);
+            color: aliceblue;
+            background: var(--dark-grey);
+            border: none;
+            border-radius: 0.5rem;
+        }
+        .modal-primary-button:hover{
+            background: #6d6868;
+            cursor: pointer;
+        }
+        .modal{
+            padding: 1.5rem 2rem;
+        }
+    </style>
 
     <!--modal for loading-->
-    <div class="modal fade" id="pop-up-loading" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <!--<div class="modal-header">
-                  <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                   </button>
-               </div>-->
-                <div class="modal-body">
-                    <div id="modal-content">
-                        <div style="display: flex;align-items: center;justify-content: center">
-                            <div class="loader"></div>
-                            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
-                                Processing Request...
-                            </p>
-                        </div>
-
-                    </div><!--end of modal content-->
-                </div><!--end of modal body-->
-            </div>
+    <div id="pop-up-loading" class="modal">
+        <div style="display: flex;align-items: center;justify-content: center">
+            <div class="loader"></div>
+            <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                Processing Request...
+            </p>
         </div>
     </div>
 
     <!--modal for error-->
-    <div class="modal fade" id="pop-up-error" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <!--<div class="modal-header">
-                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>-->
-                <div class="modal-body">
-                    <div id="modal-content">
-                        <div style="display: flex;align-items: center;justify-content: center">
-                            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-                            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
-                                Error
-                            </p>
-                        </div>
-                    </div><!--end of modal content-->
-                </div><!--end of modal body-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
-                </div>
-            </div>
+    <div id="pop-up-error" class="modal">
+        <div style="display: flex;align-items: center;justify-content: center">
+            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
+            <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;">
+                Error
+            </p>
         </div>
+        <div class="flex-box-row">
+            <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
+        </div>
+
     </div>
+
+    <!--Jquery modal script-->
+    <script>
+
+    </script>
 </body>
 
 </html>

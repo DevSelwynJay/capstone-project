@@ -5,7 +5,9 @@ user is admin -> will go to admin part
 user is super admin -> will go to super admin part
 user is patient -> will go to patient part
 need to add some codes later*/
-
+if(!isset($_SESSION['email'])){
+    header("location:../../index.php",true);
+}
 
 session_start();
 //0->superadmin 1->admin 2->patient

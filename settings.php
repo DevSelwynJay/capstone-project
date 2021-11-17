@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +27,8 @@
     <title>Settings</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--CustomJS-->
+    <script src="js/settings.js"></script>
 </head>
 
 <body>
@@ -35,11 +45,11 @@
                             <h4>Your Name</h4>
                         </div>
                         <ul class="menu">
-                            <li><a href="" class="dashboard">Dashboard</a></li>
-                            <li><a href="" class="patient">Patient</a></li>
-                            <li><a href="" class="reports">Reports</a></li>
-                            <li><a href="" class="trackMap">Track Map</a></li>
-                            <li><a href="" class="inventory">Inventory</a></li>
+                            <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                            <li><a href="patient.php" class="patient">Patient</a></li>
+                            <li><a href="reports.php" class="reports">Reports</a></li>
+                            <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
                         </ul>
                     </div>
                     <div class="social-media-links">
@@ -58,7 +68,17 @@
                             </div>
                             <div class="settings">
                                 <a><i class="fas fa-user-circle"></i></a>
-                                <a><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+                                <div class="drop-down-settings" id="dropdown">
+                                    <ul>
+                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +89,7 @@
                             <div class="left-text">
                                 <p>Settings</p>
                                 <ul>
-                                    <li><a href="#">Change Personal Information</a></li>
+                                    <li><a href=settings.php#" style="color: #0c6893">Change Personal Information</a></li>
                                     <li><a href="change-email-settings.php">Update Existing Email</a></li>
                                     <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>
@@ -79,31 +99,31 @@
                                 <table>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>First Name:</td>
-                                        <td>Juan</td>
+                                        <td contenteditable="true" id="fname">Juan</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Middle Name:</td>
-                                        <td>Santos</td>
+                                        <td id="mname">Santos</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Surname:</td>
-                                        <td>Dela Cruz</td>
+                                        <td id="lname">Dela Cruz</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Gender:</td>
-                                        <td>Male</td>
+                                        <td id="gender">Male</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Age:</td>
-                                        <td>21</td>
+                                        <td id="age">21</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Birthday:</td>
-                                        <td>01/01/1999</td>
+                                        <td id="bday">01/01/1999</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-edit"></i>Address:</td>
-                                        <td>Guinhawa, Malolos, Bulacan</td>
+                                        <td id="address">Guinhawa, Malolos, Bulacan</td>
                                     </tr>
                                 </table>
                                 <button class = "save-changes">Save Changes</button>
@@ -119,6 +139,34 @@
 
 
     </section>
+    <!--Drop down script-->
+    <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+
+        dropdownToggle.addEventListener('click',function(){//Conditions
+            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+                dropdown.classList.remove('open');
+            }
+            else{ // Open Mobile Menu
+                dropdown.classList.add('open');
+            }});
+
+
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+
+        Closedropdown.addEventListener('click',function(){
+            dropdown.classList.remove('open');
+            Closedropdown.style.display = "none"
+            dropdownToggle.style.display = "block";
+        });
+
+    </script>
 </body>
 
 </html>

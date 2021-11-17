@@ -11,6 +11,19 @@ use League\OAuth2\Client\Provider\Google;
 require_once '../../vendor/autoload.php';
 require_once '../../class-db.php';
 
+$con = null;
+require '../DB_Connect.php';
+$tables = array("admin");
+$result="";
+foreach ($tables as $table){
+    $result = mysqli_query($con,"SELECT email FROM $table WHERE email = '$new_email'");
+    if(mysqli_num_rows($result)>0){
+        echo -1;
+        exit();
+    }
+}
+
+
 /**
  * @return PHPMailer
  * @throws Exception
@@ -87,10 +100,9 @@ if (!$mail->send()) {
 }
 
 if($validEmail) {
-    $table = $_SESSION['userTable'];
+
     $_SESSION['email'] = $new_email;
-    $con = null;
-    require '../DB_Connect.php';
+    $table = $_SESSION['userTable'];
     $result = mysqli_query($con, "UPDATE $table SET email = '$new_email' WHERE email = '$logged_email' ");
     echo 1;
     mysqli_close($con);
