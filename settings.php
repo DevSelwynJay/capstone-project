@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
