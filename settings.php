@@ -216,7 +216,7 @@ if(!isset($_SESSION['email'])){
             padding-left: 0.8rem;
             color: var(--third-color)
         }
-        .col-sm-8 input,.col-sm-6 input,.col-sm-6 select,.col-sm-3 input,.col-sm-3 select{
+        .col-sm-12 input,.col-sm-6 input,.col-sm-6 select,.col-sm-3 input,.col-sm-3 select{
             margin: 0.3rem;
             padding: 0.5rem;
         }
@@ -315,12 +315,14 @@ if(!isset($_SESSION['email'])){
 
 
             </div>
--->             <div class="row">
-                    <div class="col-sm-8" style="padding: 0 15px">
+-->
+                <div class="row flex-row justify-content-start" style="display: flex">
+                    <div class="col-sm-12" style="padding: 0 15px">
                         <label for="age-edit">Address:</label>
                         <input type="text" id="address-edit-2">
                     </div>
-                    <div class="col-sm-4 justify-content-end align-items-end" style="display: flex;padding: 0 15px;margin-top: 1rem">
+                    <div class="col-sm-12 justify-content-end align-items-end" style="display: flex;padding: 0 15px;margin-top: 1rem">
+                        <a href="#edit-modal" rel="modal:close"><button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button></a>
                         <a href="#edit-modal" rel="modal:close"><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
                     </div>
                 </div>
@@ -328,7 +330,51 @@ if(!isset($_SESSION['email'])){
                 </div>
         </div>
     </div>
+    <!--Confirm edit-->
+    <div class="modal" id="confirm-changes">
+        <div class="justify-content-center" style="display: flex">
+            <p>Save changes?</p>
+        </div>
+        <div class="justify-content-end" style="display: flex">
+            <a href="#confirm-changes" rel="modal:close">
+                <button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button>
+            </a>
+                <button class="modal-primary-button">Okay</button>
+        </div>
+    </div>
+    <!--loading for style-->
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 3rem;
+            height: 3rem;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
 
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!--modal for loading-->
+    <div id="pop-up-loading" class="modal">
+        <div style="display: flex;align-items: center;justify-content: center">
+            <div class="loader"></div>
+            <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                Processing Request...
+            </p>
+        </div>
+    </div>
     <!--Drop down script-->
     <script>
         const dropdown = document.querySelector('#dropdown');

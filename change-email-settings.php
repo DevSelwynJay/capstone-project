@@ -251,24 +251,24 @@ if(!isset($_SESSION['email'])){
 
                             if(data==1){
                                 setTimeout(function () {
-                                    $("#pop-up-loading").modal("hide")
+
                                     console.log("change email success")
-                                },700)
+                                },300)
 
                             }
                             else if(data==-1){
                                 setTimeout(function () {
-                                    $("#pop-up-error").modal("show")
+                                    $("#pop-up-error").modal()
                                     $("#pop-up-error-message").html("Email is already taken!")
                                     console.log("email is not valid")
-                                },700)
+                                },300)
                             }
                             else{
                                 setTimeout(function () {
-                                    $("#pop-up-error").modal("show")
+                                    $("#pop-up-error").modal()
                                     $("#pop-up-error-message").html("Either of the two email is invalid!")
                                     console.log("email is not valid")
-                                },700)
+                                },300)
 
                             }
 
@@ -277,11 +277,10 @@ if(!isset($_SESSION['email'])){
             }
             else {
                 setTimeout(function () {
-                    //$("#pop-up-loading").modal("hide")
                     $("#pop-up-error").modal()
                     $("#pop-up-error-message").html("Please double check the form!")
                     console.log("Please double check the form")
-                },700)
+                },300)
 
             }
         })

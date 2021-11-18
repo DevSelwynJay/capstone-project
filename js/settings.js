@@ -60,6 +60,13 @@ $(document).ready(function () {
         //$("#age").html(result.age);$("#age-edit-2").val(result.age)
         $("#address").html($("#address-edit-2").val());
     })
+    $(".save-changes").on('click',function () {
+        $("#confirm-changes").modal({
+            //escapeClose: false,
+            //clickClose: false,
+            showClose: false
+        })
+    })
 
     address_autocomlete()
 

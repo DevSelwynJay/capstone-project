@@ -35,6 +35,18 @@
     background: var(--hover-color);
     cursor: pointer;
 }
+.modal-cancel-button{
+    padding: 0.6em 1em;
+    font-size: clamp(0.8rem,1rem,1.2rem);
+    color: aliceblue;
+    background: #b2273d;
+    border: none;
+    border-radius: 0.5rem;
+}
+.modal-cancel-button:hover{
+    background: #d26375;
+    cursor: pointer;
+}
 /*UI date picker header*/
 .ui-datepicker .ui-datepicker-header{
     background: #465A72;
