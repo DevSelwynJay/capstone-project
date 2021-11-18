@@ -15,7 +15,7 @@ if(!isset($_SESSION['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS Grid Bootstrap-->
     <link rel="stylesheet" href="scss/bootstrap-grid.css">
-    <!--Custom CSS-->
+   <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
@@ -210,36 +210,8 @@ if(!isset($_SESSION['email'])){
             max-height: 75vh;
             height: fit-content;
         }
-        #edit-modal-content label{
-            font-size: small;
-            font-weight: normal;
-            padding-left: 0.8rem;
-            color: var(--third-color)
-        }
-        .col-sm-12 input,.col-sm-6 input,.col-sm-6 select,.col-sm-3 input,.col-sm-3 select{
-            margin: 0.3rem;
-            padding: 0.5rem;
-        }
-        /*scrollbar*/
-             /* width */
-         ::-webkit-scrollbar {
-             width: 5px;
-         }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #c5c5c5;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
     </style>
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
@@ -375,6 +347,8 @@ if(!isset($_SESSION['email'])){
             </p>
         </div>
     </div>
+
+
     <!--Drop down script-->
     <script>
         const dropdown = document.querySelector('#dropdown');
@@ -403,6 +377,6 @@ if(!isset($_SESSION['email'])){
         });
 
     </script>
-</body>
+   </body>
 
 </html>
