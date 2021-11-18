@@ -1,3 +1,6 @@
+.modal{
+    padding: 1rem;
+}
 .modal-container{
     display: flex;
     flex-direction: column;
@@ -24,14 +27,46 @@
     padding: 0.6em 1em;
     font-size: clamp(0.8rem,1rem,1.2rem);
     color: aliceblue;
-    background: var(--dark-grey);
+    background:  #465A72;
     border: none;
     border-radius: 0.5rem;
 }
 .modal-primary-button:hover{
-    background: #6d6868;
+    background: var(--hover-color);
     cursor: pointer;
 }
-.modal{
-    padding: 1.5rem 2rem;
+/*UI date picker header*/
+.ui-datepicker .ui-datepicker-header{
+    background: #465A72;
+    /*border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;*/
+}
+.ui-state-default, .ui-state-hover{
+    border-radius: 0.2rem;
+    background: none;
+}
+.ui-datepicker-calendar {
+    background:#EEEEEE;
+}
+.ui-widget.ui-widget-content{/*container of all jquery UI including tooltip*/
+    border: 1px solid #c5c5c5;
+    /*padding: 0.3rem;
+    border-radius: 1.3rem;*/
+}
+.ui-datepicker .ui-icon{
+    background: aliceblue;
+    border-radius: 10px
+}
+
+.ui-datepicker-calendar td{
+    border: 1px solid #D8D8D8 !important;
+    background: none;
+    text-align: center;
+}
+/* Remove the inner atag border */
+.ui-state-default{
+    border: 0px !important;
+}
+.ui-datepicker td span, .ui-datepicker td a{
+    text-align: center;
 }

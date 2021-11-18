@@ -13,6 +13,8 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS Grid Bootstrap-->
+    <link rel="stylesheet" href="scss/bootstrap-grid.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
     <!--Font Awesome-->
@@ -26,17 +28,34 @@ if(!isset($_SESSION['email'])){
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Settings</title>
     <!--Jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!--CustomJS-->
     <script src="js/settings.js"></script>
-    <!--Jquery UI css and js-->
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="scss/tooltip.css">
-    <script src="jquery-ui/jquery-ui.js"></script>
     <!-- jQuery Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="scss/tooltip.css">
+    <script>
+        $( document ).tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function( position, feedback ) {
+                    $( this ).css( position );
+                    $( "<div>" )
+                        .addClass( "arrow" )
+                        .addClass( feedback.vertical )
+                        .addClass( feedback.horizontal )
+                        .appendTo( this );
+                }
+            }
+        });
+    </script>
     <!--Override some CSS-->
     <style>
         .fa-edit:hover{
@@ -155,7 +174,7 @@ if(!isset($_SESSION['email'])){
                                         <td id="gender">Male</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-edit"></i>Age:</td>
+                                        <td><i class="fas fa-edit" id="age-edit"></i>Age:</td>
                                         <td id="age">21</td>
                                     </tr>
                                     <tr>
@@ -182,54 +201,131 @@ if(!isset($_SESSION['email'])){
 
     <!--Edit modal CSS-->
     <style>
-        .modal{
-            width: 80vw;
-        }
-        @media (max-width: 720px) {
-            .modal{
-                width: 100vw;
-            }
-            #edit-modal-content label{
-                font-size: larger;
-            }
-            #edit-modal-content input{
-                font-size: larger;
-            }
-        }
-        @media (max-width: 480px) {
-            .modal{
-                width: 100vw;
-            }
-            #edit-modal-content label{
-                font-size: x-large;
-            }
-            #edit-modal-content input{
-                font-size: x-large;
-            }
-        }
-        #edit-modal-content {
+
+        #edit-modal-content .container-fluid{
             padding: 0 0.5rem;
             text-align: left;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            max-height: 75vh;
+            height: fit-content;
         }
         #edit-modal-content label{
+            font-size: small;
             font-weight: normal;
             padding-left: 0.8rem;
-            color: var(--third-color);
+            color: var(--third-color)
         }
-        #edit-modal-content input{
+        .col-sm-8 input,.col-sm-6 input,.col-sm-6 select,.col-sm-3 input,.col-sm-3 select{
             margin: 0.3rem;
             padding: 0.5rem;
+        }
+        /*scrollbar*/
+             /* width */
+         ::-webkit-scrollbar {
+             width: 5px;
+         }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
+        <div style="display: flex;justify-content: center;align-items: center;margin: 1rem">
+            <img src="img/Icons/edit.png" width="50" height="50"><h4 style="color: var(--dark-grey);margin-left: 0.5rem">Edit Personal Info</h4>
+        </div>
         <div class="flex-box-column" id="edit-modal-content" style="align-items: flex-start">
-                    <label for="fname-edit">First Name:</label><input type="text" id="fname-edit">
-                    <label for="mname-edit">Middle Name:</label><input type="text" id="mname-edit">
-                    <label for="lname-edit">Last Name:</label> <input type="text" id="lname-edit">
-                    <label for="bday-edit">Birthday:</label><input type="text" id="bday-edit">
-            <label for="gender-edit">Gender:</label><input type="text" id="gender-edit">
-            <label for="address-edit">Address:</label><input type="text" id="address-edit">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <label for="fname-edit">First Name:</label><input type="text" id="fname-edit-2">
+                    </div>
+                    <div class="col-sm-6" >
+                        <label for="mname-edit">Middle Name:</label><input type="text" id="mname-edit-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <label for="lname-edit">Last Name:</label> <input type="text" id="lname-edit-2">
+                    </div>
+                    <div class="col-sm-6" >
+                        <label for="bday-edit">Birthday:</label>
+                        <input type="text" id="bday-edit-2" contenteditable="false">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6" style="padding: 0 15px">
+                        <label for="gender-edit">Gender:</label>
+                        <select id="gender-edit-2">
+                            <option id="Male">Male</option>
+                            <option id="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6" style="padding: 0 15px">
+                        <label for="age-edit">Age:</label>
+                        <input type="text" id="age-edit-2" disabled="disabled">
+                    </div>
+                </div>
+                <!--
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label style="font-size-adjust: inherit">House#</label>
+                        <input id="" type="number" name="house_no" required>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Purok</label>
+                        <select name="purok">
+                            <option value="0" disabled selected>Purok</option>
+                            <option value="0">Not available</option>
+                            <?php
+                              for($a=1;$a<=7;$a++){
+                                  //echo "<option>".$a."</option>";
+                              }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Barangay</label>
+                        <input type="text" value="Sto. Rosario" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Town</label>
+                        <input type="text" value="Paombong" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Province/City</label>
+                        <input type="text" value="Bulacan" disabled>
+                    </div>
+                </div>
+
+
+            </div>
+-->             <div class="row">
+                    <div class="col-sm-8" style="padding: 0 15px">
+                        <label for="age-edit">Address:</label>
+                        <input type="text" id="address-edit-2">
+                    </div>
+                    <div class="col-sm-4 justify-content-end align-items-end" style="display: flex;padding: 0 15px;margin-top: 1rem">
+                        <a href="#edit-modal" rel="modal:close"><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
+                    </div>
+                </div>
+
+                </div>
         </div>
     </div>
 
