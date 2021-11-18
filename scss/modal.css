@@ -1,16 +1,3 @@
-.modal{
-    padding: 1rem;
-}
-.modal-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.modal-p{
-    color: #2b2b2b;
-    font-size: clamp(1rem,1.2rem,1.4rem);
-}
 .flex-box-column{
     display: flex;
     flex-direction: column;
@@ -23,9 +10,44 @@
     justify-content: center;
     align-items: center;
 }
+.modal-content-scrollable{
+    height: fit-content;
+    overflow-y:auto;
+    overflow-x:hidden;
+    height: fit-content;
+    max-height: 75vh;
+    padding: 1em 0;
+}
+.modal{
+    padding: 1rem;
+    font-size: 20px;
+}
+.modal-header-icon{
+    width: clamp(2em,2.6em,3em);
+    height:  clamp(2em,2.6em,3em);
+}
+
+.modal-title{
+    color: var(--dark-grey);
+    font-weight: 500;
+    font-size: clamp(1em,1.5em,3vw);
+    margin: 0.5em;
+}
+.modal-p{
+    font-size: clamp(0.6em,0.8em,3vw);!important;
+    font-weight: 450;
+    color: var(--third-color);
+    padding-left: 0.5em;
+}
+.modal-field{
+    margin-top: 0.2rem!important;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.5rem!important;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
+}
 .modal-primary-button{
     padding: 0.6em 1em;
-    font-size: clamp(0.8rem,1rem,1.2rem);
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: aliceblue;
     background:  #465A72;
     border: none;
@@ -37,7 +59,7 @@
 }
 .modal-cancel-button{
     padding: 0.6em 1em;
-    font-size: clamp(0.8rem,1rem,1.2rem);
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: aliceblue;
     background: #b2273d;
     border: none;
@@ -47,6 +69,9 @@
     background: #d26375;
     cursor: pointer;
 }
+/*
+Jquery UI Date Picker
+*/
 /*UI date picker header*/
 .ui-datepicker .ui-datepicker-header{
     background: #465A72;
@@ -69,7 +94,6 @@
     background: aliceblue;
     border-radius: 10px
 }
-
 .ui-datepicker-calendar td{
     border: 1px solid #D8D8D8 !important;
     background: none;

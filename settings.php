@@ -34,12 +34,14 @@ if(!isset($_SESSION['email'])){
     <!-- jQuery Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <!--Custom Modal Design-->
-    <link rel="stylesheet" href="scss/modal.css">
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <script src="jquery-ui/jquery-ui.js"></script>
     <link rel="stylesheet" href="scss/tooltip.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
+    <!--Custom Modal Design-->
+    <link rel="stylesheet" href="scss/modal.css">
     <script>
         $( document ).tooltip({
             position: {
@@ -64,29 +66,6 @@ if(!isset($_SESSION['email'])){
         }
         .fa-edit{
             transition: all 700ms;
-        }
-    </style>
-    <!--loading animation-->
-    <style>
-        .loader {
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 3rem;
-            height: 3rem;
-            -webkit-animation: spin 2s linear infinite; /* Safari */
-            animation: spin 2s linear infinite;
-        }
-
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -199,56 +178,42 @@ if(!isset($_SESSION['email'])){
 
     </section>
 
-    <!--Edit modal CSS-->
-    <style>
-
-        #edit-modal-content .container-fluid{
-            padding: 0 0.5rem;
-            text-align: left;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            max-height: 75vh;
-            height: fit-content;
-        }
-
-
-    </style>
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
-        <div style="display: flex;justify-content: center;align-items: center;margin: 1rem">
-            <img src="img/Icons/edit.png" width="50" height="50"><h4 style="color: var(--dark-grey);margin-left: 0.5rem">Edit Personal Info</h4>
+        <div class="flex-box-row">
+            <img class="modal-header-icon" src="img/Icons/edit.png"><p class="modal-title">Edit Personal Info</p>
         </div>
-        <div class="flex-box-column" id="edit-modal-content" style="align-items: flex-start">
+        <div class="modal-content-scrollable">
 
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6" >
-                        <label for="fname-edit">First Name:</label><input type="text" id="fname-edit-2">
+                        <p class="modal-p" for="fname-edit">First Name:</p><input type="text" id="fname-edit-2" class="modal-field">
                     </div>
                     <div class="col-sm-6" >
-                        <label for="mname-edit">Middle Name:</label><input type="text" id="mname-edit-2">
+                        <p class="modal-p" for="mname-edit">Middle Name:</p><input type="text" id="mname-edit-2"  class="modal-field">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6" >
-                        <label for="lname-edit">Last Name:</label> <input type="text" id="lname-edit-2">
+                        <p class="modal-p"for="lname-edit">Last Name:</p> <input type="text" id="lname-edit-2"  class="modal-field">
                     </div>
                     <div class="col-sm-6" >
-                        <label for="bday-edit">Birthday:</label>
-                        <input type="text" id="bday-edit-2" contenteditable="false">
+                        <p class="modal-p" for="bday-edit" >Birthday:</p>
+                        <input type="text" id="bday-edit-2" contenteditable="false"  class="modal-field">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6" style="padding: 0 15px">
-                        <label for="gender-edit">Gender:</label>
-                        <select id="gender-edit-2">
+                        <p class="modal-p" for="gender-edit">Gender:</p>
+                        <select id="gender-edit-2"  class="modal-field">
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
                         </select>
                     </div>
                     <div class="col-sm-6" style="padding: 0 15px">
-                        <label for="age-edit">Age:</label>
-                        <input type="text" id="age-edit-2" disabled="disabled">
+                        <p class="modal-p" for="age-edit">Age:</p>
+                        <input type="text" id="age-edit-2" disabled="disabled"  class="modal-field">
                     </div>
                 </div>
                 <!--
@@ -290,8 +255,8 @@ if(!isset($_SESSION['email'])){
 -->
                 <div class="row flex-row justify-content-start" style="display: flex">
                     <div class="col-sm-12" style="padding: 0 15px">
-                        <label for="age-edit">Address:</label>
-                        <input type="text" id="address-edit-2">
+                        <p class="modal-p" for="age-edit">Address:</p>
+                        <input type="text" id="address-edit-2" class="modal-field">
                     </div>
                     <div class="col-sm-12 justify-content-end align-items-end" style="display: flex;padding: 0 15px;margin-top: 1rem">
                         <a href="#edit-modal" rel="modal:close"><button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button></a>
@@ -314,29 +279,6 @@ if(!isset($_SESSION['email'])){
                 <button class="modal-primary-button">Okay</button>
         </div>
     </div>
-    <!--loading for style-->
-    <style>
-        .loader {
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 3rem;
-            height: 3rem;
-            -webkit-animation: spin 2s linear infinite; /* Safari */
-            animation: spin 2s linear infinite;
-        }
-
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 
     <!--modal for loading-->
     <div id="pop-up-loading" class="modal">
