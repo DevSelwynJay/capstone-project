@@ -34,22 +34,22 @@ $(document).ready(function () {
 
     })
 
-    $("#edit-modal-content #bday-edit-2").datepicker({
+    $("#bday-edit-2").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange:'1900:new Date()',
         maxDate: new Date(),
         gotoCurrent: true,
     }).datepicker("option", "dateFormat", "yy-mm-dd")
-    $("#edit-modal-content #bday-edit-2").focus(function () {
+    $("#bday-edit-2").focus(function () {
         $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
     })
     $("#okay-edit-btn").on('blur',function () {
-        birthday = $("#edit-modal-content #bday-edit-2").val();
+        birthday = $("#bday-edit-2").val();
         //alert(birthday)
-        let date= new Date($("#edit-modal-content #bday-edit-2").val())
+        let date= new Date($("#bday-edit-2").val())
         const options = {  year: 'numeric', month: 'long', day: 'numeric' };
         $("#bday").html(date.toLocaleDateString(undefined,options))
 

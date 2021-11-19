@@ -1,14 +1,10 @@
 .flex-box-column{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 .flex-box-row{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 .modal-content-scrollable{
     height: fit-content;
@@ -18,7 +14,7 @@
     max-height: 75vh;
     padding: 1em 0;
 }
-.modal{
+.modal{/*the main modal container*/
     padding: 1rem;
     font-size: 20px;
 }
@@ -30,11 +26,11 @@
 .modal-title{
     color: var(--dark-grey);
     font-weight: 500;
-    font-size: clamp(1em,1.5em,3vw);
+    font-size: clamp(1em,2.3vw,3vw);
     margin: 0.5em;
 }
 .modal-p{
-    font-size: clamp(0.6em,0.8em,3vw);!important;
+    font-size: clamp(0.6em,0.8em,3vw)!important;
     font-weight: 450;
     color: var(--third-color);
     padding-left: 0.5em;

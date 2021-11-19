@@ -180,7 +180,7 @@ if(!isset($_SESSION['email'])){
 
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
-        <div class="flex-box-row">
+        <div class="flex-box-row justify-content-center">
             <img class="modal-header-icon" src="img/Icons/edit.png"><p class="modal-title">Edit Personal Info</p>
         </div>
         <div class="modal-content-scrollable">
@@ -204,63 +204,26 @@ if(!isset($_SESSION['email'])){
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6" style="padding: 0 15px">
+                    <div class="col-sm-6">
                         <p class="modal-p" for="gender-edit">Gender:</p>
                         <select id="gender-edit-2"  class="modal-field">
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
                         </select>
                     </div>
-                    <div class="col-sm-6" style="padding: 0 15px">
+                    <div class="col-sm-6">
                         <p class="modal-p" for="age-edit">Age:</p>
                         <input type="text" id="age-edit-2" disabled="disabled"  class="modal-field">
                     </div>
                 </div>
-                <!--
-                <div class="row">
-                    <div class="col-sm-3">
-                        <label style="font-size-adjust: inherit">House#</label>
-                        <input id="" type="number" name="house_no" required>
-                    </div>
-                    <div class="col-sm-3">
-                        <label>Purok</label>
-                        <select name="purok">
-                            <option value="0" disabled selected>Purok</option>
-                            <option value="0">Not available</option>
-                            <?php
-                              for($a=1;$a<=7;$a++){
-                                  //echo "<option>".$a."</option>";
-                              }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <label>Barangay</label>
-                        <input type="text" value="Sto. Rosario" disabled>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label>Town</label>
-                        <input type="text" value="Paombong" disabled>
-                    </div>
-                    <div class="col-sm-6">
-                        <label>Province/City</label>
-                        <input type="text" value="Bulacan" disabled>
-                    </div>
-                </div>
-
-
-            </div>
--->
                 <div class="row flex-row justify-content-start" style="display: flex">
-                    <div class="col-sm-12" style="padding: 0 15px">
+                    <div class="col-sm-12">
                         <p class="modal-p" for="age-edit">Address:</p>
                         <input type="text" id="address-edit-2" class="modal-field">
                     </div>
-                    <div class="col-sm-12 justify-content-end align-items-end" style="display: flex;padding: 0 15px;margin-top: 1rem">
+                    <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                         <a href="#edit-modal" rel="modal:close"><button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button></a>
-                        <a href="#edit-modal" rel="modal:close"><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
+                        <a><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
                     </div>
                 </div>
 
