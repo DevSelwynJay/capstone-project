@@ -14,6 +14,7 @@ while($row = mysqli_fetch_array($result)){
         "gender"=>$row[5],
         "age"=>$row['age'],
         "bday"=>$row['bday'],
+        "bdayISO"=>$row[6],
         "address"=>$row[7],
     ));
 }

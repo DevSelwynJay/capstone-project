@@ -26,7 +26,13 @@
 .modal-title{
     color: var(--dark-grey);
     font-weight: 500;
-    font-size: clamp(1em,2.3vw,3vw);
+    font-size: clamp(1em,2em,3vw);
+    margin: 0.5em;
+}
+.modal-sub-title{
+    color: var(--dark-grey);
+    font-weight: 500;
+    font-size: clamp(1em,1.3em,3vw);
     margin: 0.5em;
 }
 .modal-p{
@@ -101,4 +107,13 @@ Jquery UI Date Picker
 }
 .ui-datepicker td span, .ui-datepicker td a{
     text-align: center;
+}
+#ui-datepicker-div { display: none; }
+.ui-datepicker-month,.ui-datepicker-year{
+    padding: 1px;
+    border: none;
+    border-radius: 0.2rem;
+}
+.ui-datepicker-month{
+    margin-right: 0.5rem;
 }

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS Grid Bootstrap-->
+    <link rel="stylesheet" href="scss/bootstrap-grid.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
     <!--Font Awesome-->
@@ -19,6 +21,13 @@
     <title>Change Password Settings</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery Modal-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
+    <!--Custom Modal Design-->
+    <link rel="stylesheet" href="scss/modal.css">
 </head>
 
 <body>
@@ -103,6 +112,86 @@
         </div>
         </div>
 
+        <!--modal for error-->
+        <div id="pop-up-error" class="modal">
+            <div style="display: flex;align-items: center;justify-content: center">
+                <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+                <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 0.3rem;">
+                    Error
+                </p>
+            </div>
+            <div class="flex-box-row justify-content-end">
+                <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
+            </div>
+
+        </div>
+
+        <!--modal for success-->
+        <div id="pop-up-success" class="modal">
+            <div style="display: flex;align-items: center;justify-content: center">
+                <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+                <p class="modal-p" id="pop-up-success-message" style="display: flex;justify-content: center;">
+
+                </p>
+            </div>
+            <div class="flex-box-row justify-content-end">
+                <a href="#pop-up-success" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
+            </div>
+        </div>
+
+        <!--modal for loading-->
+        <div id="pop-up-loading" class="modal">
+            <div style="display: flex;align-items: center;justify-content: center">
+                <div class="loader"></div>
+                <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                    Processing Request...
+                </p>
+            </div>
+        </div>
+
+        <script>
+            let modalConfig = {
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            }
+            $(document).ready(function () {
+                $(".save-changes3").on('click',function () {
+                    $("#pop-up-loading").modal(modalConfig)
+                    $.post('php/settingsProcesses/changePassword.php',
+                        {
+                            old_pwd:$("#current-pass").val(),
+                            new_pwd:$("#new-pass").val(),
+                            confirm_pwd:$("#confirm-pass").val()
+                        }).done(function (data) {
+                        if(data==-1){
+                            setTimeout(function () {
+                                console.log("incorrect old password")
+                                $("#pop-up-error").modal(modalConfig)
+                                $("#pop-up-error-message").html("One or more fields are incorrect!");
+                            },1200)
+                        }
+                        else if(data==0){
+                            setTimeout(function () {
+                                //password di not matched
+                                $("#pop-up-error").modal(modalConfig)
+                                $("#pop-up-error-message").html("One or more fields are incorrect!");
+                            },1200)
+                        }
+                        else {
+                            setTimeout(function () {
+                                $("#pop-up-success").modal(modalConfig)
+                                $("#pop-up-success-message").html("Password changed successfully")
+                            },1200)
+                        }
+                    })
+                })
+
+                $('[href="#pop-up-success"]').click(function () {
+                    location.reload()
+                })
+            })
+        </script>
 
     </section>
     <!--Drop down script-->
@@ -133,6 +222,8 @@
         });
 
     </script>
+
+
 </body>
 
 </html>

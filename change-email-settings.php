@@ -12,6 +12,8 @@ if(!isset($_SESSION['email'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS Grid Bootstrap-->
+    <link rel="stylesheet" href="scss/bootstrap-grid.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
 
@@ -52,8 +54,9 @@ if(!isset($_SESSION['email'])){
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-    <!--style sheet for modal-->
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
+    <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
     <!--Bootstrap
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -178,6 +181,12 @@ if(!isset($_SESSION['email'])){
     </script>
     <!--Change email script-->
     <script>
+        let modalConfig = {
+            escapeClose: false,
+            clickClose: false,
+            showClose: false
+        }
+
         //$('[data-toggle="tooltip"]').tooltip()
         let email="";
         $.post("php/settingsProcesses/retrieveCurrentEmail.php").done(function (data) {
@@ -258,14 +267,14 @@ if(!isset($_SESSION['email'])){
                             }
                             else if(data==-1){
                                 setTimeout(function () {
-                                    $("#pop-up-error").modal()
+                                    $("#pop-up-error").modal(modalConfig)
                                     $("#pop-up-error-message").html("Email is already taken!")
                                     console.log("email is not valid")
                                 },300)
                             }
                             else{
                                 setTimeout(function () {
-                                    $("#pop-up-error").modal()
+                                    $("#pop-up-error").modal(modalConfig)
                                     $("#pop-up-error-message").html("Either of the two email is invalid!")
                                     console.log("email is not valid")
                                 },300)
@@ -277,7 +286,7 @@ if(!isset($_SESSION['email'])){
             }
             else {
                 setTimeout(function () {
-                    $("#pop-up-error").modal()
+                    $("#pop-up-error").modal(modalConfig)
                     $("#pop-up-error-message").html("Please double check the form!")
                     console.log("Please double check the form")
                 },300)
@@ -327,12 +336,12 @@ if(!isset($_SESSION['email'])){
     <!--modal for error-->
     <div id="pop-up-error" class="modal">
         <div style="display: flex;align-items: center;justify-content: center">
-            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-            <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;">
+            <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+            <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;">
                 Error
             </p>
         </div>
-        <div class="flex-box-row">
+        <div class="flex-box-row justify-content-end">
             <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
         </div>
 

@@ -180,7 +180,7 @@ if(!isset($_SESSION['email'])){
 
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
-        <div class="flex-box-row justify-content-center">
+        <div class="flex-box-row justify-content-center align-items-center">
             <img class="modal-header-icon" src="img/Icons/edit.png"><p class="modal-title">Edit Personal Info</p>
         </div>
         <div class="modal-content-scrollable">
@@ -233,13 +233,13 @@ if(!isset($_SESSION['email'])){
     <!--Confirm edit-->
     <div class="modal" id="confirm-changes">
         <div class="justify-content-center" style="display: flex">
-            <p>Save changes?</p>
+            <p class="modal-sub-title">Save changes?</p>
         </div>
         <div class="justify-content-end" style="display: flex">
             <a href="#confirm-changes" rel="modal:close">
                 <button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button>
             </a>
-                <button class="modal-primary-button">Okay</button>
+                <button id="confirm-changes-ok-btn" class="modal-primary-button">Okay</button>
         </div>
     </div>
 
