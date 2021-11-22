@@ -23,7 +23,6 @@ $output .= '<table >
                     <th class="column_sort" id="dateadded" data-order="'.$order.'">Date Added</th>
                     <th class="add-row"></th>
                 </tr>';
-
 while($row = mysqli_fetch_array($result)){
     $id = $row['id'];
     $medname = $row['name'];
@@ -32,7 +31,6 @@ while($row = mysqli_fetch_array($result)){
     $mfgdate = $row['mfgdate'];
     $expdate = $row['expdate'];
     $dateadded = $row['dateadded'];
-
     $output .= '<tr>
         <td scope="row">' . $id . '</td>
         <td>' . $medname . '</td>

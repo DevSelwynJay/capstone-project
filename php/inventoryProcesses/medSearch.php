@@ -1,21 +1,24 @@
 <?php
 $con=null;
 require '../DB_Connect.php';
-
-if(isset($_POST["query"])){
-    $output ='';
-    $query = "select * from `medinventory` where name like '%".$_POST["query"]."%'";
-    $result = mysqli_query($con,$query);
-    $output = '<ul class="list-group list-group-flush">';
-    if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_array($result)){
-            $output .= '<li class="list-group-item text-dark" onclick="medDisplayUpdateModal('.$row["id"].')">'.$row["name"].'</li>';
+if(isset($_POST["search"])) {
+    $search = $_POST["search"];
+    $query = "select * from `medinventory` where name like '%" . $search . "%'";
+    $result = mysqli_query($con, $query);
+    $response = array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            $response[] = array(
+                'value' => $row['id'],
+                "label" => $row['id'] . ' ' . $row['name']
+            );
         }
-
+    } else {
+        $response[] = "";
+        $response[] = array(
+            "label" => "No Record Found"
+        );
     }
-    else{
-        $output .= '<li class="list-group-item text-dark">Medicine Not Found</li>';
-    }
-    echo $output;
+    echo json_encode($response);
 }
 

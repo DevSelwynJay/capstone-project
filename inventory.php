@@ -4,37 +4,30 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Bootstrap Css-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
+    <!--CSS Grid Bootstrap-->
+    <link rel="stylesheet" href="scss/bootstrap-grid.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/main.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+    <!-- Font Family Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Inventory</title>
     <!--Jquery-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <script src="jquery-ui/jquery-ui.js"></script>
-    <!-- Bootstrap JS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
-
-    <!--Custom CSS-->
-<link rel="stylesheet" href="scss/main.css">
-<!--Font Awesome-->
-<script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
-<!-- Font Family Poppins -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-<title>Inventory</title>
-
-
-
-
+    <!--Custom Modal Design-->
+    <link rel="stylesheet" href="scss/modal.css">
 </head>
 <body>
-
 <section class="global">
 <div class="global__container">
 <div class="global__sidenav">
@@ -69,233 +62,149 @@
 <img src="img/HIS logo blue.png" alt="">
 </div>
 <div class="settings">
-                                <a><i class="fas fa-user-circle"></i></a> 
-                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
-                                <a id="close-dropdown"><i class="fas fa-times"></i></a>
-     
-                                <div class="drop-down-settings" id="dropdown">
-                                    <ul>
-                                        <li><a href="">Approve EMR</a></li>
-                                        <li><a href="">settings</a></li>
-                                        <li><a href="">About</a></li>
-                                        <li><a href="">Logout</a></li>
-                                    </ul>
-                                </div>
-                             </div>
+<a><i class="fas fa-user-circle"></i></a> 
+<a><i class="fas fa-ellipsis-h"></i></a> 
+</div>
 </div>
 </div>
 <div class="col-sm-12">
 <div class="">
    <div class="inventory__container">
+       <div class="inventory__table-main-container">
+           <!--Add Button para sa MEDS-->
+           <button type="button" id="addbtn">Add Medicine</button>
+           <div>
+               <input style="width: 40vw" type="text" id="meds" class="form-control" placeholder="Search Medicines" autocomplete="off">
+           </div>
+           <!--Display ko dito yung Table of MEDS-->
+           <div id="displayMedicineDataTable">
+           </div>
+       </div>
+   </div>
     <div class="inventory__table-toexpire-container"  >
         <div id="toExptab">
-
-        <!--<table>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Medicine Name</td>
-                    <td class="expired-text">Expires in 3 days</td>
-                    <td class="warning-btn"><i class="fas fa-exclamation"></i></td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>Medicine Name</td>
-                    <td class="expired-text">Expires in 5 days</td>
-                    <td class="warning-btn"><i class="fas fa-exclamation"></i></td>
-                </tr>
-            </tbody>
-        </table>-->
         </div>
     </div>
    
     <div class="inventory__table-expired-container" >
         <div id="exptab">
-        <!--<h1>Expired Medicines</h1>
-        <table>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Medicine Name</td>
-                    <td class="expired-text">Expired</td>
-                    <td class="delete-btn"><i class="fas fa-trash"></i></td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>Medicine Name</td>
-                    <td class="expired-text">Expired</td>
-                    <td class="delete-btn"><i class="fas fa-trash"></i></td>
-                </tr>
-            </tbody>
-        </table>-->
         </div>
     </div>
-
 <!--Modals-->
        <!-- Add New Meds Modal -->
-       <div class="modal fade" id="getAddMedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered">
-               <div class="modal-content">
-                   <div class="modal-header">
-                       <h5 class="modal-title" id="addNewMedicineLabel">Add New Medicine</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <div class="modal-body">
-                       <div class="form-group">
-                           <label for="medicineName">Medicine Name</label>
-                           <input type="text" class="form-control" id="medicineName"  autocomplete="off" placeholder="Enter Medicine Name" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="medicineCategory">Category</label>
-                           <input type="text" class="form-control" id="medicineCategory" autocomplete="off" placeholder="Enter Category" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="medicineStocks">Stocks</label>
-                           <input type="text" class="form-control" id="medicineStocks" autocomplete="off" placeholder="Enter Stocks" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="medicineMfgDate">Mfg. Date</label>
-                           <input type="text" name="medMfgDate" inputmode="none" class="form-control datepicker" id="medicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="medicineExpDate">Exp. Date</label>
-                           <input type="text" name="medExpDate" inputmode="none"  class="form-control datepicker" id="medicineExpDate" autocomplete="off" placeholder="Enter Expiration Date"  required>
-                       </div>
+       <div id="add-modal" class="modal">
+           <div class="flex-box-row justify-content-center align-items-center">
+               <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Add New Medicine</p>
+           </div>
+           <div class="modal-content-scrollable">
 
+               <div class="container-fluid">
+                   <div class="row">
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" required>
+                       </div>
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" required>
+                       </div>
                    </div>
-                   <div class="modal-footer">
-                       <button type="button" class="btn btn-primary" onclick="addNewMedicine()">Add</button>
-                       <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                   <div class="row">
+                       <div class="col-sm-12" >
+                           <p class="modal-p"for="medicineStocks">Stock:</p>
+                           <input type="text" id="medicineStocks"  class="modal-field" required>
+                       </div>
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
+                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" required>
+                       </div>
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineExpDate" >Exp Date:</p>
+                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" required>
+                       </div>
+                   </div>
+                   <div class="row flex-row justify-content-start" style="display: flex">
+                       <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
+                           <a href="#add-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
+                           <a><button id="okay-edit-btn" class="modal-primary-button" onclick="addNewMedicine()">Add</button></a>
+                       </div>
+                   </div>
 
-                   </div>
                </div>
            </div>
        </div>
+    <!-- Update Meds Modal -->
+    <div id="update-modal" class="modal">
+        <div class="flex-box-row justify-content-center align-items-center">
+            <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Update Medicine</p>
+        </div>
+        <div class="modal-content-scrollable">
 
-       <!-- Update Meds Modal -->
-       <div class="modal fade" id="getUpdateMedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered">
-               <div class="modal-content">
-                   <div class="modal-header">
-                       <h5 class="modal-title" id="UpdateMedicineLabel">Update Medicine Stocks</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <div class="modal-body">
-                       <div class="form-group">
-                           <label for="updatemedicineName">Medicine Name</label>
-                           <input type="text" readonly class="form-control-plaintext"  class="form-control" id="updatemedicineName" autocomplete="off" placeholder="Enter Medicine Name">
-                       </div>
-                       <div class="form-group">
-                           <label for="updatemedicineCategory">Category</label>
-                           <input type="text" readonly class="form-control-plaintext" class="form-control" id="updatemedicineCategory" autocomplete="off" placeholder="Enter Category">
-                       </div>
-                       <div class="form-group">
-                           <label for="updatemedicineStocks">Stocks</label>
-                           <input type="text" class="form-control" id="updatemedicineStocks" autocomplete="off" placeholder="Enter Stocks" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="updatemedicineMfgDate">Mfg. Date</label>
-                           <input type="text" name="upMfgDate" inputmode="none" class="form-control-datepicker" id="updatemedicineMfgDate" autocomplete="off" placeholder="Enter Manufacturing Date" required>
-                       </div>
-                       <div class="form-group">
-                           <label for="updatemedicineExpDate">Exp. Date</label>
-                           <input type="text" name="upExpDate" inputmode="none" class="form-control-datepicker" id="updatemedicineExpDate" autocomplete="off" placeholder="Enter Expiration Date" required>
-                       </div>
-
-                   </div>
-                   <div class="modal-footer">
-                       <button type="button" class="btn btn-primary" onclick="medUpdate()">Update</button>
-                       <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                       <input type="hidden" id="hiddendata">
-                   </div>
-               </div>
-           </div>
-       </div>
-
-    <div class="inventory__table-main-container">
-            <!--Add Button para sa MEDS-->
-
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#getAddMedModal">
-                Add Medicine</button>
-        <div class="container-text-dark">
-            <input type="text" name="meds" id="meds" class="form-control" placeholder="Search Medicines">
-            <div id="medlist">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="updatemedicineName">Medicine Name:</p><input type="text" id="updatemedicineName" class="modal-field" readonly required>
+                    </div>
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="updatemedicineCategory">Category:</p><input type="text" id="updatemedicineCategory"  class="modal-field" readonly required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" required>
+                    </div>
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
+                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" required>
+                    </div>
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="updatemedicineExpDate" >Exp Date:</p>
+                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" required>
+                        <input type="hidden" id="hiddendata" >
+                    </div>
+                </div>
+                <div class="row flex-row justify-content-start" style="display: flex">
+                    <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
+                        <a href="#update-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
+                        <a><button id="okay-update-btn" class="modal-primary-button" onclick="medUpdate()">Update</button></a>
+                    </div>
+                </div>
 
             </div>
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-<!--        Display ko dito yung Table of MEDS-->
-        <div id="displayMedicineDataTable"></div>
-
-
-
     </div>
-   </div>
-</div>
+    <!-- Delete Meds Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="flex-box-row justify-content-center align-items-center">
+            <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Delete Medicine</p>
+        </div>
+        <div class="modal-content-scrollable">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <p class="modal-p">Do you want to Delete this Expired Medicine?</p>
+                        <input type="hidden" id="hideid" >
+                    </div>
+                </div>
+                <div class="row flex-row justify-content-start" style="display: flex">
+                    <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
+                        <a href="#delete-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
+                        <a><button id="okay-edit-btn" class="modal-primary-button" onclick="">Delete</button></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-
-<script>
-        const dropdown = document.querySelector('#dropdown');
-        const dropdownToggle = document.querySelector('#dropdown-toggle');
-        const Closedropdown = document.querySelector('#close-dropdown');
-        
-        dropdownToggle.addEventListener('click',function(){//Conditions
-        if(dropdown.classList.contains('open')){ // Close Mobile Menu
-        dropdown.classList.remove('open');
-        }
-        else{ // Open Mobile Menu
-        dropdown.classList.add('open');
-        }});
-        
-        
-        dropdownToggle.addEventListener('click',function(){
-            dropdown.classList.add('open');
-            dropdownToggle.style.display = "none";
-            Closedropdown.style.display = "block"
-        });
-        
-        Closedropdown.addEventListener('click',function(){
-           dropdown.classList.remove('open');
-           Closedropdown.style.display = "none"
-           dropdownToggle.style.display = "block";
-        });
-        
-        </script>
-
-
-
 <script type="text/javascript">
-
-
-
     //Display Automatically
     $(document).ready(function(){
         displayMedicines();
-        displayToExpTab()
+        displayToExpTab();
         displayExpTab();
-
-
-
     });
     //Sort function
     $(document).ready(function(){
@@ -321,77 +230,56 @@
 
         })
     });
-
+    //Search Function
     $(document).ready(function(){
-        $('#meds').keyup(function(){
-            var query = $(this).val();
-            if(query != ''){
+        $('#meds').autocomplete({
+            source: function( request, response){
                 $.ajax({
-                    url:"php/inventoryProcesses/medSearch.php",
-                    method: "POST",
-                    data:{query:query},
-                    success:function(data){
-                        $('#medlist').fadeIn();
-                        $('#medlist').html(data);
+                    url: 'php/inventoryProcesses/medSearch.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        search:request.term
+                    },
+                    success: function(data){
+                        response(data);
                     }
-                })
+                });
+            },
+            select:function(event,ui){
+                medDisplayUpdateModal(ui.item.value);
+                $('#meds').val("");
+                return false;
+
             }
-            else {
-                $('#medlist').html("");
-            }
+        });
+    });
+    //Modals
+    $(document).ready(function(){
+        $('#addbtn').on("click",function (){
+            $("#add-modal").modal({
+                //escapeClose: false,
+                clickClose: false,
+                showClose: false
+            })
+        })
+        $('#addcancel').on("click", function (){
+            $('#meds').trigger("focus");
+            $('#medicineName').val("");
+            $('#medicineCategory').val("");
+            $('#medicineStocks').val("");
+            $('#medicineMfgDate').val("");
+            $('#medicineExpDate').val("");
         })
     })
-
-
-    //Validation of DatePicker
-    //Note: hindi ko alam ayusin ang css neto.
-    $('[name=\"medExpDate\"]').datepicker({
-        minDate: new Date(),
-    }).datepicker("option","dateFormat","yy-mm-dd")
-
-
-    $('[name=\"medMfgDate\"]').datepicker({
-        widgetPositioning: {
-            horizontal: "auto",
-            vertical: "auto"
-        },
-        maxDate: new Date(),
-        orientation: "auto"
-
-    }).datepicker("option","dateFormat","yy-mm-dd")
-    $('[name=\"upExpDate\"]').datepicker({
-        widgetPositioning: {
-            horizontal: "auto",
-            vertical: "auto"
-        },
-        minDate: new Date(),
-        orientation: "auto"
-
-    }).datepicker("option","dateFormat","yy-mm-dd")
-
-    $('[name=\"upMfgDate\"]').datepicker({
-        widgetPositioning: {
-            horizontal: "auto",
-            vertical: "auto"
-        },
-        maxDate: new Date(),
-        orientation: "auto"
-    }).datepicker("option","dateFormat","yy-mm-dd")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function delModal(id){
+        $('#hideid').val(id);
+        $('#delete-modal').modal("show");
+            $('#delete-modal').modal({
+                clickClose: false,
+                showClose: false
+            })
+    }
     <!--    Display Function ng MEDS-->
     function displayMedicines() {
         var displayData = true;
@@ -406,9 +294,51 @@
             }
         });
     }
-
-
-
+    //Datepicker Validation
+    $("#medicineMfgDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'1970:new Date()',
+        maxDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#medicineMfgDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
+    $("#medicineExpDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'new Date():2100',
+        minDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#medicineExpDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
+    $("#updatemedicineMfgDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'1970:new Date()',
+        maxDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#updatemedicineMfgDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
+    $("#updatemedicineExpDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'new Date():2100',
+        minDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#updatemedicineExpDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
     //Display To Expire Table
     function displayToExpTab(){
     var displayToExpData = true;
@@ -423,7 +353,6 @@
         }
     });
     }
-
     //Display Expired Table
     function displayExpTab(){
         var displayExpTab = true;
@@ -438,8 +367,6 @@
             }
         });
     }
-
-
     //Add New Medicine Function
     function addNewMedicine() {
         var medName = $('#medicineName').val()
@@ -447,7 +374,6 @@
         var medStocks = $('#medicineStocks').val()
         var medMfgDate = $('#medicineMfgDate').val()
         var medExpDate = $('#medicineExpDate').val()
-
         $.ajax({
             url: "php/inventoryProcesses/inventoryAddProc.php",
             type: 'POST',
@@ -461,21 +387,15 @@
             success: function(data, status) {
                 console.log(status);
                 displayMedicines();
-                $('#getAddMedModal').modal('hide');
-
-
-
+                displayToExpTab();
+                displayExpTab();
             }
         });
-
-
     }
-
     //Below this are the Update Process
     //Display Update Modal function
     function medDisplayUpdateModal(medupdateid){
         $('#hiddendata').val(medupdateid);
-
         $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
             var medid = JSON.parse(data);
             $('#updatemedicineName').val(medid.name);
@@ -483,13 +403,21 @@
             $('#updatemedicineStocks').val(medid.stock);
             $('#updatemedicineMfgDate').val(medid.mfgdate);
             $('#updatemedicineExpDate').val(medid.expdate);
-
         });
-
-
-
-
-        $('#getUpdateMedModal').modal("show");
+        $('#update-modal').modal("show");
+        $("#update-modal").modal({
+            //escapeClose: false,
+            clickClose: false,
+            showClose: false
+        })
+        $('#addcancel').on("click", function (){
+            $('#meds').trigger("focus");
+            $('#updatemedicineName').val("");
+            $('#updatemedicineCategory').val("");
+            $('#updatemedicineStocks').val("");
+            $('#updatemedicineMfgDate').val("");
+            $('#updatemedicineExpDate').val("");
+        })
 
     }
 
@@ -508,16 +436,12 @@
             updatemedicineExpDate:updatemedicineExpDate,
             id:id
         },function(data,status){
-            $('#getUpdateMedModal').modal('hide');
+            $("[href='#update-modal']").trigger('click');
             displayMedicines();
+            displayToExpTab();
+            displayExpTab();
         });
-
     }
-
-
-
 </script>
-
-
 </body>
 </html>
