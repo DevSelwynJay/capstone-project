@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2021 at 02:52 PM
+-- Generation Time: Nov 22, 2021 at 09:29 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,15 +40,16 @@ CREATE TABLE `pending_patient` (
   `blood_type` varchar(20) DEFAULT NULL,
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
-  `contact_no` varchar(20) NOT NULL
+  `contact_no` varchar(20) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pending_patient`
 --
 
-INSERT INTO `pending_patient` (`id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`) VALUES
-('2021-02-538075', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1 Purok 1 Sto. Rosario Paombong Bulacan', 'none', 'Single', NULL, 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900');
+INSERT INTO `pending_patient` (`id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `date_created`) VALUES
+('2021-02-538075', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1 Purok 1 Sto. Rosario Paombong Bulacan', 'none', 'Single', NULL, 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', '2021-11-22 07:28:47');
 
 --
 -- Indexes for dumped tables

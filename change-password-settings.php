@@ -122,13 +122,13 @@ if(!isset($_SESSION['email'])){
 
         <!--modal for error-->
         <div id="pop-up-error" class="modal">
-            <div style="display: flex;align-items: center;justify-content: center">
+            <div class="flex-box-row justify-content-center align-items-center">
                 <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
                 <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;">
                     Error
                 </p>
             </div>
-            <div class="flex-box-row justify-content-end">
+            <div class="flex-box-row justify-content-end align-items-center">
                 <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
             </div>
 
