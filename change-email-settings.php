@@ -260,7 +260,7 @@ if(!isset($_SESSION['email'])){
 
                             if(data==1){
                                 setTimeout(function () {
-
+                                    location.reload()
                                     console.log("change email success")
                                 },300)
 

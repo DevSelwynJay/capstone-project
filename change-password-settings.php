@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +124,7 @@
         <div id="pop-up-error" class="modal">
             <div style="display: flex;align-items: center;justify-content: center">
                 <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
-                <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 0.3rem;">
+                <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;">
                     Error
                 </p>
             </div>
@@ -157,6 +165,14 @@
             }
             $(document).ready(function () {
                 $(".save-changes3").on('click',function () {
+
+                    //check for empty input
+                    if($("#current-pass").val()==""||$("#new-pass").val()==""||$("#confirm-pass").val()==""){
+                        $("#pop-up-error").modal(modalConfig)
+                        $("#pop-up-error-message").html("One or more fields are empty!")
+                        return
+                    }
+
                     $("#pop-up-loading").modal(modalConfig)
                     $.post('php/settingsProcesses/changePassword.php',
                         {
