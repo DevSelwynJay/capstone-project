@@ -80,7 +80,7 @@
 <div class="col-sm-12">
 <div class="">
    <div class="inventory__container">
-       <div class="inventory__table-main-container">
+       <div class="inventory__table-main-container"  >
            <!--Add Button para sa MEDS-->
            <button type="button" id="addbtn">Add Medicine</button>
            <div>
@@ -111,24 +111,24 @@
                <div class="container-fluid">
                    <div class="row">
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" required>
+                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" required>
+                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" autocomplete="off" required>
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-sm-12" >
                            <p class="modal-p"for="medicineStocks">Stock:</p>
-                           <input type="text" id="medicineStocks"  class="modal-field" required>
+                           <input type="text" id="medicineStocks"  class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
-                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" required>
+                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineExpDate" >Exp Date:</p>
-                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" required>
+                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                        </div>
                    </div>
                    <div class="row flex-row justify-content-start" style="display: flex">
@@ -159,15 +159,15 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" >
-                        <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" required>
+                        <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
-                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" required>
+                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineExpDate" >Exp Date:</p>
-                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" required>
+                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                         <input type="hidden" id="hiddendata" >
                     </div>
                 </div>
@@ -396,6 +396,7 @@
             },
             success: function(data, status) {
                 console.log(status);
+                $("[href='#add-modal']").trigger('click');
                 displayMedicines();
                 displayToExpTab();
                 displayExpTab();

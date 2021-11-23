@@ -20,7 +20,7 @@ if(isset($_POST['displayExpTab'])){
                     <td>'.$id.'</td>
                     <td>'.$name.'</td>
                     <td class="expired-text">Expired</td>
-                    <td class="delete-btn"><i class="fas fa-trash"></i></td>
+                    <td class="delete-btn"><i class="fas fa-trash" onclick="delModal('.$id.')" ></i></td>
                 </tr>';
     }
     $expiredtab .= '</tbody>
