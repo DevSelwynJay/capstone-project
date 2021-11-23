@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*purpose of this code is to redirect the user to main
 example:
 user is admin -> will go to admin part
@@ -9,7 +10,7 @@ if(!isset($_SESSION['email'])){
     header("location:../../index.php",true);
 }
 
-session_start();
+
 //0->superadmin 1->admin 2->patient
 //make a condition kung saang page ireredirect using the session variable SESSION['account_type']
 $type = $_SESSION['account_type'];

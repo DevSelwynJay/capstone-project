@@ -2,6 +2,14 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+.flickity-slider{/*ung sa may fullscreen view*/
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
 .flickity-viewport{
     display: flex;
     justify-content: center;
@@ -22,8 +30,10 @@
  counter-increment: gallery-cell;*/
 }
 .gallery-cell img{
-width: 100%;
- max-height: fit-content;
+width: fit-content;
+ height: fit-content;
+    max-height: 100%;/*change to 80vh during fullscreen*/
+    max-width: 100%;
 }
 
 /*cell number

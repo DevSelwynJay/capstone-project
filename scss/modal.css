@@ -24,13 +24,13 @@
 }
 
 .modal-title{
-    color: var(--dark-grey);
+    color: var(--third-color)!important;
     font-weight: 500;
     font-size: clamp(1em,2em,3vw);
     margin: 0.5em;
 }
 .modal-sub-title{
-    color: var(--dark-grey);
+    color: var(--third-color)!important;
     font-weight: 500;
     font-size: clamp(1em,1.3em,3vw);
     margin: 0.5em;
