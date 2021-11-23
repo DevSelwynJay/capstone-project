@@ -61,10 +61,10 @@
 
                            <div class="drop-down-settings" id="dropdown">
                                <ul>
-                                   <li><a href="">Approve EMR</a></li>
-                                   <li><a href="">settings</a></li>
-                                   <li><a href="">About</a></li>
-                                   <li><a href="">Logout</a></li>
+                               <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
                                </ul>
                            </div>
                         </div>
