@@ -1,8 +1,6 @@
 <?php
-
 $con=null;
 require '../DB_Connect.php';
-
 if (isset($_POST['displayMedData'])) {
     $medtable = '<table >
     <tbody>
@@ -17,7 +15,6 @@ if (isset($_POST['displayMedData'])) {
                     <th class="add-row"></th>
                 </tr>
     ';
-
     $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc";
     $result = mysqli_query($con, $meddatatable);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -29,9 +26,6 @@ if (isset($_POST['displayMedData'])) {
         $expdate = $row['expdate'];
         $dateadded = $row['dateadded'];
         $datetoday = date("Y-m-d");
-
-
-
             $medtable .= '<tr>
         <td scope="row">' . $id . '</td>
         <td>' . $medname . '</td>
@@ -42,11 +36,8 @@ if (isset($_POST['displayMedData'])) {
         <td>' . $dateadded . '</td>
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal('.$id.')"></i></td>
         </tr>';
-
     }
     $medtable .= '</tbody></table>';
     echo $medtable;
 }
-
-
 ?>

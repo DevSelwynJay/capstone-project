@@ -1,10 +1,7 @@
 <?php
 $con=null;
 require '../DB_Connect.php';
-
 $datetoday = date("Y-m-d");
-
-
 if(isset($_POST['displayToExpData'])){
     $exptab = "Select * from `medinventory` where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
     $result = mysqli_query($con, $exptab);
@@ -15,14 +12,11 @@ if(isset($_POST['displayToExpData'])){
                     <th>Medicine Name</th>
                     <th>Remaining Days</th>
                 </tr>';
-
     while($row = mysqli_fetch_assoc($result)){
         $id = $row['id'];
         $name = $row['name'];
         $date = $row['expdate'];
         $remaindays=datediff($datetoday,$date);
-
-
         $exptable .= '<tr>
                     <td class="expired-text">'.$id.'</td>
                     <td class="expired-text">'.$name.'</td>
@@ -30,18 +24,13 @@ if(isset($_POST['displayToExpData'])){
                     <td class="warning-btn"><i class="fas fa-exclamation"></i></td>
                </tr>
                ';
-
-
     }
-
     $exptable .= '</tbody>
         </table>';
     echo  $exptable;
-
 }
 function datediff($datetoday, $expdate){
     $diff = strtotime($expdate) - strtotime($datetoday);
-
     return abs(round($diff/86400));
 }
 
