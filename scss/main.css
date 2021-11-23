@@ -2311,4 +2311,52 @@ td:nth-child(1) {
   height: 50px;
   border-radius: 50%;
 }
+
+.pending-patient-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container-shadow {
+  -webkit-box-shadow: 1px 1px 1.5px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: 1px 1px 1.5px 1px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  color: var(--third-color);
+  padding: 20px;
+  border-radius: 1em;
+}
+
+.container-shadow p {
+  color: var(--primary-color);
+  font-size: 1.5em;
+}
+
+.container-shadow hr {
+  margin-top: 10px;
+  color: #b7c6d1;
+  background-color: #b7c6d1;
+}
+
+.container-shadow td:nth-child(1) {
+  font-weight: normal;
+}
+
+.container-shadow tr:nth-child(even) {
+  background-color: #b7c6d1;
+}
+
+.container-shadow button {
+  border: none;
+  outline: none;
+  background: var(--primary-color);
+  width: 100px;
+  height: 30px;
+  font-family: Poppins;
+  color: white;
+  border-radius: 4rem;
+}
 /*# sourceMappingURL=main.css.map */

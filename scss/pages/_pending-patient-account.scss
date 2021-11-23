@@ -1,0 +1,37 @@
+.pending-patient-container{
+    display: flex;
+    justify-content: center;
+}
+.container-shadow{
+    box-shadow: 1px 1px 1.5px 1px rgba(0, 0 , 0, 0.5);
+    width: 90%;
+    color: var(--third-color);
+    padding: 20px;
+    border-radius: 1em;
+    
+    p{
+        color: var(--primary-color);
+        font-size: 1.5em;
+    }
+    hr{
+        margin-top: 10px;
+        color: #b7c6d1;
+        background-color: #b7c6d1;
+    }
+    td:nth-child(1){
+        font-weight: normal;
+    }
+    tr:nth-child(even){
+        background-color: #b7c6d1;
+    }
+    button{
+        border: none;
+        outline: none;
+        background: var(--primary-color);
+        width: 100px;
+        height: 30px;
+        font-family: Poppins;
+        color: white;
+        border-radius: 4rem;
+    }
+}
