@@ -62,15 +62,25 @@
 <img src="img/HIS logo blue.png" alt="">
 </div>
 <div class="settings">
-<a><i class="fas fa-user-circle"></i></a> 
-<a><i class="fas fa-ellipsis-h"></i></a> 
-</div>
+                           <a><i class="fas fa-user-circle"></i></a> 
+                           <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
+                           <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+                           <div class="drop-down-settings" id="dropdown">
+                               <ul>
+                               <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
+                               </ul>
+                           </div>
+                        </div>
 </div>
 </div>
 <div class="col-sm-12">
 <div class="">
    <div class="inventory__container">
-       <div class="inventory__table-main-container">
+       <div class="inventory__table-main-container"  >
            <!--Add Button para sa MEDS-->
            <button type="button" id="addbtn">Add Medicine</button>
            <div>
@@ -101,24 +111,24 @@
                <div class="container-fluid">
                    <div class="row">
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" required>
+                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" required>
+                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" autocomplete="off" required>
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-sm-12" >
                            <p class="modal-p"for="medicineStocks">Stock:</p>
-                           <input type="text" id="medicineStocks"  class="modal-field" required>
+                           <input type="text" id="medicineStocks"  class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
-                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" required>
+                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineExpDate" >Exp Date:</p>
-                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" required>
+                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                        </div>
                    </div>
                    <div class="row flex-row justify-content-start" style="display: flex">
@@ -149,15 +159,15 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" >
-                        <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" required>
+                        <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
-                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" required>
+                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineExpDate" >Exp Date:</p>
-                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" required>
+                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
                         <input type="hidden" id="hiddendata" >
                     </div>
                 </div>
@@ -386,6 +396,7 @@
             },
             success: function(data, status) {
                 console.log(status);
+                $("[href='#add-modal']").trigger('click');
                 displayMedicines();
                 displayToExpTab();
                 displayExpTab();
@@ -442,6 +453,34 @@
             displayExpTab();
         });
     }
+</script>
+
+<script>
+const dropdown = document.querySelector('#dropdown');
+const dropdownToggle = document.querySelector('#dropdown-toggle');
+const Closedropdown = document.querySelector('#close-dropdown');
+
+dropdownToggle.addEventListener('click',function(){//Conditions
+if(dropdown.classList.contains('open')){ // Close Mobile Menu
+dropdown.classList.remove('open');
+}
+else{ // Open Mobile Menu
+dropdown.classList.add('open');
+}});
+
+
+dropdownToggle.addEventListener('click',function(){
+    dropdown.classList.add('open');
+    dropdownToggle.style.display = "none";
+    Closedropdown.style.display = "block"
+});
+
+Closedropdown.addEventListener('click',function(){
+   dropdown.classList.remove('open');
+   Closedropdown.style.display = "none"
+   dropdownToggle.style.display = "block";
+});
+
 </script>
 </body>
 </html>

@@ -20,7 +20,7 @@
    <body>
       <section class="global">
          <div class="global__container">
-<!--
+
             <div class="global__sidenav">
                <div class="inner-sidenav">
                   <div class="spacer">
@@ -31,11 +31,11 @@
                         <h4>Your Name</h4>
                      </div>
                      <ul class="menu">
-                        <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
-                        <li><a href="patient.php" class="patient">Patient</a></li>
-                        <li><a href="reports.php" class="reports">Reports</a></li>
-                        <li><a href="track-map.html" class="trackMap">Track Map</a></li>
-                        <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                     <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                            <li><a href="patient.php" class="patient">Patient</a></li>
+                            <li><a href="reports.php" class="reports">Reports</a></li>
+                            <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
                      </ul>
                   </div>
                   <div class="social-media-links">
@@ -45,7 +45,7 @@
                   </div>
                </div>
             </div>
--->
+
 
             <div class="global__main-content">
                <div class="inner-page-content">
@@ -61,10 +61,10 @@
 
                            <div class="drop-down-settings" id="dropdown">
                                <ul>
-                                   <li><a href="">Approve EMR</a></li>
-                                   <li><a href="">settings</a></li>
-                                   <li><a href="">About</a></li>
-                                   <li><a href="">Logout</a></li>
+                               <li><a href="">Approve EMR</a></li>
+                                        <li><a href="settings.php">settings</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="php/sessionDestroy.php">Logout</a></li>
                                </ul>
                            </div>
                         </div>
@@ -81,158 +81,49 @@
                            <a href="/">Edit Details</a>
                         </div>
                      </div>
-                     <div class="content">
-                        <div class="patient-content__container">
-                           <div class="patient-content__name holder">
-                              <div class="patient-content__name-container">
-                                 <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                 <p>Selwyn Jay D. Faustino</p>
-                                 <a href="/">View</a>
-                              </div>
-                           </div>
-                           <div class="patient-content__information holder">
-                              <p>Information</p>
-                              <table>
-                                 <tr>
-                                    <td><strong>Gender</strong></td>
-                                    <td>M</td>
-                                 </tr>
-                                 <tr>
-                                    <td><strong>Age</strong></td>
-                                    <td>21</td>
-                                 </tr>
-                                 <tr>
-                                    <td><strong>Address</strong></td>
-                                    <td>Address</td>
-                                 </tr>
-                                 <tr>
-                                    <td><strong>Postal Code</strong></td>
-                                    <td>xxxx</td>
-                                 </tr>
-                                 <tr>
-                                    <td><strong>Occupation</strong></td>
-                                    <td>n/a</td>
-                                 </tr>
-                              </table>
-                           </div>
-                           <div class="patient-content__blood-type holder">
-                              <div class="patient-content__blood-type-container">
-                                 <img class="blood-type-icon" src="img/Icons/blood-type.png" alt="">
-                                 <p>Blood Type</p>
-                                 <p><strong>O</strong></p>
-                              </div>
-                           </div>
-                           <div class="patient-content__height holder">
-                              <div class="patient-content__height-container">
-                                 <img class="height-icon" src="img/Icons/height.png" alt="">
-                                 <p>Height</p>
-                                 <p><strong>XXXCM</strong></p>
-                              </div>
-                           </div>
-                           <div class="patient-content__weight holder">
-                              <div class="patient-content__weight-container">
-                                 <img class="weight-icon" src="img/Icons/weight.png" alt="">
-                                 <p>Weight</p>
-                                 <p><strong>XXKG</strong></p>
-                              </div>
-                           </div>
-                           <div class="patient-content__medical-history holder">
-                              <p>Medical History</p>
-                              <div class="patient-content__medical-history-container">
-                                 <div class="group">
-                                    <img class="temperature-icon" src="img/Icons/temperature.png" alt="">
-                                    <div class="text">
-                                       <p><strong>XXC</strong></p>
-                                       <p>ipsum dolor.</p>
-                                    </div>
-                                 </div>
-                                 <div class="group">
-                                    <img class="blood-pressure-icon" src="img/Icons/blood pressure.png" alt="">
-                                    <div class="text">
-                                       <p><strong>XXC</strong></p>
-                                       <p>ipsum dolor.</p>
-                                    </div>
-                                 </div>
-                                 <div class="group">
-                                    <img class="illness-icon" src="img/Icons/illness.png" alt="">
-                                    <div class="text">
-                                       <p><strong>XXC</strong></p>
-                                       <p>ipsum dolor.</p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="patient-content__medication holder">
-                              <p>Prescriptions/Medications</p>
-                              <div class="patient-content__medication-container">
-                                 <table>
-                                    <tr>
-                                       <th></th>
-                                       <th>Medicine Name</th>
-                                       <th>Dosage</th>
-                                       <th>Number of Times</th>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                    <tr>
-                                       <td><img class="medicine-icon" src="img/Icons/medicine.png" alt=""></td>
-                                       <td class="medicine">Medicine Name</td>
-                                       <td>Dosage</td>
-                                       <td>xx a day</td>
-                                    </tr>
-                                 </table>
-                              </div>
-                              <div class="cta-prescription-container">
-                                 <a class="cta-prescription" href="/"><i class="fas fa-plus"></i>Add Prescriptions</a>
-                              </div>
-                           </div>
-                        </div>
+                     <div class="content patients-view-container">
+
+
+                       
+                        <table class="patients-view">
+            <tbody>
+                <tr class="patients-view-title">
+                    <th>Patient Id</th>
+                    <th>Patient Name</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Postal Code</th>
+                </tr>
+             
+                <tr class='clickable-row' data-href='http://localhost/capstone-project/individual-patient.php'>
+                 
+                   <td>01</td>
+                    <td>Name</td>
+                    <td>Hagonoy</th>
+                    <td>21</td>
+                    <td>M</td>
+                    <td>3002</td>
+                 
+                </tr>
+              
+                <tr>
+                    <td>02</td>
+                    <td>Name</td>
+                    <td>Hagonoy</th>
+                    <td>21</td>
+                    <td>M</td>
+                    <td>3002</td>
+                </tr>
+              
+               
+              
+               
+               
+            </tbody>
+        </table>
+
+
                      </div>
                   </div>
                </div>
@@ -268,5 +159,14 @@ Closedropdown.addEventListener('click',function(){
 });
 
 </script>
+
+<script>
+   jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
+
    </body>
 </html>
