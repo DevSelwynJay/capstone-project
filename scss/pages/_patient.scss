@@ -283,3 +283,34 @@
     width: 43px;
     min-width: 23px;
  }
+
+
+ //PATIENTS VIEW TABLE
+ .patients-view-container{
+     padding-left: 2rem !important;
+     padding-right: 2rem !important;
+ }
+
+ .patients-view{
+    
+
+    .patients-view-title{
+        background-color: var(--primary-color);
+       
+        th{
+            color: white !important;
+        }
+    }
+    tr{
+        background-color: var(--light-grey);
+        cursor: pointer;
+        transition: all 300ms ease-in-out;
+
+        &:hover{
+            background-color: var(--hover-color);
+            td{
+                color: white;
+            }
+        }
+    }
+ }
