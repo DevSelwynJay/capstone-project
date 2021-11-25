@@ -29,6 +29,12 @@
     font-size: clamp(1em,2em,3vw);
     margin: 0.5em;
 }
+.modal-title-2{
+    color: var(--third-color)!important;
+    font-weight: 500;
+    font-size: clamp(1em,1.6em,3vw);
+    margin: 0.5em;
+}
 .modal-sub-title{
     color: var(--third-color)!important;
     font-weight: 500;
@@ -40,6 +46,13 @@
     font-weight: 450;
     color: var(--third-color);
     padding-left: 0.5em;
+}
+.modal-smaller-p{
+    font-size: clamp(0.4em,0.7em,3vw)!important;
+    font-weight: 420;
+    color: var(--primary-color);
+    padding-left: 0.5em;
+    cursor: pointer;
 }
 .modal-field{
     margin-top: 0.2rem!important;

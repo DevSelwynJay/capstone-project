@@ -106,7 +106,7 @@
                                 echo "<td>".$row[10]."</td>";
                                 echo "<td>".$row[12]."</td>";
                                 echo "<td>".$row[6]."</td>";
-                                echo "<td><button class='view' id='$row[0]' >View</button></td>";
+                                echo "<td><button class='view' id='$row[0]%%%%%".$row[1].", ".$row[2]." ".$row[3]."' >View</button></td>";
 
                                 echo "<tr>";
                             }
@@ -162,7 +162,7 @@
 <div class="modal" id="view-pending-patient">
 
     <div class="flex-box-row justify-content-center align-items-center">
-        <p class="modal-title">View</p>
+        <p class="modal-title-2" id="modal-title">View</p>
     </div>
 
     <div class="gallery" style="margin-bottom: 1.5rem">
@@ -172,13 +172,38 @@
 <!--        <div class="gallery-cell"></div>-->
 <!--        <div class="gallery-cell"></div>-->
     </div>
-    <div class="flex-box-row justify-content-end">
-        <button class="modal-primary-button" id="fs">View Fullscreen</button>
+    <div class="flex-box-row justify-content-end align-items-end">
+       <a id="fs" class="modal-smaller-p">View Fullscreen</a>
     </div>
-
-
-
+    <div class="flex-box-row justify-content-center align-items-end" style="margin: 1rem">
+        <button class="modal-cancel-button" id="decline" style="margin-right: 0.5rem">Decline</button>
+        <button class="modal-primary-button" id="accept" style="margin-left: 0.5rem">Accept</button>
+    </div>
 </div>
+<script>
+  $("#accept").on('click',function () {
+      $("#pop-up-confirm-add").modal({
+          escapeClose: false,
+          clickClose: false,
+          showClose: false,
+          closeExisting:false,
+      })
+  })
+</script>
+<!--modal for confirm-->
+<div id="pop-up-confirm-add" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/question.png">
+        <p class="modal-p">Add this account to patient?</p>
+    </div>
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-confirm-add" rel="modal:close">
+            <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+        </a>
+        <button class="modal-primary-button" style="margin-left: 0.5rem">Accept</button>
+    </div>
+</div>
+
 
 <script>
     let pic_count=0;
@@ -207,8 +232,11 @@
         $(".view").click(function () {
 
 
-
-            let id = $(this).prop('id')
+            let data = $(this).prop('id').split("%%%%%")
+            let id = data[0]
+            let name = data[1]
+            //alert(name)
+            $("#modal-title").html(name)
             //alert(id)
             $("#pop-up-loading").modal({
                showClose:false,
@@ -238,7 +266,7 @@
                             )
                         }
 
-                        $("#view-pending-patient").modal({clickClose:false})
+                        $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false})
                         //$( '.gallery' ).flickity('reloadCells')
                         $( '.gallery' ).flickity('resize')
 
