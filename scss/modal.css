@@ -28,12 +28,14 @@
     font-weight: 500;
     font-size: clamp(1em,2em,3vw);
     margin: 0.5em;
+    text-align: center;
 }
 .modal-title-2{
     color: var(--third-color)!important;
     font-weight: 500;
     font-size: clamp(1em,1.6em,3vw);
     margin: 0.5em;
+    text-align: center;
 }
 .modal-sub-title{
     color: var(--third-color)!important;

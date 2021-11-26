@@ -2,6 +2,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .flickity-slider{/*ung sa may fullscreen view*/
     position: absolute;
     display: flex;
@@ -50,22 +51,25 @@ width: fit-content;
 .float{
     display: inline;
     position:fixed;
-    width:60px;
-    height:60px;
-    top:10px;
+    width: fit-content;
+    height: fit-content;
+    top:3px;
     right:10px;
-    background-color: var(--dark-grey);
     color:#FFF;
     border-radius:20px;
     text-align:center;
-    box-shadow: 2px 2px 3px #999;
     z-index: 1000;
 }
-
 .my-float{
     margin-top:22px;
 }
-
+.float .fa{
+    font-weight: 1000;
+    font-size: clamp(1em,1.5em,3vw);
+    background: #2b2b2b;
+    padding: clamp(0.5rem,0.8rem,1.2rem);
+    border-radius: 1rem;
+}
 #expand-pic{
     width:20px;
     height:20px;

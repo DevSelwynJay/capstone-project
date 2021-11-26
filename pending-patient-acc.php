@@ -142,8 +142,9 @@
 //  }
 //  ?>
 <!--</table>-->
-<a href="#view-pending-patient" rel="modal:open">fdfd</a>
-<!--modal for loading-->
+<!--<a href="#view-pending-patient" rel="modal:open">fdfd</a>-->
+
+<!--Modal for loading-->
 <div id="pop-up-loading" class="modal">
     <div style="display: flex;align-items: center;justify-content: center">
         <div class="loader"></div>
@@ -152,6 +153,25 @@
         </p>
     </div>
 </div>
+<!--Modal for success-->
+<div class="modal" id="pop-up-success">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/check.png">
+        <p class="modal-p">Account successfully added</p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-success" rel="modal:close">
+            <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+        </a>
+        <script>
+            $("#pop-up-success-ok-btn").on('click',function () {
+                location.reload()
+            })
+        </script>
+    </div>
+</div>
+
 
 
 <a href="#" class="float" id="close-pic" style="display: none">
@@ -165,6 +185,9 @@
         <p class="modal-title-2" id="modal-title">View</p>
     </div>
 
+    <div class="flex-box-row justify-content-end align-items-end" style="margin-bottom: clamp(0.2em,0.3em,5em)">
+        <a id="fs" class="modal-smaller-p">View Fullscreen</a>
+    </div>
     <div class="gallery" style="margin-bottom: 1.5rem">
 <!--        <div class="gallery-cell"></div>-->
 <!--        <div class="gallery-cell"></div>-->
@@ -172,65 +195,86 @@
 <!--        <div class="gallery-cell"></div>-->
 <!--        <div class="gallery-cell"></div>-->
     </div>
-    <div class="flex-box-row justify-content-end align-items-end">
-       <a id="fs" class="modal-smaller-p">View Fullscreen</a>
-    </div>
-    <div class="flex-box-row justify-content-center align-items-end" style="margin: 1rem">
-        <button class="modal-cancel-button" id="decline" style="margin-right: 0.5rem">Decline</button>
-        <button class="modal-primary-button" id="accept" style="margin-left: 0.5rem">Accept</button>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="flex-box-row justify-content-center align-items-end" style="margin: 1rem">
+                <button class="modal-cancel-button" id="decline" style="margin-right: 0.5rem">Decline</button>
+                <button class="modal-primary-button" id="accept" style="margin-left: 0.5rem">Accept</button>
+            </div>
+        </div>
     </div>
 </div>
-<script>
-  $("#accept").on('click',function () {
-      $("#pop-up-confirm-add").modal({
-          escapeClose: false,
-          clickClose: false,
-          showClose: false,
-          closeExisting:false,
-      })
-  })
-</script>
+
 <!--modal for confirm-->
 <div id="pop-up-confirm-add" class="modal">
     <div class="flex-box-row justify-content-center align-items-center">
         <img class="modal-header-icon" src="img/question.png">
         <p class="modal-p">Add this account to patient?</p>
     </div>
+
     <div class="flex-box-row justify-content-end align-items-end">
         <a href="#pop-up-confirm-add" rel="modal:close">
             <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
         </a>
-        <button class="modal-primary-button" style="margin-left: 0.5rem">Accept</button>
+        <button class="modal-primary-button" id="final-accept" style="margin-left: 0.5rem">Accept</button>
     </div>
 </div>
 
-
 <script>
     let pic_count=0;
+    let carouselInstance=false
     $(document).ready(function(){
         /*
-        ===============call the carousel======================
+        ===============call % destroy the carousel======================
         */
-        $( '.gallery' ).flickity( {
-            cellAlign: 'center',
-            //contain: true,
-            //prevNextButtons: false,
-            //groupCells: 2,
-        } );
-        $('#fs').on( 'click', function() {
-            $( '.gallery' ).flickity('viewFullscreen');
-            $("#close-pic").css("display","inline")
-            $(".gallery-cell img").css("max-height","80vh")
-        });
-        $("#exit-fs").on( 'click', function() {
-            $( '.gallery' ).flickity('exitFullscreen')
-            $("#close-pic").css("display","none")
-            $(".gallery-cell img").css("max-height","100%")
-        });
+        function call_carousel() {
+            $( '.gallery' ).flickity( {
+                cellAlign: 'center',
+                //contain: true,
+                //prevNextButtons: false,
+                //groupCells: 2,
+            } );
+            $(".flickity-slider").prop('id','flickity-slider')
+            $('#fs').on( 'click', function() {
+                $( '.gallery' ).flickity('viewFullscreen');
+                $("#close-pic").css("display","inline")
+                $(".gallery-cell img").css("max-height","80vh")
+            });
+            function exit_fullscreen() {
+                $( '.gallery' ).flickity('exitFullscreen')
+                $("#close-pic").css("display","none")
+                $(".gallery-cell img").css("max-height","100%")
+            }
+            $("#exit-fs").on( 'click', function() {
+                exit_fullscreen()
+            });
+            $(document).keyup(function(e) {
+                if (e.key === "Escape") { // escape key maps to keycode `27`
+                    exit_fullscreen()
+                }
+            });
+            $(document).on('click',function (e) {//close fullscreen when black bg was clicked
+                if(e.target.id=='flickity-slider'){
+                    exit_fullscreen()
+                }
+            })
+
+        }
+        function destroy_carousel() {
+            $( '.gallery' ).flickity('destroy')
+            $("#fs").off('click')
+            $("#exit-fs").off('click')
+            $(".gallery").html("")
+        }
 
 //=====================action====================
         $(".view").click(function () {
-
+            if(carouselInstance){
+                destroy_carousel()
+            }
+            call_carousel();
+            carouselInstance=true
 
             let data = $(this).prop('id').split("%%%%%")
             let id = data[0]
@@ -242,16 +286,15 @@
                showClose:false,
             })
 
-
             $.post('php/registerProcesses/retrieve_pending_patient_info.php',{id:id}).done(
                 function (data) {
                     setTimeout(function () {
-                        if(pic_count!=0){
+                       /* if(pic_count!=0){
                             for(let a=0;a<pic_count;a++){
                                 $( '.gallery' ).flickity( 'remove', $(".gallery-cell")[a])
                             }
                         }
-                        pic_count=0;
+                        pic_count=0;*/
 
                         let result = JSON.parse(data)
                         //alert(result.pic_path)
@@ -266,7 +309,7 @@
                             )
                         }
 
-                        $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false})
+                        $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
                         //$( '.gallery' ).flickity('reloadCells')
                         $( '.gallery' ).flickity('resize')
 
@@ -275,6 +318,31 @@
                 }
             )//done
         })
+
+        //======================Accept===============
+        $("#accept").on('click',function () {
+            $("#pop-up-confirm-add").modal({
+                showClose: false,
+                escapeClose: false,
+                clickClose: false,
+                closeExisting:false,
+            })
+        })
+        $("#final-accept").on('click',function () {
+            $("#pop-up-loading").modal({
+                showClose: false,
+                escapeClose: false,
+                clickClose: false,
+                /*closeExisting:false,*/
+            })
+            $("#pop-up-loading-message").html("Processing Request...")
+
+            setTimeout(()=>{
+                $("#pop-up-success").modal({showClose: false, escapeClose: false, clickClose: false,})
+            },700)
+        })
+        //======================Decline===============
+
     });
 </script>
 <!-- Carousel JavaScript -->
