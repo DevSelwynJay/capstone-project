@@ -103,8 +103,8 @@
                             while ($row = mysqli_fetch_array($res)){
                                 echo "<tr>";
                                 echo "<td>".$row[1].", ".$row[2]." ".$row[3]."</td>";
-                                echo "<td>".$row[10]."</td>";
-                                echo "<td>".$row[12]."</td>";
+                                echo "<td>".$row[9]."</td>";
+                                echo "<td>".$row[11]."</td>";
                                 echo "<td>".$row[6]."</td>";
                                 echo "<td><button class='view' id='$row[0]%%%%%".$row[1].", ".$row[2]." ".$row[3]."' >View</button></td>";
 
