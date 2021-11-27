@@ -33,7 +33,7 @@
 .modal-title-2{
     color: var(--third-color)!important;
     font-weight: 500;
-    font-size: clamp(1em,1.6em,3vw);
+    font-size: clamp(1em,1.6em,2vw);
     margin: 0.5em;
     text-align: center;
 }

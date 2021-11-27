@@ -182,11 +182,12 @@
 <div class="modal" id="view-pending-patient">
 
     <div class="flex-box-row justify-content-center align-items-center">
-        <p class="modal-title-2" id="modal-title">View</p>
+        <img src="img/user.png" class="modal-header-icon">
+        <p class="modal-title-2" id="modal-title" style="width: fit-content">View</p>
     </div>
 
     <div class="flex-box-row justify-content-end align-items-end" style="margin-bottom: clamp(0.2em,0.3em,5em)">
-        <a id="fs" class="modal-smaller-p">View Fullscreen</a>
+        <a id="fs" class="modal-smaller-p">View ID in Fullscreen</a>
     </div>
     <div class="gallery" style="margin-bottom: 1.5rem">
 <!--        <div class="gallery-cell"></div>-->
