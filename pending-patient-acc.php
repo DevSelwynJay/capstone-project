@@ -171,6 +171,19 @@
         </script>
     </div>
 </div>
+<!--Modal for error-->
+<div class="modal" id="pop-up-error">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
+        <p class="modal-p">Cannot add account</p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-success" rel="modal:close">
+            <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+        </a>
+    </div>
+</div>
 
 
 
@@ -270,6 +283,11 @@
         }
 
 //=====================action====================
+        let data ="";
+        let id="";
+        let name="" ;
+
+
         $(".view").click(function () {
             if(carouselInstance){
                 destroy_carousel()
@@ -277,9 +295,9 @@
             call_carousel();
             carouselInstance=true
 
-            let data = $(this).prop('id').split("%%%%%")
-            let id = data[0]
-            let name = data[1]
+            data = $(this).prop('id').split("%%%%%")
+            id = data[0]
+            name = data[1]
             //alert(name)
             $("#modal-title").html(name)
             //alert(id)
@@ -338,9 +356,22 @@
             })
             $("#pop-up-loading-message").html("Processing Request...")
 
-            setTimeout(()=>{
-                $("#pop-up-success").modal({showClose: false, escapeClose: false, clickClose: false,})
-            },700)
+            $.post('php/registerProcesses/validate_patient_account.php',{pending_patient_id:id}).done(function (data) {
+
+               if(data==1){
+                   setTimeout(()=>{
+                       $("#pop-up-success").modal({showClose: false, escapeClose: false, clickClose: false,})
+                   },700)
+               }
+               else {
+                   setTimeout(()=>{
+                       $("#pop-up-error").modal({showClose: false, escapeClose: false, clickClose: false,})
+                   },700)
+                   console.log("cant add data")
+               }
+
+            })
+
         })
         //======================Decline===============
 

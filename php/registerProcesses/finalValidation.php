@@ -10,7 +10,7 @@ if(!$con) {
     exit();
 }
 
-$tables = array('pending_patient','patient');
+$tables = array('pending_patient','patient','patient_archive');
 $result=null;
 $errMsg = null;
 foreach ($tables as $table){

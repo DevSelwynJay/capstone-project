@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2021 at 12:51 PM
+-- Generation Time: Nov 27, 2021 at 07:51 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,15 +42,16 @@ CREATE TABLE `patient_archive` (
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
-  `OTP` varchar(6) DEFAULT NULL
+  `OTP` varchar(6) DEFAULT NULL,
+  `date_created` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `patient_archive`
 --
 
-INSERT INTO `patient_archive` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `OTP`) VALUES
-(2, '2021-02-111242', 'Galvez', 'Irish', 'D.', 'Female', '2000-09-27', 'Sto. Rosario Paombong Bulacan', 'Doctor', 'Single', 'O', 'galvezirish144@gmail.com', 'qwer', '09199480221', NULL);
+INSERT INTO `patient_archive` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(2, '2021-02-111242', 'Galvez', 'Irish', 'D.', 'Female', '2000-09-27', 'Sto. Rosario Paombong Bulacan', 'Doctor', 'Single', 'O', 'galvezirish144@gmail.com', 'qwer', '09199480221', NULL, '2021-09-20 07:28:47');
 
 --
 -- Indexes for dumped tables

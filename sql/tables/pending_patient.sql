@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2021 at 11:06 AM
+-- Generation Time: Nov 27, 2021 at 07:51 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -37,7 +37,6 @@ CREATE TABLE `pending_patient` (
   `address` varchar(50) NOT NULL,
   `occupation` varchar(50) DEFAULT NULL,
   `civil_status` varchar(30) NOT NULL,
-  `blood_type` varchar(20) DEFAULT NULL,
   `email` char(50) NOT NULL,
   `password` char(50) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
@@ -48,9 +47,8 @@ CREATE TABLE `pending_patient` (
 -- Dumping data for table `pending_patient`
 --
 
-INSERT INTO `pending_patient` (`id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `blood_type`, `email`, `password`, `contact_no`, `date_created`) VALUES
-('2021-02-538055', 'Sample', 'Sample', 'Sample', 'Male', '1999-01-11', '5 Purok 3 Sto. Rosario Paombong Bulacan', 'none', 'Single', NULL, 'sample.sample@gmail.com', 'mukamo11', '09422697907', '2021-11-26 10:06:16'),
-('2021-02-538075', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1 Purok 1 Sto. Rosario Paombong Bulacan', 'none', 'Single', NULL, 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', '2021-11-22 07:28:47');
+INSERT INTO `pending_patient` (`id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `occupation`, `civil_status`, `email`, `password`, `contact_no`, `date_created`) VALUES
+('2021-02-538075', 'Sample', 'Al', 'Biler', 'Male', '2002-10-10', '5 Purok 3 Sto. Rosario Paombong Bulacan', 'Tambay', 'Single', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', '2021-11-27 06:41:44');
 
 --
 -- Indexes for dumped tables
