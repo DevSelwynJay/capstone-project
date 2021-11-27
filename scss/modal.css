@@ -55,6 +55,18 @@
     color: var(--primary-color);
     padding-left: 0.5em;
     cursor: pointer;
+    margin-top: 0.1rem;
+}
+.modal-p-error{
+    font-size: clamp(0.4em,0.7em,3vw)!important;
+    font-weight: 420;
+    color: red;
+    padding-left: 0.5em;
+    cursor: inherit;
+    margin: 0.3rem 0;
+    width: 100%;
+    text-align: center;
+    visibility: hidden;
 }
 .modal-field{
     margin-top: 0.2rem!important;
@@ -68,7 +80,7 @@
     color: aliceblue;
     background:  #465A72;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
 .modal-primary-button:hover{
     background: var(--hover-color);
@@ -80,11 +92,27 @@
     color: aliceblue;
     background: #b2273d;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
 .modal-cancel-button:hover{
     background: #d26375;
     cursor: pointer;
+}
+
+/*media queries*/
+@media (max-width: 342px) {
+    .modal-title-2{
+        font-size:  clamp(0.7em,1em,2vw);
+    }
+    .modal-header-icon{
+        width: clamp(1em,1.5em,3em);
+        height: clamp(1em,1.6em,3em);
+    }
+}
+@media (min-width: 1200px) {
+    .modal-title-2{
+
+    }
 }
 /*
 Jquery UI Date Picker

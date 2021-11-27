@@ -157,7 +157,7 @@
 <div class="modal" id="pop-up-success">
     <div class="flex-box-row justify-content-center align-items-center">
         <img class="modal-header-icon" src="img/check.png">
-        <p class="modal-p">Account successfully added</p>
+        <p class="modal-p" id="pop-up-success-message">Account successfully added</p>
     </div>
 
     <div class="flex-box-row justify-content-end align-items-end">
@@ -175,7 +175,7 @@
 <div class="modal" id="pop-up-error">
     <div class="flex-box-row justify-content-center align-items-center">
         <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
-        <p class="modal-p">Cannot add account</p>
+        <p class="modal-p" id="pop-up-error-message">Cannot add account</p>
     </div>
 
     <div class="flex-box-row justify-content-end align-items-end">
@@ -232,6 +232,44 @@
             <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
         </a>
         <button class="modal-primary-button" id="final-accept" style="margin-left: 0.5rem">Accept</button>
+    </div>
+</div>
+
+<!--modal for decline-->
+<div id="pop-up-decline" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/decline.png">
+        <p class="modal-title-2">Decline Account Request</p>
+    </div>
+    <div class="flex-box-column justify-content-center align-items-start  margin-top-3">
+        <p class="modal-smaller-p " style="font-weight: 400;width: 100%;color: var(--third-color)">To: Alfredo B. Benitez</p>
+        <p class="modal-smaller-p " style="font-weight: 400;width: 100%;color: var(--third-color)">Email: alfredogie@gmail.com</p>
+    </div>
+    <div class="flex-box-row justify-content-start align-items-center margin-top-1" style="margin-bottom: clamp(0.2em,0.3em,5em);">
+        <a class="modal-smaller-p" style="cursor: inherit">Please type a reason</a>
+    </div>
+
+    <div class="flex-box-column justify-content-center align-items-start" style="margin-bottom: clamp(0.2em,0.3em,5em)">
+        <textarea id="decline-reason" placeholder="Message" style="font-family: Poppins;letter-spacing: 1px">
+        </textarea>
+        <p class="modal-p-error">Please input reason!</p>
+        <script>
+            $("#decline-reason").val("")
+        </script>
+        <style>
+            #decline-reason{
+                resize: none;width: 97%;max-width: 100%;border: none;
+                padding: 0.5rem;outline: none;margin: 0 0.3rem 0 0.3rem;
+                height: 25vh;
+                border-top: 0.1rem solid var(--light-grey);
+            }
+        </style>
+    </div>
+    <div class="flex-box-row justify-content-end align-items-end margin-top-1" style="margin: 0.5rem">
+        <a href="#pop-up-decline" rel="modal:close">
+            <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+        </a>
+        <button class="modal-primary-button" id="final-decline" style="margin-left: 0.5rem">Decline</button>
     </div>
 </div>
 
@@ -374,6 +412,26 @@
 
         })
         //======================Decline===============
+        $("#decline").on('click',function (){
+            $("#pop-up-decline").modal({/*showClose: false,*/ escapeClose: false, clickClose: false,closeExisting: false})
+        })
+        $("#final-decline").click(function () {
+            if($("#decline-reason").val()==""){
+                $(".modal-p-error").css('visibility','visible')
+            }
+            else {
+                $(".modal-p-error").css('visibility','hidden')
+                $("#pop-up-loading").modal({showClose: false, escapeClose: false, clickClose: false})
+                $("#pop-up-loading-message").html("Processing Request...")
+                setTimeout(()=>{
+                    $("#pop-up-success").modal({showClose: false, escapeClose: false})
+                        $("#pop-up-success-message").html("The account declined successfully")
+  .o              },700)
+            }
+        })
+        $("#decline-reason").keyup(function () {
+            $(".modal-p-error").css('visibility','hidden')
+        })
 
     });
 </script>
