@@ -109,28 +109,61 @@
            <div class="modal-content-scrollable">
 
                <div class="container-fluid">
+
                    <div class="row">
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineCategory">Category:</p><input type="text" id="medicineCategory"  class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" for="medicineCategory">Category:</p>
+                           <select class="modal-field" id="medcategorySelect">
+                               <option value="none">Select</option>
+                               <option value="Medicine">Medicine</option>
+                               <option value="Vaccine">Vaccine</option>
+                           </select>
+                           <script>
+                               $('#medcategorySelect').change(function (){
+                                   if($('#medcategorySelect').val() == "Medicine"){
+                                       $('#vacSubCategory').css("display","none");
+                                       $('#medSubCategory').css("display","block");
+                                   }
+                                   else if($('#medcategorySelect').val() == "Vaccine"){
+                                       $('#medSubCategory').css("display","none");
+                                       $('#vacSubCategory').css("display","block");
+                                   }
+                                   else{
+                                       $('#vacSubCategory').css("display","none");
+                                       $('#medSubCategory').css("display","none");
+                                   }
+                               })
+
+
+
+                           </script>
+                           <input class="modal-field" type="text" id="medSubCategory" autocomplete="on" placeholder="Medicine Sub-Category" style="display: none">
+                           <input class="modal-field" type="text" id="vacSubCategory" autocomplete="on" placeholder="Vaccine Sub-Category" style="display: none">
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-sm-12" >
                            <p class="modal-p"for="medicineStocks">Stock:</p>
                            <input type="text" id="medicineStocks"  class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" class="error" id="stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
                            <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" class="error" id="mfgdate-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineExpDate" >Exp Date:</p>
+                           <p class="modal-p"  for="medicineExpDate" >Exp Date:</p>
                            <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" class="error" id="expdate-incorrect-indcator" style="color: red; visibility: hidden;"></p>
                        </div>
+                       <p class="modal-p" class="error" id="all-incorrect-indcator" style="color: red; visibility: hidden"></p>
                    </div>
+
                    <div class="row flex-row justify-content-start" style="display: flex">
                        <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                            <a href="#add-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
@@ -139,6 +172,7 @@
                    </div>
 
                </div>
+
            </div>
        </div>
     <!-- Update Meds Modal -->
@@ -173,7 +207,7 @@
                 </div>
                 <div class="row flex-row justify-content-start" style="display: flex">
                     <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
-                        <a href="#update-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
+                        <a href="#update-modal" rel="modal:close"><button class="modal-cancel-button" id="addupcancel" style="margin-right: 0.5rem">Cancel</button></a>
                         <a><button id="okay-update-btn" class="modal-primary-button" onclick="medUpdate()">Update</button></a>
                     </div>
                 </div>
@@ -196,7 +230,7 @@
                 </div>
                 <div class="row flex-row justify-content-start" style="display: flex">
                     <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
-                        <a href="#delete-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
+                        <a href="#delete-modal" rel="modal:close"><button class="modal-cancel-button" id="adddelcancel" style="margin-right: 0.5rem">Cancel</button></a>
                         <a><button id="okay-edit-btn" class="modal-primary-button" onclick="">Delete</button></a>
                     </div>
                 </div>
@@ -379,29 +413,59 @@
     }
     //Add New Medicine Function
     function addNewMedicine() {
+
         var medName = $('#medicineName').val()
-        var medCategory = $('#medicineCategory').val()
+        var medCategory = $('#medcategorySelect').val()
         var medStocks = $('#medicineStocks').val()
         var medMfgDate = $('#medicineMfgDate').val()
         var medExpDate = $('#medicineExpDate').val()
-        $.ajax({
-            url: "php/inventoryProcesses/inventoryAddProc.php",
-            type: 'POST',
-            data: {
-                newMedName: medName,
-                newMedCategory: medCategory,
-                newMedStocks: medStocks,
-                newMedMfgDate: medMfgDate,
-                newMedExpDate: medExpDate
-            },
-            success: function(data, status) {
-                console.log(status);
-                $("[href='#add-modal']").trigger('click');
-                displayMedicines();
-                displayToExpTab();
-                displayExpTab();
-            }
-        });
+
+        if(medName == "" || medCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""){
+            $('#all-incorrect-indcator').css("visibility","visible")
+            $('#all-incorrect-indcator').html('Please Fill out all the fields');
+        }
+
+        else {
+
+
+            $.ajax({
+                url: "php/inventoryProcesses/inventoryAddProc.php",
+                type: 'POST',
+                data: {
+                    newMedName: medName,
+                    newMedCategory: medCategory,
+                    newMedStocks: medStocks,
+                    newMedMfgDate: medMfgDate,
+                    newMedExpDate: medExpDate
+                },
+                success: function (data, status) {
+                    console.log(status);
+                    $("[href='#add-modal']").trigger('click');
+                    displayMedicines();
+                    displayToExpTab();
+                    displayExpTab();
+                }
+            });
+        }
+
+
+
+        $('#addcancel').on("click", function (){
+            $('#meds').trigger("focus");
+            $('#medicineName').val("");
+            $('#medicineCategory').val("");
+            $('#medicineStocks').val("");
+            $('#medicineMfgDate').val("");
+            $('#medicineExpDate').val("");
+            $('#name-incorrect-indcator').css("visibility","hidden");
+            $('#category-incorrect-indcator').css("visibility","hidden");
+            $('#stock-incorrect-indcator').css("visibility","hidden");
+            $('#mfgdate-incorrect-indcator').css("visibility","hidden");
+            $('#expdate-incorrect-indcator').css("visibility","hidden");
+            $('#all-incorrect-indcator').css("visibility","hidden");
+            $('#all-incorrect-indcator').html('');
+            $('#name-incorrect-indcator').html('');
+        })
     }
     //Below this are the Update Process
     //Display Update Modal function
@@ -421,7 +485,7 @@
             clickClose: false,
             showClose: false
         })
-        $('#addcancel').on("click", function (){
+        $('#addupcancel').on("click", function (){
             $('#meds').trigger("focus");
             $('#updatemedicineName').val("");
             $('#updatemedicineCategory').val("");
