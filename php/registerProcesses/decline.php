@@ -85,7 +85,9 @@ if (!$mail->send()) {
     echo 0;
 } else {
     // echo 'Message sent!';
+    mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");
     echo 1;
 }
 
+mysqli_close($con);
 ?>
