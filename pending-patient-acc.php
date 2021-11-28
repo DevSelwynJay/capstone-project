@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Pending Patient</title>
     <!--Carousel CSS-->
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
@@ -106,7 +108,7 @@
                                 echo "<td>".$row[9]."</td>";
                                 echo "<td>".$row[11]."</td>";
                                 echo "<td>".$row[6]."</td>";
-                                echo "<td><button class='view' id='$row[0]%%%%%".$row[1].", ".$row[2]." ".$row[3]."' >View</button></td>";
+                                echo "<td><button class='view' data-email='$row[9]' id='$row[0]%%%%%".$row[1].", ".$row[2]." ".$row[3]."' >View</button></td>";
 
                                 echo "<tr>";
                             }
@@ -242,8 +244,8 @@
         <p class="modal-title-2">Decline Account Request</p>
     </div>
     <div class="flex-box-column justify-content-center align-items-start  margin-top-3">
-        <p class="modal-smaller-p " style="font-weight: 400;width: 100%;color: var(--third-color)">To: Alfredo B. Benitez</p>
-        <p class="modal-smaller-p " style="font-weight: 400;width: 100%;color: var(--third-color)">Email: alfredogie@gmail.com</p>
+        <p class="modal-smaller-p " id="to" style="font-weight: 400;width: 100%;color: var(--third-color)">To: Alfredo B. Benitez</p>
+        <p class="modal-smaller-p " id="email" style="font-weight: 400;width: 100%;color: var(--third-color)">Email: alfredogie@gmail.com</p>
     </div>
     <div class="flex-box-row justify-content-start align-items-center margin-top-1" style="margin-bottom: clamp(0.2em,0.3em,5em);">
         <a class="modal-smaller-p" style="cursor: inherit">Please type a reason</a>
@@ -324,6 +326,7 @@
         let data ="";
         let id="";
         let name="" ;
+        let email = "";
 
 
         $(".view").click(function () {
@@ -336,6 +339,7 @@
             data = $(this).prop('id').split("%%%%%")
             id = data[0]
             name = data[1]
+            email = $(this).data('email');//alert(email)
             //alert(name)
             $("#modal-title").html(name)
             //alert(id)
@@ -414,6 +418,8 @@
         //======================Decline===============
         $("#decline").on('click',function (){
             $("#pop-up-decline").modal({/*showClose: false,*/ escapeClose: false, clickClose: false,closeExisting: false})
+            $("#to").html("<strong>To: </strong>"+name)
+            $("#email").html("<strong>Email: </strong>"+email)
         })
         $("#final-decline").click(function () {
             if($("#decline-reason").val()==""){
@@ -423,10 +429,22 @@
                 $(".modal-p-error").css('visibility','hidden')
                 $("#pop-up-loading").modal({showClose: false, escapeClose: false, clickClose: false})
                 $("#pop-up-loading-message").html("Processing Request...")
-                setTimeout(()=>{
-                    $("#pop-up-success").modal({showClose: false, escapeClose: false})
-                        $("#pop-up-success-message").html("The account declined successfully")
-  .o              },700)
+
+                $.post('php/registerProcesses/decline.php',{id:id,decline_msg:$("#decline-reason").val()}).done(function (data) {
+                    if(data==1){
+                        setTimeout(()=>{
+                            $("#pop-up-success").modal({showClose: false, escapeClose: false})
+                            $("#pop-up-success-message").html("The account declined successfully")
+                        },700)
+                    }
+                    else{
+                        setTimeout(()=>{
+                            $("#pop-up-error").modal({showClose: false, escapeClose: false})
+                            $("#pop-up-error-message").html("Can't process request! Please try again later")
+                        },700)
+                    }
+
+                })
             }
         })
         $("#decline-reason").keyup(function () {
@@ -438,5 +456,33 @@
 <!-- Carousel JavaScript -->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
+<!--Drop down script-->
+<script>
+    const dropdown = document.querySelector('#dropdown');
+    const dropdownToggle = document.querySelector('#dropdown-toggle');
+    const Closedropdown = document.querySelector('#close-dropdown');
+
+    dropdownToggle.addEventListener('click',function(){//Conditions
+        if(dropdown.classList.contains('open')){ // Close Mobile Menu
+            dropdown.classList.remove('open');
+        }
+        else{ // Open Mobile Menu
+            dropdown.classList.add('open');
+        }});
+
+
+    dropdownToggle.addEventListener('click',function(){
+        dropdown.classList.add('open');
+        dropdownToggle.style.display = "none";
+        Closedropdown.style.display = "block"
+    });
+
+    Closedropdown.addEventListener('click',function(){
+        dropdown.classList.remove('open');
+        Closedropdown.style.display = "none"
+        dropdownToggle.style.display = "block";
+    });
+
+</script>
 </body>
 </html>

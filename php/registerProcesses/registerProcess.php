@@ -26,7 +26,7 @@ function generateID($_6DigitCode): string
 
 function validateID($con,$new_id){//check the generated ID if existing
 
-    $tables = array('patient','pending_patient');
+    $tables = array('patient','pending_patient','patient_archive');
     foreach ($tables as $table){
         $result = mysqli_query($con,"SELECT id FROM $table WHERE id = '$new_id'");
         if(mysqli_num_rows($result)>0){
@@ -100,7 +100,7 @@ if(!empty($fileNames)){
     $address = $house_no." Purok ".$purok." Sto. Rosario Paombong Bulacan";
 
     mysqli_query($con,
-        "INSERT INTO pending_patient VALUES ('$patientID','$lname','$fname','$mname','$gender','$bday','$address','$occupation','$civil_status',NULL,'$email','$pwd','$contact' )");
+        "INSERT INTO pending_patient VALUES ('$patientID','$lname','$fname','$mname','$gender','$bday','$address','$occupation','$civil_status','$email','$pwd','$contact',DEFAULT )");
     //insert the records in pending_patient table
 
 }
