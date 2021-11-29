@@ -165,6 +165,12 @@ Closedropdown.addEventListener('click',function(){
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
+    $("tr").click(function () {
+       let a =  $(this).children();
+      let sample =  $($(this).children()[0]).html();
+      console.log(sample)
+      //console.log(a[0].innerHTML)//just another way
+    })
 });
 </script>
 

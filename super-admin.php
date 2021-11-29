@@ -11,6 +11,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!--CSS Grid Bootstrap-->
+       <link rel="stylesheet" href="scss/bootstrap-grid.css">
       <!--custom CSS-->
       <link rel="stylesheet" href="scss/main.css">
       <!--Font Awesome-->
@@ -31,6 +33,11 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
        <!--Sweet Alert-->
        <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
        <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
+
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/scrollbar_loading.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
 
    </head>
    <body>
@@ -85,44 +92,96 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                   </div>
                   <div class="col-sm-12">
                      <div id="show" class="modal">
-                        <form autocomplete="off">
-                           <div class="row">
-                              <input type="text" id="fname" placeholder="First Name" />
-                              <input type="text" id="mname"  placeholder="Middle Name" />
-                              <input type="text" id="lname"  placeholder="Last Name" />
-                           </div>
-                           <div class="row">
-                          <!--    <input type="text" id="gender"  placeholder="Gender" />  -->
-                               <style>#gender,#work-cat {
-                               width: 100%;
-                               margin-top: 1rem;
-                               padding: 0.6rem 1rem;
-                               border: 2px solid var(--third-color);
-                               border-radius: 10px;
-                               outline: none;
-                               }
-                               tr:not(:first-child) { cursor: pointer; }</style>
-                               <select name="type" id="gender" title="Gender">
-                                   <option value="" disabled selected>Gender</option>
-                                   <option value="Male">Male</option>
-                                   <option value="Female">Female</option>
-                               </select>
-                               <input type="text" placeholder="Email" id="admin-email"/>
-                           </div>
-                           <div class="row">
-                              <input type="password" placeholder="Password" id="password"/>
-                              <input type="password" id="conf-pass"  placeholder=" Confirm Password" />
-                           </div>
-                           <div class="row">
-                               <select name="type" id="work-cat" title="Work Category" >
-                                   <option value="" disabled selected>Work Category</option>
-                                   <option value="Midwife">Midwife</option>
-                                   <option value="Health Worker">Health Worker</option>
-                               </select>
-                              <input type="text" id="contact" placeholder="Contact No." />
-                           </div>
-                           <a href="#show" rel="modal:open" id="confirmation-addmin" class="button-square"><i class="fas fa-plus"></i>Add Admin Account</a>
-                        </form>
+                         <div class="flex-box-row align-items-center justify-content-center">
+                             <style>
+                                #modal-header-icon{
+                                    color: #465A72;
+                                    margin-right: 0.3rem;
+                                }
+
+                             </style>
+
+                             <h3 class="title" style="color: var(--third-color)"> <i class="fas fa-user-shield fa-lg" id="modal-header-icon"></i>Add Admin Account</h3>
+                         </div>
+
+                          <div class="modal-content-scrollable">
+                             <form autocomplete="off" style="margin-right: 0.3rem">
+                                 <div class="row">
+                                     <div class="col-sm-6">
+                                         <input type="text" id="fname" placeholder="First Name" />
+                                     </div>
+                                     <div class="col-sm-6">
+                                         <input type="text" id="mname"  placeholder="Middle Name" />
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-sm-6">
+                                         <input type="text" id="lname"  placeholder="Last Name" />
+                                     </div>
+                                     <div class="col-sm-6">
+                                         <!--    <input type="text" id="gender"  placeholder="Gender" />  -->
+                                         <style>#gender,#work-cat {
+                                                 width: 100%;
+                                                 margin-top: 1rem;
+                                                 padding: 0.6rem 1rem;
+                                                 border: 2px solid var(--third-color);
+                                                 border-radius: 10px;
+                                                 outline: none;
+                                             }
+                                             tr:not(:first-child) { cursor: pointer; }</style>
+                                         <select name="type" id="gender" title="Gender">
+                                             <option value="" disabled selected>Gender</option>
+                                             <option value="Male">Male</option>
+                                             <option value="Female">Female</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-sm-6">
+                                         <input type="text" placeholder="Email" id="admin-email"/>
+                                     </div>
+                                     <div class="col-sm-6">
+                                         <input type="text" id="contact" placeholder="Contact No." />
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-sm-6">
+                                         <select name="type" id="work-cat" title="Work Category" >
+                                             <option value="" disabled selected>Work Category</option>
+                                             <option value="Midwife">Midwife</option>
+                                             <option value="Health Worker">Health Worker</option>
+                                         </select>
+                                     </div>
+                                     <div class="col-sm-6">
+                                         <input type="date" placeholder="birthday" value="01/01/1999"/>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-sm-6">
+                                         <input type="password" placeholder="Password" id="password"/>
+                                     </div>
+                                     <div class="col-sm-6">
+                                         <input type="password" id="conf-pass"  placeholder=" Confirm Password" />
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     <div class="col-sm-12">
+                                         <input type="text" placeholder="Address">
+                                     </div>
+                                 </div>
+                                  </form>
+                         </div>
+                         <div class="flex-box-row justify-content-end margin-top-1">
+                             <button class="modal-cancel-button" style="margin-right: 0.3rem">Cancel</button>
+                             <a href="#show" rel="modal:open" id="confirmation-addmin">
+                              <button class="modal-primary-button">
+                                  <i class="fas fa-plus"></i> Add Admin
+                              </button>
+                             </a>
+                             <!--class="button-square"-->
+                         </div>
+
                      </div>
 
                       <div class="col-sm-12">
