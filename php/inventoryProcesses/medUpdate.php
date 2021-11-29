@@ -18,11 +18,16 @@ if(isset($_POST['medupdateid'])){
 //Update Query
 if(isset($_POST['id'])){
     $id = $_POST['id'];
+    $name = $_POST['updatemedicineName'];
+    $category = $_POST['updatemedicineCategory'];
     $medstock=$_POST['updatemedicineStocks'];
     $medmfgdate=$_POST['updatemedicineMfgDate'];
     $medexpdate=$_POST['updatemedicineExpDate'];
+    $type = "Update";
     $updatesql = "Update `medinventory` set `stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`=$id";
     $result=mysqli_query($con,$updatesql);
+    $reportupdatesql = "Insert into `medreport` (`name`, `category`, `stock`, `mfgdate`, `expdate`,`type`) values ('$name','$category','$medstock','$medmfgdate','$medexpdate','$type')";
+    $reportresult = mysqli_query($con,$reportupdatesql);
 }
 ?>
 

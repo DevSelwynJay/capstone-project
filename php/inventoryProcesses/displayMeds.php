@@ -1,7 +1,19 @@
 <?php
 $con=null;
 require '../DB_Connect.php';
-if (isset($_POST['displayMedData'])) {
+
+$rpp = 5;
+$page = '';
+$medtable ='';
+if (isset($_POST['page'])){
+    $page = $_POST['page'];
+}
+else{
+    $page = 1;
+}
+$start_from = ($page -1 )*$rpp;
+$meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc limit $start_from, $rpp";
+
     $medtable = '<table >
     <tbody>
       <tr class="title">
@@ -15,7 +27,7 @@ if (isset($_POST['displayMedData'])) {
                     <th class="add-row"></th>
                 </tr>
     ';
-    $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc";
+
     $result = mysqli_query($con, $meddatatable);
     while ($row = mysqli_fetch_assoc($result)) {
         $id = $row['id'];
@@ -37,7 +49,14 @@ if (isset($_POST['displayMedData'])) {
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal('.$id.')"></i></td>
         </tr>';
     }
-    $medtable .= '</tbody></table>';
+    $medtable .= '</tbody></table><br><div align="center">';
+    $page_query = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc ";
+    $page_result = mysqli_query($con,$page_query);
+    $total_records = mysqli_num_rows($page_result);
+    $total_pages = ceil($total_records/$rpp);
+    for($i =1;$i<=$total_pages;$i++){
+        $medtable .= '<span class="pagination_link" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
+    }
     echo $medtable;
-}
+
 ?>
