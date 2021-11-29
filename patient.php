@@ -77,10 +77,10 @@
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
                         </div>
-                        <div class="details-settings">
-                           <a href="/">View Details</a>
-                           <a href="/">Edit Details</a>
-                        </div>
+<!--                        <div class="details-settings">-->
+<!--                           <a href="/">View Details</a>-->
+<!--                           <a href="/">Edit Details</a>-->
+<!--                        </div>-->
                      </div>
                      <div class="content patients-view-container">
 
@@ -131,7 +131,7 @@
          </div>
       </section>
 
-      
+<!--Dropdown Script-->
 <script>
 const dropdown = document.querySelector('#dropdown');
 const dropdownToggle = document.querySelector('#dropdown-toggle');
@@ -159,8 +159,98 @@ Closedropdown.addEventListener('click',function(){
 });
 
 </script>
+<!--Table sortable script-->
+<script src="js/table-sortable.js"></script>
+      <script>
+          var table = $('tbody').tableSortable({
+              data: [],
+              columns:
+                  {
+                      id: "ID",
+                      name:"Name",
+                      address:"Address",
+                      age: "Age"
+                  }
+              ,
+              searchField: '.search-bar',
+              responsive: {
+                  720: {
+                      columns: {
+                          id: "ID",
+                          name:"Name",
+                      },
+                  },
+              },
+              rowsPerPage: 5,
+              pagination: true,
+              tableWillMount: function() {
+                  console.log('table will mount')
+              },
+              tableDidMount: function() {
+                  console.log('table did mount')
+              },
+              tableWillUpdate: function() {console.log('table will update')},
+              tableDidUpdate: function() {console.log('table did update')},
+              tableWillUnmount: function() {console.log('table will unmount')},
+              tableDidUnmount: function() {console.log('table did unmount')},
+              onPaginationChange: function(nextPage, setPage) {
+                  setPage(nextPage);
+              }
+          });
+          $.get('php/patientProcesses/retrievePatientList.php', function(data) {
+              // Push data into existing data
+              console.log(JSON.parse(data))
+              //table.setData(JSON.parse(data), null, true);
 
+              // or Set new data on table, columns is optional.
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   address:"Address",
+                   age: "Age"
+               });
+          })
+          $('#changeRows').on('change', function() {
+              table.updateRowsPerPage(parseInt($(this).val(), 10));
+          })
+
+          $('#rerender').click(function() {
+              table.refresh(true);
+          })
+
+          $('#distory').click(function() {
+              table.distroy();
+          })
+
+          $('#refresh').click(function() {
+              table.refresh();
+          })
+
+          $('#setPage2').click(function() {
+              table.setPage(1);
+          })
+      </script>
+      <style>
+          .gs-pagination{
+              margin-top: 0.5em;
+          }
+          .gs-pagination .row .col-md-6 span{
+              font-size: clamp(0.4rem,0.8rem,1rem);
+          }
+          .gs-button,.gs-button span{
+              color: var(--secondary-color);
+          }
+          th{
+              background: var(--primary-color);
+          }
+          .btn-group button,.btn-group button span{/*sa pagination na button*/
+              outline: none;
+              padding: 0.2em 0.3rem;
+          }
+      </style>
+      </script>
 <script>
+
    jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
