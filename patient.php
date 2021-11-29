@@ -247,6 +247,12 @@ Closedropdown.addEventListener('click',function(){
               outline: none;
               padding: 0.2em 0.3rem;
           }
+          @media(max-width: 1150px) {
+              td{
+                  font-size: clamp(0.4rem,0.8rem,1rem);
+              }
+          }
+
       </style>
       </script>
 <script>

@@ -97,6 +97,7 @@
                                 <th>Email</th>
                                 <th>Contact</th>
                                 <th>Address</th>
+                                <th>Action</th>
                             </tr>
                             <?php
                             $con=null;
