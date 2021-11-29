@@ -225,8 +225,11 @@
 <!--modal for confirm-->
 <div id="pop-up-confirm-add" class="modal">
     <div class="flex-box-row justify-content-center align-items-center">
-        <img class="modal-header-icon" src="img/question.png">
-        <p class="modal-p">Add this account to patient?</p>
+
+        <p class="modal-p flex-box-row justify-content-center align-items-center">
+            <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+            Add this account to patient?
+        </p>
     </div>
 
     <div class="flex-box-row justify-content-end align-items-end">
@@ -240,8 +243,10 @@
 <!--modal for decline-->
 <div id="pop-up-decline" class="modal">
     <div class="flex-box-row justify-content-center align-items-center">
-        <img class="modal-header-icon" src="img/decline.png">
-        <p class="modal-title-2">Decline Account Request</p>
+        <p class="modal-title-2 flex-box-row align-items-center justify-content-start">
+            <img class="modal-header-icon" src="img/decline.png">
+            Decline Account Request
+        </p>
     </div>
     <div class="flex-box-column justify-content-center align-items-start  margin-top-3">
         <p class="modal-smaller-p " id="to" style="font-weight: 400;width: 100%;color: var(--third-color)">To: Alfredo B. Benitez</p>

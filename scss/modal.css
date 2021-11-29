@@ -12,17 +12,16 @@
     overflow-x:hidden;
     height: fit-content;
     max-height: 75vh;
-    padding: 1em 0;
+    margin: 1em 0;
 }
 .modal{/*the main modal container*/
     padding: 1rem;
     font-size: 20px;
 }
 .modal-header-icon{
-    width: clamp(2em,2.6em,3em);
-    height:  clamp(2em,2.6em,3em);
+    width: clamp(2em,3em,3vw);
+    height:  clamp(2em,3em,3vw);
 }
-
 .modal-title{
     color: var(--third-color)!important;
     font-weight: 500;
@@ -33,7 +32,7 @@
 .modal-title-2{
     color: var(--third-color)!important;
     font-weight: 500;
-    font-size: clamp(1em,1.6em,2vw);
+    font-size: clamp(0.9em,1.6em,2vw);
     margin: 0.5em;
     text-align: center;
 }
@@ -44,7 +43,7 @@
     margin: 0.5em;
 }
 .modal-p{
-    font-size: clamp(0.6em,0.8em,3vw)!important;
+    font-size: clamp(0.4em,0.8em,3vw)!important;
     font-weight: 450;
     color: var(--third-color);
     padding-left: 0.5em;
@@ -76,7 +75,7 @@
 }
 .modal-primary-button{
     padding: 0.6em 1em;
-    font-size: clamp(0.7em,0.8em,3vw)!important;
+    font-size: clamp(0.4em,0.8em,3vw)!important;
     color: aliceblue;
     background:  #465A72;
     border: none;
@@ -88,7 +87,7 @@
 }
 .modal-cancel-button{
     padding: 0.6em 1em;
-    font-size: clamp(0.7em,0.8em,3vw)!important;
+    font-size: clamp(0.4em,0.8em,3vw)!important;
     color: aliceblue;
     background: #b2273d;
     border: none;
@@ -106,7 +105,7 @@
     }
     .modal-header-icon{
         width: clamp(1em,1.5em,3em);
-        height: clamp(1em,1.6em,3em);
+        height: clamp(1em,1.5em,3em);
     }
 }
 @media (min-width: 1200px) {
@@ -114,6 +113,17 @@
 
     }
 }
+/*additonal padding margin color etc*/
+.padding-left-15{
+    padding-left: 15px;
+}
+.title-font-color{
+    color: var(--third-color);
+}
+.fourth-color{
+    color: #465A72;
+}
+
 /*
 Jquery UI Date Picker
 */

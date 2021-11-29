@@ -181,7 +181,10 @@ if(!isset($_SESSION['email'])){
     <!--Edit modal-->
     <div id="edit-modal" class="modal">
         <div class="flex-box-row justify-content-center align-items-center">
-            <img class="modal-header-icon" src="img/Icons/edit.png"><p class="modal-title">Edit Personal Info</p>
+            <p class="modal-title-2 flex-box-row align-items-center title-font-color">
+                <i class="fas fa-user-edit fa-lg fourth-color" style="margin-right: 0.3rem"></i>
+                Edit Personal Info
+            </p>
         </div>
         <div class="modal-content-scrollable">
 
@@ -221,15 +224,16 @@ if(!isset($_SESSION['email'])){
                         <p class="modal-p" for="age-edit">Address:</p>
                         <input type="text" id="address-edit-2" class="modal-field">
                     </div>
-                    <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
-                        <a href="#edit-modal" rel="modal:close"><button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button></a>
-                        <a><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
-                    </div>
+
                 </div>
 
                 </div>
         </div>
-    </div>
+        <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
+            <a href="#edit-modal" rel="modal:close"><button class="modal-cancel-button" style="margin-right: 0.5rem">Cancel</button></a>
+            <a><button id="okay-edit-btn" class="modal-primary-button">Okay</button></a>
+        </div>
+        </div>
     <!--Confirm edit-->
     <div class="modal" id="confirm-changes">
         <div class="justify-content-center" style="display: flex">
