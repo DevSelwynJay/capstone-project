@@ -112,7 +112,7 @@
 
                    <div class="row">
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" autocomplete="off" required>
+                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" placeholder="Enter Medicine" autocomplete="off" required>
                            <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
@@ -122,7 +122,7 @@
                                <option value="Medicine">Medicine</option>
                                <option value="Vaccine">Vaccine</option>
                            </select>
-                           <script>
+                           <!--<script>
                                $('#medcategorySelect').change(function (){
                                    if($('#medcategorySelect').val() == "Medicine"){
                                        $('#vacSubCategory').css("display","none");
@@ -137,28 +137,25 @@
                                        $('#medSubCategory').css("display","none");
                                    }
                                })
-
-
-
                            </script>
                            <input class="modal-field" type="text" id="medSubCategory" autocomplete="on" placeholder="Medicine Sub-Category" style="display: none">
-                           <input class="modal-field" type="text" id="vacSubCategory" autocomplete="on" placeholder="Vaccine Sub-Category" style="display: none">
+                           <input class="modal-field" type="text" id="vacSubCategory" autocomplete="on" placeholder="Vaccine Sub-Category" style="display: none">-->
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-sm-12" >
                            <p class="modal-p"for="medicineStocks">Stock:</p>
-                           <input type="text" id="medicineStocks"  class="modal-field" autocomplete="off" required>
+                           <input type="text" id="medicineStocks"  class="modal-field" placeholder="Enter Medicine Stocks" autocomplete="off" required>
                            <p class="modal-p" class="error" id="stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
-                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                           <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" placeholder="Enter Mfg Date" autocomplete="off" required>
                            <p class="modal-p" class="error" id="mfgdate-incorrect-indcator" style="color: red; visibility: hidden"></p>
                        </div>
                        <div class="col-sm-12" >
                            <p class="modal-p"  for="medicineExpDate" >Exp Date:</p>
-                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                           <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" placeholder="Enter Exp Date" autocomplete="off" required>
                            <p class="modal-p" class="error" id="expdate-incorrect-indcator" style="color: red; visibility: hidden;"></p>
                        </div>
                        <p class="modal-p" class="error" id="all-incorrect-indcator" style="color: red; visibility: hidden"></p>
@@ -188,7 +185,12 @@
                         <p class="modal-p" for="updatemedicineName">Medicine Name:</p><input type="text" id="updatemedicineName" class="modal-field" readonly required>
                     </div>
                     <div class="col-sm-12" >
-                        <p class="modal-p" for="updatemedicineCategory">Category:</p><input type="text" id="updatemedicineCategory"  class="modal-field" readonly required>
+                        <p class="modal-p" for="updatemedicineCategory">Category:</p>
+                        <select class="modal-field" id="upmedcategorySelect">
+                            <option value="none">Select</option>
+                            <option value="Medicine">Medicine</option>
+                            <option value="Vaccine">Vaccine</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -238,6 +240,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </div>
 </div>
@@ -325,19 +328,23 @@
             })
     }
     <!--    Display Function ng MEDS-->
-    function displayMedicines() {
+    function displayMedicines(page) {
         var displayData = true;
         $.ajax({
             url: 'php/inventoryProcesses/displayMeds.php',
             type: 'POST',
             data: {
-                displayMedData: displayData
+                page: page
             },
             success: function(data, status) {
                 $('#displayMedicineDataTable').html(data);
             }
         });
     }
+    $(document).on("click",".pagination_link",function (){
+        var page = $(this).attr("id");
+        displayMedicines(page);
+    })
     //Datepicker Validation
     $("#medicineMfgDate").datepicker({
         changeMonth: true,
@@ -384,33 +391,41 @@
         console.log($(this).val())
     })
     //Display To Expire Table
-    function displayToExpTab(){
+    function displayToExpTab(displayToExpDatapage){
     var displayToExpData = true;
     $.ajax({
         url:'php/inventoryProcesses/displayToExpTab.php',
         type:'POST',
         data:{
-            displayToExpData: displayToExpData
+            displayToExpDatapage: displayToExpDatapage
         },
         success:function(data, status){
             $('#toExptab').html(data);
         }
     });
     }
+    $(document).on("click",".pagination_linktoexp", function (){
+        var displayToExpDatapage = $(this).attr("id");
+        displayToExpTab(displayToExpDatapage);
+    })
     //Display Expired Table
-    function displayExpTab(){
+    function displayExpTab(displayExpTabpage){
         var displayExpTab = true;
         $.ajax({
             url:'php/inventoryProcesses/displayExpTab.php',
             type:'POST',
             data:{
-                displayExpTab: displayExpTab
+                displayExpTabpage: displayExpTabpage
             },
             success:function(data,status){
                 $('#exptab').html(data);
             }
         });
     }
+    $(document).on("click",".pagination_linkexp", function (){
+        var displayExpTabpage = $(this).attr("id");
+        displayExpTab(displayExpTabpage);
+    })
     //Add New Medicine Function
     function addNewMedicine() {
 
@@ -426,7 +441,6 @@
         }
 
         else {
-
 
             $.ajax({
                 url: "php/inventoryProcesses/inventoryAddProc.php",
@@ -447,8 +461,6 @@
                 }
             });
         }
-
-
 
         $('#addcancel').on("click", function (){
             $('#meds').trigger("focus");
@@ -506,6 +518,8 @@
         var id=$('#hiddendata').val();
 
         $.post("php/inventoryProcesses/medUpdate.php",{
+            updatemedicineName:updatemedicineName,
+            updatemedicineCategory:updatemedicineCategory,
             updatemedicineStocks:updatemedicineStocks,
             updatemedicineMfgDate:updatemedicineMfgDate,
             updatemedicineExpDate:updatemedicineExpDate,
