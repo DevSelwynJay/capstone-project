@@ -25,7 +25,10 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
       <title>Administrator</title>
       <!--Jquery-->
        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <!-- jQuery Modal -->
+       <!--Jquery UI css and js-->
+       <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+       <script src="jquery-ui/jquery-ui.js"></script>
+       <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
        <!--Super Admin JS-->
@@ -167,7 +170,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
 
                                  <div class="row">
                                      <div class="col-sm-12">
-                                         <input type="text" placeholder="Address">
+                                         <input type="text" placeholder="Address" id="modal-address">
                                      </div>
                                  </div>
                                   </form>
@@ -382,6 +385,50 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
               dropdownToggle.style.display = "block";
           });
 
+          address_autocomlete();
+          function address_autocomlete() {
+              //$("#address-edit-2").autocomplete({
+              //  source:['Sto. Rosario Paombong Bulacan',"Paombong","Bulacan"]
+              //})
+              function split( val ) {
+                  return val.split( / \s*/ );
+              }
+              function extractLast( term ) {
+                  return split( term ).pop();
+              }
+
+              $( "#modal-address" )
+                  // don't navigate away from the field on tab when selecting an item
+                  .on( "keydown", function( event ) {
+                      if ( event.keyCode === $.ui.keyCode.TAB &&
+                          $( this ).autocomplete( "instance" ).menu.active ) {
+                          event.preventDefault();
+                      }
+                  })
+                  .autocomplete({
+                      minLength: 0,
+                      source: function( request, response ) {
+                          // delegate back to autocomplete, but extract the last term
+                          response( $.ui.autocomplete.filter(
+                              ['Sto. Rosario Paombong Bulacan',"Paombong","Bulacan","Purok","Malolos"], extractLast( request.term ) ) );
+                      },
+                      focus: function() {
+                          // prevent value inserted on focus
+                          return false;
+                      },
+                      select: function( event, ui ) {
+                          var terms = split( this.value );
+                          // remove the current input
+                          terms.pop();
+                          // add the selected item
+                          terms.push( ui.item.value );
+                          // add placeholder to get the comma-and-space at the end
+                          terms.push( "" );
+                          this.value = terms.join( " " );
+                          return false;
+                      }
+                  });
+          }//
       </script>
    </body>
 </html>
