@@ -22,6 +22,14 @@
     width: clamp(2em,3em,3vw);
     height:  clamp(2em,3em,3vw);
 }
+.modal-header-icon-wider{
+    width: clamp(3.6em,4em,3vw);
+    height: clamp(2.5em,3em,3vw);
+}
+.modal-icon-wider{
+    width: clamp(2.5em,3em,3vw);
+    height:  clamp(2em,3em,3vw);
+}
 .modal-title{
     color: var(--third-color)!important;
     font-weight: 500;
@@ -45,6 +53,12 @@
 .modal-p{
     font-size: clamp(0.4em,0.8em,3vw)!important;
     font-weight: 450;
+    color: var(--third-color);
+    padding-left: 0.5em;
+}
+.modal-p-lighter{
+    font-size: clamp(0.4em,0.8em,3vw)!important;
+    font-weight: 400;
     color: var(--third-color);
     padding-left: 0.5em;
 }
@@ -81,9 +95,18 @@
     border: none;
     border-radius: 0.2rem;
 }
+
 .modal-primary-button:hover{
     background: var(--hover-color);
     cursor: pointer;
+}
+.modal-primary-button-2{
+    padding: 0.6em 1em;
+    font-size: clamp(0.6em,0.8em,3vw)!important;
+    color: #fff;
+    background:  var(--primary-color);
+    border: none;
+    border-radius: 0.2rem;
 }
 .modal-cancel-button{
     padding: 0.6em 1em;
@@ -97,7 +120,14 @@
     background: #d26375;
     cursor: pointer;
 }
-
+.modal-cancel-button-2{
+    padding: 0.6em 1em;
+    font-size: clamp(0.6em,0.8em,3vw)!important;
+    color: #fff;
+    background: var(--third-color);
+    border: none;
+    border-radius: 0.2rem;
+}
 /*media queries*/
 @media (max-width: 342px) {
     .modal-title-2{

@@ -92,6 +92,8 @@ if(isset($_SESSION['email'])){
 
           }
       </style>
+      <!--Custom Modal Design-->
+      <link rel="stylesheet" href="scss/modal.css">
       <title>Login</title>
   </head>
   <body style="overscroll-behavior-y: contain;">
@@ -215,7 +217,7 @@ if(isset($_SESSION['email'])){
                     <div id="modal-content">
                         <div style="display: flex;align-items: center;justify-content: center">
                             <div class="loader"></div>
-                            <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                            <p id="pop-up-loading-message">
                                 Processing Request...
                             </p>
                         </div>
@@ -239,7 +241,7 @@ if(isset($_SESSION['email'])){
                 <div class="modal-body">
                     <div id="modal-content">
                         <div style="display: flex;align-items: center;justify-content: center">
-                            <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
+                            <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
                             <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
                                 Error
                             </p>
@@ -265,28 +267,27 @@ if(isset($_SESSION['email'])){
                 </div>-->
                 <div class="modal-body">
 
-                    <div id="modal-content">
+                    <div>
 
-                        <div id="modal-icon"><img src="./img/authentication.png"/></div>
-                        <h3>Two-Step Authentication</h3>
-                        <p>Please choose one of the following where to send your login verification code to continue.</p>
-                        <div class="container-fluid">
-                            <div class="row" id="choose-authentication">
-                                <div class="col-sm">
-                                    <img src="img/email.png">
-                                    <p style="text-align: center">Code to be sent by email</p>
+                        <div class="flex-box-row justify-content-center align-items-center">
+                            <img src="./img/authentication.png" class="modal-header-icon-wider"/>
+                        </div>
+                        <p class="modal-title-2">Two-Step Authentication</p>
+                        <p class="modal-p-lighter">Please choose one of the following where to send your login verification code to continue.</p>
+                        <div class="row flex-box-row justify-content-center align-items-center">
+                            <div class="option-cont col-sm-6 flex-box-column justify-content-center align-items-center margin-top-1">
+                                    <img src="img/email.png" class="modal-icon-wider">
+                                    <p class="modal-p-lighter margin-top-1" style="margin-bottom: 0.5rem">Code to be sent by email</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isEmail" id="isEmail">
                                     </div>
-                                </div>
-                                <div class="col-sm">
-                                    <img src="img/sms.png" id="sms-icon">
-
-                                    <p style="text-align: center">Code to be sent by SMS</p>
+                            </div>
+                            <div class="option-cont col-sm-6 flex-box-column justify-content-center align-items-center margin-top-1">
+                                    <img src="img/sms.png" class="modal-icon-wider">
+                                    <p class="modal-p-lighter margin-top-1" style="margin-bottom: 0.5rem">Code to be sent by SMS</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isSMS" id="isSMS">
                                     </div>
-                                </div>
                             </div>
                         </div>
                         <input type="radio" name="toggle" style="display: none" checked value="none" id="isNone">
@@ -294,8 +295,8 @@ if(isset($_SESSION['email'])){
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-main-ok-btn">Confirm</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-main-cancel-btn">Back</button>
+                    <button type="button" class="modal-primary-button-2" id="pop-up-main-ok-btn">Confirm</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-main-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -472,9 +473,9 @@ if(isset($_SESSION['email'])){
     </div>
 
 
-    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd-success">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-main">
         Launch demo modal
-    </button>-->
+    </button>
   <script>
 
       $('[data-toggle="tooltip"]').focus(function () {
@@ -487,5 +488,19 @@ if(isset($_SESSION['email'])){
       })
 
   </script>
+
+    <!--Some modal CSS fixed-->
+  <style>
+      /*sa main pop up modal ito*/
+      .option-cont{
+          padding: 15px;
+      }
+        @media (max-width: 575px) {
+            .option-cont{
+                width: clamp(40%,60%,70%);
+                padding: 0.3rem!important;
+            }
+        }
+  </style>
   </body>
 </html>
