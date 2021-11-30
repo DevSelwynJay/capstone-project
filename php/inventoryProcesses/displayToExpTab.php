@@ -15,6 +15,8 @@ $start_from = ($page -1 )*$rpp;
 
     $exptab = "Select * from `medinventory` where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY limit $start_from,$rpp";
     $result = mysqli_query($con, $exptab);
+    if(mysqli_num_rows($result)>0){
+
     $exptable = '<h1>Medicine to Expire</h1><table>
             <tbody>
             <tr class="title">
@@ -44,7 +46,12 @@ $start_from = ($page -1 )*$rpp;
 for($i =1;$i<=$total_pages;$i++){
     $exptable .= '<span class="pagination_linktoexp" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
 }
-    echo  $exptable;
+        echo  $exptable;
+    }
+    else{
+        echo  $exptable;
+    }
+
 
 function datediff($datetoday, $expdate){
     $diff = strtotime($expdate) - strtotime($datetoday);

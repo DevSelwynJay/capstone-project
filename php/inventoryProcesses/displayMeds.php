@@ -41,9 +41,16 @@ $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by 
             $medtable .= '<tr>
         <td scope="row">' . $id . '</td>
         <td>' . $medname . '</td>
-        <td>' . $category . '</td>
-        <td>' . $stocks . '</td>
-        <td>' . $mfgdate . '</td>
+        <td>' . $category . '</td>';
+
+            if($stocks >=100){
+                $medtable .= '<td>'.$stocks.'</td>';
+            }
+            else{
+                $medtable .= '<td style="color: red">'.$stocks.'</td>';
+            }
+
+        $medtable .= '<td>' . $mfgdate . '</td>
         <td>' . $expdate . '</td>
         <td>' . $dateadded . '</td>
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal('.$id.')"></i></td>
