@@ -91,6 +91,7 @@ if(isset($_SESSION['email'])){
               }
 
           }
+          .modal { overflow: auto !important; }
       </style>
       <!--Custom Modal Design-->
       <link rel="stylesheet" href="scss/modal.css">
@@ -214,10 +215,10 @@ if(isset($_SESSION['email'])){
                    </button>
                </div>-->
                 <div class="modal-body">
-                    <div id="modal-content">
+                    <div>
                         <div style="display: flex;align-items: center;justify-content: center">
                             <div class="loader"></div>
-                            <p id="pop-up-loading-message">
+                            <p id="pop-up-loading-message" class="modal-p">
                                 Processing Request...
                             </p>
                         </div>
@@ -239,17 +240,17 @@ if(isset($_SESSION['email'])){
                      </button>
                  </div>-->
                 <div class="modal-body">
-                    <div id="modal-content">
+                    <div>
                         <div style="display: flex;align-items: center;justify-content: center">
                             <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
-                            <p id="pop-up-error-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                            <p id="pop-up-error-message" class="modal-p">
                                 Error
                             </p>
                         </div>
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-error-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -277,14 +278,14 @@ if(isset($_SESSION['email'])){
                         <div class="row flex-box-row justify-content-center align-items-center">
                             <div class="option-cont col-sm-6 flex-box-column justify-content-center align-items-center margin-top-1">
                                     <img src="img/email.png" class="modal-icon-wider">
-                                    <p class="modal-p-lighter margin-top-1" style="margin-bottom: 0.5rem">Code to be sent by email</p>
+                                    <p class="modal-p-lighter margin-top-1 text-center" style="margin-bottom: 0.5rem">Code to be sent by email</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isEmail" id="isEmail">
                                     </div>
                             </div>
                             <div class="option-cont col-sm-6 flex-box-column justify-content-center align-items-center margin-top-1">
                                     <img src="img/sms.png" class="modal-icon-wider">
-                                    <p class="modal-p-lighter margin-top-1" style="margin-bottom: 0.5rem">Code to be sent by SMS</p>
+                                    <p class="modal-p-lighter margin-top-1 text-center" style="margin-bottom: 0.5rem">Code to be sent by SMS</p>
                                     <div class="toggle-cont">
                                         <input type="radio" name="toggle" value="isSMS" id="isSMS">
                                     </div>
@@ -314,24 +315,25 @@ if(isset($_SESSION['email'])){
                 </div>-->
                 <div class="modal-body">
 
-                    <div id="modal-content">
 
-                        <div id="modal-icon"><img src="./img/email.png"/></div>
-                        <h3>Email Confirmation</h3>
-                        <h5 class="subtitle">A verification code has been sent to your email</h5>
-                        <h5 id="email-txt">sample@gmail.com</h5>
+                        <div class="flex-box-row justify-content-center align-items-center">
+                            <img src="./img/email.png" class="modal-header-icon-wider"/>
+                        </div>
+                        <p class="modal-title-2">Email Confirmation</p>
+                        <p class="modal-p-lighter text-center">A verification code has been sent to your email.</p>
+                        <p id="email-txt" class="modal-smaller-p text-center">sample@gmail.com</p>
                         <!--<p class="paragraph">To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>-->
-                        <h5 class="subtitle">Enter 6-digit OTP code</h5>
-                        <form autocomplete="off">
-                            <input type="text" maxlength="6" id="otp-input">
+                        <p class="modal-p-lighter margin-top-3 text-center">Enter 6-digit OTP code</p>
+                        <form autocomplete="off" class="flex-box-row justify-content-center" style="margin-top: 0.2rem">
+                            <input type="text" maxlength="6" id="otp-input" style="font-size: revert;border-radius: revert">
                         </form>
-                        <p id="invalid-OTP-indicator" style="color: darkred;visibility: hidden ;margin: 5px 0 0 0 ;display: flex;justify-content: center;font-size: smaller">Invalid OTP</p>
+                        <p id="invalid-OTP-indicator" class="modal-p-error">Invalid OTP</p>
 
-                    </div><!--end of modal content-->
+
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-email-ok-btn">Confirm</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-email-cancel-btn">Back</button>
+                    <button type="button" class="modal-primary-button-2" id="pop-up-email-ok-btn">Confirm</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-email-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -349,22 +351,19 @@ if(isset($_SESSION['email'])){
                      </button>
                 </div>-->
                 <div class="modal-body">
-
-                    <div id="modal-content" class="forgot-cont">
-
-                        <div id="modal-icon"><img src="./img/Icons/question.png"/></div>
-                        <h3>Forgot your password?</h3>
-                        <p>Please enter your email to search for your account</p>
-                        <form autocomplete="off">
-                            <input type="text" id="email-input" placeholder="E-mail"/>
+                        <div class="flex-box-row justify-content-center align-items-center">
+                            <img src="./img/Icons/question.png" class="modal-icon-wider"/>
+                        </div>
+                        <p class="modal-title-2">Forgot your password?</p>
+                        <p class="modal-p-lighter text-center">Please enter your email to search for your account</p>
+                        <form autocomplete="off" class="flex-box-row justify-content-center">
+                            <input type="text" id="email-input" placeholder="E-mail" style="font-size: revert;border-radius: revert"/>
                         </form>
-                        <p id="invalid-email-indicator" style="font-size: smaller">Can't recognize e-mail</p>
-
-                    </div><!--end of modal content-->
+                        <p id="invalid-email-indicator" class="modal-p-error">Can't recognize e-mail</p>
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-forgot-ok-btn">Search</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-cancel-btn">Back</button>
+                    <button type="button" class="modal-primary-button-2" id="pop-up-forgot-ok-btn">Search</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-forgot-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -382,26 +381,28 @@ if(isset($_SESSION['email'])){
                 </div>-->
                 <div class="modal-body">
 
-                    <div id="modal-content" class="forgot-cont">
+                    <div>
 
-                        <div id="modal-icon"><img src="./img/Icons/locked.png"/></div>
-                        <h3 class="forgot-pwd-otp-header" >Hello Sample User</h3>
-                        <p class="forgot-pwd-otp-email" style="color: var(--dark-grey)">sample@gmail.com</p>
-                        <p style="margin-bottom: 2rem;text-align: center">To reset your password, you must enter the 6-Digit code that has been sent to your email.
+                        <div class="flex-box-row justify-content-center align-items-center">
+                            <img src="./img/Icons/locked.png" class="modal-header-icon-wider"/>
+                        </div>
+                        <p id="forgot-pwd-otp-header" class="modal-title-2 text-center">Hello Sample User</p>
+                        <p id="forgot-pwd-otp-email" class="modal-sub-title-blue text-center">alfredogiebenitez@gmail.com</p>
+                        <p class="modal-p-lighter text-center margin-top-1">To reset your password, you must enter the 6-Digit code that has been sent to your email.
                         </p>
-                        <p>Enter 6 Digit Reset Code</p>
-                        <form autocomplete="off">
-                            <input type="number" id="forgot-pwd-otp-input" maxlength="6"/>
+                        <p class="modal-p-lighter margin-top-3 text-center">Enter 6 Digit Reset Code</p>
+                        <form autocomplete="off" class="flex-box-row justify-content-center">
+                            <input type="number" id="forgot-pwd-otp-input" maxlength="6" style="border-radius: revert;font-size: revert"/>
                         </form>
-                        <p id="invalid-otp-indicator" style="color: darkred;font-size: smaller">Invalid Code</p>
+                        <p id="invalid-otp-indicator" class="modal-p-error">Invalid Code</p>
                         <div class="flex">
-                            <button type="button" class="btn btn-primary" id="pop-up-forgot-otp-ok-btn">Verify</button>
+                            <button type="button" class="modal-primary-button-2" id="pop-up-forgot-otp-ok-btn">Verify</button>
                         </div>
                          </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-forgot-resend-OTP-btn">Resend Code</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
+                    <button type="button" class="modal-primary-button-2" id="pop-up-forgot-resend-OTP-btn">Resend Code</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-forgot-otp-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -420,32 +421,35 @@ if(isset($_SESSION['email'])){
                 </div>-->
                 <div class="modal-body">
 
-                    <div id="modal-content" class="forgot-cont">
+                    <div class="flex-box-column align-items-center">
 
-                        <div id="modal-icon"><img src="./img/Icons/rotation-lock.png"/></div>
-                        <h3>Reset Password</h3>
-                        <p id="forgot-pwd-greetings" style="color: var(--dark-grey)">Hello! Benitez, Alfredo Bas</p>
-                        <p id="forgot-pwd-email" style="margin-bottom: 1.5rem;text-align: center;font-size: smaller">sample@gmail.com</p>
+                        <div class="flex-box-row justify-content-center">
+                            <img src="./img/Icons/rotation-lock.png" class="modal-header-icon-wider"/>
+                        </div>
+                        <p class="modal-title-2">Reset Password</p>
+                        <p id="forgot-pwd-greetings" class="modal-p text-center">Hello! Benitez, Alfredo Bas</p>
+                        <p id="forgot-pwd-email"class="modal-smaller-p text-center">sample@gmail.com</p>
 
-                        <div class="reset-pwd-cont">
-                            <div class="input-cont">
-                                <p class="input-label"  style="margin: 0.3rem 0" >New Password</p>
-                                <input type="password" id="pwd-reset" class="pwd-reset"  style="margin: 0" data-toggle="tooltip" data-placement="top" title="Minimum of 8 characters." data-container="body"/>
+                            <div class="input-cont margin-top-3">
+                                <p class="modal-p-lighter"  style="margin: 0.3rem 0" >New Password</p>
+                                <input type="password" id="pwd-reset" class="pwd-reset" style="border-radius: revert;font-size: revert;margin: 0" data-toggle="tooltip" data-placement="top" title="Minimum of 8 characters." data-container="body"/>
                             </div>
                             <p></p>
                             <div class="input-cont">
-                                <p  class="input-label"  style="margin: 0.3rem 0">Confirm Password</p>
-                                <input type="password" id="cpwd-reset" class="pwd-reset" style="margin: 0"/>
+                                <p  class="modal-p-lighter"  style="margin: 0.3rem 0">Confirm Password</p>
+                                <input type="password" id="cpwd-reset" class="pwd-reset" style="border-radius: revert;font-size: revert;margin: 0"/>
                             </div>
 
-                            <p id="invalid-pwd-indicator" style="color: darkred;font-size: smaller">Password did not matched!</p>
-                        </div>
+                            <p id="invalid-pwd-indicator" class="modal-p-error">Password did not matched!</p>
+
+
+
 
                     </div><!--end of modal content-->
                 </div><!--end of modal body-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pop-up-reset-pwd-ok-btn">Verify</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="pop-up-reset-pwd-cancel-btn">Back</button>
+                    <button type="button" class="modal-primary-button-2" id="pop-up-reset-pwd-ok-btn">Verify</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-reset-pwd-cancel-btn">Back</button>
                 </div>
             </div>
         </div>
@@ -473,9 +477,9 @@ if(isset($_SESSION['email'])){
     </div>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-main">
-        Launch demo modal
-    </button>
+<!--    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-reset-pwd">-->
+<!--        Launch demo modal-->
+<!--    </button>-->
   <script>
 
       $('[data-toggle="tooltip"]').focus(function () {
@@ -501,6 +505,14 @@ if(isset($_SESSION['email'])){
                 padding: 0.3rem!important;
             }
         }
+      /*sa forgot pwd modal ito*/
+
+          @media (min-width: 455px) {
+              #email-input,.input-cont{
+                  width: clamp(60%,70%,80%)
+              }
+          }
+
   </style>
   </body>
 </html>

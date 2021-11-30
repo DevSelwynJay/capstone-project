@@ -1,3 +1,6 @@
+*{
+    word-wrap: break-word;
+}
 .flex-box-column{
     display: flex;
     flex-direction: column;
@@ -44,34 +47,32 @@
     margin: 0.5em;
     text-align: center;
 }
-.modal-sub-title{
-    color: var(--third-color)!important;
+.modal-sub-title-blue{
+    color: var(--primary-color)!important;
     font-weight: 500;
-    font-size: clamp(1em,1.3em,3vw);
-    margin: 0.5em;
+    font-size: clamp(0.8em,1em,1.5vw);
 }
 .modal-p{
-    font-size: clamp(0.4em,0.8em,3vw)!important;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     font-weight: 450;
     color: var(--third-color);
     padding-left: 0.5em;
 }
 .modal-p-lighter{
-    font-size: clamp(0.4em,0.8em,3vw)!important;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     font-weight: 400;
     color: var(--third-color);
     padding-left: 0.5em;
 }
 .modal-smaller-p{
-    font-size: clamp(0.4em,0.7em,3vw)!important;
+    font-size: clamp(0.6em,0.7em,3vw)!important;
     font-weight: 420;
     color: var(--primary-color);
     padding-left: 0.5em;
     cursor: pointer;
-    margin-top: 0.1rem;
 }
 .modal-p-error{
-    font-size: clamp(0.4em,0.7em,3vw)!important;
+    font-size: clamp(0.6em,0.7em,3vw)!important;
     font-weight: 420;
     color: red;
     padding-left: 0.5em;
@@ -88,8 +89,8 @@
     font-size: clamp(0.7em,0.8em,3vw)!important;
 }
 .modal-primary-button{
-    padding: 0.6em 1em;
-    font-size: clamp(0.4em,0.8em,3vw)!important;
+    padding: 0.5em 1em;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: aliceblue;
     background:  #465A72;
     border: none;
@@ -101,16 +102,16 @@
     cursor: pointer;
 }
 .modal-primary-button-2{
-    padding: 0.6em 1em;
-    font-size: clamp(0.6em,0.8em,3vw)!important;
+    padding: 0.5em 1em;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: #fff;
     background:  var(--primary-color);
     border: none;
     border-radius: 0.2rem;
 }
 .modal-cancel-button{
-    padding: 0.6em 1em;
-    font-size: clamp(0.4em,0.8em,3vw)!important;
+    padding: 0.5em 1em;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: aliceblue;
     background: #b2273d;
     border: none;
@@ -121,8 +122,8 @@
     cursor: pointer;
 }
 .modal-cancel-button-2{
-    padding: 0.6em 1em;
-    font-size: clamp(0.6em,0.8em,3vw)!important;
+    padding: 0.5em 1em;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     color: #fff;
     background: var(--third-color);
     border: none;
@@ -132,6 +133,9 @@
 @media (max-width: 342px) {
     .modal-title-2{
         font-size:  clamp(0.7em,1em,2vw);
+    }
+    .modal-sub-title-blue{
+        font-size:  clamp(0.5em,0.7em,2vw);
     }
     .modal-header-icon{
         width: clamp(1em,1.5em,3em);

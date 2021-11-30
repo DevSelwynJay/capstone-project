@@ -131,8 +131,8 @@ function  showForgotPasswordOTP_Input(full_name,email){
     //show the next modal(otp input) then display the email and fullname
     $("#pop-up-forgot-otp").modal('show');
     console.log(full_name+" "+email)
-    $(".forgot-pwd-otp-header").html("Hello! "+full_name);
-    $(".forgot-pwd-otp-email").html(email);
+    $("#forgot-pwd-otp-header").html("Hello! "+full_name);
+    $("#forgot-pwd-otp-email").html(email);
 
     $("#forgot-pwd-otp-input").off('keypress');
     $("#forgot-pwd-otp-input").on('keypress',function (event) {
