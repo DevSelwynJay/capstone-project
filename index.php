@@ -94,7 +94,7 @@ if(isset($_SESSION['email'])){
       </style>
       <title>Login</title>
   </head>
-  <body>
+  <body style="overscroll-behavior-y: contain;">
     <section class="login-form">
       <div class="container-fluid">
         <div class="row">

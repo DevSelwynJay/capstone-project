@@ -72,7 +72,7 @@
        <link rel="stylesheet" href="scss/modal.css">
    </head>
    
-   <body style=";height: 100vh;overflow: hidden">
+   <body style=";height: 100vh;overflow: hidden;overscroll-behavior-y: contain;">
       <section class="registration-form">
          <div class="registration-form__container">
             <div class="registration-form__wrapper">
