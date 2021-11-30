@@ -228,8 +228,28 @@
         <p class="modal-title-2" id="modal-title" style="width: fit-content">View</p>
     </div>
 
+<!--    <div id="personal-cont" class="flex-box-column align-items-start margin-top-1">-->
+<!---->
+<!--        <p class="modal-p"><i class="fas fa-envelope-open-text fa-lg"></i>Email: alfred@gamil.com</p>-->
+<!--        <p class="modal-p"><i class="fas fa-id-card fa-lg"></i>Contact: 09422697900</p>-->
+<!--        <p class="modal-p"><i class="fas fa-map-marked-alt fa-lg"></i>Address: 1 poblacion Paombong  Bulacan</p>-->
+<!--        <p class="modal-p"><i class="fas fa-birthday-cake fa-lg"></i></i>Birthday: January 11, 1999</p>-->
+<!--        <p class="modal-p"><i class="fas fa-sort-numeric-up-alt fa-lg"></i>Age: 22</p>-->
+<!--        <p class="modal-p"><i class="fas fa-building fa-lg"></i></i>Occupation: Driver</p>-->
+<!--        <p class="modal-p"><i class="fas fa-users fa-lg"></i>Civil Status: Single</p>-->
+<!--    </div>-->
+    <style>
+        #personal-cont p{
+            margin-top: 0.5rem;
+        }
+        .fas{
+            margin-right: 0.3rem;
+        }
+    </style>
+
+
     <div class="flex-box-row justify-content-end align-items-end" style="margin-bottom: clamp(0.2em,0.3em,5em)">
-        <a id="fs" class="modal-smaller-p">View ID in Fullscreen</a>
+        <a id="fs" class="modal-p-lighter"><i class="fas fa-compress-arrows-alt"></i></i>View ID in Fullscreen</a>
     </div>
     <div class="gallery" style="margin-bottom: 1.5rem">
 <!--        <div class="gallery-cell"></div>-->
@@ -239,11 +259,15 @@
 <!--        <div class="gallery-cell"></div>-->
     </div>
 
-    <div class="row">
+    <div class="flex-box-row justify-content-center">
+        <button class="modal-p-lighter margin-top-2 text-center" style="padding: 0.5rem;border:1px solid var(--dark-grey);cursor: pointer;border-radius: 0.2rem;"><i class="fas fa-info-circle fa-lg"></i>Show All Info</button>
+    </div>
+
+    <div class="row margin-top-1">
         <div class="col-sm-12">
             <div class="flex-box-row justify-content-center align-items-end" style="margin: 1rem">
-                <button class="modal-cancel-button" id="decline" style="margin-right: 0.5rem">Decline</button>
-                <button class="modal-primary-button" id="accept" style="margin-left: 0.5rem">Accept</button>
+                <button class="modal-cancel-button" id="decline" style="margin-right: 0.5rem"><i class="fas fa-times fa-lg"></i>Decline</button>
+                <button class="modal-primary-button" id="accept" style="margin-left: 0.5rem"><i class="fas fa-user-check fa-lg"></i>Accept</button>
             </div>
         </div>
     </div>
@@ -546,9 +570,9 @@
             table.setData(JSON.parse(data),{
                 // id: "ID",
                 name:"Name",
-                // address:"Address",
-                // contact_no: "Contact",
-                // email:'Email',
+                 // address:"Address",
+                 // contact_no: "Contact",
+                 // email:'Email',
                 date:"Date Requested",
                 button:"Action"
             });

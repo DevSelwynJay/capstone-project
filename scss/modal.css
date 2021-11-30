@@ -95,6 +95,7 @@
     background:  #465A72;
     border: none;
     border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .modal-primary-button:hover{
@@ -108,6 +109,7 @@
     background:  var(--primary-color);
     border: none;
     border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
 }
 .modal-cancel-button{
     padding: 0.5em 1em;
@@ -116,6 +118,7 @@
     background: #b2273d;
     border: none;
     border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
 }
 .modal-cancel-button:hover{
     background: #d26375;
@@ -128,6 +131,7 @@
     background: var(--third-color);
     border: none;
     border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
 }
 /*media queries*/
 @media (max-width: 342px) {
