@@ -118,7 +118,7 @@
                        <div class="col-sm-12" >
                            <p class="modal-p" for="medicineCategory">Category:</p>
                            <select class="modal-field" id="medcategorySelect">
-                               <option value="none">Select</option>
+                               <option value="">Select</option>
                                <option value="Medicine">Medicine</option>
                                <option value="Vaccine">Vaccine</option>
                            </select>
@@ -233,7 +233,7 @@
                 <div class="row flex-row justify-content-start" style="display: flex">
                     <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                         <a href="#delete-modal" rel="modal:close"><button class="modal-cancel-button" id="adddelcancel" style="margin-right: 0.5rem">Cancel</button></a>
-                        <a><button id="okay-edit-btn" class="modal-primary-button" onclick="">Delete</button></a>
+                        <a><button id="delete-btn" class="modal-primary-button" onclick="medDelete()" >Delete</button></a>
                     </div>
                 </div>
 
@@ -318,6 +318,8 @@
             $('#medicineMfgDate').val("");
             $('#medicineExpDate').val("");
         })
+
+
     })
     function delModal(id){
         $('#hideid').val(id);
@@ -325,8 +327,27 @@
             $('#delete-modal').modal({
                 clickClose: false,
                 showClose: false
-            })
+            });
+
     }
+    function medDelete(){
+
+        var id = $('#hideid').val();
+
+        $.post("php/inventoryProcesses/medDelete.php",{
+            id:id
+        },function(data,status){
+            $("[href='#delete-modal']").trigger('click');
+            displayMedicines();
+            displayToExpTab();
+            displayExpTab();
+        });
+
+
+    }
+
+
+
     <!--    Display Function ng MEDS-->
     function displayMedicines(page) {
         var displayData = true;
@@ -436,8 +457,8 @@
         var medExpDate = $('#medicineExpDate').val()
 
         if(medName == "" || medCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""){
-            $('#all-incorrect-indcator').css("visibility","visible")
-            $('#all-incorrect-indcator').html('Please Fill out all the fields');
+            $('#all-incorrect-indcator').css("visibility","visible");
+            $('#all-incorrect-indcator').html('Please Fill out all the fields!');
         }
 
         else {
@@ -465,7 +486,7 @@
         $('#addcancel').on("click", function (){
             $('#meds').trigger("focus");
             $('#medicineName').val("");
-            $('#medicineCategory').val("");
+            $('#medcategorySelect').selectedIndex = 1;
             $('#medicineStocks').val("");
             $('#medicineMfgDate').val("");
             $('#medicineExpDate').val("");
@@ -476,7 +497,7 @@
             $('#expdate-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').html('');
-            $('#name-incorrect-indcator').html('');
+            $('#name-incorrect-indcator').html('')
         })
     }
     //Below this are the Update Process
@@ -531,6 +552,9 @@
             displayExpTab();
         });
     }
+
+
+
 </script>
 
 <script>
