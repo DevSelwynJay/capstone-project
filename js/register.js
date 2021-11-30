@@ -31,8 +31,7 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
                     if(!valid){
                         console.log("Invalid file format")
                         $("#pop-up-error").modal('toggle')
-                        $("#err-title").html('Invalid file format!<br>.png, .jpg, and .jpeg only')
-                        $("#pop-up-error-message").html("")
+                        $("#pop-up-error-message").html("<p>File has invalid format!</p>")
                         $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
                         $('#customFileInput').val('')
                         noOfPicture = 0

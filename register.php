@@ -65,11 +65,11 @@
       <!--Jquery UI css and js-->
        <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
        <script src="jquery-ui/jquery-ui.js"></script>
-
        <!--Bootstrap-->
        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
    </head>
    
    <body style=";height: 100vh;overflow: hidden">
@@ -376,8 +376,8 @@
                   <div class="modal-body">
                       <div id="modal-content">
                           <div style="display: flex;align-items: center;justify-content: center">
-                              <img src="img/Icons/exclamation-mark.png" width="80" height="70"/>
-                              <p id="err-title" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                              <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+                              <p id="err-title" style="font-weight: 700">
                                  Can't Sign up
                               </p>
                           </div>
@@ -386,7 +386,7 @@
                                   text-align: center;
                               }
                           </style>
-                          <div id="pop-up-error-message" style="display: flex;flex-flow: column;justify-content: center;align-items: center;margin: 0.5rem 0">
+                          <div id="pop-up-error-message">
 
                           </div>
                       </div><!--end of modal content-->
@@ -412,7 +412,7 @@
                       <div id="modal-content">
                           <div style="display: flex;align-items: center;justify-content: center">
                               <div class="loader"></div>
-                              <p id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem;font-size: larger">
+                              <p id="pop-up-loading-message" class="modal-p">
                                   Processing Request...
                               </p>
                           </div>
