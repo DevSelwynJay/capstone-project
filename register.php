@@ -80,7 +80,7 @@
                   <img src="img/HIS logo blue.png" alt="Logo" />
                </div>
                <div class="registration-form__form-wrapper" >
-                   <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem">Create patient account</h1>
+                   <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem;font-size: clamp(1.5rem,2rem,3vw)">Create patient account</h1>
                   <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto;height: 65vh">
                      <div class="container">
 
