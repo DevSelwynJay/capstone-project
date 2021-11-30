@@ -33,8 +33,9 @@
     <!--Custom Carousel Design-->
     <link rel="stylesheet" href="scss/carousel.css">
 
-</head>
+    </head>
 <body>
+
 <section class="global">
     <div class="global__container">
 
@@ -87,34 +88,59 @@
                         </div>
                     </div>
                 </div>
-                <div class = "pending-patient-container">
-                    <div class="container-shadow">
-                        <p>Pending Patient Accounts</p>
-                        <hr>
-                        <table>
-                            <tr>
-                                <th>Fullname</th>
-                                <th>Email</th>
-                                <th>Contact</th>
-                                <th>Address</th>
-                                <th>Action</th>
-                            </tr>
-                            <?php
-                            $con=null;
-                            require 'php/DB_Connect.php';
-                            $res = mysqli_query($con,"SELECT*FROM pending_patient");
-                            while ($row = mysqli_fetch_array($res)){
-                                echo "<tr>";
-                                echo "<td>".$row[1].", ".$row[2]." ".$row[3]."</td>";
-                                echo "<td>".$row[9]."</td>";
-                                echo "<td>".$row[11]."</td>";
-                                echo "<td>".$row[6]."</td>";
-                                echo "<td><button class='view' data-email='$row[9]' id='$row[0]%%%%%".$row[1].", ".$row[2]." ".$row[3]."' >View</button></td>";
+                <div class="col-sm-12">
+                    <div class="search-tab">
+                        <div class="search-container">
+                            <input type="text" class="search-bar">
+                            <a href="/"><i class="fas fa-search"></i></a>
+                        </div>
+                        <!--                        <div class="details-settings">-->
+                        <!--                           <a href="/">View Details</a>-->
+                        <!--                           <a href="/">Edit Details</a>-->
+                        <!--                        </div>-->
+                    </div>
+                    <div class="content patients-view-container">
 
-                                echo "<tr>";
-                            }
-                            ?>
+
+
+                        <table class="patients-view">
+                            <tbody>
+                            <tr class="patients-view-title">
+                                <th>Patient Id</th>
+                                <th>Patient Name</th>
+                                <th>Address</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                            </tr>
+
+                            <tr class='clickable-row' data-href='http://localhost/capstone-project/individual-patient.php'>
+
+                                <td>01</td>
+                                <td>Name</td>
+                                <td>Hagonoy</th>
+                                <td>21</td>
+                                <td>M</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td>02</td>
+                                <td>Name</td>
+                                <td>Hagonoy</th>
+                                <td>21</td>
+                                <td>M</td>
+
+                            </tr>
+
+
+
+
+
+                            </tbody>
                         </table>
+
+
                     </div>
                 </div>
             </div>
@@ -281,6 +307,8 @@
     </div>
 </div>
 
+<!--Table sortable script-->
+<script src="js/table-sortable.js"></script>
 <script>
     let pic_count=0;
     let carouselInstance=false
@@ -335,56 +363,59 @@
         let email = "";
 
 
-        $(".view").click(function () {
-            if(carouselInstance){
-                destroy_carousel()
-            }
-            call_carousel();
-            carouselInstance=true
-
-            data = $(this).prop('id').split("%%%%%")
-            id = data[0]
-            name = data[1]
-            email = $(this).data('email');//alert(email)
-            //alert(name)
-            $("#modal-title").html(name)
-            //alert(id)
-            $("#pop-up-loading").modal({
-               showClose:false,
-            })
-
-            $.post('php/registerProcesses/retrieve_pending_patient_info.php',{id:id}).done(
-                function (data) {
-                    setTimeout(function () {
-                       /* if(pic_count!=0){
-                            for(let a=0;a<pic_count;a++){
-                                $( '.gallery' ).flickity( 'remove', $(".gallery-cell")[a])
-                            }
-                        }
-                        pic_count=0;*/
-
-                        let result = JSON.parse(data)
-                        //alert(result.pic_path)
-                        let pics = result.pic_path.split(" ")
-                        //alert(pics.length)
-                        for(let pic of pics){
-                            pic_count+=1;
-                           // alert(pic)
-                            $( '.gallery' ).flickity('insert',
-                                $($.parseHTML("<div>")).prop("class","gallery-cell")
-                                    .append($($.parseHTML("<img>")).prop('src',pic))
-                            )
-                        }
-
-                        $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
-                        //$( '.gallery' ).flickity('reloadCells')
-                        $( '.gallery' ).flickity('resize')
-
-                    },300)
-
+        function click_view_button() {
+            $(".view").click(function () {
+                if(carouselInstance){
+                    destroy_carousel()
                 }
-            )//done
-        })
+                call_carousel();
+                carouselInstance=true
+
+
+                id = $(this).data('id');
+                name = $(this).data('lname')+", "+$(this).data('fname')+" "+$(this).data('mname');
+                email = $(this).data('email');//alert(email)
+                //alert(name)
+                $("#modal-title").html(name)
+                //alert(id)
+                $("#pop-up-loading").modal({
+                    showClose:false,
+                })
+
+                $.post('php/registerProcesses/retrieve_pending_patient_info.php',{id:id}).done(
+                    function (data) {
+                        setTimeout(function () {
+                            /* if(pic_count!=0){
+                                 for(let a=0;a<pic_count;a++){
+                                     $( '.gallery' ).flickity( 'remove', $(".gallery-cell")[a])
+                                 }
+                             }
+                             pic_count=0;*/
+
+                            let result = JSON.parse(data)
+                            //alert(result.pic_path)
+                            let pics = result.pic_path.split(" ")
+                            //alert(pics.length)
+                            for(let pic of pics){
+                                pic_count+=1;
+                                // alert(pic)
+                                $( '.gallery' ).flickity('insert',
+                                    $($.parseHTML("<div>")).prop("class","gallery-cell")
+                                        .append($($.parseHTML("<img>")).prop('src',pic))
+                                )
+                            }
+
+                            $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
+                            //$( '.gallery' ).flickity('reloadCells')
+                            $( '.gallery' ).flickity('resize')
+
+                        },300)
+
+                    }
+                )//done
+            })
+        }
+        click_view_button();
 
         //======================Accept===============
         $("#accept").on('click',function () {
@@ -457,7 +488,94 @@
             $(".modal-p-error").css('visibility','hidden')
         })
 
-    });
+        //================PAGINATION RELATED CODE================================
+        var table = $('tbody').tableSortable({
+            data: [],
+            columns:
+                {
+                    id: "ID",
+                    name:"Name",
+                    date:"Date",
+                    // address:"Address",
+                    // contact_no: "Contact",
+                    // email:'Email',
+                    button:"Action"
+                }
+            ,
+            searchField: '.search-bar',
+            responsive: {
+                720: {
+                    columns: {
+                        // id: "ID",
+                        name:"Name",
+                        date:"Date Requested",
+                        button:"Action"
+                    },
+                },
+                512:{
+                    columns: {
+                        // id: "ID",
+                        name:"Name",
+                        date:"Date Requested",
+                        button:"Action"
+                    },
+                }
+            },
+            rowsPerPage: 5,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {console.log('table did update');  click_view_button();},
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        $.get('php/registerProcesses/retrievePendingList.php', function(data) {
+            // Push data into existing data
+            console.log(JSON.parse(data))
+            //table.setData(JSON.parse(data), null, true);
+
+            // or Set new data on table, columns is optional.
+            table.setData(JSON.parse(data),{
+                // id: "ID",
+                name:"Name",
+                // address:"Address",
+                // contact_no: "Contact",
+                // email:'Email',
+                date:"Date Requested",
+                button:"Action"
+            });
+        })
+        $('#changeRows').on('change', function() {
+            table.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            table.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            table.distroy();
+        })
+
+        $('#refresh').click(function() {
+            table.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            table.setPage(1);
+        })
+    });// END OF DOCUMENT REDY FUNCTION
+
+
+
 </script>
 <!-- Carousel JavaScript -->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -490,5 +608,37 @@
     });
 
 </script>
+<!--Pagination table style-->
+<style>
+    .gs-pagination{
+        margin-top: 0.5em;
+    }
+    .gs-pagination .row .col-md-6 span{
+        font-size: clamp(0.4rem,0.8rem,1rem);
+    }
+    .gs-button,.gs-button span{
+        color: var(--secondary-color);
+    }
+    th{
+        background: var(--primary-color);
+    }
+    .btn-group button,.btn-group button span{/*sa pagination na button*/
+        outline: none;
+        padding: 0.2em 0.3rem;
+    }
+    button.view{
+        padding: 0.5em;
+        border:none;
+        outline: none;
+        background: var(--primary-color);
+        color: var(--secondary-color);
+    }
+    @media(max-width: 1150px) {
+        td{
+            font-size: clamp(0.4rem,0.8rem,1rem);
+        }
+    }
+
+</style>
 </body>
 </html>

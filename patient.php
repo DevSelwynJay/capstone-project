@@ -4,6 +4,8 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!--CSS Grid Bootstrap-->
+       <link rel="stylesheet" href="scss/bootstrap-grid.css">
       <!--Custom CSS-->
       <link rel="stylesheet" href="scss/main.css">
       <!--Font Awesome-->
@@ -73,7 +75,7 @@
                   </div>
                   <div class="col-sm-12">
                      <div class="search-tab">
-                        <div class="search-container col-sm-4">
+                        <div class="search-container">
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
                         </div>
@@ -207,7 +209,7 @@ Closedropdown.addEventListener('click',function(){
                    id: "ID",
                    name:"Name",
                    address:"Address",
-                   age: "Age"
+                   age: "Age",
                });
           })
           $('#changeRows').on('change', function() {
@@ -246,6 +248,8 @@ Closedropdown.addEventListener('click',function(){
           .btn-group button,.btn-group button span{/*sa pagination na button*/
               outline: none;
               padding: 0.2em 0.3rem;
+              margin: 0.2%;
+
           }
           @media(max-width: 1150px) {
               td{
@@ -254,7 +258,6 @@ Closedropdown.addEventListener('click',function(){
           }
 
       </style>
-      </script>
 <script>
 
    jQuery(document).ready(function($) {
