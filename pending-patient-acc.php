@@ -67,10 +67,11 @@
 
         <div class="global__main-content">
             <div class="inner-page-content">
-                <div class="col-sm-12">
+                <div class="col-sm-12 p-0">
                     <div class="inner-page-nav">
                         <div class="logo">
-                            <img src="img/HIS logo blue.png" alt="">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
                         <div class="settings">
                             <a><i class="fas fa-user-circle"></i></a>
@@ -89,7 +90,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="search-tab">
+                    <div class="search-tab margin-top-1">
                         <div class="search-container">
                             <input type="text" class="search-bar">
                             <a href="/"><i class="fas fa-search"></i></a>
