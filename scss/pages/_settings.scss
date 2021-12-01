@@ -62,7 +62,7 @@
 .mobile-menu{
    
     @media(min-width: 1200px){
-        display: none !important;
+        display: none !important ;
       }
     @media(max-width: 1200px){
         display: block;

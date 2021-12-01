@@ -62,7 +62,7 @@
        grid-template-columns: repeat(4, 1fr);
        grid-template-rows: repeat(4, min-content);
 
-       @media(max-width: 900px){
+       @media(max-width: 1200px){
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, 1fr);
       }
@@ -83,7 +83,7 @@
         a{
             color: var(--primary-color);
             text-shadow: none;
-            font-size: 26px;
+            font-size: 32px;
 
             i{
                 margin-right: .4rem;
@@ -97,7 +97,7 @@
         .add-prescription{
             text-align: right;
             a{
-                font-size: 18px;
+                font-size: 20px;
             }
         }
     }
@@ -107,8 +107,8 @@
 
     &__name{
         grid-column: 1/2;
-        grid-row: 1/3;
-        @media(max-width: 900px){
+        grid-row: 1/2;
+        @media(max-width: 1200px){
             grid-column: unset;
             grid-row: unset;
         }
@@ -124,7 +124,7 @@
         }
 
         p{
-            font-weight: 900;
+            font-weight: 1200;
             text-transform: uppercase;
             font-size: 1.2rem;
         }
@@ -154,9 +154,9 @@
 
     &__information{
         grid-column: 1/2;
-        grid-row: 3/4;
+        grid-row: 2/4;
 
-        @media(max-width: 900px){
+        @media(max-width: 1200px){
             grid-row: unset;
         }
        
@@ -175,22 +175,68 @@
    
 
     &__calendar{
+
+        p{
+            padding: .5rem 0;
+        }
   
             grid-column: 2/6;
             grid-row: 1/3;
 
-            @media(max-width: 900px){
+            @media(max-width: 1200px){
                 grid-column: unset;
                 grid-row: unset;
             }
-      
+
+            .calendar-sidebar{
+                background-color: var(--primary-color) !important;
+                box-shadow: unset !important;
+            }
+
+            .calendar-sidebar > span#sidebarToggler{
+                background-color: var(--primary-color) !important;
+            }
+
+            #eventListToggler{
+                background-color: var(--primary-color) !important;
+            }
+
+            .calendar-sidebar > .month-list > .calendar-months > li.active-month {
+                background-color: #277fa8  !important;
+            }
+
+            .calendar-sidebar > .month-list > .calendar-months > li:hover {
+                background-color: var(--hover-color) !important;
+            }
+            .evo-calendar{
+                box-shadow: unset !important;
+            }
+            .calendar-sidebar > span#sidebarToggler{
+                box-shadow: unset !important;
+            }
+            #eventListToggler{
+                box-shadow: unset !important;
+            }
+            th[colspan="7"]{
+                color: var(--primary-color) !important;
+            }
+            .event-list > .event-empty {
+                padding: 15px 10px;
+                background-color: rgba(92, 156, 230, 0.15);
+                border: 1px solid var(--primary-color) !important;
+            }
+            .event-list > .event-empty > p {
+                color: var(--primary-color);
+            }
+
+          
 
         .group{
             display: flex;
             align-items: center;
             gap: .5rem;
             padding: .4rem;
-            @media(max-width: 900px){
+            @media(max-width: 1200px){
                flex-direction: column;
             }
         }
@@ -208,13 +254,13 @@
         grid-column: 2/6;
         grid-row: 3/5;
 
-        @media(max-width: 900px){
+        @media(max-width: 1200px){
             grid-column: unset;
             grid-row: unset;
         }
 
         P{
-            padding: 0 0 1rem 0;
+            padding: 0 0 0 0;
         }
        
 

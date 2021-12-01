@@ -16,6 +16,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <!--Custom CSS-->
       <link rel="stylesheet" href="scss/style.css">
+      <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
+      <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
+     
    </head>
    <body>
       <section class="global">
@@ -130,8 +133,9 @@
                                  </tr>
                               </table>
                            </div>
-                           <div class="patient-content__celendar holder">
+                           <div class="patient-content__calendar holder">
                               <p>Calendar</p>
+                              <div id="calendar"></div>
                            </div>
                            <div class="patient-content__medical-history holder">
                               <p>Medical History</p>
@@ -170,6 +174,14 @@
             </div>
          </div>
       </section>
+      <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
+      <script>
+         $(document).ready(function() {
+         $('#calendar').evoCalendar({
+        
+         })
+         })
+      </script>
       <script>
          const dropdown = document.querySelector('#dropdown');
          const dropdownToggle = document.querySelector('#dropdown-toggle');
