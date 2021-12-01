@@ -1416,6 +1416,12 @@ tr:nth-child(even) {
   padding-right: 2rem !important;
 }
 
+@media (max-width: 1200px) {
+  .patients-view-container {
+    padding: 0 !important;
+  }
+}
+
 .patients-view .patients-view-title {
   background-color: var(--primary-color);
 }

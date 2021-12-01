@@ -360,6 +360,9 @@
  .patients-view-container{
      padding-left: 2rem !important;
      padding-right: 2rem !important;
+     @media(max-width: 1200px){
+         padding: 0 !important;
+     }
  }
 
  .patients-view{
