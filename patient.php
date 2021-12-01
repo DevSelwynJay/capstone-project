@@ -75,7 +75,7 @@
                      </div>
                   </div>
                   <div class="col-sm-12">
-                     <div class="search-tab">
+                     <div class="search-tab margin-top-2">
                         <div class="search-container">
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
