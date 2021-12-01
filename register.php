@@ -7,7 +7,7 @@
       <!--CSS Bootstrap-->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
       <!--custom CSS-->
-      <link rel="stylesheet" href="scss/main.css">
+      <link rel="stylesheet" href="scss/style.css">
       <!--Font Awesome-->
       <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
       <!-- Font Family Poppins -->
@@ -76,13 +76,14 @@
       <section class="registration-form">
          <div class="registration-form__container">
             <div class="registration-form__wrapper">
-               <div class="logo">
-                  <img src="img/HIS logo blue.png" alt="Logo" />
+               <div class="logo" style="padding:1rem;">
+                  <img src="img/HIS logo blue.png" alt="Logo"  />
                </div>
-               <div class="registration-form__form-wrapper" >
+               <div class="registration-form-form-wrapper" style="max-width: 90% !important;
+            margin: 0 auto !important;" >
                    <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem;font-size: clamp(1.5rem,2rem,3vw)">Create patient account</h1>
-                  <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto;height: 65vh">
-                     <div class="container">
+                  <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto; height:75vh">
+                     <div class="container"> 
 
                         <div class="row">
                            <div class="col-sm-6"> <input type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/></div>
@@ -218,7 +219,7 @@
                </div>
             </div>
             <div class="registration-form__image">
-               <img src="img/reg-image.png">
+               <img src="img/reg-image.png"  style="object-fit:contain;">
             </div>
          </div>
       </section>

@@ -56,8 +56,17 @@
     opacity: 1 !important;
     transform: translateY(0%) !important;
 }
-#close-dropdown{
+#close-dropdown, #close-mobile-menu{
     display: none;
+}
+.mobile-menu{
+   
+    @media(min-width: 1200px){
+        display: none !important;
+      }
+    @media(max-width: 1200px){
+        display: block;
+      }
 }
 .drop-down-settings{
 

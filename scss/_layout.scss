@@ -136,6 +136,18 @@
     align-items: center;
     justify-content: space-between;
     padding: .5rem 1rem;
+    @media(max-width: 1200px){
+      background-color: var(--primary-color);
+      color: #fff;
+
+      .settings{
+        a{
+          i{
+            color: white !important;
+          }
+        }
+      }
+    }
   }
   section .inner-page-content .dropdown-settings{
     font-size: 1.9rem;
@@ -164,9 +176,27 @@
         display: flex;
         justify-content: center;
         min-height: 100vh;
+
+        @media(max-width: 1200px){
+          display: none !important;
+        }
     }
 
     &__main-content{
         flex: 1 1 80%;
     }
+}
+
+
+.hide-for-mobile{
+  display: none;
+  @media(min-width: 1201px){
+    display: block;
+  }
+}
+.hide-for-desktop{
+  display: none;
+  @media(max-width: 1200px){
+    display: block;
+  }
 }

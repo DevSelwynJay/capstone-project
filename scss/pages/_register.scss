@@ -1,6 +1,7 @@
 .registration-form{
 
     color: var(--third-color);
+
     &__container{
         display: flex;
         @media (max-width:900px) {
@@ -8,8 +9,23 @@
             align-items: center;
         }
     }
+
     &__wrapper{
         flex: 1 1 60%;
+
+        .logo{
+            padding: 1rem !important;
+            img{
+               width: 12rem !important;
+            }
+        }
+        
+
+        .registration-form-form-wrapper{
+            max-width: 90% !important;
+            margin: 0 auto !important;
+        }
+    
     }
 
     &__image{
@@ -29,9 +45,4 @@
 
 }
 
-.logo{
-    img{
-       width: 12rem !important;
-    }
-}
 

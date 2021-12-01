@@ -54,12 +54,18 @@
 
 //GRID LAYOUT
 .patient-content{
+
     &__container{
        display: grid;
       
        padding: 0 1.5rem 2rem 1.5rem;
        grid-template-columns: repeat(4, 1fr);
        grid-template-rows: repeat(4, min-content);
+
+       @media(max-width: 900px){
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+      }
 
        .holder{
         background-color: #eeeeee;
@@ -69,9 +75,43 @@
        }
     }
 
+    &__ctas{
+        padding: 1rem 2rem ;
+        display: flex;
+       align-items: baseline;
+
+        a{
+            color: var(--primary-color);
+            text-shadow: none;
+            font-size: 26px;
+
+            i{
+                margin-right: .4rem;
+            }
+
+            &:hover{
+                color: var(--hover-color);
+            }
+        }
+
+        .add-prescription{
+            text-align: right;
+            a{
+                font-size: 18px;
+            }
+        }
+    }
+    &__ctas > *{
+        flex: 1;
+    }
+
     &__name{
         grid-column: 1/2;
         grid-row: 1/3;
+        @media(max-width: 900px){
+            grid-column: unset;
+            grid-row: unset;
+        }
 
         display: flex;
         flex-direction: column;
@@ -115,6 +155,10 @@
     &__information{
         grid-column: 1/2;
         grid-row: 3/4;
+
+        @media(max-width: 900px){
+            grid-row: unset;
+        }
        
         
     td, th {
@@ -128,46 +172,17 @@
       }
     }
 
-    &__blood-type{
-        grid-column: 2/3;
-        grid-row: 1/2;
-    }
+   
 
-    &__height{
-        grid-column: 3/4;
-        grid-row: 1/2;
-    }
-
-    &__weight{
-        grid-column: 4/5;
-        grid-row: 1/2;
-    }
-
-    &__blood-type-container{
-        display: flex;
-        flex-direction: column;
-        gap: .8rem;
-        align-items: center;
-    }
-
-    &__height-container{
-        display: flex;
-        flex-direction: column;
-        gap: .8rem;
-        align-items: center;
-    }
-
-    &__weight-container{
-        display: flex;
-        flex-direction: column;
-        gap: .8rem;
-        align-items: center;
-    }
-
-    &__medical-history{
+    &__calendar{
   
             grid-column: 2/6;
-            grid-row: 2/3;
+            grid-row: 1/3;
+
+            @media(max-width: 900px){
+                grid-column: unset;
+                grid-row: unset;
+            }
       
 
         .group{
@@ -175,20 +190,28 @@
             align-items: center;
             gap: .5rem;
             padding: .4rem;
+            @media(max-width: 900px){
+               flex-direction: column;
+            }
         }
     }
 
-    &__medical-history-container{
+    &__calendar-container{
         display: flex;
         gap: 1.3rem;
         justify-content: space-around;
         padding: 1rem 0;
     }
 
-    &__medication{
+    &__medical-history{
      
         grid-column: 2/6;
         grid-row: 3/5;
+
+        @media(max-width: 900px){
+            grid-column: unset;
+            grid-row: unset;
+        }
 
         P{
             padding: 0 0 1rem 0;
@@ -231,7 +254,7 @@
         
     }
 
-    &__medication-container{
+    &__medical-history-container{
         max-height: 25rem;
         overflow: scroll;
     }

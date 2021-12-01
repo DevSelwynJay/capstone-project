@@ -15,7 +15,7 @@ if(!isset($_SESSION['email'])){
     <!--CSS Grid Bootstrap-->
     <link rel="stylesheet" href="scss/bootstrap-grid.css">
     <!--Custom CSS-->
-    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="scss/style.css">
 
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>

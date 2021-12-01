@@ -226,12 +226,14 @@ $swal2-loader-border-color: #2778c4 transparent #2778c4 transparent !default;
 $swal2-toast-show-animation: swal2-toast-show .5s !default;
 $swal2-toast-hide-animation: swal2-toast-hide .1s forwards !default;
 $swal2-toast-border: none !default;
+/*
 $swal2-toast-box-shadow:
   0 0 1px hsl(0deg 0% 0% / 0.075),
   0 1px 2px hsl(0deg 0% 0% / 0.075),
   1px 2px 4px hsl(0deg 0% 0% / 0.075),
   1px 3px 8px hsl(0deg 0% 0% / 0.075),
   2px 4px 16px hsl(0deg 0% 0% / 0.075) !default;
+  */
 $swal2-toast-background: $swal2-white !default;
 $swal2-toast-close-button-width: .8em !default;
 $swal2-toast-close-button-height: .8em !default;
