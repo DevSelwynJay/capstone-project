@@ -123,6 +123,10 @@ h5 {
   margin-top: 1.5rem;
 }
 
+.p-0 {
+  padding: 0;
+}
+
 .color-black {
   color: var(--third-color);
 }
@@ -1309,6 +1313,7 @@ tr:nth-child(even) {
   -ms-grid-row: 3;
   -ms-grid-row-span: 2;
   grid-row: 3/5;
+  overflow: scroll;
 }
 
 @media (max-width: 1200px) {

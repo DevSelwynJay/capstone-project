@@ -254,6 +254,8 @@
         grid-column: 2/6;
         grid-row: 3/5;
 
+        overflow: scroll;
+
         @media(max-width: 1200px){
             grid-column: unset;
             grid-row: unset;
