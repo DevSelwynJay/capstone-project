@@ -136,7 +136,7 @@
                                     ?>
                                 </select>
                             </div>
-                           <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body" required/></div>
+                           <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/></div>
                         </div>
                          <div class="row">
                              <div class="col-sm-6"><input type="text" placeholder="" value="Barangay Sto. Rosario" readonly/></div>

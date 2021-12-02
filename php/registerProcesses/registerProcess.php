@@ -112,10 +112,10 @@ if(!empty($fileNames)){
         $patient_type = "Senior";
     }
 
-    $address = $house_no." Sto. Rosario Paombong Bulacan";
+    $address = "Sto. Rosario Paombong Bulacan";
 
     mysqli_query($con,
-        "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
+        "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
 
 }

@@ -167,10 +167,10 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
         let gender = $('[name="gender"]').val()
         let bday = $('[name="bday"]').val()
         let purok = $('[name="purok"]').val()
-        let house_no = $('[name="house_no"]').val()
+        //let house_no = $('[name="house_no"]').val()
 
         if (fname == "" || mname == "" || lname == "" || civil == "" || email == "" ||
-            contact == "" || pwd == "" || cpwd == "" || gender == "" || bday == "" || purok == "" || house_no == "" || noOfPicture == 0) {
+            contact == "" || pwd == "" || cpwd == "" || gender == "" || bday == "" || purok == "" ||  noOfPicture == 0) {
             console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
             return
         } else {

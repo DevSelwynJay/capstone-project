@@ -8,8 +8,8 @@ $con = null;
 require '../DB_Connect.php';
 $success_query_count=0;
 $result = mysqli_query($con,"INSERT INTO patient (id,last_name,first_name,middle_name,gender,birthday,purok,address
-,occupation,civil_status,patient_type,email,password,contact_no,date_created ) SELECT id,last_name,first_name,middle_name,gender,birthday,purok,address
-,occupation,civil_status,patient_type,email,password,contact_no,date_created
+,occupation,civil_status,patient_type,email,password,contact_no ) SELECT id,last_name,first_name,middle_name,gender,birthday,purok,address
+,occupation,civil_status,patient_type,email,password,contact_no
 FROM pending_patient WHERE id='$id'");
 if($result){$success_query_count+=1;}
 $result = mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");
