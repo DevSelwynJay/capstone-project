@@ -144,7 +144,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                          <input type="text" placeholder="Email" id="admin-email"/>
                                      </div>
                                      <div class="col-sm-6">
-                                         <input type="text" id="contact" placeholder="Contact No." />
+                                         <input type="number" id="contact" placeholder="Contact No. (ex. 09...)"/>
                                      </div>
                                  </div>
                                  <div class="row">
@@ -156,7 +156,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                          </select>
                                      </div>
                                      <div class="col-sm-6">
-                                         <input type="date" placeholder="birthday" value="01/01/1999"/>
+                                         <input type="date" placeholder="birthday" id="birthday"/>
                                      </div>
                                  </div>
                                  <div class="row">
@@ -164,19 +164,21 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                          <input type="password" placeholder="Password" id="password"/>
                                      </div>
                                      <div class="col-sm-6">
-                                         <input type="password" id="conf-pass"  placeholder=" Confirm Password" />
+                                         <input type="password" id="conf-pass"  placeholder="Confirm Password" />
                                      </div>
                                  </div>
 
                                  <div class="row">
                                      <div class="col-sm-12">
-                                         <input type="text" placeholder="Address" id="modal-address">
+                                         <input type="text" value="Sto. Rosario Paombong Bulacan" id="modalAddress">
                                      </div>
                                  </div>
                                   </form>
                          </div>
                          <div class="flex-box-row justify-content-end margin-top-1">
-                             <button class="modal-cancel-button" style="margin-right: 0.3rem">Cancel</button>
+                             <a href="#show" rel="modal:close">
+                             <button href="#show" rel="modal:close" class="modal-cancel-button" style="margin-right: 0.3rem">Cancel</button>
+                             </a>>
                              <a href="#show" rel="modal:open" id="confirmation-addmin">
                               <button class="modal-primary-button">
                                   <i class="fas fa-plus"></i> Add Admin
@@ -397,7 +399,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                   return split( term ).pop();
               }
 
-              $( "#modal-address" )
+              $( "#modalAddress" )
                   // don't navigate away from the field on tab when selecting an item
                   .on( "keydown", function( event ) {
                       if ( event.keyCode === $.ui.keyCode.TAB &&

@@ -81,8 +81,10 @@ function checkEmpty(){
     var confirmpass = $('#conf-pass').val();
     var contactno = $('#contact').val();
     var workcat = $('#work-cat').val();
+    var admaddress = $('#modalAddress').val();
+    var adbday = $('#birthday').val();
 
-    if(fname == "" || lname == "" || mname == "" || password == "" || ademail == "" || gender == "" || confirmpass == "" || contactno == "" || workcat == ""){
+    if(fname == "" || lname == "" || mname == "" || password == "" || adbday == "" || ademail == "" || gender == "" || confirmpass == "" || contactno == "" || workcat == "" || admaddress == ""){
         //shows alerts
         let timerInterval
         Swal.fire({
@@ -103,6 +105,7 @@ function checkEmpty(){
             }
         })
     }else{
+        console.log(adbday,admaddress);
         checkEmailValidation(ademail,password,confirmpass);
     }
 }
@@ -171,8 +174,10 @@ function addAdmin(){
     var confirmpass = $('#conf-pass').val();
     var contactno = $('#contact').val();
     var workcat = $('#work-cat').val();
+    var admaddress = $('#modalAddress').val();
+    var adbday = $('#birthday').val();
 
-    $.post("php/superAdminProcesses/addingProcess.php", {email:ademail,password:password,confirmpass:confirmpass,lname:lname,fname:fname,mname:mname,gender:gender,workcat:workcat,contactno:contactno})
+    $.post("php/superAdminProcesses/addingProcess.php", {email:ademail,password:password,confirmpass:confirmpass,lname:lname,fname:fname,mname:mname,gender:gender,workcat:workcat,contactno:contactno,admaddress:admaddress,adbday:adbday})
         .done(function (data){
 
             if(data==1){//walang pang data sa admin db
@@ -203,6 +208,8 @@ function addAdmin(){
                 $('#contact').val("");
                 $('#work-cat').val("");
                 $('#gender').val("");
+                $('#modalAddress').val("");
+                $('#birthday').val("");
 
                 $.modal.close();
             }
