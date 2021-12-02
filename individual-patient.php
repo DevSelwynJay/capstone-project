@@ -49,6 +49,8 @@ session_start();
                        $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
                        $("#occupation").html(arrayOfObjectElement.occupation)
                        $("#blood-type").html(arrayOfObjectElement.blood_type)
+                       $("#height").html(arrayOfObjectElement.height+" "+"cm")
+                       $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
                    }
                }
            )

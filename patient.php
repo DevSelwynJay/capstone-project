@@ -224,7 +224,9 @@ Closedropdown.addEventListener('click',function(){
                        id: "ID",
                        name:"Name",
                        patient_type:"Type",
-                       age: "Age"
+                       age: "Age",
+                       purok:"Purok"
+
                    },
                },
            },
@@ -259,7 +261,8 @@ Closedropdown.addEventListener('click',function(){
                    id: "ID",
                    name:"Name",
                    patient_type:"Type",
-                   age: "Age"
+                   age: "Age",
+                   purok:"Purok"
                    // address:"Address",
                });
            }
