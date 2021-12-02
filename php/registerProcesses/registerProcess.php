@@ -99,7 +99,10 @@ if(!empty($fileNames)){
     $today = date('Y-m-d');
     $age  = date_diff(date_create($bday),date_create($today));
     $patient_type="";
-    if($age->format('%y')<18){
+    if($age->format('%y')<=1){
+        $patient_type = "Infant";
+    }
+    else if($age->format('%y')<18){
         $patient_type = "Minor";
     }
     else if ($age->format('%y')<60){
@@ -112,7 +115,7 @@ if(!empty($fileNames)){
     $address = $house_no." Sto. Rosario Paombong Bulacan";
 
     mysqli_query($con,
-        "INSERT INTO pending_patient VALUES ('$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$address','$occupation','$civil_status','$patient_type','$email','$pwd','$contact',DEFAULT )");
+        "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
 
 }

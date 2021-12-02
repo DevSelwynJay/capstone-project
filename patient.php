@@ -307,7 +307,7 @@ Closedropdown.addEventListener('click',function(){
                            location.href="individual-patient.php"
                        }
                    )
-               },700)
+               },500)
 
                //console.log(a[0].innerHTML)//just another way
            })
