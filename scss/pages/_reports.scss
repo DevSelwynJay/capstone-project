@@ -1,97 +1,205 @@
+.table-reports{
+    @media(max-width: 991px){
+        order: 1 !important;
+    }
+}
+.left-reports{
+    @media(max-width: 991px){
+        order: 2 !important;
+    }
+}
+
 .reports{
 
-    &__downloads{
-        display: flex;
-        justify-content: flex-end;
-        padding: 0 1rem;
-    }
-    &__downloads-container{
-       a{
-           display: inline-block;
-           text-decoration: none;
-           background-color: var(--primary-color);
-           padding: .6rem 1rem;
-           color: white;
-           margin-left: .7rem;
-           border-radius: .5rem;
-           transition: all 300ms ease-in-out;
-           margin-bottom: 1rem;
-           i{
-               margin-right: .3rem;
-           }
+    &_content{
+        padding: 1rem 2rem;
 
-           &:hover{
-               background-color: var(--hover-color);
-           }
-       }
-    }
-
-    &__container{
-        display: flex;
+        @media(max-width: 1200px){
+            padding: 1rem .5rem;
+        }
     }
     &__left-col{
-       flex: 1 1 60%;
-        margin: 1rem 1rem 1rem 1rem;
-       table{
-           margin-top: unset !important;
-       }
-        td{
-            &:first-child{
-                font-weight: unset !important;
-            }
-        }
-        td,th{
-            color: unset !important;
-        }
-        th{
-            font-size: 1.2rem;
-        }
+        margin-bottom: 2rem;
     }
     &__left-col-container{
-        background-color: #eeeeee;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         border-radius: .5rem;
-        height: 100%;
-        padding: .5rem 0;
+    }
+    &__table{
+        th{
+            padding: 1.5rem 0;
+            color: #222;
+            font-size: 1.2rem;
+        }
+        td{
+            font-weight: 300 !important;
+        }
+        tr{
+            &:nth-child(even){
+                background-color: rgb(160, 160, 160);
+            }
+        }
     }
     &__right-col{
-        flex: 1 1 40%;
-        margin: 1rem 1rem 1rem 0;
+
+        display: grid;
+        align-items: center;
+        height: 100%;
+        
+        &_links{
+
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+           
+           
+            a{
+                transition: all 300ms ease-in-out;
+                background-color: var(--primary-color);
+                text-decoration: none;
+                text-transform: uppercase;
+                color: white;
+                font-weight: 700;
+                padding: 1rem 2rem;
+                margin-bottom: 1rem;
+                border-radius: .5rem;
+
+                &:hover{
+                    background-color: var(--hover-color);
+                }
+            }
+        }
     }
-    &__right-col-container{
-       display: flex;
-       justify-content: space-evenly;
-       flex-direction: column;
-       height: 100%;
-       gap: 1rem;
 
-       .total-medicine-released{
-          h2{
-              color: var(--primary-color);
-          }
-       }
 
-       .current-sick-paient{
-        h2{
-            color: red;
+    &_nav{
+       
+        
+        background-color: var(--primary-color);
+
+        @media(max-width: 1200px){
+            background-color: #222;
         }
-       }
-      
-       .cured-patient{
-        h2{
-            color: rgb(5, 172, 5);
-        }
-       }
 
-       .card{
-        background-color: #eeeeee;
+        .reports-title{
+          
+            padding: 1.6rem;
+            h4{
+                color: white;
+                font-size: 1.4rem;
+            }
+        }
+        .reports-menu{
+            align-self: flex-end;
+            display: flex;
+            gap: 2rem;
+           
+
+           
+
+            li{
+                list-style: none;
+
+                a{
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.2rem;
+                    padding: 1rem 2rem;
+                    border-radius: .5rem;
+                    transition: all 200ms ease-in-out;
+                    margin-bottom: -.5rem;
+                    display: inline-block;
+
+                    &:hover{
+                        background-color: white;
+                        color: #222;
+                    }
+                }
+                .active{
+                    background-color: white;
+                    color: #222;
+                }
+            }
+        }
+    }
+
+    &__individual-reports-table{
+        margin: 2rem 0;
+        th{
+            padding: 1rem .6rem;
+            color: #222;
+            font-size: 1rem;
+        }
+        td{
+            font-weight: 300 !important;
+        }
+        tr{
+            &:nth-child(even){
+                background-color: rgb(160, 160, 160);
+            }
+        }
+    }
+
+    &__individual-container{
+        background-color: rgb(238, 237, 237);
         border-radius: .5rem;
-        text-align: center;
-        padding: 4rem 0;
-
-        h2{
-            font-weight: 300;
-            font-size: 2.5rem;
-        }
-       }
     }
+
+    &_individual-report-links{
+        a{
+            display: block;
+            text-decoration: none;
+            font-weight: 300;
+            color: #222;
+            font-size: 1.2rem;
+
+            &:hover{
+                font-weight: 500;
+            }
+        }
+        a.active{
+            font-weight: 500;
+        }
+
+    }
+
+    &_individual-report-download{
+        text-align: center;
+        a{
+            transition: all ease-in-out 200ms;
+            display: block;
+            background-color: var(--primary-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            margin-bottom: 1rem;
+            border-radius: .5rem;
+            &:hover{
+                background-color: var(--hover-color);
+            }
+        }
+    }
+
+
+    &_upper-col{
+        margin: 2rem 0;
+        padding: 0;
+    }
+    &_lower-col{
+        margin: 2rem 0;
+        padding: 0;
+    }
+
+
+
+
+
+
+
+
+
+
 }
