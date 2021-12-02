@@ -53,6 +53,14 @@ h5 {
   visibility: visible;
 }
 
+.row-container {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-wrap: wrap !important;
+      flex-wrap: wrap !important;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1711,175 +1719,166 @@ tr:nth-child(even) {
   color: var(--third-color);
 }
 
-.left {
-  margin-left: 2%;
+.dashboard-content {
+  color: #222;
+  padding: 2rem 1rem;
 }
 
 .greetings-container {
   background-color: #cdefff;
-  height: 20%;
-  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   border-radius: 10px;
-  padding: 0 5% 5% 5%;
-  margin-top: 2%;
+  padding: 2rem 1rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .greetings-container > * {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
 }
 
 .greetings-img {
-  width: 40%;
-  height: 40%;
   margin-top: -10%;
 }
 
-.greetings-container p:nth-child(1) {
+@media (max-width: 768px) {
+  .greetings-img {
+    margin: 0 !important;
+  }
+}
+
+.greetings-container h1.title {
   font-weight: 800;
   color: #0c6893;
-  font-size: 1.5em;
+  font-size: 2em;
+}
+
+.greetings-container p {
+  font-size: 1em;
 }
 
 .greetings-container .text {
   text-align: center;
 }
 
+.greetings-container img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .text {
-  margin-top: 8%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
-.text p:nth-child(2) {
-  font-size: 0.8em;
-}
-
-.symptoms-container {
+.vaccination-schedule-container {
   background-color: var(--light-grey);
-  width: 60%;
-  height: 40%;
-  padding: 3%;
   border-radius: 10px;
-  margin-top: 2%;
+  padding: 1rem;
+  margin-bottom: 30px;
 }
 
-.symptoms-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.vaccination-schedule-container h3 {
+  margin-bottom: 0.5rem;
 }
 
-.symp {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 4%;
-}
-
-.symp img {
-  width: 60px;
-  height: 60px;
-}
-
-.symp p {
-  text-indent: 0.4cm;
-}
-
-.pres-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.prescription-container {
+.current-medication-container {
   background-color: var(--light-grey);
-  width: 60%;
-  padding: 3%;
+  padding: 1rem;
   border-radius: 10px;
-  margin-top: 2%;
+  margin-bottom: 30px;
 }
 
-.sub-prescription {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: #cdefff;
-  width: 40%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 5%;
-  padding: 2%;
+.current-medication-container h3 {
+  margin-bottom: 0.5rem;
+}
+
+.calendar-container {
+  background-color: var(--light-grey);
+  padding: 1rem;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-.sub-prescription img {
-  width: 70px;
-  height: 70px;
+.calendar-container h3 {
+  margin-bottom: 0.5rem;
 }
 
-.sub-prescription p:nth-child(1) {
-  color: #0c6893;
-  font-weight: 800;
+.calendar-container .calendar-sidebar {
+  background-color: var(--primary-color) !important;
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
 }
 
-.medication-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.calendar-container .calendar-sidebar > span#sidebarToggler {
+  background-color: var(--primary-color) !important;
 }
 
-.medication {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 5%;
+.calendar-container #eventListToggler {
+  background-color: var(--primary-color) !important;
 }
 
-.medication img {
-  width: 50px;
-  height: 45px;
+.calendar-container .calendar-sidebar > .month-list > .calendar-months > li.active-month {
+  background-color: #277fa8 !important;
+}
+
+.calendar-container .calendar-sidebar > .month-list > .calendar-months > li:hover {
+  background-color: var(--hover-color) !important;
+}
+
+.calendar-container .evo-calendar {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container .calendar-sidebar > span#sidebarToggler {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container #eventListToggler {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container th[colspan="7"] {
+  color: var(--primary-color) !important;
+}
+
+.calendar-container .event-list > .event-empty {
+  padding: 15px 10px;
+  background-color: rgba(92, 156, 230, 0.15);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.calendar-container .event-list > .event-empty > p {
+  color: var(--primary-color);
 }
 
 .patient-details-container {
-  -webkit-transform: translateY(-860px);
-          transform: translateY(-860px);
-  margin-right: 20px;
-  float: right;
   background-color: var(--light-grey);
-  width: 35%;
-  padding: 3%;
+  padding: 3rem 0;
   border-radius: 10px;
+  text-align: center;
 }
 
-.patient-details-container h1 {
+.patient-details-container .profile-image {
+  padding: 1rem 2rem;
+}
+
+.patient-details-container h2 {
   text-align: center;
   color: var(--third-color);
 }
 
 .patient-details-container img {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 25%;
   width: 150px;
   height: 150px;
   border-radius: 50%;
