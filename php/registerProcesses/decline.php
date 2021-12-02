@@ -17,9 +17,9 @@ $user_full_name="";
 $con = null;
 require '../DB_Connect.php';
 $result = mysqli_query($con,"SELECT*FROM pending_patient WHERE id = '$id'");
-if($row =mysqli_fetch_array($result)){
-  $patient_email = $row[9];
-  $user_full_name = $row[1].", ".$row[2]." ".$row[3];
+if($row =mysqli_fetch_assoc($result)){
+  $patient_email = $row['email'];
+  $user_full_name = $row['last_name'].", ".$row['first_name']." ".$row['middle_name'];
 }
 $mail = new PHPMailer();
 $mail->isSMTP();
