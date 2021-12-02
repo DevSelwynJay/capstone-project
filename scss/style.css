@@ -1453,117 +1453,219 @@ tr:nth-child(even) {
   color: white;
 }
 
-.reports__downloads {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 0 1rem;
+@media (max-width: 991px) {
+  .table-reports {
+    -webkit-box-ordinal-group: 2 !important;
+        -ms-flex-order: 1 !important;
+            order: 1 !important;
+  }
 }
 
-.reports__downloads-container a {
-  display: inline-block;
-  text-decoration: none;
-  background-color: var(--primary-color);
-  padding: .6rem 1rem;
-  color: white;
-  margin-left: .7rem;
-  border-radius: .5rem;
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
-  margin-bottom: 1rem;
+@media (max-width: 991px) {
+  .left-reports {
+    -webkit-box-ordinal-group: 3 !important;
+        -ms-flex-order: 2 !important;
+            order: 2 !important;
+  }
 }
 
-.reports__downloads-container a i {
-  margin-right: .3rem;
+.reports_content {
+  padding: 1rem 2rem;
 }
 
-.reports__downloads-container a:hover {
-  background-color: var(--hover-color);
-}
-
-.reports__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+@media (max-width: 1200px) {
+  .reports_content {
+    padding: 1rem .5rem;
+  }
 }
 
 .reports__left-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 60%;
-          flex: 1 1 60%;
-  margin: 1rem 1rem 1rem 1rem;
-}
-
-.reports__left-col table {
-  margin-top: unset !important;
-}
-
-.reports__left-col td:first-child {
-  font-weight: unset !important;
-}
-
-.reports__left-col td, .reports__left-col th {
-  color: unset !important;
-}
-
-.reports__left-col th {
-  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .reports__left-col-container {
-  background-color: #eeeeee;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: .5rem;
-  height: 100%;
-  padding: .5rem 0;
+}
+
+.reports__table th {
+  padding: 1.5rem 0;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.reports__table td {
+  font-weight: 300 !important;
+}
+
+.reports__table tr:nth-child(even) {
+  background-color: #a0a0a0;
 }
 
 .reports__right-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 40%;
-          flex: 1 1 40%;
-  margin: 1rem 1rem 1rem 0;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
 }
 
-.reports__right-col-container {
+.reports__right-col_links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
-  gap: 1rem;
-}
-
-.reports__right-col-container .total-medicine-released h2 {
-  color: var(--primary-color);
-}
-
-.reports__right-col-container .current-sick-paient h2 {
-  color: red;
-}
-
-.reports__right-col-container .cured-patient h2 {
-  color: #05ac05;
-}
-
-.reports__right-col-container .card {
-  background-color: #eeeeee;
-  border-radius: .5rem;
   text-align: center;
-  padding: 4rem 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.reports__right-col-container .card h2 {
+.reports__right-col_links a {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.reports__right-col_links a:hover {
+  background-color: var(--hover-color);
+}
+
+.reports_nav {
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+  .reports_nav {
+    background-color: #222;
+  }
+}
+
+.reports_nav .reports-title {
+  padding: 1.6rem;
+}
+
+.reports_nav .reports-title h4 {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.reports_nav .reports-menu {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+}
+
+.reports_nav .reports-menu li {
+  list-style: none;
+}
+
+.reports_nav .reports-menu li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: .5rem;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  margin-bottom: -.5rem;
+  display: inline-block;
+}
+
+.reports_nav .reports-menu li a:hover {
+  background-color: white;
+  color: #222;
+}
+
+.reports_nav .reports-menu li .active {
+  background-color: white;
+  color: #222;
+}
+
+.reports__individual-reports-table {
+  margin: 2rem 0;
+}
+
+.reports__individual-reports-table th {
+  padding: 1rem .6rem;
+  color: #222;
+  font-size: 1rem;
+}
+
+.reports__individual-reports-table td {
+  font-weight: 300 !important;
+}
+
+.reports__individual-reports-table tr:nth-child(even) {
+  background-color: #a0a0a0;
+}
+
+.reports__individual-container {
+  background-color: #eeeded;
+  border-radius: .5rem;
+}
+
+.reports_individual-report-links a {
+  display: block;
+  text-decoration: none;
   font-weight: 300;
-  font-size: 2.5rem;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.reports_individual-report-links a:hover {
+  font-weight: 500;
+}
+
+.reports_individual-report-links a.active {
+  font-weight: 500;
+}
+
+.reports_individual-report-download {
+  text-align: center;
+}
+
+.reports_individual-report-download a {
+  -webkit-transition: all ease-in-out 200ms;
+  transition: all ease-in-out 200ms;
+  display: block;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.reports_individual-report-download a:hover {
+  background-color: var(--hover-color);
+}
+
+.reports_upper-col {
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.reports_lower-col {
+  margin: 2rem 0;
+  padding: 0;
 }
 
 .inventory__container {
