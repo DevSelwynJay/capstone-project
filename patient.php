@@ -22,7 +22,8 @@
        <script>
            $.post('php/admin_session.php').done(
                function (data) {
-                   $("#name-sidebar").html(data)
+                   let result = JSON.parse(data)
+                   $("#name-sidebar").html(result.admin_name)
                }
            )
        </script>

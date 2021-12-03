@@ -20,6 +20,8 @@ session_start();
       <link rel="stylesheet" href="scss/style.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
        <!--Jquery-->
        <!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -29,7 +31,8 @@ session_start();
        <script>
            $.post('php/admin_session.php').done(
                function (data) {
-                   $("#name-sidebar").html(data)
+                   let result = JSON.parse(data)
+                   $("#name-sidebar").html(result.admin_name)
                }
            )
        </script>
@@ -55,7 +58,8 @@ session_start();
                }
            )
        </script>
-     
+       <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
+       <script src="js/individual-patient.js"></script>
    </head>
    <body>
       <section class="global">
@@ -211,31 +215,7 @@ session_start();
             </div>
          </div>
       </section>
-      <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
-      <script>
-         $(document).ready(function() {
-             //Calendar instance
-             $('#calendar').evoCalendar({
-                 'sidebarDisplayDefault': false,
-             })
-             $('#calendar').evoCalendar('addCalendarEvent', {
-                 id: 'kNybja6',
-                 name: 'Mom\'s Birthday',
-                 description: 'Lorem ipsum dolor sit..',
-                 date: 'December 25, 2021',
-                 type: 'birthday'
-             });
-             //just to prevent a click
-             $("a").click(function (e) {
-                 e.preventDefault()
-             })
-             //========ACTIONS===============//
-             $(".back-btn").click(function (){
-                 location.href="patient.php";
-             })
 
-         })//end of document ready
-      </script>
       <script>
          const dropdown = document.querySelector('#dropdown');
          const dropdownToggle = document.querySelector('#dropdown-toggle');

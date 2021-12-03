@@ -1,0 +1,14 @@
+<?php
+session_start();
+$patientID =$_SESSION['active_individual_patient_ID'];
+//echo $patientID;
+//exit();
+$con=null;
+require '../DB_Connect.php';
+$arr = array();
+$result = mysqli_query($con,"SELECT *, DATE_FORMAT(start_date,'%Y-%m-%d') as start_date_1 FROM medical_record WHERE patient_id = '$patientID'");
+while($row= mysqli_fetch_assoc($result)){
+    $arr[] = $row;
+}
+echo json_encode($arr)
+?>
