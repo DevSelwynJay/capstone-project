@@ -1,136 +1,147 @@
-
-.left{
-    margin-left: 2%;
-}
-.greetings-container{
-        background-color: #cdefff;
-        height: 20%;
-        width: 60%;
-        display: flex;
-        border-radius: 10px;
-        padding: 0 5% 5% 5%;
-        margin-top: 2%;
-}
-.greetings-img{
-    width: 40%;
-    height: 40%;
-    margin-top: -10%;
-}
-.greetings-container p:nth-child(1){
-    font-weight: 800;
-    color:#0c6893;
-    font-size: 1.5em;
-}
-.greetings-container .text{
-    text-align: center;
-}
-.text{
-    margin-top: 8%;
-    
-}
-.text p:nth-child(2){
-    font-size: 0.8em;
-}
-
-.symptoms-container{
-    background-color: var(--light-grey);
-    width: 60%;
-    height: 40%;
-    padding: 3%;
-    border-radius: 10px;
-    margin-top: 2%;
-}
-.symptoms-wrapper{
-    display: flex;
-    align-items: center;
-}
-.symp{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 4%;
-}
-.symp img{
-    width: 60px;
-    height: 60px;
-}
-.symp p{
-    text-indent: 0.4cm;
-}
-.pres-wrapper{
-    display: flex;
-    align-items: center;
-}
-
-.prescription-container{
-    background-color: var(--light-grey);
-    width: 60%;
-    padding: 3%;
-    border-radius: 10px;
-    margin-top: 2%;
-}
-.sub-prescription{
-    display: flex;
+.dashboard-content {
+    color: #222;
+    padding: 2rem 1rem;
+  }
+  .greetings-container {
     background-color: #cdefff;
-    width: 40%;
-    justify-content: center;
-    align-items: center;
-    margin: 5%;
-    padding: 2%;
+    display: flex;
     border-radius: 10px;
-}
-.sub-prescription img{
-    width: 70px;
-    height: 70px;
-}
-.sub-prescription p:nth-child(1){
-    color: #0c6893;
+    padding: 2rem 1rem;
+    margin-bottom: 30px;
+  }
+  .greetings-container > * {
+    @media (max-width: 768px) {
+      flex: 1;
+    }
+  }
+  .greetings-img {
+    margin-top: -10%;
+    @media (max-width: 768px) {
+      margin: 0 !important;
+    }
+  }
+  .greetings-container h1.title {
     font-weight: 800;
-}
-.medication-wrapper{
-    display: flex;
-    align-items: center;
-}
-.medication{
-    display: flex;
-    align-items: center;
-    margin: 5%;
-}
-.medication img{
-    width: 50px;
-    height: 45px;
-}
-.patient-details-container{
-    transform: translateY(-860px);
-    margin-right: 20px;
-    float: right;
-    background-color: var(--light-grey);
-    width: 35%;
-    padding: 3%;
-    border-radius: 10px;
-}
-.patient-details-container h1{
+    color: #0c6893;
+    font-size: 2em;
+  }
+  .greetings-container p {
+    font-size: 1em;
+  }
+  .greetings-container .text {
     text-align: center;
-    color: var(--third-color);
-}
-.patient-details-container img{
-    display: flex;
-    margin-left: 25%;
+  }
+  .greetings-container img {
+    width: 100%;
+    object-fit: contain;
+  }
+  .text {
+    display: grid;
+    place-items: center;
+  }
+  
+  .vaccination-schedule-container {
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 30px;
+  
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .current-medication-container {
+    background-color: var(--light-grey);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .calendar-container {
+    background-color: var(--light-grey);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+  
+    .calendar-sidebar {
+      background-color: var(--primary-color) !important;
+      box-shadow: unset !important;
+    }
+  
+    .calendar-sidebar > span#sidebarToggler {
+      background-color: var(--primary-color) !important;
+    }
+  
+    #eventListToggler {
+      background-color: var(--primary-color) !important;
+    }
+  
+    .calendar-sidebar > .month-list > .calendar-months > li.active-month {
+      background-color: #277fa8 !important;
+    }
+  
+    .calendar-sidebar > .month-list > .calendar-months > li:hover {
+      background-color: var(--hover-color) !important;
+    }
+    .evo-calendar {
+      box-shadow: unset !important;
+    }
+    .calendar-sidebar > span#sidebarToggler {
+      box-shadow: unset !important;
+    }
+    #eventListToggler {
+      box-shadow: unset !important;
+    }
+    th[colspan="7"] {
+      color: var(--primary-color) !important;
+    }
+    .event-list > .event-empty {
+      padding: 15px 10px;
+      background-color: rgba(92, 156, 230, 0.15);
+      border: 1px solid var(--primary-color) !important;
+    }
+    .event-list > .event-empty > p {
+      color: var(--primary-color);
+    }
+  }
+  
+  .patient-details-container {
+    background-color: var(--light-grey);
+    padding: 3rem 0;
+    border-radius: 10px;
+    text-align: center;
+    .profile-image {
+      padding: 1rem 2rem;
+    }
+  }
+  .patient-details-container {
+    h2 {
+      text-align: center;
+      color: var(--third-color);
+    }
+  }
+  .patient-details-container img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-}
-.details-table table{
+  }
+  .details-table table {
     border: none;
     outline: none;
     background-color: none;
     font-family: Poppins;
-
-}
-tr:nth-child(even){
+  }
+  tr:nth-child(even) {
     background: none;
-}
-td:nth-child(1){
+  }
+  td:nth-child(1) {
     font-weight: 800;
-}
-
+  }
+  

@@ -15,15 +15,21 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-      <title>Patient</title>
+      <title>Patient List</title>
        <!--Jquery-->
        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+       <!--Get admin info from session-->
+       <script>
+           $.post('php/admin_session.php').done(
+               function (data) {
+                   $("#name-sidebar").html(data)
+               }
+           )
+       </script>
    </head>
    <body>
       <section class="global">
          <div class="global__container">
-
             <div class="global__sidenav">
                <div class="inner-sidenav">
                   <div class="spacer">
@@ -31,7 +37,7 @@
                         <div class="profile-img">
                            <img src="img/jay.jpg" alt="">
                         </div>
-                        <h4>Your Name</h4>
+                        <h4 id="name-sidebar">Your Name</h4>
                      </div>
                      <ul class="menu">
                      <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
@@ -91,33 +97,33 @@
                        
                         <table class="patients-view">
             <tbody>
-                <tr class="patients-view-title">
-                    <th>Patient Id</th>
-                    <th>Patient Name</th>
-                    <th>Address</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                </tr>
-
-                <tr class='clickable-row' data-href='http://localhost/capstone-project/individual-patient.php'>
-
-                   <td>01</td>
-                    <td>Name</td>
-                    <td>Hagonoy</th>
-                    <td>21</td>
-                    <td>M</td>
-
-
-                </tr>
-
-                <tr>
-                    <td>02</td>
-                    <td>Name</td>
-                    <td>Hagonoy</th>
-                    <td>21</td>
-                    <td>M</td>
-
-                </tr>
+<!--                <tr class="patients-view-title">-->
+<!--                    <th>Patient Id</th>-->
+<!--                    <th>Patient Name</th>-->
+<!--                    <th>Address</th>-->
+<!--                    <th>Age</th>-->
+<!--                    <th>Gender</th>-->
+<!--                </tr>-->
+<!---->
+<!--                <tr class='clickable-row' data-href='http://localhost/capstone-project/individual-patient.php'>-->
+<!---->
+<!--                   <td>01</td>-->
+<!--                    <td>Name</td>-->
+<!--                    <td>Hagonoy</th>-->
+<!--                    <td>21</td>-->
+<!--                    <td>M</td>-->
+<!---->
+<!---->
+<!--                </tr>-->
+<!---->
+<!--                <tr>-->
+<!--                    <td>02</td>-->
+<!--                    <td>Name</td>-->
+<!--                    <td>Hagonoy</th>-->
+<!--                    <td>21</td>-->
+<!--                    <td>M</td>-->
+<!---->
+<!--                </tr>-->
               
                
               
@@ -165,73 +171,8 @@ Closedropdown.addEventListener('click',function(){
 <!--Table sortable script-->
 <script src="js/table-sortable.js"></script>
       <script>
-          var table = $('tbody').tableSortable({
-              data: [],
-              columns:
-                  {
-                      id: "ID",
-                      name:"Name",
-                      address:"Address",
-                      age: "Age"
-                  }
-              ,
-              searchField: '.search-bar',
-              responsive: {
-                  720: {
-                      columns: {
-                          id: "ID",
-                          name:"Name",
-                      },
-                  },
-              },
-              rowsPerPage: 5,
-              pagination: true,
-              tableWillMount: function() {
-                  console.log('table will mount')
-              },
-              tableDidMount: function() {
-                  console.log('table did mount')
-              },
-              tableWillUpdate: function() {console.log('table will update')},
-              tableDidUpdate: function() {console.log('table did update')},
-              tableWillUnmount: function() {console.log('table will unmount')},
-              tableDidUnmount: function() {console.log('table did unmount')},
-              onPaginationChange: function(nextPage, setPage) {
-                  setPage(nextPage);
-              }
-          });
-          $.get('php/patientProcesses/retrievePatientList.php', function(data) {
-              // Push data into existing data
-              console.log(JSON.parse(data))
-              //table.setData(JSON.parse(data), null, true);
 
-              // or Set new data on table, columns is optional.
-               table.setData(JSON.parse(data),{
-                   id: "ID",
-                   name:"Name",
-                   address:"Address",
-                   age: "Age",
-               });
-          })
-          $('#changeRows').on('change', function() {
-              table.updateRowsPerPage(parseInt($(this).val(), 10));
-          })
-
-          $('#rerender').click(function() {
-              table.refresh(true);
-          })
-
-          $('#distory').click(function() {
-              table.distroy();
-          })
-
-          $('#refresh').click(function() {
-              table.refresh();
-          })
-
-          $('#setPage2').click(function() {
-              table.setPage(1);
-          })
+          //alert($(document).width())
       </script>
       <style>
           .gs-pagination{
@@ -257,21 +198,125 @@ Closedropdown.addEventListener('click',function(){
                   font-size: clamp(0.4rem,0.8rem,1rem);
               }
           }
-
       </style>
 <script>
 
-   jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-    $("tr").click(function () {
-       let a =  $(this).children();
-      let sample =  $($(this).children()[0]).html();
-      console.log(sample)
-      //console.log(a[0].innerHTML)//just another way
-    })
-});
+   jQuery(document).ready(function() {
+    // $(".clickable-row").click(function() {
+    //     window.location = $(this).data("href");
+    // });
+       var table = $('tbody').tableSortable({
+           data: [],
+           columns:
+               {
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Type",
+                   age: "Age",
+                   purok:"Purok",
+                   address:"Address",
+               }
+           ,
+           searchField: '.search-bar',
+           responsive: {
+               720: {
+                   columns: {
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Type",
+                       age: "Age",
+                       purok:"Purok"
+
+                   },
+               },
+           },
+           rowsPerPage: 5,
+           pagination: true,
+           tableWillMount: function() {
+               console.log('table will mount')
+           },
+           tableDidMount: function() {
+               console.log('table did mount')
+           },
+           tableWillUpdate: function() {console.log('table will update')},
+           tableDidUpdate: function() {
+               console.log('table did update')
+               row_click()
+           },
+           tableWillUnmount: function() {console.log('table will unmount')},
+           tableDidUnmount: function() {console.log('table did unmount')},
+           onPaginationChange: function(nextPage, setPage) {
+               setPage(nextPage);
+           }
+       });
+       $.get('php/patientProcesses/retrievePatientList.php', function(data) {
+           d = data;
+           // Push data into existing data
+           console.log(JSON.parse(data))
+           //table.setData(JSON.parse(data), null, true);
+
+           // or Set new data on table, columns is optional.
+           if($(document).width()<=720){
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Type",
+                   age: "Age",
+                   purok:"Purok"
+                   // address:"Address",
+               });
+           }
+           else{
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Type",
+                   age: "Age",
+                   purok:"Purok",
+                   address:"Address",
+               });
+           }
+       })//end of get/post method
+       $('#changeRows').on('change', function() {
+           table.updateRowsPerPage(parseInt($(this).val(), 10));
+       })
+
+       $('#rerender').click(function() {
+           table.refresh(true);
+       })
+
+       $('#distory').click(function() {
+           table.distroy();
+       })
+
+       $('#refresh').click(function() {
+           table.refresh();
+       })
+
+       $('#setPage2').click(function() {
+           table.setPage(1);
+       })
+
+       //========Action Function======================//
+       function row_click() {
+           $("tr").click(function () {
+               let a =  $(this).children();
+               let id =  $($(this).children()[0]).html();//get the ID
+               console.log(id)
+               setTimeout(()=>{
+                   $.post('php/patientProcesses/setPatientSessionID.php',{id:id}).done(
+                       function (data) {
+                           //alert(data)
+                           location.href="individual-patient.php"
+                       }
+                   )
+               },500)
+
+               //console.log(a[0].innerHTML)//just another way
+           })
+       }
+
+});//end of document ready
 </script>
 
    </body>

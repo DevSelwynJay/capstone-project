@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient`
+-- Table structure for table `walk_in_patient`
 --
 
-CREATE TABLE `patient` (
+CREATE TABLE `walk_in_patient` (
   `account_type` int(1) NOT NULL DEFAULT 2 COMMENT '2 patient',
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -52,20 +52,22 @@ CREATE TABLE `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `patient`
+-- Dumping data for table `walk_in_patient`
 --
 
-INSERT INTO `patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(2, '2021-02-052045', 'Cruz', 'Bebang', 'Biler', 'Male', '2021-12-01', '4', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Infant', 'ben@gmail.com', 'mukamo11', '09422697901', '', '2021-12-02 08:40:48');
+INSERT INTO `walk_in_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(2, '2021-03-111222', 'Cruz', 'Bebang', 'Biler', 'Female', '2002-10-10', '1', '', '1 Sto. Rosario Paombong Bulacan', 'Sales Lady', 'Single', 'O', '0', '0', 'Adult', 'alfredpogiebenitez@gmail.com', 'mukamo11', '09422454512', '', '2021-10-25 07:28:47'),
+(2, '2021-03-111243', 'Benitez', 'Beng', 'Bas', 'Female', '1995-10-11', '4', '', '123 Sto. Rosario Paombong Bulacan', 'Sales Lady', 'Single', 'A', '0', '0', 'Adult', 'benitez@gmail.com', 'mukamo11', '09422454513', '', '2021-11-28 07:28:47'),
+(2, '2021-03-823974', 'Benitez', 'Alfredo', 'Bas', 'Male', '1925-12-09', '6', '', '12 Sto. Rosario Paombong Bulacan', '', 'Single', '', '0', '0', 'Senior', 'ogie123@gmail.com', 'mukamo11', '09422697900', '', '2021-12-01 04:36:37');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `patient`
+-- Indexes for table `walk_in_patient`
 --
-ALTER TABLE `patient`
+ALTER TABLE `walk_in_patient`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`,`contact_no`);
 COMMIT;

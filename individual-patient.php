@@ -1,3 +1,7 @@
+<?php
+session_start();
+//echo $_SESSION['active_individual_patient_ID'];
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -11,13 +15,46 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-      <title>Patient</title>
-      <!--Jquery-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <!--Custom CSS-->
+      <title>Individual Patient</title>
+       <!--Custom CSS-->
       <link rel="stylesheet" href="scss/style.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
+       <!--Jquery-->
+       <!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+       <!--EVO Calendar Script-->
+       <script src="js/evo-calendar.js"></script>
+       <!--Get admin info from session-->
+       <script>
+           $.post('php/admin_session.php').done(
+               function (data) {
+                   $("#name-sidebar").html(data)
+               }
+           )
+       </script>
+       <!--Set patient info to page-->
+       <script>
+           $.post('php/patientProcesses/retrieveIndivPatient.php').done(
+               function (data) {
+                    let arrayOfObject = JSON.parse(data);//row info ni patient
+                    //let size = arrayOfObject.length;
+                   for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
+                       //alert(arrayOfObjectElement.first_name)
+                       let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
+                           " "+arrayOfObjectElement.last_name
+                       $("#name").html(name);
+                       $("#patient-type").html(arrayOfObjectElement.patient_type)
+                       $("#gender").html(arrayOfObjectElement.gender)
+                       $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
+                       $("#occupation").html(arrayOfObjectElement.occupation)
+                       $("#blood-type").html(arrayOfObjectElement.blood_type)
+                       $("#height").html(arrayOfObjectElement.height+" "+"cm")
+                       $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
+                   }
+               }
+           )
+       </script>
      
    </head>
    <body>
@@ -30,7 +67,7 @@
                         <div class="profile-img">
                            <img src="img/jay.jpg" alt="">
                         </div>
-                        <h4>Your Name</h4>
+                        <h4 id="name-sidebar">Your Name</h4>
                      </div>
                      <ul class="menu">
                         <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
@@ -82,7 +119,7 @@
                      <div class="content">
                         <div class="patient-content__ctas">
                            <div class="back-button">
-                              <a href="" class="back-btn"><i class="fas fa-arrow-circle-left"></i></a>
+                              <a class="back-btn"><i class="fas fa-arrow-circle-left"></i></a>
                            </div>
                            <div class="add-prescription">
                               <a href=""><i class="fas fa-plus"></i>Add Prescriptions</a>
@@ -92,44 +129,44 @@
                            <div class="patient-content__name holder">
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                 <p>Selwyn Jay D. Faustino</p>
+                                 <p id="name">Selwyn Jay D. Faustino</p>
                                  <a href="/">View</a>
                               </div>
                            </div>
                            <div class="patient-content__information holder">
                               <p>Information</p>
                               <table>
+                                  <tr>
+                                      <td><strong>Type</strong></td>
+                                      <td id="patient-type">Senior</td>
+                                  </tr>
                                  <tr>
                                     <td><strong>Gender</strong></td>
-                                    <td>M</td>
+                                    <td id="gender">M</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Age</strong></td>
-                                    <td>21</td>
+                                    <td id="age">21</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Address</strong></td>
-                                    <td>Address</td>
-                                 </tr>
-                                 <tr>
-                                    <td><strong>Postal Code</strong></td>
-                                    <td>3002</td>
+                                    <td id="address">Address</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Occupation</strong></td>
-                                    <td>n/a</td>
+                                    <td id="occupation">n/a</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Blood Type</strong></td>
-                                    <td>O</td>
+                                    <td id="blood-type">O</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Height</strong></td>
-                                    <td>6'1</td>
+                                    <td id="height">6'1</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Weight</strong></td>
-                                    <td>70</td>
+                                    <td id="weight">70</td>
                                  </tr>
                               </table>
                            </div>
@@ -177,10 +214,27 @@
       <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
       <script>
          $(document).ready(function() {
-         $('#calendar').evoCalendar({
-        
-         })
-         })
+             //Calendar instance
+             $('#calendar').evoCalendar({
+                 'sidebarDisplayDefault': false,
+             })
+             $('#calendar').evoCalendar('addCalendarEvent', {
+                 id: 'kNybja6',
+                 name: 'Mom\'s Birthday',
+                 description: 'Lorem ipsum dolor sit..',
+                 date: 'December 25, 2021',
+                 type: 'birthday'
+             });
+             //just to prevent a click
+             $("a").click(function (e) {
+                 e.preventDefault()
+             })
+             //========ACTIONS===============//
+             $(".back-btn").click(function (){
+                 location.href="patient.php";
+             })
+
+         })//end of document ready
       </script>
       <script>
          const dropdown = document.querySelector('#dropdown');
@@ -207,7 +261,6 @@
             Closedropdown.style.display = "none"
             dropdownToggle.style.display = "block";
          });
-         
       </script>
       <script>
          const menu = document.querySelector('#menu');
@@ -234,7 +287,7 @@
             closeMobileMenu.style.display = "none"
             mobileMenu.style.display = "block";
          });
-         
       </script>
+
    </body>
 </html>

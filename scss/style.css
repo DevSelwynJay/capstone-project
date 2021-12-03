@@ -53,6 +53,14 @@ h5 {
   visibility: visible;
 }
 
+.row-container {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-wrap: wrap !important;
+      flex-wrap: wrap !important;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1445,117 +1453,219 @@ tr:nth-child(even) {
   color: white;
 }
 
-.reports__downloads {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 0 1rem;
+@media (max-width: 991px) {
+  .table-reports {
+    -webkit-box-ordinal-group: 2 !important;
+        -ms-flex-order: 1 !important;
+            order: 1 !important;
+  }
 }
 
-.reports__downloads-container a {
-  display: inline-block;
-  text-decoration: none;
-  background-color: var(--primary-color);
-  padding: .6rem 1rem;
-  color: white;
-  margin-left: .7rem;
-  border-radius: .5rem;
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
-  margin-bottom: 1rem;
+@media (max-width: 991px) {
+  .left-reports {
+    -webkit-box-ordinal-group: 3 !important;
+        -ms-flex-order: 2 !important;
+            order: 2 !important;
+  }
 }
 
-.reports__downloads-container a i {
-  margin-right: .3rem;
+.reports_content {
+  padding: 1rem 2rem;
 }
 
-.reports__downloads-container a:hover {
-  background-color: var(--hover-color);
-}
-
-.reports__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+@media (max-width: 1200px) {
+  .reports_content {
+    padding: 1rem .5rem;
+  }
 }
 
 .reports__left-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 60%;
-          flex: 1 1 60%;
-  margin: 1rem 1rem 1rem 1rem;
-}
-
-.reports__left-col table {
-  margin-top: unset !important;
-}
-
-.reports__left-col td:first-child {
-  font-weight: unset !important;
-}
-
-.reports__left-col td, .reports__left-col th {
-  color: unset !important;
-}
-
-.reports__left-col th {
-  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .reports__left-col-container {
-  background-color: #eeeeee;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: .5rem;
-  height: 100%;
-  padding: .5rem 0;
+}
+
+.reports__table th {
+  padding: 1.5rem 0;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.reports__table td {
+  font-weight: 300 !important;
+}
+
+.reports__table tr:nth-child(even) {
+  background-color: #a0a0a0;
 }
 
 .reports__right-col {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 40%;
-          flex: 1 1 40%;
-  margin: 1rem 1rem 1rem 0;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
 }
 
-.reports__right-col-container {
+.reports__right-col_links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
-  gap: 1rem;
-}
-
-.reports__right-col-container .total-medicine-released h2 {
-  color: var(--primary-color);
-}
-
-.reports__right-col-container .current-sick-paient h2 {
-  color: red;
-}
-
-.reports__right-col-container .cured-patient h2 {
-  color: #05ac05;
-}
-
-.reports__right-col-container .card {
-  background-color: #eeeeee;
-  border-radius: .5rem;
   text-align: center;
-  padding: 4rem 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.reports__right-col-container .card h2 {
+.reports__right-col_links a {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.reports__right-col_links a:hover {
+  background-color: var(--hover-color);
+}
+
+.reports_nav {
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+  .reports_nav {
+    background-color: #222;
+  }
+}
+
+.reports_nav .reports-title {
+  padding: 1.6rem;
+}
+
+.reports_nav .reports-title h4 {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.reports_nav .reports-menu {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+}
+
+.reports_nav .reports-menu li {
+  list-style: none;
+}
+
+.reports_nav .reports-menu li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: .5rem;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  margin-bottom: -.5rem;
+  display: inline-block;
+}
+
+.reports_nav .reports-menu li a:hover {
+  background-color: white;
+  color: #222;
+}
+
+.reports_nav .reports-menu li .active {
+  background-color: white;
+  color: #222;
+}
+
+.reports__individual-reports-table {
+  margin: 2rem 0;
+}
+
+.reports__individual-reports-table th {
+  padding: 1rem .6rem;
+  color: #222;
+  font-size: 1rem;
+}
+
+.reports__individual-reports-table td {
+  font-weight: 300 !important;
+}
+
+.reports__individual-reports-table tr:nth-child(even) {
+  background-color: #a0a0a0;
+}
+
+.reports__individual-container {
+  background-color: #eeeded;
+  border-radius: .5rem;
+}
+
+.reports_individual-report-links a {
+  display: block;
+  text-decoration: none;
   font-weight: 300;
-  font-size: 2.5rem;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.reports_individual-report-links a:hover {
+  font-weight: 500;
+}
+
+.reports_individual-report-links a.active {
+  font-weight: 500;
+}
+
+.reports_individual-report-download {
+  text-align: center;
+}
+
+.reports_individual-report-download a {
+  -webkit-transition: all ease-in-out 200ms;
+  transition: all ease-in-out 200ms;
+  display: block;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
+.reports_individual-report-download a:hover {
+  background-color: var(--hover-color);
+}
+
+.reports_upper-col {
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.reports_lower-col {
+  margin: 2rem 0;
+  padding: 0;
 }
 
 .inventory__container {
@@ -1711,175 +1821,166 @@ tr:nth-child(even) {
   color: var(--third-color);
 }
 
-.left {
-  margin-left: 2%;
+.dashboard-content {
+  color: #222;
+  padding: 2rem 1rem;
 }
 
 .greetings-container {
   background-color: #cdefff;
-  height: 20%;
-  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   border-radius: 10px;
-  padding: 0 5% 5% 5%;
-  margin-top: 2%;
+  padding: 2rem 1rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .greetings-container > * {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
 }
 
 .greetings-img {
-  width: 40%;
-  height: 40%;
   margin-top: -10%;
 }
 
-.greetings-container p:nth-child(1) {
+@media (max-width: 768px) {
+  .greetings-img {
+    margin: 0 !important;
+  }
+}
+
+.greetings-container h1.title {
   font-weight: 800;
   color: #0c6893;
-  font-size: 1.5em;
+  font-size: 2em;
+}
+
+.greetings-container p {
+  font-size: 1em;
 }
 
 .greetings-container .text {
   text-align: center;
 }
 
+.greetings-container img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .text {
-  margin-top: 8%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
-.text p:nth-child(2) {
-  font-size: 0.8em;
-}
-
-.symptoms-container {
+.vaccination-schedule-container {
   background-color: var(--light-grey);
-  width: 60%;
-  height: 40%;
-  padding: 3%;
   border-radius: 10px;
-  margin-top: 2%;
+  padding: 1rem;
+  margin-bottom: 30px;
 }
 
-.symptoms-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.vaccination-schedule-container h3 {
+  margin-bottom: 0.5rem;
 }
 
-.symp {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 4%;
-}
-
-.symp img {
-  width: 60px;
-  height: 60px;
-}
-
-.symp p {
-  text-indent: 0.4cm;
-}
-
-.pres-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.prescription-container {
+.current-medication-container {
   background-color: var(--light-grey);
-  width: 60%;
-  padding: 3%;
+  padding: 1rem;
   border-radius: 10px;
-  margin-top: 2%;
+  margin-bottom: 30px;
 }
 
-.sub-prescription {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: #cdefff;
-  width: 40%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 5%;
-  padding: 2%;
+.current-medication-container h3 {
+  margin-bottom: 0.5rem;
+}
+
+.calendar-container {
+  background-color: var(--light-grey);
+  padding: 1rem;
   border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-.sub-prescription img {
-  width: 70px;
-  height: 70px;
+.calendar-container h3 {
+  margin-bottom: 0.5rem;
 }
 
-.sub-prescription p:nth-child(1) {
-  color: #0c6893;
-  font-weight: 800;
+.calendar-container .calendar-sidebar {
+  background-color: var(--primary-color) !important;
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
 }
 
-.medication-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.calendar-container .calendar-sidebar > span#sidebarToggler {
+  background-color: var(--primary-color) !important;
 }
 
-.medication {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 5%;
+.calendar-container #eventListToggler {
+  background-color: var(--primary-color) !important;
 }
 
-.medication img {
-  width: 50px;
-  height: 45px;
+.calendar-container .calendar-sidebar > .month-list > .calendar-months > li.active-month {
+  background-color: #277fa8 !important;
+}
+
+.calendar-container .calendar-sidebar > .month-list > .calendar-months > li:hover {
+  background-color: var(--hover-color) !important;
+}
+
+.calendar-container .evo-calendar {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container .calendar-sidebar > span#sidebarToggler {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container #eventListToggler {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.calendar-container th[colspan="7"] {
+  color: var(--primary-color) !important;
+}
+
+.calendar-container .event-list > .event-empty {
+  padding: 15px 10px;
+  background-color: rgba(92, 156, 230, 0.15);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.calendar-container .event-list > .event-empty > p {
+  color: var(--primary-color);
 }
 
 .patient-details-container {
-  -webkit-transform: translateY(-860px);
-          transform: translateY(-860px);
-  margin-right: 20px;
-  float: right;
   background-color: var(--light-grey);
-  width: 35%;
-  padding: 3%;
+  padding: 3rem 0;
   border-radius: 10px;
+  text-align: center;
 }
 
-.patient-details-container h1 {
+.patient-details-container .profile-image {
+  padding: 1rem 2rem;
+}
+
+.patient-details-container h2 {
   text-align: center;
   color: var(--third-color);
 }
 
 .patient-details-container img {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 25%;
   width: 150px;
   height: 150px;
   border-radius: 50%;

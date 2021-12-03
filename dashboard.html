@@ -1,189 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Custom CSS-->
-    <link rel="stylesheet" href="scss/style.css">
-    <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
-    <!-- Font Family Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <title>Dashboard Patient</title>
-    <!--Jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-
-<body>
-
-    <section class="global">
-        <div class="global__container">
-            <div class="global__sidenav">
-                <div class="inner-sidenav">
-                    <div class="spacer">
-                        <div class="profile">
-                            <div class="profile-img">
-                                <img src="img/jay.jpg" alt="">
-                            </div>
-                            <h4>Your Name</h4>
-                        </div>
-                        <ul class="menu">
-                            <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
-                        </ul>
-                    </div>
-                    <div class="social-media-links">
-                      
-                    </div>
-                </div>
-            </div>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+      <!--Bootstrap-->
+      <link rel="stylesheet" href="/scss/bootstrap-grid.css">
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/style.css">
+      <!--Font Awesome-->
+      <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+      <!-- Font Family Poppins -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
+         rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
+      <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
+       <!--Jquery-->
+       <!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+       <!--EVO Calendar Script-->
+       <script src="js/evo-calendar.js"></script>
+      <title>Dashboard Patient</title>
+      <!--Jquery-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   </head>
+   <body>
+      <section class="global">
+         <div class="global__container">
             <div class="global__main-content">
-                <div class="inner-page-content">
-                    <div class="col-sm-12">
-                        <div class="inner-page-nav">
-                            <div class="logo">
-                                <img src="img/HIS logo blue.png" alt="">
-                            </div>
-                            <div class="settings">
-                                <a><i class="fas fa-user-circle"></i></a>
-                                <a><i class="fas fa-ellipsis-h"></i></a>
-                            </div>
+               <div class="inner-page-content">
+                  <div class="col-sm-12 p-0">
+                     <div class="inner-page-nav">
+                        <div class="logo">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
-                    </div>
-
-
-
-                    <div class="content">
-                        <div class="left">
-                            <div class="wrapper">
-                                <div class="greetings-container">
-                                    <div class="text">
-                                        <p>Welcome Back, Name!</p>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nostrum
-                                            totam omnis repudiandae ullam, dolor nemo dolores corporis quo delectus quam
-                                            ut iste similique illo quod vero eveniet sapiente molestiae! </p>
-                                    </div>
-                                    <img class="greetings-img" src="img/Icons/dashboard-img.png" alt="">
-                                </div>
-
-                                <div class="symptoms-container">
-                                    <h1>SYMPTOMS</h1>
-                                    <div class="symptoms-wrapper">
-                                        <div class="symp">
-                                            <img src="img/Icons/colds.png" alt="">
-                                            <p>Colds</p>
-                                        </div>
-
-                                        <div class="symp">
-                                            <img src="img/Icons/fever.png" alt="">
-                                            <p>Fever</p>
-                                        </div>
-
-                                        <div class="symp">
-                                            <img src="img/Icons/vommitting.png" alt="">
-                                            <p>Vommitting</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="prescription-container">
-                                    <h1>PRESCRIPTION</h1>
-                                    <div class="pres-wrapper">
-                                        <div class="sub-prescription">
-                                            <img src="img/Icons/prescription.png" alt="">
-                                            <div class="pres-text">
-                                                <p>Medicine Name</p>
-                                                <p>Dosage</p>
-                                            </div>
-                                        </div>
-                                        <div class="sub-prescription">
-                                            <img src="img/Icons/prescription.png" alt="">
-                                            <div class="pres-text">
-                                                <p>Medicine Name</p>
-                                                <p>Dosage</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h1>MEDICATION</h1>
-                                    <div class="medication-wrapper">
-                                        <div class="medication">
-                                            <img src="img/Icons/medicine.png" alt="">
-                                            <p>Medicine Name</p>
-                                        </div>
-                                        <div class="medication">
-                                            <img src="img/Icons/medicine.png" alt="">
-                                            <p>Medicine Name</p>
-                                        </div>
-                                    </div>
-                                   
-
-                                </div>
-                                
-
+                        <div class="settings">
+                            <a href="/"><i class="fas fa-user-circle"></i></a> 
+                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
+                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                          
+                            <!--DROPDOWN SETTINGS-->
+                            <div class="drop-down-settings" id="dropdown">
+                               <ul>
+                                  <li><a href="">Approve EMR</a></li>
+                                  <li><a href="settings.php">settings</a></li>
+                                  <li><a href="about.html">About</a></li>
+                                  <li><a href="php/sessionDestroy.php">Logout</a></li>
+                               </ul>
                             </div>
+                         </div>
+                     </div>
+                  </div>
+                  <div class="dashboard-content">
+                     <div class="row-container">
+                        <div class="col-md-12 col-lg-8">
+
+                           <div class="greetings-container">
+                              <div class="text">
+                                <div class="text-wrap">
+                                    <h1 class="title">Welcome Back, Name!</h1>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nostrum
+                                       totam omnis repudiandae ullam, dolor nemo dolores corporis quo delectus quam
+                                       ut iste similique illo quod vero eveniet sapiente molestiae! 
+                                    </p>
+                                </div>
+                              </div>
+                              <img class="greetings-img" src="img/Icons/dashboard-img.png" alt="">
+                           </div>
+
+                           <div class="calendar-container">
+                               <h3>Calendar</h3>
+                               <div id="calendar"></div>
+                          </div>
+                          
+                           <div class="current-medication-container">
+                            <h3>Current Medication</h3>
+                            <table>
+                                <tr>
+                                   <th>Name</th>
+                                   <th>Dosage</th>
+                                   <th>No. of time</th>
+                                   <th>Duration</th>
+                                </tr>
+                                <tr>
+                                   <td>Jay</td>
+                                   <td>Vaccination</td>
+                                   <td>4</td>
+                                   <td>11/20/2021</td>
+                                </tr>
+                             </table>
+                           </div>
+
+                           <div class="vaccination-schedule-container">
+                            <h3>Vaccination Schedule</h3>
+                           
+                            <table>
+                                <tr>
+                                   <th>Name</th>
+                                   <th>Date</th>
+                                </tr>
+                                <tr>
+                                   <td>Jay</td>
+                                   <td>11/20/2021</td>
+                                </tr>
+                             </table>
+                          
+                           </div>
 
                         </div>
-
-                        
-
-                    </div>
-                    
-                </div>
-                <div class="right-container">
-                    <div class="patient-details-container">
-                        <img src="img/jay.jpg" alt=""><br>
-                        <h1>SURNAME, First Name, Middle Name</h1>
-                        <div class="details-table">
-                            <table class="det-table">
-                                <tr>
-                                    <td>Age</td>
-                                    <td>XXy/o</td>
-                                </tr>
-                                <tr>
-                                    <td>Gender</td>
-                                    <td>Male</td>
-                                </tr>
-                                <tr>
-                                    <td>Birthday</td>
-                                    <td>MM/DD/YY</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone Number</td>
-                                    <td>09123456789</td>
-                                </tr>
-                                <tr>
-                                    <td>Street</td>
-                                    <td>Street</td>
-                                </tr>
-                                <tr>
-                                    <td>Height</td>
-                                    <td>xxxcm</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight</td>
-                                    <td>xxkgs</td>
-                                </tr>
-                            </table>
+                        <div class="col-md-12 col-lg-4">
+                           <div class="patient-details-container">
+                              <div class="profile-image">
+                                <img src="img/jay.jpg" alt=""><br>
+                                <h2>SURNAME, First Name, Middle Name</h2>
+                              </div>
+                             
+                              <div class="details-table">
+                                 <table class="det-table">
+                                    <tr>
+                                       <td>Age</td>
+                                       <td>XXy/o</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Gender</td>
+                                       <td>Male</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Birthday</td>
+                                       <td>MM/DD/YY</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Phone Number</td>
+                                       <td>09123456789</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Street</td>
+                                       <td>Street</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Height</td>
+                                       <td>xxxcm</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Weight</td>
+                                       <td>xxkgs</td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-                
+                     </div>
+                  </div>
+               </div>
             </div>
-            
-        </div>
-        </div>
-        </div>
+         </div>
+         </div>
+         </div>
+      </section>
+      <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
+      <script>
+         $(document).ready(function() {
+             //Calendar instance
+             $('#calendar').evoCalendar({
+                 'sidebarDisplayDefault': false,
+             })
+             $('#calendar').evoCalendar('addCalendarEvent', {
+                 id: 'kNybja6',
+                 name: 'Mom\'s Birthday',
+                 description: 'Lorem ipsum dolor sit..',
+                 date: 'December 25, 2021',
+                 type: 'birthday'
+             });
+             //just to prevent a click
+             $("a").click(function (e) {
+                 e.preventDefault()
+             })
+             //========ACTIONS===============//
+             $(".back-btn").click(function (){
+                 location.href="patient.php";
+             })
 
-
-    </section>
-</body>
-
+         })//end of document ready
+      </script>
+      <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+        
+        dropdownToggle.addEventListener('click',function(){//Conditions
+        if(dropdown.classList.contains('open')){ // Close Mobile Menu
+        dropdown.classList.remove('open');
+        }
+        else{ // Open Mobile Menu
+        dropdown.classList.add('open');
+        }});
+        
+        
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+        
+        Closedropdown.addEventListener('click',function(){
+           dropdown.classList.remove('open');
+           Closedropdown.style.display = "none"
+           dropdownToggle.style.display = "block";
+        });
+     </script>
+   </body>
 </html>
