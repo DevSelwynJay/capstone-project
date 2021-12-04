@@ -179,7 +179,7 @@ session_start();
                               <div id="calendar"></div>
                            </div>
                            <div class="patient-content__medical-history holder">
-                              <p>Medical History</p>
+                              <p>Medication/Vaccination History</p>
                               <div class="patient-content__medical-history-container">
                                  <table>
                                     <tr>

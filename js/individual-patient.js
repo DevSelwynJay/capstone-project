@@ -3,8 +3,12 @@ $(document).ready(function() {
     $('#calendar').evoCalendar({
         'sidebarDisplayDefault': false,
         'todayHighlight': true,
-        'format': 'yyyy-m-dd'
+        'format': 'yyyy-m-dd',
+
     })
+    //some custome style
+    $(".day.calendar-today.calendar-active").css("background","#E4E4E4")
+    $(".day.calendar-today.calendar-active").css("color","#585858")
     //this object has fixed key needed sa calendar
     let eventObject = {
         id: ' ',
@@ -19,19 +23,40 @@ $(document).ready(function() {
     $.post('php/patientProcesses/retrievePatientMedicalRecord.php').done(function (data) {
         let result = JSON.parse(data);
         for (const resultElement of result) {
-            alert(JSON.stringify(resultElement))
-            $('#calendar').evoCalendar('addCalendarEvent', {
-                id: resultElement.event_id,
-                name: resultElement.medicine_name,
-                description: resultElement.description,
-                date: resultElement.start_date_1,
-                type: ' ',
-                color:"#02A9F7"
-            });
+            getDatesFromRange( resultElement.start_date_1, resultElement.end_date_1,resultElement)
+            //alert(JSON.stringify(resultElement))
+            // $('#calendar').evoCalendar('addCalendarEvent', {
+            //     id: resultElement.event_id,
+            //     name: resultElement.medicine_name,
+            //     description: resultElement.description,
+            //     date: resultElement.start_date_1,
+            //     type: ' ',
+            //     color:"#02A9F7"
+            // });
 
         }
 
     })//end of post
+    function getDatesFromRange(start,end,resultElement) {
+
+        $.post('php/getDatesFromRange.php',{start_date:start,end_date:end}).done(function (data) {
+            let dates = JSON.parse(data);
+            //alert(dates.length)
+
+            for (const date of dates) {//add the same event on different days
+                $('#calendar').evoCalendar('addCalendarEvent', {
+                    id: resultElement.event_id,
+                    name: resultElement.medicine_name,
+                    description: "<strong>No of times:</strong> "+resultElement.no_times+"<br>" +
+                        "<strong>Description: </strong>"+resultElement.description,
+                    date: date,
+                    type: ' ',
+                    color:"#02A9F7"
+                });
+            }
+
+        })//post end
+    }
 
     //just to prevent a click
     $("a").click(function (e) {
@@ -44,12 +69,26 @@ $(document).ready(function() {
     //Selected an Event
     $('#calendar').on('selectEvent', function(event, activeEvent) {
         // code here...
-        //alert(activeEvent.id)
+        //alert(activeEvent.name)
     });
     //Select a Date
     $('#calendar').on('selectDate', function(event, newDate, oldDate) {
         //alert(newDate)
+        $(".event-empty p").html("No record on this day")
+        $('#calendar').evoCalendar('toggleEventList',true);
     });
+    // selectMonth
+    $('#calendar').on('selectMonth', function(event, activeMonth, monthIndex) {
+        $('#calendar').evoCalendar('toggleEventList',false);
+    });
+    // selectYear
+    $('#calendar').on('selectYear', function(event, activeYear) {
+        $('#calendar').evoCalendar('toggleEventList',false);
+    });
+    //sidebar left
+    $("#sidebarToggler").on('click',function () {
+        $('#calendar').evoCalendar('toggleEventList',false);
+    })
 
 
 

@@ -1,4 +1,7 @@
 <?php
+session_start();
+$start_date = $_POST['start_date'];
+$end_date = $_POST['end_date'];
 /**
  * Generate an array of string dates between 2 dates
  *
@@ -24,6 +27,6 @@ function getDatesFromRange($start, $end, $format = 'Y-m-d') {
     return $array;
 }
 
-echo json_encode(getDatesFromRange('2021-02-01','2021-03-25'))
-
+//echo json_encode(getDatesFromRange('2021-02-01','2021-03-25'))
+echo json_encode(getDatesFromRange($start_date,$end_date));
 ?>
