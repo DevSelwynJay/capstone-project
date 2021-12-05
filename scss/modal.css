@@ -55,6 +55,11 @@
     font-weight: 500;
     font-size: clamp(0.8em,1em,1.5vw);
 }
+.modal-sub-title{
+    color: var(--third-color)!important;
+    font-weight: 500;
+    font-size: clamp(0.8em,1.3em,1.5vw);
+}
 .modal-p{
     font-size: clamp(0.7em,0.8em,3vw)!important;
     font-weight: 450;

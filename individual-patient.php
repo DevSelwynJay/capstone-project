@@ -16,6 +16,8 @@ session_start();
       <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
       <title>Individual Patient</title>
+       <!--CSS Grid Bootstrap-->
+       <link rel="stylesheet" href="scss/bootstrap-grid.css">
        <!--Custom CSS-->
       <link rel="stylesheet" href="scss/style.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
@@ -281,6 +283,8 @@ session_start();
             mobileMenu.style.display = "block";
          });
       </script>
-
+<?php
+require 'add-prescription-script.html';
+?>
    </body>
 </html>

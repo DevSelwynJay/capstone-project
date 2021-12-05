@@ -1,5 +1,28 @@
 <div class="modal modal-full-width" id="add-pres-modal">
-    <div class="modal-content-scrollable">
-        <p class="modal-title-2">Add Prescription</p>
+    <div class="modal">
+        <p class="modal-title-2" style="color: var(--primary-color)">Add Prescription</p>
     </div>
+    <div class="row flex-box-row justify-content-end">
+        <div class="col-sm-6 ">
+            <div class="search-container">
+                <input type="text" id="search-inv" class="search-bar">
+                <a href="/"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+<style>
+    button.type{
+        padding: 0.5rem 1rem;
+        font-size: clamp(1em,1.6em,2vw);
+        margin: 1rem;
+    }
+    #res tr th, #res tr td{
+        text-align: left;
+    }
+    #res tr th{
+        display: none;
+    }
+</style>
