@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
     let prescription = []//over all event ni patient
     //Retrieve patient medical record and put in calendar
-    $.post('php/patientProcesses/retrievePatientMedicalRecord.php').done(function (data) {
+    $.post('php/patientProcesses/retrievePatientMedicationRecord.php').done(function (data) {
         let result = JSON.parse(data);
         for (const resultElement of result) {
             getDatesFromRange( resultElement.start_date_1, resultElement.end_date_1,resultElement)
@@ -47,8 +47,9 @@ $(document).ready(function() {
                 $('#calendar').evoCalendar('addCalendarEvent', {
                     id: resultElement.event_id,
                     name: resultElement.medicine_name,
-                    description: "<strong>No of times:</strong> "+resultElement.no_times+"<br>" +
-                        "<strong>Description: </strong>"+resultElement.description,
+                    description: "<strong>"+resultElement.no_times+" times a day</strong>" +
+                        "<br><br><strong>Description: </strong>"+resultElement.description
+                    ,
                     date: date,
                     type: ' ',
                     color:"#02A9F7"

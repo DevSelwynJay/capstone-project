@@ -49,6 +49,7 @@ session_start();
                        $("#name").html(name);
                        $("#patient-type").html(arrayOfObjectElement.patient_type)
                        $("#gender").html(arrayOfObjectElement.gender)
+                       $("#age").html(arrayOfObjectElement.age)
                        $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
                        $("#occupation").html(arrayOfObjectElement.occupation)
                        $("#blood-type").html(arrayOfObjectElement.blood_type)
