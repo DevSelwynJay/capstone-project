@@ -27,6 +27,17 @@ session_start();
        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
        <!--EVO Calendar Script-->
        <script src="js/evo-calendar.js"></script>
+       <!-- jQuery Modal-->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+       <!--Jquery UI css and js-->
+       <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+       <script src="jquery-ui/jquery-ui.js"></script>
+       <link rel="stylesheet" href="scss/tooltip.css">
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/scrollbar_loading.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
        <!--Get admin info from session-->
        <script>
            $.post('php/admin_session.php').done(
@@ -63,6 +74,7 @@ session_start();
        <script src="js/individual-patient.js"></script>
    </head>
    <body>
+      <?php require 'add-prescription.html'?>
       <section class="global">
          <div class="global__container">
             <div class="global__sidenav">
@@ -127,7 +139,7 @@ session_start();
                               <a class="back-btn"><i class="fas fa-arrow-circle-left"></i></a>
                            </div>
                            <div class="add-prescription">
-                              <a href=""><i class="fas fa-plus"></i>Add Prescriptions</a>
+                              <a href="#add-pres-modal" rel="modal:open" id="add-prescription"><i class="fas fa-plus"></i>Add Prescription</a>
                            </div>
                         </div>
                         <div class="patient-content__container">

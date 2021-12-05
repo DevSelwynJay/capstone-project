@@ -21,6 +21,9 @@
     padding: 1rem;
     font-size: 20px;
 }
+.modal-full-width{
+    max-width: 100vw;
+}
 .modal-header-icon{
     width: clamp(2em,3em,3vw);
     height:  clamp(2em,3em,3vw);

@@ -67,6 +67,9 @@ $(document).ready(function() {
     $(".back-btn").click(function (){
         location.href="patient.php";
     })
+    $("#add-prescription").click(function () {
+
+    })
     //Selected an Event
     $('#calendar').on('selectEvent', function(event, activeEvent) {
         // code here...
