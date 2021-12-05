@@ -13,7 +13,8 @@ else{
 }
 $start_from = ($page -1 )*$rpp;
 $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc limit $start_from, $rpp";
-
+$result = mysqli_query($con, $meddatatable);
+if(mysqli_num_rows($result)> 0) {
     $medtable = '<table >
     <tbody>
       <tr class="title">
@@ -28,7 +29,7 @@ $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by 
                 </tr>
     ';
 
-    $result = mysqli_query($con, $meddatatable);
+
     while ($row = mysqli_fetch_assoc($result)) {
         $id = $row['id'];
         $medname = $row['name'];
@@ -38,32 +39,39 @@ $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by 
         $expdate = $row['expdate'];
         $dateadded = $row['dateadded'];
         $datetoday = date("Y-m-d");
-            $medtable .= '<tr>
+        $medtable .= '<tr>
         <td scope="row">' . $id . '</td>
         <td>' . $medname . '</td>
         <td>' . $category . '</td>';
 
-            if($stocks >=100){
-                $medtable .= '<td>'.$stocks.'</td>';
-            }
-            else{
-                $medtable .= '<td style="color: red">'.$stocks.'</td>';
-            }
+        if ($stocks >= 100) {
+            $medtable .= '<td>' . $stocks . '</td>';
+        } else {
+            $medtable .= '<td style="color: red">' . $stocks . '</td>';
+        }
 
         $medtable .= '<td>' . $mfgdate . '</td>
         <td>' . $expdate . '</td>
         <td>' . $dateadded . '</td>
-        <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal('.$id.')"></i></td>
+        <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal(' . $id . ')"></i></td>
         </tr>';
     }
     $medtable .= '</tbody></table><br><div align="center">';
     $page_query = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc ";
-    $page_result = mysqli_query($con,$page_query);
+    $page_result = mysqli_query($con, $page_query);
     $total_records = mysqli_num_rows($page_result);
-    $total_pages = ceil($total_records/$rpp);
-    for($i =1;$i<=$total_pages;$i++){
-        $medtable .= '<span class="pagination_link" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
+    $total_pages = ceil($total_records / $rpp);
+    if($total_records <= $rpp){
+
+    }
+    else{
+        for($i =1;$i<=$total_pages;$i++){
+            $medtable .= '<span class="pagination_link" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
+        }
     }
     echo $medtable;
-
+}
+else{
+    echo $medtable;
+}
 ?>

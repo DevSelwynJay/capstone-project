@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!--Bootstrap-->
- <link rel="stylesheet" href="/scss/bootstrap-grid.css">
+ <link rel="stylesheet" href="scss/bootstrap-grid.css">
   <!--Custom CSS-->
   <link rel="stylesheet" href="scss/style.css">
 <!--Font Awesome-->
@@ -82,9 +82,11 @@
                             <h4>Medicine Reports</h4>
                            </div>
                            <ul class="reports-menu col-lg-9">
-                               <li><a href="" class="active">Medicine Released</a></li>
-                               <li><a href="">Expired</a></li>
-                               <li><a href="">Vaccine Released</a></li>
+                               <li><a id="medicine-link" class="active">Medicine Released</a></li>
+                               <li><a id="added-link">Added</a></li>
+                               <li><a id="expired-link">Expired</a></li>
+                               <li><a id="update-link">Update</a></li>
+                               <li><a id="vaccine-link">Vaccine Released</a></li>
                            </ul>
                         </div>
                        <div class="row-container">
@@ -109,7 +111,7 @@
                              </div>
                          </div>
                          <div class="col-lg-9 table-reports">
-                           <div class="reports__individual-container">
+                           <div class="reports__individual-container" id="tablediv">
                             <table class="reports__individual-reports-table">
                                 <tbody>
                                    <tr>
@@ -148,6 +150,92 @@
            </div>
         </div>
      </section>
+
+    <script>
+        //Display Expired Table
+        $(document).ready(function(){
+            $('#expired-link').on("click", function (){
+                $('#medicine-link').attr('class','');
+                $('#update-link').attr('class','');
+                $('#expired-link').attr('class','active');
+                $('#vaccine-link').attr('class','');
+                $('#added-link').attr('class','');
+                displayExpTab()
+            });
+
+        });
+        $(document).ready(function(){
+            $('#added-link').on("click", function(){
+                $('#medicine-link').attr('class','');
+                $('#update-link').attr('class','');
+                $('#expired-link').attr('class','');
+                $('#vaccine-link').attr('class','');
+                $('#added-link').attr('class','active');
+                displayAddedTab();
+            });
+        })
+        $(document).ready(function(){
+
+            $('#update-link').on("click", function(){
+                $('#medicine-link').attr('class','');
+                $('#update-link').attr('class','active');
+                $('#expired-link').attr('class','');
+                $('#vaccine-link').attr('class','');
+                $('#added-link').attr('class','');
+                displayUpdateTab();
+            });
+        });
+
+        function displayExpTab(page){
+            $.ajax({
+                url: 'php/reportProcesses/displayExpTab.php',
+                type: 'POST',
+                data:{
+                    page:page
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        };
+        $(document).on("click",".pagination_linkexp",function (){
+            var page = $(this).attr("id");
+            displayExpTab(page);
+        });
+        function displayAddedTab(page){
+            $.ajax({
+                url: 'php/reportProcesses/displayAddedTab.php',
+                type: 'POST',
+                data:{
+                    page:page
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        };
+        $(document).on("click",".pagination_linkadd",function (){
+            var page = $(this).attr("id");
+            displayAddedTab(page);
+        });
+        function displayUpdateTab(page){
+            $.ajax({
+                url: 'php/reportProcesses/displayUpdateTab.php',
+                type: 'POST',
+                data:{
+                    page:page
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        };
+        $(document).on("click",".pagination_linkup",function (){
+            var page = $(this).attr("id");
+            displayUpdateTab(page);
+        });
+
+    </script>
 <!--Drop down script-->
 <script>
     const dropdown = document.querySelector('#dropdown');
