@@ -9,12 +9,15 @@
     display: flex;
     flex-direction: row;
 }
+.padding-all-15{
+    padding: 15px;
+}
 .modal-content-scrollable{
     height: fit-content;
     overflow-y:auto;
     overflow-x:hidden;
     height: fit-content;
-    max-height: 75vh;
+    max-height: 80vh;
     margin: 1em 0;
 }
 .modal{/*the main modal container*/
@@ -23,6 +26,9 @@
 }
 .modal-full-width{
     max-width: 100vw;
+}
+.modal-md-width{
+    max-width: 70vw;
 }
 .modal-header-icon{
     width: clamp(2em,3em,3vw);
@@ -72,6 +78,12 @@
     color: var(--third-color);
     padding-left: 0.5em;
 }
+.modal-p-lighter-2{
+    font-size: clamp(0.7em,0.8em,1vw)!important;
+    color: var(--third-color);
+    font-weight: 400;
+    padding-left: 0.5em;
+}
 .modal-smaller-p{
     font-size: clamp(0.6em,0.7em,3vw)!important;
     font-weight: 420;
@@ -89,6 +101,21 @@
     width: 100%;
     text-align: center;
     visibility: hidden;
+}
+.modal-p-left{
+    width: 100%;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
+    font-weight: 450;
+    color: var(--third-color);
+    padding-left: 0.5em;
+}
+.modal-p-right{
+    width: 100%;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
+    font-weight: 400;
+    color: var(--third-color);
+    padding-left: 0.5em;
+    text-align: right;
 }
 .modal-field{
     margin-top: 0.2rem!important;
@@ -118,6 +145,10 @@
     border: none;
     border-radius: 0.2rem;
     font-family: 'Poppins', sans-serif;
+}
+.modal-primary-button-2:hover{
+    background: var(--hover-color);
+    cursor: pointer;
 }
 .modal-cancel-button{
     padding: 0.5em 1em;

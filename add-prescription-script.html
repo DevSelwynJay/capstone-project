@@ -37,6 +37,9 @@
                     response( $.ui.autocomplete.filter(
                        obj, extractLast( request.term ) ) );
                 },
+                classes: {
+                    "ui-autocomplete": "highlight"
+                },
                 focus: function() {
                     // prevent value inserted on focus
                     return false;
@@ -50,13 +53,34 @@
                     // add placeholder to get the comma-and-space at the end
                     terms.push( "" );
                     this.value = terms.join( " " );
+                    //alert(ui.item.id) //get the ID of selected item
+                    $("#med-name").val(ui.item.label)
+                    //$( "#search-inv" ).val("")
                     return false;
                 }
             }).autocomplete( "instance" )._renderItem = function( ul, item ) {
             return $( "<li>" )
-                .append( "<div>" + item.label)
+                .append( "<div class='search-item' style='color:#232020'>" + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock)
                 .appendTo( ul );
         };
 
     }//
 </script>
+<style>
+    .search-item{
+        margin-bottom: 0.5rem !important;
+        font-family: 'Poppins', sans-serif;
+        font-size: large;
+    }
+    .search-item p{
+        font-family: inherit;
+        font-size: inherit;
+    }
+    .ui-menu-item .ui-menu-item-wrapper.ui-state-active {/*highlight color ng aito complete text*/
+        background: var(--hover-color) !important;
+        font-weight: bold !important;
+        color: #ffffff !important;
+        border: none !important;
+        margin-bottom: 0.5rem !important;
+    }
+</style>
