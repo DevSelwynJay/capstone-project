@@ -61,7 +61,7 @@ session_start();
                     let arrayOfObject = JSON.parse(data);//row info ni patient
                     //let size = arrayOfObject.length;
                    for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
-                       //alert(arrayOfObjectElement.first_name)
+                       ///alert(arrayOfObjectElement.first_name)
                        let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
                            " "+arrayOfObjectElement.last_name
                        $("#name").html(name);
