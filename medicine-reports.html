@@ -104,7 +104,7 @@
                                  <div class="col-lg-12 reports_lower-col">
                                     <div class="reports_individual-report-download">
                                         <a href="">Download Report (csv)</a>
-                                        <a href="">Dowload Report (pdf)</a>
+                                        <a href="php/reportProcesses/pdf_gen.php">Dowload Report (pdf)</a>
                                         <a href="">Print Report</a>
                                       </div>
                                 </div>
@@ -152,6 +152,10 @@
      </section>
 
     <script>
+        //Attribute
+        //for PDF
+        //href='php/reportProcesses/pdf_gen.php?type="type-name"'
+        //$_GET['type']
         //Display Expired Table
         $(document).ready(function(){
             $('#expired-link').on("click", function (){
@@ -185,6 +189,7 @@
                 displayUpdateTab();
             });
         });
+
 
         function displayExpTab(page){
             $.ajax({
@@ -234,6 +239,9 @@
             var page = $(this).attr("id");
             displayUpdateTab(page);
         });
+
+
+
 
     </script>
 <!--Drop down script-->
