@@ -146,7 +146,14 @@ session_start();
                               <a class="back-btn"><i class="fas fa-arrow-circle-left"></i></a>
                            </div>
                            <div class="add-prescription">
-                              <a href="#add-pres-modal" rel="modal:open" id="add-prescription"><i class="fas fa-plus"></i>Add Prescription</a>
+                              <a id="add-prescription-modal-caller"><i class="fas fa-plus"></i>Add Prescription</a>
+                               <script>
+                                   $("#add-prescription-modal-caller").click(function () {
+                                       $("#add-pres-modal").modal({
+                                           //showClose:false
+                                       })
+                                   })
+                               </script>
                            </div>
                         </div>
                         <div class="patient-content__container">

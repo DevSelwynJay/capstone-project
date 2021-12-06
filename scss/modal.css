@@ -68,6 +68,12 @@
 }
 .modal-p{
     font-size: clamp(0.7em,0.8em,3vw)!important;
+    font-weight: 400;
+    color: var(--third-color);
+    padding-left: 0.5em;
+}
+.modal-p-2{
+    font-size: clamp(0.7em,0.8em,3vw)!important;
     font-weight: 450;
     color: var(--third-color);
     padding-left: 0.5em;
