@@ -2,6 +2,7 @@
 session_start();
 $start_date = $_POST['start_date'];
 $end_date = $_POST['end_date'];
+$interval_days = $_POST['interval_days'];
 /**
  * Generate an array of string dates between 2 dates
  *
@@ -11,9 +12,9 @@ $end_date = $_POST['end_date'];
  *
  * @return array
  */
-function getDatesFromRange($start, $end, $format = 'Y-m-d') {
+function getDatesFromRange($start, $end, $interval=0,$format = 'Y-m-d') {
     $array = array();
-    $interval = new DateInterval('P1D');
+    $interval = new DateInterval('P'.$interval.'D');
 
     $realEnd = new DateTime($end);
     $realEnd->add($interval);
@@ -28,5 +29,5 @@ function getDatesFromRange($start, $end, $format = 'Y-m-d') {
 }
 
 //echo json_encode(getDatesFromRange('2021-02-01','2021-03-25'))
-echo json_encode(getDatesFromRange($start_date,$end_date));
+echo json_encode(getDatesFromRange($start_date,$end_date,$interval_days+1));
 ?>

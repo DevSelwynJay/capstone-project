@@ -39,7 +39,10 @@ $(document).ready(function() {
     })//end of post
     function getDatesFromRange(start,end,resultElement) {
 
-        $.post('php/getDatesFromRange.php',{start_date:start,end_date:end}).done(function (data) {
+        $.post('php/getDatesFromRange.php',{start_date:start,
+            end_date:end,
+            interval_days:resultElement.interval_days
+        }).done(function (data) {
             let dates = JSON.parse(data);
             //alert(dates.length)
 

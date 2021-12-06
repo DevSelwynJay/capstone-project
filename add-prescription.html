@@ -38,7 +38,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left "><span style="color: red">*</span>Quantity to Give</label>
-                <input class="search-bar" type="number" placeholder="Quantity">
+                <input id="qty" class="search-bar" type="number" placeholder="quantity">
             </div>
 
         </div>
@@ -74,7 +74,7 @@
                         let val =  $(this).val();
                         if(val==0){
                             $("#interval-lbl").css('opacity','0.3')
-                            $("#interval").prop('type','text').val("None").css('opacity','0.3').prop('readonly',true)
+                            $("#interval").prop('type','text').val("none").css('opacity','0.3').prop('readonly',true)
                         }
                         else {
                             $("#interval-lbl").css('opacity','1')
@@ -85,7 +85,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left" id="interval-lbl">Interval in days</label>
-                <input type="text" id="interval" class="search-bar" readonly>
+                <input type="text" id="interval" class="search-bar" placeholder="none" readonly>
                 <script>
                     $("#interval-lbl").css('opacity','0.3')
                     $("#interval").val("None").css('opacity','0.3')
@@ -106,9 +106,10 @@
         <div class="row flex-box-row justify-content-center margin-top-1">
             <div class="col-lg-3  col-md-3 col-sm-10">
                 <label class="modal-p-lighter modal-p-left ">Start Date</label>
-                <input id="start-date" class="search-bar" type="text" placeholder="Start Date">
+                <input id="start-date" class="search-bar" type="text" placeholder="Start Date" readonly>
                 <script>
                     $("#start-date").datepicker({
+                        dateFormat: 'yy-mm-dd',
                         changeMonth: true,
                         changeYear: true,
                         yearRange:'new Date():2100',
@@ -119,9 +120,10 @@
             </div>
             <div class="col-lg-3  col-md-3 col-sm-10">
                 <label class="modal-p-lighter modal-p-left ">End Date</label>
-                <input id="end-date" class="search-bar" type="text" placeholder="End Date">
+                <input id="end-date" class="search-bar" type="text" placeholder="End Date" readonly>
                 <script>
                     $("#end-date").datepicker({
+                        dateFormat: 'yy-mm-dd',
                         changeMonth: true,
                         changeYear: true,
                         yearRange:'new Date():2100',

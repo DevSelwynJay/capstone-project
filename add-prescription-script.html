@@ -1,5 +1,7 @@
 <script>
 
+    let inv_id; /// id of vaccine or medicine
+
         $.post('php/patientProcesses/retrieveInventory.php').done(function (data) {
 
 
@@ -57,6 +59,7 @@
                     $( "#search-inv" ).val(ui.item.label)
                     //user defined code
                     //alert(ui.item.id) //get the ID of selected item
+                    inv_id = ui.item.id;
                     $("#med-name").val(ui.item.label).trigger('focus')
                     $("#med-type").val(ui.item.category)
                     $("#inv-category-lbl").html(ui.item.category)
@@ -70,6 +73,39 @@
         };
 
     }//
+
+
+
+        //ADD MEDICATION SCRIPT =========================
+        $("#add-prescript-btn").click(function (event) {
+            let medName = $("#med-name").val()
+            let qty = $("#qty").val()
+            let freq = $("#frequency").val()
+            let interval = $("#interval").val()
+            let dosage = $("#dosage").val()
+            let no_of_times = $("#no_of_times").val()//a day
+            let description = $("#description").val()
+            let start_date = $("#start-date").val()
+            let end_date = $("#end-date").val()
+
+            if(freq==0){
+                interval=0;
+            }
+
+            $.post('php/patientProcesses/addMedicationRecord.php',{
+                inv_id:inv_id,
+                medName:medName,
+                qty:qty,
+                interval:interval,
+                dosage:dosage,
+                no_of_times:no_of_times,
+                description:description,
+                start_date:start_date,
+                end_date:end_date
+            }).done(function (data) {
+              console.log(data)
+            })
+        })
 </script>
 <style>
     .search-item{

@@ -12,6 +12,9 @@ $email = $_SESSION['email'];
 $res = mysqli_query($con,"SELECT*FROM admin where email = '$email' ");
 if($res){
     if($row = mysqli_fetch_assoc($res)){
+
+        $_SESSION['active_admin_ID']  = $row['id'] ;
+
        echo json_encode(array(
            "admin_id"=>$row['id']
            ,"admin_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name']
