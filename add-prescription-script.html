@@ -69,7 +69,7 @@
                 }
             }).autocomplete( "instance" )._renderItem = function( ul, item ) {
             return $( "<li>" )
-                .append( "<div class='search-item' style='color:#232020'>" + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock)
+                .append( "<div class='search-item' style='background: #F1F4FF;color:#232020'>" + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock)
                 .appendTo( ul );
         };
 
@@ -110,7 +110,7 @@
 </script>
 <style>
     .search-item{
-        margin-bottom: 0.5rem !important;
+        padding-top: 0.6rem !important;
         font-family: 'Poppins', sans-serif;
         font-size: large;
     }
@@ -119,10 +119,17 @@
         font-size: inherit;
     }
     .ui-menu-item .ui-menu-item-wrapper.ui-state-active {/*highlight color ng aito complete text*/
-        background: var(--hover-color) !important;
+        background: #d1d4dc !important;
         font-weight: bold !important;
-        color: #ffffff !important;
+        /*color: #ffffff !important;*/
         border: none !important;
-        margin-bottom: 0.5rem !important;
+
     }
+    ul,ol,li{
+        /*border: none !important;*/
+    }
+    li{
+        border-radius: 1rem;
+    }
+
 </style>
