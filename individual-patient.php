@@ -18,6 +18,11 @@ session_start();
       <title>Individual Patient</title>
        <!--CSS Grid Bootstrap-->
        <link rel="stylesheet" href="scss/bootstrap-grid.css">
+       <style>
+           .col-sm-12{
+               padding: 0;
+           }
+       </style>
        <!--Custom CSS-->
       <link rel="stylesheet" href="scss/style.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
