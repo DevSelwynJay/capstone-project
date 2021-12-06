@@ -53,8 +53,13 @@
                     // add placeholder to get the comma-and-space at the end
                     terms.push( "" );
                     this.value = terms.join( " " );
+
+                    $( "#search-inv" ).val(ui.item.label)
+                    //user defined code
                     //alert(ui.item.id) //get the ID of selected item
-                    $("#med-name").val(ui.item.label)
+                    $("#med-name").val(ui.item.label).trigger('focus')
+                    $("#med-type").val(ui.item.category)
+                    $("#inv-category-lbl").html(ui.item.category)
                     //$( "#search-inv" ).val("")
                     return false;
                 }

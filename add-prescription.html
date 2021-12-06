@@ -28,15 +28,15 @@
         </div>
         <!--first row-->
         <div class="row flex-box-row justify-content-center margin-top-3">
-            <div class="col-lg-6 col-sm-10">
+            <div class="col-lg-6 col-md-6 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left ">Selected <span id="inv-category-lbl">Medicine</span></label>
                     <input id="med-name" type="text" class="search-bar" placeholder="none" readonly>
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left "><span style="color: red">*</span>Type</label>
-                    <input id="med-type" class="search-bar" type="number" placeholder="none" readonly>
+                    <input id="med-type" class="search-bar" type="text" placeholder="none" readonly>
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left "><span style="color: red">*</span>Quantity to Give</label>
                 <input class="search-bar" type="number" placeholder="Quantity">
             </div>
@@ -63,7 +63,7 @@
 
         <!--row-->
         <div class="row flex-box-row justify-content-center margin-top-1">
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left ">Frequency</label>
                 <select id="frequency" class="search-bar">
                     <option value="0">Daily</option>
@@ -83,7 +83,7 @@
                     })
                 </script>
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left" id="interval-lbl">Interval in days</label>
                 <input type="text" id="interval" class="search-bar" readonly>
                 <script>
@@ -91,11 +91,11 @@
                     $("#interval").val("None").css('opacity','0.3')
                 </script>
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left "><span style="color: red">*</span>Dosage /mg</label>
                 <input type="number" id="dosage" class="search-bar" placeholder="dosage">
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3 col-md-3 col-sm-10 flex-box-column justify-content-end">
                 <label class="modal-p-lighter modal-p-left "><span style="color: red">*</span>Times per day</label>
                 <input type="number" id="no_of_times" class="search-bar" placeholder="times">
             </div>
@@ -104,7 +104,7 @@
 
         <!--row-->
         <div class="row flex-box-row justify-content-center margin-top-1">
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3  col-md-3 col-sm-10">
                 <label class="modal-p-lighter modal-p-left ">Start Date</label>
                 <input id="start-date" class="search-bar" type="text" placeholder="Start Date">
                 <script>
@@ -117,7 +117,7 @@
                     })
                 </script>
             </div>
-            <div class="col-lg-3 col-sm-10">
+            <div class="col-lg-3  col-md-3 col-sm-10">
                 <label class="modal-p-lighter modal-p-left ">End Date</label>
                 <input id="end-date" class="search-bar" type="text" placeholder="End Date">
                 <script>
@@ -130,7 +130,7 @@
                     })
                 </script>
             </div>
-            <div class="col-lg-6 col-sm-10">
+            <div class="col-lg-6 col-md-6 col-sm-10">
                 <p class="modal-p-left"><span style="color: red">*</span>Description</p>
                 <textarea  id="description" class="search-bar" style="width: 100%;height: 12vh;padding: 0.5rem" placeholder="Description">
                 </textarea>
@@ -149,14 +149,14 @@
 
 
         <!--row-->
-        <div  class="row flex-box-row justify-content-center margin-top-1">
+        <div  class="row flex-box-row justify-content-center margin-top-3">
             <a href="#add-pres-modal" rel="modal:close">
                 <button class="modal-cancel-button">
                     <i class="fas fa-times" style="margin-right: 0.3rem"></i>
                     Cancel
                 </button>
             </a>
-            <button class="modal-primary-button-2" style="margin-left: 0.5rem">
+            <button id="add-prescript-btn"  class="modal-primary-button-2" style="margin-left: 0.5rem">
                 <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
                 Add
             </button>
