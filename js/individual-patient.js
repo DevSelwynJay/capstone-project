@@ -2,7 +2,7 @@ $(document).ready(function() {
     //Calendar instance
     $('#calendar').evoCalendar({
         'sidebarDisplayDefault': false,
-        'todayHighlight': true,
+        'todayHighlight': false,
         'format': 'yyyy-m-dd',
 
     })
@@ -38,13 +38,19 @@ $(document).ready(function() {
 
     })//end of post
     function getDatesFromRange(start,end,resultElement) {//for every individual record
+        //ung function nato nasa loob ng for loop
 
         $.post('php/getDatesFromRange.php',{start_date:start,
             end_date:end,
             interval_days:resultElement.interval_days
         }).done(function (data) {
+
+            //generate unique color for each medicine
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+
             let dates = JSON.parse(data);
-            let duration = JSON.stringify(dates.length)
+            let duration = dates.length
+            console.log(duration)
             for (const date of dates) {//add the same event on different days
 
                 let interval = resultElement.interval_days;// if daily or with interval
@@ -53,7 +59,7 @@ $(document).ready(function() {
                     freq_sentence = "Daily"
                 }
                 else {
-                    freq_sentence = "with "+interval+" day/s of interval"
+                    freq_sentence = "With "+interval+" day/s of interval"
                 }
 
                 $('#calendar').evoCalendar('addCalendarEvent', {
@@ -63,15 +69,15 @@ $(document).ready(function() {
                         "<strong>Frequency</strong>" +
                         "<br> - "+resultElement.no_times+" times a day"+
                         "<br> - "+freq_sentence+
+                        "<br> - Duration of "+duration+" days"+
                         "<br><br><strong>Description: </strong><br>"+resultElement.description+
                         "<br><br><strong>Medication Started</strong>" +
                         "<br> - "+resultElement.start_date_formatted+
-                        +"<br>"+ duration+
                         "<br><br>"+"<strong>Date Given: </strong>"+resultElement.date_given
                     ,
                     date: date,
                     type: ' ',
-                    color:"#02A9F7"
+                    color:'#'+randomColor
                 });
             }
 
