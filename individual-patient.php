@@ -31,7 +31,7 @@ session_start();
        <link rel="stylesheet" href="scss/modal.css">
        <!--Jquery-->
        <!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+       <script src="js/jquery-3.6.0.js"></script>
        <!--EVO Calendar Script-->
        <script src="js/evo-calendar.js"></script>
        <!-- jQuery Modal-->
@@ -45,27 +45,31 @@ session_start();
        <link rel="stylesheet" href="scss/scrollbar_loading.css">
        <!--Custom Modal Design-->
        <link rel="stylesheet" href="scss/modal.css">
-       <!--Get admin info from session-->
+
        <script>
-           $.post('php/admin_session.php').done(
-               function (data) {
-                   let result = JSON.parse(data)
-                   $("#name-sidebar").html(result.admin_name)
-               }
-           )
-       </script>
-       <!--Set patient info to page-->
-       <script>
+           //<!--Get admin info from session-->
+           $(document).ready(function () {
+               $.post('php/admin_session.php').done(
+                   function (data) {
+                       let result = JSON.parse(data)
+                       $("#name-sidebar").html(result.admin_name)
+                       $("#modal-admin-name").html(result.admin_name)
+                   }
+               )
+           })
+           ///<!--Set patient info to page-->
            $.post('php/patientProcesses/retrieveIndivPatient.php').done(
                function (data) {
-                    let arrayOfObject = JSON.parse(data);//row info ni patient
-                    //let size = arrayOfObject.length;
+                   let arrayOfObject = JSON.parse(data);//row info ni patient
+                   //let size = arrayOfObject.length;
                    for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
                        ///alert(arrayOfObjectElement.first_name)
                        let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
                            " "+arrayOfObjectElement.last_name
                        $("#name").html(name);
+                       $("#modal-patient-name").html(name);
                        $("#patient-type").html(arrayOfObjectElement.patient_type)
+                       $("#modal-patient-type").html(arrayOfObjectElement.patient_type)
                        $("#gender").html(arrayOfObjectElement.gender)
                        $("#age").html(arrayOfObjectElement.age)
                        $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
@@ -91,7 +95,7 @@ session_start();
                         <div class="profile-img">
                            <img src="img/jay.jpg" alt="">
                         </div>
-                        <h4 id="name-sidebar">Your Name</h4>
+                        <h4 id="name-sidebar"></h4>
                      </div>
                      <ul class="menu">
                         <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
