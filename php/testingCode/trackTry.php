@@ -136,18 +136,19 @@ $json = json_encode($arr);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         #speedChart {
-            background-color: rgba(181, 211, 225, 0.91);
+            background-color: rgb(87, 90, 96);
         }
     </style>
 </head>
 <body>
-<div class="container" style="width: 500px;">
-    <canvas id="speedChart" width="600" height="400"></canvas>
+<div class="container" style="width: 700px;">
+    <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
     console.log(<?php echo $childJson?>);
     var speedCanvas = document.getElementById("speedChart");
     speedCanvas.fillStyle = 'lightGreen';
+    Chart.defaults.color = "#ffffff";
     var dataFirst = {
         label: "Infant",
         data: <?php echo $json?>,
@@ -163,7 +164,7 @@ $json = json_encode($arr);
         lineTension: 0.1,
         borderWidth: 1,
         fill: false,
-        borderColor: 'blue'
+        borderColor: 'lightBlue'
     };
 
     var dataThird = {
@@ -205,14 +206,28 @@ $json = json_encode($arr);
                 },
                 y: {
                     grid:{
-                        display:false
+                        color: "gray"
+                    //    display:false
                     }
                 }
             },
             plugins: {
                 title: {
+                    font: {
+                        size: 18
+                    },
                     display: true,
                     text: 'Vaccine Graph',
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 14,
+                            family: 'Helvetica Neue',
+                            color: 'black'
+                        }
+                    }
                 }
             }
         }
