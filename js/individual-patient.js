@@ -37,21 +37,37 @@ $(document).ready(function() {
         }
 
     })//end of post
-    function getDatesFromRange(start,end,resultElement) {
+    function getDatesFromRange(start,end,resultElement) {//for every individual record
 
         $.post('php/getDatesFromRange.php',{start_date:start,
             end_date:end,
             interval_days:resultElement.interval_days
         }).done(function (data) {
             let dates = JSON.parse(data);
-            //alert(dates.length)
-
+            let duration = JSON.stringify(dates.length)
             for (const date of dates) {//add the same event on different days
+
+                let interval = resultElement.interval_days;// if daily or with interval
+                let freq_sentence = ""
+                if(interval==0){
+                    freq_sentence = "Daily"
+                }
+                else {
+                    freq_sentence = "with "+interval+" day/s of interval"
+                }
+
                 $('#calendar').evoCalendar('addCalendarEvent', {
                     id: resultElement.event_id,
                     name: resultElement.medicine_name,
-                    description: "<strong>"+resultElement.no_times+" times a day</strong>" +
-                        "<br><br><strong>Description: </strong>"+resultElement.description
+                    description:
+                        "<strong>Frequency</strong>" +
+                        "<br> - "+resultElement.no_times+" times a day"+
+                        "<br> - "+freq_sentence+
+                        "<br><br><strong>Description: </strong><br>"+resultElement.description+
+                        "<br><br><strong>Medication Started</strong>" +
+                        "<br> - "+resultElement.start_date_formatted+
+                        +"<br>"+ duration+
+                        "<br><br>"+"<strong>Date Given: </strong>"+resultElement.date_given
                     ,
                     date: date,
                     type: ' ',
