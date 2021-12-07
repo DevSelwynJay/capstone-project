@@ -28,6 +28,6 @@ function getDatesFromRange($start, $end, $interval=0,$format = 'Y-m-d') {
     return $array;
 }
 
-//echo json_encode(getDatesFromRange('2021-02-01','2021-03-25'))
+//echo json_encode(getDatesFromRange('2021-02-01','2021-03-25',interval: 1));
 echo json_encode(getDatesFromRange($start_date,$end_date,$interval_days+1));
 ?>

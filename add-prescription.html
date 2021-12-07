@@ -5,10 +5,15 @@
             Prescription
         </h4>
     </div>
-    <div class="flex-box-column " style="padding-bottom: 1rem;margin-top: 0.5rem">
-        <p id="modal-patient-name" class="modal-p-2">To: Alfredo B. Benitez</p>
-        <p id="modal-patient-type" class="modal-p-2">Type: Adult</p>
-        <p id="modal-curr-date" class="modal-p-2"></p>
+    <div id="modal-upper-info" class="flex-box-row justify-content-center" style="padding-bottom: 1rem;margin-top: 0.5rem">
+        <div class="flex-box-column align-items-start" style="flex: 1 1 50%">
+            <p id="modal-patient-name" class="modal-p-2">To: Alfredo B. Benitez</p>
+            <p id="modal-patient-type" class="modal-p-2">Type: Adult</p>
+        </div>
+        <div class="flex-box-column align-items-end" style="flex: 1 1 50%">
+            <p id="modal-curr-date" class="modal-p-2"></p>
+            <p id="modal-admin-name" class="modal-p-2">Given by: DR kwakwak</p>
+        </div>
         <script>
             let date= new Date()
             const options = {  year: 'numeric', month: 'long', day: 'numeric' };
@@ -156,21 +161,70 @@
                         changeYear: true,
                         yearRange:'new Date():2100',
                         minDate: new Date(),
-                        defaultDate: null
+                        defaultDate: new Date(),
                     })
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = today.getFullYear();
+                    today =  yyyy+'-'+mm+'-'+dd;
+                    $("#start-date").val(today)
                 </script>
             </div>
             <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
                 <label class="modal-p-2 ">End Date</label>
                 <input id="end-date" class="search-bar" type="text" placeholder="End Date" readonly>
                 <script>
-                    $("#end-date").datepicker({
-                        dateFormat: 'yy-mm-dd',
-                        changeMonth: true,
-                        changeYear: true,
-                        yearRange:'new Date():2100',
-                        minDate: new Date(),
-                        defaultDate: null
+                    //set end date base on startdate and interval
+                    var availableDates = [];
+
+                    function update_end_date() {
+
+                        let interval = $("#interval").val();
+                        if(isNaN(interval)){
+                            interval=0
+                        }
+                        $.post('php/getDatesFromRange.php',{start_date: $("#start-date").val(),
+                            end_date:'2025-01-01',
+                            interval_days: interval
+                        }).done(function (data) {
+                            let datesObj = JSON.parse(data)
+                            availableDates = datesObj;
+                            console.log(availableDates)
+                        })
+                    }
+
+                    function end_date_picker_instance() {
+                        $("#end-date").datepicker({
+                            dateFormat: 'yy-mm-dd',
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange:'new Date():2100',
+                            defaultDate: null,
+                            beforeShowDay: function(date){
+                                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                                return [$.inArray(string, availableDates) != -1];
+                            },
+                            minDate:  $("#start-date").val(),
+                        })
+                    }
+                    update_end_date()
+                    end_date_picker_instance()
+                    //actions
+                    $("#start-date").change(function () {
+                        update_end_date()
+                        $("#end-date").val("")
+                        end_date_picker_instance()
+                    })
+                    $("#frequency").change(function () {
+                        update_end_date()
+                        $("#end-date").val("")
+                        end_date_picker_instance()
+                    })
+                    $("#interval").change(function () {
+                        update_end_date()
+                        $("#end-date").val("")
+                        end_date_picker_instance()
                     })
                 </script>
             </div>
