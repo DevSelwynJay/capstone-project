@@ -84,8 +84,8 @@
                     <input id="med-type" class="search-bar" type="text" placeholder="none" readonly>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
-                <label class="modal-p-2 "><span style="color: red">*</span>Quantity to Give</label>
-                <input id="qty" class="search-bar" type="number" placeholder="quantity">
+                <label class="modal-p-2 ">Sub Category</label>
+                <input id="sub-category" class="search-bar" type="text" placeholder="none" readonly>
             </div>
 
         </div>
@@ -150,7 +150,7 @@
         </div>
 
         <!--row-->
-        <div class="row flex-box-row justify-content-center">
+        <div class="row flex-box-row justify-content-center" style="border-bottom: 2px solid #F4F2F4;padding-bottom: 1rem">
             <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
                 <label class="modal-p-2 ">Start Date</label>
                 <input id="start-date" class="search-bar" type="text" placeholder="Start Date" readonly>
@@ -245,9 +245,31 @@
             </div>
         </div>
 
+        <div id="lower-part" class="row flex-box-row justify-content-center align-items-center margin-top-1">
+            <div class="col-lg-6 col-md-6 col-sm-11 flex-box-column justify-content-center align-items-lg-end align-items-sm-center margin-top-2">
+                <div class="flex-box-column">
+                    <label class="modal-p-2 "><span style="color: red">*</span>Quantity to Give</label>
+                    <input id="qty" class="search-bar" type="number" placeholder="x">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-11 flex-box-column justify-content-end align-items-sm-center align-items-lg-start margin-top-2">
+                <p class="modal-p-2" style="color: var(--third-color);padding: 0!important;">Medicine has currently has 500x of stock</p>
+            </div>
+        </div>
+        <style>
+                #lower-part{
+                    border-top: 2px solid #F4F2F4;padding-bottom: 1rem;
+                    border-radius: 0.5rem;
+                    background: #EEEEEE;
+                }
+                #qty{
+                   font-weight: 450!important;
+                    text-align: center;
+                }
+        </style>
 
         <!--row-->
-        <div  class="row flex-box-row justify-content-center margin-top-3" style="border-top: 2px solid #F4F2F4;padding-top: 1rem!important;">
+        <div  class="row flex-box-row justify-content-sm-end justify-content-lg-center margin-top-1" style="border-top: 2px solid #F4F2F4;padding-top: 1rem!important;">
             <a href="#add-pres-modal" rel="modal:close">
                 <button class="modal-cancel-button">
                     <i class="fas fa-times" style="margin-right: 0.3rem"></i>

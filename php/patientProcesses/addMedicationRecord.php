@@ -2,6 +2,8 @@
 session_start();
 
 $patientID =   $_SESSION['active_individual_patient_ID'] ;
+$patientPurok = "";
+
 $amdinID =   $_SESSION['active_admin_ID'];
 
 $inv_id=$_POST['inv_id'];
@@ -17,9 +19,15 @@ $end_date=$_POST['end_date'];
 $con = null;
 require '../DB_Connect.php';
 
+$res  = mysqli_query($con,"SELECT*FROM walk_in_patient WHERE id='$patientID'");
+if($row = mysqli_fetch_assoc($res)){
+    $patientPurok = $row['purok'];
+}
+
+
 $query = "
 INSERT INTO medication_record VALUES (
-                DEFAULT , '$amdinID','$patientID',DEFAULT , $inv_id, '$medName', '$dosage','$no_of_times',
+                DEFAULT , '$amdinID','$patientID',DEFAULT ,DEFAULT , $inv_id, '$medName', '$dosage','$no_of_times',
                                       '$interval',DEFAULT ,'$start_date', '$end_date', '$description'
                       
 )

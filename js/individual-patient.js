@@ -40,6 +40,10 @@ $(document).ready(function() {
     function getDatesFromRange(start,end,resultElement) {//for every individual record
         //ung function nato nasa loob ng for loop
 
+        if(end==null||end==""){
+            end = start
+        }
+
         $.post('php/getDatesFromRange.php',{start_date:start,
             end_date:end,
             interval_days:resultElement.interval_days
@@ -71,8 +75,10 @@ $(document).ready(function() {
                         "<br> - "+freq_sentence+
                         "<br> - Duration of "+duration+" days"+
                         "<br><br><strong>Description: </strong><br>"+resultElement.description+
-                        "<br><br><strong>Medication Started</strong>" +
+                        "<br><br><strong>Start of Medication</strong>" +
                         "<br> - "+resultElement.start_date_formatted+
+                        "<br><br><strong>End of Medication</strong>" +
+                        "<br> - "+resultElement.end_date_formatted+
                         "<br><br>"+"<strong>Date Given: </strong>"+resultElement.date_given
                     ,
                     date: date,

@@ -94,17 +94,17 @@
                              <div class="row-container">
                                  <div class="col-lg-12 reports_upper-col">
                                   <div class="reports_individual-report-links">
-                                    <a href="" class="active">Daily</a>
-                                    <a href="">Weekly</a>
-                                    <a href="">Monthly</a>
-                                    <a href="">Quarterly</a>
-                                    <a href="">Anually</a>
+                                    <a id="daily-link" class="active">Daily</a>
+                                    <a id="weekly-link" >Weekly</a>
+                                    <a id="monthly-link">Monthly</a>
+                                    <a id="quarterly-link">Quarterly</a>
+                                    <a id="anually-link">Anually</a>
                                   </div>
                                  </div>
                                  <div class="col-lg-12 reports_lower-col">
                                     <div class="reports_individual-report-download">
                                         <a href="">Download Report (csv)</a>
-                                        <a href="php/reportProcesses/pdf_gen.php">Dowload Report (pdf)</a>
+                                        <a id="pdf-link">Dowload Report (pdf)</a>
                                         <a href="">Print Report</a>
                                       </div>
                                 </div>
@@ -166,9 +166,6 @@
                 $('#added-link').attr('class','');
                 displayExpTab()
             });
-
-        });
-        $(document).ready(function(){
             $('#added-link').on("click", function(){
                 $('#medicine-link').attr('class','');
                 $('#update-link').attr('class','');
@@ -177,9 +174,6 @@
                 $('#added-link').attr('class','active');
                 displayAddedTab();
             });
-        })
-        $(document).ready(function(){
-
             $('#update-link').on("click", function(){
                 $('#medicine-link').attr('class','');
                 $('#update-link').attr('class','active');
@@ -188,7 +182,175 @@
                 $('#added-link').attr('class','');
                 displayUpdateTab();
             });
+            $('#daily-link').on("click", function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+            });
+            $('#weekly-link').on("click", function(){
+                $('#weekly-link').attr('class','active');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+            });
+            $('#monthly-link').on("click", function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','active');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+            });
+            $('#quarterly-link').on("click", function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','active');
+                $('#anually-link').attr('class','');
+            });
+            $('#anually-link').on("click", function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','active');
+            });
+            $('#pdf-link').on("click", function(){
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                var getdaily = $('#daily-link').attr('class');
+                var getweekly = $('#weekly-link').attr('class');
+                var getmonthly = $('#monthly-link').attr('class');
+                var getquartely = $('#quarterly-link').attr('class');
+                var getannually = $('#anually-link').attr('class');
+                if(getmedicine == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen.php?daily=1&amp;type=1');
+
+                        $('#pdf-link').trigger('click');
+                        console.log(getdaily);
+
+                    }
+                    else if(getweekly=='active'){
+                        console.log(getweekly);
+
+                    }
+                    else if(getmonthly=='active'){
+                        console.log(getmonthly);
+
+                    }
+                    else if(getquartely=='active'){
+                        console.log(getquartely);
+
+                    }
+                    else if(getannually=='active'){
+                        console.log(getannually);
+
+                    }
+
+                }
+                else if(getadd=='active'){
+                    if(getdaily == 'active'){
+                        console.log(getdaily);
+
+                    }
+                    else if(getweekly=='active'){
+                        console.log(getweekly);
+
+                    }
+                    else if(getmonthly=='active'){
+                        console.log(getmonthly);
+
+                    }
+                    else if(getquartely=='active'){
+                        console.log(getquartely);
+
+                    }
+                    else if(getannually=='active'){
+                        console.log(getannually);
+
+                    }
+
+                }
+                else if(getexpired == 'active'){
+                    if(getdaily == 'active'){
+                        console.log(getdaily);
+
+                    }
+                    else if(getweekly=='active'){
+                        console.log(getweekly);
+
+                    }
+                    else if(getmonthly=='active'){
+                        console.log(getmonthly);
+
+                    }
+                    else if(getquartely=='active'){
+                        console.log(getquartely);
+
+                    }
+                    else if(getannually=='active'){
+                        console.log(getannually);
+
+                    }
+
+                }
+                else if(getupdate=='active'){
+                    if(getdaily == 'active'){
+                        console.log(getdaily);
+
+                    }
+                    else if(getweekly=='active'){
+                        console.log(getweekly);
+
+                    }
+                    else if(getmonthly=='active'){
+                        console.log(getmonthly);
+
+                    }
+                    else if(getquartely=='active'){
+                        console.log(getquartely);
+
+                    }
+                    else if(getannually=='active'){
+                        console.log(getannually);
+
+                    }
+
+                }
+                else if(getvaccine=='active'){
+                    if(getdaily == 'active'){
+                        console.log(getdaily);
+
+                    }
+                    else if(getweekly=='active'){
+                        console.log(getweekly);
+
+                    }
+                    else if(getmonthly=='active'){
+                        console.log(getmonthly);
+
+                    }
+                    else if(getquartely=='active'){
+                        console.log(getquartely);
+
+                    }
+                    else if(getannually=='active'){
+                        console.log(getannually);
+
+                    }
+
+                }
+
+            });
+
         });
+
 
 
         function displayExpTab(page){
