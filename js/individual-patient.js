@@ -55,6 +55,7 @@ $(document).ready(function() {
                     color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
                 return color;
             }
+            let event_color = generateDarkColorHex();
 
             let dates = JSON.parse(data);
             let duration = dates.length
@@ -88,7 +89,7 @@ $(document).ready(function() {
                     ,
                     date: date,
                     type: ' ',
-                    color:generateDarkColorHex()
+                    color:event_color
                 });
             }
 
