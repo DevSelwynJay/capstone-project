@@ -319,6 +319,9 @@ Closedropdown.addEventListener('click',function(){
                let a =  $(this).children();
                let id =  $($(this).children()[0]).html();//get the ID
                console.log(id)
+               if(id.indexOf("gs-button")!=-1){
+                   return; //cancel code because table header was clicked
+               }
                setTimeout(()=>{
                    $.post('php/patientProcesses/setPatientSessionID.php',{id:id}).done(
                        function (data) {
