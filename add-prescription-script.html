@@ -145,11 +145,25 @@
                     $("#hidden-refresh-button").trigger('click')
                     $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
                     $('[href="#add-pres-modal"]').trigger('click')
+                    reset_add_prescription_form()
                 })
             })
 
 
         })//end of add prescription btn function
+
+        function reset_add_prescription_form() {
+            $("#med-name").val("")
+            $("#sub-category").val("")
+            $("#qty").val("")
+            $("#frequency").val("0")
+            $("#dosage").val("")
+            $("#no_of_times").val("")//a day
+            $("#description").val("")
+            $("#start-date").val()
+            $("#end-date").val("")
+            $("#med-name-and-qty-lbl").html("Nothing is selected")
+        }
 
 
 </script>

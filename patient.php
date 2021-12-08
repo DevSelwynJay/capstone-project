@@ -27,6 +27,7 @@
                }
            )
        </script>
+       <link rel="stylesheet" href="scss/modal.css"/>
    </head>
    <body>
       <section class="global">
@@ -95,7 +96,21 @@
                      <div class="content patients-view-container">
 
 
-                       
+                         <p class="table-title">
+                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>
+                             Patient List
+                         </p>
+                         <style>
+                             .table-title{
+                                 font-weight:700;
+                                 margin-bottom: 0.5rem;
+                                 font-size: clamp(1.5rem,2rem,1vw);
+                                 font-family: 'Poppins', sans-serif;
+                                 color: var(--third-color);
+                                 display: flex;
+                                 align-items: center;
+                             }
+                         </style>
                         <table class="patients-view">
             <tbody>
 <!--                <tr class="patients-view-title">-->
@@ -192,7 +207,7 @@ Closedropdown.addEventListener('click',function(){
               outline: none;
               padding: 0.2em 0.3rem;
               margin: 0.2%;
-
+              word-wrap: normal;
           }
           @media(max-width: 1150px) {
               td{
