@@ -83,8 +83,13 @@
                      </div>
                   </div>
                   <div class="col-sm-12">
-                     <div class="search-tab margin-top-2">
-                        <div class="search-container">
+                     <div class="search-tab margin-top-2 row justify-content-sm-around">
+                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-end">
+                             <button class="modal-primary-button-2">
+                                 <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
+                                 Add Patient</button>
+                         </div>
+                        <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-1">
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
                         </div>
@@ -96,21 +101,21 @@
                      <div class="content patients-view-container">
 
 
-                         <p class="table-title">
-                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>
-                             Patient List
-                         </p>
-                         <style>
-                             .table-title{
-                                 font-weight:700;
-                                 margin-bottom: 0.5rem;
-                                 font-size: clamp(1.5rem,2rem,1vw);
-                                 font-family: 'Poppins', sans-serif;
-                                 color: var(--third-color);
-                                 display: flex;
-                                 align-items: center;
-                             }
-                         </style>
+<!--                         <h3 class="table-title margin-top-3">-->
+<!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
+<!--                             Patient List-->
+<!--                         </h3>-->
+<!--                         <style>-->
+<!--                             .table-title{-->
+<!--                                 font-weight:700;-->
+<!--                                 margin-bottom: 0.5rem;-->
+<!--                                 font-size: clamp(1.5rem,2rem,1vw);-->
+<!--                                 font-family: 'Poppins', sans-serif;-->
+<!--                                 color: var(--third-color);-->
+<!--                                 display: flex;-->
+<!--                                 align-items: center;-->
+<!--                             }-->
+<!--                         </style>-->
                         <table class="patients-view">
             <tbody>
 <!--                <tr class="patients-view-title">-->

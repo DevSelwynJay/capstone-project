@@ -137,7 +137,7 @@ $(document).ready(function() {
         $('#calendar').evoCalendar('destroy');
         calendar_instance()
         retrievePatientMedicationRecord();
-        alert("na refresh si calendar")
+        //alert("na refresh si calendar")
 
 
     })
