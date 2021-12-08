@@ -1,46 +1,45 @@
 $(document).ready(function() {
     //Calendar instance
-    $('#calendar').evoCalendar({
-        'sidebarDisplayDefault': false,
-        'todayHighlight': false,
-        'format': 'yyyy-m-dd',
+    function calendar_instance() {
+        $('#calendar').evoCalendar({
+            'sidebarDisplayDefault': false,
+            'todayHighlight': false,
+            'format': 'yyyy-m-dd',
 
-    })
-    //some custome style
-    $(".day.calendar-today.calendar-active").css("background","#E4E4E4")
-    $(".day.calendar-today.calendar-active").css("color","#585858")
-    //this object has fixed key needed sa calendar
-    let eventObject = {
-        id: ' ',
-        name: ' ',
-        description: ' ',
-        date: ' ',
-        type: ' ',
-        color:' '
+        })
+        //some custome style
+        $(".day.calendar-today.calendar-active").css("background","#E4E4E4")
+        $(".day.calendar-today.calendar-active").css("color","#585858")
     }
-    let prescription = []//over all event ni patient
+    calendar_instance();
+
     //Retrieve patient medical record and put in calendar
-    $.post('php/patientProcesses/retrievePatientMedicationRecord.php').done(function (data) {
-        let result = JSON.parse(data);
-        for (const resultElement of result) {
-            getDatesFromRange( resultElement.start_date_1, resultElement.end_date_1,resultElement)
-            //alert(JSON.stringify(resultElement))
-            // $('#calendar').evoCalendar('addCalendarEvent', {
-            //     id: resultElement.event_id,
-            //     name: resultElement.medicine_name,
-            //     description: resultElement.description,
-            //     date: resultElement.start_date_1,
-            //     type: ' ',
-            //     color:"#02A9F7"
-            // });
+    function retrievePatientMedicationRecord(){
+        $.post('php/patientProcesses/retrievePatientMedicationRecord.php').done(function (data) {
+            let result = JSON.parse(data);
+            for (const resultElement of result) {
+                getDatesFromRange( resultElement.start_date_1, resultElement.end_date_1,resultElement)
+                //alert(JSON.stringify(resultElement))
+                // $('#calendar').evoCalendar('addCalendarEvent', {
+                //     id: resultElement.event_id,
+                //     name: resultElement.medicine_name,
+                //     description: resultElement.description,
+                //     date: resultElement.start_date_1,
+                //     type: ' ',
+                //     color:"#02A9F7"
+                // });
 
-        }
+            }
+        })//end of post
+    }
+    retrievePatientMedicationRecord()
 
-    })//end of post
     function getDatesFromRange(start,end,resultElement) {//for every individual record
+        //tatawagin to ni  retrievePatientMedicationRecord()
         //ung function nato nasa loob ng for loop
 
-        if(end==null||end==""){
+        //ung start at end date na amy 1 sa dulo nkaformat naun as yyyy-mm-dd
+        if(end==null||end==""||end=="0000-00-00"){//walang end date
             end = start
         }
 
@@ -50,7 +49,12 @@ $(document).ready(function() {
         }).done(function (data) {
 
             //generate unique color for each medicine
-            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            function generateDarkColorHex() {
+                let color = "#";
+                for (let i = 0; i < 3; i++)
+                    color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+                return color;
+            }
 
             let dates = JSON.parse(data);
             let duration = dates.length
@@ -84,7 +88,7 @@ $(document).ready(function() {
                     ,
                     date: date,
                     type: ' ',
-                    color:'#'+randomColor
+                    color:generateDarkColorHex()
                 });
             }
 
@@ -92,9 +96,9 @@ $(document).ready(function() {
     }
 
     //just to prevent a click
-    $("a").click(function (e) {
-        e.preventDefault()
-    })
+    // $("a").click(function (e) {
+    //     e.preventDefault()
+    // })
     //========ACTIONS===============//
     $(".back-btn").click(function (){
         location.href="patient.php";
@@ -128,5 +132,12 @@ $(document).ready(function() {
 
 
 
+    $("#hidden-refresh-button").click(function () {
+        $('#calendar').evoCalendar('destroy');
+        calendar_instance()
+        retrievePatientMedicationRecord();
+        alert("na refresh si calendar")
 
+
+    })
 })//end of document ready

@@ -3,19 +3,20 @@
 
     let inv_id; /// id of vaccine or medicine
 
+    function retrieve_inventory() {
         $.post('php/patientProcesses/retrieveInventory.php').done(function (data) {
 
 
-             let obj = JSON.parse(data);
-             let arr = []
+            let obj = JSON.parse(data);
+            let arr = []
             inventory_autocomlete(obj);
             for (const objElement of obj) {
                 arr.push(objElement.name)
             }
             inventory_autocomlete(obj)
         })
-
-
+    }
+    retrieve_inventory()
 
     function inventory_autocomlete(obj) {
         function split( val ) {
@@ -81,13 +82,14 @@
                 .appendTo( ul );
         };
 
-    }//
+    }//end of function
 
 
 
         //ADD MEDICATION SCRIPT =========================
         $("#add-prescript-btn").click(function (event) {
             let medName = $("#med-name").val()
+            let medSubCat = $("#sub-category").val()
             let qty = $("#qty").val()
             let freq = $("#frequency").val()
             let interval = $("#interval").val()
@@ -110,30 +112,46 @@
                 }
             }
 
-
-
-            $(".modal-p-error").css('visibility','hidden')//makakadaan  lang dine pag ok na lhat ng input
-            if(freq==0){// 0 daily, 1 every other day
-                interval=0;
-            }
-            if(end_date==""||end_date==null){
-                end_date=null
-            }
-
-            $.post('php/patientProcesses/addMedicationRecord.php',{
-                inv_id:inv_id,
-                medName:medName,
-                qty:qty,
-                interval:interval,
-                dosage:dosage,
-                no_of_times:no_of_times,
-                description:description,
-                start_date:start_date,
-                end_date:end_date,
-            }).done(function (data) {
-              console.log(data)
+            //makakadaan  lang dine pag ok na lhat ng input
+            $("#pop-up-confirm-add").modal({
+                showClose:false,
+                closeExisting:false,
+                clickClose:false,
+                escapeClose:false
             })
-        })
+            $("#prescribe-final-btn").off('click')
+            $("#prescribe-final-btn").click(function () {
+                $(".modal-p-error").css('visibility','hidden')
+                if(freq==0){// 0 daily, 1 every other day
+                    interval=0;
+                }
+                if(end_date==""||end_date==null){
+                    end_date=null
+                }
+                $.post('php/patientProcesses/addMedicationRecord.php',{
+                    inv_id:inv_id,
+                    medName:medName,
+                    medSubCat: medSubCat,
+                    qty:qty,
+                    interval:interval,
+                    dosage:dosage,
+                    no_of_times:no_of_times,
+                    description:description,
+                    start_date:start_date,
+                    end_date:end_date,
+                }).done(function (data) {
+                    console.log(data)
+                    retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+                    $("#hidden-refresh-button").trigger('click')
+                    $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
+                    $('[href="#add-pres-modal"]').trigger('click')
+                })
+            })
+
+
+        })//end of add prescription btn function
+
+
 </script>
 <style>
     .search-item{

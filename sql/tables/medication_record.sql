@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 08:36 AM
+-- Generation Time: Dec 08, 2021 at 10:25 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -31,10 +31,13 @@ CREATE TABLE `medication_record` (
   `event_id` int(11) NOT NULL,
   `admin_id` varchar(50) NOT NULL,
   `patient_id` varchar(50) NOT NULL,
+  `patient_type` varchar(50) NOT NULL,
   `patient_purok` char(1) NOT NULL COMMENT '1 to 7',
   `type` varchar(50) NOT NULL DEFAULT 'Medicine' COMMENT 'Medicine',
   `medicine_id` int(11) NOT NULL,
   `medicine_name` varchar(50) NOT NULL,
+  `medicine_sub_category` varchar(50) NOT NULL,
+  `given_med_quantity` varchar(50) NOT NULL COMMENT 'ilang piraso ng gamot binigay',
   `dosage` varchar(50) NOT NULL COMMENT 'can be in mg/ g',
   `no_times` varchar(50) NOT NULL COMMENT 'per day\r\n',
   `interval_days` varchar(50) NOT NULL DEFAULT '0' COMMENT 'by default 0 (daily ang pag inum)',
@@ -48,9 +51,8 @@ CREATE TABLE `medication_record` (
 -- Dumping data for table `medication_record`
 --
 
-INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
-(13, '2021-01-1', '2021-03-111222', '1', 'Medicine', 20, 'Diatabs', '500', '3', '1', '2021-12-07 05:09:54', '2021-12-07 16:00:00', '2021-12-07 16:00:00', 'hehehe'),
-(15, '2021-01-1', '2021-03-111222', '1', 'Medicine', 19, 'Paracetamol Biogesic', '500', '3', '0', '2021-12-07 06:15:42', '2021-12-06 16:00:00', '2021-12-08 16:00:00', 'sinakitan ng ulo');
+INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `medicine_sub_category`, `given_med_quantity`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
+(21, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Medicine', 19, 'Paracetamol Biogesic', '', '9', '500', '3', '1', '2021-12-08 03:52:52', '2021-12-07 16:00:00', '2021-12-11 16:00:00', 'sumakit ulo');
 
 --
 -- Indexes for dumped tables
@@ -71,7 +73,7 @@ ALTER TABLE `medication_record`
 -- AUTO_INCREMENT for table `medication_record`
 --
 ALTER TABLE `medication_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

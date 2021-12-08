@@ -210,7 +210,7 @@ session_start();
                               </table>
                            </div>
                            <div class="patient-content__calendar holder">
-                              <p>Calendar</p>
+                              <p>Medication/Vaccination Calendar</p>
                               <div id="calendar"></div>
                            </div>
                            <div class="patient-content__medical-history holder">
@@ -306,5 +306,7 @@ session_start();
 <?php
 require 'add-prescription-script.html';
 ?>
+
+   <input type="hidden" id="hidden-refresh-button">
    </body>
 </html>
