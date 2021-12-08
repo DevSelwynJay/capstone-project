@@ -56,30 +56,31 @@ session_start();
                        $("#modal-admin-name").html(result.admin_name)
                    }
                )
-           })
-           ///<!--Set patient info to page-->
-           $.post('php/patientProcesses/retrieveIndivPatient.php').done(
-               function (data) {
-                   let arrayOfObject = JSON.parse(data);//row info ni patient
-                   //let size = arrayOfObject.length;
-                   for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
-                       ///alert(arrayOfObjectElement.first_name)
-                       let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
-                           " "+arrayOfObjectElement.last_name
-                       $("#name").html(name);
-                       $("#modal-patient-name").html(name);
-                       $("#patient-type").html(arrayOfObjectElement.patient_type)
-                       $("#modal-patient-type").html(arrayOfObjectElement.patient_type)
-                       $("#gender").html(arrayOfObjectElement.gender)
-                       $("#age").html(arrayOfObjectElement.age)
-                       $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
-                       $("#occupation").html(arrayOfObjectElement.occupation)
-                       $("#blood-type").html(arrayOfObjectElement.blood_type)
-                       $("#height").html(arrayOfObjectElement.height+" "+"cm")
-                       $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
+               ///<!--Set patient info to page-->
+               $.post('php/patientProcesses/retrieveIndivPatient.php').done(
+                   function (data) {
+                       let arrayOfObject = JSON.parse(data);//row info ni patient
+                       //let size = arrayOfObject.length;
+                       for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
+                           ///alert(arrayOfObjectElement.first_name)
+                           let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
+                               " "+arrayOfObjectElement.last_name
+                           $("#name").html(name);
+                           $("#modal-patient-name").html(name);
+                           $("#patient-type").html(arrayOfObjectElement.patient_type)
+                           $("#modal-patient-type").html(arrayOfObjectElement.patient_type)
+                           $("#gender").html(arrayOfObjectElement.gender)
+                           $("#age").html(arrayOfObjectElement.age)
+                           $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
+                           $("#occupation").html(arrayOfObjectElement.occupation)
+                           $("#blood-type").html(arrayOfObjectElement.blood_type)
+                           $("#height").html(arrayOfObjectElement.height+" "+"cm")
+                           $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
+                       }
                    }
-               }
-           )
+               )
+           })
+
        </script>
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
        <script src="js/individual-patient.js"></script>
