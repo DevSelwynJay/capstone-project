@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2021 at 01:02 PM
+-- Generation Time: Dec 08, 2021 at 12:55 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-(1, '2021-01-2', 'Benitez', 'Ogie', 'Bas ', 'Male', '2005-12-31', '3 Sto. Rosario Paombong Bulacan', 'alfredo.benitez.b@bulsu.edu.ph', 'mukamo11', '09542120321', 'Health Worker', '506901');
+(1, '2021-01-111222', 'Benitez', 'Alfred', 'Bas', 'Female', '1994-01-12', '2  Sto. Rosario Paombong Bulacan', 'alfredogiebenitez@gmail.com', 'mukamo11', '09422697900', 'Health Worker', '957518'),
+(1, '2021-01-212222', 'Benitez', 'Ogie', 'Bas ', 'Male', '2005-12-31', '3 Sto. Rosario Paombong Bulacan', 'alfredo.benitez.b@bulsu.edu.ph', 'mukamo11', '09542120321', 'Health Worker', '358530');
 
 --
 -- Indexes for dumped tables
