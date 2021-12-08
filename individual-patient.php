@@ -53,7 +53,7 @@ session_start();
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
-                       $("#modal-admin-name").html(result.admin_name)
+                       $("#modal-admin-name").html("Given by: "+result.admin_name)
                    }
                )
                ///<!--Set patient info to page-->
@@ -66,9 +66,9 @@ session_start();
                            let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
                                " "+arrayOfObjectElement.last_name
                            $("#name").html(name);
-                           $("#modal-patient-name").html(name);
+                           $("#modal-patient-name").html("To: "+name);
                            $("#patient-type").html(arrayOfObjectElement.patient_type)
-                           $("#modal-patient-type").html(arrayOfObjectElement.patient_type)
+                           $("#modal-patient-type").html("Type: "+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)
                            $("#age").html(arrayOfObjectElement.age)
                            $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
@@ -76,6 +76,9 @@ session_start();
                            $("#blood-type").html(arrayOfObjectElement.blood_type)
                            $("#height").html(arrayOfObjectElement.height+" "+"cm")
                            $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
+
+                           //ung nasa hidden input sa modal
+                           $("#purok").val(arrayOfObjectElement.purok)
                        }
                    }
                )

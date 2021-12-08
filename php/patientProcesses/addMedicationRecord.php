@@ -27,7 +27,7 @@ if($row = mysqli_fetch_assoc($res)){
 
 $query = "
 INSERT INTO medication_record VALUES (
-                DEFAULT , '$amdinID','$patientID',DEFAULT ,DEFAULT , $inv_id, '$medName', '$dosage','$no_of_times',
+                DEFAULT , '$amdinID','$patientID','$patientPurok' ,DEFAULT , $inv_id, '$medName','$qty', '$dosage','$no_of_times',
                                       '$interval',DEFAULT ,'$start_date', '$end_date', '$description'
                       
 )

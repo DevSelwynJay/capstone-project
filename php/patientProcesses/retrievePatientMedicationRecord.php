@@ -10,7 +10,7 @@ $result = mysqli_query($con,"SELECT *, DATE_FORMAT(start_date,'%Y-%m-%d') as sta
        DATE_FORMAT(start_date,'%M %d, %Y') as start_date_formatted,
        DATE_FORMAT(end_date,'%Y-%m-%d') as end_date_1,
         DATE_FORMAT(end_date,'%M %d, %Y') as end_date_formatted
-FROM medication_record WHERE patient_id = '$patientID'");
+FROM medication_record WHERE patient_id = '$patientID'  ORDER BY date_given DESC");
 while($row= mysqli_fetch_assoc($result)){
     $arr[] = $row;
 }

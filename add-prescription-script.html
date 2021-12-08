@@ -61,9 +61,17 @@
                     //user defined code
                     //alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
+                    $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
                     $("#med-name").val(ui.item.label).trigger('focus')
                     $("#med-type").val(ui.item.category)
-                    $("#inv-category-lbl").html(ui.item.category)
+
+                    $("#sub-category-lbl").html(ui.item.category)//show label 'medicine/vaccine category'
+                    $("#sub-category").val(ui.item.subcategory)
+
+                    $("#med-name-and-qty-lbl").html(' <span id="med-name-2">Medicine</span> currently has <span id="med-stock-2">500</span> stocks.')
+                    $("#med-name-2").html(ui.item.label)
+                    $("#med-stock-2").html(ui.item.stock)
+
                     //$( "#search-inv" ).val("")
                     return false;
                 }
@@ -89,8 +97,27 @@
             let start_date = $("#start-date").val()
             let end_date = $("#end-date").val()
 
-            if(freq==0){
+            //validation of input
+            if(medName==""||qty==""||dosage==""||no_of_times==""||description==""){
+                $(".modal-p-error").css('visibility','visible')
+                return
+            }
+            if (freq==1){
+                if(interval==""||interval==null){
+                    $(".modal-p-error").css('visibility','visible')
+                    $("#interval").trigger('focus')
+                    return;
+                }
+            }
+
+
+
+            $(".modal-p-error").css('visibility','hidden')//makakadaan  lang dine pag ok na lhat ng input
+            if(freq==0){// 0 daily, 1 every other day
                 interval=0;
+            }
+            if(end_date==""||end_date==null){
+                end_date=null
             }
 
             $.post('php/patientProcesses/addMedicationRecord.php',{
@@ -102,7 +129,7 @@
                 no_of_times:no_of_times,
                 description:description,
                 start_date:start_date,
-                end_date:end_date
+                end_date:end_date,
             }).done(function (data) {
               console.log(data)
             })

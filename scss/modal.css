@@ -75,7 +75,7 @@
 .modal-p-2{
     font-size: clamp(0.7em,0.8em,1vw)!important;
     font-weight: 400;
-    color: var(--third-color);
+    color: #383838;
     padding-left: 0.5em;
 }
 .modal-p-lighter{
