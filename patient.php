@@ -84,12 +84,17 @@
                   </div>
                   <div class="col-sm-12">
                      <div class="search-tab margin-top-2 row justify-content-sm-around">
-                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-end">
-                             <button class="modal-primary-button-2">
+                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
+                             <button class="modal-primary-button-2" style="margin-right: 1rem">
                                  <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
-                                 Add Patient</button>
+                                 Add Patient
+                             </button>
+                             <button class="modal-primary-button">
+                                 <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
+                                  Patient Online Account Request
+                             </button>
                          </div>
-                        <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-1">
+                        <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
                         </div>
