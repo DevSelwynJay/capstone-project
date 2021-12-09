@@ -89,10 +89,13 @@
                                  <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
                                  Add Patient
                              </button>
-                             <button class="modal-primary-button">
-                                 <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
-                                  Pending Online Account Request
-                             </button>
+                             <a href="pending-patient-acc.php">
+                                 <button class="modal-primary-button">
+                                     <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
+                                     Pending Online Account Request
+                                 </button>
+                             </a>
+
                          </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                            <input type="text" class="search-bar">
