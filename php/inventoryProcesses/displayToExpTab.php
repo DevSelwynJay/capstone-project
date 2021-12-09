@@ -17,7 +17,7 @@ $start_from = ($page -1 )*$rpp;
     $result = mysqli_query($con, $exptab);
     if(mysqli_num_rows($result)>0){
 
-    $exptable = '<h1 style="color:black">Medicine to Expire</h1><table>
+    $exptable = '<h3 style="color:var(--third-color)">Medicine to Expire</h3><table>
             <tbody>
             <tr class="title">
                     <th>Medicine ID</th>
