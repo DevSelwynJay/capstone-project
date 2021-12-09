@@ -15,7 +15,8 @@ $start_from = ($page -1 )*$rpp;
 $meddatatable = "Select * from `medinventory`  where `expdate` > NOW() order by `dateadded` asc limit $start_from, $rpp";
 $result = mysqli_query($con, $meddatatable);
 if(mysqli_num_rows($result)> 0) {
-    $medtable = '<table >
+    $medtable = '<h1 style="color:black;font-weight: bold">Medicine Inventory</h1>
+    <table>
     <tbody>
       <tr class="title">
                     <th class="column_sort" id="id" data-order="desc">Medicine ID</th>

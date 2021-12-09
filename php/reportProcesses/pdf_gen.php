@@ -4,14 +4,33 @@ require_once '../pdflib/fpdf.php';
 require '../DB_Connect.php';
 
 
+if(isset($_GET['daily'])){
+    $time = '1 day';
+}
+elseif(isset($_GET['weekly'])){
+    $time = '1 week';
+}
+elseif(isset($_GET['monthly'])){
+    $time = '1 month';
+}
+elseif(isset($_GET['quarterly'])){
+    $time = '1 quarter';
+}
+elseif(isset($_GET['annually'])){
 
-$pdfquery = 'Select * from `medreport`';
+    $time = '1 year';
+}
+
+    $type = $_GET['type'];
+
+$pdfquery = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
 
 $record = mysqli_query($con,$pdfquery);
 
 $pdf = new FPDF('l','mm','A4');
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
+
 
 $pdf->Cell(35,10,"Medicine ID",1,0,'C');
 $pdf->Cell(50,10,"Medicine Name",1,0,'C');

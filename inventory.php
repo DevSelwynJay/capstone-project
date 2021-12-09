@@ -94,7 +94,7 @@
    <div class="inventory__container">
        <div class="inventory__table-main-container"  >
            <!--Add Button para sa MEDS-->
-           <button type="button" id="addbtn">Add Medicine</button>
+           <button class="modal-primary-button-2" type="button" id="addbtn">Add Medicine</button>
            <div>
                <input style="width: 40vw" type="text" id="meds" class="form-control" placeholder="Search Medicines" autocomplete="off">
            </div>
