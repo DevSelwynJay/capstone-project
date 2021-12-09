@@ -26,6 +26,17 @@
     <script src="jquery-ui/jquery-ui.js"></script>
     <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
+    <!--Get admin info from session-->
+    <script>
+        $(document).ready(function () {
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                }
+            )
+        })
+    </script>
 </head>
 <body>
 <section class="global">
@@ -37,7 +48,7 @@
 <div class="profile-img">
 <img src="img/jay.jpg" alt="">
 </div>
-<h4>Your Name</h4>
+<h4 id="name-sidebar">Your Name</h4>
 </div>
 <ul class="menu">
 <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
