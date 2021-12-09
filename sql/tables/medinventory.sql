@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 06:50 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Dec 09, 2021 at 02:42 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,24 +43,13 @@ CREATE TABLE `medinventory` (
 --
 
 INSERT INTO `medinventory` (`id`, `name`, `category`, `subcategory`, `stock`, `mfgdate`, `expdate`, `dateadded`) VALUES
-(1, 'biogesic', 'gamot', '', 101, '2021-11-14', '2021-11-26', '2021-10-29'),
-(2, 'diatabs', 'gamot', '', 10, '2021-10-29', '2021-11-24', '2021-10-29'),
-(3, 'diatabs', 'gamot', '', 10, '2021-10-29', '2021-11-24', '2021-10-29'),
-(4, 'asdsa', 'asda', '', 14, '2021-10-01', '2021-11-06', '2021-10-29'),
-(5, 'asda', 'asda', '', 11, '2021-10-29', '2021-11-06', '2021-10-29'),
-(6, 'profan', 'vitamins', '', 12, '2021-10-08', '2021-11-06', '2021-10-30'),
-(7, 'paracetamol', 'gamot', '', 1548, '2021-10-31', '2022-01-08', '2021-11-05'),
-(8, 'calpol', 'gamot', '', 1203, '2021-08-30', '2022-03-25', '2021-11-05'),
-(9, 'biogesic', 'gamot', '', 123, '2021-11-01', '2021-11-18', '2021-11-07'),
-(10, 'propan tlc', 'vitamins', '', 123, '2021-11-04', '2021-12-01', '2021-11-07'),
-(11, 'biogesic', 'gamot', '', 120, '2021-11-13', '2021-11-01', '2021-11-14'),
-(12, 'diatabs', 'gamot', '', 1201, '2021-11-11', '2021-11-05', '2021-11-14'),
-(13, 'biogesic', 'gamot', '', 1021, '2021-11-01', '2021-11-30', '2021-11-14'),
-(14, 'biogesicsssss', 'gamots', '', 1202, '2021-11-01', '2021-11-30', '2021-11-19'),
-(15, 'asdada', 'qweq', '', 123, '2021-11-01', '2022-01-28', '2021-11-20'),
-(17, 'biogesic', 'medicine', '', 159, '2021-11-01', '2021-11-26', '2021-11-22'),
-(19, 'paracetamol', 'medicine', '', 1, '2021-08-04', '2021-11-30', '2021-11-22'),
-(20, 'diatabs', 'Medicine', '', 120, '2021-11-07', '2022-01-28', '2021-11-22');
+(19, 'Paracetamol Biogesic', 'Medicine', '', 500, '2021-08-04', '2022-11-17', '2021-11-22'),
+(20, 'Diatabs', 'Medicine', '', 120, '2021-11-07', '2022-01-28', '2021-11-22'),
+(32, 'OPV', 'Vaccine', 'Child', 1000, '2021-10-07', '2024-12-03', '2021-12-05'),
+(33, 'IPV', 'Vaccine', 'Child', 1000, '2021-10-07', '2024-12-03', '2021-12-05'),
+(34, 'Metropolol', 'Medicine', '', 1000, '2021-10-07', '2024-12-03', '2021-12-07'),
+(35, 'Neozep', 'Medicine', '', 500, '2021-10-07', '2024-12-03', '2021-12-07'),
+(36, 'Ambroxol', 'Medicine', '', 50, '2021-12-08', '2021-12-16', '2021-12-08');
 
 --
 -- Indexes for dumped tables
@@ -80,7 +69,7 @@ ALTER TABLE `medinventory`
 -- AUTO_INCREMENT for table `medinventory`
 --
 ALTER TABLE `medinventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
