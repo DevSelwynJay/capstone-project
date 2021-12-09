@@ -110,7 +110,7 @@
                     <div class="content patients-view-container">
 
 
-
+<h3 style="color: var(--third-color)">Pending Patient Account Request</h3>
                         <table class="patients-view">
                             <tbody>
                             <tr class="patients-view-title">
