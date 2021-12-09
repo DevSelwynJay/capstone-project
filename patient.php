@@ -84,25 +84,40 @@
                   </div>
                   <div class="col-sm-12">
                      <div class="search-tab margin-top-2 row justify-content-sm-around">
-                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
+                         <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
                              <button class="modal-primary-button-2" style="margin-right: 1rem">
                                  <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
                                  Add Patient
                              </button>
                              <button class="modal-primary-button">
                                  <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
-                                  Patient Online Account Request
+                                  Pending Online Account Request
                              </button>
                          </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                            <input type="text" class="search-bar">
                            <a href="/"><i class="fas fa-search"></i></a>
+                            <style>
+                                @media ( max-width: 575px) {
+                                    .search-bar{
+                                        width: 50% !important;
+                                    }
+                                    .search-container{
+                                        justify-content: flex-end;
+                                        margin-top: 2rem !important;
+                                    }
+                                    .button-container{
+                                        justify-content: center !important;
+                                    }
+                                }
+                            </style>
                         </div>
 <!--                        <div class="details-settings">-->
 <!--                           <a href="/">View Details</a>-->
 <!--                           <a href="/">Edit Details</a>-->
 <!--                        </div>-->
                      </div>
+
                      <div class="content patients-view-container">
 
 
