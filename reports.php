@@ -123,9 +123,9 @@
                           <div class="col-md-12  col-lg-4">
                              <div class="reports__right-col">
                                <div class="reports__right-col_links">
-                                <a href="/">Medicine</a>
-                                <a href="/">Consulted</a>
-                                <a href="/">Vaccinated Patient</a>
+                                <a href="medicine-reports.html">Medicine</a>
+                                <a href="consultation-reports.html">Consulted</a>
+                                <a href=vaccination-reports.html>Vaccinated Patient</a>
                                </div>
                              </div>
                           </div>
