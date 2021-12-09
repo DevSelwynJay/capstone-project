@@ -62,6 +62,18 @@ if(!isset($_SESSION['email'])){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
      -->
+
+    <!--Get admin info from session-->
+    <script>
+        $(document).ready(function () {
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                }
+            )
+        })
+    </script>
 </head>
 
 <body>
@@ -75,7 +87,7 @@ if(!isset($_SESSION['email'])){
                             <div class="profile-img">
                                 <img src="img/jay.jpg" alt="">
                             </div>
-                            <h4>Your Name</h4>
+                            <h4 id="name-sidebar">Your Name</h4>
                         </div>
                         <ul class="menu">
                             <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
