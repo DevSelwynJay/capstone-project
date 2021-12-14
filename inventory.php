@@ -1,3 +1,12 @@
+<?php
+$con=null;
+require 'php/DB_Connect.php';
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +46,11 @@
             )
         })
     </script>
+    <style>
+        .overflow {
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
 <section class="global">
@@ -124,35 +138,38 @@
 
                    <div class="row">
                        <div class="col-sm-12" >
-                           <p class="modal-p" for="medicineName">Medicine Name:</p><input type="text" id="medicineName" class="modal-field" placeholder="Enter Medicine" autocomplete="off" required>
-                           <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
-                       </div>
-                       <div class="col-sm-12" >
                            <p class="modal-p" for="medicineCategory">Category:</p>
                            <select class="modal-field" id="medcategorySelect">
-                               <option value="">Select</option>
                                <option value="Medicine">Medicine</option>
                                <option value="Vaccine">Vaccine</option>
                            </select>
-                           <!--<script>
+                           <script>
                                $('#medcategorySelect').change(function (){
-                                   if($('#medcategorySelect').val() == "Medicine"){
-                                       $('#vacSubCategory').css("display","none");
-                                       $('#medSubCategory').css("display","block");
-                                   }
-                                   else if($('#medcategorySelect').val() == "Vaccine"){
+                                   if($('#medcategorySelect').val() == "Vaccine"){
                                        $('#medSubCategory').css("display","none");
                                        $('#vacSubCategory').css("display","block");
                                    }
                                    else{
                                        $('#vacSubCategory').css("display","none");
-                                       $('#medSubCategory').css("display","none");
+                                       $('#medSubCategory').css("display","block");
                                    }
                                })
                            </script>
-                           <input class="modal-field" type="text" id="medSubCategory" autocomplete="on" placeholder="Medicine Sub-Category" style="display: none">
-                           <input class="modal-field" type="text" id="vacSubCategory" autocomplete="on" placeholder="Vaccine Sub-Category" style="display: none">-->
+                           <input class="modal-field" type="text" id="medSubCategory" autocomplete="off" placeholder="Medicine Type">
+
+                           <input class="modal-field" type="text" id="vacSubCategory" autocomplete="off" placeholder="Vaccine Type" style="display: none">
+
                        </div>
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineName">Medicine Name:</p>
+                           <input type="text" class="modal-field" id="medicineName" autocomplete="off" placeholder="Enter Medicine Name" required>
+                           <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
+                       </div>
+                       <div class="col-sm-12" >
+                           <p class="modal-p" for="medicineDosage">Medicine Dosage:</p><input type="text" id="medicineDosage" class="modal-field" placeholder="Enter Medicine Dosage" autocomplete="off" required>
+
+                       </div>
+
                    </div>
                    <div class="row">
                        <div class="col-sm-12" >
@@ -194,16 +211,37 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12" >
-                        <p class="modal-p" for="updatemedicineName">Medicine Name:</p><input type="text" id="updatemedicineName" class="modal-field" readonly required>
-                    </div>
-                    <div class="col-sm-12" >
-                        <p class="modal-p" for="updatemedicineCategory">Category:</p>
-                        <select class="modal-field" id="upmedcategorySelect">
-                            <option value="none">Select</option>
+                        <p class="modal-p" for="upmedicineCategory">Category:</p>
+                        <select class="modal-field" id="upmedcategorySelect" disabled>
+
                             <option value="Medicine">Medicine</option>
                             <option value="Vaccine">Vaccine</option>
                         </select>
+                        <script>
+                            $('#upmedcategorySelect').change(function (){
+                                if($('#upmedcategorySelect').val() == "Vaccine"){
+                                    $('#upmedSubCategory').css("display","none");
+                                    $('#upvacSubCategory').css("display","block");
+                                }
+                                else{
+                                    $('#upvacSubCategory').css("display","none");
+                                    $('#upmedSubCategory').css("display","block");
+                                }
+                            })
+                        </script>
+                        <input class="modal-field" type="text" id="upmedSubCategory" autocomplete="off" placeholder="Medicine Sub-Category" readonly>
+
+                        <input class="modal-field" type="text" id="upvacSubCategory" autocomplete="off" placeholder="Vaccine Sub-Category" style="display: none" readonly>
+
                     </div>
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="updatemedicineName">Medicine Name:</p><input type="text" id="updatemedicineName" class="modal-field" readonly >
+                    </div>
+                    <div class="col-sm-12" >
+                        <p class="modal-p" for="upmedicineDosage">Medicine Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Medicine Dosage" autocomplete="off" readonly>
+
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-sm-12" >
@@ -211,11 +249,11 @@
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
-                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                        <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" readonly>
                     </div>
                     <div class="col-sm-12" >
                         <p class="modal-p" for="updatemedicineExpDate" >Exp Date:</p>
-                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" required>
+                        <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" readonly>
                         <input type="hidden" id="hiddendata" >
                     </div>
                 </div>
@@ -264,6 +302,13 @@
         displayMedicines();
         displayToExpTab();
         displayExpTab();
+
+        $( "#medNameSelect" )
+            .selectmenu()
+            .selectmenu( "menuWidget" )
+            .addClass( "overflow" );
+
+
     });
     //Sort function
     $(document).ready(function(){
@@ -401,7 +446,7 @@
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
     })
-    $("#updatemedicineMfgDate").datepicker({
+/*    $("#updatemedicineMfgDate").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange:'1970:new Date()',
@@ -422,7 +467,7 @@
         $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
-    })
+    })*/
     //Display To Expire Table
     function displayToExpTab(displayToExpDatapage){
     var displayToExpData = true;
@@ -464,11 +509,13 @@
 
         var medName = $('#medicineName').val()
         var medCategory = $('#medcategorySelect').val()
+        var medsubCategory = $('#medSubCategory').val()
+        var meddosage = $('#medicineDosage').val();
         var medStocks = $('#medicineStocks').val()
         var medMfgDate = $('#medicineMfgDate').val()
         var medExpDate = $('#medicineExpDate').val()
 
-        if(medName == "" || medCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""){
+        if(medName == "" || medCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""|| medsubCategory == ""|| meddosage == ""){
             $('#all-incorrect-indcator').css("visibility","visible");
             $('#all-incorrect-indcator').html('Please Fill out all the fields!');
         }
@@ -481,6 +528,8 @@
                 data: {
                     newMedName: medName,
                     newMedCategory: medCategory,
+                    newMedsubCategory:medsubCategory,
+                    newMedDosage:meddosage,
                     newMedStocks: medStocks,
                     newMedMfgDate: medMfgDate,
                     newMedExpDate: medExpDate

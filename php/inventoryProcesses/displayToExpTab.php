@@ -13,7 +13,7 @@ else{
 }
 $start_from = ($page -1 )*$rpp;
 
-    $exptab = "Select * from `medinventory` where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY limit $start_from,$rpp";
+    $exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY order by `dateadded` desc limit $start_from,$rpp ";
     $result = mysqli_query($con, $exptab);
     if(mysqli_num_rows($result)>0){
 

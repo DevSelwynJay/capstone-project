@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2021 at 02:42 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Dec 14, 2021 at 03:30 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,7 @@ CREATE TABLE `medinventory` (
   `name` varchar(100) NOT NULL,
   `category` varchar(11) NOT NULL,
   `subcategory` varchar(255) NOT NULL,
+  `dosage` varchar(255) NOT NULL,
   `stock` int(11) NOT NULL,
   `mfgdate` date NOT NULL,
   `expdate` date NOT NULL,
@@ -42,14 +43,14 @@ CREATE TABLE `medinventory` (
 -- Dumping data for table `medinventory`
 --
 
-INSERT INTO `medinventory` (`id`, `name`, `category`, `subcategory`, `stock`, `mfgdate`, `expdate`, `dateadded`) VALUES
-(19, 'Paracetamol Biogesic', 'Medicine', '', 500, '2021-08-04', '2022-11-17', '2021-11-22'),
-(20, 'Diatabs', 'Medicine', '', 120, '2021-11-07', '2022-01-28', '2021-11-22'),
-(32, 'OPV', 'Vaccine', 'Child', 1000, '2021-10-07', '2024-12-03', '2021-12-05'),
-(33, 'IPV', 'Vaccine', 'Child', 1000, '2021-10-07', '2024-12-03', '2021-12-05'),
-(34, 'Metropolol', 'Medicine', '', 1000, '2021-10-07', '2024-12-03', '2021-12-07'),
-(35, 'Neozep', 'Medicine', '', 500, '2021-10-07', '2024-12-03', '2021-12-07'),
-(36, 'Ambroxol', 'Medicine', '', 50, '2021-12-08', '2021-12-16', '2021-12-08');
+INSERT INTO `medinventory` (`id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `mfgdate`, `expdate`, `dateadded`) VALUES
+(7, 'paracetamol', 'gamot', 'antibiotics', '25mg', 1548, '2021-10-31', '2022-01-08', '2021-11-05'),
+(8, 'calpol', 'gamot', '', '', 1, '2021-08-30', '2022-03-25', '2021-11-05'),
+(15, 'asdada', 'qweq', '', '', 20, '2021-11-01', '2022-01-28', '2021-11-20'),
+(20, 'diatabs', 'Medicine', '', '', 120, '2021-11-07', '2022-01-28', '2021-11-22'),
+(32, 'asda', 'Select', '', '', 12, '2021-11-02', '2021-12-24', '2021-11-30'),
+(35, 'biogesic', 'Medicine', '', '', 123, '2021-12-02', '2021-12-23', '2021-12-04'),
+(36, 'calpol', 'medicine', 'aaa', '', 12, '2021-12-01', '2021-12-31', '2021-12-13');
 
 --
 -- Indexes for dumped tables
