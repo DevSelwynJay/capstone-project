@@ -82,7 +82,25 @@ session_start();
                        }
                    }
                )
-           })
+               //get all vaccination/medication history then put into the table
+               $.post('php/patientProcesses/retrieveHistory.php').done(
+                   function (data) {//#patient-history-table
+                       let result = JSON.parse(data)
+
+                       for (const resultElement of result) {
+
+                          $("#patient-history-table").append("" +
+                              "<tr>" +
+                                  "<td>" + resultElement.name+"</td>"+
+                                  "<td>" + resultElement.type+"</td>"+
+                                  "<td>" + resultElement.date+"</td>"+
+                                  "<td>" + resultElement.description+"</td>"+
+
+                              "</tr>")
+                       }
+                   }
+               )
+           })//document ready
 
        </script>
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
@@ -216,25 +234,25 @@ session_start();
                            <div class="patient-content__medical-history holder">
                               <p>Medication/Vaccination History</p>
                               <div class="patient-content__medical-history-container">
-                                 <table>
+                                 <table id="patient-history-table">
                                     <tr>
                                        <th>Name</th>
                                        <th>Type</th>
-                                       <th>Date</th>
+                                       <th>Date Given</th>
                                        <th>Description</th>
                                     </tr>
-                                    <tr>
-                                       <td>Jay</td>
-                                       <td>Vaccination</td>
-                                       <td>11/20/2021</td>
-                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Jay</td>
-                                       <td>Vaccination</td>
-                                       <td>11/20/2021</td>
-                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                       <td>Jay</td>-->
+<!--                                       <td>Vaccination</td>-->
+<!--                                       <td>11/20/2021</td>-->
+<!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                       <td>Jay</td>-->
+<!--                                       <td>Vaccination</td>-->
+<!--                                       <td>11/20/2021</td>-->
+<!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
+<!--                                    </tr>-->
                                  </table>
                               </div>
                               <!--
