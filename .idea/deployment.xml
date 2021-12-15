@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" serverName="xampp" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="xampp (project level)">
+      <paths name="xampp">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
