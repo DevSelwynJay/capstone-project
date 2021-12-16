@@ -78,7 +78,10 @@
                 }
             }).autocomplete( "instance" )._renderItem = function( ul, item ) {
             return $( "<li>" )
-                .append( "<div class='search-item' style='background: #F1F4FF;color:#232020'>" + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock_count)
+                .append(
+                    "<div class='search-item' style='background: #F1F4FF;color:#232020'>"
+                    + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<span style='margin-right: 0.5rem'>("+item.dosage+")</span>"
+                    + "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock_count)
                 .appendTo( ul );
         };
 
