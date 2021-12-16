@@ -14,7 +14,8 @@ while ($row  = mysqli_fetch_assoc($result)){
         "name"=>$row['medicine_name'],
          "type"=> $row['type'],
         "date"=>$row['fd'],
-        "description"=>$row['description']
+        "description"=>$row['description'],
+        "date_given"=>$row['date_given']//for sorting purposes only
     );
 }
 
@@ -25,11 +26,12 @@ while ($row  = mysqli_fetch_assoc($result)){
         "name"=>$row['vaccine_name'],
         "type"=> $row['type'],
         "date"=>$row['fd'],
-        "description"=>$row['description']
+        "description"=>$row['description'],
+        "date_given"=>$row['date_given']//for sorting purposes only
     );
 }
 usort($allHistory, function ($item1, $item2) {
-    return $item2['date'] <=> $item1['date'];
+    return $item2['date_given'] <=> $item1['date_given'];
 });
 echo json_encode($allHistory);
 mysqli_close($con);

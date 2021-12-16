@@ -98,6 +98,15 @@ $(document).ready(function() {
 
     //retrieve patient medication and vaccination history
     function retrieveHistory() {
+
+        let header = "<tr>\n" +
+            "                                       <th>Name</th>\n" +
+            "                                       <th>Type</th>\n" +
+            "                                       <th>Date Given</th>\n" +
+            "                                       <th>Description</th>\n" +
+            "                                    </tr>"
+        $("#patient-history-table").html("").append(header)
+
         //get all vaccination/medication history then put into the table
         $.post('php/patientProcesses/retrieveHistory.php').done(
             function (data) {//#patient-history-table
