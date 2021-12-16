@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 03:30 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Dec 16, 2021 at 05:30 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,13 +44,13 @@ CREATE TABLE `medinventory` (
 --
 
 INSERT INTO `medinventory` (`id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `mfgdate`, `expdate`, `dateadded`) VALUES
-(7, 'paracetamol', 'gamot', 'antibiotics', '25mg', 1548, '2021-10-31', '2022-01-08', '2021-11-05'),
-(8, 'calpol', 'gamot', '', '', 1, '2021-08-30', '2022-03-25', '2021-11-05'),
-(15, 'asdada', 'qweq', '', '', 20, '2021-11-01', '2022-01-28', '2021-11-20'),
-(20, 'diatabs', 'Medicine', '', '', 120, '2021-11-07', '2022-01-28', '2021-11-22'),
-(32, 'asda', 'Select', '', '', 12, '2021-11-02', '2021-12-24', '2021-11-30'),
-(35, 'biogesic', 'Medicine', '', '', 123, '2021-12-02', '2021-12-23', '2021-12-04'),
-(36, 'calpol', 'medicine', 'aaa', '', 12, '2021-12-01', '2021-12-31', '2021-12-13');
+(7, 'paracetamol', 'Medicine', 'antibiotics', '250mg', 1548, '2021-10-31', '2022-01-08', '2021-11-05'),
+(8, 'calpol', 'Medicine', 'pain reliver', '500mg', 1, '2021-08-30', '2022-03-25', '2021-11-05'),
+(15, 'IPV', 'Vaccine', 'child immunization', '', 20, '2021-11-01', '2022-01-28', '2021-11-20'),
+(20, 'diatabs', 'Medicine', 'antibiotics', '500mg', 120, '2021-11-07', '2022-01-28', '2021-11-22'),
+(32, 'OPV', 'Vaccine', 'child immunization', '', 12, '2021-11-02', '2021-12-24', '2021-11-30'),
+(36, 'calpol', 'Medicine', 'pain reliver', '250mg', 12, '2021-12-01', '2021-12-31', '2021-12-13'),
+(37, 'paracetamol', 'Medicine', 'antibiotics', '500mg', 1548, '2021-10-31', '2022-01-08', '2021-11-05');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +70,7 @@ ALTER TABLE `medinventory`
 -- AUTO_INCREMENT for table `medinventory`
 --
 ALTER TABLE `medinventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
