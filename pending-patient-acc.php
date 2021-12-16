@@ -96,11 +96,33 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="search-tab margin-top-2">
-                        <h1>Hello</h1>
-                        <div class="search-container">
+                    <div class="search-tab margin-top-2 row justify-content-sm-around">
+                        <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
+                            <a href="patient.php">
+                                <button class="modal-primary-button">
+                                    <i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>
+                                    Go Back to Patient List
+                                </button>
+                            </a>
+
+                        </div>
+                        <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                             <input type="text" class="search-bar">
                             <a href="/"><i class="fas fa-search"></i></a>
+                            <style>
+                                @media ( max-width: 575px) {
+                                    .search-bar{
+                                        width: 50% !important;
+                                    }
+                                    .search-container{
+                                        justify-content: flex-end;
+                                        margin-top: 2rem !important;
+                                    }
+                                    .button-container{
+                                        justify-content: flex-start !important;
+                                    }
+                                }
+                            </style>
                         </div>
                         <!--                        <div class="details-settings">-->
                         <!--                           <a href="/">View Details</a>-->
@@ -110,7 +132,7 @@
                     <div class="content patients-view-container">
 
 
-                        <h3 style="color: var(--third-color)">Pending Patient Account Request</h3>
+                        <h3 style="color: var(--third-color)" class="margin-top-2">Pending Patient Account Request</h3>
                         <table class="patients-view">
                             <tbody>
                             <tr class="patients-view-title">
