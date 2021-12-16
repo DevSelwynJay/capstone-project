@@ -45,10 +45,13 @@
                             <!--DROPDOWN SETTINGS-->
                             <div class="drop-down-settings" id="dropdown">
                                <ul>
-                                  <li><a href="">Approve EMR</a></li>
-                                  <li><a href="settings.php">settings</a></li>
-                                  <li><a href="about.html">About</a></li>
-                                  <li><a href="index.php">Logout</a></li>
+                                  <li><a href="">Request EMR</a></li>
+                                  <li id="logout"><a>Logout</a></li>
+                                   <script>
+                                       $("#logout").click(function () {
+                                           location.href = "index.php";
+                                       })
+                                   </script>
                                </ul>
                             </div>
                          </div>
@@ -71,7 +74,7 @@
                               <img class="greetings-img" src="img/Icons/dashboard-img.png" alt="">
                                <style>
                                    .greetings-img{
-                                       max-width: 30rem;
+                                       max-width: 10rem !important;
                                    }
                                </style>
                            </div>
