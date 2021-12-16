@@ -33,7 +33,7 @@
     <!--Custom Carousel Design-->
     <link rel="stylesheet" href="scss/carousel.css">
 
-    </head>
+</head>
 <body>
 
 <section class="global">
@@ -78,12 +78,12 @@
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                             <a id="close-dropdown"><i class="fas fa-times"></i></a>
                             <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                           <!--MOBILE MENU-->
-                           <div class="menu-mobile " id="menu">
-                              <ul>
-                              </ul>
-                           </div>
+                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                            <!--MOBILE MENU-->
+                            <div class="menu-mobile " id="menu">
+                                <ul>
+                                </ul>
+                            </div>
                             <div class="drop-down-settings" id="dropdown">
                                 <ul>
                                     <li><a href="">Approve EMR</a></li>
@@ -110,7 +110,7 @@
                     <div class="content patients-view-container">
 
 
-<h3 style="color: var(--third-color)">Pending Patient Account Request</h3>
+                        <h3 style="color: var(--third-color)">Pending Patient Account Request</h3>
                         <table class="patients-view">
                             <tbody>
                             <tr class="patients-view-title">
@@ -236,16 +236,16 @@
         <p class="modal-title-2" id="modal-title" style="width: fit-content">View</p>
     </div>
 
-<!--    <div id="personal-cont" class="flex-box-column align-items-start margin-top-1">-->
-<!---->
-<!--        <p class="modal-p"><i class="fas fa-envelope-open-text fa-lg"></i>Email: alfred@gamil.com</p>-->
-<!--        <p class="modal-p"><i class="fas fa-id-card fa-lg"></i>Contact: 09422697900</p>-->
-<!--        <p class="modal-p"><i class="fas fa-map-marked-alt fa-lg"></i>Address: 1 poblacion Paombong  Bulacan</p>-->
-<!--        <p class="modal-p"><i class="fas fa-birthday-cake fa-lg"></i></i>Birthday: January 11, 1999</p>-->
-<!--        <p class="modal-p"><i class="fas fa-sort-numeric-up-alt fa-lg"></i>Age: 22</p>-->
-<!--        <p class="modal-p"><i class="fas fa-building fa-lg"></i></i>Occupation: Driver</p>-->
-<!--        <p class="modal-p"><i class="fas fa-users fa-lg"></i>Civil Status: Single</p>-->
-<!--    </div>-->
+    <!--    <div id="personal-cont" class="flex-box-column align-items-start margin-top-1">-->
+    <!---->
+    <!--        <p class="modal-p"><i class="fas fa-envelope-open-text fa-lg"></i>Email: alfred@gamil.com</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-id-card fa-lg"></i>Contact: 09422697900</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-map-marked-alt fa-lg"></i>Address: 1 poblacion Paombong  Bulacan</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-birthday-cake fa-lg"></i></i>Birthday: January 11, 1999</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-sort-numeric-up-alt fa-lg"></i>Age: 22</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-building fa-lg"></i></i>Occupation: Driver</p>-->
+    <!--        <p class="modal-p"><i class="fas fa-users fa-lg"></i>Civil Status: Single</p>-->
+    <!--    </div>-->
     <style>
         #personal-cont p{
             margin-top: 0.5rem;
@@ -260,11 +260,11 @@
         <a id="fs" class="modal-p-lighter"><i class="fas fa-compress-arrows-alt"></i></i>View ID in Fullscreen</a>
     </div>
     <div class="gallery" style="margin-bottom: 1.5rem">
-<!--        <div class="gallery-cell"></div>-->
-<!--        <div class="gallery-cell"></div>-->
-<!--        <div class="gallery-cell"></div>-->
-<!--        <div class="gallery-cell"></div>-->
-<!--        <div class="gallery-cell"></div>-->
+        <!--        <div class="gallery-cell"></div>-->
+        <!--        <div class="gallery-cell"></div>-->
+        <!--        <div class="gallery-cell"></div>-->
+        <!--        <div class="gallery-cell"></div>-->
+        <!--        <div class="gallery-cell"></div>-->
     </div>
 
     <div class="flex-box-row justify-content-center">
@@ -469,17 +469,17 @@
 
             $.post('php/registerProcesses/validate_patient_account.php',{pending_patient_id:id}).done(function (data) {
 
-               if(data==1){
-                   setTimeout(()=>{
-                       $("#pop-up-success").modal({showClose: false, escapeClose: false, clickClose: false,})
-                   },700)
-               }
-               else {
-                   setTimeout(()=>{
-                       $("#pop-up-error").modal({showClose: false, escapeClose: false, clickClose: false,})
-                   },700)
-                   console.log("cant add data")
-               }
+                if(data==1){
+                    setTimeout(()=>{
+                        $("#pop-up-success").modal({showClose: false, escapeClose: false, clickClose: false,})
+                    },700)
+                }
+                else {
+                    setTimeout(()=>{
+                        $("#pop-up-error").modal({showClose: false, escapeClose: false, clickClose: false,})
+                    },700)
+                    console.log("cant add data")
+                }
 
             })
 
@@ -578,9 +578,9 @@
             table.setData(JSON.parse(data),{
                 // id: "ID",
                 name:"Name",
-                 // address:"Address",
-                 // contact_no: "Contact",
-                 // email:'Email',
+                // address:"Address",
+                // contact_no: "Contact",
+                // email:'Email',
                 date:"Date Requested",
                 button:"Action"
             });
@@ -641,32 +641,32 @@
 
 </script>
 <script>
-         const menu = document.querySelector('#menu');
-         const mobileMenu = document.querySelector('#mobile-menu');
-         const closeMobileMenu = document.querySelector('#close-mobile-menu');
-         
-         mobileMenu.addEventListener('click',function(){//Conditions
-         if(menu.classList.contains('open')){ // Close Mobile Menu
-         menu.classList.remove('open');
-         }
-         else{ 
-         menu.classList.add('open');
-         }});
-         
-         
-         mobileMenu.addEventListener('click',function(){
-             menu.classList.add('open');
-             mobileMenu.style.display = "none";
-             closeMobileMenu.style.display = "block"
-         });
-         
-         closeMobileMenu.addEventListener('click',function(){
+    const menu = document.querySelector('#menu');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    const closeMobileMenu = document.querySelector('#close-mobile-menu');
+
+    mobileMenu.addEventListener('click',function(){//Conditions
+        if(menu.classList.contains('open')){ // Close Mobile Menu
             menu.classList.remove('open');
-            closeMobileMenu.style.display = "none"
-            mobileMenu.style.display = "block";
-         });
-         
-      </script>
+        }
+        else{
+            menu.classList.add('open');
+        }});
+
+
+    mobileMenu.addEventListener('click',function(){
+        menu.classList.add('open');
+        mobileMenu.style.display = "none";
+        closeMobileMenu.style.display = "block"
+    });
+
+    closeMobileMenu.addEventListener('click',function(){
+        menu.classList.remove('open');
+        closeMobileMenu.style.display = "none"
+        mobileMenu.style.display = "block";
+    });
+
+</script>
 <!--Pagination table style-->
 <style>
     .gs-pagination{
