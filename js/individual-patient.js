@@ -96,6 +96,29 @@ $(document).ready(function() {
         })//post end
     }
 
+    //retrieve patient medication and vaccination history
+    function retrieveHistory() {
+        //get all vaccination/medication history then put into the table
+        $.post('php/patientProcesses/retrieveHistory.php').done(
+            function (data) {//#patient-history-table
+                let result = JSON.parse(data)
+
+                for (const resultElement of result) {
+
+                    $("#patient-history-table").append("" +
+                        "<tr>" +
+                        "<td>" + resultElement.name+"</td>"+
+                        "<td>" + resultElement.type+"</td>"+
+                        "<td>" + resultElement.date+"</td>"+
+                        "<td>" + resultElement.description+"</td>"+
+
+                        "</tr>")
+                }
+            }
+        )
+    }//end
+    retrieveHistory()
+
     //just to prevent a click
     // $("a").click(function (e) {
     //     e.preventDefault()
@@ -137,6 +160,7 @@ $(document).ready(function() {
         $('#calendar').evoCalendar('destroy');
         calendar_instance()
         retrievePatientMedicationRecord();
+        retrieveHistory()
         //alert("na refresh si calendar")
 
 

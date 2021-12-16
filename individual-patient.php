@@ -82,24 +82,6 @@ session_start();
                        }
                    }
                )
-               //get all vaccination/medication history then put into the table
-               $.post('php/patientProcesses/retrieveHistory.php').done(
-                   function (data) {//#patient-history-table
-                       let result = JSON.parse(data)
-
-                       for (const resultElement of result) {
-
-                          $("#patient-history-table").append("" +
-                              "<tr>" +
-                                  "<td>" + resultElement.name+"</td>"+
-                                  "<td>" + resultElement.type+"</td>"+
-                                  "<td>" + resultElement.date+"</td>"+
-                                  "<td>" + resultElement.description+"</td>"+
-
-                              "</tr>")
-                       }
-                   }
-               )
            })//document ready
 
        </script>

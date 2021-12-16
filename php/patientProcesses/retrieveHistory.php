@@ -28,5 +28,8 @@ while ($row  = mysqli_fetch_assoc($result)){
         "description"=>$row['description']
     );
 }
+usort($allHistory, function ($item1, $item2) {
+    return $item2['date'] <=> $item1['date'];
+});
 echo json_encode($allHistory);
 mysqli_close($con);
