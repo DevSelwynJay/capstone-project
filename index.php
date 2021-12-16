@@ -32,8 +32,8 @@ if(isset($_SESSION['email'])){
     <!--JS-->
       <!--Google sign in api-->
       <script src="https://accounts.google.com/gsi/client" async defer></script>
-      <!--JQuery API-->
-      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <!--Jquery-->
+      <script src="js/jquery-3.6.0.js"></script>
 
       <!--Bootstrap Script-->
       <!--
