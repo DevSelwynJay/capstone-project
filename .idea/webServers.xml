@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="2a883d87-0a79-437d-8e8c-585c9549de7c" name="xampp" url="http://localhost:80/capstone-project">
+      <webServer id="2a883d87-0a79-437d-8e8c-585c9549de7c" name="xampp (project level)" url="http://localhost:80/capstone-project">
         <fileTransfer mountedRoot="C:\xampp\htdocs\capstone-project" accessType="MOUNT" port="0" />
       </webServer>
     </option>

@@ -91,8 +91,8 @@
                        <div class="row-container">
                           <div class="col-md-12 col-lg-8">
                              <div class="reports__left-col">
-                                <div class="reports__left-col-container">
-                                    <table class="reports__table">
+                                <div class="reports__left-col-container" id="displayreport">
+                                    <table >
                                         <tbody>
                                            <tr>
                                               <th>Name</th>
@@ -136,6 +136,29 @@
            </div>
         </div>
      </section>
+
+    <script>
+        $(document).ready(function(){
+            displayMainReport();
+
+        })
+
+        function displayMainReport(){
+            var page = true;
+            $.ajax({
+                url: 'php/reportProcesses/DisplayMainReport.php',
+                type:'POST',
+                data:{
+                    page:page
+                },
+                success:function (data,status){
+                    $('#displayreport').html(data);
+                }
+            })
+        }
+
+
+    </script>
 <!--Drop down script-->
 <script>
     const dropdown = document.querySelector('#dropdown');
