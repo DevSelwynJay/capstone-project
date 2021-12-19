@@ -147,22 +147,26 @@
      </section>
     <script>
         $(document).ready(function (){
+            displayMinor();
             $('#minor-link').on('click',function (){
                 $('#senior-link').attr('class','');
                 $('#adult-link').attr('class','');
                 $('#minor-link').attr('class','active');
+                displayMinor();
 
             });
             $('#senior-link').on('click',function (){
                 $('#minor-link').attr('class','');
                 $('#adult-link').attr('class','');
                 $('#senior-link').attr('class','active');
+                displaySenior();
 
             });
             $('#adult-link').on('click',function (){
                 $('#senior-link').attr('class','');
                 $('#minor-link').attr('class','');
                 $('#adult-link').attr('class','active');
+                displayAdult();
 
             });
             $('#daily-link').on("click", function(){
@@ -179,9 +183,11 @@
                     console.log("dminor"+getminor);
                 }
                 else if(getadult=="active"){
+                    displayAdult();
                     console.log("dadult"+getadult);
                 }
                 else if(getsenior=="active"){
+                    displaySenior();
                     console.log("dsenior"+getsenior);
                 }
 
@@ -200,9 +206,11 @@
                     console.log("wminor"+getminor);
                 }
                 else if(getadult=="active"){
+                    displayAdult();
                     console.log("wadult"+getadult);
                 }
                 else if(getsenior=="active"){
+                    displaySenior();
                     console.log("wsenior"+getsenior);
                 }
             });
@@ -220,9 +228,11 @@
                     console.log("mminor"+getminor);
                 }
                 else if(getadult=="active"){
+                    displayAdult();
                     console.log("madult"+getadult);
                 }
                 else if(getsenior=="active"){
+                    displaySenior();
                     console.log("msenior"+getsenior);
                 }
             });
@@ -240,9 +250,11 @@
                     console.log("qminor"+getminor);
                 }
                 else if(getadult=="active"){
+                    displayAdult();
                     console.log("qadult"+getadult);
                 }
                 else if(getsenior=="active"){
+                    displaySenior();
                     console.log("qsenior"+getsenior);
                 }
             });
@@ -260,9 +272,11 @@
                     console.log("aminor"+getminor);
                 }
                 else if(getadult=="active"){
+                    displayAdult();
                     console.log("aadult"+getadult);
                 }
                 else if(getsenior=="active"){
+                    displaySenior();
                     console.log("asenior"+getsenior);
                 }
             })
@@ -307,7 +321,96 @@
                 }
             })
 
-        };
+        };//end of displayMinor
+        $(document).on("click",".pagination_linkminor",function (){
+            var page = $(this).attr("id");
+            displayMinor(page);
+        });
+
+        function displayAdult(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayAdultConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+
+        };//end of displayAdult
+        $(document).on("click",".pagination_linkadult",function (){
+            var page = $(this).attr("id");
+            displayMinor(page);
+        });
+
+        function displaySenior(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displaySeniorConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        }
 
 
     </script>

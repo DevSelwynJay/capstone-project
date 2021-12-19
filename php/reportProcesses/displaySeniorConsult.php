@@ -31,7 +31,7 @@ elseif($time == 'quarterly'){
 elseif ($time == 'annually'){
     $time = '1 year';
 }
-$patientqry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' and `date_created` > NOW()-interval ".$time." order by `date_created` asc limit $start_from,$rpp";
+$patientqry = "Select * from `walk_in_patient` where `patient_type` = 'Senior' and `date_created` > NOW()-interval ".$time." order by `date_created` asc limit $start_from,$rpp";
 $result = mysqli_query($con,$patientqry);
 if(mysqli_num_rows($result)>0){
     $patienttable .= '<table class="reports__individual-reports-table">
@@ -63,7 +63,7 @@ if(mysqli_num_rows($result)>0){
         <td>'.$date.'</td></tr>';
     }
     $patienttable .= '</tbody></table><br><div align="center">';
-    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' order by `date_created` asc";
+    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Senior' order by `date_created` asc";
     $page_result = mysqli_query($con, $page_qry);
     $total_records = mysqli_num_rows($page_result);
     $total_pages = ceil($total_records / $rpp);
@@ -72,7 +72,7 @@ if(mysqli_num_rows($result)>0){
     }
     else{
         for ($i = 1; $i <= $total_pages; $i++) {
-            $patienttable .= '<span class="pagination_linkminor" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span>';
+            $patienttable .= '<span class="pagination_linksenior" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span>';
         }
     }
 
