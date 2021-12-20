@@ -63,15 +63,15 @@
                     //alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
-                    $("#med-name").val(ui.item.label).trigger('focus')
-                    $("#med-type").val(ui.item.category)
+                    $("#inv-name").val(ui.item.label).trigger('focus')
+                    $("#inv-type").val(ui.item.category)
 
                     $("#sub-category-lbl").html(ui.item.category)//show label 'medicine/vaccine category'
                     $("#sub-category").val(ui.item.subcategory)
 
-                    $("#med-name-and-qty-lbl").html(' <span id="med-name-2">Medicine</span> currently has <span id="med-stock-2">500</span> stocks.')
-                    $("#med-name-2").html(ui.item.label)
-                    $("#med-stock-2").html(ui.item.stock_count)
+                    $("#inv-name-and-qty-lbl").html(' <span id="inv-name-2">Medicine</span> currently has <span id="inv-stock-2">500</span> stocks.')
+                    $("#inv-name-2").html(ui.item.label)
+                    $("#inv-stock-2").html(ui.item.stock_count)
 
                     //$( "#search-inv" ).val("")
                     return false;
