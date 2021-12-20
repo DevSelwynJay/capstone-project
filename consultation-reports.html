@@ -82,9 +82,9 @@
                             <h4>Consultation Reports</h4>
                            </div>
                            <ul class="reports-menu col-lg-9">
-                               <li><a href="" class="active">Minor</a></li>
-                               <li><a href="">Adult</a></li>
-                               <li><a href="">Senior Citizen</a></li>
+                               <li><a id="minor-link" class="active">Minor</a></li>
+                               <li><a id="adult-link" >Adult</a></li>
+                               <li><a id="senior-link" >Senior Citizen</a></li>
                            </ul>
                         </div>
                        <div class="row-container">
@@ -92,11 +92,11 @@
                              <div class="row-container">
                                  <div class="col-lg-12 reports_upper-col">
                                   <div class="reports_individual-report-links">
-                                    <a href="" class="active">Daily</a>
-                                    <a href="">Weekly</a>
-                                    <a href="">Monthly</a>
-                                    <a href="">Quarterly</a>
-                                    <a href="">Anually</a>
+                                      <a id="daily-link" class="active">Daily</a>
+                                      <a id="weekly-link" >Weekly</a>
+                                      <a id="monthly-link">Monthly</a>
+                                      <a id="quarterly-link">Quarterly</a>
+                                      <a id="anually-link">Annually</a>
                                   </div>
                                  </div>
                                  <div class="col-lg-12 reports_lower-col">
@@ -109,7 +109,7 @@
                              </div>
                          </div>
                          <div class="col-lg-9 table-reports">
-                           <div class="reports__individual-container">
+                           <div class="reports__individual-container" id="tablediv">
                             <table class="reports__individual-reports-table">
                                 <tbody>
                                    <tr>
@@ -145,6 +145,275 @@
            </div>
         </div>
      </section>
+    <script>
+        $(document).ready(function (){
+            displayMinor();
+            $('#minor-link').on('click',function (){
+                $('#senior-link').attr('class','');
+                $('#adult-link').attr('class','');
+                $('#minor-link').attr('class','active');
+                displayMinor();
+
+            });
+            $('#senior-link').on('click',function (){
+                $('#minor-link').attr('class','');
+                $('#adult-link').attr('class','');
+                $('#senior-link').attr('class','active');
+                displaySenior();
+
+            });
+            $('#adult-link').on('click',function (){
+                $('#senior-link').attr('class','');
+                $('#minor-link').attr('class','');
+                $('#adult-link').attr('class','active');
+                displayAdult();
+
+            });
+            $('#daily-link').on("click", function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+                if(getminor=="active"){
+                    displayMinor();
+                    console.log("dminor"+getminor);
+                }
+                else if(getadult=="active"){
+                    displayAdult();
+                    console.log("dadult"+getadult);
+                }
+                else if(getsenior=="active"){
+                    displaySenior();
+                    console.log("dsenior"+getsenior);
+                }
+
+            });
+            $('#weekly-link').on('click',function (){
+                $('#weekly-link').attr('class','active');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+                if(getminor=="active"){
+                    displayMinor();
+                    console.log("wminor"+getminor);
+                }
+                else if(getadult=="active"){
+                    displayAdult();
+                    console.log("wadult"+getadult);
+                }
+                else if(getsenior=="active"){
+                    displaySenior();
+                    console.log("wsenior"+getsenior);
+                }
+            });
+            $('#monthly-link').on('click',function (){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','active');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+                if(getminor=="active"){
+                    displayMinor();
+                    console.log("mminor"+getminor);
+                }
+                else if(getadult=="active"){
+                    displayAdult();
+                    console.log("madult"+getadult);
+                }
+                else if(getsenior=="active"){
+                    displaySenior();
+                    console.log("msenior"+getsenior);
+                }
+            });
+            $('#quarterly-link').on('click',function (){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','active');
+                $('#anually-link').attr('class','');
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+                if(getminor=="active"){
+                    displayMinor();
+                    console.log("qminor"+getminor);
+                }
+                else if(getadult=="active"){
+                    displayAdult();
+                    console.log("qadult"+getadult);
+                }
+                else if(getsenior=="active"){
+                    displaySenior();
+                    console.log("qsenior"+getsenior);
+                }
+            });
+            $('#anually-link').on('click',function (){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','active');
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+                if(getminor=="active"){
+                    displayMinor();
+                    console.log("aminor"+getminor);
+                }
+                else if(getadult=="active"){
+                    displayAdult();
+                    console.log("aadult"+getadult);
+                }
+                else if(getsenior=="active"){
+                    displaySenior();
+                    console.log("asenior"+getsenior);
+                }
+            })
+        });
+
+        function displayMinor(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayMinorConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+
+        };//end of displayMinor
+        $(document).on("click",".pagination_linkminor",function (){
+            var page = $(this).attr("id");
+            displayMinor(page);
+        });
+
+        function displayAdult(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayAdultConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+
+        };//end of displayAdult
+        $(document).on("click",".pagination_linkadult",function (){
+            var page = $(this).attr("id");
+            displayMinor(page);
+        });
+
+        function displaySenior(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displaySeniorConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        }
+
+
+    </script>
 <!--Drop down script-->
 <script>
     const dropdown = document.querySelector('#dropdown');

@@ -6,6 +6,10 @@ $rpp = 5;
 $page = '';
 $medtable = '';
 $type = 'Add';
+$time = $_POST['interval'];
+
+
+
 if(isset($_POST['page'])){
     $page = $_POST['page'];
 }
@@ -13,7 +17,22 @@ else{
     $page = 1;
 }
 $start_from = ($page - 1)*$rpp;
-$medexpqry = "Select * from `medreport` where `type` = 'Add' order by `dateadded` asc limit $start_from,$rpp";
+if($time == 'daily'){
+    $time = '1 day';
+}
+elseif ($time == 'weekly'){
+    $time = '1 week';
+}
+elseif ($time == 'monthly'){
+    $time = '1 month';
+}
+elseif($time == 'quarterly'){
+    $time = '1 quarter';
+}
+elseif ($time == 'annually'){
+    $time = '1 year';
+}
+$medexpqry = "Select * from `medreport` where `type` = 'Add' and `dateadded` > NOW()- interval ".$time." order by `dateadded` asc limit $start_from,$rpp";
 $res = mysqli_query($con,$medexpqry);
 if(mysqli_num_rows($res)> 0) {
     $medtable .= '<table class="reports__individual-reports-table">
@@ -39,7 +58,7 @@ if(mysqli_num_rows($res)> 0) {
         <td>' . $category . '</td>
         <td>' . $stock . '</td>
         <td>' . $mfgdate . '</td>
-        <td>' . $expdate . '</td>';
+        <td>' . $expdate . '</td></tr>';
     }
     $medtable .= '</tbody></table><br><div align="center">';
     $page_query = "Select * from `medreport`  where `type` = 'Add' order by `dateadded` asc ";
@@ -56,7 +75,7 @@ if(mysqli_num_rows($res)> 0) {
     }
     echo $medtable;
 }else{
-    $medtable = "No Data Found";
+    $medtable = "<h1 style='color: black;'>No Data Found</h1>";
     echo $medtable;
 }
 

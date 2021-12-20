@@ -85,7 +85,7 @@
                                <li><a id="medicine-link" class="active">Medicine Released</a></li>
                                <li><a id="added-link">Added</a></li>
                                <li><a id="expired-link">Expired</a></li>
-                               <li><a id="update-link">Update</a></li>
+                               <li><a id="update-link">Updated</a></li>
                                <li><a id="vaccine-link">Vaccine Released</a></li>
                            </ul>
                         </div>
@@ -164,7 +164,7 @@
                 $('#expired-link').attr('class','active');
                 $('#vaccine-link').attr('class','');
                 $('#added-link').attr('class','');
-                displayExpTab()
+                displayExpTab();
             });
             $('#added-link').on("click", function(){
                 $('#medicine-link').attr('class','');
@@ -188,6 +188,26 @@
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                if(getadd=="active"){
+                    displayAddedTab()
+                }
+                else if(getupdate=="active"){
+                    displayUpdateTab();
+                }
+                else if(getexpired=="active"){
+                    displayExpTab();
+                }
+                else if($('#medicine-link').attr('class')=="active"){
+
+                }
+                else if($('#vaccine-link').attr('class')=="active"){
+
+                }
             });
             $('#weekly-link').on("click", function(){
                 $('#weekly-link').attr('class','active');
@@ -195,6 +215,26 @@
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                if(getadd=="active"){
+                    displayAddedTab()
+                }
+                else if(getupdate=="active"){
+                    displayUpdateTab();
+                }
+                else if(getexpired=="active"){
+                    displayExpTab();
+                }
+                else if($('#medicine-link').attr('class')=="active"){
+
+                }
+                else if($('#vaccine-link').attr('class')=="active"){
+
+                }
             });
             $('#monthly-link').on("click", function(){
                 $('#weekly-link').attr('class','');
@@ -202,6 +242,26 @@
                 $('#monthly-link').attr('class','active');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                if(getadd=="active"){
+                    displayAddedTab()
+                }
+                else if(getupdate=="active"){
+                    displayUpdateTab();
+                }
+                else if(getexpired=="active"){
+                    displayExpTab();
+                }
+                else if($('#medicine-link').attr('class')=="active"){
+
+                }
+                else if($('#vaccine-link').attr('class')=="active"){
+
+                }
             });
             $('#quarterly-link').on("click", function(){
                 $('#weekly-link').attr('class','');
@@ -209,6 +269,26 @@
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','active');
                 $('#anually-link').attr('class','');
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                if(getadd=="active"){
+                    displayAddedTab()
+                }
+                else if(getupdate=="active"){
+                    displayUpdateTab();
+                }
+                else if(getexpired=="active"){
+                    displayExpTab();
+                }
+                else if($('#medicine-link').attr('class')=="active"){
+
+                }
+                else if($('#vaccine-link').attr('class')=="active"){
+
+                }
             });
             $('#anually-link').on("click", function(){
                 $('#weekly-link').attr('class','');
@@ -216,6 +296,26 @@
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','active');
+                var getadd = $('#added-link').attr('class');
+                var getexpired = $('#expired-link').attr('class');
+                var getmedicine = $('#medicine-link').attr('class');
+                var getupdate = $('#update-link').attr('class');
+                var getvaccine = $('#vaccine-link').attr('class');
+                if(getadd=="active"){
+                    displayAddedTab()
+                }
+                else if(getupdate=="active"){
+                    displayUpdateTab();
+                }
+                else if(getexpired=="active"){
+                    displayExpTab();
+                }
+                else if($('#medicine-link').attr('class')=="active"){
+
+                }
+                else if($('#vaccine-link').attr('class')=="active"){
+
+                }
             });
             $('#pdf-link').on("click", function(){
                 var getadd = $('#added-link').attr('class');
@@ -371,11 +471,38 @@
 
 
         function displayExpTab(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
             $.ajax({
                 url: 'php/reportProcesses/displayExpTab.php',
                 type: 'POST',
                 data:{
-                    page:page
+                    page:page,
+                    interval:interval
                 },
                 success: function (data, status){
                     $('#tablediv').html(data);
@@ -387,11 +514,38 @@
             displayExpTab(page);
         });
         function displayAddedTab(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
             $.ajax({
                 url: 'php/reportProcesses/displayAddedTab.php',
                 type: 'POST',
                 data:{
-                    page:page
+                    page:page,
+                    interval:interval
                 },
                 success: function (data, status){
                     $('#tablediv').html(data);
@@ -403,11 +557,39 @@
             displayAddedTab(page);
         });
         function displayUpdateTab(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+
             $.ajax({
                 url: 'php/reportProcesses/displayUpdateTab.php',
                 type: 'POST',
                 data:{
-                    page:page
+                    page:page,
+                    interval:interval
                 },
                 success: function (data, status){
                     $('#tablediv').html(data);
