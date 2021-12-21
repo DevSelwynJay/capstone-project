@@ -153,6 +153,21 @@
                                          </style>
                                      </div>
                                      <div class="row">
+                                         <div class="col-sm-6 margin-top-2">
+                                             <p class="modal-p">Occupation</p>
+                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
+                                         </div>
+                                         <div class="col-sm-6 margin-top-2">
+                                             <p class="modal-p"><span style="color: red">*</span>Civil Status</p>
+                                             <select class="search-bar" type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
+                                                 <option>Single</option>
+                                                 <option>Married</option>
+                                                 <option>Divorced</option>
+                                                 <option>Widowed</option>
+                                             </select>
+                                         </div>
+                                     </div>
+                                     <div class="row">
                                          <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>Gender</p>
                                              <select class="search-bar" type="text" name="gender" placeholder="Gender" value="" data-toggle="tooltip" data-placement="top" title="Gender" data-container="body">
@@ -183,21 +198,9 @@
                                                  background: none !important;
                                              }
                                          </style>
-
-                                         <div class="col-sm-6 margin-top-2">
-                                             <p class="modal-p"><span style="color: red">*</span>Civil Status</p>
-                                             <select class="search-bar" type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
-                                                 <option>Single</option>
-                                                 <option>Married</option>
-                                                 <option>Divorced</option>
-                                                 <option>Widowed</option>
-                                             </select>
-                                         </div>
-                                     </div>
-                                     <div class="row">
                                          <div class="col-sm-2 margin-top-2">
                                              <p class="modal-p">Blood Type</p>
-                                             <input  class="search-bar" type="text"  name="blood-type" placeholder="x" id="blood-type" data-toggle="tooltip" data-placement="left" title="Blood Type" data-container="body" required />
+                                             <input  class="search-bar" type="text"  name="blood-type" placeholder="x" id="blood-type" data-toggle="tooltip" data-placement="left" title="Blood Type" data-container="body"  />
                                          </div>
                                          <div class="col-sm-2 margin-top-2">
                                              <p class="modal-p">Height</p>
@@ -207,10 +210,7 @@
                                              <p class="modal-p">Weight</p>
                                              <input class="search-bar" type="text"  name="weight" placeholder="x" id="weight" data-toggle="tooltip" data-placement="top" title="Weight" data-container="body"/>
                                          </div>
-                                         <div class="col-sm-6 margin-top-2">
-                                             <p class="modal-p">Occupation</p>
-                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
-                                         </div>
+
 
                                      </div>
                                      <div class="row">
