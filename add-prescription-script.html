@@ -69,6 +69,21 @@
                     $("#sub-category-lbl").html(ui.item.category)//show label 'medicine/vaccine category'
                     $("#sub-category").val(ui.item.subcategory)
 
+                    //to change attribute of add prescription button weather it is add vaccination or medication
+                    if(ui.item.category.toLowerCase()=="medicine"){
+                        $(".prescript-btn-class").prop('id','add-prescript-btn')
+                            console.log("med UI")
+                        $("#add-med-UI-cont").css('display','block')
+                        $("#add-vaccine-UI-cont").css('display','none')
+                    }
+                    else {
+                        $(".prescript-btn-class").prop('id','add-vaccine-btn')
+                        $("#add-med-UI-cont").css('display','none')
+                        $("#add-vaccine-UI-cont").css('display','block')
+                        console.log("vaccine UI")
+                    }
+
+
                     $("#inv-name-and-qty-lbl").html(' <span id="inv-name-2">Medicine</span> currently has <span id="inv-stock-2">500</span> stocks.')
                     $("#inv-name-2").html(ui.item.label)
                     $("#inv-stock-2").html(ui.item.stock_count)
