@@ -85,10 +85,12 @@
                   <div class="col-sm-12">
                      <div class="search-tab margin-top-2 row justify-content-sm-around">
                          <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
-                             <button class="modal-primary-button-2" style="margin-right: 1rem">
-                                 <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
-                                 Add Patient
-                             </button>
+                             <a href="add-patient-admin.php">
+                                 <button class="modal-primary-button-2" style="margin-right: 1rem">
+                                     <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
+                                     Add Patient
+                                 </button>
+                             </a>
                              <a href="pending-patient-acc.php">
                                  <button class="modal-primary-button">
                                      <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>

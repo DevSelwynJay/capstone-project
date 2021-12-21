@@ -309,7 +309,7 @@
 
         <p class="modal-p flex-box-row justify-content-center align-items-center">
             <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
-            Add this account to patient?
+            Accept this online account request?
         </p>
     </div>
 
