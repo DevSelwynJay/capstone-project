@@ -29,7 +29,12 @@
            $(document).ready(function () {
                $.post("php/patientSide/patientSession.php").done(function (data){
                    let result = JSON.parse(data)
-                    $("#patient-name").html(result.patient_name)
+                    $(".patient-name").html(result.patient_name)
+                    $("#age").html(result.age)
+                   $("#gender").html(result.gender)
+                   $("#bday").html(result.birthday)
+                   $("#contact").html(result.contact_no)
+                   $("#address").html(result.address)
                })
            })
        </script>
@@ -49,9 +54,10 @@
                             <a href="/"><i class="fas fa-user-circle"></i></a> 
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
                             <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                            <!--
                             <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                                <!--MOBILE MENU-->
+                               
                                 <div class="menu-mobile " id="menu">
                                    <ul>
                                     <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
@@ -61,6 +67,7 @@
                                     <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
                                    </ul>
                                 </div>
+                                 -->
                           
                             <!--DROPDOWN SETTINGS-->
                             <div class="drop-down-settings" id="dropdown">
@@ -84,7 +91,7 @@
                            <div class="greetings-container">
                               <div class="text">
                                 <div class="text-wrap">
-                                    <h1 class="title">Welcome Back, <span id="patient-name" style=" color: #0c6893;">Name!</span></h1>
+                                    <h1 class="title">Welcome Back, <span class="patient-name" style=" color: #0c6893;">Name!</span></h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nostrum
                                        totam omnis repudiandae ullam, dolor nemo dolores corporis quo delectus quam
                                        ut iste similique illo quod vero eveniet sapiente molestiae! 
@@ -102,6 +109,19 @@
                            <div class="calendar-container">
                                <h3>Calendar</h3>
                                <div id="calendar"></div>
+                                 <script>
+                                
+const events = document.querySelector('.calendar-events');
+const trigger = document.querySelector('.icon-button');//Event Listener
+trigger.addEventListener('click',function(){//Conditions
+if(events.classList.contains('open')){ // Close Mobile Menu
+   events.classList.remove('open');
+}
+else{ // Open Mobile Menu
+   events.classList.add('open');
+}});
+
+                                 </script>
                           </div>
                           
                            <div class="current-medication-container">
@@ -143,38 +163,30 @@
                            <div class="patient-details-container">
                               <div class="profile-image">
                                 <img src="img/jay.jpg" alt=""><br>
-                                <h2>SURNAME, First Name, Middle Name</h2>
+                                <h2 class="patient-name">SURNAME, First Name, Middle Name</h2>
                               </div>
-                             
+
                               <div class="details-table">
                                  <table class="det-table">
                                     <tr>
                                        <td>Age</td>
-                                       <td>XXy/o</td>
+                                       <td id="age">XXy/o</td>
                                     </tr>
                                     <tr>
                                        <td>Gender</td>
-                                       <td>Male</td>
+                                       <td id="gender">Male</td>
                                     </tr>
                                     <tr>
                                        <td>Birthday</td>
-                                       <td>MM/DD/YY</td>
+                                       <td id="bday">MM/DD/YY</td>
                                     </tr>
                                     <tr>
                                        <td>Phone Number</td>
-                                       <td>09123456789</td>
+                                       <td id="contact">09123456789</td>
                                     </tr>
                                     <tr>
-                                       <td>Street</td>
-                                       <td>Street</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Height</td>
-                                       <td>xxxcm</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Weight</td>
-                                       <td>xxkgs</td>
+                                       <td>Address</td>
+                                       <td id="address">Street</td>
                                     </tr>
                                  </table>
                               </div>
@@ -189,29 +201,7 @@
          </div>
       </section>
       <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
-      <script>
-         $(document).ready(function() {
-             //Calendar instance
-             $('#calendar').evoCalendar({
-                 'sidebarDisplayDefault': false,
-             })
-             $('#calendar').evoCalendar('addCalendarEvent', {
-                 id: 'kNybja6',
-                 name: 'Mom\'s Birthday',
-                 description: 'Lorem ipsum dolor sit..',
-                 date: 'December 25, 2021',
-                 type: 'birthday'
-             });
-             //just to prevent a click
-             $("a").click(function (e) {
-                 e.preventDefault()
-             })
-             //========ACTIONS===============//
-             $(".back-btn").click(function (){
-                 location.href="patient.php";
-             })
-
-         })//end of document ready
+      <script src="js/dashboard-patient.js">
       </script>
       <script>
         const dropdown = document.querySelector('#dropdown');
@@ -265,5 +255,6 @@
            mobileMenu.style.display = "block";
         });
      </script>
+     
    </body>
 </html>
