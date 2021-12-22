@@ -25,6 +25,14 @@
        <!--EVO Calendar Script-->
        <script src="js/evo-calendar.js"></script>
       <title>Dashboard Patient</title>
+       <script>
+           $(document).ready(function () {
+               $.post("php/patientSide/patientSession.php").done(function (data){
+                   let result = JSON.parse(data)
+                    $("#patient-name").html(result.patient_name)
+               })
+           })
+       </script>
    </head>
    <body>
       <section class="global">
@@ -64,7 +72,7 @@
                            <div class="greetings-container">
                               <div class="text">
                                 <div class="text-wrap">
-                                    <h1 class="title">Welcome Back, Name!</h1>
+                                    <h1 class="title">Welcome Back, <span id="patient-name" style=" color: #0c6893;">Name!</span></h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nostrum
                                        totam omnis repudiandae ullam, dolor nemo dolores corporis quo delectus quam
                                        ut iste similique illo quod vero eveniet sapiente molestiae! 
