@@ -49,7 +49,7 @@
                                   <li id="logout"><a>Logout</a></li>
                                    <script>
                                        $("#logout").click(function () {
-                                           location.href = "index.php";
+                                           location.href = "php/sessionDestroy.php";
                                        })
                                    </script>
                                </ul>

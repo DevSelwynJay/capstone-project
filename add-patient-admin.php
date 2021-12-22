@@ -183,10 +183,6 @@
 
                                      <div class="row">
                                          <div class="col-sm-6 margin-top-2">
-                                             <p class="modal-p">Occupation</p>
-                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
-                                         </div>
-                                         <div class="col-sm-6 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>Civil Status</p>
                                              <select class="search-bar" type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
                                                  <option>Single</option>
@@ -194,6 +190,10 @@
                                                  <option>Divorced</option>
                                                  <option>Widowed</option>
                                              </select>
+                                         </div>
+                                         <div class="col-sm-6 margin-top-2">
+                                             <p class="modal-p">Occupation</p>
+                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
                                          </div>
                                      </div>
                                      <div class="row">
@@ -402,7 +402,7 @@ Closedropdown.addEventListener('click',function(){
               </a>
               <script>
                   $("#pop-up-success-ok-btn").on('click',function () {
-                      location.reload()
+                      location.href = 'patient.php'
                   })
               </script>
           </div>
