@@ -29,7 +29,12 @@
            $(document).ready(function () {
                $.post("php/patientSide/patientSession.php").done(function (data){
                    let result = JSON.parse(data)
-                    $("#patient-name").html(result.patient_name)
+                    $(".patient-name").html(result.patient_name)
+                    $("#age").html(result.age)
+                   $("#gender").html(result.gender)
+                   $("#bday").html(result.birthday)
+                   $("#contact").html(result.contact_no)
+                   $("#address").html(result.address)
                })
            })
        </script>
@@ -86,7 +91,7 @@
                            <div class="greetings-container">
                               <div class="text">
                                 <div class="text-wrap">
-                                    <h1 class="title">Welcome Back, <span id="patient-name" style=" color: #0c6893;">Name!</span></h1>
+                                    <h1 class="title">Welcome Back, <span class="patient-name" style=" color: #0c6893;">Name!</span></h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nostrum
                                        totam omnis repudiandae ullam, dolor nemo dolores corporis quo delectus quam
                                        ut iste similique illo quod vero eveniet sapiente molestiae! 
@@ -158,38 +163,30 @@ else{ // Open Mobile Menu
                            <div class="patient-details-container">
                               <div class="profile-image">
                                 <img src="img/jay.jpg" alt=""><br>
-                                <h2>SURNAME, First Name, Middle Name</h2>
+                                <h2 class="patient-name">SURNAME, First Name, Middle Name</h2>
                               </div>
-                             
+
                               <div class="details-table">
                                  <table class="det-table">
                                     <tr>
                                        <td>Age</td>
-                                       <td>XXy/o</td>
+                                       <td id="age">XXy/o</td>
                                     </tr>
                                     <tr>
                                        <td>Gender</td>
-                                       <td>Male</td>
+                                       <td id="gender">Male</td>
                                     </tr>
                                     <tr>
                                        <td>Birthday</td>
-                                       <td>MM/DD/YY</td>
+                                       <td id="bday">MM/DD/YY</td>
                                     </tr>
                                     <tr>
                                        <td>Phone Number</td>
-                                       <td>09123456789</td>
+                                       <td id="contact">09123456789</td>
                                     </tr>
                                     <tr>
-                                       <td>Street</td>
-                                       <td>Street</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Height</td>
-                                       <td>xxxcm</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Weight</td>
-                                       <td>xxkgs</td>
+                                       <td>Address</td>
+                                       <td id="address">Street</td>
                                     </tr>
                                  </table>
                               </div>
