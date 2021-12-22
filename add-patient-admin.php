@@ -21,15 +21,25 @@
        <!--Jquery UI css and js-->
        <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
        <script src="jquery-ui/jquery-ui.js"></script>
+       <!-- jQuery Modal-->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/scrollbar_loading.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
        <!--Get admin info from session-->
        <script>
-           $.post('php/admin_session.php').done(
-               function (data) {
-                   let result = JSON.parse(data)
-                   $("#name-sidebar").html(result.admin_name)
-               }
-           )
+           $(document).ready(function () {
+               $.post('php/admin_session.php').done(
+                   function (data) {
+                       let result = JSON.parse(data)
+                       $("#name-sidebar").html(result.admin_name)
+                   }
+               )
+           })
        </script>
+       <script src="js/add-patient-admin.js"></script>
        <link rel="stylesheet" href="scss/modal.css"/>
    </head>
    <body>
@@ -104,7 +114,7 @@
                                  <div class="">
 
                                      <div class="row">
-                                         <div class="col-sm-4 margin-top-2">
+                                         <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>First Name</p>
                                              <input class="search-bar" type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/>
                                          </div>
@@ -112,36 +122,36 @@
                                              <p class="modal-p"><span style="color: red">*</span>Middle Name</p>
                                              <input class="search-bar" type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" required/>
                                          </div>
-                                         <div class="col-sm-4 margin-top-2">
+                                         <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>Last Name</p>
                                              <input  class="search-bar"type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" required/>
                                          </div>
-                                         <div class="col-sm-1 margin-top-2">
+                                         <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p">Suffix</p>
                                              <input  class="search-bar"type="text" name="suffix" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/>
                                          </div>
-                                         <div class="col-sm-12 margin-top-2">
-                                             <p class="modal-p" style="text-align:  center!important;margin-bottom: 0.3rem!important;"><span style="color: red">*</span>Patient Type</p>
-                                             <div class="flex-box-row justify-content-around" style="padding-top: 0.5rem;border-top: 1px solid var(--light-grey)">
+                                         <div class="col-sm-6 margin-top-2">
+                                             <p class="modal-p" style="text-align:  start!important;margin-bottom: 0.3rem!important;"><span style="color: red">*</span>Patient Type</p>
+                                             <div id="radio-button" class="row flex-box-row justify-content-center">
                                                  <div class="flex-box-row align-content-center">
-                                                     <p class="modal-p-2" style="margin-right: 0.2rem!important;">Infant</p>
-                                                     <input type="radio" name="patient-type" required>
+                                                     <p class="modal-p-2">Infant</p>
+                                                     <input type="radio" name="patient-type" value="Infant" required>
                                                  </div>
                                                  <div class="flex-box-row align-content-center">
-                                                     <p class="modal-p-2" style="margin-right: 0.2rem!important;">Minor</p>
-                                                     <input type="radio" name="patient-type" required>
+                                                     <p class="modal-p-2">Minor</p>
+                                                     <input type="radio" name="patient-type" value="Minor" required>
                                                  </div>
                                                  <div class="flex-box-row align-content-center">
-                                                     <p class="modal-p-2" style="margin-right: 0.2rem!important;">Adult</p>
-                                                     <input type="radio" name="patient-type" required>
+                                                     <p class="modal-p-2">Adult</p>
+                                                     <input type="radio" name="patient-type" value="Adult" required>
                                                  </div>
                                                  <div class="flex-box-row align-content-center">
-                                                     <p class="modal-p-2" style="margin-right: 0.2rem!important;">Pregnant</p>
-                                                     <input type="radio" name="patient-type" required>
+                                                     <p class="modal-p-2" >Pregnant</p>
+                                                     <input type="radio" name="patient-type" value="Pregnant" required>
                                                  </div>
                                                  <div class="flex-box-row align-content-center">
-                                                     <p class="modal-p-2" style="margin-right: 0.2rem!important;">PWD</p>
-                                                     <input type="radio" name="patient-type" required>
+                                                     <p class="modal-p-2" >PWD</p>
+                                                     <input type="radio" name="patient-type" value="PWD" required>
                                                  </div>
                                              </div>
                                          </div>
@@ -150,8 +160,27 @@
                                                  max-width: 1rem;
                                                  max-height: 1rem;
                                              }
+                                             #radio-button div{
+                                                 margin: 0.3rem!important;
+                                             }
+                                             #radio-button div p{
+                                                 margin-right: 0.3rem !important;
+                                             }
                                          </style>
+                                         <div class="col-sm-2 margin-top-2">
+                                             <p class="modal-p">Blood Type</p>
+                                             <input  class="search-bar" type="text"  name="blood-type" placeholder="x" id="blood-type" data-toggle="tooltip" data-placement="left" title="Blood Type" data-container="body"  />
+                                         </div>
+                                         <div class="col-sm-2 margin-top-2">
+                                             <p class="modal-p">Height</p>
+                                             <input class="search-bar" type="text"  name="height" placeholder="x" id="height" data-toggle="tooltip" data-placement="top" title="Height" data-container="body"/>
+                                         </div>
+                                         <div class="col-sm-2 margin-top-2">
+                                             <p class="modal-p">Weight</p>
+                                             <input class="search-bar" type="text"  name="weight" placeholder="x" id="weight" data-toggle="tooltip" data-placement="top" title="Weight" data-container="body"/>
+                                         </div>
                                      </div>
+
                                      <div class="row">
                                          <div class="col-sm-6 margin-top-2">
                                              <p class="modal-p">Occupation</p>
@@ -198,18 +227,7 @@
                                                  background: none !important;
                                              }
                                          </style>
-                                         <div class="col-sm-2 margin-top-2">
-                                             <p class="modal-p">Blood Type</p>
-                                             <input  class="search-bar" type="text"  name="blood-type" placeholder="x" id="blood-type" data-toggle="tooltip" data-placement="left" title="Blood Type" data-container="body"  />
-                                         </div>
-                                         <div class="col-sm-2 margin-top-2">
-                                             <p class="modal-p">Height</p>
-                                             <input class="search-bar" type="text"  name="height" placeholder="x" id="height" data-toggle="tooltip" data-placement="top" title="Height" data-container="body"/>
-                                         </div>
-                                         <div class="col-sm-2 margin-top-2">
-                                             <p class="modal-p">Weight</p>
-                                             <input class="search-bar" type="text"  name="weight" placeholder="x" id="weight" data-toggle="tooltip" data-placement="top" title="Weight" data-container="body"/>
-                                         </div>
+
 
 
                                      </div>
@@ -218,7 +236,6 @@
                                          <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>Purok</p>
                                              <select class="search-bar" data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body" required>
-                                                 <option value="" disabled selected>Purok</option>
                                                  <?php
                                                  for($a=1;$a<=7;$a++){
                                                      echo "<option>$a</option>";
@@ -227,7 +244,7 @@
                                              </select>
                                          </div>
                                          <div class="col-sm-3 margin-top-2">
-                                             <p class="modal-p"><span style="color: red">*</span>House #</p>
+                                             <p class="modal-p">House #</p>
                                              <input class="search-bar" type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/>
                                          </div>
                                          <div class="col-sm-6 margin-top-2">
@@ -246,7 +263,7 @@
                                          </div>
                                      </div>
                                      <div style="display: flex;justify-content: center">
-                                         <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
+                                         <button class="primary-btn" id="trigger-add-patient-modal" type="submit" style="width: 100%">Register</button>
                                      </div>
 
                                  </div>
@@ -331,5 +348,64 @@ Closedropdown.addEventListener('click',function(){
 });//end of document ready
 </script>
 
+      <!--Modal for loading-->
+      <div id="pop-up-loading" class="modal">
+          <div style="display: flex;align-items: center;justify-content: center">
+              <div class="loader"></div>
+              <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                  Retrieving Info...
+              </p>
+          </div>
+      </div>
+      <!--modal for confirm-->
+      <div id="pop-up-confirm-add-patient" class="modal">
+          <div class="flex-box-row justify-content-center align-items-center">
+
+              <p class="modal-p flex-box-row justify-content-center align-items-center">
+                  <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+                  Add this patient account?
+              </p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-confirm-add-patient" rel="modal:close">
+                  <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+              </a>
+              <button class="modal-primary-button" id="final-confirm-add-patient-btn" style="margin-left: 0.5rem">Add</button>
+          </div>
+      </div>
+
+      <!--Modal for error-->
+      <div class="modal" id="pop-up-error">
+          <div class="flex-box-row justify-content-center align-items-center">
+              <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
+              <p class="modal-p" id="pop-up-error-message">Please fill all the required fields!</p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-success" rel="modal:close">
+                  <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
+              </a>
+          </div>
+      </div>
+
+      <!--Modal for success-->
+      <div class="modal" id="pop-up-success">
+          <div class="flex-box-row justify-content-center align-items-center">
+              <img class="modal-header-icon" src="img/check.png">
+              <p class="modal-p" id="pop-up-success-message">Patient successfully added</p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-success" rel="modal:close">
+                  <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+              </a>
+              <script>
+                  $("#pop-up-success-ok-btn").on('click',function () {
+                      location.reload()
+                  })
+              </script>
+          </div>
+      </div>
    </body>
 </html>
