@@ -186,29 +186,7 @@
          </div>
       </section>
       <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
-      <script>
-         $(document).ready(function() {
-             //Calendar instance
-             $('#calendar').evoCalendar({
-                 'sidebarDisplayDefault': false,
-             })
-             $('#calendar').evoCalendar('addCalendarEvent', {
-                 id: 'kNybja6',
-                 name: 'Mom\'s Birthday',
-                 description: 'Lorem ipsum dolor sit..',
-                 date: 'December 25, 2021',
-                 type: 'birthday'
-             });
-             //just to prevent a click
-             $("a").click(function (e) {
-                 e.preventDefault()
-             })
-             //========ACTIONS===============//
-             $(".back-btn").click(function (){
-                 location.href="patient.php";
-             })
-
-         })//end of document ready
+      <script src="js/dashboard-patient.js">
       </script>
       <script>
         const dropdown = document.querySelector('#dropdown');
