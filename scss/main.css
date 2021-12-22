@@ -2145,6 +2145,12 @@ td:nth-child(1) {
   width: 50%;
 }
 
+@media (max-width: 650px) {
+  .menu-mobile {
+    width: 70%;
+  }
+}
+
 .menu-mobile ul {
   padding: 2rem;
   width: 100%;
