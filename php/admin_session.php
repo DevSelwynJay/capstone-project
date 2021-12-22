@@ -2,7 +2,7 @@
 session_start();
 $con = null;
 require 'DB_Connect.php';
-if(!isset($_SESSION['email'])){
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     echo json_encode(array(
         "admin_name"=>"no logged admin"
     ));
