@@ -54,9 +54,10 @@
                             <a href="/"><i class="fas fa-user-circle"></i></a> 
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
                             <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                            <!--
                             <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                                <!--MOBILE MENU-->
+                               
                                 <div class="menu-mobile " id="menu">
                                    <ul>
                                     <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
@@ -66,6 +67,7 @@
                                     <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
                                    </ul>
                                 </div>
+                                 -->
                           
                             <!--DROPDOWN SETTINGS-->
                             <div class="drop-down-settings" id="dropdown">
@@ -107,6 +109,19 @@
                            <div class="calendar-container">
                                <h3>Calendar</h3>
                                <div id="calendar"></div>
+                                 <script>
+                                
+const events = document.querySelector('.calendar-events');
+const trigger = document.querySelector('.icon-button');//Event Listener
+trigger.addEventListener('click',function(){//Conditions
+if(events.classList.contains('open')){ // Close Mobile Menu
+   events.classList.remove('open');
+}
+else{ // Open Mobile Menu
+   events.classList.add('open');
+}});
+
+                                 </script>
                           </div>
                           
                            <div class="current-medication-container">
@@ -240,5 +255,6 @@
            mobileMenu.style.display = "block";
         });
      </script>
+     
    </body>
 </html>

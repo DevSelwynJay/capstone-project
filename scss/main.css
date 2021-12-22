@@ -1902,6 +1902,26 @@ tr:nth-child(even) {
   margin-bottom: 0.5rem;
 }
 
+@media (max-width: 520px) {
+  .current-medication-container table tbody {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .current-medication-container table th {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .calendar-container {
   background-color: var(--light-grey);
   padding: 1rem;
