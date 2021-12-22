@@ -24,7 +24,7 @@ session_start();
            }
        </style>
        <!--Custom CSS-->
-      <link rel="stylesheet" href="scss/style.css">
+       <link rel="stylesheet" href="scss/main.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.css">
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
        <!--Custom Modal Design-->
@@ -130,11 +130,16 @@ session_start();
                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                           <!--MOBILE MENU-->
-                           <div class="menu-mobile " id="menu">
-                              <ul>
-                              </ul>
-                           </div>
+                                <!--MOBILE MENU-->
+                                <div class="menu-mobile " id="menu">
+                                   <ul>
+                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                   </ul>
+                                </div>
                            <!--DROPDOWN SETTINGS-->
                            <div class="drop-down-settings" id="dropdown">
                               <ul>

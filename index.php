@@ -21,7 +21,7 @@ if(isset($_SESSION['email'])){
     <!--CSS Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!--CSS Styling-->
-    <link rel="stylesheet" href="scss/style.css"/>
+    <link rel="stylesheet" href="scss/main.css">
       <!--Font Awesome-->
       <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
       <!-- Font Family Poppins -->
