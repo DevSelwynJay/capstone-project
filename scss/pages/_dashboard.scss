@@ -59,6 +59,20 @@
     h3 {
       margin-bottom: 0.5rem;
     }
+
+    table{
+      tbody{
+        @media (max-width: 520px) {
+          display: flex !important;
+        }
+      }
+      th{
+        @media (max-width: 520px) {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
   }
   .calendar-container {
     background-color: var(--light-grey);
@@ -69,6 +83,7 @@
     h3 {
       margin-bottom: 0.5rem;
     }
+
   
     .calendar-sidebar {
       background-color: var(--primary-color) !important;
