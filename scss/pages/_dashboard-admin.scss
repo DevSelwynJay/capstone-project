@@ -1,6 +1,13 @@
 .dashboard-admin-content{
     padding: 0 4rem;
     color: black;
+
+    @media(max-width: 1200px){
+        padding: 1rem 4rem !important;
+    }
+    @media(max-width: 1025px){
+        padding: 1rem 1rem !important;
+    }
 }
 
 .admin-upper{
@@ -10,12 +17,20 @@
     gap: 1.5rem;
     padding: 2rem 3rem;
 
+    @media(max-width: 1025px){
+        flex-direction: column;
+    }
+
 
     .upper-left{
         flex: 0 0 350px;
         display: flex;
         flex-wrap: wrap;
         gap: 1.5rem;
+
+        @media(max-width: 1025px){
+            order: 2;
+         }
 
         .stats-box{
             flex: 1 0 calc(100% / 12 * 4);
@@ -42,6 +57,10 @@
         flex: 1 0 calc(100% / 12 * 6);
         display: flex;
         gap: 1rem;
+
+        @media(max-width: 1025px){
+           order: 1;
+        }
 
 
         .stats-big-box{
@@ -76,11 +95,22 @@
     margin: 30px 0 30px 0;
     display: flex;
     gap: 5%;
+
+    @media(max-width: 1025px){
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     .patient-list-container{
         background-color: var(--light-grey);
         width: 45%;
         padding: 50px;
         border-radius: .4rem;
+
+        @media(max-width: 1025px){
+            width: 100%;
+            order: 2;
+        }
 
         p:nth-child(1){
             font-size: 2em;
@@ -88,6 +118,7 @@
             text-transform: uppercase;
         }
     }
+
     .patient-list{
         display: flex;
         gap: 80px;
@@ -99,5 +130,15 @@
             border-radius: 50%;
         }
        
+    }
+
+    .vaccine-graph-container{
+        @media(max-width: 1025px){
+            display: grid;
+            place-items: center;
+            background-color: var(--light-grey);
+            padding: 3rem 0;
+            border-radius: .4rem;
+        }
     }
 }
