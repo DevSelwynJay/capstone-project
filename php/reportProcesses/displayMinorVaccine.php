@@ -5,7 +5,6 @@ require '../DB_Connect.php';
 $rpp = 5;
 $page = '';
 $patienttable = '';
-
 $time = $_POST['interval'];
 
 
@@ -32,14 +31,15 @@ elseif($time == 'quarterly'){
 elseif ($time == 'annually'){
     $time = '1 year';
 }
-$patientqry = "Select * from `medication_record` where `patient_type` = 'Adult' and `date_given` > NOW()-interval ".$time." order by `date_given` asc limit $start_from,$rpp";
+
+$patientqry = "Select * from `vaccination_record` where `patient_type` = 'Minor' and `date_given` > NOW()-interval ".$time." ";
 $result = mysqli_query($con,$patientqry);
+
 if(mysqli_num_rows($result)>0){
     $patienttable .= '<table class="reports__individual-reports-table">
                                 <tbody>
                                    <tr>
                                       <th>Name</th>
-                                      
                                       <th>Address</th>
                                       <th>Gender</th>
                                       <th>Date of Consultation</th>
@@ -69,9 +69,12 @@ if(mysqli_num_rows($result)>0){
             }
 
         }
+
+
+
     }
     $patienttable .= '</tbody></table><br><div align="center">';
-    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Adult' order by `date_created` asc";
+    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' order by `date_created` asc";
     $page_result = mysqli_query($con, $page_qry);
     $total_records = mysqli_num_rows($page_result);
     $total_pages = ceil($total_records / $rpp);
@@ -80,7 +83,7 @@ if(mysqli_num_rows($result)>0){
     }
     else{
         for ($i = 1; $i <= $total_pages; $i++) {
-            $patienttable .= '<span class="pagination_linkadult" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span>';
+            $patienttable .= '<span class="pagination_linkminor" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span>';
         }
     }
 

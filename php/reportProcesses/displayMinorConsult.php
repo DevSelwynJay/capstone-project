@@ -31,36 +31,45 @@ elseif($time == 'quarterly'){
 elseif ($time == 'annually'){
     $time = '1 year';
 }
-$patientqry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' and `date_created` > NOW()-interval ".$time." order by `date_created` asc limit $start_from,$rpp";
+$patientqry = "Select * from `medication_record` where `patient_type` = 'Minor' and `date_given` > NOW()-interval ".$time." ";
 $result = mysqli_query($con,$patientqry);
 if(mysqli_num_rows($result)>0){
     $patienttable .= '<table class="reports__individual-reports-table">
                                 <tbody>
                                    <tr>
                                       <th>Name</th>
-                                      
                                       <th>Address</th>
                                       <th>Gender</th>
                                       <th>Date of Consultation</th>
                                    </tr>';
     while ($row = mysqli_fetch_assoc($result)){
-        $lname = $row['last_name'];
-        $fname = $row['first_name'];
-        $mname = $row['middle_name'];
-        $bday = $row['birthday'];
-        $purok = $row['purok'];
-        $house_no = $row['house_no'];
-        $address = $row['address'];
-        $gender = $row['gender'];
-        $date = $row['date_created'];
+        $id = $row['patient_id'];
+        $date = $row['date_given'];
+        $patientqry2 = 'Select * from `walk_in_patient` where `id` = "'.$id.'" ';
+        $result2 = mysqli_query($con,$patientqry2);
+        if(mysqli_num_rows($result)>0) {
+            while ($row = mysqli_fetch_assoc($result2)) {
+                $lname = $row['last_name'];
+                $fname = $row['first_name'];
+                $mname = $row['middle_name'];
+                $bday = $row['birthday'];
+                $purok = $row['purok'];
+                $house_no = $row['house_no'];
+                $address = $row['address'];
+                $gender = $row['gender'];
 
-
-        $patienttable .='<tr>
-        <td>'.$fname.' '.$mname.' '.$lname.'</td>
+                $patienttable .= '<tr>
+        <td>' . $fname . ' ' . $mname . ' ' . $lname . '</td>
         
-        <td>Purok '.$purok.' House No.'.$house_no.' '.$address.'</td>
-        <td>'.$gender.'</td>
-        <td>'.$date.'</td></tr>';
+        <td>Purok ' . $purok . ' House No.' . $house_no . ' ' . $address . '</td>
+        <td>' . $gender . '</td>
+        <td>' . $date . '</td></tr>';
+            }
+
+        }
+
+
+
     }
     $patienttable .= '</tbody></table><br><div align="center">';
     $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' order by `date_created` asc";
