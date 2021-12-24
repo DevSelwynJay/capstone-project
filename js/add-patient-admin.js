@@ -5,7 +5,7 @@ $(document).ready(function () {
         e.preventDefault()
 
 
-        let patientType = $('[name="patient-type"]').val()
+        let patientType = $('[name="patient-type"]:checked').val()
         let fname = $('[name="fname"]').val()
         let mname = $('[name="mname"]').val()
         let lname = $('[name="lname"]').val()

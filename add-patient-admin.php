@@ -166,6 +166,13 @@
                                                      <input type="radio" name="patient-type" value="PWD" required>
                                                  </div>
                                              </div>
+                                             <script>
+                                                 // //pang debug lang ng radio button
+                                                 // $("[type='radio']").click(function () {
+                                                 //     alert( $('[name="patient-type"]:checked').val())
+                                                 // })
+
+                                             </script>
                                          </div>
                                          <style>
                                              [type="radio"]{

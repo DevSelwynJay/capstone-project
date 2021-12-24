@@ -10,6 +10,12 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 }
 $email = $_SESSION['email'];
 $res = mysqli_query($con,"SELECT*FROM admin where email = '$email' ");
+if(mysqli_num_rows($res)<=0){
+    echo json_encode(array(
+        "admin_name"=>"invalid admin email"
+    ));
+    exit();
+}
 if($res){
     if($row = mysqli_fetch_assoc($res)){
 

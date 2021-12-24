@@ -71,11 +71,11 @@ session_start();
                            $("#modal-patient-type").html("Type: "+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)
                            $("#age").html(arrayOfObjectElement.age)
-                           $("#address").html("Purok "+arrayOfObjectElement.purok +" #"+arrayOfObjectElement.address)
+                           $("#address").html("Purok "+arrayOfObjectElement.purok +", "+ arrayOfObjectElement.house_no +" "+arrayOfObjectElement.address)
                            $("#occupation").html(arrayOfObjectElement.occupation)
                            $("#blood-type").html(arrayOfObjectElement.blood_type)
-                           $("#height").html(arrayOfObjectElement.height+" "+"cm")
-                           $("#weight").html(arrayOfObjectElement.weight+" "+"kg")
+                           $("#height").html(arrayOfObjectElement.height)
+                           $("#weight").html(arrayOfObjectElement.weight)
 
                            //ung nasa hidden input sa modal
                            $("#purok").val(arrayOfObjectElement.purok)
