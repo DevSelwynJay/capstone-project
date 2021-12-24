@@ -103,6 +103,7 @@
                        <div class="row-container">
                           <div class="col-md-12 col-lg-8">
                              <div class="reports__left-col">
+                                 <h2 style="color:var(--third-color);font-weight: bold">Today&#39;s Patients</h2>
                                 <div class="reports__left-col-container" id="displayreport">
                                     <table >
                                         <tbody>

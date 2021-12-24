@@ -1,7 +1,7 @@
 <?php
 $con = null;
 require ('../pdflib/fpdf.php');
-require '../DB_Connect.php';
+require ('../DB_Connect.php');
 
 
 if(isset($_GET['daily'])){
@@ -30,46 +30,34 @@ $record = mysqli_query($con,$pdfquery);
 class PDF extends FPDF{
     function Header()
     {
-        $this->Image('../../img/HIS logo blue.png',10,6,30);
+        $this->Image('HIS logo blue.png',10,6,50);
         $this->SetFont('Arial','B',15);
         $this->Cell(80);
-        $this->Cell(30,10,'Sto. Rosario Rural Health Center');
-        $this->Ln(20);
+        $this->Cell(30,15,'Sto. Rosario Rural Health Center');
+        $this->Ln(37);
     }
-    function Footer()
-    {
-        // Position at 1.5 cm from bottom
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial','I',8);
-        // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-    }
+
 
 }
 
-$pdf = new FPDF('p');
+$pdf = new PDF('p');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
 
-
-$pdf->Cell(35,10,"Medicine ID",1,0,'C');
-$pdf->Cell(50,10,"Medicine Name",1,0,'C');
-$pdf->Cell(50,10,"Medicine Category",1,0,'C');
-$pdf->Cell(50,10,"Medicine Stocks",1,0,'C');
-$pdf->Cell(50,10,"Medicine MFG-Date",1,0,'C');
-$pdf->Cell(50,10,"Medicine Exp-Date",1,1,'C');
+$pdf->Text(10,40,"Medicine Reports (".$type.")");
+$pdf->Cell(35,10,"Medicine ID",0,0,'C');
+$pdf->Cell(50,10,"Medicine Name",0,0,'C');
+$pdf->Cell(0,10,"Medicine Description",0,1,'C');
 
 
 $pdf->SetFont('Arial','',14);
 while($row = mysqli_fetch_assoc($record)){
-    $pdf->Cell(35,10,$row['id'],1,0,'C');
-    $pdf->Cell(50,10,$row['name'],1,0,'C');
-    $pdf->Cell(50,10,$row['category'],1,0,'C');
-    $pdf->Cell(50,10,$row['stock'],1,0,'C');
-    $pdf->Cell(50,10,$row['mfgdate'],1,0,'C');
-    $pdf->Cell(50,10,$row['expdate'],1,1,'C');
+    $pdf->Cell(35,10,$row['id'],"T",0,'C');
+    $pdf->Cell(50,10,$row['name']." (".$row['dosage'].")","T",0,'C');
+    $pdf->MultiCell(0,10,"Category: ".$row['category']."Stocks: ".$row['stock'] ." Date: " .$row['mfgdate'] ."-". $row['expdate'],"T",'C');
+
+
 
 }
 

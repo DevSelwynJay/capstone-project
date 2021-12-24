@@ -32,7 +32,7 @@ elseif($time == 'quarterly'){
 elseif ($time == 'annually'){
     $time = '1 year';
 }
-$patientqry = "Select * from `medication_record` where `patient_type` = 'Adult' and `date_given` > NOW()-interval ".$time." order by `date_given` asc limit $start_from,$rpp";
+$patientqry = "Select * from `vaccination_record` where `patient_type` = 'Adult' and `date_given` > NOW()-interval ".$time." order by `date_given` asc limit $start_from,$rpp";
 $result = mysqli_query($con,$patientqry);
 if(mysqli_num_rows($result)>0){
     $patienttable .= '<table class="reports__individual-reports-table">

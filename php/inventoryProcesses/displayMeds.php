@@ -19,15 +19,12 @@ if(mysqli_num_rows($result)> 0) {
     <table>
     <tbody>
       <tr class="title">
-                    <th class="column_sort" id="id" data-order="desc">Medicine ID</th>
-                    <th class="column_sort" id="name" data-order="desc">Medicine Name</th>
-                    <th class="column_sort" id="category" data-order="desc">Category</th>
-                    <th class="column_sort" id="subcategory" data-order="desc">Sub-Category</th>
-                    <th class="column_sort" id="dosage" data-order="desc">Dosage</th>
-                    <th class="column_sort" id="stock" data-order="desc">No. of Stocks</th>
-                    <th class="column_sort" id="mfgdate" data-order="desc">Mfg. Date</th>
-                    <th class="column_sort" id="expdate" data-order="desc">Exp. Date</th>
-                    <th class="column_sort" id="dateadded" data-order="desc">Date Added</th>
+                    <th class="column_sort" id="id" data-order="desc" style="cursor:pointer;">Medicine ID</th>
+                    <th class="column_sort" id="name" data-order="desc" style="cursor:pointer;">Medicine Name</th>
+                    <th >Category</th>
+                    <th class="column_sort" id="stock" data-order="desc" style="cursor:pointer;">No. of Stocks</th>
+                    <th >Date</th>
+                    <th class="column_sort" id="dateadded" data-order="desc" style="cursor:pointer;">Date Added</th>
                     <th class="add-row"></th>
                 </tr>
     ';
@@ -46,10 +43,8 @@ if(mysqli_num_rows($result)> 0) {
         $datetoday = date("Y-m-d");
         $medtable .= '<tr>
         <td scope="row">' . $id . '</td>
-        <td>' . $medname . '</td>
-        <td>' . $category . '</td>
-        <td>'.$subcategory.'</td>
-        <td>'.$dosage.'</td>';
+        <td>' . $medname .' ('.$dosage. ')</td>
+        <td>' . $category.' ('.$subcategory. ')</td>';
 
         if ($stocks >= 100) {
             $medtable .= '<td>' . $stocks . '</td>';
@@ -57,8 +52,7 @@ if(mysqli_num_rows($result)> 0) {
             $medtable .= '<td style="color: red">' . $stocks . '</td>';
         }
 
-        $medtable .= '<td>' . $mfgdate . '</td>
-        <td>' . $expdate . '</td>
+        $medtable .= '<td>' . $mfgdate .'-'.$expdate .'</td>
         <td>' . $dateadded . '</td>
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal(' . $id . ')"></i></td>
         </tr>';
