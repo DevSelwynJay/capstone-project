@@ -69,6 +69,10 @@
                     $("#sub-category-lbl").html(ui.item.category)//show label 'medicine/vaccine category'
                     $("#sub-category").val(ui.item.subcategory)
 
+                    $("#dosage").val(ui.item.dosage)
+
+
+                    //dynamic UI for medication and vaccination
                     //to change attribute of add prescription button weather it is add vaccination or medication
                     if(ui.item.category.toLowerCase()=="medicine"){
                         $(".prescript-btn-class").prop('id','add-prescript-btn')
