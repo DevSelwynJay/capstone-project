@@ -96,6 +96,27 @@ $(document).ready(function (e) {
         })//post end
     }
 
+    function retrieveCurrentMedication(){
+        let header = "<tr>\n" +
+            "                                       <th>Name</th>\n" +
+            "                                       <th>Times per day</th>\n" +
+            "                                       <th>Duration</th>\n" +
+            "                                    </tr>"
+        $("#curr-med").html("").append(header)
+         $.post("php/patientSide/retrieveCurrentMedication.php").done(function (data) {
+             let result = JSON.parse(data);
+             for (const resultElement of result) {
+                 $("#curr-med").append("" +
+                     "<tr>" +
+                             "<td>" +  resultElement.medicine_name + " (" + resultElement.dosage + ")" + "</td>" +
+                             "<td>" + resultElement.no_times + "</td>" +
+                             "<td>" + resultElement.duration_days+  " days, Until " +  resultElement.end_date  +"</td>" +
+                     "</tr>")
+             }
+         })
+    }
+    retrieveCurrentMedication();
+
     //Select a Date
     $('#calendar').on('selectDate', function(event, newDate, oldDate) {
         //alert(newDate)

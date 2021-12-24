@@ -25,7 +25,10 @@ if(mysqli_num_rows($result)>0){//may kamuka si online patient account sa walk in
     $id_in_walk_in_patient = null;
 
     if($row = mysqli_fetch_assoc($result)){
-        $id_in_walk_in_patient = $row['id'];
+        $_SESSION['merge_id'] = $id_in_walk_in_patient = $row['id'];
+        //merge id is the id that is from walk in patient ,
+        // it was generate because the name,bday,purok of online patient account has
+        //the same record in walk in patient table
     }
     //echo json_encode($mergeAcc);
 
@@ -44,6 +47,6 @@ if(mysqli_num_rows($result)>0){//may kamuka si online patient account sa walk in
 
 
 }//main if
-
+mysqli_close($con);
 
 ?>

@@ -126,16 +126,14 @@ else{ // Open Mobile Menu
                           
                            <div class="current-medication-container">
                             <h3>Current Medication</h3>
-                            <table>
+                            <table id="curr-med">
                                 <tr>
                                    <th>Name</th>
-                                   <th>Dosage</th>
-                                   <th>No. of time</th>
+                                   <th>Times per day</th>
                                    <th>Duration</th>
                                 </tr>
                                 <tr>
                                    <td>Jay</td>
-                                   <td>Vaccination</td>
                                    <td>4</td>
                                    <td>11/20/2021</td>
                                 </tr>
