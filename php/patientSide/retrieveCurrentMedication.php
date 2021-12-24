@@ -9,21 +9,24 @@ require '../DB_Connect.php';
 $arr = array();
 //get the end of medication date that is from the future
 $query = "SELECT *, 
-       DATE_FORMAT(start_date,'%b %d, %Y') as start_date, DATE_FORMAT(end_date,'%b %d, %Y') as end_date
-FROM medication_record WHERE patient_id = '$patient_id' AND end_date >= NOW() ";
+       DATE_FORMAT(start_date,'%Y-%m-%d') as start_date, DATE_FORMAT(end_date,'%Y-%m-%d') as end_date,
+       DATE_FORMAT(start_date,'%b %d, %Y') as start_date_1, DATE_FORMAT(end_date,'%b %d, %Y') as end_date_1
+FROM medication_record WHERE patient_id = '$patient_id' AND DATE_FORMAT(end_date,'%Y-%m-%d') >= DATE_FORMAT(NOW(),'%Y-%m-%d') ";
 
 $result = mysqli_query($con,$query);
 while($row = mysqli_fetch_assoc($result) ){
 
     $duration_days = getDuration($row['start_date'],$row['end_date'],$row['interval_days']+1);
-
+    if($row['end_date']=="0000-00-00 00:00:00"){
+        echo "null";
+    }
     //$arr[] = $row;
     $arr[] = array(
         "medicine_name"=>$row['medicine_name'],
         "dosage"=>$row['dosage'],
         "no_times"=>$row['no_times'],
         "duration_days"=>$duration_days,
-        "end_date"=>$row['end_date']
+        "end_date"=>$row['end_date_1']
 
     );
 }

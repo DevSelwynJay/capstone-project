@@ -18,7 +18,7 @@ $description=$_POST['description'];
 $start_date=$_POST['start_date'];
 $end_date=$_POST['end_date'];
 if($end_date==""||$end_date==null){
-    $end_date=null;
+    $end_date=$start_date;
 }
 
 $con = null;
