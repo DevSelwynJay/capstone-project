@@ -84,8 +84,8 @@ $(document).ready(function (e) {
                         "<br> - "+resultElement.start_date_formatted+
                         "<br><br><strong>End of Medication</strong>" +
                         "<br> - "+resultElement.end_date_formatted+
-                        "<br><br>"+"<strong>Date Given: </strong> "+resultElement.date_given+
-                        "<br>"+"<strong>Quantity Given: </strong> "+resultElement.given_med_quantity +" tablets"
+                        "<br><br>"+"<strong>Date Received: </strong> "+resultElement.date_given+
+                        "<br>"+"<strong>Quantity Received: </strong> "+resultElement.given_med_quantity +" tablets"
                     ,
                     date: date,
                     type: ' ',
