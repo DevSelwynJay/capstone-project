@@ -167,7 +167,7 @@ $ctr = 0;$cc=1;
 $temp = '';
 while ($cc<8){
     $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='OPV' ");
+                                            AND vaccine_name='OPV'");
     $number[$ctr] = mysqli_num_rows($results[$ctr]);
     $ctr++;$cc++;
 }
@@ -180,7 +180,8 @@ while ($ctr<7) {
 $minorJson= json_encode($childArray);
 
 
-$arr = array(65,68,75,81,95,105,130);
+
+$arr["num2"] = array(65,68,75,81,95,105,130);
 $json = json_encode($arr);
 
 ?>
@@ -191,52 +192,37 @@ $json = json_encode($arr);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Jquery-->
+    <script src="../../js/jquery-3.6.0.js"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="../../jquery-ui/jquery-ui.css">
+    <script src="../../jquery-ui/jquery-ui.js"></script>
+    <script src="../../js/track.js"></script>
     <style>
-        #speedChart {
+        #opvChart {
             background-color: rgb(204, 209, 243);
         }
-    /*    .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-    */
-        /* Style the buttons inside the tab
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
-        Change background color of buttons on hover
-        .tab button:hover {
-            background-color: #ddd;
-        }
-*/
     </style>
 </head>
 <body>
-<!--<div class="tab">
-    <button class="tablinks" >Week</button>
-    <button class="tablinks" >Month</button>
-    <button class="tablinks" >Year</button>
-    <button class="tablinks" >Overall</button>
+<div class="tab">
+    <button id="wk1" class="tablinks" ">Week</button>
+    <button id="mo1" class="tablinks" >Month</button>
+    <button id="yr1" class="tablinks" >Year</button>
+    <button id="ov1" class="tablinks" >Overall</button>
 </div>
--->
+
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+    <canvas id="opvChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
 
-    var speedCanvas = document.getElementById("speedChart");
+    var speedCanvas = document.getElementById("opvChart");
     speedCanvas.fillStyle = 'lightGreen';
     Chart.defaults.color = "#ffffff";
+    //creating multiple datasets
     var infant = {
         label: "Infant",
         data: <?php  echo $babyJson?>,
@@ -254,7 +240,7 @@ $json = json_encode($arr);
         fill: false,
         borderColor: 'lightGreen'
     };
-
+// inputing all needed data into a finalized dataset
     var speedData = {
         labels: ["Purok 1", "Purok 2", "Purok 3", "Purok 4", "Purok 5", "Purok 6", "Purok 7"],
         datasets: [infant,minor]
@@ -270,7 +256,7 @@ $json = json_encode($arr);
             }
         }
     };
-
+// uploading the data to the chart
     var lineChart = new Chart(speedCanvas, {
         type: 'line',
         data: speedData,
@@ -311,6 +297,11 @@ $json = json_encode($arr);
             }
         }
     });
+    //reload with time interval
+    //window.setInterval("reloadIFrame();", 30000);
+    function reloadIFrame() {
+        location.reload();
+    }
 </script>
 </body>
 </html>
