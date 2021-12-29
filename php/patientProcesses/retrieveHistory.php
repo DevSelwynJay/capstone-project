@@ -7,7 +7,7 @@ require '../DB_Connect.php';
 $allHistory = array();
 $patientID =   $_SESSION['active_individual_patient_ID'] ;
 
-$query = "SELECT *,DATE_FORMAT(date_given,'%M %d, %Y') as fd FROM medication_record WHERE patient_id = '$patientID' ";
+$query = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM medication_record WHERE patient_id = '$patientID' ";
 $result = mysqli_query($con,$query);
 while ($row  = mysqli_fetch_assoc($result)){
     $allHistory[] = array(
@@ -19,7 +19,7 @@ while ($row  = mysqli_fetch_assoc($result)){
     );
 }
 
-$query = "SELECT *,DATE_FORMAT(date_given,'%M %d, %Y') as fd FROM vaccination_record WHERE patient_id = '$patientID' ";
+$query = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM vaccination_record WHERE patient_id = '$patientID' ";
 $result = mysqli_query($con,$query);
 while ($row  = mysqli_fetch_assoc($result)){
     $allHistory[] = array(
