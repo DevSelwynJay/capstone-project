@@ -164,10 +164,12 @@
                                                  <div class="flex-box-row align-content-center">
                                                      <p class="modal-p-2" >PWD</p>
                                                      <input type="radio" name="patient-type" value="PWD" required>
+                                                     <input type="radio" name="patient-type" value="" required checked style="display: none">
                                                  </div>
                                              </div>
                                              <script>
                                                  // //pang debug lang ng radio button
+                                                 // alert( $('[name="patient-type"]:checked').val())
                                                  // $("[type='radio']").click(function () {
                                                  //     alert( $('[name="patient-type"]:checked').val())
                                                  // })

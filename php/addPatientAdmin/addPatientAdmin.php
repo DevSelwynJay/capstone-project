@@ -65,6 +65,18 @@ validateID($con,$new_id);
 
 $patientID = $_SESSION['final_id'];
 
+//email and password is optional in adding new walk in patient
+//but email and password needs to be unique
+//if many account added with no email and contact
+//empty column will produce resulting to error
+//to solve, if walk in patient provide empty email/pwd the value would be its ID including the word none
+if($email==""||$email==null){
+    $email = "none-".$patientID;
+}
+if($contact==""||$contact==null){
+    $contact = "none-".$patientID;
+}
+
 $query = "INSERT INTO walk_in_patient VALUES (
                  DEFAULT ,'$patientID','$lname','$fname','$mname'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
@@ -80,5 +92,5 @@ if($result){
     echo 1;
 }
 else{
-    echo 0;
+    echo mysqli_error($con);
 }
