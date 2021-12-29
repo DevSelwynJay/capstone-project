@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2021 at 07:01 AM
+-- Generation Time: Dec 29, 2021 at 03:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -36,6 +36,7 @@ CREATE TABLE `vaccination_record` (
   `type` varchar(20) NOT NULL DEFAULT 'Vaccine',
   `vaccine_id` varchar(50) NOT NULL,
   `vaccine_name` varchar(50) NOT NULL,
+  `vaccine_dosage` varchar(50) NOT NULL,
   `vaccine_sub_category` varchar(50) NOT NULL COMMENT 'child pregnant covid others',
   `reccommended_no_of_dosage` varchar(50) NOT NULL COMMENT 'gaano kadami ang dapat na turok',
   `date_given` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'just a redundant to match column name in medication record',
@@ -48,9 +49,11 @@ CREATE TABLE `vaccination_record` (
 -- Dumping data for table `vaccination_record`
 --
 
-INSERT INTO `vaccination_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `vaccine_id`, `vaccine_name`, `vaccine_sub_category`, `reccommended_no_of_dosage`, `date_given`, `date_vaccinated`, `expected_next_date_vaccination`, `description`) VALUES
-(1, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Vaccine', '3', 'OPV', 'Child', '3', '2021-12-05 04:47:57', '2021-12-05 13:34:49', NULL, ''),
-(2, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Vaccine', '2', 'IPV', 'Child', '1', '2021-12-05 04:47:57', '2021-12-04 13:34:49', NULL, '');
+INSERT INTO `vaccination_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `vaccine_id`, `vaccine_name`, `vaccine_dosage`, `vaccine_sub_category`, `reccommended_no_of_dosage`, `date_given`, `date_vaccinated`, `expected_next_date_vaccination`, `description`) VALUES
+(1, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Vaccine', '3', 'OPV', '', 'Child', '3', '2021-12-05 04:47:57', '2021-12-05 13:34:49', NULL, ''),
+(2, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Vaccine', '2', 'IPV', '', 'Child', '1', '2021-12-05 04:47:57', '2021-12-04 13:34:49', NULL, ''),
+(4, '2021-01-111222', '2021-03-111222', 'Minor', '2', 'Vaccine', '2', 'IPV', '', 'Child', '1', '2021-12-22 04:47:57', '2021-12-22 13:34:49', NULL, ''),
+(5, '2021-01-111222', '2021-03-111222', 'Minor', '2', 'Vaccine', '2', 'IPV', '', 'Child', '1', '2021-12-22 04:47:57', '2021-12-22 13:34:49', NULL, '');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +73,7 @@ ALTER TABLE `vaccination_record`
 -- AUTO_INCREMENT for table `vaccination_record`
 --
 ALTER TABLE `vaccination_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -4,7 +4,6 @@ $(document).ready(function () {
         //validation
         e.preventDefault()
 
-
         let patientType = $('[name="patient-type"]:checked').val()
         let fname = $('[name="fname"]').val()
         let mname = $('[name="mname"]').val()
@@ -23,8 +22,7 @@ $(document).ready(function () {
         let height　=　$("#height").val();
         let weight　=　$("#weight").val();
 
-
-        if (fname == "" || mname == "" || lname == "" || civil == "" ||
+        if (fname == "" || mname == "" || lname == "" ||patientType==""|| civil == "" ||
             gender == "" || bday == "" || purok == "") {
             console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
             $("#pop-up-error").modal(
@@ -37,35 +35,35 @@ $(document).ready(function () {
             return
         }//if
 
-        //pag oks na lahat ng  input
-        //show add patient confirm modal
-        $("#pop-up-confirm-add-patient").modal(
-            {
-                escapeClose:false,
-                showClose:false
-            }
-        )
-        //action for adding patient
-        $("#final-confirm-add-patient-btn").off('click')
-        $("#final-confirm-add-patient-btn").on('click',function (e) {
+            //pag oks na lahat ng  input
+            //show add patient confirm modal
+            $("#pop-up-confirm-add-patient").modal(
+                {
+                    escapeClose:false,
+                    showClose:false
+                }
+            )
+            //action for adding patient
+            $("#final-confirm-add-patient-btn").off('click')
+            $("#final-confirm-add-patient-btn").on('click',function (e) {
 
-            $("#pop-up-loading").modal({
-                showClose:false,clickClose:false,escapeClose:false
-            })
+                $("#pop-up-loading").modal({
+                    showClose:false,clickClose:false,escapeClose:false
+                })
 
-            $.post("php/addPatientAdmin/AddPatientAdmin.php",{
-                fname:fname, mname:mname, lname:lname, suffix:suffix,
-                occu:occu,
-                civil:civil,
-                email:email,
-                contact:contact,
-                gender:gender,
-                bday:bday,
-                purok:purok, house_no:house_no,
-                bloodType:bloodType, height:height, weight:weight,
-                patientType:patientType
-            }).done(
-                function (data) {
+                $.post("php/addPatientAdmin/AddPatientAdmin.php",{
+                    fname:fname, mname:mname, lname:lname, suffix:suffix,
+                    occu:occu,
+                    civil:civil,
+                    email:email,
+                    contact:contact,
+                    gender:gender,
+                    bday:bday,
+                    purok:purok, house_no:house_no,
+                    bloodType:bloodType, height:height, weight:weight,
+                    patientType:patientType
+                }).done(
+                    function (data) {
 
 
                         if(data==1){
@@ -82,15 +80,13 @@ $(document).ready(function () {
                                     showClose:false,
                                     escapeClose:false
                                 })
-                                $("#pop-up-error-message").html("Can't add account, Please try again later!")
+                                $("#pop-up-error-message").html(data)
+                                console.log(data)
                             },1000)
                         }
+                    }
+                )
+            })
 
-
-                }
-            )
-        })
     })//click
-
-
 })//document
