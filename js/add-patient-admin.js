@@ -80,7 +80,7 @@ $(document).ready(function () {
                                     showClose:false,
                                     escapeClose:false
                                 })
-                                $("#pop-up-error-message").html("Can't add account, Please try again later!")
+                                $("#pop-up-error-message").html(data)
                                 console.log(data)
                             },1000)
                         }

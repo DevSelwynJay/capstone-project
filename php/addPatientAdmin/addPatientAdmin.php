@@ -30,6 +30,14 @@ $weight = $_POST['weight'];
 
 $patientType = $_POST['patientType'];
 
+//validate contact and email if provided
+if($contact!=""||$email!=""){
+   require 'finalValidation.php';
+   // the code will exit if there is a duplicate entry
+    //and return error message
+}
+
+
 function generate_6_Digits(): string
 {
     $key=0;

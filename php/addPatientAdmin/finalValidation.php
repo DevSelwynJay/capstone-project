@@ -11,14 +11,19 @@ if(!$con) {
     exit();
 }
 
-$tables = array('pending_patient','patient','patient_archive');
+$tables = array('walk_in_patient');
 $result=null;
 $errMsg = null;
+
+$existEmail = null;
+$existContact = null;
+
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
     if(mysqli_num_rows($result)>=1){
         //echo json_encode(array("success"=>false,"message"=>""));
-        $errMsg.="<p>Contact number already exist</p>";
+        $errMsg.="Contact number already exist!";
+        $existContact = true;
         break;
     }
 }
@@ -26,18 +31,22 @@ foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE email = '$email'");
     if(mysqli_num_rows($result)>=1){
         //echo json_encode(array("success"=>false,"message"=>""));
-        $errMsg.="<p>Email already exist</p>";
+        $errMsg.="Email already exist!";
+        $existEmail = true;
         break;
     }
 }
 
-if($errMsg==null){
-    echo json_encode(array("success"=>true,"message"=>"okay"));
+if($errMsg!=null){
+    if($existContact&&$existEmail){
+        $errMsg="Email and contact number already exist";
+    }
+    echo $errMsg;
+    mysqli_close($con);
+    exit();
 }
-else{
-    echo json_encode(array("success"=>false,"message"=>$errMsg));
-}
-mysqli_close($con);
+
+
 
 
 
