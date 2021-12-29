@@ -24,7 +24,6 @@
 
     function openOPV() {
         document.getElementById("myframe").src = "php/testingCode/opv.php";
-
     }
     function openIPV() {
         document.getElementById("myframe").src = "php/testingCode/ipv.php";

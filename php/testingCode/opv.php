@@ -130,7 +130,7 @@ $number1 = array();
 $results1 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
-    $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' AND vaccine_name='OPV' ");
+    $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' AND vaccine_name='OPV' group by patient_id");
     $number1[$ctr] = mysqli_num_rows($results1[$ctr]);
     $ctr++;$cc++;
 }
@@ -167,7 +167,7 @@ $ctr = 0;$cc=1;
 $temp = '';
 while ($cc<8){
     $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='OPV'");
+                                            AND vaccine_name='OPV'  group by patient_id");
     $number[$ctr] = mysqli_num_rows($results[$ctr]);
     $ctr++;$cc++;
 }
@@ -204,35 +204,54 @@ $json = json_encode($arr);
         #opvChart {
             background-color: rgb(204, 209, 243);
         }
+        .tab{
+            display: flex;
+
+        }
+        .timestamp{
+            font-size:1rem;
+            margin: 0.7rem 0.7rem 0.7rem 0.7rem;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius:4px;
+            border:1px solid #656565;
+            background-color: rgba(180, 218, 243, 0.82);
+        }
+        .timestamp:hover{
+            background-color: #465A72;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
     </style>
+
 </head>
 <body>
+<!--period to period button-->
 <div class="tab">
-    <button id="wk1" class="tablinks" ">Week</button>
-    <button id="mo1" class="tablinks" >Month</button>
-    <button id="yr1" class="tablinks" >Year</button>
-    <button id="ov1" class="tablinks" >Overall</button>
+    <div id="wk1" class="timestamp">Weekly</div>
+    <div id="mo1" class="timestamp" >Monthly</div>
+    <div id="yr1" class="timestamp" >Yearly</div>
+    <div id="ov1" class="timestamp" >Overall</div>
 </div>
-
+<!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
     <canvas id="opvChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
-
+//creation of variable to handle and manipulate the canvas that was made
     var speedCanvas = document.getElementById("opvChart");
     speedCanvas.fillStyle = 'lightGreen';
     Chart.defaults.color = "#ffffff";
     //creating multiple datasets
-    var infant = {
+    var opvinfant = {
         label: "Infant",
         data: <?php  echo $babyJson?>,
         lineTension: 0.1,//curve of line
         fill: false,
         borderWidth: 1,
-        borderColor: 'red'
+        borderColor: 'yellow'
     };
 
-    var minor = {
+    var opvminor = {
         label: "Minor",
         data: <?php echo $minorJson; ?>,
         lineTension: 0.1,
@@ -243,7 +262,7 @@ $json = json_encode($arr);
 // inputing all needed data into a finalized dataset
     var speedData = {
         labels: ["Purok 1", "Purok 2", "Purok 3", "Purok 4", "Purok 5", "Purok 6", "Purok 7"],
-        datasets: [infant,minor]
+        datasets: [opvinfant,opvminor]
     };
 
     var chartOptions = {
@@ -257,12 +276,13 @@ $json = json_encode($arr);
         }
     };
 // uploading the data to the chart
-    var lineChart = new Chart(speedCanvas, {
+    var opvlineChart = new Chart(speedCanvas, {
         type: 'line',
         data: speedData,
         options: chartOptions,
         hoverOffset: 3,// delay effect ng hover
         options: {
+            //scales signifies the gridlines, x is fo x axis and y is for y axis
             scales: {
                 x: {
                     grid:{
