@@ -374,7 +374,7 @@ Closedropdown.addEventListener('click',function(){
           <div style="display: flex;align-items: center;justify-content: center">
               <div class="loader"></div>
               <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
-                  Retrieving Info...
+                  Processing Request...
               </p>
           </div>
       </div>
