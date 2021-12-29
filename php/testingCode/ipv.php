@@ -92,7 +92,8 @@ $json = json_encode($arr);
     <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
-    console.log(<?php echo $minorJson?>);
+    document.getElementById("ov2").style.color = "#ffffff";
+    document.getElementById("ov2").style.backgroundColor = "#363636";
     var speedCanvas = document.getElementById("speedChart");
     speedCanvas.fillStyle = 'lightGreen';
     Chart.defaults.color = "#ffffff";

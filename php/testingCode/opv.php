@@ -237,6 +237,8 @@ $json = json_encode($arr);
     <canvas id="opvChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
+    document.getElementById("ov1").style.color = "#ffffff";
+    document.getElementById("ov1").style.backgroundColor = "#363636";
 //creation of variable to handle and manipulate the canvas that was made
     var speedCanvas = document.getElementById("opvChart");
     speedCanvas.fillStyle = 'lightGreen';

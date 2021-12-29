@@ -173,7 +173,8 @@ $json = json_encode($arr);
     <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
-
+    document.getElementById("ov3").style.color = "#ffffff";
+    document.getElementById("ov3").style.backgroundColor = "#363636";
     var speedCanvas = document.getElementById("speedChart");
     speedCanvas.fillStyle = 'lightGreen';
     Chart.defaults.color = "#ffffff";
