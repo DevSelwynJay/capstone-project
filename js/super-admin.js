@@ -25,18 +25,6 @@ $(document).ready(function (){
     }
 })
 
-//click table to get patient ID and name
-$(document).ready(function (){
-    var pattable = document.getElementById('patientTable');
-    for(var i = 1; i < pattable.rows.length; i++)
-    {
-        $(pattable.rows[i]).on("click",function (){
-            document.getElementById("patidno").value = this.cells[0].innerHTML;
-            document.getElementById("patname").value = this.cells[1].innerHTML;
-            $('#show-delpat').modal();
-        })
-    }
-})
 //trigger if disable admin modal button is clicked
 $(document).ready(function (){
     $("#disable-admin2").click(function (){

@@ -33,6 +33,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
        <!--Super Admin JS-->
        <script src="js/super-admin.js"></script>
+       <!--<script src="js/sa_pagination.js"></script> -->
        <!--Sweet Alert-->
        <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
        <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
@@ -311,8 +312,11 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
 
                   <div class="col-sm-12">
                      <h3 class="color-black">Manage User Accounts</h3>
-                      <div style="max-height: 50vh;overflow-y: auto">
-                     <table id="patientTable">
+                      <div id ="patTable" style="max-height: 50vh;overflow-y: auto">
+                          <table id="patientTable">
+
+                          </table>
+   <!--                  <table id="patientTable">
                         <tr>
                            <th>User/Patient ID</th>
                            <th>First Name</th>
@@ -322,8 +326,9 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                         </tr>
                          <tbody>
                             <?php
-                            $con=null;
+                            /*$con=null;
                             include 'php/DB_Connect.php';
+                            $count = 0;
                             $result = mysqli_query($con,"SELECT id, first_name, middle_name, last_name, email FROM patient");
                             while ($row=mysqli_fetch_array($result)){
                                 $ids = $row[0];
@@ -341,11 +346,15 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                <td>$ems</td>
                             </tr>
                              ";
+                                $count++;
+                                if ($count<5){
+                                    break;
+                                }
                             }
-                            mysqli_close($con);
+                            mysqli_close($con); */
                             ?>
                          </tbody>
-                     </table>
+                     </table> -->
                       </div>
                      <div class="cta-wrapper2">
                          <!--Patanggal nung show more kasi scrollable naman na  -->
@@ -469,6 +478,43 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
            closeMobileMenu.style.display = "none"
            mobileMenu.style.display = "block";
         });
+        $(document).ready(function() {
+            displayUsers();
+        })
+
+        function displayUsers(page) {
+            var displayData = true;
+            $.ajax({
+                url: 'php/superAdminProcesses/tableLoad.php',
+                type: 'POST',
+                data: {
+                    page: page
+                },
+                success: function(data, status) {
+                    $('#patientTable').html(data);
+                }
+            });
+        }
+        $(document).on("click",".pagination_link",function (){
+            var page = $(this).attr("id");
+            displayUsers(page);
+        })
+
+        //click table to get patient ID and name
+        $(document).ready(function (){
+            $("#patientTable").click(function (){
+                var pattable = document.getElementById('patientTable');
+                for(var i = 1; i < pattable.rows.length; i++)
+                {
+                    $(pattable.rows[i]).on("click",function (){
+                        document.getElementById("patidno").value = this.cells[0].innerHTML;
+                        document.getElementById("patname").value = this.cells[1].innerHTML;
+                        $('#show-delpat').modal();
+                    })
+                }
+            })
+        })
+
      </script>
    </body>
 </html>
