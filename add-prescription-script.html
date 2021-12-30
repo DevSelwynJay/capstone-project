@@ -75,13 +75,17 @@
                     //dynamic UI for medication and vaccination
                     //to change attribute of add prescription button weather it is add vaccination or medication
                     if(ui.item.category.toLowerCase()=="medicine"){
+                        $(".prescript-btn-class").off('click')//remove current function coz it changed to medicine
                         $(".prescript-btn-class").prop('id','add-prescript-btn')
+                        add_prescription_btn(); //add function to add prescript btn
                             console.log("med UI")
                         $("#add-med-UI-cont").css('display','block')
                         $("#add-vaccine-UI-cont").css('display','none')
                     }
                     else {
+                        $(".prescript-btn-class").off('click')//remove current function coz it changed to vaccine
                         $(".prescript-btn-class").prop('id','add-vaccine-btn')
+                        add_vaccine_btn();
                         $("#add-med-UI-cont").css('display','none')
                         $("#add-vaccine-UI-cont").css('display','block')
                         console.log("vaccine UI")
@@ -108,71 +112,82 @@
 
 
 
-        //ADD MEDICATION SCRIPT =========================
-        $("#add-prescript-btn").click(function (event) {
-            let medName = $("#inv-name").val()
-            let medSubCat = $("#sub-category").val()
-            let qty = $("#qty").val()
-            let freq = $("#frequency").val()
-            let interval = $("#interval").val()
-            let dosage = $("#dosage").val()
-            let no_of_times = $("#no_of_times").val()//a day
-            let description = $("#description").val()
-            let start_date = $("#start-date").val()
-            let end_date = $("#end-date").val()
+        //ADD MEDICATION SCRIPT FUNCTION=========================
+        function add_prescription_btn() {
+            $("#add-prescript-btn").click(function (event) {
+                let medName = $("#inv-name").val()
+                let medSubCat = $("#sub-category").val()
+                let qty = $("#qty").val()
+                let freq = $("#frequency").val()
+                let interval = $("#interval").val()
+                let dosage = $("#dosage").val()
+                let no_of_times = $("#no_of_times").val()//a day
+                let description = $("#description").val()
+                let start_date = $("#start-date").val()
+                let end_date = $("#end-date").val()
 
-            //validation of input
-            if(medName==""||qty==""||dosage==""||no_of_times==""||description==""){
-                $(".modal-p-error").css('visibility','visible')
-                return
-            }
-            if (freq==1){
-                if(interval==""||interval==null){
+                //validation of input
+                if(medName==""||qty==""||dosage==""||no_of_times==""||description==""){
                     $(".modal-p-error").css('visibility','visible')
-                    $("#interval").trigger('focus')
-                    return;
+                    return
                 }
-            }
+                if (freq==1){
+                    if(interval==""||interval==null){
+                        $(".modal-p-error").css('visibility','visible')
+                        $("#interval").trigger('focus')
+                        return;
+                    }
+                }
 
-            //makakadaan  lang dine pag ok na lhat ng input
-            $("#pop-up-confirm-add").modal({
-                showClose:false,
-                closeExisting:false,
-                clickClose:false,
-                escapeClose:false
-            })
-            $("#prescribe-final-btn").off('click')
-            $("#prescribe-final-btn").click(function () {
-                $(".modal-p-error").css('visibility','hidden')
-                if(freq==0){// 0 daily, 1 every other day
-                    interval=0;
-                }
-                if(end_date==""||end_date==null){
-                    end_date=null
-                }
-                $.post('php/patientProcesses/addMedicationRecord.php',{
-                    inv_id:inv_id,
-                    medName:medName,
-                    medSubCat: medSubCat,
-                    qty:qty,
-                    interval:interval,
-                    dosage:dosage,
-                    no_of_times:no_of_times,
-                    description:description,
-                    start_date:start_date,
-                    end_date:end_date,
-                }).done(function (data) {
-                    console.log(data)
-                    retrieve_inventory();//refresh the inventory na lumalabas sa search bar
-                    $("#hidden-refresh-button").trigger('click')
-                    $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
-                    $('[href="#add-pres-modal"]').trigger('click')
-                    reset_add_prescription_form()
+                //makakadaan  lang dine pag ok na lhat ng input
+                $("#pop-up-confirm-add").modal({
+                    showClose:false,
+                    closeExisting:false,
+                    clickClose:false,
+                    escapeClose:false
                 })
+                $("#prescribe-final-btn").off('click')
+                $("#prescribe-final-btn").click(function () {
+                    $(".modal-p-error").css('visibility','hidden')
+                    if(freq==0){// 0 daily, 1 every other day
+                        interval=0;
+                    }
+                    if(end_date==""||end_date==null){
+                        end_date=null
+                    }
+                    $.post('php/patientProcesses/addMedicationRecord.php',{
+                        inv_id:inv_id,
+                        medName:medName,
+                        medSubCat: medSubCat,
+                        qty:qty,
+                        interval:interval,
+                        dosage:dosage,
+                        no_of_times:no_of_times,
+                        description:description,
+                        start_date:start_date,
+                        end_date:end_date,
+                    }).done(function (data) {
+                        console.log(data)
+                        retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+                        $("#hidden-refresh-button").trigger('click')
+                        $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
+                        $('[href="#add-pres-modal"]').trigger('click')
+                        reset_add_prescription_form()
+                    })
+                })
+
+
+            })//end of add prescription btn function
+        }// function add_prescription_btn()
+        add_prescription_btn();
+
+        //ADD VACCINE SCRIPT FUNCTION=========================
+        function add_vaccine_btn() {
+            $("#add-vaccine-btn").click(function () {
+alert("vaccine")
             })
+        }
 
-
-        })//end of add prescription btn function
 
         function reset_add_prescription_form() {
             $("#med-name").val("")

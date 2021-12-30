@@ -116,6 +116,10 @@ $(document).ready(function() {
             function (data) {//#patient-history-table
                 let result = JSON.parse(data)
 
+                if(result.length==0){
+                    $("#patient-history-table").html("<h3>No Record Available</h3>")
+                    return
+                }
                 for (const resultElement of result) {
 
                     $("#patient-history-table").append("" +
