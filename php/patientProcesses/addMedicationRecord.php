@@ -30,6 +30,34 @@ if($row = mysqli_fetch_assoc($res)){
     $patientType = $row['patient_type'];
 }
 
+//stock
+$ctr=0;
+$residualStock=0;//stock to reduce sa next row kung naging negative ung nauna nang binawasan
+$res = mysqli_query($con,"SELECT * FROM medinventory WHERE name = '$medName' AND dosage='$dosage' AND stock>0 ORDER BY dateadded");
+while($row = mysqli_fetch_assoc($res)){
+    $id = $row['id'];
+
+    if($ctr==0){
+        mysqli_query($con,"UPDATE medinventory SET stock = stock - $qty WHERE id = $id");
+    }
+    else{
+        mysqli_query($con,"UPDATE medinventory SET stock = stock - $residualStock WHERE id = $id");
+    }
+
+    //if the row na nabawasan ng stock naging negative
+    //gawin uling zero ung row na un tos ung negative value convert sa postive tos bawas sa kasunod na row haha
+    $subQuery = mysqli_query($con,"SELECT * FROM medinventory WHERE id= $id");
+    if ($subRow = mysqli_fetch_assoc($subQuery)){
+        if($subRow['stock']>=0){
+            break;
+        }
+        else{
+            mysqli_query($con,"UPDATE medinventory SET stock = 0 WHERE id = $id");
+            $residualStock = abs($subRow['stock']);
+        }
+    }
+$ctr++;
+}
 
 $query = "
 INSERT INTO medication_record VALUES (

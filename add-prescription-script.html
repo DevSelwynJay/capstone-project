@@ -2,6 +2,7 @@
 
 
     let inv_id; /// id of vaccine or medicine
+    let selected_item_stock;
 
     function retrieve_inventory() {
         $.post('php/patientProcesses/retrieveInventory.php').done(function (data) {
@@ -60,7 +61,7 @@
 
                     $( "#search-inv" ).val(ui.item.label)
                     //user defined code
-                    //alert(ui.item.id) //get the ID of selected item
+                    alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
                     $("#inv-name").val(ui.item.label).trigger('focus')
@@ -95,6 +96,7 @@
                     $("#inv-name-and-qty-lbl").html(' <span id="inv-name-2">Medicine</span> currently has <span id="inv-stock-2">500</span> stocks.')
                     $("#inv-name-2").html(ui.item.label)
                     $("#inv-stock-2").html(ui.item.stock_count)
+                    selected_item_stock = ui.item.stock_count
 
                     //$( "#search-inv" ).val("")
                     return false;
@@ -129,15 +131,24 @@
                 //validation of input
                 if(medName==""||qty==""||dosage==""||no_of_times==""||description==""){
                     $(".modal-p-error").css('visibility','visible')
+                    $(".modal-p-error").html("Please fill all the required fields!")
                     return
                 }
-                if (freq==1){
+                if (parseInt(freq)==1){
                     if(interval==""||interval==null){
-                        $(".modal-p-error").css('visibility','visible')
                         $("#interval").trigger('focus')
+                        $(".modal-p-error").css('visibility','visible')
+                        $(".modal-p-error").html("Please fill all the required fields!")
                         return;
                     }
                 }
+                if(parseInt(qty)<=0||parseInt(qty)>parseInt(selected_item_stock)){//alert()
+                    $("#qty").trigger('focus')
+                    $(".modal-p-error").css('visibility','visible')
+                    $(".modal-p-error").html("Invalid Quantity")
+                    return;
+                }
+
 
                 //makakadaan  lang dine pag ok na lhat ng input
                 $("#pop-up-confirm-add").modal({
@@ -199,7 +210,7 @@ alert("vaccine")
             $("#description").val("")
             $("#start-date").val()
             $("#end-date").val("")
-            $("#med-name-and-qty-lbl").html("Nothing is selected")
+            $("#inv-name-and-qty-lbl").html("Nothing is selected")
         }
 
 
