@@ -130,7 +130,7 @@ $number1 = array();
 $results1 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
-    $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' AND vaccine_name='OPV' ");
+    $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' AND vaccine_name='OPV' group by patient_id");
     $number1[$ctr] = mysqli_num_rows($results1[$ctr]);
     $ctr++;$cc++;
 }
@@ -167,7 +167,7 @@ $ctr = 0;$cc=1;
 $temp = '';
 while ($cc<8){
     $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='OPV' ");
+                                            AND vaccine_name='OPV'  group by patient_id");
     $number[$ctr] = mysqli_num_rows($results[$ctr]);
     $ctr++;$cc++;
 }
@@ -180,7 +180,8 @@ while ($ctr<7) {
 $minorJson= json_encode($childArray);
 
 
-$arr = array(65,68,75,81,95,105,130);
+
+$arr["num2"] = array(65,68,75,81,95,105,130);
 $json = json_encode($arr);
 
 ?>
@@ -191,62 +192,68 @@ $json = json_encode($arr);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Jquery-->
+    <script src="../../js/jquery-3.6.0.js"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="../../jquery-ui/jquery-ui.css">
+    <script src="../../jquery-ui/jquery-ui.js"></script>
+    <script src="../../js/track.js"></script>
     <style>
-        #speedChart {
+        #opvChart {
             background-color: rgb(204, 209, 243);
         }
-    /*    .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-    */
-        /* Style the buttons inside the tab
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
+        .tab{
+            display: flex;
 
-        Change background color of buttons on hover
-        .tab button:hover {
-            background-color: #ddd;
         }
-*/
+        .timestamp{
+            font-size:1rem;
+            margin: 0.7rem 0.7rem 0.7rem 0.7rem;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius:4px;
+            border:1px solid #656565;
+            background-color: rgba(180, 218, 243, 0.82);
+        }
+        .timestamp:hover{
+            background-color: #465A72;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
     </style>
+
 </head>
 <body>
-<!--<div class="tab">
-    <button class="tablinks" >Week</button>
-    <button class="tablinks" >Month</button>
-    <button class="tablinks" >Year</button>
-    <button class="tablinks" >Overall</button>
+<!--period to period button-->
+<div class="tab">
+    <div id="wk1" class="timestamp">Weekly</div>
+    <div id="mo1" class="timestamp" >Monthly</div>
+    <div id="yr1" class="timestamp" >Yearly</div>
+    <div id="ov1" class="timestamp" >Overall</div>
 </div>
--->
+<!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+    <canvas id="opvChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
 </div>
 <script>
-
-    var speedCanvas = document.getElementById("speedChart");
+    document.getElementById("ov1").style.color = "#ffffff";
+    document.getElementById("ov1").style.backgroundColor = "#363636";
+//creation of variable to handle and manipulate the canvas that was made
+    var speedCanvas = document.getElementById("opvChart");
     speedCanvas.fillStyle = 'lightGreen';
     Chart.defaults.color = "#ffffff";
-    var infant = {
+    //creating multiple datasets
+    var opvinfant = {
         label: "Infant",
         data: <?php  echo $babyJson?>,
         lineTension: 0.1,//curve of line
         fill: false,
         borderWidth: 1,
-        borderColor: 'red'
+        borderColor: 'yellow'
     };
 
-    var minor = {
+    var opvminor = {
         label: "Minor",
         data: <?php echo $minorJson; ?>,
         lineTension: 0.1,
@@ -254,10 +261,10 @@ $json = json_encode($arr);
         fill: false,
         borderColor: 'lightGreen'
     };
-
+// inputing all needed data into a finalized dataset
     var speedData = {
         labels: ["Purok 1", "Purok 2", "Purok 3", "Purok 4", "Purok 5", "Purok 6", "Purok 7"],
-        datasets: [infant,minor]
+        datasets: [opvinfant,opvminor]
     };
 
     var chartOptions = {
@@ -270,13 +277,14 @@ $json = json_encode($arr);
             }
         }
     };
-
-    var lineChart = new Chart(speedCanvas, {
+// uploading the data to the chart
+    var opvlineChart = new Chart(speedCanvas, {
         type: 'line',
         data: speedData,
         options: chartOptions,
         hoverOffset: 3,// delay effect ng hover
         options: {
+            //scales signifies the gridlines, x is fo x axis and y is for y axis
             scales: {
                 x: {
                     grid:{
@@ -311,6 +319,11 @@ $json = json_encode($arr);
             }
         }
     });
+    //reload with time interval
+    //window.setInterval("reloadIFrame();", 30000);
+    function reloadIFrame() {
+        location.reload();
+    }
 </script>
 </body>
 </html>
