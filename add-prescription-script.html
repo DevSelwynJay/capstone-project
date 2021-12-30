@@ -60,7 +60,7 @@
 
                     $( "#search-inv" ).val(ui.item.label)
                     //user defined code
-                    //alert(ui.item.id) //get the ID of selected item
+                    alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
                     $("#inv-name").val(ui.item.label).trigger('focus')
@@ -199,7 +199,7 @@ alert("vaccine")
             $("#description").val("")
             $("#start-date").val()
             $("#end-date").val("")
-            $("#med-name-and-qty-lbl").html("Nothing is selected")
+            $("#inv-name-and-qty-lbl").html("Nothing is selected")
         }
 
 
