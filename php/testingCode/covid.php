@@ -117,7 +117,7 @@ $json = json_encode($arr);
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="../../jquery-ui/jquery-ui.css">
     <script src="../../jquery-ui/jquery-ui.js"></script>
-    <script src="../../js/track.js"></script>
+    <script src="../../js/track2.js"></script>
     <style>
         #speedChart {
             background-color: rgb(204, 209, 243);
