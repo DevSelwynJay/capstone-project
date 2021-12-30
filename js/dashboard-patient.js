@@ -71,10 +71,14 @@ $(document).ready(function (e) {
                     freq_sentence = "With "+interval+" day/s of interval"
                 }
 
+                let formattedMedName = resultElement.medicine_name.substr(0,1).toUpperCase()+resultElement.medicine_name.substr(1).toLowerCase()
                 $('#calendar').evoCalendar('addCalendarEvent', {
                     id: resultElement.event_id,
-                    name: resultElement.medicine_name,
+                    name: formattedMedName,
                     description:
+                        "<strong>Strenght</strong>" +
+                        "<br> - "+resultElement.dosage+
+                        "<br><br>"+
                         "<strong>Frequency</strong>" +
                         "<br> - "+resultElement.no_times+" times a day"+
                         "<br> - "+freq_sentence+
