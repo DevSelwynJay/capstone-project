@@ -118,6 +118,7 @@
         function add_prescription_btn() {
             $("#add-prescript-btn").click(function (event) {
                 let medName = $("#inv-name").val()
+                let medCat = $("#inv-type").val()
                 let medSubCat = $("#sub-category").val()
                 let qty = $("#qty").val()
                 let freq = $("#frequency").val()
@@ -169,6 +170,7 @@
                     $.post('php/patientProcesses/addMedicationRecord.php',{
                         inv_id:inv_id,
                         medName:medName,
+                        medCat:medCat,
                         medSubCat: medSubCat,
                         qty:qty,
                         interval:interval,
