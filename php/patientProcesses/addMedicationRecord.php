@@ -58,7 +58,7 @@ while($row = mysqli_fetch_assoc($res)){
         if($subRow['stock']>=0){
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES (DEFAULT ,'$medName','$medCat','$medSubCat','$dosage',$qty,'$mfg','$exp','Medicine')
+                            VALUES ($id ,'$medName','$medCat','$medSubCat','$dosage',$qty,'$mfg','$exp','Medicine')
                         ");
             break;
         }
@@ -67,7 +67,7 @@ while($row = mysqli_fetch_assoc($res)){
             $residualStock = abs($subRow['stock']);
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES (DEFAULT,'$medName','$medCat','$medSubCat','$dosage',$qty-$residualStock,'$mfg','$exp','Medicine')
+                            VALUES ($id,'$medName','$medCat','$medSubCat','$dosage',$qty-$residualStock,'$mfg','$exp','Medicine')
                         ");
         }
     }
