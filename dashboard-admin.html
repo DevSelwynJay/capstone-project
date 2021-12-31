@@ -17,39 +17,40 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Patient</title>
-<!--    &lt;!&ndash;Jquery&ndash;&gt;-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--    &lt;!&ndash;Jquery&ndash;&gt;-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <!--Jquery-->
     <script src="js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],
-          ['July', 200, 150, 20],
-          ['August', 400, 200, 25],
-          ['September', 660, 50, 10],
-          ['October', 300, 100, 20]
-        ]);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],
+                ['July', 200, 150, 20],
+                ['August', 400, 200, 25],
+                ['September', 660, 50, 10],
+                ['October', 300, 100, 20]
+            ]);
 
-        var options = {
-          chart: {
-            title: 'Vaccine Tracking',
-            subtitle: 'as of July - October 2021',
-          },
-          bars: 'vertical' // Required for Material Bar Charts.
-        };
+            var options = {
+                chart: {
+                    title: 'Vaccine Tracking',
+                    subtitle: 'as of July - October 2021',
+                },
+                bars: 'vertical' // Required for Material Bar Charts.
+            };
 
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
     </script>
     <style>
-        .drop-down-settings,.drop-down-settings open{
+        .drop-down-settings,
+        .drop-down-settings open {
             z-index: 1000;
         }
     </style>
@@ -110,13 +111,14 @@
                                 <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
-                                   <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
-                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                                   </ul>
+                                    <ul>
+                                        <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a>
+                                        </li>
+                                        <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                        <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                        <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                        <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                    </ul>
                                 </div>
 
                                 <div class="drop-down-settings" id="dropdown">
@@ -133,71 +135,39 @@
 
 
                     <div class="dashboard-admin-content">
-
                         <div class="admin-upper">
-
-                            <div class="upper-left">
-                                <div class="stats-box">
-                                    <p>6</p>
-                                    <p>Minor Patients</p>
+                            <div class="admin-upper-left">
+                                <div class="dashboard-cards card1">
+                                    gg
                                 </div>
-                                <div class="stats-box">
-                                    <p>15</p>
-                                    <p>Senior Citizen Patients</p>
-                                </div>
-                                <div class="stats-box">
-                                    <p>8</p>
-                                    <p>Pregnant Patients</p>
-                                </div>
-                                <div class="stats-box">
-                                    <p>7</p>
-                                    <p>PWD Patients</p>
+                                <div class="dashboard-cards card2">
+                                    gg
                                 </div>
                             </div>
-
-                            <div class="upper-right">
-                                <div class="stats-big-box">
-                                    <p class = "green-color">36</p>
-                                    <p>Overall Number of Patients</p>
+                            <div class="admin-upper-right">
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                                <div class="stats-big-box">
-                                    <p class = "red-color">20</p>
-                                    <p>Overall Number of Cured Patients</p>
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                            </div>
-
-                        </div>
-                        <div class="admin-lower">
-                            <div class="patient-list-container">
-                                <p>Patients</p>
-                                <div class="patient-list">
-                                    <img src="img/jay.jpg" alt="">
-                                    <p>Patient Name</p>
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                                <div class="patient-list">
-                                    <img src="img/jay.jpg" alt="">
-                                    <p>Patient Name</p>
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                                <div class="patient-list">
-                                    <img src="img/jay.jpg" alt="">
-                                    <p>Patient Name</p>
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                                <div class="patient-list">
-                                    <img src="img/jay.jpg" alt="">
-                                    <p>Patient Name</p>
+                                <div class="dashboard-small-cards">
+                                    d
                                 </div>
-                                <div class="patient-list">
-                                    <img src="img/jay.jpg" alt="">
-                                    <p>Patient Name</p>
-                                </div>
-                            </div>
-                            <div class="vaccine-graph-container">
-                                <div id="barchart_material" style="width: 450px; height: 500px;"></div>
                             </div>
                         </div>
-                        
-
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -211,54 +181,56 @@
         const dropdownToggle = document.querySelector('#dropdown-toggle');
         const Closedropdown = document.querySelector('#close-dropdown');
 
-        dropdownToggle.addEventListener('click',function(){//Conditions
-            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+        dropdownToggle.addEventListener('click', function () {//Conditions
+            if (dropdown.classList.contains('open')) { // Close Mobile Menu
                 dropdown.classList.remove('open');
             }
-            else{ // Open Mobile Menu
+            else { // Open Mobile Menu
                 dropdown.classList.add('open');
-            }});
+            }
+        });
 
 
-        dropdownToggle.addEventListener('click',function(){
+        dropdownToggle.addEventListener('click', function () {
             dropdown.classList.add('open');
             dropdownToggle.style.display = "none";
             Closedropdown.style.display = "block"
         });
 
-        Closedropdown.addEventListener('click',function(){
+        Closedropdown.addEventListener('click', function () {
             dropdown.classList.remove('open');
             Closedropdown.style.display = "none"
             dropdownToggle.style.display = "block";
         });
 
     </script>
-     <script>
+    <script>
         const menu = document.querySelector('#menu');
         const mobileMenu = document.querySelector('#mobile-menu');
         const closeMobileMenu = document.querySelector('#close-mobile-menu');
-        
-        mobileMenu.addEventListener('click',function(){//Conditions
-        if(menu.classList.contains('open')){ // Close Mobile Menu
-        menu.classList.remove('open');
-        }
-        else{ 
-        menu.classList.add('open');
-        }});
-        
-        
-        mobileMenu.addEventListener('click',function(){
+
+        mobileMenu.addEventListener('click', function () {//Conditions
+            if (menu.classList.contains('open')) { // Close Mobile Menu
+                menu.classList.remove('open');
+            }
+            else {
+                menu.classList.add('open');
+            }
+        });
+
+
+        mobileMenu.addEventListener('click', function () {
             menu.classList.add('open');
             mobileMenu.style.display = "none";
             closeMobileMenu.style.display = "block"
         });
-        
-        closeMobileMenu.addEventListener('click',function(){
-           menu.classList.remove('open');
-           closeMobileMenu.style.display = "none"
-           mobileMenu.style.display = "block";
+
+        closeMobileMenu.addEventListener('click', function () {
+            menu.classList.remove('open');
+            closeMobileMenu.style.display = "none"
+            mobileMenu.style.display = "block";
         });
-     </script>
+    </script>
 </body>
 
 </html>
