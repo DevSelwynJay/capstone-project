@@ -284,7 +284,7 @@
                                          </div>
                                      </div>
                                      <div style="display: flex;justify-content: center">
-                                         <button class="primary-btn" id="trigger-add-patient-modal" type="submit" style="width: 100%">Register</button>
+                                         <button class="primary-btn" id="trigger-add-patient-modal" type="button" style="width: 100%">Register</button>
                                      </div>
 
                                  </div>
@@ -404,7 +404,7 @@ Closedropdown.addEventListener('click',function(){
           </div>
 
           <div class="flex-box-row justify-content-end align-items-end">
-              <a href="#pop-up-success" rel="modal:close">
+              <a href="#pop-up-error" rel="modal:close">
                   <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
               </a>
           </div>
@@ -454,5 +454,117 @@ Closedropdown.addEventListener('click',function(){
            mobileMenu.style.display = "block";
         });
      </script>
+
+    <script>
+        //UX on pressing enter
+        // $('[name="fname"]').trigger(function () {
+        //     alert()
+        // })
+        $('[name="fname"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="mname"]').trigger("focus")
+            }
+        })
+        $('[name="mname"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="lname"]').trigger("focus")
+            }
+        })
+        $('[name="lname"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="suffix"]').trigger("focus")
+            }
+        })
+        $('[name="suffix"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="patient-type"]').trigger("focus")
+            }
+        })
+        $('[name="patient-type"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="blood-type"]').trigger("focus")
+            }
+        })
+        $('[name="blood-type"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="height"]').trigger("focus")
+            }
+        })
+        $('[name="height"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="weight"]').trigger("focus")
+            }
+        })
+        $('[name="weight"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="civil_status"]').trigger("focus")
+            }
+        })
+        $('[name="civil_status"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="occupation"]').trigger("focus")
+            }
+        })
+        $('[name="occupation"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="gender"]').trigger("focus")
+            }
+        })
+        $('[name="gender"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="bday"]').trigger("focus")
+            }
+        })
+        $('[name="bday"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="purok"]').trigger("focus")
+            }
+        })
+        $('[name="purok"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="house_no"]').trigger("focus")
+            }
+        })
+        $('[name="house_no"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="email"]').trigger("focus")
+            }
+        })
+        $('[name="email"]').keydown(function (e) {
+            let key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $('[name="contact"]').trigger("focus")
+            }
+        })
+    </script>
    </body>
 </html>
