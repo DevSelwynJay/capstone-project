@@ -125,7 +125,7 @@ session_start();
                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
                         <div class="settings">
-                           <a href="/"><i class="fas fa-user-circle"></i></a> 
+                           <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
@@ -145,7 +145,7 @@ session_start();
                               <ul>
                                  <li><a href="">Approve EMR</a></li>
                                  <li><a href="settings.php">settings</a></li>
-                                 <li><a href="about.html">About</a></li>
+                                 <li><a href="about.php">About</a></li>
                                  <li><a href="php/sessionDestroy.php">Logout</a></li>
                               </ul>
                            </div>

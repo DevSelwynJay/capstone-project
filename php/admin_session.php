@@ -9,7 +9,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     exit();
 }
 $email = $_SESSION['email'];
-$res = mysqli_query($con,"SELECT*FROM admin where email = '$email' ");
+$res = mysqli_query($con,"SELECT *, timestampdiff(year,birthday,NOW()) as age, DATE_FORMAT(birthday,'%b %d, %Y') as fd FROM admin where email = '$email' ");
 if(mysqli_num_rows($res)<=0){
     echo json_encode(array(
         "admin_name"=>"invalid admin email"
@@ -23,7 +23,9 @@ if($res){
 
        echo json_encode(array(
            "admin_id"=>$row['id']
-           ,"admin_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name']
+           ,"admin_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name'],
+           "gender"=>$row['gender'], "birthday"=>$row['fd'], "age"=>$row['age'],
+           "address"=> $row['address']
         ));
 
     }

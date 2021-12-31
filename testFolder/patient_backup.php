@@ -66,7 +66,7 @@
                                <ul>
                                <li><a href="">Approve EMR</a></li>
                                         <li><a href="../settings.php">settings</a></li>
-                                        <li><a href="../about.html">About</a></li>
+                                        <li><a href="../about.php">About</a></li>
                                         <li><a href="../php/sessionDestroy.php">Logout</a></li>
                                </ul>
                            </div>

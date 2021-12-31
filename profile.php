@@ -18,7 +18,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Patient</title>
     <!--Jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--Jquery-->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!--Get admin info from session-->
+    <script>
+        $(document).ready(function () {
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                    let splittedName = result.admin_name.split(" ");
+                    $("#fname").html(splittedName[0])
+                    $("#mname").html(splittedName[1])
+                    $("#lname").html(splittedName[2])
+                    $("#gender").html(result.gender)
+                    $("#age").html(result.age)
+                    $("#birthday").html(result.birthday)
+                    $("#address").html(result.address)
+                }
+            )
+        })
+    </script>
 </head>
 
 <body>
@@ -32,7 +53,7 @@
                             <div class="profile-img">
                                 <img src="img/jay.jpg" alt="">
                             </div>
-                            <h4>Your Name</h4>
+                            <h4 id="name-sidebar">Your Name</h4>
                         </div>
                         <ul class="menu">
                             <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
@@ -77,7 +98,7 @@
                                     <ul>
                                         <li><a href="">Approve EMR</a></li>
                                         <li><a href="settings.php">settings</a></li>
-                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="about.php">About</a></li>
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>
                                     </ul>
                                 </div>
@@ -95,8 +116,8 @@
                                 <div class="right-part">
                                     <p>Account Settings</p>
                                     <ul>
-                                        <li><i class="fas fa-user-edit"></i><a href="">Modify Information</a></li>
-                                        <li><i class="fas fa-edit"></i><a href="">Update Email and Password</a></li>
+                                        <li><i class="fas fa-user-edit"></i><a href="settings.php">Modify Information</a></li>
+                                        <li><i class="fas fa-edit"></i><a href="change-email-settings.php">Update Email and Password</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -104,32 +125,32 @@
                             <div class="lower-part">
                                 <table>
                                     <tr>
-                                        <td>First Name</td>
-                                        <td>Juan</td>
+                                        <td >First Name</td>
+                                        <td id="fname">Juan</td>
                                     </tr>
                                     <tr>
                                         <td>Middle Name</td>
-                                        <td>Santos</td>
+                                        <td  id="mname">Santos</td>
                                     </tr>
                                     <tr>
-                                        <td>Surname Name</td>
-                                        <td>Dela Cruz</td>
+                                        <td >Surname Name</td>
+                                        <td id="lname">Dela Cruz</td>
                                     </tr>
                                     <tr>
-                                        <td>Gender</td>
-                                        <td>Male</td>
+                                        <td >Gender</td>
+                                        <td id="gender">Male</td>
                                     </tr>
-                                    <tr>
+                                    <tr >
                                         <td>Age</td>
-                                        <td>21</td>
+                                        <td id="age">21</td>
                                     </tr>
                                     <tr>
-                                        <td>Birthday</td>
-                                        <td>01/01/1999</td>
+                                        <td >Birthday</td>
+                                        <td id="birthday">01/01/1999</td>
                                     </tr>
                                     <tr>
-                                        <td>Address</td>
-                                        <td>Guinhawa, Malolos, Bulacan</td>
+                                        <td >Address</td>
+                                        <td id="address">Guinhawa, Malolos, Bulacan</td>
                                     </tr>
                                 </table>
                             </div>
