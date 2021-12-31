@@ -82,7 +82,7 @@ $(document).ready(function() {
                         "<strong>Frequency</strong>" +
                         "<br> - "+resultElement.no_times+" times a day"+
                         "<br> - "+freq_sentence+
-                        "<br> - Duration of "+duration+" days"+
+                        "<br> - Duration of "+duration+" day/s"+
                         "<br><br><strong>Description: </strong><br>"+resultElement.description+
                         "<br><br><strong>Start of Medication</strong>" +
                         "<br> - "+resultElement.start_date_formatted+

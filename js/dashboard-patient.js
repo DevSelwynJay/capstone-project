@@ -82,7 +82,7 @@ $(document).ready(function (e) {
                         "<strong>Frequency</strong>" +
                         "<br> - "+resultElement.no_times+" times a day"+
                         "<br> - "+freq_sentence+
-                        "<br> - Duration of "+duration+" days"+
+                        "<br> - Duration of "+duration+" day/s"+
                         "<br><br><strong>Description: </strong><br>"+resultElement.description+
                         "<br><br><strong>Start of Medication</strong>" +
                         "<br> - "+resultElement.start_date_formatted+
@@ -114,7 +114,7 @@ $(document).ready(function (e) {
                      "<tr>" +
                              "<td>" +  resultElement.medicine_name + " (" + resultElement.dosage + ")" + "</td>" +
                              "<td>" + resultElement.no_times + "</td>" +
-                             "<td>" + resultElement.duration_days+  " days, Until " +  resultElement.end_date  +"</td>" +
+                             "<td>" + resultElement.duration_days+  " day/s, Until " +  resultElement.end_date  +"</td>" +
                      "</tr>")
              }
          })
