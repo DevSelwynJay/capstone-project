@@ -113,7 +113,7 @@
                                  </div>
                                  <div class="col-lg-12 reports_lower-col">
                                     <div class="reports_individual-report-download">
-                                        <a href="">Download Report (csv)</a>
+                                        <a id="excel-link">Download Report (csv)</a>
                                         <a id="pdf-link">Dowload Report (pdf)</a>
                                         <a href="">Print Report</a>
                                       </div>
@@ -394,6 +394,106 @@
 
             });
 
+            $('#excel-link').on("click", function(){
+                var getminor = $('#minor-link').attr('class');
+                var getadult = $('#adult-link').attr('class');
+                var getsenior = $('#senior-link').attr('class');
+
+                var getdaily = $('#daily-link').attr('class');
+                var getweekly = $('#weekly-link').attr('class');
+                var getmonthly = $('#monthly-link').attr('class');
+                var getquarterly = $('#quarterly-link').attr('class');
+                var getannually = $('#anually-link').attr('class');
+                if(getminor == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Minor');
+
+
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Minor');
+
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Minor');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Minor');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Minor');
+
+
+                    }
+
+                }
+                else if(getadult=='active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Adult');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Adult');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Adult');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Adult');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Adult');
+
+
+                    }
+
+                }
+                else if(getsenior == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Senior');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Senior');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Senior');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Senior');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Senior');
+
+
+                    }
+
+                }
+
+
+            });
         });
 
         function displayMinor(page){

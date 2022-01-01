@@ -72,7 +72,7 @@ if(mysqli_num_rows($res)> 0) {
     }
     echo $medtable;
 }else{
-    $medtable = "No Data Found";
+    $medtable = "<h1 style='color: black;'>No Data Found</h1>";
     echo $medtable;
 }
 

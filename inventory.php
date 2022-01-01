@@ -128,7 +128,7 @@ require 'php/DB_Connect.php';
            <div id="displayMedicineDataTable">
            </div>
        </div>
-   </div>
+
     <div class="inventory__table-toexpire-container"  >
         <div id="toExptab">
         </div>
@@ -138,6 +138,7 @@ require 'php/DB_Connect.php';
         <div id="exptab">
         </div>
     </div>
+   </div>
 <!--Modals-->
        <!-- Add New Meds Modal -->
        <div id="add-modal" class="modal">
