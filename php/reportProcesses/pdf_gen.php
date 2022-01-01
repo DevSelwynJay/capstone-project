@@ -39,13 +39,14 @@ class PDF extends FPDF{
 
 
 }
-
+$datetoday = Date("M-d-Y");
 $pdf = new PDF('p');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
 
 $pdf->Text(10,40,"Medicine Reports (".$type.")");
+$pdf->Text(170,40,"$datetoday");
 $pdf->Cell(35,10,"Medicine ID",0,0,'C');
 $pdf->Cell(50,10,"Medicine Name",0,0,'C');
 $pdf->Cell(0,10,"Medicine Description",0,1,'C');
@@ -55,10 +56,10 @@ $pdf->SetFont('Arial','',14);
 while($row = mysqli_fetch_assoc($record)){
     $pdf->Cell(35,10,$row['id'],"T",0,'C');
     $pdf->Cell(50,10,$row['name']." (".$row['dosage'].")","T",0,'C');
-    $pdf->MultiCell(0,10,"Category: ".$row['category']."Stocks: ".$row['stock'] ." Date: " .$row['mfgdate'] ."-". $row['expdate'],"T",'C');
+    $pdf->MultiCell(0,10,"Category: ".$row['category']."\nStocks: ".$row['stock'] ."\nDate: " .$row['mfgdate'] ."-". $row['expdate'],"LT",'C');
 
 
 
 }
 
-$pdf->Output('D','Report.pdf');
+$pdf->Output('D','Report-'.$datetoday.'.pdf');
