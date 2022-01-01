@@ -103,37 +103,95 @@ $(document).ready(function() {
     //retrieve patient medication and vaccination history
     function retrieveHistory() {
 
-        let header = "<tr>\n" +
-            "                                       <th>Name</th>\n" +
-            "                                       <th>Type</th>\n" +
-            "                                       <th>Date Given</th>\n" +
-            "                                       <th>Description</th>\n" +
-            "                                    </tr>"
-        $("#patient-history-table").html("").append(header)
+        let historyFilter = $('[name="med-filter"]:checked').val();//All,Medicine,Vaccine
+        //alert(historyFilter)
+
+        // let header = "<tr>\n" +
+        //     "                                       <th>Name</th>\n" +
+        //     "                                       <th>Type</th>\n" +
+        //     "                                       <th>Date Given</th>\n" +
+        //     "                                       <th>Description</th>\n" +
+        //     "                                    </tr>"
+        // $("#patient-history-table").html("").append(header)
 
         //get all vaccination/medication history then put into the table
-        $.post('php/patientProcesses/retrieveHistory.php').done(
+        $.post('php/patientProcesses/retrieveHistory.php',{historyFilter:historyFilter}).done(
             function (data) {//#patient-history-table
                 let result = JSON.parse(data)
+                 setTimeout(()=>{
+                     if(result.length==0){
+                         $("#patient-history-table").html("<h3>No Record Available</h3>")
+                         return
+                     }
+                     // for (const resultElement of result) {
+                     //
+                     //     $("#patient-history-table").append("" +
+                     //         "<tr>" +
+                     //         "<td>" + resultElement.name+"</td>"+
+                     //         "<td>" + resultElement.type+"</td>"+
+                     //         "<td>" + resultElement.date+"</td>"+
+                     //         "<td>" + resultElement.description+"</td>"+
+                     //
+                     //         "</tr>")
+                     // }
 
-                if(result.length==0){
-                    $("#patient-history-table").html("<h3>No Record Available</h3>")
-                    return
-                }
-                for (const resultElement of result) {
+                     var table = $("#pagination").tableSortable({
+                         data: result,
+                         columns:
+                             {
+                                 name:"Name",
+                                 type:"Type",
+                                 date: "Age",
+                                 description:"Purok",
+                             }
+                         ,
+                         searchField: '.search-bar',
+                         rowsPerPage: 1,
+                         pagination: true,
+                         tableWillMount: function() {
+                             console.log('table will mount')
+                         },
+                         tableDidMount: function() {
+                             console.log('table did mount')
+                         },
+                         tableWillUpdate: function() {console.log('table will update')},
+                         tableDidUpdate: function() {
+                             console.log('table did update')
+                             row_click()
+                         },
+                         tableWillUnmount: function() {console.log('table will unmount')},
+                         tableDidUnmount: function() {console.log('table did unmount')},
+                         onPaginationChange: function(nextPage, setPage) {
+                             setPage(nextPage);
+                         }
+                     });
 
-                    $("#patient-history-table").append("" +
-                        "<tr>" +
-                        "<td>" + resultElement.name+"</td>"+
-                        "<td>" + resultElement.type+"</td>"+
-                        "<td>" + resultElement.date+"</td>"+
-                        "<td>" + resultElement.description+"</td>"+
+                     $('#changeRows').on('change', function() {
+                         table.updateRowsPerPage(parseInt($(this).val(), 10));
+                     })
 
-                        "</tr>")
-                }
+                     $('#rerender').click(function() {
+                         table.refresh(true);
+                     })
+
+                     $('#distory').click(function() {
+                         table.distroy();
+                     })
+
+                     $('#refresh').click(function() {
+                         table.refresh();
+                     })
+
+                     $('#setPage2').click(function() {
+                         table.setPage(1);
+                     })
+
+                     $("#close-loading").trigger('click')
+                 },350)
+
             }
         )
-    }//end
+    }//end of retrieveHistory()
     retrieveHistory()
 
     //just to prevent a click
@@ -171,7 +229,13 @@ $(document).ready(function() {
         $('#calendar').evoCalendar('toggleEventList',false);
     })
 
-
+    ///historyFilter
+    $('[name="med-filter"]').on('click',function () {
+        $("#pop-up-loading").modal({
+            showClose:false, clickClose:false,escapeClose:false
+        })
+        retrieveHistory()
+    })
 
     $("#hidden-refresh-button").click(function () {
         $('#calendar').evoCalendar('destroy');

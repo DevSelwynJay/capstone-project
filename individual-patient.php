@@ -45,7 +45,8 @@ session_start();
        <link rel="stylesheet" href="scss/scrollbar_loading.css">
        <!--Custom Modal Design-->
        <link rel="stylesheet" href="scss/modal.css">
-
+       <!--Table sortable-->
+       <script src="js/table-sortable.js"></script>
        <script>
            //<!--Get admin info from session-->
            $(document).ready(function () {
@@ -219,34 +220,78 @@ session_start();
                               <div id="calendar"></div>
                            </div>
                            <div class="patient-content__medical-history holder">
-                              <p>Medication/Vaccination History</p>
-                              <div class="patient-content__medical-history-container">
-                                 <table id="patient-history-table">
-                                    <tr>
-                                       <th>Name</th>
-                                       <th>Type</th>
-                                       <th>Date Given</th>
-                                       <th>Description</th>
-                                    </tr>
-<!--                                    <tr>-->
-<!--                                       <td>Jay</td>-->
-<!--                                       <td>Vaccination</td>-->
-<!--                                       <td>11/20/2021</td>-->
-<!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                       <td>Jay</td>-->
-<!--                                       <td>Vaccination</td>-->
-<!--                                       <td>11/20/2021</td>-->
-<!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
-<!--                                    </tr>-->
-                                 </table>
+                               <p>Medication/Vaccination History</p>
+                               <div class="search-container flex-box-row justify-content-end margin-top-1">
+                                   <input type="text" class="search-bar" style="width: 40%"> <a href="/"><i class="fas fa-search"></i></a>
+                               </div>
+                               <div id="history-filter" class="row margin-top-1">
+
+                                   <div class="col-sm-8 align-items-center justify-content-start flex-box-row">
+                                       <p class="modal-p med-filter-p">All</p><input type="radio" name="med-filter" value="All" checked>
+                                       <p class="modal-p med-filter-p">Medicine</p><input type="radio" name="med-filter" value="Medicine">
+                                       <p class="modal-p med-filter-p">Vaccine</p><input type="radio" name="med-filter" value="Vaccine">
+                                   </div>
+                                   <style>
+                                       .med-filter-p{
+                                           display: inline-block;
+                                           padding-right: 0.2rem!important;
+                                       }
+                                       input[name="med-filter"]{
+                                       margin-right: 0.6rem;
+                                       }
+                                   </style>
+                               </div>
+                              <div class="patient-content__medical-history-container" id="pagination">
+                                      <table id="patient-history-table">
+                                          <tr>
+                                              <th>Name</th>
+                                              <th>Type</th>
+                                              <th>Date Given</th>
+                                              <th>Description</th>
+                                          </tr>
+                                          <!--                                    <tr>-->
+                                          <!--                                       <td>Jay</td>-->
+                                          <!--                                       <td>Vaccination</td>-->
+                                          <!--                                       <td>11/20/2021</td>-->
+                                          <!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
+                                          <!--                                    </tr>-->
+                                          <!--                                    <tr>-->
+                                          <!--                                       <td>Jay</td>-->
+                                          <!--                                       <td>Vaccination</td>-->
+                                          <!--                                       <td>11/20/2021</td>-->
+                                          <!--                                       <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, quasi.</td>-->
+                                          <!--                                    </tr>-->
+                                      </table>
+
                               </div>
-                              <!--
-                                 <div class="cta-prescription-container">
-                                    <a class="cta-prescription" href="/"><i class="fas fa-plus"></i>Add Prescriptions</a>
-                                 </div>
-                                   -->
+                               <style>
+                                   .gs-pagination{
+                                       margin: 1em;
+                                   }
+                                   .gs-pagination .row .col-md-6 span{
+                                       font-size: clamp(0.4rem,0.8rem,1rem);
+                                   }
+                                   .gs-button,.gs-button span{
+                                      color:#383838;
+                                   }
+                                   .btn-group button,.btn-group button span{/*sa pagination na button*/
+                                       outline: none;
+                                       padding: 0.2em 0.3rem;
+                                       margin: 0.2%;
+                                       word-wrap: normal;
+                                   }
+                                   @media(max-width: 1150px) {
+                                       td{
+                                           font-size: clamp(0.4rem,0.8rem,1rem);
+                                       }
+                                   }
+                               </style>
+
+                               <!--
+                                  <div class="cta-prescription-container">
+                                     <a class="cta-prescription" href="/"><i class="fas fa-plus"></i>Add Prescriptions</a>
+                                  </div>
+                                    -->
                            </div>
                         </div>
                      </div>
@@ -313,5 +358,17 @@ require 'add-prescription-script.html';
 ?>
 
    <input type="hidden" id="hidden-refresh-button">
+
+      <!--Modal for loading-->
+      <div id="pop-up-loading" class="modal">
+          <div style="display: flex;align-items: center;justify-content: center">
+              <div class="loader"></div>
+              <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                  Loading...
+              </p>
+              <a href="#pop-up-loading" rel="modal:close" id="close-loading" style="display: none">
+              </a>
+          </div>
+      </div>
    </body>
 </html>
