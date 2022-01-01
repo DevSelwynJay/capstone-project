@@ -103,7 +103,7 @@ $(document).ready(function() {
     //retrieve patient medication and vaccination history
     function retrieveHistory() {
 
-        let historyFilter = $('[name="med-filter"]:checked').val();//All,Medicine,Vaccine
+        let historyFilter = $('[name="med-filter"]:checked').val();//All,Active,Finished
         //alert(historyFilter)
 
         // let header = "<tr>\n" +
@@ -121,7 +121,7 @@ $(document).ready(function() {
                  setTimeout(()=>{
                      if(result.length==0){
                          $("#patient-history-table").html("<h3 style='margin-bottom: 1rem'>No Record Available</h3>")
-                         $("#history-filter").css("display","none")
+                         $("#close-loading").trigger('click')
                          return
                      }
                      // for (const resultElement of result) {
@@ -135,15 +135,15 @@ $(document).ready(function() {
                      //
                      //         "</tr>")
                      // }
-                     $("#history-filter").css("display","block")
+
                      var table = $("#pagination").tableSortable({
                          data: result,
                          columns:
                              {
                                  name:"Name",
                                  type:"Type",
-                                 date: "Age",
-                                 description:"Purok",
+                                 date: "Date Given",
+                                 description:"Description",
                              }
                          ,
                          searchField: '.search-bar',
@@ -239,8 +239,8 @@ $(document).ready(function() {
     })
     //history search bar
     $("#search-med-history").focus(function () {
-        $('[value="All"]').prop('checked',true)
-        retrieveHistory()
+       // $('[value="All"]').prop('checked',true)
+      //  retrieveHistory()
     })
 
     $("#hidden-refresh-button").click(function () {

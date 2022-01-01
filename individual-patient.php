@@ -226,15 +226,24 @@ session_start();
                                </div>
                                <div id="history-filter" class="row margin-top-1">
 
-                                   <div class="col-sm-8 align-items-center justify-content-start flex-box-row">
-                                       <p class="modal-p med-filter-p">All</p><input type="radio" name="med-filter" value="All" checked>
-                                       <p class="modal-p med-filter-p">Medicine</p><input type="radio" name="med-filter" value="Medicine">
-                                       <p class="modal-p med-filter-p">Vaccine</p><input type="radio" name="med-filter" value="Vaccine">
+                                   <div class="col-sm-12 align-items-center justify-content-start flex-box-row">
+                                       <div class="flex-box-row">
+                                           <input type="radio" name="med-filter" value="All" checked><p class="modal-p med-filter-p">View All</p>
+                                       </div>
+                                       <div class="flex-box-row">
+                                           <input type="radio" name="med-filter" value="Active"><p class="modal-p med-filter-p">Currently Taking</p>
+                                       </div>
+                                       <div class="flex-box-row">
+                                           <input type="radio" name="med-filter" value="Finished"><p class="modal-p med-filter-p">Finished Medication/Vaccination</p>
+                                       </div>
                                    </div>
                                    <style>
                                        #history-filter{
-                                           display: none;
                                            padding:1rem;
+                                       }
+                                       #history-filter div div{
+                                          margin: 0 1em;
+                                           align-items: center;
                                        }
                                        .med-filter-p{
                                            display: inline-block;
