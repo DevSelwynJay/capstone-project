@@ -146,7 +146,7 @@ $(document).ready(function() {
                              }
                          ,
                          searchField: '.search-bar',
-                         rowsPerPage: 1,
+                         rowsPerPage: 7,
                          pagination: true,
                          tableWillMount: function() {
                              console.log('table will mount')
