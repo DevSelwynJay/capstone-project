@@ -222,7 +222,7 @@ session_start();
                            <div class="patient-content__medical-history holder">
                                <p>Medication/Vaccination History</p>
                                <div class="search-container flex-box-row justify-content-end margin-top-1">
-                                   <input type="text" class="search-bar" style="width: 40%"> <a href="/"><i class="fas fa-search"></i></a>
+                                   <input type="text" id="search-med-history" class="search-bar" style="width: 40%"> <a href="/"><i class="fas fa-search"></i></a>
                                </div>
                                <div id="history-filter" class="row margin-top-1">
 
@@ -232,6 +232,10 @@ session_start();
                                        <p class="modal-p med-filter-p">Vaccine</p><input type="radio" name="med-filter" value="Vaccine">
                                    </div>
                                    <style>
+                                       #history-filter{
+                                           display: none;
+                                           padding:1rem;
+                                       }
                                        .med-filter-p{
                                            display: inline-block;
                                            padding-right: 0.2rem!important;

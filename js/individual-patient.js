@@ -120,7 +120,8 @@ $(document).ready(function() {
                 let result = JSON.parse(data)
                  setTimeout(()=>{
                      if(result.length==0){
-                         $("#patient-history-table").html("<h3>No Record Available</h3>")
+                         $("#patient-history-table").html("<h3 style='margin-bottom: 1rem'>No Record Available</h3>")
+                         $("#history-filter").css("display","none")
                          return
                      }
                      // for (const resultElement of result) {
@@ -134,7 +135,7 @@ $(document).ready(function() {
                      //
                      //         "</tr>")
                      // }
-
+                     $("#history-filter").css("display","block")
                      var table = $("#pagination").tableSortable({
                          data: result,
                          columns:
@@ -234,6 +235,11 @@ $(document).ready(function() {
         $("#pop-up-loading").modal({
             showClose:false, clickClose:false,escapeClose:false
         })
+        retrieveHistory()
+    })
+    //history search bar
+    $("#search-med-history").focus(function () {
+        $('[value="All"]').prop('checked',true)
         retrieveHistory()
     })
 
