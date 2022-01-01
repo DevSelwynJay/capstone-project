@@ -115,7 +115,7 @@
                                  </div>
                                  <div class="col-lg-12 reports_lower-col">
                                     <div class="reports_individual-report-download">
-                                        <a href="">Download Report (csv)</a>
+                                        <a id="excel-link">Download Report (csv)</a>
                                         <a id="pdf-link">Dowload Report (pdf)</a>
                                         <a href="">Print Report</a>
                                       </div>
@@ -170,6 +170,7 @@
         //$_GET['type']
         //Display Expired Table
         $(document).ready(function(){
+            displayMedRelTab();
             $('#expired-link').on("click", function (){
                 $('#medicine-link').attr('class','');
                 $('#update-link').attr('class','');
@@ -194,6 +195,22 @@
                 $('#added-link').attr('class','');
                 displayUpdateTab();
             });
+            $('#medicine-link').on("click", function(){
+                $('#medicine-link').attr('class','active');
+                $('#update-link').attr('class','');
+                $('#expired-link').attr('class','');
+                $('#vaccine-link').attr('class','');
+                $('#added-link').attr('class','');
+                displayMedRelTab();
+            });
+            $('#vaccine-link').on("click", function(){
+                $('#medicine-link').attr('class','');
+                $('#update-link').attr('class','');
+                $('#expired-link').attr('class','');
+                $('#vaccine-link').attr('class','active');
+                $('#added-link').attr('class','');
+                displayUpdateTab();
+            });
             $('#daily-link').on("click", function(){
                 $('#weekly-link').attr('class','');
                 $('#daily-link').attr('class','active');
@@ -214,11 +231,12 @@
                 else if(getexpired=="active"){
                     displayExpTab();
                 }
-                else if($('#medicine-link').attr('class')=="active"){
+                else if(getmedicine=="active"){
+                    displayMedRelTab();
 
                 }
-                else if($('#vaccine-link').attr('class')=="active"){
-
+                else if(getvaccine=="active"){
+                    displayVacRelTab();
                 }
             });
             $('#weekly-link').on("click", function(){
@@ -241,11 +259,12 @@
                 else if(getexpired=="active"){
                     displayExpTab();
                 }
-                else if($('#medicine-link').attr('class')=="active"){
+                else if(getmedicine=="active"){
+                    displayMedRelTab();
 
                 }
-                else if($('#vaccine-link').attr('class')=="active"){
-
+                else if(getvaccine=="active"){
+                    displayVacRelTab();
                 }
             });
             $('#monthly-link').on("click", function(){
@@ -268,11 +287,12 @@
                 else if(getexpired=="active"){
                     displayExpTab();
                 }
-                else if($('#medicine-link').attr('class')=="active"){
+                else if(getmedicine=="active"){
+                    displayMedRelTab();
 
                 }
-                else if($('#vaccine-link').attr('class')=="active"){
-
+                else if(getvaccine=="active"){
+                    displayVacRelTab();
                 }
             });
             $('#quarterly-link').on("click", function(){
@@ -295,11 +315,12 @@
                 else if(getexpired=="active"){
                     displayExpTab();
                 }
-                else if($('#medicine-link').attr('class')=="active"){
+                else if(getmedicine=="active"){
+                    displayMedRelTab();
 
                 }
-                else if($('#vaccine-link').attr('class')=="active"){
-
+                else if(getvaccine=="active"){
+                    displayVacRelTab();
                 }
             });
             $('#anually-link').on("click", function(){
@@ -322,11 +343,12 @@
                 else if(getexpired=="active"){
                     displayExpTab();
                 }
-                else if($('#medicine-link').attr('class')=="active"){
+                else if(getmedicine=="active"){
+                    displayMedRelTab();
 
                 }
-                else if($('#vaccine-link').attr('class')=="active"){
-
+                else if(getvaccine=="active"){
+                    displayVacRelTab();
                 }
             });
             $('#pdf-link').on("click", function(){
@@ -478,7 +500,158 @@
 
             });
 
+
+
+        $('#excel-link').on("click", function(){
+            var getadd = $('#added-link').attr('class');
+            var getexpired = $('#expired-link').attr('class');
+            var getmedicine = $('#medicine-link').attr('class');
+            var getupdate = $('#update-link').attr('class');
+            var getvaccine = $('#vaccine-link').attr('class');
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            if(getmedicine == 'active'){
+                if(getdaily == 'active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?daily=1&type=Medicine');
+
+
+
+
+                }
+                else if(getweekly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?weekly=1&type=Medicine');
+
+
+
+                }
+                else if(getmonthly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?monthly=1&type=Medicine');
+
+
+                }
+                else if(getquarterly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?quarterly=1&type=Medicine');
+
+
+                }
+                else if(getannually=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?annually=1&type=medicine');
+                }
+
+            }
+            else if(getadd=='active'){
+                if(getdaily == 'active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?daily=1&type=Add');
+
+
+                }
+                else if(getweekly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?weekly=1&type=Add');
+
+
+                }
+                else if(getmonthly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?monthly=1&type=Add');
+
+
+                }
+                else if(getquarterly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?quarterly=1&type=Add');
+
+
+                }
+                else if(getannually=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?annually=1&type=Add');
+
+
+                }
+
+            }
+            else if(getexpired == 'active'){
+                if(getdaily == 'active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?daily=1&type=Delete');
+
+
+                }
+                else if(getweekly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?weekly=1&type=Delete');
+
+
+                }
+                else if(getmonthly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?monthly=1&type=Delete');
+
+
+                }
+                else if(getquarterly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?quarterly=1&type=Delete');
+
+
+                }
+                else if(getannually=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?annually=1&type=Delete');
+
+
+                }
+
+            }
+            else if(getupdate=='active'){
+                if(getdaily == 'active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?daily=1&type=Update');
+
+
+                }
+                else if(getweekly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?weekly=1&type=Update');
+
+
+                }
+                else if(getmonthly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?monthly=1&type=Update');
+
+                }
+                else if(getquarterly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?quarterly=1&type=Update');
+
+                }
+                else if(getannually=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?annually=1&type=Update');
+
+                }
+
+            }
+            else if(getvaccine=='active'){
+                if(getdaily == 'active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?daily=1&amp;type=Vaccine');
+
+                }
+                else if(getweekly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?weekly=1&amp;type=Vaccine');
+
+                }
+                else if(getmonthly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?monthly=1&amp;type=Vaccine');
+
+                }
+                else if(getquarterly=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?quarterly=1&amp;type=Vaccine');
+
+                }
+                else if(getannually=='active'){
+                    $('#excel-link').attr('href','php/reportProcesses/excel_gen.php?annually=1&amp;type=Vaccine');
+
+                }
+
+            }
+
         });
+
+
+        });
+
 
 
 
@@ -612,6 +785,95 @@
         $(document).on("click",".pagination_linkup",function (){
             var page = $(this).attr("id");
             displayUpdateTab(page);
+        });
+
+        function displayMedRelTab(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+
+            $.ajax({
+                url: 'php/reportProcesses/displayMedReleasedTab.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        };
+        $(document).on("click",".pagination_linkmed",function (){
+            var page = $(this).attr("id");
+            displayMedRelTab(page);
+        });
+        function displayVacRelTab(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+
+            $.ajax({
+                url: 'php/reportProcesses/displayVacReleasedTab.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        };
+        $(document).on("click",".pagination_linkvac",function (){
+            var page = $(this).attr("id");
+            displayVacRelTab(page);
         });
 
 
