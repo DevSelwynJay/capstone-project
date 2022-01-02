@@ -116,7 +116,23 @@ $(document).ready(function() {
     retrievePatientVaccinationRecord();
 
     function markVaccineStartAndEnd(resultElement) {
-        let dates = [resultElement.date_vaccinated,resultElement.next_date]
+
+        function ordinal_suffix_of(i) {
+            var j = i % 10,
+                k = i % 100;
+            if (j == 1 && k != 11) {
+                return i + "st";
+            }
+            if (j == 2 && k != 12) {
+                return i + "nd";
+            }
+            if (j == 3 && k != 13) {
+                return i + "rd";
+            }
+            return i + "th";
+        }
+
+        let indicator =  ordinal_suffix_of(parseInt(resultElement.current_dose)+1);//1st 2nd 3rd and so on......
         function generateDarkColorHex() {
             let color = "#";
             for (let i = 0; i < 3; i++)
@@ -124,12 +140,13 @@ $(document).ready(function() {
             return color;
         }
         let event_color = generateDarkColorHex();
-        for (const date of dates) {
+
             //let formattedMedName = resultElement.vaccine_name.substr(0,1).toUpperCase()+resultElement.vaccine_name.substr(1).toLowerCase()
-            $('#calendar').evoCalendar('addCalendarEvent', {
+            $('#calendar').evoCalendar('addCalendarEvent', [{
                 id: resultElement.event_id,
                 name: resultElement.vaccine_name,
                 description:
+                    "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong><br><br>" +
                     "<strong>Type</strong>" +
                     "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
                     "<strong>Strenght</strong>" +
@@ -142,15 +159,43 @@ $(document).ready(function() {
                     "<br><br><strong>Description: </strong><br>"+resultElement.description+
                     "<br><br><strong>Date Vaccinated:</strong>" +
                     "<br> - "+resultElement.date_vaccinated_fd+
-                    "<br><br><strong>Next Date of Vaccination</strong>" +
+                    "<br><br><strong>Expected Next Schedule</strong>" +
                     "<br> - "+resultElement.next_date_fd
                     // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
                 ,
-                date: date,//date vaccinated
+                date: resultElement.date_vaccinated,//date vaccinated
                 type: ' ',
                 color:event_color
-            });
-        }
+            },
+                {
+                    id: resultElement.event_id,
+                    name:resultElement.vaccine_name,
+                    description:
+                        //Note: Expected Next Schedule for the 2nd dose of Vaccine Name
+                        "<strong> <span style='color: darkred'>Note:<br></span> Expected Next Schedule<br>for the " +indicator+" Dose of "+resultElement.vaccine_name+"</strong><br><br>" +
+                        "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong>" +
+                        "<br><br>"+
+                        "<strong>Type</strong>" +
+                        "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
+                        "<strong>Strenght</strong>" +
+                        "<br> - "+resultElement.vaccine_dosage+
+                        // "<br><br>"+
+                        // "<strong>Required No. of Dosage</strong>" +
+                        // "<br> - "+resultElement.reccommended_no_of_dosage+" dose"+
+                        // "<br> - "+freq_sentence+
+                        // "<br> - Duration of "+duration+" day/s"+
+                        "<br><br><strong>Last Vaccinated on:</strong>" +
+                        "<br> - "+resultElement.date_vaccinated_fd
+                        // "<br><br><strong>Next Date of Vaccination</strong>" +
+                        // "<br> - "+resultElement.next_date_fd
+                    // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
+                    ,
+                    date: resultElement.next_date,//next schedule
+                    type: ' ',
+                    color:event_color
+                }]
+            );
+
 
     }
 

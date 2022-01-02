@@ -25,12 +25,12 @@ function getMedication($con,$patientID,$querySuffix){
 
 function getVaccination($con,$patientID,$querySuffix){
 
-    $query = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM vaccination_record WHERE patient_id = '$patientID' ";
+    $query = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM vaccination_record WHERE patient_id = '$patientID' ".$querySuffix;
     $result = mysqli_query($con,$query);
     while ($row  = mysqli_fetch_assoc($result)){
         $_SESSION['allHistory'][] = array(
             "name"=>$row['vaccine_name'],
-            "type"=> $row['type'],
+            "type"=> $row['type'].": ".$row['vaccine_sub_category'],
             "date"=>$row['fd'],
             "description"=>$row['description'],
             "date_given"=>$row['date_given']//for sorting purposes only
@@ -41,13 +41,16 @@ function getVaccination($con,$patientID,$querySuffix){
 $querySuffixMed="";
 $querySuffixVaccine="";
 
-if($historyFilter=="Active"){
+if($historyFilter=="Active"){//
     $querySuffixMed="AND DATE_FORMAT(end_date,'%Y-%m-%d') >= DATE_FORMAT(NOW(),'%Y-%m-%d')";
+    $querySuffixVaccine = "AND DATE_FORMAT(expected_next_date_vaccination,'%Y-%m-%d') >= DATE_FORMAT(NOW(),'%Y-%m-%d')";
+    //ung may next schedule pa ng  vaccine
     getMedication($con,$patientID,$querySuffixMed);
     getVaccination($con,$patientID,$querySuffixVaccine);
 }
 else if($historyFilter=="Finished"){
     $querySuffixMed="AND DATE_FORMAT(end_date,'%Y-%m-%d') < DATE_FORMAT(NOW(),'%Y-%m-%d')";
+    $querySuffixVaccine = "AND DATE_FORMAT(expected_next_date_vaccination,'%Y-%m-%d') < DATE_FORMAT(NOW(),'%Y-%m-%d')";
     getMedication($con,$patientID,$querySuffixMed);
     getVaccination($con,$patientID,$querySuffixVaccine);
 }
