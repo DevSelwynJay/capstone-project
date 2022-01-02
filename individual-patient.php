@@ -84,10 +84,19 @@ session_start();
                    }
                )
            })//document ready
-
        </script>
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
        <script src="js/individual-patient.js"></script>
+        <style>
+            .calendar-events{
+                /*default is 0*/
+               z-index: 999;
+            }
+            #eventListToggler{
+                /*default is 1*/
+                z-index: 1000;
+            }
+        </style>
    </head>
    <body>
       <?php require 'add-prescription.html'?>

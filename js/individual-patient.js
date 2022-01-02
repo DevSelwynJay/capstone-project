@@ -172,9 +172,9 @@ $(document).ready(function() {
                     name:resultElement.vaccine_name,
                     description:
                         //Note: Expected Next Schedule for the 2nd dose of Vaccine Name
-                        "<strong> <span style='color: darkred'>Note:<br></span> Expected Next Schedule<br>for the " +indicator+" Dose of "+resultElement.vaccine_name+"</strong><br><br>" +
-                        "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong>" +
-                        "<br><br>"+
+                        "<strong> <span style='color: darkred'>Note:<br></span>Expected Schedule for<br> " +indicator+" Dose of "+resultElement.vaccine_name+"</strong><br><br>" +
+                        // "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong>" +
+                        // "<br><br>"+
                         "<strong>Type</strong>" +
                         "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
                         "<strong>Strenght</strong>" +
@@ -315,6 +315,9 @@ $(document).ready(function() {
         //alert(newDate)
         $(".event-empty p").html("No record on this day")
         $('#calendar').evoCalendar('toggleEventList',true);
+        $('#calendar').evoCalendar('toggleSidebar',false);
+        $(".calendar-events").css("z-index","999")
+        eventTogglerCounter = 1;
     });
     // selectMonth
     $('#calendar').on('selectMonth', function(event, activeMonth, monthIndex) {
@@ -324,13 +327,41 @@ $(document).ready(function() {
     $('#calendar').on('selectYear', function(event, activeYear) {
         $('#calendar').evoCalendar('toggleEventList',false);
     });
+
+    //fix overlap
+    let eventTogglerCounter = 1;
     //sidebar left
     $("#sidebarToggler").on('click',function () {
         $('#calendar').evoCalendar('toggleEventList',false);
+        $(".calendar-events").css("z-index","unset")
+        eventTogglerCounter = 0;
+
     })
-    $(".calendar-months li").click(function () {
-        $("#sidebarToggler").trigger('click')
+    //side bar right
+    $("#eventListToggler").click(function () {
+
+        $('#calendar').evoCalendar('toggleSidebar',false);
+
+        if(eventTogglerCounter==1){
+            $(".calendar-events").css("z-index","unset")
+            eventTogglerCounter = 0;
+        }
+        else {
+            $(".calendar-events").css("z-index","999")
+            eventTogglerCounter = 1;
+        }
+
     })
+    function responsive768px() {
+        if($(document).width()<=768){
+            $(".calendar-events").css("z-index","unset")
+            eventTogglerCounter = 0;
+            return 0
+        }
+    }
+    responsive768px();
+
+
 
     ///historyFilter
     $('[name="med-filter"]').on('click',function () {
