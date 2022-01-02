@@ -102,6 +102,58 @@ $(document).ready(function() {
         })//post end
     }
 
+    //retrieve Vaccination Record and put in calendar
+    function retrievePatientVaccinationRecord() {
+        $.post('php/patientProcesses/retrievePatientVaccinationRecord.php').done(function (data) {
+            let result = JSON.parse(data);
+            for (const resultElement of result) {
+
+                markVaccineStartAndEnd(resultElement)
+
+            }
+        })//end of post
+    }
+    retrievePatientVaccinationRecord();
+
+    function markVaccineStartAndEnd(resultElement) {
+        let dates = [resultElement.date_vaccinated,resultElement.next_date]
+        function generateDarkColorHex() {
+            let color = "#";
+            for (let i = 0; i < 3; i++)
+                color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+            return color;
+        }
+        let event_color = generateDarkColorHex();
+        for (const date of dates) {
+            //let formattedMedName = resultElement.vaccine_name.substr(0,1).toUpperCase()+resultElement.vaccine_name.substr(1).toLowerCase()
+            $('#calendar').evoCalendar('addCalendarEvent', {
+                id: resultElement.event_id,
+                name: resultElement.vaccine_name,
+                description:
+                    "<strong>Type</strong>" +
+                    "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
+                    "<strong>Strenght</strong>" +
+                    "<br> - "+resultElement.vaccine_dosage+
+                    "<br><br>"+
+                    "<strong>Required No. of Dosage</strong>" +
+                    "<br> - "+resultElement.reccommended_no_of_dosage+" dose"+
+                    // "<br> - "+freq_sentence+
+                    // "<br> - Duration of "+duration+" day/s"+
+                    "<br><br><strong>Description: </strong><br>"+resultElement.description+
+                    "<br><br><strong>Date Vaccinated:</strong>" +
+                    "<br> - "+resultElement.date_vaccinated_fd+
+                    "<br><br><strong>Next Date of Vaccination</strong>" +
+                    "<br> - "+resultElement.next_date_fd
+                    // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
+                ,
+                date: date,//date vaccinated
+                type: ' ',
+                color:event_color
+            });
+        }
+
+    }
+
     //retrieve patient medication and vaccination history
     function retrieveHistory() {
 
@@ -230,6 +282,9 @@ $(document).ready(function() {
     //sidebar left
     $("#sidebarToggler").on('click',function () {
         $('#calendar').evoCalendar('toggleEventList',false);
+    })
+    $(".calendar-months li").click(function () {
+        $("#sidebarToggler").trigger('click')
     })
 
     ///historyFilter
