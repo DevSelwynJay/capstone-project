@@ -302,9 +302,31 @@ $(document).ready(function() {
     $(".back-btn").click(function (){
         location.href="patient.php";
     })
-    $("#add-prescription").click(function () {
 
+    ///historyFilter
+    $('[name="med-filter"]').on('click',function () {
+        $("#pop-up-loading").modal({
+            showClose:false, clickClose:false,escapeClose:false
+        })
+        retrieveHistory()
     })
+    //history search bar
+    $("#search-med-history").focus(function () {
+       // $('[value="All"]').prop('checked',true)
+      //  retrieveHistory()
+    })
+
+    $("#hidden-refresh-button").click(function () {
+        $('#calendar').evoCalendar('destroy');
+        calendar_instance()
+        retrievePatientMedicationRecord();
+        retrievePatientVaccinationRecord();
+        retrieveHistory()
+        //alert("na refresh si calendar")
+    })
+
+
+    //Calendar UI fix ================================--
     //Selected an Event
     $('#calendar').on('selectEvent', function(event, activeEvent) {
         // code here...
@@ -358,6 +380,7 @@ $(document).ready(function() {
 
     })
     $(window).resize(function () {//custom css is removed when resizing resulting to magulong layout
+        //alert($(document).width())
         //to fix this are the code
         if(eventTogglerCounter==1){
             $(".calendar-events").css("z-index","999")
@@ -367,29 +390,33 @@ $(document).ready(function() {
             $(".calendar-events").css("z-index","unset")
             eventTogglerCounter = 0;
         }
-       // alert("resixe")
+        // alert("resixe")
+        adjustZoom()
     })
 
-    ///historyFilter
-    $('[name="med-filter"]').on('click',function () {
-        $("#pop-up-loading").modal({
-            showClose:false, clickClose:false,escapeClose:false
-        })
-        retrieveHistory()
-    })
-    //history search bar
-    $("#search-med-history").focus(function () {
-       // $('[value="All"]').prop('checked',true)
-      //  retrieveHistory()
-    })
-
-    $("#hidden-refresh-button").click(function () {
-        $('#calendar').evoCalendar('destroy');
-        calendar_instance()
-        retrievePatientMedicationRecord();
-        retrieveHistory()
-        //alert("na refresh si calendar")
-
-
-    })
+    adjustZoom();
 })//end of document ready
+
+
+function adjustZoom() {
+    // document.body.style.zoom = "90%";
+    if($(document).width()<=1200){
+        // document.body.style.zoom = "100%";
+        $(".patient-content__container").css("zoom","100%")
+    }
+    else if($(document).width()<=1400){
+        // document.body.style.zoom = "80%";
+        $(".patient-content__container").css("zoom","82%")
+    }
+    else if($(document).width()<=1600){
+        // document.body.style.zoom = "90%";
+        $(".patient-content__container").css("zoom","85%")
+    }
+    else if($(document).width()<=2000){
+        // document.body.style.zoom = "100%";
+        $(".patient-content__container").css("zoom","92%")
+    }
+    else {
+        $(".patient-content__container").css("zoom","100%")
+    }
+}

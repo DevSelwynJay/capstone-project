@@ -88,18 +88,39 @@ session_start();
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
        <script src="js/individual-patient.js"></script>
         <style>
+            /*override css of calendar*/
             .calendar-events{
                 /*default is 0*/
                z-index: 999;
                 box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
                 -webkit-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
                 -moz-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+
+            }
+            .event-header{
+                transition: 1s;
+            }
+            .event-container,p{
+                transition: transform 1s;
+            }
+            .event-container:hover{
+                margin-top: 1.5rem;
+                transform: scale(1.1);
             }
             #eventListToggler{
                 /*default is 1*/
                 z-index: 1000;
             }
         </style>
+<!--       <script>-->
+<!--           $(document).mousemove(function(){-->
+<!--               if($(".event-container:hover").length != 0){-->
+<!--                   $(".event-header").css("display","none")-->
+<!--               } else{-->
+<!--                   $(".event-header").css("display","block")-->
+<!--               }-->
+<!--           });-->
+<!--       </script>-->
    </head>
    <body>
       <?php require 'add-prescription.html'?>
