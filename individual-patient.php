@@ -101,7 +101,7 @@ session_start();
                 transition: 1s;
             }
             .event-container,p{
-                transition: transform 1s;
+                /*transition: transform 500ms;*/
             }
             .event-container:hover{
                 margin-top: 1.5rem;
