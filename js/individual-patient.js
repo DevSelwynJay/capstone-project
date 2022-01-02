@@ -342,6 +342,11 @@ $(document).ready(function() {
 
         $('#calendar').evoCalendar('toggleSidebar',false);
 
+        if($(document).width()<=768){
+            $(".calendar-events").css("z-index","999")
+            eventTogglerCounter = 1;
+            return
+        }
         if(eventTogglerCounter==1){
             $(".calendar-events").css("z-index","unset")
             eventTogglerCounter = 0;
@@ -352,16 +357,6 @@ $(document).ready(function() {
         }
 
     })
-    function responsive768px() {
-        if($(document).width()<=768){
-            $(".calendar-events").css("z-index","unset")
-            eventTogglerCounter = 0;
-            return 0
-        }
-    }
-    responsive768px();
-
-
 
     ///historyFilter
     $('[name="med-filter"]').on('click',function () {
