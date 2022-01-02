@@ -96,7 +96,7 @@
 
 
                     $("#inv-name-and-qty-lbl").html(' <span id="inv-name-2">Medicine</span> currently has <span id="inv-stock-2">500</span> stocks.')
-                    $("#inv-name-2").html(ui.item.label)
+                    $("#inv-name-2").html(ui.item.label.split('%')[0])
                     $("#inv-stock-2").html(ui.item.stock_count)
                     selected_item_stock = ui.item.stock_count
 
@@ -107,7 +107,7 @@
             return $( "<li>" )
                 .append(
                     "<div class='search-item' style='background: #F1F4FF;color:#232020'>"
-                    + "<p class='' style='color: inherit'>"+ item.label.split('%')[0]+ "<span style='margin-right: 0.5rem'>("+item.dosage+")</span>"
+                    + "<p class='' style='color: inherit;padding-left: 0.3rem'>"+ item.label.split('%')[0]+ "<span style='margin-right: 0.5rem'>("+item.dosage+")</span>"
                     + "<p class='modal-p'><span>Type: </span> <span>"+item.label.split('%')[1]+"</span> - <span>"+item.label.split('%')[2]+"</span></p>"
                     + "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock_count)
                 .appendTo( ul );
