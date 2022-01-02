@@ -59,12 +59,14 @@
                     terms.push( "" );
                     this.value = terms.join( " " );
 
-                    $( "#search-inv" ).val(ui.item.label)
+                    //label is compose of many column, separate it using %
+
+                    $( "#search-inv" ).val(ui.item.label.split("%")[0])
                     //user defined code
                     alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
-                    $("#inv-name").val(ui.item.label).trigger('focus')
+                    $("#inv-name").val(ui.item.label.split("%")[0]).trigger('focus')
                     $("#inv-type").val(ui.item.category)
 
                     $("#sub-category-lbl").html(ui.item.category)//show label 'medicine/vaccine category'
@@ -105,7 +107,8 @@
             return $( "<li>" )
                 .append(
                     "<div class='search-item' style='background: #F1F4FF;color:#232020'>"
-                    + "<p class='modal-p' style='color: inherit'>"+ item.label+ "<span style='margin-right: 0.5rem'>("+item.dosage+")</span>"
+                    + "<p class='' style='color: inherit'>"+ item.label.split('%')[0]+ "<span style='margin-right: 0.5rem'>("+item.dosage+")</span>"
+                    + "<p class='modal-p'><span>Type: </span> <span>"+item.label.split('%')[1]+"</span> - <span>"+item.label.split('%')[2]+"</span></p>"
                     + "<br>"+"<p style='color: inherit' class='modal-p-lighter flex-box-row justify-content-end'>x"+item.stock_count)
                 .appendTo( ul );
         };
