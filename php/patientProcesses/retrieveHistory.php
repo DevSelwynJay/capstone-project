@@ -15,7 +15,7 @@ function getMedication($con,$patientID,$querySuffix){
     while ($row  = mysqli_fetch_assoc($result)){
         $_SESSION['allHistory'][] = array(
             "name"=>$row['medicine_name'],
-            "type"=> $row['type'],
+            "type"=> $row['type'].": ".$row['medicine_sub_category'],
             "date"=>$row['fd'],
             "description"=>$row['description'],
             "date_given"=>$row['date_given']//for sorting purposes only

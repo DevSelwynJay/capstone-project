@@ -76,6 +76,8 @@ $(document).ready(function() {
                     id: resultElement.event_id,
                     name: formattedMedName,
                     description:
+                        "<strong>Type</strong>" +
+                        "<br> - Medicine: "+resultElement.medicine_sub_category+ "<br><br>"+
                         "<strong>Strenght</strong>" +
                         "<br> - "+resultElement.dosage+
                         "<br><br>"+
@@ -158,7 +160,7 @@ $(document).ready(function() {
                          tableWillUpdate: function() {console.log('table will update')},
                          tableDidUpdate: function() {
                              console.log('table did update')
-                             row_click()
+                             //row_click()
                          },
                          tableWillUnmount: function() {console.log('table will unmount')},
                          tableDidUnmount: function() {console.log('table did unmount')},

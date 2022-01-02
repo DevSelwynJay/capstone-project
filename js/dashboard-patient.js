@@ -76,6 +76,8 @@ $(document).ready(function (e) {
                     id: resultElement.event_id,
                     name: formattedMedName,
                     description:
+                        "<strong>Type</strong>" +
+                        "<br> - Medicine: "+resultElement.medicine_sub_category+ "<br><br>"+
                         "<strong>Strenght</strong>" +
                         "<br> - "+resultElement.dosage+
                         "<br><br>"+
