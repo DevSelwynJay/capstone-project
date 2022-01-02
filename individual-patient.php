@@ -91,6 +91,9 @@ session_start();
             .calendar-events{
                 /*default is 0*/
                z-index: 999;
+                box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+                -webkit-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+                -moz-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
             }
             #eventListToggler{
                 /*default is 1*/
