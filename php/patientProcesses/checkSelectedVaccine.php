@@ -12,8 +12,8 @@ $response = array();
 
 $curr_dose = null;
 
-$result = mysqli_query($con,"SELECT *, DATE_FORMAT(expected_next_date_vaccination,'%Y-%m-%d') as next_date, 
-        DATE_FORMAT(date_given,'%Y-%m-%d') as date_given
+$result = mysqli_query($con,"SELECT *, DATE_FORMAT(expected_next_date_vaccination,'%b %d, %Y') as next_date, 
+        DATE_FORMAT(date_given,'%b %d, %Y') as date_given_fd
        FROM vaccination_record WHERE patient_id = '$patientID' AND vaccine_name = '$vaccine_name' ORDER BY date_given DESC ");
 if(mysqli_num_rows($result)<=0){
     echo json_encode(array("status"=>0));

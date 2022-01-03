@@ -98,6 +98,7 @@
                         $("#add-vaccine-UI-cont").css('display','block')
                         console.log("vaccine UI")
                         $("#lower-part").css("display","none")
+                        $("#set-next-sched-cont").css("display","block")
 
                         // //just to reset the date given of vaccine
                         // var today = new Date();
@@ -223,20 +224,24 @@
                 function (data) {
                     let result = JSON.parse(data);
                     //alert(result.status)
-                    if(result.status==0){
-
+                    if(result.status==0){//wala pa sa vaccination record ni patient
+                        $("#curr_dose").val("None (First Time)")
+                        $("#next-date").val("None (First Time)")
+                        $("#last-given").val("None (First Time)")
                     }
                     else {
                         if(result.canAdd==0){//cannot add dosage because next sched is from future
                             $("#vaccine-message").css("visibility","visible")
                             $("#vaccine-name-lower").html("'"+$("#inv-name").val()+"'")
+                            $("#set-next-sched-cont").css("display","none")
+                            $(".prescript-btn-class").prop("disabled",true).css("opacity","0.5")
                             //cant give another dose for the selected vacine
                             //coz it is  in the future
                         }
 
                         $("#rec_no_dosage").val(result.reccommended_no_of_dosage).prop('readonly',true)
                         $("#curr_dose").val(result.curr_dose+" of "+result.reccommended_no_of_dosage )
-                        $("#last-given").val(result.date_given)
+                        $("#last-given").val(result.date_given_fd)
                         $("#next-date").val(result.next_date)
                     }
                 }
@@ -245,6 +250,8 @@
 
 
         function reset_add_prescription_form() {
+            $(".prescript-btn-class").prop("disabled",false).css("opacity","1")
+
             //med UI
             $("#search-inv").val("")
             $("#inv-name").val("")
@@ -260,16 +267,17 @@
 
             //vaccine UI
             $("#rec_no_dosage").val("").prop('readonly',false)
-            $("#curr_dose").val("1st Dose")
+            $("#curr_dose").val("x of x")
             $("#next-date").val("")
             $("#vaccine-message").css("visibility","hidden")
+            $("#next-date").val("x")
             // //just to reset the date given of vaccine
             // var today = new Date();
             // var dd = String(today.getDate()).padStart(2, '0');
             // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             // var yyyy = today.getFullYear();
             // today =  yyyy+'-'+mm+'-'+dd;
-            $("#last-given").val("")
+            $("#last-given").val("x")
         }
 
 

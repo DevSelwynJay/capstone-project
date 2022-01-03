@@ -267,7 +267,7 @@
             <div class="row justify-content-sm-center justify-content-md-start">
                 <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 ">Last Vaccination</label>
-                    <input id="last-given" class="search-bar" type="text" placeholder="None (First Time)" readonly>
+                    <input id="last-given" class="search-bar" type="text" placeholder="none" readonly>
                     <script>
                         // $("#date-given").datepicker({
                         //     dateFormat: 'yy-mm-dd',
@@ -288,7 +288,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 ">Next Schedule</label>
                     <div class="flex-box-row align-items-center">
-                        <input id="next-date" class="search-bar" type="text" placeholder="None (First Time)" readonly>
+                        <input id="next-date" class="search-bar" type="text" placeholder="none" readonly>
 <!--                        <i id="del-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(&#45;&#45;third-color);margin-left: 0.2rem"></i>-->
                     </div>
                     <script>
@@ -336,11 +336,11 @@
                 </div>
             </div>
 
-           <div class="row margin-top-2 justify-content-center">
-               <div class="col-lg-6 flex-box-column align-items-center">
+           <div id="set-next-sched-cont" class="row margin-top-2 justify-content-center" style="display: none">
+               <div class="col-lg-12 flex-box-column align-items-center">
                    <div>
                        <p class="modal-p-2"><span style="color: red">*</span>Set Next Schedule of Vaccination</p>
-                       <input type="text" class="search-bar">
+                       <input id="set-next-sched" type="text" class="search-bar" readonly >
                    </div>
                </div>
            </div>
