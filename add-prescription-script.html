@@ -229,7 +229,7 @@
 
                 if(parseInt(rec_no_dosage)<=0||rec_no_dosage==""){
                     $("#rec_no_dosage").trigger("focus")
-                    $(".modal-p-error").css("visibility","visible").html("Invalid Dose")
+                    $(".modal-p-error").css("visibility","visible").html("Invalid No. of Dose")
                     return;
                 }
                 if(description_vaccine==""){
@@ -336,7 +336,7 @@
             $("#rec_no_dosage").val("").prop('readonly',false)
             $("#curr_dose").val("x of x")
             $("#next-date").val("")
-            $("#vaccine-message").css("visibility","hidden")
+            $("#vaccine-message").css("visibility","hidden")//message in the lower part, usually tells about why can't give vaccine
             $("#next-date").val("x")
             // //just to reset the date given of vaccine
             // var today = new Date();
@@ -345,6 +345,8 @@
             // var yyyy = today.getFullYear();
             // today =  yyyy+'-'+mm+'-'+dd;
             $("#last-given").val("x")
+            $("#description-vaccine").val("")
+            $("#set-next-sched-cont").css("display","none")
         }
 
 
