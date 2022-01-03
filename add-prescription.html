@@ -261,13 +261,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6  col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 " >Dose</label>
-                    <input id="curr_dose" type="text" class="search-bar" value="1 of x" readonly>
+                    <input id="curr_dose" type="text" class="search-bar" value="x of x" readonly>
                 </div>
             </div>
             <div class="row justify-content-sm-center justify-content-md-start">
-                <div class="col-lg-3 col-md-5 col-sm-11 flex-box-column justify-content-end margin-top-2">
-                    <label class="modal-p-2 "><span style="color: red">*</span>Date Given</label>
-                    <input id="date-given" class="search-bar" type="text" placeholder="Start Date" readonly>
+                <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+                    <label class="modal-p-2 ">Last Vaccination</label>
+                    <input id="last-given" class="search-bar" type="text" placeholder="None (First Time)" readonly>
                     <script>
                         // $("#date-given").datepicker({
                         //     dateFormat: 'yy-mm-dd',
@@ -277,19 +277,19 @@
                         //     minDate: new Date(),
                         //     defaultDate: new Date(),
                         // })
-                        var today = new Date();
-                        var dd = String(today.getDate()).padStart(2, '0');
-                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                        var yyyy = today.getFullYear();
-                        today =  yyyy+'-'+mm+'-'+dd;
-                        $("#date-given").val(today)
+                        // var today = new Date();
+                        // var dd = String(today.getDate()).padStart(2, '0');
+                        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        // var yyyy = today.getFullYear();
+                        // today =  yyyy+'-'+mm+'-'+dd;
+                        // $("#date-given").val(today)
                     </script>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 ">Next Schedule</label>
                     <div class="flex-box-row align-items-center">
-                        <input id="next-date" class="search-bar" type="text" placeholder="Optional" title="fill up if needed" readonly>
-                        <i id="del-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(--third-color);margin-left: 0.2rem"></i>
+                        <input id="next-date" class="search-bar" type="text" placeholder="None (First Time)" readonly>
+<!--                        <i id="del-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(&#45;&#45;third-color);margin-left: 0.2rem"></i>-->
                     </div>
                     <script>
                         $("#del-next-sched").click(function () {
@@ -299,19 +299,19 @@
                         }).mouseleave(function () {
                             $(this).css("color"," var(--third-color)")
                         })
-                        $("#next-date").datepicker({
-                            dateFormat: 'yy-mm-dd',
-                            changeMonth: true,
-                            changeYear: true,
-                            yearRange:'new Date():2100',
-                            minDate: new Date(),
-                            defaultDate: new Date(),
-                        })
-                        var today = new Date();
-                        var dd = String(today.getDate()).padStart(2, '0');
-                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                        var yyyy = today.getFullYear();
-                        today =  yyyy+'-'+mm+'-'+dd;
+                        // $("#next-date").datepicker({
+                        //     dateFormat: 'yy-mm-dd',
+                        //     changeMonth: true,
+                        //     changeYear: true,
+                        //     yearRange:'new Date():2100',
+                        //     minDate: new Date(),
+                        //     defaultDate: new Date(),
+                        // })
+                        // var today = new Date();
+                        // var dd = String(today.getDate()).padStart(2, '0');
+                        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        // var yyyy = today.getFullYear();
+                        // today =  yyyy+'-'+mm+'-'+dd;
                     </script>
                 </div>
                 <div class="col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
@@ -330,12 +330,26 @@
                     </style>
                 </div>
             </div>
+            <div class="row margin-top-2">
+                <div class="col-sm-12 flex-box-row justify-content-center">
+                    <h5 id="vaccine-message" style="color: darkred;visibility: hidden">Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. You are too early from the next sched</h5>
+                </div>
+            </div>
+
+           <div class="row margin-top-2 justify-content-center">
+               <div class="col-lg-6 flex-box-column align-items-center">
+                   <div>
+                       <p class="modal-p-2"><span style="color: red">*</span>Set Next Schedule of Vaccination</p>
+                       <input type="text" class="search-bar">
+                   </div>
+               </div>
+           </div>
 
         </div>
 <!--        end of  vaccineUI cont-->
 
 
-        <div id="lower-part" class="row flex-box-row justify-content-center align-items-center margin-top-1">
+        <div id="lower-part" class="row flex-box-row justify-content-center align-items-center margin-top-1" style="display: none">
             <div class="col-lg-6 col-md-6 col-sm-11 flex-box-column justify-content-center align-items-lg-end align-items-sm-center margin-top-2">
                 <div class="flex-box-column">
                     <label class="modal-p-2 "><span style="color: red">*</span>Quantity to Give</label>
