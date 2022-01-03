@@ -63,7 +63,7 @@
 
                     $( "#search-inv" ).val(ui.item.label.split("%")[0])
                     //user defined code
-                    alert(ui.item.id) //get the ID of selected item
+                    //alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
                     $("#inv-name").val(ui.item.label.split("%")[0]).trigger('focus')
@@ -200,13 +200,14 @@
         //ADD VACCINE SCRIPT FUNCTION=========================
         function add_vaccine_btn() {
             $("#add-vaccine-btn").click(function () {
-alert("vaccine")
+                // alert("vaccine")
             })
         }
 
 
         function reset_add_prescription_form() {
-            $("#med-name").val("")
+            $("#search-inv").val("")
+            $("#inv-name").val("")
             $("#sub-category").val("")
             $("#qty").val("")
             $("#frequency").val("0")
