@@ -38,6 +38,31 @@
                })
            })
        </script>
+       <style>
+           /*override css of calendar*/
+           .calendar-events{
+               /*default is 0*/
+               z-index: 999;
+               box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+               -webkit-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+               -moz-box-shadow: -7px 1px 16px 0px rgba(0,0,0,0.36);
+
+           }
+           .event-header{
+               transition: 1s;
+           }
+           .event-container,p{
+               /*transition: transform 500ms;*/
+           }
+           .event-container:hover{
+               margin-top: 1.5rem;
+               transform: scale(1.1);
+           }
+           #eventListToggler{
+               /*default is 1*/
+               z-index: 1000;
+           }
+       </style>
    </head>
    <body>
       <section class="global">

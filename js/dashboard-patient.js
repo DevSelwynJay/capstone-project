@@ -123,11 +123,117 @@ $(document).ready(function (e) {
     }
     retrieveCurrentMedication();
 
+    //retrieve Vaccination Record and put in calendar
+    function retrievePatientVaccinationRecord() {
+        $.post('php/patientSide/PATIENTSIDEretrievePatientVaccinationRecord.php').done(function (data) {
+            let result = JSON.parse(data);
+            for (const resultElement of result) {
+
+                markVaccineStartAndEnd(resultElement)
+
+            }
+        })//end of post
+    }
+    retrievePatientVaccinationRecord();
+
+    function markVaccineStartAndEnd(resultElement) {
+
+        function ordinal_suffix_of(i) {
+            var j = i % 10,
+                k = i % 100;
+            if (j == 1 && k != 11) {
+                return i + "st";
+            }
+            if (j == 2 && k != 12) {
+                return i + "nd";
+            }
+            if (j == 3 && k != 13) {
+                return i + "rd";
+            }
+            return i + "th";
+        }
+
+        let indicator =  ordinal_suffix_of(parseInt(resultElement.current_dose)+1);//1st 2nd 3rd and so on......
+        function generateDarkColorHex() {
+            let color = "#";
+            for (let i = 0; i < 3; i++)
+                color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+            return color;
+        }
+        let event_color = generateDarkColorHex();
+
+        //let formattedMedName = resultElement.vaccine_name.substr(0,1).toUpperCase()+resultElement.vaccine_name.substr(1).toLowerCase()
+        $('#calendar').evoCalendar('addCalendarEvent', [{
+                id: resultElement.event_id,
+                name: resultElement.vaccine_name,
+                description:
+                    "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong><br><br>" +
+                    "<strong>Type</strong>" +
+                    "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
+                    "<strong>Strenght</strong>" +
+                    "<br> - "+resultElement.vaccine_dosage+
+                    "<br><br>"+
+                    "<strong>Required No. of Dosage</strong>" +
+                    "<br> - "+resultElement.reccommended_no_of_dosage+" dose"+
+                    // "<br> - "+freq_sentence+
+                    // "<br> - Duration of "+duration+" day/s"+
+                    "<br><br><strong>Description: </strong><br>"+resultElement.description+
+                    "<br><br><strong>Date Vaccinated:</strong>" +
+                    "<br> - "+resultElement.date_vaccinated_fd+
+                    "<br><br><strong>Expected Next Schedule</strong>" +
+                    "<br> - "+resultElement.next_date_fd
+                // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
+                ,
+                date: resultElement.date_vaccinated,//date vaccinated
+                type: ' ',
+                color:event_color
+            },
+                {
+                    id: resultElement.event_id,
+                    name:resultElement.vaccine_name,
+                    description:
+                    //Note: Expected Next Schedule for the 2nd dose of Vaccine Name
+                        "<strong> <span style='color: darkred'>Note:<br></span>Expected Schedule for<br> " +indicator+" Dose of "+resultElement.vaccine_name+"</strong><br><br>" +
+                        // "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong>" +
+                        // "<br><br>"+
+                        "<strong>Type</strong>" +
+                        "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
+                        "<strong>Strenght</strong>" +
+                        "<br> - "+resultElement.vaccine_dosage+
+                        // "<br><br>"+
+                        // "<strong>Required No. of Dosage</strong>" +
+                        // "<br> - "+resultElement.reccommended_no_of_dosage+" dose"+
+                        // "<br> - "+freq_sentence+
+                        // "<br> - Duration of "+duration+" day/s"+
+                        "<br><br><strong>Last Vaccinated on:</strong>" +
+                        "<br> - "+resultElement.date_vaccinated_fd
+                    // "<br><br><strong>Next Date of Vaccination</strong>" +
+                    // "<br> - "+resultElement.next_date_fd
+                    // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
+                    ,
+                    date: resultElement.next_date,//next schedule
+                    type: ' ',
+                    color:event_color
+                }]
+        );
+
+
+    }
+
+    //Calendar UI fix ================================--
+    //Selected an Event
+    $('#calendar').on('selectEvent', function(event, activeEvent) {
+        // code here...
+        //alert(activeEvent.name)
+    });
     //Select a Date
     $('#calendar').on('selectDate', function(event, newDate, oldDate) {
         //alert(newDate)
         $(".event-empty p").html("No record on this day")
         $('#calendar').evoCalendar('toggleEventList',true);
+        $('#calendar').evoCalendar('toggleSidebar',false);
+        $(".calendar-events").css("z-index","999")
+        eventTogglerCounter = 1;
     });
     // selectMonth
     $('#calendar').on('selectMonth', function(event, activeMonth, monthIndex) {
@@ -137,8 +243,68 @@ $(document).ready(function (e) {
     $('#calendar').on('selectYear', function(event, activeYear) {
         $('#calendar').evoCalendar('toggleEventList',false);
     });
+
+    //fix overlap
+    let eventTogglerCounter = 1;
     //sidebar left
     $("#sidebarToggler").on('click',function () {
         $('#calendar').evoCalendar('toggleEventList',false);
+        $(".calendar-events").css("z-index","unset")
+        eventTogglerCounter = 0;
+
     })
+    //side bar right
+    $("#eventListToggler").click(function () {
+
+        $('#calendar').evoCalendar('toggleSidebar',false);
+
+        if($(document).width()<=768){
+            $(".calendar-events").css("z-index","999")
+            eventTogglerCounter = 1;
+            return
+        }
+        if(eventTogglerCounter==1){
+            $(".calendar-events").css("z-index","unset")
+            eventTogglerCounter = 0;
+        }
+        else {
+            $(".calendar-events").css("z-index","999")
+            eventTogglerCounter = 1;
+        }
+
+    })
+    $(window).resize(function () {//custom css is removed when resizing resulting to magulong layout
+        //alert($(document).width())
+        //to fix this are the code
+
+        $(".calendar-events").css("z-index","999")
+        eventTogglerCounter = 1;
+
+        // alert("resixe")
+        adjustZoom()
+    })
+    adjustZoom();
 })
+
+function adjustZoom() {
+    // document.body.style.zoom = "90%";
+    if($(document).width()<=1200){
+        // document.body.style.zoom = "100%";
+        $(".patient-content__container").css("zoom","100%")
+    }
+    else if($(document).width()<=1400){
+        // document.body.style.zoom = "80%";
+        $(".patient-content__container").css("zoom","82%")
+    }
+    else if($(document).width()<=1600){
+        // document.body.style.zoom = "90%";
+        $(".patient-content__container").css("zoom","85%")
+    }
+    else if($(document).width()<=2000){
+        // document.body.style.zoom = "100%";
+        $(".patient-content__container").css("zoom","92%")
+    }
+    else {
+        $(".patient-content__container").css("zoom","100%")
+    }
+}
