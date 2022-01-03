@@ -382,14 +382,10 @@ $(document).ready(function() {
     $(window).resize(function () {//custom css is removed when resizing resulting to magulong layout
         //alert($(document).width())
         //to fix this are the code
-        if(eventTogglerCounter==1){
+
             $(".calendar-events").css("z-index","999")
             eventTogglerCounter = 1;
-        }
-        else {
-            $(".calendar-events").css("z-index","unset")
-            eventTogglerCounter = 0;
-        }
+
         // alert("resixe")
         adjustZoom()
     })
