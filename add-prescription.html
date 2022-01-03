@@ -255,12 +255,31 @@
         <div id="add-vaccine-UI-cont"style="display: none">
             <div class="row justify-content-sm-center justify-content-md-start">
 
-                <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
-                    <label class="modal-p-2 " ><span style="color: red">*</span>No. of Needed Shots</label>
+                <div class="col-lg-4 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+                    <label class="modal-p-2 " ><span style="color: red">*</span>Recommended No. of Dose</label>
                     <input id="rec_no_dosage" type="number" class="search-bar" placeholder="x">
+                    <script>
+                        $("#rec_no_dosage").keyup(function () {
+                            let val = $(this).val();
+                            if(val.length=0){
+                                $("#set-next-sched-cont").css("display","none")
+                                $("#set-next-sched").val("")
+                            }
+                            else if(parseInt(val)>1){
+                                $("#set-next-sched-cont").css("display","block")
+                            }
+                            else {
+                                $("#set-next-sched-cont").css("display","none")
+                                $("#set-next-sched").val("")
+                            }
+                            $(".modal-p-error").css("visibility","hidden")
+                        }).on("wheel",function () {//disable scroll in number input
+                            $(this).blur();
+                        })
+                    </script>
                 </div>
-                <div class="col-lg-3 col-md-6  col-sm-11 flex-box-column justify-content-end margin-top-2">
-                    <label class="modal-p-2 " >Dose</label>
+                <div class="col-lg-4 col-md-6  col-sm-11 flex-box-column justify-content-end margin-top-2">
+                    <label class="modal-p-2 " >No. of  Dose Taken</label>
                     <input id="curr_dose" type="text" class="search-bar" value="x of x" readonly>
                 </div>
             </div>
@@ -332,13 +351,13 @@
             </div>
             <div class="row margin-top-2">
                 <div class="col-sm-12 flex-box-row justify-content-center">
-                    <h5 id="vaccine-message" style="color: darkred;visibility: hidden">Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. You are too early from the next sched</h5>
+                    <h5 id="vaccine-message" style="color: darkred;visibility: hidden">Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. Too early to the next sched</h5>
                 </div>
             </div>
 
            <div id="set-next-sched-cont" class="row margin-top-2 justify-content-center" style="display: none">
                <div class="col-lg-12 flex-box-column align-items-center">
-                       <p class="modal-p"><span style="color: red">*</span>Set Next Schedule of Vaccination</p>
+                       <p class="modal-p"><span style="color: red">*Note: </span>Set schedule for the next dose</p>
                        <div class="flex-box-row align-items-center">
                            <input id="set-next-sched" type="text" class="search-bar" readonly >
                            <i id="reset-set-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(--third-color);margin-left: 0.3rem"></i>

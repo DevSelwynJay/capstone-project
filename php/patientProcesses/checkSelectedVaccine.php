@@ -31,7 +31,7 @@ if($row = mysqli_fetch_assoc($result)){
     $count = mysqli_query($con,"SELECT * FROM vaccination_record WHERE
                             event_id = $id AND DATE_FORMAT(expected_next_date_vaccination,'%Y-%m-%d') > DATE_FORMAT(NOW(),'%Y-%m-%d')
         ");
-    if(mysqli_num_rows($count)>0){// nasa feature
+    if(mysqli_num_rows($count)>0){// nasa future
         $row['canAdd'] = 0;
     }
     else{

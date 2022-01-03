@@ -2,6 +2,7 @@
 
 
     let inv_id; /// id of vaccine or medicine
+    let inv_dosage; /// id of vaccine or medicine
     let selected_item_stock;
 
     function retrieve_inventory() {
@@ -76,7 +77,7 @@
                     $("#sub-category").val(ui.item.subcategory)
 
                     $("#dosage").val(ui.item.dosage)
-
+                    inv_dosage = ui.item.dosage
 
                     //dynamic UI for medication and vaccination
                     //to change attribute of add prescription button weather it is add vaccination or medication
@@ -98,7 +99,7 @@
                         $("#add-vaccine-UI-cont").css('display','block')
                         console.log("vaccine UI")
                         $("#lower-part").css("display","none")
-                        $("#set-next-sched-cont").css("display","block")
+                        // $("#set-next-sched-cont").css("display","block")
 
                         // //just to reset the date given of vaccine
                         // var today = new Date();
@@ -216,9 +217,75 @@
         function add_vaccine_btn() {
             $("#add-vaccine-btn").click(function () {
                 // alert("vaccine")
+                let inv_name = $("#inv-name").val()//may laman na by default
+                let inv_type = $("#inv-type").val()//may laman na by default
+                let sub_category = $("#sub-category").val()//may laman na by default
+                let rec_no_dosage = $("#rec_no_dosage").val()
+                let description_vaccine = $("#description-vaccine").val()
+                let set_next_sched = $("#set-next-sched").val()
+
+                //reset error message
+                $(".modal-p-error").html("Please fill all the required fields!")
+
+                if(parseInt(rec_no_dosage)<=0||rec_no_dosage==""){
+                    $("#rec_no_dosage").trigger("focus")
+                    $(".modal-p-error").css("visibility","visible").html("Invalid Dose")
+                    return;
+                }
+                if(description_vaccine==""){
+                    $("#description-vaccine").trigger("focus")
+                    $(".modal-p-error").css("visibility","visible").html("Please Add Description!")
+                    return;
+                }
+                if(parseInt(rec_no_dosage)>1){
+                    //require the set-next-vaccine-sched field
+                    if(set_next_sched==""){
+                        $("#set-next-sched").trigger("focus")
+                        return
+                    }
+                }
+
+                //makakadaan  lang dine pag ok na lhat ng input
+                $("#pop-up-confirm-add").modal({
+                    showClose:false,
+                    closeExisting:false,
+                    clickClose:false,
+                    escapeClose:false
+                })
+
+                $("#prescribe-final-btn").off('click')
+                $("#prescribe-final-btn").click(function () {
+                    alert("add vaccine")
+
+                    if(set_next_sched==""){
+                        set_next_sched=null;
+                    }
+
+                    $.post('php/patientProcesses/addVaccineRecord.php',{
+                        inv_id:inv_id,
+                        inv_name:inv_name,
+                        inv_type:inv_type,
+                        sub_category:sub_category,
+                        rec_no_dosage:rec_no_dosage,
+                        dosage: inv_dosage,
+                        description_vaccine:description_vaccine,
+                        set_next_sched:set_next_sched
+                    }).done(function (data) {
+                        console.log(data)
+                        retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+                        $("#hidden-refresh-button").trigger('click')
+                        $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
+                        $('[href="#add-pres-modal"]').trigger('click')
+                        reset_add_prescription_form()
+                    })
+                })
+
+
+
             })
         }
-        
+
+        // called every item select in search bar
         function checkedSelectedVaccine(vaccine_name) {
             $.post("php/patientProcesses/checkSelectedVaccine.php",{vaccine_name:vaccine_name}).done(
                 function (data) {

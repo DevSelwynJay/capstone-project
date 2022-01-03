@@ -203,7 +203,7 @@ $(document).ready(function() {
     function retrieveHistory() {
 
         let historyFilter = $('[name="med-filter"]:checked').val();//All,Active,Finished
-        //alert(historyFilter)
+        // alert(historyFilter)
 
         // let header = "<tr>\n" +
         //     "                                       <th>Name</th>\n" +
@@ -217,9 +217,17 @@ $(document).ready(function() {
         $.post('php/patientProcesses/retrieveHistory.php',{historyFilter:historyFilter}).done(
             function (data) {//#patient-history-table
                 let result = JSON.parse(data)
+                console.log(result)
+
                  setTimeout(()=>{
                      if(result.length==0){
-                         $("#patient-history-table").html("<h3 style='margin-bottom: 1rem'>No Record Available</h3>")
+                         $("#pagination").tableSortable({
+                             data: result,
+                             columns:
+                                 {
+                                     name:"No Record Available",
+                                 }
+                         })
                          $("#close-loading").trigger('click')
                          return
                      }
