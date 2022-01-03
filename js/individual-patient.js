@@ -331,6 +331,8 @@ $(document).ready(function() {
         retrievePatientVaccinationRecord();
         retrieveHistory()
         //alert("na refresh si calendar")
+        $(".calendar-events").css("z-index","999")
+        eventTogglerCounter = 1;
     })
 
 
