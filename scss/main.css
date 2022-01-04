@@ -2520,23 +2520,69 @@ td:nth-child(1) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 10px 25px;
+  color: white;
+}
+
+.admin-upper .fas {
+  color: white;
+  font-size: 1.8rem;
 }
 
 .admin-upper .admin-upper-left {
-  width: 45%;
+  width: 34vw;
+  height: auto;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards {
-  height: 150px;
+  height: 22vh;
   margin: 10px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.admin-upper .admin-upper-left .dashboard-cards-text {
+  text-align: right;
+}
+
+.admin-upper .admin-upper-left .text1 {
+  margin-left: 110px;
+}
+
+.admin-upper .admin-upper-left .text2 {
+  margin-left: 200px;
+}
+
+.admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(1) {
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+
+.admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(2) {
+  font-weight: 200;
+  font-size: 0.8rem;
 }
 
 .admin-upper .admin-upper-left .card1 {
-  background-color: red;
+  background-color: #75aec8;
 }
 
 .admin-upper .admin-upper-left .card2 {
-  background: blue;
+  background: #eb4151;
+  margin-top: 20px;
+}
+
+.admin-upper .admin-upper-left .fa-syringe {
+  margin-left: 20px;
+}
+
+.admin-upper .admin-upper-left .fa-user-injured {
+  margin-left: 20px;
 }
 
 .admin-upper .admin-upper-right {
@@ -2547,10 +2593,115 @@ td:nth-child(1) {
 }
 
 .admin-upper .admin-upper-right .dashboard-small-cards {
-  width: 150px;
-  height: 150px;
-  background: green;
+  width: 11vw;
+  height: 22vh;
+  background: #192734;
   margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.admin-upper .admin-upper-right .dashboard-small-cards i {
+  margin-top: 10px;
+}
+
+.admin-upper .admin-upper-right .small-cards-text {
+  margin-top: 10px;
+}
+
+.admin-upper .admin-upper-right .small-cards-text p:nth-child(1) {
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+
+.admin-upper .admin-upper-right .small-cards-text p:nth-child(2) {
+  font-weight: 200;
+  font-size: 0.9rem;
+}
+
+.admin-lower {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  margin-top: 0;
+  margin-left: 22px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.admin-lower .workers-list-container {
+  width: 22vw;
+  height: 70vh;
+  background-color: #192734;
+  border-radius: 10px;
+  margin: 0 10px;
+  padding-right: 5px;
+}
+
+.admin-lower .workers-list-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 8px;
+}
+
+.admin-lower .workers-list-container ul {
+  font-family: Lato, sans-serif;
+  height: 320px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.admin-lower .workers-list-container ul li {
+  height: 60px;
+  width: 90%;
+  border-bottom: 1px solid gray;
+  margin-left: 15px;
+  list-style: none;
+}
+
+.admin-lower .workers-list-container ul li:hover {
+  cursor: pointer;
+  background-color: #243545;
+}
+
+.admin-lower .workers-list-container .worker-header {
+  padding: 20px;
+}
+
+.admin-lower .workers-list-container .list-header {
+  font-family: Lato, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.admin-lower .workers-list-container .list-header p:nth-child(1) {
+  padding-left: 100px;
+}
+
+.admin-lower .workers-list-container .list-header p:nth-child(2) {
+  padding-left: 50px;
+}
+
+.admin-lower .workers-list-container .name-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0.8rem;
+}
+
+.admin-lower .workers-list-container .name-list p {
+  padding: 20px 0 0 25px;
+}
+
+.admin-lower .popular-vaccines-container {
+  width: 46vw;
+  height: 70vh;
+  background-color: #192734;
+  border-radius: 10px;
+  margin: 0 10px;
 }
 
 .pending-patient-container {
