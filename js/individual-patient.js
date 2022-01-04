@@ -141,6 +141,11 @@ $(document).ready(function() {
         }
         let event_color = generateDarkColorHex();
 
+            let nextSched = resultElement.next_date_fd;
+            if(nextSched==null){
+                nextSched = "none"
+            }
+
             //let formattedMedName = resultElement.vaccine_name.substr(0,1).toUpperCase()+resultElement.vaccine_name.substr(1).toLowerCase()
             $('#calendar').evoCalendar('addCalendarEvent', [{
                 id: resultElement.event_id,
@@ -160,7 +165,7 @@ $(document).ready(function() {
                     "<br><br><strong>Date Vaccinated:</strong>" +
                     "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
-                    "<br> - "+resultElement.next_date_fd
+                    "<br> - "+nextSched
                     // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
                 ,
                 date: resultElement.date_vaccinated,//date vaccinated
