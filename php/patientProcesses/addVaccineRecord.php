@@ -73,7 +73,20 @@ while($row = mysqli_fetch_assoc($res)){
 //always one kasi  vaccine
 $qty=1;//just to ensure that the qty is correct coz it can be reduce if 2 or more medicine are deducted
 
-$query = "
+
+$query="";//nadoble kasi need nnull kapag wlang laman ung date
+if($set_next_sched==""||$set_next_sched==null){
+    $query = "
+INSERT INTO vaccination_record VALUES (
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
+                                      DEFAULT ,NULL, '$description_vaccine'
+                      
+)
+
+";
+}
+else{
+    $query = "
 INSERT INTO vaccination_record VALUES (
                 DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
                                       DEFAULT ,'$set_next_sched', '$description_vaccine'
@@ -81,6 +94,9 @@ INSERT INTO vaccination_record VALUES (
 )
 
 ";
+}
+
+
 $res = mysqli_query($con,$query);
 
 if($res){

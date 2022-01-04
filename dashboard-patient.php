@@ -22,8 +22,18 @@
       <link rel="stylesheet" href="evo-calendar-master/evo-calendar/css/evo-calendar.midnight-blue.min.css">
        <!--Jquery-->
        <script src="js/jquery-3.6.0.js"></script>
+       <!--Jquery UI css and js-->
+       <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+       <script src="jquery-ui/jquery-ui.js"></script>
+       <link rel="stylesheet" href="scss/tooltip.css">
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/scrollbar_loading.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
        <!--EVO Calendar Script-->
        <script src="js/evo-calendar.js"></script>
+       <!--Table sortable
+       <script src="js/table-sortable.js"></script>-->
       <title>Dashboard Patient</title>
        <script>
            $(document).ready(function () {
@@ -168,7 +178,7 @@ else{ // Open Mobile Menu
                            <div class="vaccination-schedule-container">
                             <h3>Vaccination Schedule</h3>
                            
-                            <table>
+                            <table id="vacc-sched">
                                 <tr>
                                    <th>Name</th>
                                    <th>Date</th>

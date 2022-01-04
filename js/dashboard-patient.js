@@ -220,6 +220,49 @@ $(document).ready(function (e) {
 
     }
 
+    function getVaccineSchedule() {
+
+        $("#vacc-sched").html("").append("<tbody id='vac-sched-tbody'></tbody>")
+        $("#vac-sched-tbody").append("" +
+            "<tr>" +
+                "<th>Name</th>"+
+                "<th>Next Shedule</th>"+
+            "</tr>")
+
+        $.post("php/patientSide/getVaccineSched.php").done(
+            function (data) {
+                let result = JSON.parse(data)
+
+                if(result.length==0){
+                    $("#vac-sched-tbody").html("")
+                    $("#vac-sched-tbody").append("<h4>No Record Available</h4>")
+                    return
+                }
+
+                for (const resultElement of result) {
+
+                    let nextSched = resultElement.next_sched
+                    let curr_dose = resultElement.curr_dose
+                    let rec_no_dose = resultElement.rec_no_dose
+
+
+                    if(resultElement.next_sched==null){
+                        nextSched = "none"
+                    }
+
+                    $("#vac-sched-tbody").append(
+                        "<tr>" +
+                        "<td>"+resultElement.vaccine_name+" <span style='font-size: 1rem'>(Dose "+curr_dose+" of "+rec_no_dose+")</span></td>" +
+                        "<td>"+nextSched+"</td>" +
+                        "<tr>" +
+                    "")
+                }
+
+            }
+        )
+    }
+    getVaccineSchedule()
+
     let eventTogglerCounter = 1;
     function calendar_actions() {
         //Calendar UI fix ================================--
