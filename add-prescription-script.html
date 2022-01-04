@@ -225,7 +225,7 @@
                 let set_next_sched = $("#set-next-sched").val()
 
                 //reset error message
-                $(".modal-p-error").html("Please fill all the required fields!")
+                $(".modal-p-error").html("Please fill all the required fields!").css("visibility","hidden")
 
                 if(parseInt(rec_no_dosage)<=0||rec_no_dosage==""){
                     $("#rec_no_dosage").trigger("focus")
@@ -237,7 +237,7 @@
                     $(".modal-p-error").css("visibility","visible").html("Please Add Description!")
                     return;
                 }
-                if(parseInt(rec_no_dosage)>1){
+                if($("#set-next-sched-cont").css("display")=='block'){
                     //require the set-next-vaccine-sched field
                     if(set_next_sched==""){
                         $("#set-next-sched").trigger("focus")
@@ -299,11 +299,21 @@
                     else {
                         if(result.canAdd==0){//cannot add dosage because next sched is from future
                             $("#vaccine-message").css("visibility","visible")
+                            $("#vaccine-message").html('Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. Too early to the next sched')
                             $("#vaccine-name-lower").html("'"+$("#inv-name").val()+"'")
                             $("#set-next-sched-cont").css("display","none")
                             $(".prescript-btn-class").prop("disabled",true).css("opacity","0.5")
                             //cant give another dose for the selected vacine
                             //coz it is  in the future
+                        }
+                        if(parseInt(result.reccommended_no_of_dosage)==parseInt(result.curr_dose)){
+                            $("#vaccine-message").html("Vaccination of "+$("#inv-name").val()+" is already finished!").css("visibility","visible")
+                            $("#set-next-sched-cont").css("display","none")
+                            $(".prescript-btn-class").prop("disabled",true).css("opacity","0.5")
+                        }
+                        if(parseInt(result.reccommended_no_of_dosage)-parseInt(result.curr_dose)==1){
+                            //huling dose na
+                            $("#set-next-sched-cont").css("display","none")
                         }
 
                         $("#rec_no_dosage").val(result.reccommended_no_of_dosage).prop('readonly',true)
@@ -347,6 +357,8 @@
             $("#last-given").val("x")
             $("#description-vaccine").val("")
             $("#set-next-sched-cont").css("display","none")
+
+            $("#vaccine-message").html('Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. Too early to the next sched').css("visibility","hidden")
         }
 
 

@@ -355,11 +355,13 @@
                 </div>
             </div>
 
+
            <div id="set-next-sched-cont" class="row margin-top-2 justify-content-center" style="display: none">
-               <div class="col-lg-12 flex-box-column align-items-center">
-                       <p class="modal-p"><span style="color: red">*Note: </span>Set schedule for the next dose</p>
+               <p class="modal-p" style="text-align: center!important;"><span style="color: red">*Note: </span>Set schedule for the next dose</p>
+               <div class="col-lg-12 flex-box-row align-items-center justify-content-center" style="flex-wrap: wrap">
+                   <div class="flex-box-column margin-top-1" style="flex: 0 1 50%;">
                        <div class="flex-box-row align-items-center">
-                           <input id="set-next-sched" type="text" class="search-bar" readonly >
+                           <input id="set-next-sched" type="text" class="search-bar" readonly placeholder="Set Next Schedule">
                            <i id="reset-set-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(--third-color);margin-left: 0.3rem"></i>
                            <script>
                                $("#set-next-sched").datepicker({
@@ -375,6 +377,14 @@
                                })
                            </script>
                        </div>
+                   </div>
+<!--                   <div class="flex-box-column margin-top-1" style="flex: 0 1 100%;">-->
+<!--                       <div class="flex-box-row align-items-start justify-content-center">-->
+<!--                           <button style="padding: 0.5rem;font-family: 'Poppins', sans-serif;border:none" data-status="no">-->
+<!--                               No Next Schedule. This is the last dose-->
+<!--                           </button>-->
+<!--                       </div>-->
+<!--                   </div>-->
 
                </div>
            </div>
