@@ -50,11 +50,13 @@ $mail->setOAuth(
 );
 
 $mail->setFrom($email, 'projectcapstone3m@gmail.com');
-$mail->addAddress('alfredo.benitez.b@bulsu.edu.ph', 'RECIPIENT_NAME');
+$mail->addAddress('benitez.alfredo.b.1128@gmail.com', 'RECIPIENT_NAME');
 $mail->isHTML(true);
 $mail->Subject = 'Email Subject';
 $mail->Body = '<b>Email Body</b>';
 $mail->addAttachment('img/jay.jpg',"jay");
+$pdf = include 'emr_gen.php';
+$mail->addStringAttachment($pdf,'doc.pdf');
 //send the message, check for errors
 if (!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;

@@ -8,19 +8,15 @@ $patientType = "";
 $amdinID =   $_SESSION['active_admin_ID'];
 
 $inv_id=$_POST['inv_id'];
-$medName=$_POST['medName'];
-$medCat=$_POST['medCat'];
-$medSubCat = $_POST['medSubCat'];
-$qty=$_POST['qty'];
-$interval=abs($_POST['interval']);
-$dosage=$_POST['dosage'];
-$no_of_times=$_POST['no_of_times'];
-$description=$_POST['description'];
-$start_date=$_POST['start_date'];
-$end_date=$_POST['end_date'];
-if($end_date==""||$end_date==null){
-    $end_date=$start_date;
-}
+$inv_name=$_POST['inv_name'];
+$inv_type=$_POST['inv_type'];
+$sub_category = $_POST['sub_category'];
+$dosage = $_POST['dosage'];
+$rec_no_dosage=$_POST['rec_no_dosage'];
+$qty=1;//always one
+$description_vaccine=$_POST['description_vaccine'];
+$set_next_sched=$_POST['set_next_sched'];
+
 
 $con = null;
 require '../DB_Connect.php';
@@ -34,7 +30,7 @@ if($row = mysqli_fetch_assoc($res)){
 //reduce the inv stock based on the given quantity
 $ctr=0;
 $residualStock=0;//stock to reduce sa next row kung naging negative ung nauna na binawasan
-$res = mysqli_query($con,"SELECT * FROM medinventory WHERE name = '$medName' AND dosage='$dosage' AND stock>0 ORDER BY dateadded");
+$res = mysqli_query($con,"SELECT * FROM medinventory WHERE name = '$inv_name' AND stock>0 ORDER BY dateadded");
 while($row = mysqli_fetch_assoc($res)){
     $id = $row['id'];//get the id coz it will use to update the stock of item
 
@@ -58,7 +54,7 @@ while($row = mysqli_fetch_assoc($res)){
         if($subRow['stock']>=0){
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($id ,'$medName','$medCat','$medSubCat','$dosage',$qty,'$mfg','$exp','Medicine')
+                            VALUES ($id ,'$inv_name','$inv_type','$sub_category','$dosage',$qty,'$mfg','$exp','Vaccine')
                         ");
             break;
         }
@@ -67,24 +63,40 @@ while($row = mysqli_fetch_assoc($res)){
             $residualStock = abs($subRow['stock']);
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($id,'$medName','$medCat','$medSubCat','$dosage',$qty-$residualStock,'$mfg','$exp','Medicine')
+                            VALUES ($id,'$inv_name','$inv_type','$sub_category','$dosage',$qty-$residualStock,'$mfg','$exp','Vaccine')
                         ");
         }
     }
-$ctr++;
+    $ctr++;
 }
 
+//always one kasi  vaccine
+$qty=1;//just to ensure that the qty is correct coz it can be reduce if 2 or more medicine are deducted
 
-$qty=$_POST['qty'];//just to ensure that the qty is correct coz it can be reduce if 2 or more medicine are deducted
 
-$query = "
-INSERT INTO medication_record VALUES (
-                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$medName','$medSubCat','$qty', '$dosage','$no_of_times',
-                                      '$interval',DEFAULT ,'$start_date', '$end_date', '$description'
+$query="";//nadoble kasi need nnull kapag wlang laman ung date
+if($set_next_sched==""||$set_next_sched==null){
+    $query = "
+INSERT INTO vaccination_record VALUES (
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
+                                      DEFAULT ,NULL, '$description_vaccine'
                       
 )
 
 ";
+}
+else{
+    $query = "
+INSERT INTO vaccination_record VALUES (
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
+                                      DEFAULT ,'$set_next_sched', '$description_vaccine'
+                      
+)
+
+";
+}
+
+
 $res = mysqli_query($con,$query);
 
 if($res){

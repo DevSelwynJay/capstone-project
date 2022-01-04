@@ -141,6 +141,11 @@ $(document).ready(function() {
         }
         let event_color = generateDarkColorHex();
 
+            let nextSched = resultElement.next_date_fd;
+            if(nextSched==null){
+                nextSched = "none"
+            }
+
             //let formattedMedName = resultElement.vaccine_name.substr(0,1).toUpperCase()+resultElement.vaccine_name.substr(1).toLowerCase()
             $('#calendar').evoCalendar('addCalendarEvent', [{
                 id: resultElement.event_id,
@@ -160,7 +165,7 @@ $(document).ready(function() {
                     "<br><br><strong>Date Vaccinated:</strong>" +
                     "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
-                    "<br> - "+resultElement.next_date_fd
+                    "<br> - "+nextSched
                     // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
                 ,
                 date: resultElement.date_vaccinated,//date vaccinated
@@ -203,7 +208,7 @@ $(document).ready(function() {
     function retrieveHistory() {
 
         let historyFilter = $('[name="med-filter"]:checked').val();//All,Active,Finished
-        //alert(historyFilter)
+        // alert(historyFilter)
 
         // let header = "<tr>\n" +
         //     "                                       <th>Name</th>\n" +
@@ -217,9 +222,17 @@ $(document).ready(function() {
         $.post('php/patientProcesses/retrieveHistory.php',{historyFilter:historyFilter}).done(
             function (data) {//#patient-history-table
                 let result = JSON.parse(data)
+                console.log(result)
+
                  setTimeout(()=>{
                      if(result.length==0){
-                         $("#patient-history-table").html("<h3 style='margin-bottom: 1rem'>No Record Available</h3>")
+                         $("#pagination").tableSortable({
+                             data: result,
+                             columns:
+                                 {
+                                     name:"No Record Available",
+                                 }
+                         })
                          $("#close-loading").trigger('click')
                          return
                      }
@@ -319,77 +332,80 @@ $(document).ready(function() {
     $("#hidden-refresh-button").click(function () {
         $('#calendar').evoCalendar('destroy');
         calendar_instance()
+        calendar_actions()
         retrievePatientMedicationRecord();
         retrievePatientVaccinationRecord();
         retrieveHistory()
         //alert("na refresh si calendar")
-    })
-
-
-    //Calendar UI fix ================================--
-    //Selected an Event
-    $('#calendar').on('selectEvent', function(event, activeEvent) {
-        // code here...
-        //alert(activeEvent.name)
-    });
-    //Select a Date
-    $('#calendar').on('selectDate', function(event, newDate, oldDate) {
-        //alert(newDate)
-        $(".event-empty p").html("No record on this day")
-        $('#calendar').evoCalendar('toggleEventList',true);
-        $('#calendar').evoCalendar('toggleSidebar',false);
         $(".calendar-events").css("z-index","999")
         eventTogglerCounter = 1;
-    });
-    // selectMonth
-    $('#calendar').on('selectMonth', function(event, activeMonth, monthIndex) {
-        $('#calendar').evoCalendar('toggleEventList',false);
-    });
-    // selectYear
-    $('#calendar').on('selectYear', function(event, activeYear) {
-        $('#calendar').evoCalendar('toggleEventList',false);
-    });
-
-    //fix overlap
-    let eventTogglerCounter = 1;
-    //sidebar left
-    $("#sidebarToggler").on('click',function () {
-        $('#calendar').evoCalendar('toggleEventList',false);
-        $(".calendar-events").css("z-index","unset")
-        eventTogglerCounter = 0;
-
     })
-    //side bar right
-    $("#eventListToggler").click(function () {
 
-        $('#calendar').evoCalendar('toggleSidebar',false);
 
-        if($(document).width()<=768){
+    let eventTogglerCounter = 1;
+    function calendar_actions() {
+        //Calendar UI fix ================================--
+        //Selected an Event
+        $('#calendar').on('selectEvent', function(event, activeEvent) {
+            // code here...
+            //alert(activeEvent.name)
+        });
+        //Select a Date
+        $('#calendar').on('selectDate', function(event, newDate, oldDate) {
+            //alert(newDate)
+            $(".event-empty p").html("No record on this day")
+            $('#calendar').evoCalendar('toggleEventList',true);
+            $('#calendar').evoCalendar('toggleSidebar',false);
             $(".calendar-events").css("z-index","999")
             eventTogglerCounter = 1;
-            return
-        }
-        if(eventTogglerCounter==1){
+        });
+        // selectMonth
+        $('#calendar').on('selectMonth', function(event, activeMonth, monthIndex) {
+            $('#calendar').evoCalendar('toggleEventList',false);
+        });
+        // selectYear
+        $('#calendar').on('selectYear', function(event, activeYear) {
+            $('#calendar').evoCalendar('toggleEventList',false);
+        });
+
+        //fix overlap
+
+        //sidebar left
+        $("#sidebarToggler").on('click',function () {
+            $('#calendar').evoCalendar('toggleEventList',false);
             $(".calendar-events").css("z-index","unset")
             eventTogglerCounter = 0;
-        }
-        else {
-            $(".calendar-events").css("z-index","999")
-            eventTogglerCounter = 1;
-        }
 
-    })
+        })
+        //side bar right
+        $("#eventListToggler").click(function () {
+
+            $('#calendar').evoCalendar('toggleSidebar',false);
+
+            if($(document).width()<=768){
+                $(".calendar-events").css("z-index","999")
+                eventTogglerCounter = 1;
+                return
+            }
+            if(eventTogglerCounter==1){
+                $(".calendar-events").css("z-index","unset")
+                eventTogglerCounter = 0;
+            }
+            else {
+                $(".calendar-events").css("z-index","999")
+                eventTogglerCounter = 1;
+            }
+
+        })
+    }
+    calendar_actions()
     $(window).resize(function () {//custom css is removed when resizing resulting to magulong layout
         //alert($(document).width())
         //to fix this are the code
-        if(eventTogglerCounter==1){
+
             $(".calendar-events").css("z-index","999")
             eventTogglerCounter = 1;
-        }
-        else {
-            $(".calendar-events").css("z-index","unset")
-            eventTogglerCounter = 0;
-        }
+
         // alert("resixe")
         adjustZoom()
     })

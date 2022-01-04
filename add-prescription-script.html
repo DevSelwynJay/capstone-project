@@ -2,6 +2,7 @@
 
 
     let inv_id; /// id of vaccine or medicine
+    let inv_dosage; /// id of vaccine or medicine
     let selected_item_stock;
 
     function retrieve_inventory() {
@@ -59,11 +60,14 @@
                     terms.push( "" );
                     this.value = terms.join( " " );
 
+                    //reset the form every new selected item
+                    reset_add_prescription_form()
+
                     //label is compose of many column, separate it using %
 
                     $( "#search-inv" ).val(ui.item.label.split("%")[0])
                     //user defined code
-                    alert(ui.item.id) //get the ID of selected item
+                    //alert(ui.item.id) //get the ID of selected item
                     inv_id = ui.item.id;
                     $("#inv-category-lbl").html(ui.item.category)//show label 'selected medicine/vaccine'
                     $("#inv-name").val(ui.item.label.split("%")[0]).trigger('focus')
@@ -73,25 +77,37 @@
                     $("#sub-category").val(ui.item.subcategory)
 
                     $("#dosage").val(ui.item.dosage)
-
+                    inv_dosage = ui.item.dosage
 
                     //dynamic UI for medication and vaccination
                     //to change attribute of add prescription button weather it is add vaccination or medication
                     if(ui.item.category.toLowerCase()=="medicine"){
                         $(".prescript-btn-class").off('click')//remove current function coz it changed to medicine
-                        $(".prescript-btn-class").prop('id','add-prescript-btn')
+                        $(".prescript-btn-class").prop('id','add-prescript-btn').html("  <i class=\"fas fa-plus\" style=\"margin-right: 0.3rem\"></i>Prescribe")
                         add_prescription_btn(); //add function to add prescript btn
                             console.log("med UI")
                         $("#add-med-UI-cont").css('display','block')
                         $("#add-vaccine-UI-cont").css('display','none')
+                        $("#lower-part").css("display","flex")
                     }
                     else {
+                        checkedSelectedVaccine(ui.item.label.split("%")[0])
                         $(".prescript-btn-class").off('click')//remove current function coz it changed to vaccine
-                        $(".prescript-btn-class").prop('id','add-vaccine-btn')
+                        $(".prescript-btn-class").prop('id','add-vaccine-btn').html("  <i class=\"fas fa-plus\" style=\"margin-right: 0.3rem\"></i>Add Dose")
                         add_vaccine_btn();
                         $("#add-med-UI-cont").css('display','none')
                         $("#add-vaccine-UI-cont").css('display','block')
                         console.log("vaccine UI")
+                        $("#lower-part").css("display","none")
+                        // $("#set-next-sched-cont").css("display","block")
+
+                        // //just to reset the date given of vaccine
+                        // var today = new Date();
+                        // var dd = String(today.getDate()).padStart(2, '0');
+                        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        // var yyyy = today.getFullYear();
+                        // today =  yyyy+'-'+mm+'-'+dd;
+                        // $("#date-given").val(today)
                     }
 
 
@@ -200,13 +216,122 @@
         //ADD VACCINE SCRIPT FUNCTION=========================
         function add_vaccine_btn() {
             $("#add-vaccine-btn").click(function () {
-alert("vaccine")
+                // alert("vaccine")
+                let inv_name = $("#inv-name").val()//may laman na by default
+                let inv_type = $("#inv-type").val()//may laman na by default
+                let sub_category = $("#sub-category").val()//may laman na by default
+                let rec_no_dosage = $("#rec_no_dosage").val()
+                let description_vaccine = $("#description-vaccine").val()
+                let set_next_sched = $("#set-next-sched").val()
+
+                //reset error message
+                $(".modal-p-error").html("Please fill all the required fields!").css("visibility","hidden")
+
+                if(parseInt(rec_no_dosage)<=0||rec_no_dosage==""){
+                    $("#rec_no_dosage").trigger("focus")
+                    $(".modal-p-error").css("visibility","visible").html("Invalid No. of Dose")
+                    return;
+                }
+                if(description_vaccine==""){
+                    $("#description-vaccine").trigger("focus")
+                    $(".modal-p-error").css("visibility","visible").html("Please Add Description!")
+                    return;
+                }
+                if($("#set-next-sched-cont").css("display")=='block'){
+                    //require the set-next-vaccine-sched field
+                    if(set_next_sched==""){
+                        $("#set-next-sched").trigger("focus")
+                        return
+                    }
+                }
+
+                //makakadaan  lang dine pag ok na lhat ng input
+                $("#pop-up-confirm-add").modal({
+                    showClose:false,
+                    closeExisting:false,
+                    clickClose:false,
+                    escapeClose:false
+                })
+
+                $("#prescribe-final-btn").off('click')
+                $("#prescribe-final-btn").click(function () {
+                    alert("add vaccine")
+
+                    if(set_next_sched==""){
+                        set_next_sched=null;
+                    }
+
+                    $.post('php/patientProcesses/addVaccineRecord.php',{
+                        inv_id:inv_id,
+                        inv_name:inv_name,
+                        inv_type:inv_type,
+                        sub_category:sub_category,
+                        rec_no_dosage:rec_no_dosage,
+                        dosage: inv_dosage,
+                        description_vaccine:description_vaccine,
+                        set_next_sched:set_next_sched
+                    }).done(function (data) {
+                        console.log(data)
+                        retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+                        $("#hidden-refresh-button").trigger('click')
+                        $('[href="#pop-up-confirm-add"]').trigger('click')//close modal
+                        $('[href="#add-pres-modal"]').trigger('click')
+                        reset_add_prescription_form()
+                    })
+                })
+
+
+
             })
+        }
+
+        // called every item select in search bar
+        function checkedSelectedVaccine(vaccine_name) {
+            $.post("php/patientProcesses/checkSelectedVaccine.php",{vaccine_name:vaccine_name}).done(
+                function (data) {
+                    let result = JSON.parse(data);
+                    //alert(result.status)
+                    if(result.status==0){//wala pa sa vaccination record ni patient
+                        $("#curr_dose").val("None (First Time)")
+                        $("#next-date").val("None (First Time)")
+                        $("#last-given").val("None (First Time)")
+                    }
+                    else {
+                        if(result.canAdd==0){//cannot add dosage because next sched is from future
+                            $("#vaccine-message").css("visibility","visible")
+                            $("#vaccine-message").html('Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. Too early to the next sched')
+                            $("#vaccine-name-lower").html("'"+$("#inv-name").val()+"'")
+                            $("#set-next-sched-cont").css("display","none")
+                            $(".prescript-btn-class").prop("disabled",true).css("opacity","0.5")
+                            //cant give another dose for the selected vacine
+                            //coz it is  in the future
+                        }
+                        if(parseInt(result.reccommended_no_of_dosage)==parseInt(result.curr_dose)){
+                            $("#vaccine-message").html("Vaccination of "+$("#inv-name").val()+" is already finished!").css("visibility","visible")
+                            $("#set-next-sched-cont").css("display","none")
+                            $(".prescript-btn-class").prop("disabled",true).css("opacity","0.5")
+                        }
+                        if(parseInt(result.reccommended_no_of_dosage)-parseInt(result.curr_dose)==1){
+                            //huling dose na
+                            $("#set-next-sched-cont").css("display","none")
+                        }
+
+                        $("#rec_no_dosage").val(result.reccommended_no_of_dosage).prop('readonly',true)
+                        $("#curr_dose").val(result.curr_dose+" of "+result.reccommended_no_of_dosage )
+                        $("#last-given").val(result.date_given_fd)
+                        $("#next-date").val(result.next_date)
+                    }
+                }
+            )
         }
 
 
         function reset_add_prescription_form() {
-            $("#med-name").val("")
+            $(".prescript-btn-class").prop("disabled",false).css("opacity","1")
+
+            //med UI
+            $("#search-inv").val("")
+            $("#inv-name").val("")
             $("#sub-category").val("")
             $("#qty").val("")
             $("#frequency").val("0")
@@ -216,6 +341,24 @@ alert("vaccine")
             $("#start-date").val()
             $("#end-date").val("")
             $("#inv-name-and-qty-lbl").html("Nothing is selected")
+
+            //vaccine UI
+            $("#rec_no_dosage").val("").prop('readonly',false)
+            $("#curr_dose").val("x of x")
+            $("#next-date").val("")
+            $("#vaccine-message").css("visibility","hidden")//message in the lower part, usually tells about why can't give vaccine
+            $("#next-date").val("x")
+            // //just to reset the date given of vaccine
+            // var today = new Date();
+            // var dd = String(today.getDate()).padStart(2, '0');
+            // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            // var yyyy = today.getFullYear();
+            // today =  yyyy+'-'+mm+'-'+dd;
+            $("#last-given").val("x")
+            $("#description-vaccine").val("")
+            $("#set-next-sched-cont").css("display","none")
+
+            $("#vaccine-message").html('Cannot give a dose of <strong id="vaccine-name-lower" style="color: #212020">xxx</strong>. Too early to the next sched').css("visibility","hidden")
         }
 
 
