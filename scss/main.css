@@ -2661,6 +2661,11 @@ td:nth-child(1) {
   list-style: none;
 }
 
+.admin-lower .workers-list-container ul li:hover {
+  cursor: pointer;
+  background-color: #243545;
+}
+
 .admin-lower .workers-list-container .worker-header {
   padding: 20px;
 }
