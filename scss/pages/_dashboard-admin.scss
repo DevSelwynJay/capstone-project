@@ -13,18 +13,53 @@
 .admin-upper{
     width: 100%;
     display: flex;
+    margin: 10px 25px;
+    color: white;
+
+    .fas{
+        color: white;
+        font-size: 1.8rem;
+    }
     .admin-upper-left{
-        width: 45%;
+        width: 34vw;
+        height: auto;
 
         .dashboard-cards{
-            height: 150px;
+            height: 22vh;
             margin: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center; 
+        }
+        .dashboard-cards-text{
+            text-align: right;
+        }
+        .text1{
+            margin-left: 110px;
+        }
+        .text2{
+            margin-left: 200px;
+        }
+        .dashboard-cards-text p:nth-child(1){
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+        .dashboard-cards-text p:nth-child(2){
+            font-weight: 200;
+            font-size: 0.8rem;
         }
         .card1{
-            background-color: red;
+            background-color: #75aec8;
         }
         .card2{
-            background: blue;
+            background: #eb4151;
+            margin-top: 20px;
+        }
+        .fa-syringe{
+            margin-left: 20px;
+        }
+        .fa-user-injured{
+            margin-left: 20px;
         }
     }
     .admin-upper-right{
@@ -32,11 +67,99 @@
         grid-template-columns: 1fr 1fr 1fr;
 
         .dashboard-small-cards{
-            width: 150px;
-            height: 150px;
-            background: green;
+            width: 11vw;
+            height: 22vh;
+            background: #192734;
             margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+
         }
+        .dashboard-small-cards i{
+            margin-top: 10px;
+        }
+        .small-cards-text{
+            margin-top: 10px;
+        }
+        .small-cards-text p:nth-child(1){
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+        .small-cards-text p:nth-child(2){
+            font-weight: 200;
+            font-size: 0.9rem;
+        }
+    }
+    
+}
+
+.admin-lower{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 0; 
+    margin-left: 22px;
+    margin-bottom: 20px;
+    color: white;
+    
+    .workers-list-container{
+        width: 22vw;
+        height: 70vh;
+        background-color: #192734;
+        border-radius: 10px;
+        margin: 0 10px;
+        padding-right: 5px;
+
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+
+        ul{
+            font-family: Lato, sans-serif;
+            height: 320px;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+        ul li{
+            height: 60px;
+            width: 90%;
+            border-bottom: 1px solid gray;
+            margin-left: 15px;
+            list-style: none;
+        }
+        .worker-header{
+            padding: 20px;
+        }
+        .list-header{
+            font-family: Lato, sans-serif;
+            display: flex;
+        }
+        .list-header p:nth-child(1){
+            padding-left: 100px;
+        }
+        .list-header p:nth-child(2){
+            padding-left: 50px;
+        }
+        .name-list{
+            display: flex;
+            font-size: 0.8rem;
+            p{
+                padding: 20px 0 0 25px;
+            }
+        }
+        
+        
+        
+        
+    }
+    .popular-vaccines-container{
+        width: 46vw;
+        height: 70vh;
+        background-color: #192734;
+        border-radius: 10px;
+        margin: 0 10px;
     }
     
 }

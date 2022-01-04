@@ -16,6 +16,11 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Family Lato-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <title>Patient</title>
     <!--    &lt;!&ndash;Jquery&ndash;&gt;-->
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
@@ -64,6 +69,11 @@
                 }
             )
         })
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });     
     </script>
 </head>
 
@@ -138,30 +148,128 @@
                         <div class="admin-upper">
                             <div class="admin-upper-left">
                                 <div class="dashboard-cards card1">
-                                    gg
+                                    <i class="fas fa-syringe"></i>
+                                    <div class="dashboard-cards-text text1">
+                                        <p>3,008</p>
+                                        <p>Total Number of Vaccinated Persons</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-cards card2">
-                                    gg
+                                    <i class="fas fa-user-injured"></i>
+                                    <div class="dashboard-cards-text text2">
+                                        <p>186</p>
+                                        <p>Total Number of Patients</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="admin-upper-right">
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-user-tie"></i>
+                                    <div class="small-cards-text">
+                                        <p>129</p>
+                                        <p>Senior Citizen Patients</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-male"></i>
+                                    <div class="small-cards-text">
+                                        <p>63</p>
+                                        <p>Adult Patients</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-child"></i>
+                                    <div class="small-cards-text">
+                                        <p>98</p>
+                                        <p>Minor Patients</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-baby"></i>
+                                    <div class="small-cards-text">
+                                        <p>12</p>
+                                        <p>Infant Patients</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-wheelchair"></i>
+                                    <div class="small-cards-text">
+                                        <p>31</p>
+                                        <p>PWD Patients</p>
+                                    </div>
                                 </div>
                                 <div class="dashboard-small-cards">
-                                    d
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    <div class="small-cards-text">
+                                        <p>109</p>
+                                        <p>Pregnant Patients</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-lower">
+                            <div class="workers-list-container">
+                                <div class="worker-header">
+                                    <h1>Workers</h1>
+                                </div>
+                                <div class="list-header">
+                                    <p>Name</p>
+                                    <p>Position</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>Midwife</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name-list"><img src="img/jay.jpg" alt="">
+                                            <p>Juan Dela Cruz</p>
+                                            <p>BHW</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="popular-vaccines-container">
+                                <div id="container" style="width: 43vw; height: 64vh; font-style: Lato, sans-serif; margin-left: 5px; margin-top: 5px;">
                                 </div>
                             </div>
                         </div>
@@ -175,6 +283,56 @@
 
 
     </section>
+    <script language="JavaScript">
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'MMR(Measles)', 'BCG(Tuberculosis)', 'DTP(Tetanus)', 'COVID-19'],
+                ['2015', 8, 25, 10, 0],
+                ['2016', 55, 25, 0, 0],
+                ['2017', 30, 30, 6, 0],
+                ['2018', 15, 10, 8, 0],
+                ['2019', 55, 20, 10, 0],
+                ['2020', 5, 10, 5, 10],
+                ['2021', 3, 2, 2, 93],
+            ]);
+
+            var options = {
+                title: 'Popular Vaccines (as of 2015 - 2021)',
+                titleTextStyle: {
+                    color: "#FFFFFF",
+                    fontSize: 20,
+                    fontName: "Lato, sans-serif",
+                },
+                animation: {
+                    startup: true,
+                    duration: 1000,
+                    easing: 'out',
+                },
+                bar: { groupWidth: "70%" },
+                legend: { position: "bottom" },
+                backgroundColor: "#192734",
+                isStacked: true,
+                width: 620,
+                height: 450,
+                is3D: true,
+                legendTextStyle: { color: '#FFF' },
+                hAxis: {
+                    textStyle: { color: '#FFF' }
+                },
+                vAxis: {
+                    textStyle: { color: '#FFF' }
+                },
+
+            }
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            document.onload(chart.draw(data, options));
+            
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
     <!--Drop down script-->
     <script>
         const dropdown = document.querySelector('#dropdown');
@@ -231,6 +389,7 @@
             mobileMenu.style.display = "block";
         });
     </script>
+
 </body>
 
 </html>
