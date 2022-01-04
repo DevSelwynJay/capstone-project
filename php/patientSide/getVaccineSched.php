@@ -5,6 +5,9 @@ $con=null;
 require '../DB_Connect.php';
 
 $patientID= $_SESSION['merge_id'];
+// //merge id is the id that is from walk in patient ,
+// it was generate because the name,bday,purok of online patient account has
+//the same record in walk in patient table
 
 $response = array();
 

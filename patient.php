@@ -18,6 +18,19 @@
       <title>Patient List</title>
        <!--Jquery-->
        <script src="js/jquery-3.6.0.js"></script>
+       <!-- jQuery Modal-->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+       <!--Jquery UI css and js-->
+       <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+       <script src="jquery-ui/jquery-ui.js"></script>
+       <link rel="stylesheet" href="scss/tooltip.css">
+       <!--Custom CSS-->
+       <link rel="stylesheet" href="scss/scrollbar_loading.css">
+       <!--Custom Modal Design-->
+       <link rel="stylesheet" href="scss/modal.css">
+       <!--Table sortable-->
+       <script src="js/table-sortable.js"></script>
        <!--Get admin info from session-->
        <script>
            $.post('php/admin_session.php').done(
@@ -69,9 +82,9 @@
                         <div class="settings">
                            <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
-                           <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                           <a id="close-dropdown"><i class="fas fa-times" id="x-1"></i></a>
                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                           <a id="close-mobile-menu"><i class="fas fa-times" id="x-2"></i></a>
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                    <ul>
@@ -85,7 +98,15 @@
 
                            <div class="drop-down-settings" id="dropdown">
                                <ul>
-                               <li><a href="">Approve EMR</a></li>
+                               <li><a id="approved-emr" href="#">Approve EMR</a></li>
+                               <script>
+                                   $("#approved-emr").click(function (data) {
+                                       $("#pop-up-approve-emr").modal({
+                                           showClose:false,escapeClose:false
+                                       })
+                                       $("#x-1").trigger("click")
+                                   })
+                               </script>
                                         <li><a href="settings.php">settings</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>
@@ -405,6 +426,6 @@ Closedropdown.addEventListener('click',function(){
 
 });//end of document ready
 </script>
-
+<?php include 'approveEMR.html'?>
    </body>
 </html>

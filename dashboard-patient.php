@@ -50,6 +50,7 @@
                    $("#address").html(result.address)
                })
            })
+
        </script>
        <style>
            /*override css of calendar*/
@@ -119,7 +120,8 @@
                                        $("#request_emr").click(function (data) {
                                            $("#close-dropdown-2").trigger("click")
                                            $.post("php/patientSide/isLinked.php").done(function (data) {
-                                               if(data==1){
+                                               let result = JSON.parse(data);
+                                               if(result.status=="ok"){
                                                    $("#pop-up-req-emr").modal({
                                                        showClose:false
                                                    })
@@ -128,6 +130,8 @@
                                                    $("#pop-up-error").modal({
                                                        showClose:false
                                                    })
+                                                   $("#pop-up-error-message").html(result.err_msg)
+                                                   // Cannot request an EMR. You do not have any medical record.
 
                                                }
                                            })
