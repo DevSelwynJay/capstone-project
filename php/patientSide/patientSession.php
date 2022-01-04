@@ -27,6 +27,9 @@ if($res){
         $_SESSION['pbday'] = $row['birthday'];
         $_SESSION['ppurok'] = $row['purok'];
 
+        $_SESSION['is_link']=true;//to determine that this is connected to patient record on the admin side
+        $_SESSION['patient_id'] = $row['id'];
+
         echo json_encode(array(
             "patient_id"=>$row['id']
             ,"patient_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name']

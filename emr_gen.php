@@ -58,4 +58,5 @@ $pdf->Cell(30,10,"IDK",0,0,"L");
 $pdf->Cell(40,10,"Date Given	",0,0,"L");
 $pdf->MultiCell(60,10,"MAY SAKIT DAHIL MAY SAKIT",0,'J');
 
-$pdf->Output('I',"Sample EMR");
+//$pdf->Output('I',"Sample EMR");
+return $pdf->Output('doc.pdf', 'S');
