@@ -26,13 +26,13 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
 
-$pdf->Text(10,40,"Electronic Medicine Record");
+$pdf->Text(10,40,"Electronic Medical Record");
 $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(18);
 
-$pdf->Cell(35,10,"Sample Name Lang",0,0,'C');
+$pdf->Cell(35,10, $_SESSION['active_emr_account']['name'],0,0,'C');
 
 $pdf->SetFont('Arial','',14);
 $pdf->Ln(15);
@@ -40,13 +40,13 @@ $pdf->Cell(1);
 $pdf->SetFont('Arial','B',16);
 $pdf->MultiCell(0,10,"Patient Information",0);
 $pdf->SetFont('Arial','',14);
-$pdf->Cell(70,10,"Age: 13","T",0,"L");
-$pdf->Cell(50,10,"Type: Minor","T",0,"L");
-$pdf->Cell(70,10,"Gender: Male","T",1,"L");
-$pdf->Cell(70,10,"Occuputaion: Sales Lady",0,0,"L");
-$pdf->Cell(50,10,"Blood Type: O",0,0,"L");
-$pdf->Cell(50,10,"Height: 169       Weight: 50",0,1,"L");
-$pdf->Cell(0,10,"Address: Purok 1, 1 Sto. Rosario Paombong Bulacan",0,1,"L");
+$pdf->Cell(70,10,"Age: ".$_SESSION['active_emr_account']['age'],"T",0,"L");
+$pdf->Cell(50,10,"Type: ".$_SESSION['active_emr_account']['patient_type'],"T",0,"L");
+$pdf->Cell(70,10,"Gender: ".$_SESSION['active_emr_account']['gender'],"T",1,"L");
+$pdf->Cell(70,10,"Occupation: ".$_SESSION['active_emr_account']['occupation'],0,0,"L");
+$pdf->Cell(50,10,"Blood Type: ".$_SESSION['active_emr_account']['blood_type'],0,0,"L");
+$pdf->Cell(50,10,"Height: ".$_SESSION['active_emr_account']['height']."       Weight: ".$_SESSION['active_emr_account']['weight'],0,1,"L");
+$pdf->Cell(0,10,"Address: ".$_SESSION['active_emr_account']['address'],0,1,"L");
 
 //-----Vaccination Record
 $pdf->Ln(10);

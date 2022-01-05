@@ -154,11 +154,14 @@
                 $("#pop-up-loading").modal({
                     showClose: false,clickClose:false,escapeClose:false,closeExisting:false
                 })
-                setTimeout(()=>{
-                    $('[href="#pop-up-loading"]').trigger("click")
-                    $("#send-emr-cont").css("display","flex")
-                    $("#generate-emr").css("display","none")
-                },1500)
+                $.post("php/approveEMR/approveEMRBackend.php").done(function (data) {
+                    setTimeout(()=>{
+                        $('[href="#pop-up-loading"]').trigger("click")
+                        $("#send-emr-cont").css("display","flex")
+                        $("#generate-emr").css("display","none")
+                    },1500)
+                })
+
             })
         </script>
 

@@ -24,7 +24,8 @@ if($row = mysqli_fetch_assoc($result)){//query online account
     $ppurok =  $row['purok'];
 
     //check if online acc has the same record in walk in patient
-    $subResult = mysqli_query($con,"SELECT * FROM walk_in_patient 
+    $subResult = mysqli_query($con,"SELECT *,DATE_FORMAT(birthday,'%b %d, %Y') as bday,timestampdiff(year,birthday,NOW()) as age
+        FROM walk_in_patient 
         WHERE last_name = '$plname' AND first_name = '$pfname' AND middle_name = '$pmname' 
           AND birthday = '$pbday' AND purok = '$ppurok'  
         
@@ -36,8 +37,19 @@ if($row = mysqli_fetch_assoc($result)){//query online account
         if($subRow = mysqli_fetch_assoc($subResult)){
             $id_in_walk_in_patient=$subRow['id'];
 
-            //reset the session variable
+            //reset the session variable related to emr request
+            $_SESSION['active_emr_account'] = array(
+                "name"=> $subRow['first_name']." ".$subRow['middle_name']." ".$subRow['last_name'],
+                "gender"=> $subRow['gender'],"birthday"=>$subRow['bday'], "age"=>$subRow['age'],
+                "address"=> "Purok ".$subRow['purok']." , ".$subRow['house_no']." ".$subRow['address'],
+                "occupation"=> $subRow['occupation'], "civil_status"=>$subRow['civil_status'],
+                "blood_type"=>$subRow['blood_type'], "weight"=>$subRow['weight'] , "height"=>$subRow['height'],
+                "patient_type"=>$subRow['patient_type']
+            );
+            echo json_encode( $_SESSION['active_emr_account']);
             $_SESSION['active_emr_medication'] = array();
+
+
 
             //query now the medication record from med record table using the walk in patient id
             $queMed = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM medication_record WHERE patient_id = '$id_in_walk_in_patient' ORDER BY date_given DESC";
