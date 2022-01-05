@@ -304,7 +304,7 @@
       font-size: clamp(0.4rem,0.8rem,1rem);
     }
   }
-  #view-req-btn{
+  .view-req-btn{
       padding: 0.5rem;
       border-radius: 0;
       border: none;
@@ -312,7 +312,7 @@
       color: white;
       font-family: 'Poppins', sans-serif;
       font-weight: bold;
-  } #view-req-btn:hover{
+  } .view-req-btn:hover{
         background: #72c8f8;
         cursor: pointer;
     }

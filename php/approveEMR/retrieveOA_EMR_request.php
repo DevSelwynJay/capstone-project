@@ -15,8 +15,11 @@ while ($row = mysqli_fetch_assoc($res)){
      if($subRow = mysqli_fetch_assoc($subRes)){
          $subRow['date_requested'] =   $row['date_requested'] ;
          $subRow['request_id'] =   $row['request_id'] ;
-         $subRow['view_button'] = "<button id='view-req-btn' data-patientOA_ID='".$id_of_patient_OA."' data-reqID='".$subRow['request_id']."'>View</button>";
-         $subRow['complete_name'] =  $subRow['first_name'].' '. $subRow['middle_name'].'  '. $subRow['first_name'];
+         $subRow['complete_name'] =  $subRow['first_name'].' '. $subRow['middle_name'].' '. $subRow['last_name'];
+         $subRow['view_button'] = "<button class='view-req-btn' data-patientOA_ID='".$id_of_patient_OA."' data-reqID='".$subRow['request_id']."'
+                                      data-name = '".$subRow['complete_name']."' data-email = '". $subRow['email']."'
+                                    >View</button>";
+
              $response[]= $subRow;
      }
 }

@@ -52,7 +52,7 @@
 
             // or Set new data on table, columns is optional.
             table.setData(JSON.parse(data),{
-                complete_name:"Online Account Name",
+                complete_name:"Name",
                 email:"Email",
                 date_requested:"Date Requested",
                 view_button:"Action"
@@ -99,7 +99,84 @@
 
                 //console.log(a[0].innerHTML)//just another way
             })
-        }
 
+            $(".view-req-btn").off('click');
+            $(".view-req-btn").click(function (data){
+                let patientOA_ID = $(this).data("patientoa_id");
+                let email = $(this).data("email");
+                let name = $(this).data("name");
+                let reqID = $(this).data("reqid");
+                $("#pop-up-view-req").modal({
+                    showClose:false
+                })
+                $("#view-emr-name").html(name);
+                $("#view-emr-email").html("("+email+")");
+                // alert(patientOA_ID)
+                $.post("php/approveEMR/activeEMRSession.php",{
+                    patientOA_ID:patientOA_ID,
+                    reqID:reqID
+                }).done(function (data) {
+                   // alert(data)
+                })
+            })
+        }
     });//end of document ready
 </script>
+<!--Modal for view emr request-->
+<div id="pop-up-view-req" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img src="img/HIS%20logo%20blue.png" width="150" height="60">
+    </div>
+    <h3 style="color: var(--third-color);text-align: center" class="margin-top-1">Requesting EMR</h3>
+    <p class="modal-p-2" style="text-align: center!important;margin-top: 0.5rem;color: black;!important;">
+        <span id="view-emr-name" style="color: inherit">Alfredo Bas Benitez </span>
+        <span id="view-emr-email" style="color: inherit">(sample@gmail.com)</span>
+    </p>
+    <p class="modal-p-2" style="text-align: center!important;color: black!important;">
+        is requesting for Electronic Medical Record
+    </p>
+    <p class="modal-p-2" style="margin-top: 1rem">
+        Electronic Medical Record (EMR) consist of all the medication and vaccination taken by the patient.
+    </p>
+    <div class="flex-box-column align-items-center justify-content-center margin-top-3">
+        <button id="generate-emr">
+            Generate EMR
+        </button>
+        <a href="emr_gen.php" target="_blank">
+            <button>
+                View the generated EMR
+            </button>
+        </a>
+
+        <a href="#pop-up-view-req" rel="modal:close">
+            <button id="cancel-generate-emr">
+                Cancel
+            </button>
+        </a>
+
+        <style>
+            #generate-emr{
+                font-family:Poppins;font-size: large;background: var(--primary-color);color: white;padding: 0.8rem 0.5rem;border: none
+            }#generate-emr:hover{
+                 background: var(--hover-color);
+             }
+             #cancel-generate-emr{
+                 font-family:Poppins;font-size: medium;background: #c40d1b;color: white;padding: 0.3rem 0.5rem;border: none;
+                 margin-top: 0.5rem;
+             }#cancel-generate-emr:hover{
+                           background: #e24653;
+                           }
+        </style>
+    </div>
+
+</div>
+
+<!--Modal for loading-->
+<div id="pop-up-loading" class="modal">
+    <div style="display: flex;align-items: center;justify-content: center">
+        <div class="loader"></div>
+        <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+            Retrieving Info...
+        </p>
+    </div>
+</div>
