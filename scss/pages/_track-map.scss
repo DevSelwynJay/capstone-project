@@ -1,0 +1,21 @@
+body{
+    overflow-x: hidden;
+}
+.covid-container{
+    width: 74vw;
+    height: 50vh;
+    background-color: #192734;
+    margin: 20px 0px 10px 40px;
+    border-radius: 10px;
+}
+.track-map-second, .track-map-third{
+    display: flex;
+    margin: 0px 0px 0px 30px;   
+}
+.tm-container{
+    margin: 10px;
+    width: 36.2vw;
+    height: 50vh;
+    background-color: #192734;
+    border-radius: 10px;
+}
