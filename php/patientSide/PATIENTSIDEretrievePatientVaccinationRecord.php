@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con=null;
 require '../DB_Connect.php';
 $id_in_walk_in_patient = $_SESSION['merge_id'];// //merge id is the id that is from walk in patient ,

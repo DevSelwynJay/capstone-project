@@ -102,19 +102,24 @@
 
             $(".view-req-btn").off('click');
             $(".view-req-btn").click(function (data){
+                //reset the modal to its default state
+                $("#generate-emr").css("display","inline")
+                $("#send-emr-cont").css("display","none")
+
                 let patientOA_ID = $(this).data("patientoa_id");
                 let email = $(this).data("email");
                 let name = $(this).data("name");
                 let reqID = $(this).data("reqid");
                 $("#pop-up-view-req").modal({
-                    showClose:false
+                    showClose:false,clickClose: false,escapeClose: false
                 })
                 $("#view-emr-name").html(name);
                 $("#view-emr-email").html("("+email+")");
                 // alert(patientOA_ID)
                 $.post("php/approveEMR/activeEMRSession.php",{
                     patientOA_ID:patientOA_ID,
-                    reqID:reqID
+                    reqID:reqID,
+                    email:email
                 }).done(function (data) {
                    // alert(data)
                 })
@@ -122,6 +127,7 @@
         }
     });//end of document ready
 </script>
+
 <!--Modal for view emr request-->
 <div id="pop-up-view-req" class="modal">
     <div class="flex-box-row justify-content-center align-items-center">
@@ -135,38 +141,52 @@
     <p class="modal-p-2" style="text-align: center!important;color: black!important;">
         is requesting for Electronic Medical Record
     </p>
-    <p class="modal-p-2" style="margin-top: 1rem">
-        Electronic Medical Record (EMR) consist of all the medication and vaccination taken by the patient.
+    <p class="modal-p-2" style="margin-top: 1rem" style="text-align: center!important;">
+        <span style="color: darkred">Note: </span>Electronic Medical Record (EMR) consist of all the medication and vaccination taken by the patient.
     </p>
-    <div class="flex-box-column align-items-center justify-content-center margin-top-3">
-        <button id="generate-emr">
+    <div class="flex-box-column align-items-center justify-content-center">
+        <button id="generate-emr" class="margin-top-3">
             Generate EMR
         </button>
-        <a href="emr_gen.php" target="_blank">
-            <button>
-                View the generated EMR
-            </button>
-        </a>
+        <script>
+            // Generate EMR
+            $("#generate-emr").click(function () {
+                $("#pop-up-loading").modal({
+                    showClose: false,clickClose:false,escapeClose:false,closeExisting:false
+                })
+                setTimeout(()=>{
+                    $('[href="#pop-up-loading"]').trigger("click")
+                    $("#send-emr-cont").css("display","flex")
+                    $("#generate-emr").css("display","none")
+                },1500)
+            })
+        </script>
+
+        <div id="send-emr-cont" style="display: none;margin: 2rem 0">
+            <div class="row justify-content-center align-items-start">
+                <div class="col-sm-12">
+                    <p class="modal-p" style="text-align: center!important;">EMR Successfully Generated</p>
+                </div>
+                <div class="col-sm-12 justify-content-center align-items-center flex-box-column">
+                    <a href="emr_gen.php" target="_blank">
+                        <button id="view-generated-emr-btn">
+                            View the generated EMR
+                        </button>
+                    </a>
+                    <a>
+                        <button id="send-emr">
+                            Send EMR
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <a href="#pop-up-view-req" rel="modal:close">
             <button id="cancel-generate-emr">
                 Cancel
             </button>
         </a>
-
-        <style>
-            #generate-emr{
-                font-family:Poppins;font-size: large;background: var(--primary-color);color: white;padding: 0.8rem 0.5rem;border: none
-            }#generate-emr:hover{
-                 background: var(--hover-color);
-             }
-             #cancel-generate-emr{
-                 font-family:Poppins;font-size: medium;background: #c40d1b;color: white;padding: 0.3rem 0.5rem;border: none;
-                 margin-top: 0.5rem;
-             }#cancel-generate-emr:hover{
-                           background: #e24653;
-                           }
-        </style>
     </div>
 
 </div>
@@ -176,7 +196,33 @@
     <div style="display: flex;align-items: center;justify-content: center">
         <div class="loader"></div>
         <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
-            Retrieving Info...
+            Generating the EMR. Please wait!
         </p>
     </div>
+    <a href="#pop-up-loading" rel="modal:close" style="display: none"></a>
 </div>
+
+<!--styling-->
+<style>
+    #generate-emr{
+        font-family:Poppins;font-size: large;background: var(--primary-color);color: white;padding: 0.8rem 0.5rem;border: none
+    }#generate-emr:hover{
+         background: var(--hover-color);
+     }
+    #cancel-generate-emr{
+        font-family:Poppins;font-size: medium;background: #c40d1b;color: white;padding: 0.3rem 0.5rem;border: none;
+        margin-top: 0.5rem;
+    }#cancel-generate-emr:hover{
+         background: #e24653;
+     }
+     #view-generated-emr-btn{
+         font-family:Poppins;font-size: small;background: #6c6a6a;color: white;padding: 0.6rem 0.5rem;border: none;margin-top: 0.5rem;
+     }#view-generated-emr-btn:hover{
+               background: #a7a7a7;
+           }
+     #send-emr{
+         font-family:Poppins;font-size: small;background: #183f58;color: white;padding: 0.6rem 0.5rem;border: none;margin-top: 0.5rem;
+     }#send-emr:hover{
+        background: #0c6893;
+           }
+</style>

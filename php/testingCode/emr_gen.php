@@ -1,5 +1,4 @@
 <?php
-session_start();
 $con=null;
 require('php/pdflib/fpdf.php');
 require('php/DB_Connect.php');
@@ -31,9 +30,7 @@ $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(18);
-
 $pdf->Cell(35,10,"Sample Name Lang",0,0,'C');
-
 $pdf->SetFont('Arial','',14);
 $pdf->Ln(15);
 $pdf->Cell(1);
@@ -47,46 +44,19 @@ $pdf->Cell(70,10,"Occuputaion: Sales Lady",0,0,"L");
 $pdf->Cell(50,10,"Blood Type: O",0,0,"L");
 $pdf->Cell(50,10,"Height: 169       Weight: 50",0,1,"L");
 $pdf->Cell(0,10,"Address: Purok 1, 1 Sto. Rosario Paombong Bulacan",0,1,"L");
-
-//-----Vaccination Record
 $pdf->Ln(10);
 $pdf->SetFont('Arial','B',16);
-$pdf->MultiCell(0,10,"Vaccination Record",0);
+$pdf->MultiCell(0,10,"Medication/Vaccination History",0);
 $pdf->SetFont('Arial','',14);
-
-//row header
 $pdf->Cell(50,10,"Name","T",0,"L");
 $pdf->Cell(30,10,"Type","T",0,"L");
 $pdf->Cell(40,10,"Date Given	","T",0,"L");
 $pdf->Cell(60,10,"Description","T",1,"L");
 
-//values per row
 $pdf->Cell(50,10,"PROBLEMSADI",0,0,"L");
 $pdf->Cell(30,10,"IDK",0,0,"L");
 $pdf->Cell(40,10,"Date Given	",0,0,"L");
 $pdf->MultiCell(60,10,"MAY SAKIT DAHIL MAY SAKIT",0,'J');
 
-//-----Medication Record
-//title
-$pdf->Ln(10);
-$pdf->SetFont('Arial','B',16);
-$pdf->MultiCell(0,10,"Medication Record",0);
-$pdf->SetFont('Arial','',14);
-
-//row header
-$pdf->Cell(50,10,"Name","T",0,"L");
-$pdf->Cell(30,10,"Type","T",0,"L");
-$pdf->Cell(40,10,"Date Given	","T",0,"L");
-$pdf->Cell(60,10,"Description","T",1,"L");
-
-foreach ( $_SESSION['active_emr_medication'] as $item){
-    //values per row
-    $pdf->Cell(50,10,$item['name'],0,0,"L");
-    $pdf->Cell(30,10,$item['type'],0,0,"L");
-    $pdf->Cell(40,10,$item['date'],0,0,"L");
-    $pdf->MultiCell(60,10,$item['description'],0,'J');
-}
-
 $pdf->Output('I',"Sample EMR");
-
 return $pdf->Output('doc.pdf', 'S');

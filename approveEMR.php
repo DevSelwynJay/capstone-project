@@ -157,8 +157,11 @@
           </div>
 
           <div class="content patients-view-container">
-            <h1 style="color: var(--third-color);text-align: center"class="margin-top-2">EMR Request</h1>
-              <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>This page shows all of the online patient account who is requesting for EMR</p>
+            <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-center">
+                <img src="img/medical-record.png" class="modal-header-icon" style="margin-right: 0.3rem">
+                EMR Request
+            </h1>
+              <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>This page shows all of the online patient account who is requesting for EMR (Electronic Medical Record)</p>
 
             <!--                         <h3 class="table-title margin-top-3">-->
             <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
