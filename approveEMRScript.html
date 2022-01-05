@@ -1,3 +1,105 @@
 <script>
+    jQuery(document).ready(function() {
+        // $(".clickable-row").click(function() {
+        //     window.location = $(this).data("href");
+        // });
+        var table = $('#emr-req-cont').tableSortable({
+            data: [],
+            columns:
+                {
+                    complete_name:"Name",
+                    email:"Email",
+                    date_requested:"Date Requested",
+                    view_button:"Action"
+                }
+            ,
+            // searchField: '.search-bar',
+            responsive: {
+                720: {
+                    columns: {
+                        complete_name:"Name",
+                        email:"Email",
+                        date_requested:"Date Requested",
+                        view_button:"Action"
 
+                    },
+                },
+            },
+            rowsPerPage: 5,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {
+                console.log('table did update')
+                row_click()
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        $.post('php/approveEMR/retrieveOA_EMR_request.php', function(data) {
+            d = data;
+            // Push data into existing data
+            console.log(JSON.parse(data))
+            //table.setData(JSON.parse(data), null, true);
+
+            // or Set new data on table, columns is optional.
+            table.setData(JSON.parse(data),{
+                complete_name:"Online Account Name",
+                email:"Email",
+                date_requested:"Date Requested",
+                view_button:"Action"
+            });
+
+        })//end of get/post method
+        $('#changeRows').on('change', function() {
+            table.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            table.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            table.distroy();
+        })
+
+        $('#refresh').click(function() {
+            table.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            table.setPage(1);
+        })
+
+        //========Action Function======================//
+        function row_click() {
+            $("tr").click(function () {
+                let a =  $(this).children();
+                let id =  $($(this).children()[0]).html();//get the ID
+                console.log(id)
+                if(id.indexOf("gs-button")!=-1){
+                    return; //cancel code because table header was clicked
+                }
+                // setTimeout(()=>{
+                //     $.post('php/patientProcesses/setPatientSessionID.php',{id:id}).done(
+                //         function (data) {
+                //             //alert(data)
+                //             location.href="individual-patient.php"
+                //         }
+                //     )
+                // },500)
+
+                //console.log(a[0].innerHTML)//just another way
+            })
+        }
+
+    });//end of document ready
 </script>

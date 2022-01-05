@@ -98,15 +98,15 @@
 
                            <div class="drop-down-settings" id="dropdown">
                                <ul>
-                               <li><a id="approved-emr" href="#">Approve EMR</a></li>
-                               <script>
-                                   $("#approved-emr").click(function (data) {
-                                       $("#pop-up-approve-emr").modal({
-                                           showClose:false,escapeClose:false
-                                       })
-                                       $("#x-1").trigger("click")
-                                   })
-                               </script>
+                               <li><a id="approved-emr" href="approveEMR.php">Approve EMR</a></li>
+<!--                               <script>-->
+<!--                                   $("#approved-emr").click(function (data) {-->
+<!--                                       $("#pop-up-approve-emr").modal({-->
+<!--                                           showClose:false,escapeClose:false-->
+<!--                                       })-->
+<!--                                       $("#x-1").trigger("click")-->
+<!--                                   })-->
+<!--                               </script>-->
                                         <li><a href="settings.php">settings</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>
@@ -426,6 +426,6 @@ Closedropdown.addEventListener('click',function(){
 
 });//end of document ready
 </script>
-<?php include 'approveEMR.html'?>
+
    </body>
 </html>
