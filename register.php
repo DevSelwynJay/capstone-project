@@ -80,141 +80,144 @@
                </div>
                <div class="registration-form-form-wrapper" style="max-width: 90% !important;
             margin: 0 auto !important;" >
-                   <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem;font-size: clamp(1.5rem,2rem,3vw)">Create patient account</h1>
-                  <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" style="overflow-y: auto; height:75vh">
-                     <div class="container"> 
+                   <h1 class="text-center" style="font-weight:700;margin-bottom: 0.5rem;font-size: clamp(1.5rem,2rem,3vw)">Create online patient account</h1>
+                   <div style="overflow-y: auto;height: 60vh">
+                       <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="php/registerProcesses/registerProcess.php" >
+                           <div class="container">
 
-                        <div class="row">
-                           <div class="col-sm-6"> <input type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/></div>
-                           <div class="col-sm-6"> <input type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" required/></div>
-                           <div class="col-sm-6"> <input type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" required/></div>
-                           <div class="col-sm-6">  <input type="text" name="suffix" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/></div>
-                           </div>
-                         <div class="row">
-                             <div class="col-sm-6">  <input type="text" name="occupation" placeholder="Occupation" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/></div>
-                             <div class="col-sm-6">
-                                 <select type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
-                                     <option>Single</option>
-                                     <option>Married</option>
-                                     <option>Divorced</option>
-                                     <option>Widowed</option>
-                                 </select>
-                             </div>
-                         </div>
-                         <div class="row">
-                           <div class="col-sm-6">
-                              <input type="text" name="email" inputmode="email"  placeholder="Email" data-toggle="tooltip" data-placement="top" title="E-mail (name@gmail.com)" data-container="body" required/>
-                           </div>
-                           <div class="col-sm-6">
-                                <input type="number" name="contact" inputmode="tel" placeholder="Contact No." data-toggle="tooltip" data-placement="top" title="Contact no (11-digit number)" data-container="body" required/>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-sm-6"> <input type="password" name="pwd" placeholder="Password" data-toggle="tooltip" data-placement="top"
-                                                         title="Password (Recommended: 8 or more characters)" data-container="body" minlength="8" required/>
-                           </div>
-                           <div class="col-sm-6"> <input type="password" name="cpwd" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body" minlength="8" required/></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <select type="text" name="gender" placeholder="Gender" value="" data-toggle="tooltip" data-placement="top" title="Gender" data-container="body">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <input type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body" required/>
-                            </div>
-                            <div class="col-sm-3">
-                                <select data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body" required>
-                                    <option value="" disabled selected>Purok</option>
-                                    <?php
-                                    for($a=1;$a<=7;$a++){
-                                        echo "<option>$a</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                           <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/></div>
-                        </div>
-                         <div class="row">
-                             <div class="col-sm-6"><input type="text" placeholder="" value="Barangay Sto. Rosario" readonly/></div>
-                             <div class="col-sm-3"><input type="text" placeholder="" value="Paombong" readonly/></div>
-                             <div class="col-sm-3"><input type="text" placeholder="" value="Bulacan" readonly/></div>
-                         </div>
-                         <div class="row">
-                             <div class="col-sm-12">
-                                 <p style="color: var(--dark-grey);margin: 1rem 0 0 0;text-align: center">
-                                     To make your account approved by admin, please attach a photo of your <b>VALID ID</b>
-                                 </p>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-sm-12">
-                                 <p style="text-align: center;margin: 1rem 0 0.5rem 0 ;font-size: small">-The address in your ID will be the proof that you are from Brgy. Sto. Rosario-</p>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-sm-6">
-                                 <style>
-                                     .prev-id-sm{
-                                         width: auto;
-                                         height: 10rem;
-                                         display: flex;
-                                         justify-content: center;
-                                         align-items: center;
-                                     }
-                                     .prev-id-sm img{
-                                         width: fit-content;
-                                         height: fit-content;
-                                         max-width: 100%;
-                                         max-height: 100%;
-                                         transition: all 500ms linear;
-                                     }
-                                     .prev-id-sm img:hover{
-                                         transform: scale(1.1);
-                                          box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);
-                                         -webkit-box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);
-                                         -moz-box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);;
-                                     }
-                                 </style>
-                                 <!--
-                                 <div class="prev-id-sm">
-                                     <img src="img/sms.png">
-                                 </div>-->
-                                 <div class="custom-file" style="margin: 1rem 0">
-                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" data-toggle="tooltip" data-placement="top" title="Photo of ID" data-container="body" required>
-                                     <label class="custom-file-label" for="customFileInput">Select Photo</label>
-                                     <!--<p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload first photo</p>-->
-                                     <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
-                                      </div>
-                             </div>
-                             <div class="col-sm-6">
-                                 <button type="button" class="primary-btn" style="background: var(--dark-grey);margin: 1rem 0" data-toggle="modal" data-target="#pop-up-preview-id" >Preview Image</button>
+                               <div class="row">
+                                   <div class="col-sm-6"> <input type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/></div>
+                                   <div class="col-sm-6"> <input type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" required/></div>
+                                   <div class="col-sm-6"> <input type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" required/></div>
+                                   <div class="col-sm-6">  <input type="text" name="suffix" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/></div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-6">  <input type="text" name="occupation" placeholder="Occupation" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/></div>
+                                   <div class="col-sm-6">
+                                       <select type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
+                                           <option>Single</option>
+                                           <option>Married</option>
+                                           <option>Divorced</option>
+                                           <option>Widowed</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-6">
+                                       <input type="text" name="email" inputmode="email"  placeholder="Email" data-toggle="tooltip" data-placement="top" title="E-mail (name@gmail.com)" data-container="body" required/>
+                                   </div>
+                                   <div class="col-sm-6">
+                                       <input type="number" name="contact" inputmode="tel" placeholder="Contact No." data-toggle="tooltip" data-placement="top" title="Contact no (11-digit number)" data-container="body" required/>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-6"> <input type="password" name="pwd" placeholder="Password" data-toggle="tooltip" data-placement="top"
+                                                                 title="Password (Recommended: 8 or more characters)" data-container="body" minlength="8" required/>
+                                   </div>
+                                   <div class="col-sm-6"> <input type="password" name="cpwd" placeholder=" Confirm Password" data-toggle="tooltip" data-placement="top" title="Confirm Password" data-container="body" minlength="8" required/></div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-3">
+                                       <select type="text" name="gender" placeholder="Gender" value="" data-toggle="tooltip" data-placement="top" title="Gender" data-container="body">
+                                           <option>Male</option>
+                                           <option>Female</option>
+                                       </select>
+                                   </div>
+                                   <div class="col-sm-3">
+                                       <input type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body" required/>
+                                   </div>
+                                   <div class="col-sm-3">
+                                       <select data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body" required>
+                                           <option value="" disabled selected>Purok</option>
+                                           <?php
+                                           for($a=1;$a<=7;$a++){
+                                               echo "<option>$a</option>";
+                                           }
+                                           ?>
+                                       </select>
+                                   </div>
+                                   <div class="col-sm-3"><input type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/></div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-6"><input type="text" placeholder="" value="Barangay Sto. Rosario" readonly/></div>
+                                   <div class="col-sm-3"><input type="text" placeholder="" value="Paombong" readonly/></div>
+                                   <div class="col-sm-3"><input type="text" placeholder="" value="Bulacan" readonly/></div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                       <p style="color: var(--dark-grey);margin: 1rem 0 0 0;text-align: center">
+                                           To make your account approved by admin, please attach a photo of your <b>VALID ID</b>
+                                       </p>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                       <p style="text-align: center;margin: 1rem 0 0.5rem 0 ;font-size: small">-The address in your ID will be the proof that you are from Brgy. Sto. Rosario-</p>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="col-sm-6">
+                                       <style>
+                                           .prev-id-sm{
+                                               width: auto;
+                                               height: 10rem;
+                                               display: flex;
+                                               justify-content: center;
+                                               align-items: center;
+                                           }
+                                           .prev-id-sm img{
+                                               width: fit-content;
+                                               height: fit-content;
+                                               max-width: 100%;
+                                               max-height: 100%;
+                                               transition: all 500ms linear;
+                                           }
+                                           .prev-id-sm img:hover{
+                                               transform: scale(1.1);
+                                               box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);
+                                               -webkit-box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);
+                                               -moz-box-shadow: 7px 9px 13px 0px rgba(0,0,0,0.76);;
+                                           }
+                                       </style>
+                                       <!--
+                                       <div class="prev-id-sm">
+                                           <img src="img/sms.png">
+                                       </div>-->
+                                       <div class="custom-file" style="margin: 1rem 0">
+                                           <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" data-toggle="tooltip" data-placement="top" title="Photo of ID" data-container="body" required>
+                                           <label class="custom-file-label" for="customFileInput">Select Photo</label>
+                                           <!--<p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload first photo</p>-->
+                                           <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
+                                       </div>
+                                   </div>
+                                   <div class="col-sm-6">
+                                       <button type="button" class="primary-btn" style="background: var(--dark-grey);margin: 1rem 0" data-toggle="modal" data-target="#pop-up-preview-id" >Preview Image</button>
 
-                                 <!--
-                                 <div class="prev-id-sm">
-                                     <img src="img/Icons/add-image.png">
-                                 </div>
-                                 <div class="custom-file" style="margin: 1rem 0">
-                                     <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*">
-                                     <label class="custom-file-label" for="customFileInput">Second Photo</label>
-                                     <p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload second photo</p>
-                                     <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
-                                     <button type="button" class="primary-btn" style="background: var(--dark-grey);margin: 1rem 0" data-toggle="modal" data-target="#pop-up-preview-id" >Preview Image</button>
-                                    -->
-                             </div>
-                         </div>
-                      <div style="display: flex;justify-content: center">
-                          <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
-                      </div>
+                                       <!--
+                                       <div class="prev-id-sm">
+                                           <img src="img/Icons/add-image.png">
+                                       </div>
+                                       <div class="custom-file" style="margin: 1rem 0">
+                                           <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*">
+                                           <label class="custom-file-label" for="customFileInput">Second Photo</label>
+                                           <p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload second photo</p>
+                                           <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
+                                           <button type="button" class="primary-btn" style="background: var(--dark-grey);margin: 1rem 0" data-toggle="modal" data-target="#pop-up-preview-id" >Preview Image</button>
+                                          -->
+                                   </div>
+                               </div>
+                               <div style="display: flex;justify-content: center">
+                                   <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
+                               </div>
 
-                     </div>
-                      <!--testing button only
-                      <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
-                          test modal only-->
-                      </button>
-                  </form>
+                           </div>
+                           <!--testing button only
+                           <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
+                               test modal only-->
+                           </button>
+                       </form>
+                   </div>
+
                </div>
             </div>
             <div class="registration-form__image">

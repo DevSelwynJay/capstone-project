@@ -162,8 +162,18 @@ if(isset($_SESSION['email'])){
                   <div class="flex margin-top-1">
                     <div class="col-sm-6 d-flex align-items-center">
                       <input type="checkbox" name="rememberMe" id="remember-me" />&nbsp;<label style="color:#6d6d6d; margin:0" for="remember-me"
-                        >Remember Me</label
+                        >Show Password</label
                       >
+                        <script>
+                            $("#remember-me").click(function (data) {
+                               if ($(this).prop('checked')){
+                                   $("#login-pwd").prop("type","text")
+                               }
+                               else {
+                                   $("#login-pwd").prop("type","password")
+                               }
+                            })
+                        </script>
                     </div>
                     <div class="col-sm-6 text-right">
                       <a id="trigger-forgot-modal" href="#">Forgot Password?</a>
@@ -177,9 +187,9 @@ if(isset($_SESSION['email'])){
 
                     </div>
                   <div class="col-sm-12 margin-top-3">
-                    <p id="login-p" class="text-center" style="color:#6d6d6d;">
-                      Not yet Registered?&nbsp;<span
-                        ><a id="login-a" href="register.php">Create Account</a></span>
+                    <p id="login-p" class="text-center" style="color:#6d6d6d;font-size: medium">
+                      Are you a patient?&nbsp;<span
+                        ><a id="login-a" href="register.php">Create Online Account Now</a></span>
                     </p>
                   </div>
                 </div>
