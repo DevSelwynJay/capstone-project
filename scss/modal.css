@@ -156,6 +156,19 @@
     background: var(--hover-color);
     cursor: pointer;
 }
+.modal-primary-button-3{
+    padding: 0.5em 1em;
+    font-size: clamp(0.7em,0.8em,3vw)!important;
+    color: #2d2929;
+    background:  gray;
+    border: none;
+    border-radius: 0.2rem;
+    font-family: 'Poppins', sans-serif;
+}
+.modal-primary-button-3:hover{
+    background: #b6aeae;
+    cursor: pointer;
+}
 .modal-cancel-button{
     padding: 0.5em 1em;
     font-size: clamp(0.7em,0.8em,3vw)!important;
