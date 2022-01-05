@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2021 at 02:15 AM
+-- Generation Time: Jan 05, 2022 at 01:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -39,14 +39,6 @@ CREATE TABLE `medreport` (
   `dateadded` date NOT NULL DEFAULT current_timestamp(),
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `medreport`
---
-
-INSERT INTO `medreport` (`id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `mfgdate`, `expdate`, `dateadded`, `type`) VALUES
-(36, 'calpol', 'Medicine', 'pain reliver', '250mg', 10, '2021-12-01', '2021-12-31', '2021-12-31', 'Medicine'),
-(38, 'calpol', 'Medicine', 'pain reliver', '250mg', 2, '2021-12-01', '2021-12-31', '2021-12-31', 'Medicine');
 
 --
 -- Indexes for dumped tables

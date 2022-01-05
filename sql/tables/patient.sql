@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2021 at 09:44 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 05, 2022 at 01:11 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,7 +56,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(2, '2021-02-052045', 'Cruz', 'Bebang', 'Biler', 'Male', '2021-12-01', '4', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Infant', 'ben@gmail.com', 'mukamo11', '09422697901', '', '2021-12-02 08:40:48');
+(2, '2021-02-052045', 'Cruz', 'Bebang', 'Biler', '', '2014-12-01', '1', '', '', '', '', '', '', '', 'Minor', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '', '620946', '2021-12-02 08:40:48');
 
 --
 -- Indexes for dumped tables

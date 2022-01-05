@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 10:25 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 05, 2022 at 01:12 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,13 +48,6 @@ CREATE TABLE `medication_record` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `medication_record`
---
-
-INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `medicine_sub_category`, `given_med_quantity`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
-(21, '2021-01-111222', '2021-03-111222', 'Minor', '1', 'Medicine', 19, 'Paracetamol Biogesic', '', '9', '500', '3', '1', '2021-12-08 03:52:52', '2021-12-07 16:00:00', '2021-12-11 16:00:00', 'sumakit ulo');
-
---
 -- Indexes for dumped tables
 --
 
@@ -73,7 +66,7 @@ ALTER TABLE `medication_record`
 -- AUTO_INCREMENT for table `medication_record`
 --
 ALTER TABLE `medication_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
