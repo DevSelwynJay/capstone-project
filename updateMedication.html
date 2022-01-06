@@ -193,7 +193,14 @@
     </div>
   </div>
 
-  <div class="flex-box-row justify-content-center" style="border-top: 1px solid #959494;padding-top: 1rem">
+  <p class="modal-p-error">Please fill the all required fields</p>
+  <script>
+    $("input").focus(function (data) {
+      $(".modal-p-error").css("visibility","hidden")
+    })
+  </script>
+
+  <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
     <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-med-btn">
       Update
     </button>
@@ -228,6 +235,18 @@
 
 <script>
   $("#update-med-btn").click(function () {
+    //for validation of input
+    let start = $("#update-start-date").val()
+    let end = $("#update-end-date").val()
+    let description = $("#update-description").val()
+    let no_times = $("#update-no_of_times").val()
+    let interval = $("#update-interval").val()
+
+    if(start==""||end==""||description==""||no_times==""){
+      $(".modal-p-error").css("visibility","visible")
+      return
+    }
+    //kapag ok na lahat call the final confirm modal
     $("#pop-up-confirm-update-med").modal({showClose: false,closeExisting:false})
   })
 
