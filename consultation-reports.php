@@ -1,3 +1,26 @@
+<?php
+$con=null;
+require 'php/DB_Connect.php';
+
+$sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
+$countres = mysqli_query($con,$sql);
+$count = mysqli_num_rows($countres);
+$exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
+$res1 = mysqli_query($con,$expire);
+$res2 = mysqli_query($con,$exptab);
+$count2 = mysqli_num_rows($res1);
+$count3 = mysqli_num_rows($res2);
+$total = $count + $count2 + $count3;
+if($total <=8){
+    $total = $total ;
+}
+else{
+    $total = 9 ."&#8314;";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +40,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <title>Reports</title>
-<!--Jquery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Jquery-->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
     <style>
         .drop-down-settings,.drop-down-settings open{
             z-index: 1000;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            Notif();
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                }
+            )
+
+
+
+
+            if(<?php echo $count; ?> > 0){
+
+                var content = "<div>There is a Critical Stock on our Inventory</div>";
+                if(<?php echo $count2; ?> > 0){
+
+                    content += "<div style='border-top: solid 1px black '>There is an Expired Medicine on our Inventory</div>"
+                    if(<?php echo $count2; ?> > 0){
+
+                        content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
+
+                        $(function() {
+                            $("#badge").tooltip({
+                                content:content
+                            });
+                        });
+
+                    }
+
+                }
+
+            }
+            function Notif(){
+                var data = true;
+                $.ajax({
+                    url:"php/inventoryProcesses/Notif_function.php",
+                    method: "POST",
+                    data: {data},
+                    success:function(data){
+                        $('#badge').html(data);
+
+                    }
+                })
+            }
+            setInterval(Notif,1000);
+        });
+
+    </script>
+    <style>
+
+        .ui-tooltip {
+            padding: 10px 20px;
+            color: black;
+            border-radius: 20px;
+            background-color: white;
+            font: bold 14px "Helvetica Neue", Sans-Serif;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -42,7 +129,16 @@
                        <li><a href="patient.php" class="patient">Patient</a></li>
                        <li><a href="reports.php" class="reports">Reports</a></li>
                        <li><a href="track-map.html" class="trackMap">Track Map</a></li>
-                       <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                        <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
                     </ul>
                  </div>
                  <div class="social-media-links">
@@ -64,7 +160,15 @@
                           <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                           <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                           <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                          <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                           <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"><span id="badge" class="badge" style="
+                            position: relative;
+                            top: -7px;
+                            right: 4px;
+                            padding: 0px 2px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            color: white;
+                        ">&nbsp;</span></i></a>
                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                <!--MOBILE MENU-->
                                <div class="menu-mobile " id="menu">
@@ -73,7 +177,16 @@
                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                   <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                      <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
                                   </ul>
                                </div>
                           <div class="drop-down-settings" id="dropdown">
@@ -91,7 +204,7 @@
                     <div class="reports_content">
                         <div class="reports_nav row-container">
                            <div class="reports-title col-lg-3">
-                            <h4>Vaccination Reports</h4>
+                            <h4>Consultation Reports</h4>
                            </div>
                            <ul class="reports-menu col-lg-9">
                                <li><a id="minor-link" class="active">Minor</a></li>
@@ -125,11 +238,11 @@
                             <table class="reports__individual-reports-table">
                                 <tbody>
                                    <tr>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Address</th>
-                                    <th>Gender</th>
-                                    <th>Date of Vaccination</th>
+                                      <th>Name</th>
+                                      <th>Age</th>
+                                      <th>Address</th>
+                                      <th>Gender</th>
+                                      <th>Date of Consultation</th>
                                    </tr>
                                    <tr>
                                       <td>Name</td>
@@ -157,7 +270,6 @@
            </div>
         </div>
      </section>
-
     <script>
         $(document).ready(function (){
             displayMinor();
@@ -293,6 +405,7 @@
                     console.log("asenior"+getsenior);
                 }
             })
+
             $('#pdf-link').on("click", function(){
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
@@ -305,30 +418,30 @@
                 var getannually = $('#anually-link').attr('class');
                 if(getminor == 'active'){
                     if(getdaily == 'active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Minor');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=Minor');
 
 
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=Minor');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=Minor');
 
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=Minor');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=Minor');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=Minor');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=Minor');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Minor');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=Minor');
 
 
                     }
@@ -336,27 +449,27 @@
                 }
                 else if(getadult=='active'){
                     if(getdaily == 'active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Adult');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=Adult');
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=Adult');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=Adult');
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=Adult');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=Adult');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=Adult');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=Adult');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Adult');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=Adult');
 
 
                     }
@@ -364,27 +477,27 @@
                 }
                 else if(getsenior == 'active'){
                     if(getdaily == 'active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Senior');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=Senior');
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=Senior');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=Senior');
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=Senior');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=Senior');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=Senior');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=Senior');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Senior');
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=Senior');
 
 
                     }
@@ -524,7 +637,7 @@
 
             }
             $.ajax({
-                url: 'php/reportProcesses/displayMinorVaccine.php',
+                url: 'php/reportProcesses/displayMinorConsult.php',
                 type: 'POST',
                 data:{
                     page:page,
@@ -569,7 +682,7 @@
 
             }
             $.ajax({
-                url: 'php/reportProcesses/displayAdultVaccine.php',
+                url: 'php/reportProcesses/displayAdultConsult.php',
                 type: 'POST',
                 data:{
                     page:page,
@@ -614,7 +727,7 @@
 
             }
             $.ajax({
-                url: 'php/reportProcesses/displaySeniorVaccine.php',
+                url: 'php/reportProcesses/displaySeniorConsult.php',
                 type: 'POST',
                 data:{
                     page:page,
@@ -657,30 +770,30 @@
 
 </script>
 <script>
-   const menu = document.querySelector('#menu');
-   const mobileMenu = document.querySelector('#mobile-menu');
-   const closeMobileMenu = document.querySelector('#close-mobile-menu');
-   
-   mobileMenu.addEventListener('click',function(){//Conditions
-   if(menu.classList.contains('open')){ // Close Mobile Menu
-   menu.classList.remove('open');
-   }
-   else{ 
-   menu.classList.add('open');
-   }});
-   
-   
-   mobileMenu.addEventListener('click',function(){
-       menu.classList.add('open');
-       mobileMenu.style.display = "none";
-       closeMobileMenu.style.display = "block"
-   });
-   
-   closeMobileMenu.addEventListener('click',function(){
-      menu.classList.remove('open');
-      closeMobileMenu.style.display = "none"
-      mobileMenu.style.display = "block";
-   });
-</script>
+    const menu = document.querySelector('#menu');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    const closeMobileMenu = document.querySelector('#close-mobile-menu');
+    
+    mobileMenu.addEventListener('click',function(){//Conditions
+    if(menu.classList.contains('open')){ // Close Mobile Menu
+    menu.classList.remove('open');
+    }
+    else{ 
+    menu.classList.add('open');
+    }});
+    
+    
+    mobileMenu.addEventListener('click',function(){
+        menu.classList.add('open');
+        mobileMenu.style.display = "none";
+        closeMobileMenu.style.display = "block"
+    });
+    
+    closeMobileMenu.addEventListener('click',function(){
+       menu.classList.remove('open');
+       closeMobileMenu.style.display = "none"
+       mobileMenu.style.display = "block";
+    });
+ </script>
 </body>
 </html>
