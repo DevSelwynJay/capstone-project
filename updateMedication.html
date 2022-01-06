@@ -246,7 +246,7 @@
     $.post("php/patientProcesses/updateSelMed.php",{
      start:start,end:end,description:description,no_times:no_times,interval:interval
     }).done(function (data) {
-      alert(data)
+      // alert(data)
       $('[href="#pop-up-confirm-update-med"]').trigger("click")
       $('[href="#pop-up-update-medication"]').trigger("click")
       retrieve_inventory();//refresh the inventory na lumalabas sa search bar
