@@ -194,7 +194,7 @@
   </div>
 
   <div class="flex-box-row justify-content-center" style="border-top: 1px solid #959494;padding-top: 1rem">
-    <button class="modal-primary-button-2" style="margin-right: 0.5rem">
+    <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-med-btn">
       Update
     </button>
     <a href="#pop-up-update-medication" rel="modal:close">
@@ -206,10 +206,68 @@
       </script>
     </a>
   </div>
-
-
 </div>
 
+<!--modal for updating medication-->
+<div id="pop-up-confirm-update-med" class="modal">
+  <div class="flex-box-row justify-content-center align-items-center">
+
+    <p class="modal-p flex-box-row justify-content-center align-items-center">
+      <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+      Update?
+    </p>
+  </div>
+
+  <div class="flex-box-row justify-content-end align-items-end">
+    <a href="#pop-up-confirm-update-med" rel="modal:close">
+      <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+    </a>
+    <button class="modal-primary-button" id="update-med-final-btn" style="margin-left: 0.5rem">Confirm</button>
+  </div>
+</div>
+
+<script>
+  $("#update-med-btn").click(function () {
+    $("#pop-up-confirm-update-med").modal({showClose: false,closeExisting:false})
+  })
+
+  $("#update-med-final-btn").click(function () {
+   let start = $("#update-start-date").val()
+    let end = $("#update-end-date").val()
+    let description = $("#update-description").val()
+    let no_times = $("#update-no_of_times").val()
+    let interval = $("#update-interval").val()
+
+    if($("#update-frequency").val()=="0"){
+      interval = 0;
+    }
+
+    //update selected medicine
+    $.post("php/patientProcesses/updateSelMed.php",{
+     start:start,end:end,description:description,no_times:no_times,interval:interval
+    }).done(function (data) {
+      alert(data)
+      $('[href="#pop-up-confirm-update-med"]').trigger("click")
+      $('[href="#pop-up-update-medication"]').trigger("click")
+      retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+      $("#hidden-refresh-button").trigger('click')
+    })
+  })
+
+  // $("#update-date-given").html(result.date_given)
+  //
+  // $("#update-inv-name").val(result.name)
+  // $("#update-inv-type").val(result.type)
+  // $("#update-sub-category").val(result.med_sub_cat)
+
+  // $("#update-dosage").val(result.dosage)
+  // $("#update-no_of_times").val(result.no_times)
+  // let interval = result.interval;
+  //
+
+
+
+</script>
 
 <style>
   #update-medication-inputs div{
