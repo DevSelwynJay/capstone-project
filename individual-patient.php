@@ -495,6 +495,7 @@ if ($total <= 8) {
       </script>
 <?php
 require 'add-prescription-script.html';
+require 'updateMedication.html';
 ?>
 
    <input type="hidden" id="hidden-refresh-button">

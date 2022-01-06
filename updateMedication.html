@@ -3,7 +3,28 @@
     $(window).scrollTop(0)
     $("#pop-up-update-medication").modal({clickClose:false,escapeClose:false,showClose:false})
     $("#update-event-id").val(event_id);
+    $.post("php/patientProcesses/retrieveSelMed.php",{event_id:event_id}).done(function (data) {
+      let result = JSON.parse(data);
 
+      $("#update-date-given").html(result.date_given)
+
+        $("#update-inv-name").val(result.name)
+        $("#update-inv-type").val(result.type)
+        $("#update-dosage").val(result.dosage)
+        $("#update-no_of_times").val(result.no_times)
+        $("#update-sub-category").val(result.med_sub_cat)
+
+      let interval = result.interval;
+        if(parseInt(interval)>0){
+          $("#update-interval-lbl").css('opacity','1')
+          $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(interval)
+        }
+
+        $("#update-start-date").val(result.start_date)
+        $("#update-end-date").val(result.end_date)
+        $("#update-description").val(result.description)
+
+    })
   }//end of function
   // $("#update-start-date").flatpickr()
 </script>
@@ -12,6 +33,9 @@
 <div id="pop-up-update-medication" class="modal" style="max-width: 70vw">
   <div class="flex-box-row">
      <h3 style="color: var(--third-color)">Update Medication</h3>
+  </div>
+  <div class="margin-top-2 flex-box-row">
+   <p class="modal-p-2">Given on <span id="update-date-given"></span></p>
   </div>
 
   <!--first row-->
@@ -170,6 +194,9 @@
   </div>
 
   <div class="flex-box-row justify-content-center" style="border-top: 1px solid #959494;padding-top: 1rem">
+    <button class="modal-primary-button-2" style="margin-right: 0.5rem">
+      Update
+    </button>
     <a href="#pop-up-update-medication" rel="modal:close">
       <button class="modal-primary-button" id="back">Back</button>
       <script>
@@ -190,4 +217,11 @@
     flex-direction: column;
     justify-content: center;
   }
+  .edit-event-btn{
+    padding: 0.4em 0.5em; border: none; background: var(--primary-color); color: white; font-family: Poppins;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+  }.edit-event-btn:hover{
+    background: var(--hover-color);
+     }
 </style>
