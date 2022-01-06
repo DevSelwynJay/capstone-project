@@ -18,8 +18,8 @@
         if(parseInt(interval)>0){
           $("#update-interval-lbl").css('opacity','1')
           $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(interval)
-          update_end_date()
-          end_date_picker_instance()
+          update_end_date_2()
+          end_date_picker_instance_2()
           $("#update-frequency").val("1")
         }
 
@@ -128,7 +128,7 @@
         //set end date base on startdate and interval
         var availableDates = [];
 
-        function update_end_date() {
+        function update_end_date_2() {
 
           let interval = $("#update-interval").val();
           if(isNaN(interval)){
@@ -144,7 +144,7 @@
           })
         }
 
-        function end_date_picker_instance() {
+        function end_date_picker_instance_2() {
           $("#update-end-date").datepicker({
             dateFormat: 'yy-mm-dd',
             changeMonth: true,
@@ -158,24 +158,26 @@
             defaultDate: $("#update-start-date").val(),
           })
         }
-        update_end_date()
-        end_date_picker_instance()
+        update_end_date_2()
+        end_date_picker_instance_2()
         //actions
         $("#update-start-date").change(function () {
-          update_end_date()
+
           $("#update-end-date").val("")
-          end_date_picker_instance()
+          update_end_date_2()
+          end_date_picker_instance_2()
+
         })
         $("#update-frequency").change(function () {
-          update_end_date()
           $("#update-end-date").val("")
-          end_date_picker_instance()
+          update_end_date_2()
+          end_date_picker_instance_2()
         })
         $("#update-interval").change(function () {
-          if($("#interval").val()==""){return}
-          update_end_date()
+          if($("#update-interval").val()==""){return}
           $("#update-end-date").val("")
-          end_date_picker_instance()
+          update_end_date_2()
+          end_date_picker_instance_2()
         })
       </script>
     </div>

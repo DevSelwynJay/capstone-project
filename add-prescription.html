@@ -225,7 +225,7 @@
                             $("#end-date").val("")
                             end_date_picker_instance()
                         })
-                        $("#interval").keyup(function () {
+                        $("#interval").change(function () {
                             //if(isNaN(interval)){;return;}
                             if($("#interval").val()==""){return}
                             update_end_date()
