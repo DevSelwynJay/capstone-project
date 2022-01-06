@@ -31,8 +31,8 @@
 
 <!--Modal for updating each medication record in calendar-->
 <div id="pop-up-update-medication" class="modal" style="max-width: 70vw">
-  <div class="flex-box-row">
-     <h3 style="color: var(--third-color)">Update Medication</h3>
+  <div class="flex-box-row justify-content-center">
+     <h3 style="color: var(--third-color)">Edit Medication Info</h3>
   </div>
   <div class="margin-top-2 flex-box-row">
    <p class="modal-p-2">Given on <span id="update-date-given"></span></p>
@@ -242,7 +242,7 @@
     let no_times = $("#update-no_of_times").val()
     let interval = $("#update-interval").val()
 
-    if(start==""||end==""||description==""||no_times==""){
+    if(start==""||description==""||no_times==""){
       $(".modal-p-error").css("visibility","visible")
       return
     }
