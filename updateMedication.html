@@ -18,6 +18,9 @@
         if(parseInt(interval)>0){
           $("#update-interval-lbl").css('opacity','1')
           $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(interval)
+          update_end_date()
+          end_date_picker_instance()
+          $("#update-frequency").val("1")
         }
 
         $("#update-start-date").val(result.start_date)
@@ -169,7 +172,7 @@
           end_date_picker_instance()
         })
         $("#update-interval").change(function () {
-          if(isNaN(interval)){return}
+          if($("#interval").val()==""){return}
           update_end_date()
           $("#update-end-date").val("")
           end_date_picker_instance()
@@ -259,6 +262,9 @@
 
     if($("#update-frequency").val()=="0"){
       interval = 0;
+    }
+    if(end==""){
+      end= start;
     }
 
     //update selected medicine
