@@ -1,7 +1,7 @@
 <?php
 //sa add patient ng admin side
-$contact = $_POST['contact'];
-$email = $_POST['email'];
+$contact = trim($_POST['contact']);
+$email = trim($_POST['email']);
 
 $con=null;
 require '../DB_Connect.php';

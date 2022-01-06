@@ -6,29 +6,33 @@ $con = null;
 require '../DB_Connect.php';
 
 //echo 1;
-$fname = strtoupper(substr($_POST['fname'],0,1)).strtolower(substr($_POST['fname'],1));
-$mname = strtoupper(substr($_POST['mname'],0,1)).strtolower(substr($_POST['mname'],1));
-$lname = strtoupper(substr($_POST['lname'],0,1)).strtolower(substr($_POST['lname'],1));
+$trimmedFname = trim($_POST['fname']);
+$trimmedMname = trim($_POST['mname']);
+$trimmedLname = trim($_POST['lname']);
+
+$fname = strtoupper(substr($trimmedFname,0,1)).strtolower(substr($trimmedFname,1));
+$mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1));
+$lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
 $suffix = $_POST['suffix'];
 if($suffix!=""){
     $lname.=" ".$suffix;
 }
 
-$occu = $_POST['occu'];
-$civil = $_POST['civil'];
-$email = $_POST['email'];
-$contact = $_POST['contact'];
-$gender = $_POST['gender'];
-$bday = $_POST['bday'];
-$purok = $_POST['purok'];
-$house_no = $_POST['house_no'];
+$occu = trim($_POST['occu']);
+$civil = trim($_POST['civil']);
+$email = trim($_POST['email']);
+$contact = trim($_POST['contact']);
+$gender = trim($_POST['gender']);
+$bday = trim($_POST['bday']);
+$purok = trim($_POST['purok']);
+$house_no = trim($_POST['house_no']);
 
 $bloodType = $_POST['bloodType'];
 $height = $_POST['height'];
 $weight = $_POST['weight'];
 
-$patientType = $_POST['patientType'];
+$patientType = trim($_POST['patientType']);
 
 //validate contact and email if provided
 if($contact!=""||$email!=""){
