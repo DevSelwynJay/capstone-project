@@ -88,6 +88,17 @@ if($contact==""||$contact==null){
     $contact = "none-".$patientID;
 }
 
+//another added validation pag may kamuka na name bday purok bawal
+$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+WHERE last_name = '$trimmedLname' AND first_name='$trimmedFname' AND middle_name='$trimmedMname'
+AND purok = $purok AND birthday = '$bday'
+");
+if(mysqli_num_rows($resultCheckDuplication)>0){
+    echo "Cannot add patient. Duplication Detected!";
+    exit();
+}
+
+
 $query = "INSERT INTO walk_in_patient VALUES (
                  DEFAULT ,'$patientID','$lname','$fname','$mname'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
