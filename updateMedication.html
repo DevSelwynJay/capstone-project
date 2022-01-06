@@ -1,0 +1,193 @@
+<script>
+  function getEventID(event_id){
+    $(window).scrollTop(0)
+    $("#pop-up-update-medication").modal({clickClose:false,escapeClose:false,showClose:false})
+    $("#update-event-id").val(event_id);
+
+  }//end of function
+  // $("#update-start-date").flatpickr()
+</script>
+
+<!--Modal for updating each medication record in calendar-->
+<div id="pop-up-update-medication" class="modal" style="max-width: 70vw">
+  <div class="flex-box-row">
+     <h3 style="color: var(--third-color)">Update Medication</h3>
+  </div>
+
+  <!--first row-->
+  <div class="row flex-box-row justify-content-center margin-top-1">
+    <div class="col-lg-6 col-md-12 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Selected <span id="update-inv-category-lbl">Medicine</span></label>
+      <input id="update-inv-name" type="text" class="search-bar" placeholder="none" readonly style="font-weight: bold">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Type</label>
+      <input id="update-inv-type" class="search-bar" type="text" placeholder="none" readonly>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 "><span id="update-sub-category-lbl">Medicine</span> Category</label>
+      <input id="update-sub-category" class="search-bar" type="text" placeholder="none" readonly>
+    </div>
+
+  </div>
+
+  <div class="row flex-box-row justify-content-center">
+
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Dosage</label>
+      <input type="text" id="update-dosage" class="search-bar" placeholder="x" readonly>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 "><span style="color: red">*</span>Times per day</label>
+      <input type="number" id="update-no_of_times" class="search-bar" placeholder="x">
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Frequency</label>
+      <select id="update-frequency" class="search-bar">
+        <option value="0">Daily</option>
+        <option value="1">Every other day</option>
+      </select>
+      <script>
+        $("#update-frequency").change(function () {
+          let val =  $(this).val();
+          if(val==0){
+            $("#update-interval-lbl").css('opacity','0.3')
+            $("#update-interval").prop('type','text').val("none").css('opacity','0.3').prop('readonly',true)
+          }
+          else {
+            $("#update-interval-lbl").css('opacity','1')
+            $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(1)
+          }
+        })
+      </script>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2" id="update-interval-lbl">Interval in days</label>
+      <input type="text" id="update-interval" class="search-bar" placeholder="x" readonly>
+      <script>
+        $("#update-interval-lbl").css('opacity','0.3')
+        $("#update-interval").val("None").css('opacity','0.3')
+      </script>
+    </div>
+
+  </div>
+
+  <!--row-->
+  <div class="row flex-box-row justify-content-center" style="border-bottom: 2px solid #F4F2F4;padding-bottom: 1rem">
+    <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <label class="modal-p-2 "><span style="color: red">*</span>Start Date</label>
+      <input id="update-start-date" class="search-bar" type="text" placeholder="Start Date" readonly>
+      <script>
+        $("#update-start-date").datepicker({
+          dateFormat: 'yy-mm-dd',
+          changeMonth: true,
+          changeYear: true,
+          yearRange:'new Date():2100',
+          minDate: new Date(),
+          defaultDate: new Date(),
+        })
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today =  yyyy+'-'+mm+'-'+dd;
+        $("#update-start-date").val(today)
+      </script>
+    </div>
+    <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <label class="modal-p-2 ">End Date</label>
+      <input id="update-end-date" class="search-bar" type="text" placeholder="End Date" readonly>
+      <script>
+        //set end date base on startdate and interval
+        var availableDates = [];
+
+        function update_end_date() {
+
+          let interval = $("#update-interval").val();
+          if(isNaN(interval)){
+            interval=0
+          }
+          $.post('php/getDatesFromRange.php',{start_date: $("#update-start-date").val(),
+            end_date:'2025-01-01',
+            interval_days: interval
+          }).done(function (data) {
+            let datesObj = JSON.parse(data)
+            availableDates = datesObj;
+            console.log(availableDates)
+          })
+        }
+
+        function end_date_picker_instance() {
+          $("#update-end-date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange:'new Date():2100',
+            beforeShowDay: function(date){
+              var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+              return [$.inArray(string, availableDates) != -1];
+            },
+            minDate:  $("#update-start-date").val(),
+            defaultDate: $("#update-start-date").val(),
+          })
+        }
+        update_end_date()
+        end_date_picker_instance()
+        //actions
+        $("#update-start-date").change(function () {
+          update_end_date()
+          $("#update-end-date").val("")
+          end_date_picker_instance()
+        })
+        $("#update-frequency").change(function () {
+          update_end_date()
+          $("#update-end-date").val("")
+          end_date_picker_instance()
+        })
+        $("#update-interval").change(function () {
+          if(isNaN(interval)){return}
+          update_end_date()
+          $("#update-end-date").val("")
+          end_date_picker_instance()
+        })
+      </script>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <p class="modal-p-2"><span style="color: red">*</span>Description</p>
+      <textarea  id="update-description" class="search-bar" style="width: 100%;height: 12vh;padding: 0.5rem" placeholder="Description">
+                </textarea>
+      <script>
+        $("#update-description").val("")
+      </script>
+      <style>
+        #update-description{
+          font-family: 'Poppins', sans-serif;
+          letter-spacing: 1px;
+          resize: vertical;
+        }
+      </style>
+    </div>
+  </div>
+
+  <div class="flex-box-row justify-content-center" style="border-top: 1px solid #959494;padding-top: 1rem">
+    <a href="#pop-up-update-medication" rel="modal:close">
+      <button class="modal-primary-button" id="back">Back</button>
+      <script>
+        $("#back").click(function () {
+          location.href = "#calendar";
+        })
+      </script>
+    </a>
+  </div>
+
+
+</div>
+
+
+<style>
+  #update-medication-inputs div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>

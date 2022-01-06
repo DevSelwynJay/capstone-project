@@ -111,6 +111,13 @@ session_start();
                 /*default is 1*/
                 z-index: 1000;
             }
+            .edit-event-btn{
+                padding: 0.3em 0.4em;border: none;margin-top: 0.5rem;font-size: 0.9rem;cursor: pointer;background: var(--primary-color);
+                color: white;font-family: Poppins; margin-left: 60%;
+            }
+            .edit-event-btn:hover{
+                background: var(--hover-color);
+            }
         </style>
 <!--       <script>-->
 <!--           $(document).mousemove(function(){-->
@@ -121,6 +128,8 @@ session_start();
 <!--               }-->
 <!--           });-->
 <!--       </script>-->
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+       <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
    </head>
    <body>
       <?php require 'add-prescription.html'?>
@@ -401,6 +410,7 @@ session_start();
       </script>
 <?php
 require 'add-prescription-script.html';
+require 'updateMedication.html';
 ?>
 
    <input type="hidden" id="hidden-refresh-button">
