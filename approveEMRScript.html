@@ -119,7 +119,8 @@
                 $.post("php/approveEMR/activeEMRSession.php",{
                     patientOA_ID:patientOA_ID,
                     reqID:reqID,
-                    email:email
+                    email:email,
+                    name:name
                 }).done(function (data) {
                    // alert(data)
                 })
@@ -154,6 +155,7 @@
                 $("#pop-up-loading").modal({
                     showClose: false,clickClose:false,escapeClose:false,closeExisting:false
                 })
+                $("#pop-up-loading-message").html("Generating the EMR. Please wait!")
                 $.post("php/approveEMR/approveEMRBackend.php").done(function (data) {
                     setTimeout(()=>{
                         $('[href="#pop-up-loading"]').trigger("click")
@@ -180,6 +182,21 @@
                         <button id="send-emr">
                             Send EMR
                         </button>
+                        <script>
+                            $("#send-emr").click(function () {
+                                $("#pop-up-loading").modal({
+                                    showClose:false,clickClose:false,escapeClose:false,closeExisting:false
+                                })
+                                $("#pop-up-loading-message").html("Sending EMR. Please wait!")
+                                $.post("sendEMR.php").done(function (data) {
+                                    setTimeout(()=>{
+                                        $('[href="#pop-up-loading"]').trigger("click")
+                                        $('[href="#pop-up-view-req"]').trigger("click")
+                                    },1500)
+                                })
+                            })
+
+                        </script>
                     </a>
                 </div>
             </div>

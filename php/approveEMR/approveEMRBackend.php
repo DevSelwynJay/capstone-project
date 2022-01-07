@@ -48,6 +48,7 @@ if($row = mysqli_fetch_assoc($result)){//query online account
             );
             echo json_encode( $_SESSION['active_emr_account']);
             $_SESSION['active_emr_medication'] = array();
+            $_SESSION['active_emr_vaccination'] = array();
 
 
 
@@ -64,6 +65,18 @@ if($row = mysqli_fetch_assoc($result)){//query online account
             );
             }//while ($row  = mysqli_fetch_assoc($result))
             echo json_encode( $_SESSION['active_emr_medication']);
+
+            $query = "SELECT *,DATE_FORMAT(date_given,'%b %d, %Y') as fd FROM vaccination_record WHERE patient_id = '$id_in_walk_in_patient' ORDER BY date_given DESC ";
+            $result = mysqli_query($con,$query);
+            while ($row  = mysqli_fetch_assoc($result)){
+                $_SESSION['active_emr_vaccination'][] = array(
+                    "name"=>$row['vaccine_name'],
+                    "type"=> $row['type'].": ".$row['vaccine_sub_category'],
+                    "date"=>$row['fd'],
+                    "description"=>$row['description'],
+                    "date_given"=>$row['date_given']//for sorting purposes only
+                );
+            }
         }// if($subRow = mysqli_fetch_assoc($result))
     }//if(mysqli_num_rows($subResult)>0)
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION['email'] = "benitez.alfredo.b.1128@gmail.com";
+$_SESSION['email'] = "alfredpogiebenitez@gmail.com";
+//alfredpogiebenitez@gmail.com//benitez.alfredo.b.1128@gmail.com//patient
 //alfredogiebenitez@gmail.com//admin
 //capstoneproject3m@gmail.com//superadmin
 //$_SESSION['user_full_name']="Alfredo Sample";

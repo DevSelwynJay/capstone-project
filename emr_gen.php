@@ -112,16 +112,29 @@ $pdf->myCellHead($w,$h,$x,"Description");
 $pdf->Ln();
 
 
-//values per row
-$x = $pdf->GetX();
-$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
-$x = $pdf->GetX();
-$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
-$x = $pdf->GetX();
-$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
-$x = $pdf->GetX();
-$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
-$pdf->Ln();
+////values per row
+//$x = $pdf->GetX();
+//$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+//$x = $pdf->GetX();
+//$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+//$x = $pdf->GetX();
+//$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+//$x = $pdf->GetX();
+//$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+//$pdf->Ln();
+foreach ( $_SESSION['active_emr_vaccination'] as $item){
+    //values per row
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['name']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['type']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['date']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['description']);
+    $pdf->Ln();
+}
+
 
 //-----Medication Record
 //title
@@ -154,6 +167,11 @@ foreach ( $_SESSION['active_emr_medication'] as $item){
     $pdf->Ln();
 }
 
-$pdf->Output('I',"Sample EMR");
+if($_SESSION['isSendEMR']==1){
+    return $pdf->Output('doc.pdf', 'S');
+}
+else{
+    $pdf->Output('I',"Sample EMR");
+}
 
-return $pdf->Output('doc.pdf', 'S');
+
