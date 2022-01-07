@@ -56,7 +56,7 @@ if(!empty($fileNames)){
         // File upload path
         $fileName = basename($_FILES['upload']['name'][$key]);
         echo $fileName;
-        $targetFilePath = $targetDir . $fileName;
+        $targetFilePath = $targetDir . str_replace(' ','',$fileName);
 
         // Check whether file type is valid
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -66,7 +66,7 @@ if(!empty($fileNames)){
                 // Image db insert sql
                 //$insertValuesSQL .= "('".$fileName."', NOW()),";
 
-                $result = mysqli_query($con,"INSERT INTO patient_id (id,file_path) VALUES ('$patientID','ID/$patientID/$fileName')");
+                $result = mysqli_query($con,"INSERT INTO patient_id (id,file_path) VALUES ('$patientID','ID/$patientID/".str_replace(' ','',$fileName)."')");
             }else{
                 //$errorUpload .= $_FILES['files']['name'][$key].' | ';
             }
