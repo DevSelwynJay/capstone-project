@@ -18,7 +18,7 @@ if($type==0){
     header("location:../../super-admin.php",true);
 }
 else if($type==1){
-header("location:../../dashboard-admin.html",true);}
+header("location:../../dashboard-admin.php",true);}
 else if($type==2){
     header("location:../../dashboard-patient.php",true);}
 exit();

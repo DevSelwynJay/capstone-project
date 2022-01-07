@@ -54,7 +54,6 @@ else{
     <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)
@@ -62,15 +61,13 @@ else{
                 }
             )
 
-
-
-
             if(<?php echo $count; ?> > 0){
+
 
                 var content = "<div>There is a Critical Stock on our Inventory</div>";
                 if(<?php echo $count2; ?> > 0){
 
-                    content += "<div style='border-top: solid 1px black '>There is an Expired Medicine on our Inventory</div>"
+                    content += "<div style='border-top: solid 1px black'>There is an Expired Medicine on our Inventory</div>"
                     if(<?php echo $count2; ?> > 0){
 
                         content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
@@ -86,19 +83,6 @@ else{
                 }
 
             }
-            function Notif(){
-                var data = true;
-                $.ajax({
-                    url:"php/inventoryProcesses/Notif_function.php",
-                    method: "POST",
-                    data: {data},
-                    success:function(data){
-                        $('#badge').html(data);
-
-                    }
-                })
-            }
-            setInterval(Notif,1000);
         })
     </script>
     <style>
@@ -126,10 +110,10 @@ else{
                        <h4 id="name-sidebar">Your Name</h4>
                     </div>
                     <ul class="menu">
-                       <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                       <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                        <li><a href="patient.php" class="patient">Patient</a></li>
                        <li><a href="reports.php" class="reports">Reports</a></li>
-                       <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                       <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
                             position: relative;
                             top: -10px;
@@ -174,10 +158,10 @@ else{
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                    <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
                                     <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                     <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
                                        <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
                             position: relative;
                             top: -10px;
