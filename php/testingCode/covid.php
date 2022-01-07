@@ -119,8 +119,12 @@ $json = json_encode($arr);
     <script src="../../jquery-ui/jquery-ui.js"></script>
     <script src="../../js/track2.js"></script>
     <style>
+        *{
+            font-family: "Poppins", sans-serif;
+        }
         #speedChart {
             background-color: rgb(204, 209, 243);
+
         }
         .tab{
             display: flex;
@@ -131,15 +135,16 @@ $json = json_encode($arr);
             margin: 0.7rem 0.7rem 0.7rem 0.7rem;
             padding: 0.5rem 1rem 0.5rem 1rem;
             border-radius:4px;
-            border:1px solid #656565;
-            background-color: rgba(180, 218, 243, 0.82);
+            background-color: #02a9f7;
+            color: white;
+            
         }
         .timestamp:hover{
-            background-color: #465A72;
+            background-color: #03628f;
+            transition: 0.3s ease-out;
             color: #FFFFFF;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body>
@@ -152,7 +157,7 @@ $json = json_encode($arr);
 </div>
 <!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="speedChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+    <canvas id="speedChart" style="padding: 10px; width: 100%; height: 80vh; background: #192734; border-radius: 5px; margin-top: 10px;"></canvas>
 </div>
 <script>
     document.getElementById("ov5").style.color = "#ffffff";
@@ -165,9 +170,13 @@ $json = json_encode($arr);
         label: "Minor",
         data: <?php echo $minorJson; ?>,
         lineTension: 0.1,
-        borderWidth: 1,
+        borderWidth: 5,
         fill: false,
-        borderColor: 'lightGreen'
+        borderColor: 'lightGreen',
+        pointBackgroundColor: 'lightGreen',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
 
     var covadult = {
@@ -175,32 +184,48 @@ $json = json_encode($arr);
         data: <?php  echo $adultJson?>,
         lineTension: 0.1,
         fill: false,
-        borderWidth: 1,
-        borderColor: 'yellow'
+        borderWidth: 5,
+        borderColor: 'yellow',
+        pointBackgroundColor: 'yellow',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
     var covsenior = {
         label: "Senior",
         data: <?php echo $senJson?>,
         lineTension: 0.1,
         fill: false,
-        borderWidth: 1,
-        borderColor: 'lightBlue'
+        borderWidth: 5,
+        borderColor: 'lightBlue',
+        pointBackgroundColor: 'lightBlue',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
     var covpwd = {
         label: "PWD",
         data: <?php echo $pwdJson?>,
         lineTension: 0.1,
         fill: false,
-        borderWidth: 1,
-        borderColor: 'white'
+        borderWidth: 5,
+        borderColor: 'lightGray',
+        pointBackgroundColor: 'lightGray',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
     var covpregnant = {
         label: "Pregnant",
         data: <?php echo $pregJson?>,
         lineTension: 0.1,
         fill: false,
-        borderWidth: 1,
-        borderColor: 'pink'
+        borderWidth: 5,
+        borderColor: 'pink',
+        pointBackgroundColor: 'pink',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
 
     var speedData = {
@@ -241,7 +266,7 @@ $json = json_encode($arr);
             plugins: {
                 title: {
                     font: {
-                        size: 18
+                        size: 24
                     },
                     display: true,
                     text: 'Covid-19 Vaccine Graph'
@@ -251,7 +276,7 @@ $json = json_encode($arr);
                         // This more specific font property overrides the global property
                         font: {
                             size: 14,
-                            family: 'Helvetica Neue',
+                            family: 'Poppins',
                             color: 'black'
                         }
                     }

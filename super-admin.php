@@ -90,10 +90,10 @@
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                    <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
                                     <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                     <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
                                     <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
                                    </ul>
                                 </div>

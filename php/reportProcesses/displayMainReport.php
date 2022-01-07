@@ -64,7 +64,7 @@ $reportable .='</tbody></table>';
 echo $reportable;
 }
 else{
-    $patienttable = "<h1 style='color: black;'>No Consultations Today</h1>";
-    echo $patienttable;
+    $reportable = "<h1 style='color: black;'>No Consultations Today</h1>";
+    echo $reportable;
 }
 
