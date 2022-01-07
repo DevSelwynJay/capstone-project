@@ -302,7 +302,7 @@ if ($total <= 8) {
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
                                  <p id="name">Selwyn Jay D. Faustino</p>
-                                 <a href="/">View</a>
+                                 <a href="#" id="trigger-view-edit-btn">View</a>
                               </div>
                            </div>
                            <div class="patient-content__information holder">
@@ -496,6 +496,8 @@ if ($total <= 8) {
 <?php
 require 'add-prescription-script.html';
 require 'updateMedication.html';
+require 'edit-patient-info.html';
+require 'edit-patient-info-script.html';
 ?>
 
    <input type="hidden" id="hidden-refresh-button">
@@ -508,6 +510,20 @@ require 'updateMedication.html';
                   Loading...
               </p>
               <a href="#pop-up-loading" rel="modal:close" id="close-loading" style="display: none">
+              </a>
+          </div>
+      </div>
+
+      <!--Modal for error-->
+      <div class="modal" id="pop-up-error">
+          <div class="flex-box-row justify-content-center align-items-center">
+              <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
+              <p class="modal-p" id="pop-up-error-message">Please fill all the required fields!</p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-error" rel="modal:close">
+                  <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
               </a>
           </div>
       </div>

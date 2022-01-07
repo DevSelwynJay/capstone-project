@@ -1,0 +1,105 @@
+<script>
+    $(document).ready(function () {
+        $("#trigger-view-edit-btn").click(function () {
+                //open view edit patient info
+                $("#pop-up-edit-indiv-patient").modal({})
+                $.post("php/patientProcesses/viewEditPatientInfo.php").done(function (data){
+
+                    let result = JSON.parse(data)
+                    $('[name="fname"]').val(result.first_name)
+                    $('[name="mname"]').val(result.middle_name)
+
+
+                    let last_name = result.last_name.split(" ")//check kung may suffix sa last name
+                    if(last_name.length==1){
+                        $('[name="lname"]').val(result.last_name)
+                        $('[name="suffix"]').val("")
+                    }
+                    else {
+                        $('[name="lname"]').val(result.last_name.split(" ")[0])
+                        $('[name="suffix"]').val(result.last_name.split(" ").slice(-1))
+                    }
+
+
+
+                    $('[name="patient-type"][value='+result.patient_type+']').prop('checked', true);
+                    $('[name="blood-type"]').val(result.blood_type)
+                    $('[name="height"]').val(result.height)
+                    $('[name="weight"]').val(result.weight)
+
+                    $('[name="civil_status"]').val(result.civil_status)
+                    $('[name="occupation"]').val(result.occupation)
+                    $('[name="gender"]').val(result.gender)
+
+                    $('[name="bday"]').val(result.birthday)
+                    $('[name="purok"]').val(result.purok)
+                    $('[name="house_no"]').val(result.house_no)
+
+                    if(result.email.split("-")[0]=="none")
+                    {
+                        $('[name="email"]').val("")
+                    }
+                    else {
+                        $('[name="email"]').val(result.email )
+                    }
+                    if(result.contact_no.split("-")[0]=="none"){
+                        $('[name="contact"]').val("")
+                    }
+                    else {
+                        $('[name="contact"]').val(result.contact_no)
+                    }
+
+
+                })
+            }
+        )
+
+        $("#trigger-update-patient-modal").click(function () {
+            if(!validateFields()){
+                console.log("fill all the field")//html form bahala sa pag notify kung kumpleto na
+                $("#pop-up-error").modal(
+                    {
+                        escapeClose:false,
+                        showClose:false,
+                        closeExisting: false
+                    }
+                )
+                $("#pop-up-error-message").html("Please fill all the required fields!")
+                return
+            }
+
+            $("#pop-up-confirm-update-patient").modal({showClose:false,closeExisting:false})
+        })
+    })//document ready
+
+
+    function validateFields() {
+
+
+        let patientType = $('[name="patient-type"]:checked').val()
+        let fname = $('[name="fname"]').val()
+        let mname = $('[name="mname"]').val()
+        let lname = $('[name="lname"]').val()
+        let suffix =$('[name="suffix"]').val() // not required
+        let occu = $('[name="occupation"]').val()// not required
+        let civil = $('[name="civil_status"]').val()
+        let email = $('[name="email"]').val()
+        let contact = $('[name="contact"]').val()
+        let gender = $('[name="gender"]').val()
+        let bday = $('[name="bday"]').val()
+        let purok = $('[name="purok"]').val()
+        let house_no = $('[name="house_no"]').val()// not required
+
+        let bloodType　=　$("#blood-type").val();
+        let height　=　$("#height").val();
+        let weight　=　$("#weight").val();
+
+        if (fname == "" || mname == "" || lname == "" ||patientType==""|| civil == "" ||
+            gender == "" || bday == "" || purok == "") {
+
+            return false;
+        }//if
+
+        else return true;
+    }
+</script>
