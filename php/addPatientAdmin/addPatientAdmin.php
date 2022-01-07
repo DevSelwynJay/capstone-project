@@ -90,7 +90,7 @@ if($contact==""||$contact==null){
 
 //another added validation pag may kamuka na name bday purok bawal
 $resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
-WHERE last_name = '$trimmedLname' AND first_name='$trimmedFname' AND middle_name='$trimmedMname'
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
 AND purok = $purok AND birthday = '$bday'
 ");
 if(mysqli_num_rows($resultCheckDuplication)>0){
