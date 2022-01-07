@@ -70,7 +70,7 @@ if(mysqli_num_rows($res)> 0) {
     }
     else{
         for ($i = 1; $i <= $total_pages; $i++) {
-            $medtable .= '<span class="pagination_linkadd" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span>';
+            $medtable .= '<span class="pagination_linkadd" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="' . $i . '">' . $i . '</span></div>';
         }
     }
     echo $medtable;

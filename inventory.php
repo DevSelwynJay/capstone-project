@@ -73,6 +73,8 @@ require 'php/DB_Connect.php';
 
 
 
+
+
             if(<?php echo $count; ?> > 0){
 
                 var content = "<div>There is a Critical Stock on our Inventory</div>";
@@ -85,8 +87,10 @@ require 'php/DB_Connect.php';
 
                         $(function() {
                             $("#badge").tooltip({
+                                items: "span",
                                 content:content
-                            });
+                            }).tooltip("open");;
+
                         });
 
                     }
@@ -153,7 +157,7 @@ require 'php/DB_Connect.php';
                             background: #ff0d31;
                             font-size: small;
                             color: white;
-                        " title="There is a Critical Stock in our Inventory" ></span></a></li>
+                        " title=" " ></span></a></li>
                     </ul>
                 </div>
                 <div class="social-media-links">
