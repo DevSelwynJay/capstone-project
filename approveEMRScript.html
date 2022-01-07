@@ -192,6 +192,9 @@
                                     setTimeout(()=>{
                                         $('[href="#pop-up-loading"]').trigger("click")
                                         $('[href="#pop-up-view-req"]').trigger("click")
+                                        $('#pop-up-success').modal({
+                                            showClose:false,clickClose:false,escapeClose:false
+                                        })
                                     },1500)
                                 })
                             })
@@ -209,6 +212,24 @@
         </a>
     </div>
 
+</div>
+<!--Modal for success-->
+<div class="modal" id="pop-up-success">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/check.png">
+        <p class="modal-p" id="pop-up-success-message">EMR successfully sent</p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-success" rel="modal:close">
+            <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+        </a>
+        <script>
+            $("#pop-up-success-ok-btn").on('click',function () {
+               location.reload()
+            })
+        </script>
+    </div>
 </div>
 
 <!--Modal for loading-->

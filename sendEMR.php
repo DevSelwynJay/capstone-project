@@ -67,5 +67,10 @@ $_SESSION['isSendEMR'] = 0;//reset na uli para gumana ung preview pdf button
 if (!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message sent!';
+//    echo 'Message sent!';
+    //update the request status to approved put 1 to status column
+    $con = null;
+    require 'php/DB_Connect.php';
+    mysqli_query($con,"UPDATE emr_request SET status = 1 WHERE request_id = ".$_SESSION['active_reqID']);
+
 }
