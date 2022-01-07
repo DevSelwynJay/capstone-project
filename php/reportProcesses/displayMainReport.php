@@ -6,15 +6,22 @@ $rpp = 5;
 $page = '';
 
 $reportable ='';
+if(isset($_POST['page'])){
+    $page = $_POST['page'];
+}
+else{
+    $page = 1;
+}
+$start_from = ($page - 1)*$rpp;
 //Query for the mean time
-$medpatientqry = "Select * from `medication_record`";
-$vacpatientqry = "Select * from `vaccination_record`";
+$medpatientqry = "Select * from `medication_record` limit $start_from,$rpp";
+
 /*Official Query
-$medpatientqry = "Select * from `medication_record` where `date_given` > NOW()";
+$medpatientqry = "Select * from `medication_record` where `date_given` > NOW() limit $start_from,$rpp";
 $vacpatientqry = "Select * from `vaccination_record`where `date_given` > NOW()";*/
 $medresult = mysqli_query($con,$medpatientqry);
-$vacresult = mysqli_query($con,$vacpatientqry);
-if(mysqli_num_rows($medresult)>0 || mysqli_num_rows($vacresult)>0){
+
+if(mysqli_num_rows($medresult)>0){
 $reportable .= '
                     <table class="reports__table"><tbody>
                         <tr>
@@ -25,7 +32,7 @@ $reportable .= '
 while($rowmed = mysqli_fetch_assoc($medresult)){
     $idmed = $rowmed['patient_id'];
     $datemed = $rowmed ['date_given'];
-    $patientmedqry = 'Select * from `walk_in_patient` where `id` = "'.$idmed.'" ';
+    $patientmedqry = "Select * from `walk_in_patient` where `id` = '".$idmed."' ";
     $medresult2 = mysqli_query($con,$patientmedqry);
     if(mysqli_num_rows($medresult2)>0){
         while($rowresult = mysqli_fetch_assoc($medresult2)){
@@ -37,30 +44,29 @@ while($rowmed = mysqli_fetch_assoc($medresult)){
             $reportable .='<tr>
         <td>'.$fname.' '.$mname.' '.$lname.'</td>
         <td>'.$type.'</td>
-        <td>Medication</td>';
+        <td>Medication</td></tr>';
         }
     }
 }
-while($rowvac = mysqli_fetch_assoc($vacresult)){
-    $idvac = $rowvac['patient_id'];
-    $datevac = $rowvac['date_given'];
-    $patientvacqry = 'Select * from `walk_in_patient` where `id` = "'.$idvac.'" ';
-    $vacresult2 = mysqli_query($con,$patientvacqry);
-    if(mysqli_num_rows($vacresult2)>0){
-        while($rowresult2 = mysqli_fetch_assoc($vacresult2)){
-            $lname = $rowresult2['last_name'];
-            $fname = $rowresult2['first_name'];
-            $mname = $rowresult2['middle_name'];
-            $type = $rowresult2['patient_type'];
 
-            $reportable .='<tr>
-        <td>'.$fname.' '.$mname.' '.$lname.'</td>
-        <td>'.$type.'</td>
-        <td>Vacination</td>';
+$reportable .='</tbody></table><br><div align="center">';
+    $medpage = "Select * from `medication_record`";
+
+    $page_result = mysqli_query($con, $medpage);
+
+    $medcount = mysqli_num_rows($page_result);
+    $total_record = mysqli_num_rows($page_result);
+
+    $total_pages = ceil($total_record/$rpp);
+    if($total_record <= $rpp){
+
+    }
+    else{
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $reportable .= '<span class="pagination_link" style="cursor:pointer;padding:5px 5px;"id="' . $i . '">' . $i . '</span>';
         }
     }
-}
-$reportable .='</tbody></table>';
+    $reportable .= '</div>';
 echo $reportable;
 }
 else{

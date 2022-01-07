@@ -191,6 +191,7 @@ else{
                           <div class="col-md-12 col-lg-8">
                              <div class="reports__left-col">
                                  <h2 style="color:var(--third-color);font-weight: bold">Today&#39;s Patients</h2>
+                                 <h2 style="color:var(--third-color);font-weight: bold">Medical Consultation</h2>
                                 <div class="reports__left-col-container" id="displayreport">
                                     <table >
                                         <tbody>
@@ -218,7 +219,39 @@ else{
                                         </tbody>
                                      </table>
                                 </div>
+
                              </div>
+                              <div class="reports__left-col">
+
+                                  <h2 style="color:var(--third-color);font-weight: bold">Vaccination Consultation</h2>
+                                  <div class="reports__left-col-container" id="displayreport2">
+                                      <table >
+                                          <tbody>
+                                          <tr>
+                                              <th>Name</th>
+                                              <th>Type</th>
+                                          </tr>
+                                          <tr>
+                                              <td>Name</td>
+                                              <td>Illness</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Name</td>
+                                              <td>Illness</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Name</td>
+                                              <td>Illness</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Name</td>
+                                              <td>Illness</td>
+                                          </tr>
+
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
                           </div>
                           <div class="col-md-12  col-lg-4">
                              <div class="reports__right-col">
@@ -240,11 +273,11 @@ else{
     <script>
         $(document).ready(function(){
             displayMainReport();
-
+            displayMainReport2();
         })
 
-        function displayMainReport(){
-            var page = true;
+        function displayMainReport(page){
+
             $.ajax({
                 url: 'php/reportProcesses/DisplayMainReport.php',
                 type:'POST',
@@ -256,6 +289,27 @@ else{
                 }
             })
         }
+        $(document).on("click",".pagination_link",function (){
+            var page = $(this).attr("id");
+            displayMainReport(page);
+        })
+        function displayMainReport2(page){
+
+            $.ajax({
+                url: 'php/reportProcesses/DisplayMainReport2.php',
+                type:'POST',
+                data:{
+                    page:page
+                },
+                success:function (data,status){
+                    $('#displayreport2').html(data);
+                }
+            })
+        }
+        $(document).on("click",".pagination_link2",function (){
+            var page = $(this).attr("id");
+            displayMainReport2(page);
+        })
 
 
     </script>

@@ -24,7 +24,7 @@ if(mysqli_num_rows($result)> 0) {
                     <th class="column_sort" id="name" data-order="desc" style="cursor:pointer;">Medicine Name</th>
                     <th >Category</th>
                     <th class="column_sort" id="stock" data-order="desc" style="cursor:pointer;">No. of Stocks</th>
-                    <th >Date</th>
+                    <th id="date" title="Manufacturing Date - Expiration Date" >Date</th>
                     <th class="column_sort" id="dateadded" data-order="desc" style="cursor:pointer;">Date Added</th>
                     <th class="add-row"></th>
                 </tr>
@@ -71,6 +71,7 @@ if(mysqli_num_rows($result)> 0) {
             $medtable .= '<span class="pagination_link" style="cursor:pointer;padding:5px 5px;border:1px solid #cccccc;"id="' .$i.'">'.$i.'</span>';
         }
     }
+    $medtable .= '</div>';
     echo $medtable;
 }
 else{
