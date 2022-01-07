@@ -1,3 +1,26 @@
+<?php
+$con=null;
+require 'php/DB_Connect.php';
+
+$sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
+$countres = mysqli_query($con,$sql);
+$count = mysqli_num_rows($countres);
+$exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
+$res1 = mysqli_query($con,$expire);
+$res2 = mysqli_query($con,$exptab);
+$count2 = mysqli_num_rows($res1);
+$count3 = mysqli_num_rows($res2);
+$total = $count + $count2 + $count3;
+if($total <=8){
+    $total = $total ;
+}
+else{
+    $total = 9 ."&#8314;";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +32,8 @@
  <link rel="stylesheet" href="scss/bootstrap-grid.css">
   <!--Custom CSS-->
   <link rel="stylesheet" href="scss/main.css">
-<!--Font Awesome-->
+
+    <!--Font Awesome-->
 <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
 <!-- Font Family Poppins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +41,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <title>Reports</title>
-<!--Jquery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Jquery-->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
     <style>
         .drop-down-settings,.drop-down-settings open{
             z-index: 1000;
@@ -33,8 +60,42 @@
                     $("#name-sidebar").html(result.admin_name)
                 }
             )
+
+            if(<?php echo $count; ?> > 0){
+
+
+                var content = "<div>There is a Critical Stock on our Inventory</div>";
+                if(<?php echo $count2; ?> > 0){
+
+                    content += "<div style='border-top: solid 1px black'>There is an Expired Medicine on our Inventory</div>"
+                    if(<?php echo $count2; ?> > 0){
+
+                        content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
+
+                        $(function() {
+                            $("#badge").tooltip({
+                                content:content
+                            });
+                        });
+
+                    }
+
+                }
+
+            }
         })
     </script>
+    <style>
+
+        .ui-tooltip {
+            padding: 10px 20px;
+            color: black;
+            border-radius: 20px;
+            background-color: white;
+            font: bold 14px "Helvetica Neue", Sans-Serif;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
     <section class="global">
@@ -49,11 +110,20 @@
                        <h4 id="name-sidebar">Your Name</h4>
                     </div>
                     <ul class="menu">
-                       <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                       <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                        <li><a href="patient.php" class="patient">Patient</a></li>
                        <li><a href="reports.php" class="reports">Reports</a></li>
-                       <li><a href="track-map.html" class="trackMap">Track Map</a></li>
-                       <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                       <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                        <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory"><?php echo $total; ?></span></a></li>
                     </ul>
                  </div>
                  <div class="social-media-links">
@@ -75,16 +145,33 @@
                           <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                           <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                           <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                          <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                           <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"><span id="badge" class="badge" style="
+                            position: relative;
+                            top: -7px;
+                            right: 4px;
+                            padding: 0px 2px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            color: white;
+                        " >&nbsp;</span></i></a>
                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                    <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
                                     <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                     <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                       <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
                                    </ul>
                                 </div>
                           <div class="drop-down-settings" id="dropdown">
@@ -136,9 +223,9 @@
                           <div class="col-md-12  col-lg-4">
                              <div class="reports__right-col">
                                <div class="reports__right-col_links">
-                                <a href="medicine-reports.html">Medicine</a>
-                                <a href="consultation-reports.html">Consulted</a>
-                                <a href=vaccination-reports.html>Vaccinated Patient</a>
+                                <a href="medicine-reports.php">Medicine</a>
+                                <a href="consultation-reports.php">Consulted</a>
+                                <a href=vaccination-reports.php>Vaccinated Patient</a>
                                </div>
                              </div>
                           </div>

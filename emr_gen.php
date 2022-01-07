@@ -18,6 +18,47 @@ class PDF extends FPDF{
         $this->Cell(30,15,'Sto. Rosario Rural Health Center');
         $this->Ln(40);
     }
+    //WORDWRAP FUNCTION
+    function myCell($w,$h,$x,$t){
+        $height = $h/3;
+        $first = $height+2;
+        $second = $height+$height+$height+3;
+        $len = strlen($t);
+        if($len>15){
+            $txt = str_split($t,15);
+            $this->SetX($x);
+            $this->Cell($w,$first,$txt[0],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$second,$txt[1],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$h,'','',0,'L',0);
+
+        }
+        else{
+            $this->SetX($x);
+            $this->Cell($w,$h,$t,'');
+        }
+    }
+    function myCellHead($w,$h,$x,$t){
+        $height = $h/3;
+        $first = $height+2;
+        $second = $height+$height+$height+3;
+        $len = strlen($t);
+        if($len>15){
+            $txt = str_split($t,15);
+            $this->SetX($x);
+            $this->Cell($w,$first,$txt[0],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$second,$txt[1],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$h,'','T',0,'L',0);
+
+        }
+        else{
+            $this->SetX($x);
+            $this->Cell($w,$h,$t,'T');
+        }
+    }
 }
 
 $datetoday = Date("M-d-Y");
@@ -30,7 +71,7 @@ $pdf->Text(10,40,"Electronic Medical Record");
 $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(18);
+
 
 $pdf->Cell(35,10, $_SESSION['active_emr_account']['name'],0,0,'C');
 
@@ -48,6 +89,11 @@ $pdf->Cell(50,10,"Blood Type: ".$_SESSION['active_emr_account']['blood_type'],0,
 $pdf->Cell(50,10,"Height: ".$_SESSION['active_emr_account']['height']."       Weight: ".$_SESSION['active_emr_account']['weight'],0,1,"L");
 $pdf->Cell(0,10,"Address: ".$_SESSION['active_emr_account']['address'],0,1,"L");
 
+$w = 45;
+$h = 16;
+
+
+
 //-----Vaccination Record
 $pdf->Ln(10);
 $pdf->SetFont('Arial','B',16);
@@ -55,36 +101,57 @@ $pdf->MultiCell(0,10,"Vaccination Record",0);
 $pdf->SetFont('Arial','',14);
 
 //row header
-$pdf->Cell(50,10,"Name","T",0,"L");
-$pdf->Cell(30,10,"Type","T",0,"L");
-$pdf->Cell(40,10,"Date Given	","T",0,"L");
-$pdf->Cell(60,10,"Description","T",1,"L");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Name");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Type");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Date Given");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Description");
+$pdf->Ln();
+
 
 //values per row
-$pdf->Cell(50,10,"PROBLEMSADI",0,0,"L");
-$pdf->Cell(30,10,"IDK",0,0,"L");
-$pdf->Cell(40,10,"Date Given	",0,0,"L");
-$pdf->MultiCell(60,10,"MAY SAKIT DAHIL MAY SAKIT",0,'J');
+$x = $pdf->GetX();
+$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+$x = $pdf->GetX();
+$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+$x = $pdf->GetX();
+$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+$x = $pdf->GetX();
+$pdf->myCell($w,$h,$x,"asdadasdsadasdaasdadadasda");
+$pdf->Ln();
 
 //-----Medication Record
 //title
-$pdf->Ln(10);
+$pdf->Ln(40);
 $pdf->SetFont('Arial','B',16);
 $pdf->MultiCell(0,10,"Medication Record",0);
 $pdf->SetFont('Arial','',14);
 
 //row header
-$pdf->Cell(50,10,"Name","T",0,"L");
-$pdf->Cell(30,10,"Type","T",0,"L");
-$pdf->Cell(40,10,"Date Given	","T",0,"L");
-$pdf->Cell(60,10,"Description","T",1,"L");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Name");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Type");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Date Given");
+$x = $pdf->GetX();
+$pdf->myCellHead($w,$h,$x,"Description");
+$pdf->Ln();
 
 foreach ( $_SESSION['active_emr_medication'] as $item){
     //values per row
-    $pdf->Cell(50,10,$item['name'],0,0,"L");
-    $pdf->Cell(30,10,$item['type'],0,0,"L");
-    $pdf->Cell(40,10,$item['date'],0,0,"L");
-    $pdf->MultiCell(60,10,$item['description'],0,'J');
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['name']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['type']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['date']);
+    $x = $pdf->GetX();
+    $pdf->myCell($w,$h,$x,$item['description']);
+    $pdf->Ln();
 }
 
 $pdf->Output('I',"Sample EMR");

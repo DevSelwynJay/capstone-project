@@ -91,7 +91,8 @@ $(document).ready(function() {
                         "<br><br><strong>End of Medication</strong>" +
                         "<br> - "+resultElement.end_date_formatted+
                         "<br><br>"+"<strong>Date Given: </strong> "+resultElement.date_given+
-                        "<br>"+"<strong>Quantity Given: </strong> "+resultElement.given_med_quantity +" tablets"
+                        "<br>"+"<strong>Quantity Given: </strong> "+resultElement.given_med_quantity +" tablets<br>"+
+                        "<button onclick='getEventID("+resultElement.event_id+")' class='edit-event-btn'><i class=\"fas fa-edit\"></i>edit</button><br>"
                     ,
                     date: date,
                     type: ' ',
@@ -101,6 +102,7 @@ $(document).ready(function() {
 
         })//post end
     }
+
 
     //retrieve Vaccination Record and put in calendar
     function retrievePatientVaccinationRecord() {

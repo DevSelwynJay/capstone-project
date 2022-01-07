@@ -7,5 +7,5 @@ $_SESSION['user_full_name']="Alfredo Sample";
 $_SESSION['userTable']="admin";
 $_SESSION['account_type']=1;
 //shortcut to login just put existing email as a value
-header("location:../../patient.php");
+header("location:../patient.php");
 ?>

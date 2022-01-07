@@ -1,6 +1,27 @@
 <?php
 session_start();
 //echo $_SESSION['active_individual_patient_ID'];
+
+
+$con = null;
+require 'php/DB_Connect.php';
+
+$sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
+$countres = mysqli_query($con, $sql);
+$count = mysqli_num_rows($countres);
+$exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
+$res1 = mysqli_query($con, $expire);
+$res2 = mysqli_query($con, $exptab);
+$count2 = mysqli_num_rows($res1);
+$count3 = mysqli_num_rows($res2);
+$total = $count + $count2 + $count3;
+if ($total <= 8) {
+    $total = $total;
+} else {
+    $total = 9 . "&#8314;";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,13 +71,51 @@ session_start();
        <script>
            //<!--Get admin info from session-->
            $(document).ready(function () {
+               Notif();
                $.post('php/admin_session.php').done(
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
-                       $("#modal-admin-name").html("Given by: "+result.admin_name)
                    }
                )
+
+
+
+
+               if(<?php echo $count; ?> > 0){
+
+                   var content = "<div>There is a Critical Stock on our Inventory</div>";
+                   if(<?php echo $count2; ?> > 0){
+
+                       content += "<div style='border-top: solid 1px black '>There is an Expired Medicine on our Inventory</div>"
+                       if(<?php echo $count2; ?> > 0){
+
+                           content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
+
+                           $(function() {
+                               $("#badge").tooltip({
+                                   content:content
+                               });
+                           });
+
+                       }
+
+                   }
+
+               }
+               function Notif(){
+                   var data = true;
+                   $.ajax({
+                       url:"php/inventoryProcesses/Notif_function.php",
+                       method: "POST",
+                       data: {data},
+                       success:function(data){
+                           $('#badge').html(data);
+
+                       }
+                   })
+               }
+               setInterval(Notif,1000);
                ///<!--Set patient info to page-->
                $.post('php/patientProcesses/retrieveIndivPatient.php').done(
                    function (data) {
@@ -83,6 +142,7 @@ session_start();
                        }
                    }
                )
+
            })//document ready
        </script>
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
@@ -111,6 +171,14 @@ session_start();
                 /*default is 1*/
                 z-index: 1000;
             }
+            .ui-tooltip {
+                padding: 10px 20px;
+                color: black;
+                border-radius: 20px;
+                background-color: white;
+                font: bold 14px "Helvetica Neue", Sans-Serif;
+                text-transform: uppercase;
+            }
         </style>
 <!--       <script>-->
 <!--           $(document).mousemove(function(){-->
@@ -136,11 +204,20 @@ session_start();
                         <h4 id="name-sidebar"></h4>
                      </div>
                      <ul class="menu">
-                        <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                        <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                         <li><a href="patient.php" class="patient">Patient</a></li>
                         <li><a href="reports.php" class="reports">Reports</a></li>
-                        <li><a href="track-map.html" class="trackMap">Track Map</a></li>
-                        <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                         <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
                      </ul>
                   </div>
                   <div class="social-media-links">
@@ -162,16 +239,33 @@ session_start();
                            <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                           <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"><span id="badge" class="badge" style="
+                            position: relative;
+                            top: -7px;
+                            right: 4px;
+                            padding: 0px 2px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            color: white;
+                        ">&nbsp;</span></i></a>
                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                    <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
                                     <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                     <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                       <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
                                    </ul>
                                 </div>
                            <!--DROPDOWN SETTINGS-->
@@ -208,7 +302,7 @@ session_start();
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
                                  <p id="name">Selwyn Jay D. Faustino</p>
-                                 <a href="/">View</a>
+                                 <a href="#" id="trigger-view-edit-btn">View</a>
                               </div>
                            </div>
                            <div class="patient-content__information holder">
@@ -401,6 +495,9 @@ session_start();
       </script>
 <?php
 require 'add-prescription-script.html';
+require 'updateMedication.html';
+require 'edit-patient-info.html';
+require 'edit-patient-info-script.html';
 ?>
 
    <input type="hidden" id="hidden-refresh-button">
@@ -413,6 +510,20 @@ require 'add-prescription-script.html';
                   Loading...
               </p>
               <a href="#pop-up-loading" rel="modal:close" id="close-loading" style="display: none">
+              </a>
+          </div>
+      </div>
+
+      <!--Modal for error-->
+      <div class="modal" id="pop-up-error">
+          <div class="flex-box-row justify-content-center align-items-center">
+              <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
+              <p class="modal-p" id="pop-up-error-message">Please fill all the required fields!</p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-error" rel="modal:close">
+                  <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
               </a>
           </div>
       </div>

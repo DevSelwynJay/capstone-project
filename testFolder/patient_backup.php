@@ -34,10 +34,10 @@
                         <h4>Your Name</h4>
                      </div>
                      <ul class="menu">
-                     <li><a href="../dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                     <li><a href="../dashboard-admin.php" class="dashboard">Dashboard</a></li>
                             <li><a href="../patient.php" class="patient">Patient</a></li>
                             <li><a href="../reports.php" class="reports">Reports</a></li>
-                            <li><a href="../track-map.html" class="trackMap">Track Map</a></li>
+                            <li><a href="../track-map.php" class="trackMap">Track Map</a></li>
                             <li><a href="../inventory.php" class="inventory">Inventory</a></li>
                      </ul>
                   </div>

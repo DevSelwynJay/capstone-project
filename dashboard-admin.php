@@ -1,3 +1,24 @@
+<?php
+$con=null;
+require 'php/DB_Connect.php';
+
+$sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
+$countres = mysqli_query($con,$sql);
+$count = mysqli_num_rows($countres);
+$exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
+$res1 = mysqli_query($con,$expire);
+$res2 = mysqli_query($con,$exptab);
+$count2 = mysqli_num_rows($res1);
+$count3 = mysqli_num_rows($res2);
+$total = $count + $count2 + $count3;
+if($total <=8){
+    $total = $total ;
+}
+else{
+    $total = 9 ."&#8314;";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,49 +47,103 @@
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <!--Jquery-->
     <script src="js/jquery-3.6.0.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['bar'] });
-        google.charts.setOnLoadCallback(drawChart);
+<!--    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        google.charts.load('current', { 'packages': ['bar'] });-->
+<!--        google.charts.setOnLoadCallback(drawChart);-->
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],
-                ['July', 200, 150, 20],
-                ['August', 400, 200, 25],
-                ['September', 660, 50, 10],
-                ['October', 300, 100, 20]
-            ]);
+<!--        function drawChart() {-->
+<!--            var data = google.visualization.arrayToDataTable([-->
+<!--                ['Month', 'Measles Vaccine', 'Anti-Rabies', 'Anti-Tetanus'],-->
+<!--                ['July', 200, 150, 20],-->
+<!--                ['August', 400, 200, 25],-->
+<!--                ['September', 660, 50, 10],-->
+<!--                ['October', 300, 100, 20]-->
+<!--            ]);-->
 
-            var options = {
-                chart: {
-                    title: 'Vaccine Tracking',
-                    subtitle: 'as of July - October 2021',
-                },
-                bars: 'vertical' // Required for Material Bar Charts.
-            };
+<!--            var options = {-->
+<!--                chart: {-->
+<!--                    title: 'Vaccine Tracking',-->
+<!--                    subtitle: 'as of July - October 2021',-->
+<!--                },-->
+<!--                bars: 'vertical' // Required for Material Bar Charts.-->
+<!--            };-->
 
-            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+<!--            var chart = new google.charts.Bar(document.getElementById('barchart_material'));-->
 
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-        }
-    </script>
+<!--            chart.draw(data, google.charts.Bar.convertOptions(options));-->
+<!--        }-->
+<!--    </script>-->
+
     <style>
         .drop-down-settings,
         .drop-down-settings open {
             z-index: 1000;
         }
+        .ui-tooltip {
+            padding: 10px 20px;
+            color: black;
+            border-radius: 20px;
+            background-color: white;
+            font: bold 14px "Helvetica Neue", Sans-Serif;
+            text-transform: uppercase;
+        }
     </style>
     <!--Get admin info from session-->
     <script>
+
+
         $(document).ready(function () {
+            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)
                     $("#name-sidebar").html(result.admin_name)
                 }
             )
-        })
+
+
+
+
+            if(<?php echo $count; ?> > 0){
+
+                var content = "<div>There is a Critical Stock on our Inventory</div>";
+                if(<?php echo $count2; ?> > 0){
+
+                    content += "<div style='border-top: solid 1px black '>There is an Expired Medicine on our Inventory</div>"
+                    if(<?php echo $count2; ?> > 0){
+
+                        content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
+
+                        $(function() {
+                            $("#badge").tooltip({
+                                content:content
+                            });
+                        });
+
+                    }
+
+                }
+
+            }
+            function Notif(){
+                var data = true;
+                $.ajax({
+                    url:"php/inventoryProcesses/Notif_function.php",
+                    method: "POST",
+                    data: {data},
+                    success:function(data){
+                        $('#badge').html(data);
+
+                    }
+                })
+            }
+            setInterval(Notif,1000);
+
+
+
+        });
+
     </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
     </script>
@@ -91,11 +166,20 @@
                             <h4 id="name-sidebar">Your Name</h4>
                         </div>
                         <ul class="menu">
-                            <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                            <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                             <li><a href="patient.php" class="patient">Patient</a></li>
                             <li><a href="reports.php" class="reports">Reports</a></li>
-                            <li><a href="track-map.html" class="trackMap">Track Map</a></li>
-                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                            <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                            <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ></span></a></li>
                         </ul>
                     </div>
                     <div class="social-media-links">
@@ -107,7 +191,7 @@
             </div>
             <div class="global__main-content">
                 <div class="inner-page-content">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 p-0">
                         <div class="inner-page-nav">
                             <div class="logo">
                                 <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
@@ -117,17 +201,33 @@
                                 <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                                 <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                                 <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                                <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                                <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"><span id="badge" class="badge" style="
+                            position: relative;
+                            top: -7px;
+                            right: 4px;
+                            padding: 0px 2px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            color: white;
+                        ">&nbsp;</span></i></a>
                                 <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                 <!--MOBILE MENU-->
                                 <div class="menu-mobile " id="menu">
                                     <ul>
-                                        <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a>
-                                        </li>
+                                        <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
                                         <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                         <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                        <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                        <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                        <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                        <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
+                            position: relative;
+                            top: -10px;
+                            right: -2px;
+                            padding: 0px 7px;
+                            border-radius: 100%;
+                            background: #ff0d31;
+                            font-size: small;
+                            color: white;
+                        " title="There is a Critical Stock in our Inventory" ></span></a></li>
                                     </ul>
                                 </div>
 

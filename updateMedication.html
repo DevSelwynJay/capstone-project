@@ -1,0 +1,312 @@
+<script>
+  function getEventID(event_id){
+    $(window).scrollTop(0)
+    $("#pop-up-update-medication").modal({clickClose:false,escapeClose:false,showClose:false})
+    $("#update-event-id").val(event_id);
+    $.post("php/patientProcesses/retrieveSelMed.php",{event_id:event_id}).done(function (data) {
+      let result = JSON.parse(data);
+
+      $("#update-date-given").html(result.date_given)
+
+        $("#update-inv-name").val(result.name)
+        $("#update-inv-type").val(result.type)
+        $("#update-dosage").val(result.dosage)
+        $("#update-no_of_times").val(result.no_times)
+        $("#update-sub-category").val(result.med_sub_cat)
+
+      let interval = result.interval;
+        if(parseInt(interval)>0){
+          $("#update-interval-lbl").css('opacity','1')
+          $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(interval)
+          update_end_date_2()
+          end_date_picker_instance_2()
+          $("#update-frequency").val("1")
+        }
+
+        $("#update-start-date").val(result.start_date)
+        $("#update-end-date").val(result.end_date)
+        $("#update-description").val(result.description)
+
+    })
+  }//end of function
+  // $("#update-start-date").flatpickr()
+</script>
+
+<!--Modal for updating each medication record in calendar-->
+<div id="pop-up-update-medication" class="modal" style="max-width: 70vw">
+  <div class="flex-box-row justify-content-center">
+     <h3 style="color: var(--third-color)">Edit Medication Info</h3>
+  </div>
+  <div class="margin-top-2 flex-box-row">
+   <p class="modal-p-2">Given on <span id="update-date-given"></span></p>
+  </div>
+
+  <!--first row-->
+  <div class="row flex-box-row justify-content-center margin-top-1">
+    <div class="col-lg-6 col-md-12 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Selected <span id="update-inv-category-lbl">Medicine</span></label>
+      <input id="update-inv-name" type="text" class="search-bar" placeholder="none" readonly style="font-weight: bold">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Type</label>
+      <input id="update-inv-type" class="search-bar" type="text" placeholder="none" readonly>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 "><span id="update-sub-category-lbl">Medicine</span> Category</label>
+      <input id="update-sub-category" class="search-bar" type="text" placeholder="none" readonly>
+    </div>
+
+  </div>
+
+  <div class="row flex-box-row justify-content-center">
+
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Dosage</label>
+      <input type="text" id="update-dosage" class="search-bar" placeholder="x" readonly>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 "><span style="color: red">*</span>Times per day</label>
+      <input type="number" id="update-no_of_times" class="search-bar" placeholder="x">
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2 ">Frequency</label>
+      <select id="update-frequency" class="search-bar">
+        <option value="0">Daily</option>
+        <option value="1">Every other day</option>
+      </select>
+      <script>
+        $("#update-frequency").change(function () {
+          let val =  $(this).val();
+          if(val==0){
+            $("#update-interval-lbl").css('opacity','0.3')
+            $("#update-interval").prop('type','text').val("none").css('opacity','0.3').prop('readonly',true)
+          }
+          else {
+            $("#update-interval-lbl").css('opacity','1')
+            $("#update-interval").val("").css('opacity','1').prop('type','number').prop('readonly',false).val(1)
+          }
+        })
+      </script>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-11 flex-box-column justify-content-end margin-top-2">
+      <label class="modal-p-2" id="update-interval-lbl">Interval in days</label>
+      <input type="text" id="update-interval" class="search-bar" placeholder="x" readonly>
+      <script>
+        $("#update-interval-lbl").css('opacity','0.3')
+        $("#update-interval").val("None").css('opacity','0.3')
+      </script>
+    </div>
+
+  </div>
+
+  <!--row-->
+  <div class="row flex-box-row justify-content-center" style="border-bottom: 2px solid #F4F2F4;padding-bottom: 1rem">
+    <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <label class="modal-p-2 "><span style="color: red">*</span>Start Date</label>
+      <input id="update-start-date" class="search-bar" type="text" placeholder="Start Date" readonly>
+      <script>
+        $("#update-start-date").datepicker({
+          dateFormat: 'yy-mm-dd',
+          changeMonth: true,
+          changeYear: true,
+          yearRange:'new Date():2100',
+          minDate: new Date(),
+          defaultDate: new Date(),
+        })
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today =  yyyy+'-'+mm+'-'+dd;
+        $("#update-start-date").val(today)
+      </script>
+    </div>
+    <div class="col-lg-3  col-md-3 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <label class="modal-p-2 ">End Date</label>
+      <input id="update-end-date" class="search-bar" type="text" placeholder="End Date" readonly>
+      <script>
+        //set end date base on startdate and interval
+        var availableDates = [];
+
+        function update_end_date_2() {
+
+          let interval = $("#update-interval").val();
+          if(isNaN(interval)){
+            interval=0
+          }
+          $.post('php/getDatesFromRange.php',{start_date: $("#update-start-date").val(),
+            end_date:'2025-01-01',
+            interval_days: interval
+          }).done(function (data) {
+            let datesObj = JSON.parse(data)
+            availableDates = datesObj;
+            console.log(availableDates)
+          })
+        }
+
+        function end_date_picker_instance_2() {
+          $("#update-end-date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange:'new Date():2100',
+            beforeShowDay: function(date){
+              var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+              return [$.inArray(string, availableDates) != -1];
+            },
+            minDate:  $("#update-start-date").val(),
+            defaultDate: $("#update-start-date").val(),
+          })
+        }
+        update_end_date_2()
+        end_date_picker_instance_2()
+        //actions
+        $("#update-start-date").change(function () {
+
+          $("#update-end-date").val("")
+          update_end_date_2()
+          end_date_picker_instance_2()
+
+        })
+        $("#update-frequency").change(function () {
+          $("#update-end-date").val("")
+          update_end_date_2()
+          end_date_picker_instance_2()
+        })
+        $("#update-interval").change(function () {
+          if($("#update-interval").val()==""){return}
+          $("#update-end-date").val("")
+          update_end_date_2()
+          end_date_picker_instance_2()
+        })
+      </script>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-11 flex-box-column justify-content-start margin-top-2">
+      <p class="modal-p-2"><span style="color: red">*</span>Description</p>
+      <textarea  id="update-description" class="search-bar" style="width: 100%;height: 12vh;padding: 0.5rem" placeholder="Description">
+                </textarea>
+      <script>
+        $("#update-description").val("")
+      </script>
+      <style>
+        #update-description{
+          font-family: 'Poppins', sans-serif;
+          letter-spacing: 1px;
+          resize: vertical;
+        }
+      </style>
+    </div>
+  </div>
+
+  <p class="modal-p-error">Please fill the all required fields</p>
+  <script>
+    $("input").focus(function (data) {
+      $(".modal-p-error").css("visibility","hidden")
+    })
+  </script>
+
+  <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
+    <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-med-btn">
+      Update
+    </button>
+    <a href="#pop-up-update-medication" rel="modal:close">
+      <button class="modal-primary-button" id="back">Back</button>
+      <script>
+        $("#back").click(function () {
+          location.href = "#calendar";
+        })
+      </script>
+    </a>
+  </div>
+</div>
+
+<!--modal for updating medication-->
+<div id="pop-up-confirm-update-med" class="modal">
+  <div class="flex-box-row justify-content-center align-items-center">
+
+    <p class="modal-p flex-box-row justify-content-center align-items-center">
+      <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+      Update?
+    </p>
+  </div>
+
+  <div class="flex-box-row justify-content-end align-items-end">
+    <a href="#pop-up-confirm-update-med" rel="modal:close">
+      <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+    </a>
+    <button class="modal-primary-button" id="update-med-final-btn" style="margin-left: 0.5rem">Confirm</button>
+  </div>
+</div>
+
+<script>
+  $("#update-med-btn").click(function () {
+    //for validation of input
+    let start = $("#update-start-date").val()
+    let end = $("#update-end-date").val()
+    let description = $("#update-description").val()
+    let no_times = $("#update-no_of_times").val()
+    let interval = $("#update-interval").val()
+
+    if(start==""||description==""||no_times==""){
+      $(".modal-p-error").css("visibility","visible")
+      return
+    }
+    //kapag ok na lahat call the final confirm modal
+    $("#pop-up-confirm-update-med").modal({showClose: false,closeExisting:false})
+  })
+
+  $("#update-med-final-btn").click(function () {
+   let start = $("#update-start-date").val()
+    let end = $("#update-end-date").val()
+    let description = $("#update-description").val()
+    let no_times = $("#update-no_of_times").val()
+    let interval = $("#update-interval").val()
+
+    if($("#update-frequency").val()=="0"){
+      interval = 0;
+    }
+    if(end==""){
+      end= start;
+    }
+
+    //update selected medicine
+    $.post("php/patientProcesses/updateSelMed.php",{
+     start:start,end:end,description:description,no_times:no_times,interval:interval
+    }).done(function (data) {
+      // alert(data)
+      $('[href="#pop-up-confirm-update-med"]').trigger("click")
+      $('[href="#pop-up-update-medication"]').trigger("click")
+      retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+      $("#hidden-refresh-button").trigger('click')
+    })
+  })
+
+  // $("#update-date-given").html(result.date_given)
+  //
+  // $("#update-inv-name").val(result.name)
+  // $("#update-inv-type").val(result.type)
+  // $("#update-sub-category").val(result.med_sub_cat)
+
+  // $("#update-dosage").val(result.dosage)
+  // $("#update-no_of_times").val(result.no_times)
+  // let interval = result.interval;
+  //
+
+
+
+</script>
+
+<style>
+  #update-medication-inputs div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .edit-event-btn{
+    padding: 0.4em 0.5em; border: none; background: var(--primary-color); color: white; font-family: Poppins;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+  }.edit-event-btn:hover{
+    background: var(--hover-color);
+     }
+</style>

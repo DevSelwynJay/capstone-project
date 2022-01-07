@@ -1,0 +1,231 @@
+<div class="modal modal-full-width" id="pop-up-edit-indiv-patient">
+    <div class="flex-box-column align-items-center">
+        <img src="img/user2.png" width="50" height="50">
+       <h3 class="margin-top-1" style="color: var(--third-color);">Update Patient Information</h3>
+    </div>
+
+
+
+        <form id="reg-form" method="post" autocomplete="off" enctype="multipart/form-data" action="#">
+            <div class="">
+
+                <div class="row" id="update-patient-info-cont">
+                    <div class="col-md-3 margin-top-2 flex-box-column justify-content-end">
+                        <p class="modal-p"><span style="color: red">*</span>First Name</p>
+                        <input class="search-bar" type="text" name="fname" placeholder="First Name" data-toggle="tooltip" data-placement="top" title="First Name" data-container="body" required/>
+                    </div>
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Middle Name</p>
+                        <input class="search-bar" type="text" name="mname" placeholder="Middle Name" data-toggle="tooltip" data-placement="top" title="Middle Name" data-container="body" required/>
+                    </div>
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Last Name</p>
+                        <input  class="search-bar"type="text" name="lname" placeholder="Last Name" data-toggle="tooltip" data-placement="top" title="Last Name" data-container="body" required/>
+                    </div>
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p">Suffix</p>
+                        <input  class="search-bar"type="text" name="suffix" placeholder="Suffix" data-toggle="tooltip" data-placement="top" title="Suffix (ex. Jr. Sr.)" data-container="body"/>
+                    </div>
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p" style="text-align:  start!important;margin-bottom: 0.3rem!important;"><span style="color: red">*</span>Patient Type</p>
+                        <div id="radio-button" class="row flex-box-row justify-content-center">
+                            <div class="flex-box-row align-content-center">
+                                <p class="modal-p-2">Infant</p>
+                                <input type="radio" name="patient-type" value="Infant" required>
+                            </div>
+                            <div class="flex-box-row align-content-center">
+                                <p class="modal-p-2">Minor</p>
+                                <input type="radio" name="patient-type" value="Minor" required>
+                            </div>
+                            <div class="flex-box-row align-content-center">
+                                <p class="modal-p-2">Adult</p>
+                                <input type="radio" name="patient-type" value="Adult" required>
+                            </div>
+                            <div class="flex-box-row align-content-center">
+                                <p class="modal-p-2" >Pregnant</p>
+                                <input type="radio" name="patient-type" value="Pregnant" required>
+                            </div>
+                            <div class="flex-box-row align-content-center">
+                                <p class="modal-p-2" >PWD</p>
+                                <input type="radio" name="patient-type" value="PWD" required>
+                                <input type="radio" name="patient-type" value="" required checked style="display: none">
+                            </div>
+                        </div>
+                        <script>
+                            // //pang debug lang ng radio button
+                            // alert( $('[name="patient-type"]:checked').val())
+                            // $("[type='radio']").click(function () {
+                            //     alert( $('[name="patient-type"]:checked').val())
+                            // })
+
+                        </script>
+                    </div>
+                    <style>
+                        [type="radio"]{
+                            max-width: 1rem;
+                            max-height: 1rem;
+                        }
+                        #radio-button div{
+                            margin: 0.3rem!important;
+                        }
+                        #radio-button div p{
+                            margin-right: 0.3rem !important;
+                        }
+                    </style>
+                    <div class="col-md-2 margin-top-2">
+                        <p class="modal-p">Blood Type</p>
+                        <input  class="search-bar" type="text"  name="blood-type" placeholder="x" id="blood-type" data-toggle="tooltip" data-placement="left" title="Blood Type" data-container="body"  />
+                    </div>
+                    <div class="col-md-2 margin-top-2">
+                        <p class="modal-p">Height</p>
+                        <input class="search-bar" type="text"  name="height" placeholder="x" id="height" data-toggle="tooltip" data-placement="top" title="Height" data-container="body"/>
+                    </div>
+                    <div class="col-md-2 margin-top-2">
+                        <p class="modal-p">Weight</p>
+                        <input class="search-bar" type="text"  name="weight" placeholder="x" id="weight" data-toggle="tooltip" data-placement="top" title="Weight" data-container="body"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Civil Status</p>
+                        <select class="search-bar" type="text" name="civil_status" placeholder="Civil Status" value="" data-toggle="tooltip" data-placement="top" title="Civil Status (Married, Single, etc.)" data-container="body">
+                            <option>Single</option>
+                            <option>Married</option>
+                            <option>Divorced</option>
+                            <option>Widowed</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p">Occupation</p>
+                        <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Gender</p>
+                        <select class="search-bar" type="text" name="gender" placeholder="Gender" value="" data-toggle="tooltip" data-placement="top" title="Gender" data-container="body">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Birthday</p>
+                        <input  class="search-bar" type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body" required readonly/>
+                    </div>
+                    <script>
+                        $("[name=\"bday\"]").datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange:'1900:new Date()',
+                            maxDate: new Date()
+                        }).datepicker("option", "dateFormat", "yy-mm-dd")
+                        $("[name=\"bday\"]").focus(function () {
+                            $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem")
+                            $(".ui-datepicker-year").css("padding","1px")
+                            console.log($(this).val())
+                        })
+                    </script>
+                    <style>
+                        /*override th color*/
+                        th{
+                            background: none !important;
+                        }
+                    </style>
+
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Purok</p>
+                        <select class="search-bar" data-toggle="tooltip" name="purok" data-placement="top" title="Purok" data-container="body" required>
+                            <?php
+                                                 for($a=1;$a<=7;$a++){
+                                                     echo "<option>$a</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-md-3 margin-top-2">
+                        <p class="modal-p">House #</p>
+                        <input class="search-bar" type="number" inputmode="tel" name="house_no" placeholder="House #" id="num" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"/>
+                    </div>
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p"><span style="color: red">*</span>Barangay</p>
+                        <input class="search-bar" type="text" placeholder="" value="Sto. Rosario of Paombong Bulacan" readonly/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p">Email</p>
+                        <input class="search-bar" type="text" name="email" inputmode="email"  placeholder="Optional" data-toggle="tooltip" data-placement="top" title="E-mail (name@gmail.com)" data-container="body" />
+                    </div>
+                    <div class="col-md-6 margin-top-2">
+                        <p class="modal-p">Contact No.</p>
+                        <input class="search-bar" type="number" name="contact" inputmode="tel" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Contact no (11-digit number)" data-container="body" />
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;align-items: center" class="margin-top-1">
+                    <button class="modal-primary-button-2" id="trigger-update-patient-modal" type="button" style="width: fit-content;margin-right: 0.3rem">Update</button>
+                    <a href="#pop-up-edit-indiv-patient" rel="modal:close">
+                        <button class="modal-cancel-button-2" type="button" style="width: fit-content">Back</button>
+                    </a>
+
+                </div>
+
+            </div>
+            <!--testing button only
+            <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
+                test modal only-->
+            </button>
+        </form>
+
+</div>
+
+<!--modal for confirm-->
+<div id="pop-up-confirm-update-patient" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+
+        <p class="modal-p flex-box-row justify-content-center align-items-center">
+            <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+            Update the patient information?
+        </p>
+    </div>
+    <div>
+        <p class="modal-p-2 margin-top-3"><span style="color: darkred">Note: </span>
+            After updating this patient information, the corresponding online account for this patient must be updated in order to make that online account linked
+        </p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end margin-top-2">
+        <a href="#pop-up-confirm-update-patient" rel="modal:close">
+            <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+        </a>
+        <button class="modal-primary-button" id="final-confirm-update-patient-btn" style="margin-left: 0.5rem">Update</button>
+    </div>
+</div>
+
+    <style>
+        td i{
+            transition: 0.5s;
+        }td i:hover{
+            transform:scale(1.2);
+                 }
+         .patient-info tr td:nth-child(odd){
+           text-align: left;
+         }
+        .patient-info tr td:nth-child(even){
+            text-align: left;
+        }
+        .patient-info tr td{
+            width: 50%;
+        }
+        .patient-info tr{
+            /*border-bottom: 1px solid var(--dark-grey);*/
+        }
+
+    </style>
+</div>
+

@@ -184,6 +184,7 @@
                         function update_end_date() {
 
                             let interval = $("#interval").val();
+                            //alert(interval)
                             if(isNaN(interval)){
                                 interval=0
                             }
@@ -225,7 +226,8 @@
                             end_date_picker_instance()
                         })
                         $("#interval").change(function () {
-                            if(isNaN(interval)){return}
+                            //if(isNaN(interval)){;return;}
+                            if($("#interval").val()==""){return}
                             update_end_date()
                             $("#end-date").val("")
                             end_date_picker_instance()

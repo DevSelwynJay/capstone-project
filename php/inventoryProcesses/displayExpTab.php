@@ -45,7 +45,7 @@ $start_from = ($page -1 )*$rpp;
         }
         else{
             for($i =1;$i<=$total_pages;$i++){
-                $expiredtab .= '<span class="pagination_linkexp" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
+                $expiredtab .= '<span class="pagination_linkexp" style="cursor:pointer;padding:5px 5px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
             }
         }
         echo $expiredtab;
