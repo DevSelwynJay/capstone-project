@@ -14,7 +14,7 @@ $fname = strtoupper(substr($trimmedFname,0,1)).strtolower(substr($trimmedFname,1
 $mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1));
 $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
-$suffix = $_POST['suffix'];
+$suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
 if($suffix!=""){
     $lname.=" ".$suffix;
 }
@@ -26,7 +26,7 @@ $contact = trim($_POST['contact']);
 $gender = trim($_POST['gender']);
 $bday = trim($_POST['bday']);
 $purok = trim($_POST['purok']);
-$house_no = trim($_POST['house_no']);
+$house_no = abs((int)trim($_POST['house_no']));
 
 $bloodType = $_POST['bloodType'];
 $height = $_POST['height'];

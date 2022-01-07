@@ -70,6 +70,64 @@
 
             $("#pop-up-confirm-update-patient").modal({showClose:false,closeExisting:false})
         })
+
+        $("#final-confirm-update-patient-btn").click(function () {
+            let patientType = $('[name="patient-type"]:checked').val()
+            let fname = $('[name="fname"]').val()
+            let mname = $('[name="mname"]').val()
+            let lname = $('[name="lname"]').val()
+            let suffix =$('[name="suffix"]').val() // not required
+            let occu = $('[name="occupation"]').val()// not required
+            let civil = $('[name="civil_status"]').val()
+            let email = $('[name="email"]').val()
+            let contact = $('[name="contact"]').val()
+            let gender = $('[name="gender"]').val()
+            let bday = $('[name="bday"]').val()
+            let purok = $('[name="purok"]').val()
+            let house_no = $('[name="house_no"]').val()// not required
+
+            let bloodType　=   $('[name="blood-type"]').val()
+            let height　   =   $('[name="height"]').val()
+            let weight　   =   $('[name="weight"]').val()
+
+
+
+
+            $("#pop-up-loading").modal({showClose:false,clickClose:false,escapeClose:false,closeExisting:false})
+
+            $.post("php/patientProcesses/updatePatientInfo.php",{
+                fname:fname, mname:mname, lname:lname, suffix:suffix,
+                occu:occu,
+                civil:civil,
+                email:email,
+                contact:contact,
+                gender:gender,
+                bday:bday,
+                purok:purok, house_no:house_no,
+                bloodType:bloodType, height:height, weight:weight,
+                patientType:patientType
+            }).done(function (data) {
+
+                if(data==1){
+                    setTimeout(()=>{
+                        $("#pop-up-success").modal({
+                            showClose:false,
+                            escapeClose:false
+                        })
+                    },1000)
+                }
+                else{
+                    setTimeout(()=>{
+                        $("#pop-up-error").modal({
+                            showClose:false,
+                            escapeClose:false,
+                        })
+                        $("#pop-up-error-message").html(data)
+                        console.log(data)
+                    },1000)
+                }
+            })
+        })
     })//document ready
 
 

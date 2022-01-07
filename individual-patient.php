@@ -116,6 +116,9 @@ if ($total <= 8) {
                    })
                }
                setInterval(Notif,1000);
+               function setPatientInfo() {
+
+               }
                ///<!--Set patient info to page-->
                $.post('php/patientProcesses/retrieveIndivPatient.php').done(
                    function (data) {
@@ -302,7 +305,7 @@ if ($total <= 8) {
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
                                  <p id="name">Selwyn Jay D. Faustino</p>
-                                 <a href="#" id="trigger-view-edit-btn">View</a>
+                                 <a href="#" id="trigger-view-edit-btn">Update Info</a>
                               </div>
                            </div>
                            <div class="patient-content__information holder">
@@ -525,6 +528,35 @@ require 'edit-patient-info-script.html';
               <a href="#pop-up-error" rel="modal:close">
                   <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
               </a>
+          </div>
+      </div>
+
+      <!--Modal for success-->
+      <div class="modal" id="pop-up-success">
+          <div class="flex-box-row justify-content-center align-items-center">
+              <img class="modal-header-icon" src="img/check.png">
+              <p class="modal-p" id="pop-up-success-message">Patient information successfully modified</p>
+          </div>
+
+          <div class="flex-box-row justify-content-end align-items-end">
+              <a href="#pop-up-success" rel="modal:close">
+                  <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+              </a>
+              <script>
+                  $("#pop-up-success-ok-btn").on('click',function () {
+                      //location.reload()
+                  })
+              </script>
+          </div>
+      </div>
+
+      <!--Modal for loading-->
+      <div id="pop-up-loading" class="modal">
+          <div style="display: flex;align-items: center;justify-content: center">
+              <div class="loader"></div>
+              <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                  Processing Request...
+              </p>
           </div>
       </div>
    </body>

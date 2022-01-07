@@ -10,5 +10,6 @@ $result = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '$active_p
 
 if($row = mysqli_fetch_assoc($result)){
     $response = $row;
+    $_SESSION['active_old_patient_info'] = $response;
     echo json_encode($response);
 }
