@@ -191,6 +191,13 @@ $json = json_encode($arr);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Font Family Poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <title>Document</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -201,8 +208,12 @@ $json = json_encode($arr);
     <script src="../../jquery-ui/jquery-ui.js"></script>
     <script src="../../js/track.js"></script>
     <style>
+        *{
+            font-family: "Poppins", sans-serif;
+        }
         #opvChart {
             background-color: rgb(204, 209, 243);
+
         }
         .tab{
             display: flex;
@@ -213,11 +224,13 @@ $json = json_encode($arr);
             margin: 0.7rem 0.7rem 0.7rem 0.7rem;
             padding: 0.5rem 1rem 0.5rem 1rem;
             border-radius:4px;
-            border:1px solid #656565;
-            background-color: rgba(180, 218, 243, 0.82);
+            background-color: #02a9f7;
+            color: white;
+            
         }
         .timestamp:hover{
-            background-color: #465A72;
+            background-color: #0277ad;
+            transition: 0.3s ease-out;
             color: #FFFFFF;
             cursor: pointer;
         }
@@ -234,7 +247,7 @@ $json = json_encode($arr);
 </div>
 <!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="opvChart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+    <canvas id="opvChart" style="padding: 10px; width: 100%; height: 80vh; background: #192734; border-radius: 5px; margin-top: 10px;"></canvas>
 </div>
 <script>
     document.getElementById("ov1").style.color = "#ffffff";
@@ -249,17 +262,26 @@ $json = json_encode($arr);
         data: <?php  echo $babyJson?>,
         lineTension: 0.1,//curve of line
         fill: false,
-        borderWidth: 1,
-        borderColor: 'yellow'
+        borderWidth: 5,
+        borderColor: 'yellow',
+        pointBackgroundColor: 'yellow',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
+        
     };
 
     var opvminor = {
         label: "Minor",
         data: <?php echo $minorJson; ?>,
         lineTension: 0.1,
-        borderWidth: 1,
+        borderWidth: 5,
         fill: false,
-        borderColor: 'lightGreen'
+        borderColor: 'lightGreen',
+        pointBackgroundColor: 'lightGreen',
+        pointRadius: 7,
+        pointBorderWidth: 2,
+        pointBorderColor: 'white',
     };
 // inputing all needed data into a finalized dataset
     var speedData = {
@@ -289,19 +311,26 @@ $json = json_encode($arr);
                 x: {
                     grid:{
                         display:false
+                    },
+                    font:{
+                        family: 'Poppins'
                     }
                 },
                 y: {
                     grid:{
                         color: "gray"
                         //    display:false
+                    },
+                    font:{
+                        family: 'Poppins'
                     }
                 }
             },
             plugins: {
                 title: {
                     font: {
-                        size: 18
+                        size: 24,
+                        family: 'Poppins'
                     },
                     display: true,
                     text: 'OPV Graph'
@@ -311,11 +340,12 @@ $json = json_encode($arr);
                         // This more specific font property overrides the global property
                         font: {
                             size: 14,
-                            family: 'Helvetica Neue',
+                            family: 'Poppins',
                             color: 'black'
                         }
                     }
                 }
+                
             }
         }
     });
