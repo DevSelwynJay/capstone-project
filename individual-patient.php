@@ -76,6 +76,7 @@ if ($total <= 8) {
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
+                       $("#modal-admin-name").html(result.admin_name)
                    }
                )
 
