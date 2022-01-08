@@ -13,7 +13,7 @@ else{
 }
 $start_from = ($page -1 )*$rpp;
 
-    $expire = "Select * from `medinventory` where `expdate` < '$datetoday' limit $start_from,$rpp";
+    $expire = "Select * from `medinventory` where `expdate` < NOW() - INTERVAL 1 DAY limit $start_from,$rpp";
     $result = mysqli_query($con,$expire);
     if(mysqli_num_rows($result)> 0){
     $expiredtab = '<h1 style="color:black">Expired Medicines</h1>
