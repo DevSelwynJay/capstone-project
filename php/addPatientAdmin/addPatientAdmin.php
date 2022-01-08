@@ -58,7 +58,7 @@ function generateID($_6DigitCode): string
 
 function validateID($con,$new_id){//check the generated ID if existing
 
-    $tables = array('patient','pending_patient','patient_archive');
+    $tables = array(/*'patient','pending_patient','patient_archive'*/'walk_in_patient');
     foreach ($tables as $table){
         $result = mysqli_query($con,"SELECT id FROM $table WHERE id = '$new_id'");
         if(mysqli_num_rows($result)>0){
