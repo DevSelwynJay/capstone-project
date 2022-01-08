@@ -73,7 +73,7 @@ $pdf->Text(10,40,"Electronic Medical Record");
 $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
-
+//
 $pdf->Cell(13);
 $pdf->Cell(35,10, $_SESSION['active_emr_account']['name'],0,0,'C');
 
