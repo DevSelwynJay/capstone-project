@@ -4,7 +4,9 @@ $con=null;
 require('php/pdflib/fpdf.php');
 require('php/DB_Connect.php');
 
-
+if(!isset($_SESSION['isSendEMR'])){
+    $_SESSION['isSendEMR'] = 0;
+}
 
 //bigay nalng ng query for getting information
 //pwedeng href gamitin or ajax na post
