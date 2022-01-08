@@ -88,12 +88,11 @@ require 'php/DB_Connect.php';
                 })
             }
             setInterval(Notif,1000);
-
-
-
-
-
-
+        });
+        $(function() {
+            $(".navbar").click(function() {
+                $(".dropdown").toggle();
+            });
         });
 
 
@@ -154,12 +153,12 @@ require 'php/DB_Connect.php';
                                     <li>
 
                                         <a href="#">
-                                            <label for="check">
+
                                                 <i style="cursor: pointer" class="fa fa-bell-o"></i>
-                                            </label>
+
                                             <span class="count">3</span>
                                         </a>
-                                        <input type="checkbox" class="dropdown-check" id="check"/>
+
                                         <ul class="dropdown">
                                             <?php
                                             if($count >= 0){
