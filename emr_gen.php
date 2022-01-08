@@ -74,7 +74,7 @@ $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
 
-
+$pdf->Cell(13);
 $pdf->Cell(35,10, $_SESSION['active_emr_account']['name'],0,0,'C');
 
 $pdf->SetFont('Arial','',14);
