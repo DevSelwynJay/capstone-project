@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 12:55 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 08, 2022 at 05:42 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `account_type` int(1) NOT NULL DEFAULT 1 COMMENT '0 superAdmin, 1 admin, 2 patient',
   `id` varchar(50) NOT NULL,
+  `account_status` int(11) NOT NULL DEFAULT 1 COMMENT '//1 active 0 deactive',
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
@@ -47,9 +48,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
-(1, '2021-01-111222', 'Benitez', 'Alfred', 'Bas', 'Female', '1994-01-12', '2  Sto. Rosario Paombong Bulacan', 'alfredogiebenitez@gmail.com', 'mukamo11', '09422697900', 'Health Worker', '957518'),
-(1, '2021-01-212222', 'Benitez', 'Ogie', 'Bas ', 'Male', '2005-12-31', '3 Sto. Rosario Paombong Bulacan', 'alfredo.benitez.b@bulsu.edu.ph', 'mukamo11', '09542120321', 'Health Worker', '358530');
+INSERT INTO `admin` (`account_type`, `id`, `account_status`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `address`, `email`, `password`, `contact_no`, `role`, `OTP`) VALUES
+(1, '2021-01-111222', 1, 'Benitez', 'Alfred', 'Bas', 'Male', '2003-01-09', '2  Sto. Rosario Paombong Bulacan', 'alfredogiebenitez@gmail.com', 'Mukamo11', '09422697900', 'Health Worker', '735983'),
+(1, '2021-01-212222', 1, 'Benitez', 'Ogie', 'Bas ', 'Male', '2005-12-31', '3 Sto. Rosario Paombong Bulacan', 'alfredo.benitez.b@bulsu.edu.ph', 'mukamo11', '09542120321', 'Health Worker', '358530');
 
 --
 -- Indexes for dumped tables

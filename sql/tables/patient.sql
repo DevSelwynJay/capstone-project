@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2022 at 01:11 PM
+-- Generation Time: Jan 08, 2022 at 05:44 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `patient` (
   `account_type` int(1) NOT NULL DEFAULT 2 COMMENT '2 patient',
   `id` varchar(50) NOT NULL,
+  `account_status` int(11) NOT NULL DEFAULT 1 COMMENT '0 deactive 1 active',
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
@@ -55,8 +56,9 @@ CREATE TABLE `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(2, '2021-02-052045', 'Cruz', 'Bebang', 'Biler', '', '2014-12-01', '1', '', '', '', '', '', '', '', 'Minor', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '', '620946', '2021-12-02 08:40:48');
+INSERT INTO `patient` (`account_type`, `id`, `account_status`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(2, '2022-02-198708', 1, 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '4', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Adult', 'alfredpogiebenitez@gmail.com', 'mukamo11', '09422697902', '530213', '2022-01-07 14:47:50'),
+(2, '2022-02-273149', 1, 'Cruz', 'Bebang', 'Biler', 'Male', '2014-12-01', '1', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'benitez.alfredo.b.1128@gmail.com', 'mukamo11', '09422697900', '716734', '2022-01-07 13:59:36');
 
 --
 -- Indexes for dumped tables
