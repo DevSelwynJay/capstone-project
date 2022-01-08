@@ -14,11 +14,10 @@ else{
 }
 $start_from = ($page - 1)*$rpp;
 //Query for the mean time
-$medpatientqry = "Select * from `medication_record` limit $start_from,$rpp";
+//$medpatientqry = "Select * from `medication_record` limit $start_from,$rpp";
 
-/*Official Query
-$medpatientqry = "Select * from `medication_record` where `date_given` > NOW() limit $start_from,$rpp";
-$vacpatientqry = "Select * from `vaccination_record`where `date_given` > NOW()";*/
+//Official Query
+$medpatientqry = "Select * from `medication_record` where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') limit $start_from,$rpp";
 $medresult = mysqli_query($con,$medpatientqry);
 
 if(mysqli_num_rows($medresult)>0){
@@ -50,7 +49,7 @@ while($rowmed = mysqli_fetch_assoc($medresult)){
 }
 
 $reportable .='</tbody></table><br><div align="center">';
-    $medpage = "Select * from `medication_record`";
+    $medpage = "Select * from `medication_record` where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')";
 
     $page_result = mysqli_query($con, $medpage);
 
