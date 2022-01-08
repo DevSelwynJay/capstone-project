@@ -9,7 +9,7 @@ $sql2 = "SELECT * FROM `medinventory` WHERE stock = 0";
 $countres2 = mysqli_query($con,$sql2);
 $count4 = mysqli_num_rows($countres2);
 $exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
-$expire = "Select * from `medinventory` where `expdate` < NOW() - INTERVAL 1 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
 $res1 = mysqli_query($con,$expire);
 $res2 = mysqli_query($con,$exptab);
 $count2 = mysqli_num_rows($res1);

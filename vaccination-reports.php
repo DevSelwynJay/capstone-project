@@ -5,19 +5,21 @@ require 'php/DB_Connect.php';
 $sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
 $countres = mysqli_query($con,$sql);
 $count = mysqli_num_rows($countres);
+$sql2 = "SELECT * FROM `medinventory` WHERE stock = 0";
+$countres2 = mysqli_query($con,$sql2);
+$count4 = mysqli_num_rows($countres2);
 $exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
 $expire = "Select * from `medinventory` where `expdate` < NOW()";
 $res1 = mysqli_query($con,$expire);
 $res2 = mysqli_query($con,$exptab);
 $count2 = mysqli_num_rows($res1);
 $count3 = mysqli_num_rows($res2);
-$total = $count + $count2 + $count3;
-if($total <=8){
-$total = $total ;
-}
-else{
-$total = 9 ."&#8314;";
-}
+$critstocks = "There ".$count." Critical Stocks in our Inventory";
+$toexp = "There ".$count3." To Expire Medicine in our Inventory";
+$exp = "There ".$count2." Expired Medicine in our Inventory";
+$ofs = "There ".$count4." Out of Stocks in our Inventory";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +46,7 @@ $total = 9 ."&#8314;";
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <script src="jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="scss/notif.css">
     <style>
         .drop-down-settings,.drop-down-settings open{
             z-index: 1000;
@@ -61,28 +64,6 @@ $total = 9 ."&#8314;";
 
 
 
-
-            if(<?php echo $count; ?> > 0){
-
-                var content = "<div>There is a Critical Stock on our Inventory</div>";
-                if(<?php echo $count2; ?> > 0){
-
-                    content += "<div style='border-top: solid 1px black '>There is an Expired Medicine on our Inventory</div>"
-                    if(<?php echo $count2; ?> > 0){
-
-                        content += "<div style='border-top: solid 1px black'>There is a To Expire Medicine on our Inventory</div>"
-
-                        $(function() {
-                            $("#badge").tooltip({
-                                content:content
-                            });
-                        });
-
-                    }
-
-                }
-
-            }
             function Notif(){
                 var data = true;
                 $.ajax({
@@ -90,12 +71,17 @@ $total = 9 ."&#8314;";
                     method: "POST",
                     data: {data},
                     success:function(data){
-                        $('#badge').html(data);
+                        $('.count').html(data);
 
                     }
                 })
             }
             setInterval(Notif,1000);
+        });
+        $(function() {
+            $(".navbar").click(function() {
+                $(".dropdown").toggle();
+            });
         });
 
     </script>
@@ -117,16 +103,7 @@ $total = 9 ."&#8314;";
                        <li><a href="patient.php" class="patient">Patient</a></li>
                        <li><a href="reports.php" class="reports">Reports</a></li>
                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
-                        <li><a href="inventory.php" class="inventory">Inventory<span id="badge" class="badge" style="
-                            position: relative;
-                            top: -10px;
-                            right: -2px;
-                            padding: 0px 7px;
-                            border-radius: 100%;
-                            background: #ff0d31;
-                            font-size: small;
-                            color: white;
-                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
+                        <li><a href="inventory.php" class="inventory">Inventory</a></li>
                     </ul>
                  </div>
                  <div class="social-media-links">
@@ -145,18 +122,57 @@ $total = 9 ."&#8314;";
                           <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                        </div>
                        <div class="settings">
+                           <div class="navbar">
+                               <ul class="notif" >
+                                   <li>
+
+                                       <a href="#">
+
+                                           <i style="cursor: pointer" class="fa fa-bell-o"></i>
+
+                                           <span class="count">3</span>
+                                       </a>
+
+                                       <ul class="dropdown">
+                                           <?php
+                                           if($count >= 0){
+                                               ?><li><?php
+                                               echo $critstocks;
+                                               ?></li><?php
+                                           }
+                                           ?>
+                                           <?php
+                                           if($count > 0){
+                                               ?><li><?php
+                                               echo $toexp;
+                                               ?></li><?php
+                                           }
+                                           ?>
+                                           <?php
+                                           if($count > 0){
+                                               ?><li><?php
+                                               echo $exp;
+                                               ?></li><?php
+                                           }
+                                           ?>
+                                           <?php
+                                           if($count > 0){
+                                               ?><li><?php
+                                               echo $ofs;
+                                               ?></li><?php
+                                           }
+                                           ?>
+
+                                       </ul>
+                                   </li>
+
+                               </ul>
+
+                           </div>
                           <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                           <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                           <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                           <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"><span id="badge" class="badge" style="
-                            position: relative;
-                            top: -7px;
-                            right: 4px;
-                            padding: 0px 2px;
-                            border-radius: 100%;
-                            background: #ff0d31;
-                            color: white;
-                        ">&nbsp;</span></i></a>
+                           <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
                                <!--MOBILE MENU-->
                                <div class="menu-mobile " id="menu">
@@ -165,16 +181,7 @@ $total = 9 ."&#8314;";
                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                      <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory<span id="badge" class="badge" style="
-                            position: relative;
-                            top: -10px;
-                            right: -2px;
-                            padding: 0px 7px;
-                            border-radius: 100%;
-                            background: #ff0d31;
-                            font-size: small;
-                            color: white;
-                        " title="There is a Critical Stock in our Inventory" ><?php echo $total; ?></span></a></li>
+                                      <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
                                   </ul>
                                </div>
                           <div class="drop-down-settings" id="dropdown">

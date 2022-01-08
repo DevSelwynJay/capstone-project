@@ -2,25 +2,25 @@
 $con=null;
 require 'php/DB_Connect.php';
 
-            $sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
-            $countres = mysqli_query($con,$sql);
-            $count = mysqli_num_rows($countres);
-            $sql2 = "SELECT * FROM `medinventory` WHERE stock = 0";
-            $countres2 = mysqli_query($con,$sql2);
-            $count4 = mysqli_num_rows($countres2);
-            $exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
-            $expire = "Select * from `medinventory` where `expdate` < NOW() - INTERVAL 1 DAY";
-            $res1 = mysqli_query($con,$expire);
-            $res2 = mysqli_query($con,$exptab);
-            $count2 = mysqli_num_rows($res1);
-            $count3 = mysqli_num_rows($res2);
-            $critstocks = "There ".$count." Critical Stocks in our Inventory";
-            $toexp = "There ".$count3." To Expire Medicine in our Inventory";
-            $exp = "There ".$count2." Expired Medicine in our Inventory";
-            $ofs = "There ".$count4." Out of Stocks in our Inventory";
+$sql = "SELECT * FROM `medinventory` WHERE stock <= 100 AND expdate > NOW()";
+$countres = mysqli_query($con,$sql);
+$count = mysqli_num_rows($countres);
+$sql2 = "SELECT * FROM `medinventory` WHERE stock = 0";
+$countres2 = mysqli_query($con,$sql2);
+$count4 = mysqli_num_rows($countres2);
+$exptab = "Select * from `medinventory`  where `expdate` between NOW()  AND NOW() + INTERVAL 30 DAY";
+$expire = "Select * from `medinventory` where `expdate` < NOW()";
+$res1 = mysqli_query($con,$expire);
+$res2 = mysqli_query($con,$exptab);
+$count2 = mysqli_num_rows($res1);
+$count3 = mysqli_num_rows($res2);
+$critstocks = "There ".$count." Critical Stocks in our Inventory";
+$toexp = "There ".$count3." To Expire Medicine in our Inventory";
+$exp = "There ".$count2." Expired Medicine in our Inventory";
+$ofs = "There ".$count4." Out of Stocks in our Inventory";
 
 
-            ?>
+?>
 
 
 
@@ -100,14 +100,6 @@ require 'php/DB_Connect.php';
     <style>
         .overflow {
             height: 200px;
-        }
-        .ui-tooltip {
-            padding: 10px 20px;
-            color: black;
-            border-radius: 20px;
-            background-color: white;
-            font: bold 14px "Helvetica Neue", Sans-Serif;
-            text-transform: uppercase;
         }
     </style>
 </head>
