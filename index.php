@@ -522,7 +522,136 @@ if(isset($_SESSION['email'])){
                   width: clamp(60%,70%,80%)
               }
           }
+      @media (max-width: 391px) {
+          #contact-input{
+              width: 70%!important;
+          }
+      }
 
   </style>
+    <!--SMS OTP Confirmation Pop-up-->
+    <div class="modal fade" id="pop-up-sms" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>-->
+                <div class="modal-body">
+
+
+                    <div class="flex-box-row justify-content-center align-items-center">
+                        <img src="./img/sms.png" class="modal-header-icon-wider"/>
+                    </div>
+                    <p class="modal-title-2">SMS Confirmation</p>
+                    <p class="modal-p-lighter text-center">A verification code has been sent to your contact number</p>
+                    <p id="sms-txt" class="modal-smaller-p text-center">09xxxxxxxxxxx</p>
+                    <!--<p class="paragraph">To verify that it is you, Enter 6 digit verification code that has been sent to your email to continue</p>-->
+                    <p class="modal-p-lighter margin-top-3 text-center">Enter 6-digit OTP code</p>
+                    <form autocomplete="off" class="flex-box-row justify-content-center" style="margin-top: 0.2rem">
+                        <input type="text" maxlength="6" id="sms-otp-input" style="font-size: revert;border-radius: revert;width: 50%">
+                    </form>
+                    <p id="invalid-OTP-indicator" class="modal-p-error">Invalid OTP</p>
+                </div><!--end of modal body-->
+
+                <div class="modal-footer">
+                    <button type="button" class="modal-primary-button-2" id="pop-up-sms-ok-btn">Confirm</button>
+                    <button type="button" class="modal-cancel-button-2" data-dismiss="modal" id="pop-up-email-cancel-btn">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--  <button id="test-modal">test button</button>-->
+<!--  <script>-->
+<!--      $("#test-modal").click(function () {-->
+<!--          $("#pop-up-sms").modal('show')-->
+<!--      })-->
+<!--  </script>-->
+
+
+  <button style="display: none" id="trigger-sms"></button>
+  <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyCp0izZKXrwRCfmfGkLgogG-He_tX-7L00",
+          authDomain: "capstoneproject3m-his.firebaseapp.com",
+          projectId: "capstoneproject3m-his",
+          storageBucket: "capstoneproject3m-his.appspot.com",
+          messagingSenderId: "373815557222",
+          appId: "1:373815557222:web:44c490f0efc8775211c1a7"
+      };
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import { getAuth, RecaptchaVerifier,signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+      const auth = getAuth();
+      window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+          'size': 'invisible',
+          'callback': (response) => {
+              // reCAPTCHA solved, allow signInWithPhoneNumber.
+              onSignInSubmit();
+          }
+      }, auth);
+
+      function sendOTP() {
+          let number =  window.logged_contact_no
+          const phoneNumber = "+63"+number.substr(1);
+          const appVerifier = window.recaptchaVerifier;
+
+          signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+              .then((confirmationResult) => {
+                  // SMS sent. Prompt user to type the code from the message, then sign the
+                  // user in with confirmationResult.confirm(code).
+                  window.confirmationResult = confirmationResult;
+                  //alert(confirmationResult)
+                  // ...
+              }).catch((error) => {
+              // Error; SMS not sent
+              //alert(error)
+              console.log(error)
+              // ...
+          });
+
+      }
+
+
+
+      $("#pop-up-sms-ok-btn").click(function () {
+          //alert(987665)
+          const code = $("#sms-otp-input").val();
+          confirmationResult.confirm(code).then((result) => {
+              // User signed in successfully.
+              const user = result.user;
+              // alert("naka login na")
+              //separate process for setting email session becoz  sms has different process
+              $.post("php/loginProcesses/setEmailSessionForSMSLogin.php").done(function (data) {
+                  location.href = 'php/loginProcesses/redirect.php';
+              })
+              // ...
+          }).catch((error) => {
+              // User couldn't sign in (bad verification code?)
+              // ...
+              console.log(error)
+          });
+      })
+
+
+      $("#trigger-sms").click(function (data) {
+              // alert(window.logged_contact_no)
+              $("#pop-up-sms").modal("show")
+              sendOTP();
+      })
+
+
+  </script>
+  <div id="sign-in-button"></div>
   </body>
 </html>

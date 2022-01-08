@@ -119,6 +119,16 @@ function  modalPopupMain(){
 
             if(radioValue=="isSMS"){
                 console.log("SMS was selected")
+                $("#pop-up-loading").modal('show');
+                $.post("php/loginProcesses/getActivePhone.php").done(function (data) {
+                   setTimeout(()=>{
+                       window.logged_contact_no = data;
+                       $("#trigger-sms").trigger("click")
+                       alert(window.logged_contact_no)
+                       $("#pop-up-loading").modal('hide');
+                   },1000)
+                })
+
             }
             else if(radioValue=="isEmail"){
                 console.log("Email was selected");

@@ -37,12 +37,15 @@ foreach ($userTables as $userTable){
         //it is needed to send and verify the otp
         $_SESSION['userTable'] = $userTable;
 
+
         //get account type, then put also in session variable
         //possible value, 0->superadmin 1->admin 2->patient
         //needed para malaman kung saan ireredirect sa patient view ba or sa admin view...
         while ($row=mysqli_fetch_assoc($result)){
                $_SESSION['account_type'] =  $row['account_type'];
                $_SESSION['user_full_name'] =  $row['last_name'].", ". $row['first_name']." ". $row['middle_name'];
+               $_SESSION['logged_contact_no'] = $row['contact_no'];
+               $_SESSION['email_session_for_sms_otp'] = $row['email'];//for sms confirmation lang to haha
         }
 
         //generate 6 digit code OTP

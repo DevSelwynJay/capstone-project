@@ -10,6 +10,7 @@
 <body>
 
 <input type="text" value="09422697900" id="number">
+<button id="send-otp-code">send otp</button>
 
 <input type="number" id="otp">
 <button  id="confirm">Confirm OTP</button>
@@ -47,7 +48,8 @@
   }, auth);
   // const phoneNumber = "+639750075284";
   function f() {
-    const phoneNumber = "+639422697900";
+      let number = $("#number").val()
+    const phoneNumber = "+63"+number.substr(1);
     const appVerifier = window.recaptchaVerifier;
 
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -64,7 +66,10 @@
     });
 
   }
-  f()
+
+  $("#send-otp-code").click(function () {
+      f()
+  })
 
   $("#confirm").click(function () {
     //alert(987665)
@@ -77,6 +82,7 @@
     }).catch((error) => {
       // User couldn't sign in (bad verification code?)
       // ...
+        console.log(error)
     });
   })
 
