@@ -29,6 +29,7 @@ if($res){
         $_SESSION['ppurok'] = $row['purok'];
 
         $_SESSION['patientOA_ID'] = $row['id'];
+        $_SESSION['patientOA_pwd'] = $row['password'];
 
         echo json_encode(array(
             "patient_id"=>$row['id']

@@ -157,11 +157,11 @@
           </div>
 
           <div class="content patients-view-container">
-            <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-center">
+            <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-start">
                 <img src="img/medical-record.png" class="modal-header-icon" style="margin-right: 0.3rem">
                 EMR Request
             </h1>
-              <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>This page shows all of the online patient account who is requesting for EMR (Electronic Medical Record)</p>
+              <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>The table below shows all of the online patient account who is requesting for EMR (Electronic Medical Record)</p>
 
             <!--                         <h3 class="table-title margin-top-3">-->
             <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
@@ -217,6 +217,67 @@
 
 
           </div>
+            <div class="content patients-view-container">
+                <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-start">
+                    <img src="img/medical-record.png" class="modal-header-icon" style="margin-right: 0.3rem">
+                     EMR Request History
+                </h1>
+                <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>This page shows all of the online patient account who is requesting for EMR (Electronic Medical Record)</p>
+
+                <!--                         <h3 class="table-title margin-top-3">-->
+                <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
+                <!--                             Patient List-->
+                <!--                         </h3>-->
+                <!--                         <style>-->
+                <!--                             .table-title{-->
+                <!--                                 font-weight:700;-->
+                <!--                                 margin-bottom: 0.5rem;-->
+                <!--                                 font-size: clamp(1.5rem,2rem,1vw);-->
+                <!--                                 font-family: 'Poppins', sans-serif;-->
+                <!--                                 color: var(--third-color);-->
+                <!--                                 display: flex;-->
+                <!--                                 align-items: center;-->
+                <!--                             }-->
+                <!--                         </style>-->
+                <table class="patients-view">
+                    <tbody id="approve-emr-req-cont">
+                    <!--                <tr class="patients-view-title">-->
+                    <!--                    <th>Patient Id</th>-->
+                    <!--                    <th>Patient Name</th>-->
+                    <!--                    <th>Address</th>-->
+                    <!--                    <th>Age</th>-->
+                    <!--                    <th>Gender</th>-->
+                    <!--                </tr>-->
+                    <!---->
+                    <!--                <tr class='clickable-row' data-href='http://localhost/capstone-project/individual-patient.php'>-->
+                    <!---->
+                    <!--                   <td>01</td>-->
+                    <!--                    <td>Name</td>-->
+                    <!--                    <td>Hagonoy</th>-->
+                    <!--                    <td>21</td>-->
+                    <!--                    <td>M</td>-->
+                    <!---->
+                    <!---->
+                    <!--                </tr>-->
+                    <!---->
+                    <!--                <tr>-->
+                    <!--                    <td>02</td>-->
+                    <!--                    <td>Name</td>-->
+                    <!--                    <td>Hagonoy</th>-->
+                    <!--                    <td>21</td>-->
+                    <!--                    <td>M</td>-->
+                    <!---->
+                    <!--                </tr>-->
+
+
+
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
       </div>
     </div>

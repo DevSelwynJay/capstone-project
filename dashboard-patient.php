@@ -332,21 +332,21 @@ else{ // Open Mobile Menu
           </div>
           <p class="modal-title-2">Request for an EMR</p>
           <p class="modal-p" style="text-align: center!important;">(Electronic Medical Record)</p>
-          <p class="modal-p-2" style="text-align: center!important;">Please Re-enter your Email Again</p>
+          <p class="modal-p-2" style="text-align: center!important;">Please Re-enter your Password Again</p>
           <div class="flex-box-column align-items-center margin-top-2">
-              <input id="email-for-emr-req" type="text" class="search-bar" placeholder="email" style="width: 60%">
-              <p class="modal-p-error">Invalid Email</p>
+              <input id="pwd-for-emr-req" type="password" class="search-bar" placeholder="password" style="width: 60%">
+              <p class="modal-p-error">Invalid Password</p>
               <button id="req-emr-btn" class="modal-primary-button-2 margin-top-2" disabled style="opacity: 0.5">
                 Request EMR
               </button>
           </div>
           <script>
               //request emr
-              $("#email-for-emr-req").keyup(function (data) {
+              $("#pwd-for-emr-req").keyup(function (data) {
 
                   let char = $(this).val().trim();
 
-                  $.post("php/patientSide/checkPatientOnlineAccountEmail.php",{email:char}).done(
+                  $.post("php/patientSide/checkPatientOnlineAccountPassword.php",{pwd:char}).done(
                       function (data) {
                           if(data==1){
                               $("#req-emr-btn").css("opacity","1").prop("disabled",false)
