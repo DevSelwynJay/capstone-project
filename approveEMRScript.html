@@ -126,6 +126,66 @@
                 })
             })
         }
+
+        //====================================== sa finished request
+        var tableHistory = $('#approve-emr-req-cont').tableSortable({
+            data: [],
+            columns:
+                {
+                    complete_name:"Name",
+                    email:"Email",
+                    date_requested:"Date Requested",
+                    status:"Status"
+                }
+            ,
+            // searchField: '.search-bar',
+            responsive: {
+                720: {
+                    columns: {
+                        complete_name:"Name",
+                        email:"Email",
+                        date_requested:"Date Requested",
+                        view_button:"Action"
+
+                    },
+                },
+            },
+            rowsPerPage: 5,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {
+                console.log('table did update')
+                // row_click()
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        $.post('php/approveEMR/retrieveFinishedRequest.php', function(data) {
+            d = data;
+            // Push data into existing data
+            console.log(JSON.parse(data))
+            //table.setData(JSON.parse(data), null, true);
+
+            // or Set new data on table, columns is optional.
+            tableHistory.setData(JSON.parse(data),{
+                complete_name:"Name",
+                email:"Email",
+                date_requested:"Date Requested",
+                status:"Status"
+            });
+
+        })//end of get/post method
+
+
     });//end of document ready
 </script>
 
