@@ -287,7 +287,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            <!--DROPDOWN SETTINGS-->
                            <div class="drop-down-settings" id="dropdown">
                               <ul>
-                                 <li><a href="">Approve EMR</a></li>
+                                  <li><a href="approveEMR.php">Approve EMR</a></li>
                                  <li><a href="settings.php">settings</a></li>
                                  <li><a href="about.php">About</a></li>
                                  <li><a href="php/sessionDestroy.php">Logout</a></li>

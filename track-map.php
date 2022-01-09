@@ -91,10 +91,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <h4 id="name-sidebar">Your Name</h4>
                     </div>
                     <ul class="menu">
-                        <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                        <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                         <li><a href="patient.php" class="patient">Patient</a></li>
                         <li><a href="reports.php" class="reports">Reports</a></li>
-                        <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
                     </ul>
                 </div>
@@ -133,7 +133,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
                             <div class="drop-down-settings" id="dropdown">
                                 <ul>
-                                    <li><a href="">Approve EMR</a></li>
+                                    <li><a href="approveEMR.php">Approve EMR</a></li>
                                     <li><a href="settings.php">settings</a></li>
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="php/sessionDestroy.php">Logout</a></li>

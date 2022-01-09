@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
@@ -88,7 +89,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 
     <div class="drop-down-settings" id="dropdown">
         <ul>
-            <li><a href="">Approve EMR</a></li>
+            <li><a href="approveEMR.php">Approve EMR</a></li>
             <li><a href="settings.php">settings</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="php/sessionDestroy.php">Logout</a></li>
