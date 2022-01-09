@@ -1,6 +1,22 @@
 <?php
 $contact = $_POST['contact'];
 $email = $_POST['email'];
+//fname:fname,mname:mname,lname:lname,bday:bday,purok:purok
+$trimmedFname = trim($_POST['fname']);
+$trimmedMname = trim($_POST['mname']);
+$trimmedLname = trim($_POST['lname']);
+
+$fname = strtoupper(substr($trimmedFname,0,1)).strtolower(substr($trimmedFname,1));
+$mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1));
+$lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
+
+$suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
+if($suffix!=""){
+    $lname.=" ".$suffix;
+}
+
+$bday = trim($_POST['bday']);
+$purok = trim($_POST['purok']);
 
 $con=null;
 require '../DB_Connect.php';
@@ -28,6 +44,15 @@ foreach ($tables as $table){
         $errMsg.="<p>Email already exist</p>";
         break;
     }
+}
+//another added validation pag may kamuka na name bday purok bawal
+$resultCheckDuplication = mysqli_query($con,"SELECT * FROM patient 
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+AND purok = $purok AND birthday = '$bday'
+");
+if(mysqli_num_rows($resultCheckDuplication)>0){
+    $errMsg.= "<p>Duplication Detected</p>";
+
 }
 
 if($errMsg==null){

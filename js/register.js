@@ -157,8 +157,8 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
         let fname = $('[name="fname"]').val()
         let mname = $('[name="mname"]').val()
         let lname = $('[name="lname"]').val()
-        //let suffix =$('[name="suffix"]').val() // not required
-        //let occu = $('[name="occupation"]').val()
+        let suffix =$('[name="suffix"]').val() // not required
+        let occu = $('[name="occupation"]').val()
         let civil = $('[name="civil_status"]').val()
         let email = $('[name="email"]').val()
         let contact = $('[name="contact"]').val()
@@ -167,7 +167,7 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
         let gender = $('[name="gender"]').val()
         let bday = $('[name="bday"]').val()
         let purok = $('[name="purok"]').val()
-        //let house_no = $('[name="house_no"]').val()
+        let house_no = $('[name="house_no"]').val()
 
         if (fname == "" || mname == "" || lname == "" || civil == "" || email == "" ||
             contact == "" || pwd == "" || cpwd == "" || gender == "" || bday == "" || purok == "" ||  noOfPicture == 0) {
@@ -238,7 +238,9 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
 
 
                 //check
-                $.post("php/registerProcesses/finalValidation.php", {contact:contact,email:email})
+                $.post("php/registerProcesses/finalValidation.php", {contact:contact,email:email,
+                fname:fname,mname:mname,lname:lname,bday:bday,purok:purok,suffix:suffix
+                })
                     .done(function (data){
 
                         setTimeout(function () {
