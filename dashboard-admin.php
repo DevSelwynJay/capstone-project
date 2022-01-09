@@ -102,6 +102,17 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     $("#name-sidebar").html(result.admin_name)
                 }
             )
+            $.post("dashboard-admin-backend.php").done(function (data) {
+                let result = JSON.parse(data);
+                $("#senior-count").html(result.Senior)
+                $("#adult-count").html(result.Adult)
+                $("#minor-count").html(result.Minor)
+                $("#infant-count").html(result.Infant)
+                $("#PWD").html(result.PWD)
+                $("#pregnant-count").html(result.Pregant)
+                $("#total-patient-count").html(result.patientCount)
+                $("#total-vaccinated-count").html(result.vaccinated)
+            })
 
 
 
@@ -252,14 +263,14 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 <div class="dashboard-cards card1">
                                     <i class="fas fa-syringe"></i>
                                     <div class="dashboard-cards-text text1">
-                                        <p>3,008</p>
+                                        <p id="total-vaccinated-count">3,008</p>
                                         <p>Total Number of Vaccinated Persons</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-cards card2">
                                     <i class="fas fa-user-injured"></i>
                                     <div class="dashboard-cards-text text2">
-                                        <p>186</p>
+                                        <p id="total-patient-count">186</p>
                                         <p>Total Number of Patients</p>
                                     </div>
                                 </div>
@@ -268,42 +279,42 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-user-tie"></i>
                                     <div class="small-cards-text">
-                                        <p>129</p>
+                                        <p id="senior-count">129</p>
                                         <p>Senior Citizen Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-male"></i>
                                     <div class="small-cards-text">
-                                        <p>63</p>
+                                        <p id="adult-count">63</p>
                                         <p>Adult Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-child"></i>
                                     <div class="small-cards-text">
-                                        <p>98</p>
+                                        <p id="minor-count">98</p>
                                         <p>Minor Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-baby"></i>
                                     <div class="small-cards-text">
-                                        <p>12</p>
+                                        <p id="infant-count">12</p>
                                         <p>Infant Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-wheelchair"></i>
                                     <div class="small-cards-text">
-                                        <p>31</p>
+                                        <p id="PWD">31</p>
                                         <p>PWD Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-hand-holding-heart"></i>
                                     <div class="small-cards-text">
-                                        <p>109</p>
+                                        <p id="pregnant-count">109</p>
                                         <p>Pregnant Patients</p>
                                     </div>
                                 </div>
