@@ -398,6 +398,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     </section>
     <!--  graph   -->
     <script language="JavaScript">
+        // let arr = []
+        // arr.push([1,2,3,4,5]);arr.push([1,2,3,4,5])
+        // alert(arr[0])
+
         function drawChart() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
