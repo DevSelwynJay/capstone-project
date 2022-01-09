@@ -109,7 +109,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $("#minor-count").html(result.Minor)
                 $("#infant-count").html(result.Infant)
                 $("#PWD").html(result.PWD)
-                $("#pregnant-count").html(result.Pregant)
+                $("#pregnant-count").html(result.Pregnant)
                 $("#total-patient-count").html(result.patientCount)
                 $("#total-vaccinated-count").html(result.vaccinated)
             })
