@@ -121,7 +121,7 @@ if(!empty($fileNames)){
     mysqli_query($con,
         "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
-
+    header("location:../../register.php");
 }
 
 ?>
