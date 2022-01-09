@@ -105,14 +105,15 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                        <div class="profile-img">
                           <img src="img/jay.jpg" alt="">
                        </div>
-                       <h4>Your Name</h4>
+                       <h4 id="name-sidebar">Your Name</h4>
                     </div>
                     <ul class="menu">
-                       <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
-                       <li><a href="patient.php" class="patient">Patient</a></li>
-                       <li><a href="reports.php" class="reports">Reports</a></li>
-                       <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                        <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
+                        <li><a href="patient.php" class="patient" >Patient</a></li>
+                        <li><a href="reports.php" class="reports" style="background: var(--hover-color)">Reports</a></li>
+                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                        <?php include 'sidebarFix.html'?>
                     </ul>
                  </div>
                  <div class="social-media-links">
