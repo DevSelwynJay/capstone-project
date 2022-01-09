@@ -326,7 +326,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $('#expired-link').attr('class','');
                 $('#vaccine-link').attr('class','active');
                 $('#added-link').attr('class','');
-                displayUpdateTab();
+                displayVacRelTab();
             });
             $('#daily-link').on("click", function(){
                 $('#weekly-link').attr('class','');
