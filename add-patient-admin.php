@@ -166,6 +166,10 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                                      <input type="radio" name="patient-type" value="Adult" required>
                                                  </div>
                                                  <div class="flex-box-row align-content-center">
+                                                     <p class="modal-p-2" >Senior</p>
+                                                     <input type="radio" name="patient-type" value="Senior" required>
+                                                 </div>
+                                                 <div class="flex-box-row align-content-center">
                                                      <p class="modal-p-2" >Pregnant</p>
                                                      <input type="radio" name="patient-type" value="Pregnant" required>
                                                  </div>

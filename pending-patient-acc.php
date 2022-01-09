@@ -702,7 +702,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     setTimeout(()=>{
                         $("#pop-up-error").modal({showClose: false, escapeClose: false, clickClose: false,})
                     },700)
-                    console.log("cant add data")
+                    console.log(data)
                 }
 
             })
