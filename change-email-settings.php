@@ -1,10 +1,11 @@
 <?php
 session_start();
-if(!isset($_SESSION['email'])){
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
 }
+?>
 ?><!DOCTYPE html>
 <html lang="en">
 

@@ -1,10 +1,11 @@
 <?php
-//session_start();
-//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
-//   header("location:index.php",true);
-//    exit();
-//}
-//?>
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
+   header("location:index.php",true);
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>

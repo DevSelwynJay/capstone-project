@@ -1,7 +1,12 @@
 <?php
 session_start();
-//echo $_SESSION['active_individual_patient_ID'];
 
+//echo $_SESSION['active_individual_patient_ID'];
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 
 $con=null;
 require 'php/DB_Connect.php';

@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -22,510 +28,155 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!--Custom CSS-->
-   <link rel="stylesheet" href="scss/main.css">
-   <!--Font Awesome-->
-   <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
-   <!-- Font Family Poppins -->
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
-      rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-   <title>Patient</title>
-   <!--Jquery-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <!--Jquery UI css and js-->
-   <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
-   <script src="jquery-ui/jquery-ui.js"></script>
-   <!--Line Chart-->
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="scss/notif.css">
-   <!--Get admin info from session-->
-   <script>
-       $(document).ready(function () {
-           Notif();
-           $.post('php/admin_session.php').done(
-               function (data) {
-                   let result = JSON.parse(data)
-                   $("#name-sidebar").html(result.admin_name)
-               }
-           )
+    <!--Jquery-->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="scss/track.css">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+    <!-- Font Family Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap"
+            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 
-
-
-           function Notif(){
-               var data = true;
-               $.ajax({
-                   url:"php/inventoryProcesses/Notif_function.php",
-                   method: "POST",
-                   data: {data},
-                   success:function(data){
-                       $('.count').html(data);
-
-                   }
-               })
-           }
-           setInterval(Notif,1000);
-       });
-       $(function() {
-           $(".navbar").click(function() {
-               $(".dropdown").toggle();
-           });
-       });
-   </script>
+    <!-- Font Family Lato-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <style>
+        .drop-down-settings,
+        .drop-down-settings open {
+            z-index: 1000;
+        }
+    </style>
+    <!--Get admin info from session-->
+    <script>
+        $(document).ready(function () {
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                }
+            )
+        })
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+    </script>
 </head>
-
 <body>
-   <section class="global">
-      <div class="global__container">
-         <div class="global__sidenav">
+<section class="global">
+    <div class="global__container">
+        <div class="global__sidenav">
             <div class="inner-sidenav">
-               <div class="spacer">
-                  <div class="profile">
-                     <div class="profile-img">
-                        <img src="img/jay.jpg" alt="">
-                     </div>
-                     <h4 id="name-sidebar">Your Name</h4>
-                  </div>
-                  <ul class="menu">
-                     <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
-                     <li><a href="patient.php" class="patient">Patient</a></li>
-                     <li><a href="reports.php" class="reports">Reports</a></li>
-                     <li><a href="track-map.php" class="trackMap">Track Map</a></li>
-                     <li><a href="inventory.php" class="inventory">Inventory</a></li>
-                  </ul>
-               </div>
-               <div class="social-media-links">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-instagram"></i>
-               </div>
+                <div class="spacer">
+                    <div class="profile">
+                        <div class="profile-img">
+                            <img src="img/jay.jpg" alt="">
+                        </div>
+                        <h4 id="name-sidebar">Your Name</h4>
+                    </div>
+                    <ul class="menu">
+                        <li><a href="dashboard-admin.html" class="dashboard">Dashboard</a></li>
+                        <li><a href="patient.php" class="patient">Patient</a></li>
+                        <li><a href="reports.php" class="reports">Reports</a></li>
+                        <li><a href="track-map.html" class="trackMap">Track Map</a></li>
+                        <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                    </ul>
+                </div>
+                <div class="social-media-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
             </div>
-         </div>
-         <div class="global__main-content">
+        </div>
+        <div class="global__main-content">
             <div class="inner-page-content">
-               <div class="col-sm-12 p-0">
-                  <div class="inner-page-nav">
-                     <div class="logo">
-                        <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
-                        <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
-                     </div>
-                     <div class="settings">
-                         <div class="navbar">
-                             <ul class="notif" >
-                                 <li>
-
-                                     <a href="#">
-
-                                         <i style="cursor: pointer" class="fa fa-bell-o"></i>
-
-                                         <span class="count">3</span>
-                                     </a>
-
-                                     <ul class="dropdown">
-                                         <?php
-                                         if($count >= 0){
-                                             ?><li><?php
-                                             echo $critstocks;
-                                             ?></li><?php
-                                         }
-                                         ?>
-                                         <?php
-                                         if($count > 0){
-                                             ?><li><?php
-                                             echo $toexp;
-                                             ?></li><?php
-                                         }
-                                         ?>
-                                         <?php
-                                         if($count > 0){
-                                             ?><li><?php
-                                             echo $exp;
-                                             ?></li><?php
-                                         }
-                                         ?>
-                                         <?php
-                                         if($count > 0){
-                                             ?><li><?php
-                                             echo $ofs;
-                                             ?></li><?php
-                                         }
-                                         ?>
-
-                                     </ul>
-                                 </li>
-
-                             </ul>
-
-                         </div>
-                        <a href="profile.php"><i class="fas fa-user-circle"></i></a>
-                        <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
-                        <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                        <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                        <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                        <!--MOBILE MENU-->
-                        <div class="menu-mobile " id="menu">
-                           <ul>
-                              <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
-                              <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                              <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                              <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                              <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                           </ul>
+                <div class="col-sm-12">
+                    <div class="inner-page-nav">
+                        <div class="logo">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
+                        <div class="settings">
+                            <a href="profile.php"><i class="fas fa-user-circle"></i></a>
+                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                            <!--MOBILE MENU-->
+                            <div class="menu-mobile " id="menu">
+                                <ul>
+                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a>
+                                    </li>
+                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                </ul>
+                            </div>
 
-                        <div class="drop-down-settings" id="dropdown">
-                           <ul>
-                              <li><a href="">Approve EMR</a></li>
-                              <li><a href="">settings</a></li>
-                              <li><a href="">About</a></li>
-                              <li><a href="">Logout</a></li>
-                           </ul>
+                            <div class="drop-down-settings" id="dropdown">
+                                <ul>
+                                    <li><a href="">Approve EMR</a></li>
+                                    <li><a href="settings.php">settings</a></li>
+                                    <li><a href="about.php">About</a></li>
+                                    <li><a href="php/sessionDestroy.php">Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
 
-               <!--MAIN CONTENT-->
-               <div class="col-sm-12">
-                  <div class="track-map-content">
-                     <div class="covid-container">
-                        <div id="chart_div" style="margin-left: -30px; padding: 15px; border-radius: 10px;"></div>
-                     </div>
-                     <div class="track-map-second">
-                        <div class="medicine-released-container tm-container">
-                           <div id="chart_div2" style="margin-left:-35px; margin-top: 10px;border-radius: 10px;"></div>
-                        </div>
-                        <div class="immunization-container tm-container">
-                           <div id="chart_div3" style="margin-left:-35px; margin-top: 10px;border-radius: 10px;"></div>
-                        </div>
-                     </div>
-                     <div class="track-map-third">
-                        <div class="pregnant-vaccine-container tm-container">
-                           <div id="chart_div4" style="margin-left:-35px; margin-top: 10px;border-radius: 10px;"></div>
-                        </div>
-                        <div class="other-vaccine-container tm-container">
-                           <div id="chart_div5" style="margin-left:-35px; margin-top: 10px;border-radius: 10px;"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                <div class="tab">
+                    <button id="tab1" class="tablinks" onclick="openOPV();">OPV</button>
+                    <button id="tab2" class="tablinks" onclick="openIPV();">IPV</button>
+                    <button id="tab3" class="tablinks" onclick="openBCG();">BCG</button>
+                    <button id="tab4" class="tablinks" onclick="openMMR();">MMR</button>
+                    <button id="tab5" class="tablinks" onclick="openCovid();">Covid Vaccine</button>
+                </div>
+                <div class="gridd">
+                    <div id="framecont"><iframe frameborder = "0" id="myframe" src="php/testingCode/opv.php" style="-webkit-transform:scale(0.9);"></iframe></div>
+                </div>
+                <script>
+                    document.getElementById("tab1").focus();
 
-            </div>
-         </div>
-      </div>
-   </section>
+                    function openOPV() {
+                        document.getElementById("myframe").src = "php/testingCode/opv.php";
+                    }
+                    function openIPV() {
+                        document.getElementById("myframe").src = "php/testingCode/ipv.php";
 
-   <script type="text/javascript">
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-         var data = google.visualization.arrayToDataTable
-            ([['Purok', 'Doses Released', { 'type': 'string', 'role': 'style' }],
-            ['Purok 1', 570, null],
-            ['Purok 2', 800, null],
-            ['Purok 3', 760, null],
-            ['Purok 4', 240, null],
-            ['Purok 5', 580, null],
-            ['Purok 6', 420, null],
-            ['Purok 7', 910, null],
-            ]);
+                    }
+                    function openBCG() {
+                        document.getElementById("myframe").src = "php/testingCode/bcg.php";
 
-         var options = {
-            title: 'Covid-19 Vaccine Released per Purok',
-            titleTextStyle: {
-               color: "#FFFFFF",
-               fontSize: 20,
-               fontName: "Lato, sans-serif",
-            },
-            animation: {
-               startup: true,
-               duration: 1000,
-               easing: 'inAndOut',
-            },
-            legend: 'none',
-            hAxis: {
-               textStyle: {
-                  color: '#fff',
-                  fontName: "Lato, sans-serif",
-               }
-            },
-            vAxis: {
-               textStyle: { color: 'fff', fontName: "Lato, sans-serif", }
-            },
-            curveType: 'function',
-            backgroundColor: "transparent",
-            pointSize: 15,
-            dataOpacity: 1,
-            width: 1080,
-            height: 310,
-            is3D: true,
-         };
+                    }
+                    function openMMR() {
+                        document.getElementById("myframe").src = "php/testingCode/mmr.php";
 
-         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-         chart.draw(data, options);
-      }
+                    }
+                    function openCovid() {
+                        document.getElementById("myframe").src = "php/testingCode/covid.php";
 
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart2);
-      function drawChart2() {
-         var data = google.visualization.arrayToDataTable
-            ([['Purok', 'Medicine Released', { 'type': 'string', 'role': 'style' }],
-            ['Purok 1', 440, null],
-            ['Purok 2', 810, null],
-            ['Purok 3', 370, null],
-            ['Purok 4', 110, null],
-            ['Purok 5', 150, null],
-            ['Purok 6', 95, null],
-            ['Purok 7', 180, null],
-            ]);
+                    }
 
-         var options = {
-            title: 'Medicine Released',
-            titleTextStyle: {
-               color: "#FFFFFF",
-               fontSize: 20,
-               fontName: "Lato, sans-serif",
-            },
-            animation: {
-               startup: true,
-               duration: 1000,
-               easing: 'inAndOut',
-            },
-            legend: 'none',
-            hAxis: {
-               textStyle: {
-                  color: '#fff',
-                  fontName: "Lato, sans-serif",
-               }
-            },
-            vAxis: {
-               textStyle: { color: 'fff', fontName: "Lato, sans-serif", }
-            },
-            curveType: 'function',
-            backgroundColor: "transparent",
-            pointSize: 15,
-            dataOpacity: 1,
-            width: 600,
-            height: 330,
-            is3D: true,
-         };
+                </script>
 
-         var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
-         chart.draw(data, options);
-      }
-
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart3);
-      function drawChart3() {
-         var data = google.visualization.arrayToDataTable
-            ([['Purok', 'Doses Released', { 'type': 'string', 'role': 'style' }],
-            ['Purok 1', 910, null],
-            ['Purok 2', 220, null],
-            ['Purok 3', 390, null],
-            ['Purok 4', 460, null],
-            ['Purok 5', 150, null],
-            ['Purok 6', 870, null],
-            ['Purok 7', 550, null],
-            ]);
-
-         var options = {
-            title: 'Immunization Vaccine Released',
-            titleTextStyle: {
-               color: "#FFFFFF",
-               fontSize: 20,
-               fontName: "Lato, sans-serif",
-            },
-            animation: {
-               startup: true,
-               duration: 1000,
-               easing: 'inAndOut',
-            },
-            legend: 'none',
-            hAxis: {
-               textStyle: {
-                  color: '#fff',
-                  fontName: "Lato, sans-serif",
-               }
-            },
-            vAxis: {
-               textStyle: { color: 'fff', fontName: "Lato, sans-serif", }
-            },
-            curveType: 'function',
-            backgroundColor: "transparent",
-            pointSize: 15,
-            dataOpacity: 1,
-            width: 600,
-            height: 330,
-            is3D: true,
-         };
-
-         var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
-         chart.draw(data, options);
-      }
-
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart4);
-      function drawChart4() {
-         var data = google.visualization.arrayToDataTable
-            ([['Purok', 'Doses Released', { 'type': 'string', 'role': 'style' }],
-            ['Purok 1', 630, null],
-            ['Purok 2', 440, null],
-            ['Purok 3', 90, null],
-            ['Purok 4', 110, null],
-            ['Purok 5', 550, null],
-            ['Purok 6', 810, null],
-            ['Purok 7', 220, null],
-            ]);
-
-         var options = {
-            title: 'Pregnant Vaccines Released',
-            titleTextStyle: {
-               color: "#FFFFFF",
-               fontSize: 20,
-               fontName: "Lato, sans-serif",
-            },
-            animation: {
-               startup: true,
-               duration: 1000,
-               easing: 'inAndOut',
-            },
-            legend: 'none',
-            hAxis: {
-               textStyle: {
-                  color: '#fff',
-                  fontName: "Lato, sans-serif",
-               }
-            },
-            vAxis: {
-               textStyle: { color: 'fff', fontName: "Lato, sans-serif", }
-            },
-            curveType: 'function',
-            backgroundColor: "transparent",
-            pointSize: 15,
-            dataOpacity: 1,
-            width: 600,
-            height: 330,
-            is3D: true,
-         };
-
-         var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
-         chart.draw(data, options);
-      }
-
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart5);
-      function drawChart5() {
-         var data = google.visualization.arrayToDataTable
-            ([['Purok', 'Doses Released', { 'type': 'string', 'role': 'style' }],
-            ['Purok 1', 220, null],
-            ['Purok 2', 800, null],
-            ['Purok 3', 340, null],
-            ['Purok 4', 920, null],
-            ['Purok 5', 120, null],
-            ['Purok 6', 360, null],
-            ['Purok 7', 200, null],
-            ]);
-
-         var options = {
-            title: 'Other Vaccine Released',
-            titleTextStyle: {
-               color: "#FFFFFF",
-               fontSize: 20,
-               fontName: "Lato, sans-serif",
-            },
-            animation: {
-               startup: true,
-               duration: 1000,
-               easing: 'inAndOut',
-            },
-            legend: 'none',
-            hAxis: {
-               textStyle: {
-                  color: '#fff',
-                  fontName: "Lato, sans-serif",
-               }
-            },
-            vAxis: {
-               textStyle: { color: 'fff', fontName: "Lato, sans-serif", }
-            },
-            curveType: 'function',
-            backgroundColor: "transparent",
-            pointSize: 15,
-            dataOpacity: 1,
-            width: 600,
-            height: 330,
-            is3D: true,
-         };
-
-         var chart = new google.visualization.LineChart(document.getElementById('chart_div5'));
-         chart.draw(data, options);
-      }
-   </script>
-
-   <script>
-      const dropdown = document.querySelector('#dropdown');
-      const dropdownToggle = document.querySelector('#dropdown-toggle');
-      const Closedropdown = document.querySelector('#close-dropdown');
-
-      dropdownToggle.addEventListener('click', function () {//Conditions
-         if (dropdown.classList.contains('open')) { // Close Mobile Menu
-            dropdown.classList.remove('open');
-         }
-         else { // Open Mobile Menu
-            dropdown.classList.add('open');
-         }
-      });
-
-
-      dropdownToggle.addEventListener('click', function () {
-         dropdown.classList.add('open');
-         dropdownToggle.style.display = "none";
-         Closedropdown.style.display = "block"
-      });
-
-      Closedropdown.addEventListener('click', function () {
-         dropdown.classList.remove('open');
-         Closedropdown.style.display = "none"
-         dropdownToggle.style.display = "block";
-      });
-
-   </script>
-   <script>
-      const menu = document.querySelector('#menu');
-      const mobileMenu = document.querySelector('#mobile-menu');
-      const closeMobileMenu = document.querySelector('#close-mobile-menu');
-
-      mobileMenu.addEventListener('click', function () {//Conditions
-         if (menu.classList.contains('open')) { // Close Mobile Menu
-            menu.classList.remove('open');
-         }
-         else {
-            menu.classList.add('open');
-         }
-      });
-
-
-      mobileMenu.addEventListener('click', function () {
-         menu.classList.add('open');
-         mobileMenu.style.display = "none";
-         closeMobileMenu.style.display = "block"
-      });
-
-      closeMobileMenu.addEventListener('click', function () {
-         menu.classList.remove('open');
-         closeMobileMenu.style.display = "none"
-         mobileMenu.style.display = "block";
-      });
-   </script>
 </body>
-
 </html>
