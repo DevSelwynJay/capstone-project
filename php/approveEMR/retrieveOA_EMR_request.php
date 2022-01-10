@@ -18,7 +18,12 @@ while ($row = mysqli_fetch_assoc($res)){
          $subRow['complete_name'] =  $subRow['first_name'].' '. $subRow['middle_name'].' '. $subRow['last_name'];
          $subRow['view_button'] = "<button class='view-req-btn' data-patientOA_ID='".$id_of_patient_OA."' data-reqID='".$subRow['request_id']."'
                                       data-name = '".$subRow['complete_name']."' data-email = '". $subRow['email']."'
-                                    >View</button>";
+                                    >Approve</button>
+                                    <button class='dec-req-btn' data-patientOA_ID='".$id_of_patient_OA."' data-reqID='".$subRow['request_id']."'
+                                      data-name = '".$subRow['complete_name']."' data-email = '". $subRow['email']."'
+                                    >Decline</button>
+                                   
+                                    ";
 
              $response[]= $subRow;
      }
