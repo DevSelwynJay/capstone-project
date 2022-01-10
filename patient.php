@@ -419,8 +419,9 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok",
-                   address:"Address",
+                   // address:"Address",
                }
            ,
            searchField: '.search-bar',
@@ -468,6 +469,7 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok"
                    // address:"Address",
                });
@@ -478,8 +480,9 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok",
-                   address:"Address",
+                   // address:"Address",
                });
            }
        })//end of get/post method
