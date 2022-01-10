@@ -70,5 +70,8 @@ $mail->Body = $messageBody;
 if (!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
+    $con = null;
+    require '../DB_Connect.php';
+    mysqli_query($con,"UPDATE emr_request SET status = -1 WHERE request_id = ".$_SESSION['active_reqID']." ");
     echo 1;
 }

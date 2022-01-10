@@ -5,8 +5,8 @@ require '../DB_Connect.php';
 
 $response = array();
 
-//select online acc with request
-$res = mysqli_query($con,"SELECT * FROM emr_request WHERE status =! 0 ORDER BY date_requested DESC");
+//select online acc with finished request
+$res = mysqli_query($con,"SELECT * FROM emr_request ORDER BY date_requested DESC");
 while ($row = mysqli_fetch_assoc($res)){
     //logic select lahat ng online acc na may request
     //then iquery ung info sa online patient acc for displaying
@@ -14,6 +14,9 @@ while ($row = mysqli_fetch_assoc($res)){
     $subRes = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '$id_of_patient_OA' ");
     if($subRow = mysqli_fetch_assoc($subRes)){
 
+        if($row['status']==0){//not yet approved or decline
+           continue;
+        }
         if($row['status']==1){//int ung data type sa table column na status
             $subRow['status'] = "Approved";
         }

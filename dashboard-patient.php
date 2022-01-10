@@ -54,7 +54,12 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=2){
                     $("#age").html(result.age)
                    $("#gender").html(result.gender)
                    $("#bday").html(result.birthday)
-                   $("#contact").html(result.contact_no)
+                   if(result.contact_no.includes("none")){
+                       $("#contact").html("none")
+                   }
+                   else {
+                       $("#contact").html(result.contact_no)
+                   }
                    $("#address").html(result.address)
                })
            })
