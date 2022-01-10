@@ -106,16 +106,25 @@ if(mysqli_num_rows($resultCheckDuplication)>0){
     exit();
 }
 
+function generateRandomString($length = 6): string
+{
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+$_SESSION['randomPassword'] = $randomPassword = generateRandomString();
+$_SESSION['newAddWalkInPatientEmail'] = $email;
+$_SESSION['newAddWalkInPatientName'] = $fname." ".$mname." "." ".$lname;
 
 $query = "INSERT INTO walk_in_patient VALUES (
                  2,DEFAULT, '$patientID','$lname','$fname','$mname'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
                  ,'$occu','$civil','$bloodType','$weight','$height'
-                 ,'$patientType','$email','','$contact',''
+                 ,'$patientType','$email','$randomPassword','$contact',''
                  ,DEFAULT 
                                    
                                    
 )";
+
+require 'sendPassword.php';
 $result = mysqli_query($con,$query);
 
 if($result){
