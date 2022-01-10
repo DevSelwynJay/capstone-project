@@ -226,7 +226,7 @@ else{ // Open Mobile Menu
                            <div class="patient-details-container">
                               <div class="profile-image">
                                 <img src="img/jay.jpg" alt=""><br>
-                                  <h4 class="margin-top-1">Online Patient Account Information</h4>
+                                  <h4 class="margin-top-1">Patient Information</h4>
                                 <h2 class="patient-name">SURNAME, First Name, Middle Name</h2>
                               </div>
 

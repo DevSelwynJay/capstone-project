@@ -189,7 +189,7 @@ if(isset($_SESSION['email'])&&isset($_SESSION['account_type'])){
                   <div class="col-sm-12 margin-top-3">
                     <p id="login-p" class="text-center" style="color:#6d6d6d;font-size: medium">
                       Are you a patient?&nbsp;<span
-                        ><a id="login-a" href="register.php">Create Online Account Now</a></span>
+                        ><a id="login-a" href="register.php">Create Account Now</a></span>
                     </p>
                   </div>
                 </div>

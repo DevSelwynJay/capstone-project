@@ -21,7 +21,7 @@ function generate_6_Digits(): string
 
 function generateID($_6DigitCode): string
 {
-    return date('Y')."-02-".$_6DigitCode;
+    return date('Y')."-03-".$_6DigitCode;
 }
 
 function validateID($con,$new_id){//check the generated ID if existing

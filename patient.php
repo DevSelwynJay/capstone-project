@@ -419,8 +419,9 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
-                   bday: "BirthDay",
                    purok:"Purok",
+                   account_type: "Status",
+
                    // address:"Address",
                }
            ,
@@ -469,8 +470,10 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
-                   bday: "BirthDay",
-                   purok:"Purok"
+                   purok:"Purok",
+                   account_type: "Status",
+                   // bday: "BirthDay",
+
                    // address:"Address",
                });
            }
@@ -480,8 +483,10 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
-                   bday: "BirthDay",
                    purok:"Purok",
+                   account_type: "Status",
+                   // bday: "BirthDay",
+
                    // address:"Address",
                });
            }
