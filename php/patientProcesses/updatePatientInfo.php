@@ -60,7 +60,7 @@ if($fname == $_SESSION['active_old_patient_info']['first_name']
     && $mname ==  $_SESSION['active_old_patient_info']['middle_name']
     && $lname ==  $_SESSION['active_old_patient_info']['last_name']
     && $bday ==  $_SESSION['active_old_patient_info']['birthday']
-    && $purok == $_SESSION['active_old_patient_info']['purok']
+//    && $purok == $_SESSION['active_old_patient_info']['purok']
   )
 {
    $result = mysqli_query($con,"UPDATE walk_in_patient SET

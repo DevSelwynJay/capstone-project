@@ -26,7 +26,7 @@ if(!$con) {
     exit();
 }
 
-$tables = array('pending_patient','patient','patient_archive');
+$tables = array('pending_patient','walk_in_patient');
 $result=null;
 $errMsg = null;
 foreach ($tables as $table){
@@ -37,6 +37,7 @@ foreach ($tables as $table){
         break;
     }
 }
+$tables = array('pending_patient','walk_in_patient','super_admin','admin');//bawal may mag kamukang email sa system
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE email = '$email'");
     if(mysqli_num_rows($result)>=1){
@@ -46,7 +47,7 @@ foreach ($tables as $table){
     }
 }
 //another added validation pag may kamuka na name bday purok bawal
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM patient 
+$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
 AND purok = $purok AND birthday = '$bday'
 ");

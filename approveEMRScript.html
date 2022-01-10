@@ -125,6 +125,28 @@
                    // alert(data)
                 })
             })
+            
+            //decline account req
+            $(".dec-req-btn").click(function (data) {
+                let patientOA_ID = $(this).data("patientoa_id");
+                let email = $(this).data("email");
+                let name = $(this).data("name");
+                let reqID = $(this).data("reqid");
+                $("#pop-up-dec-req").modal({
+                    // showClose:false,clickClose: false,escapeClose: false
+                })
+                // $("#view-emr-name").html(name);
+                // $("#view-emr-email").html("("+email+")");
+                // alert(patientOA_ID)
+                $.post("php/approveEMR/activeEMRSession.php",{
+                    patientOA_ID:patientOA_ID,
+                    reqID:reqID,
+                    email:email,
+                    name:name
+                }).done(function (data) {
+                    // alert(data)
+                })
+            })
         }
 
         //====================================== sa finished request
@@ -188,6 +210,12 @@
 
     });//end of document ready
 </script>
+<!--Modal for decline emr request-->
+<div id="pop-up-dec-req" class="modal">
+    <div class="row">
+        <div class="col-sm-12"><h4 style="color: var(--third-color)">Decline EMR Request</h4></div>
+    </div>
+</div>
 
 <!--Modal for view emr request-->
 <div id="pop-up-view-req" class="modal">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2022 at 01:10 PM
+-- Generation Time: Jan 10, 2022 at 09:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `walk_in_patient` (
   `account_type` int(1) NOT NULL DEFAULT 3 COMMENT '3 walk in patient',
+  `account_status` int(1) NOT NULL DEFAULT 1 COMMENT '1 active 0 disable',
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
@@ -55,8 +56,9 @@ CREATE TABLE `walk_in_patient` (
 -- Dumping data for table `walk_in_patient`
 --
 
-INSERT INTO `walk_in_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(3, '2021-03-111222', 'Cruz', 'Bebang', 'Biler', 'Female', '2014-12-01', '1', '1', 'Sto. Rosario Paombong Bulacan', 'Sales Lady', 'Single', 'O', '60kg', '169cm', 'Minor', 'alfredpogiebenitez@gmail.com', 'mukamo11', '09422454512', '', '2021-10-25 07:28:47');
+INSERT INTO `walk_in_patient` (`account_type`, `account_status`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(2, 1, '2022-02-325788', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1', '2', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Adult', 'none-2022-02-325788', '', 'none-2022-02-325788', '', '2022-01-10 08:15:54'),
+(2, 1, '2022-02-779987', 'Cruz', 'Bebang', 'Biler', 'Male', '2009-10-14', '1', '0', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'none-2022-02-779987', '', 'none-2022-02-779987', '', '2022-01-10 08:16:23');
 
 --
 -- Indexes for dumped tables

@@ -380,6 +380,19 @@
         background: #72c8f8;
         cursor: pointer;
     }
+  .dec-req-btn{
+      padding: 0.5rem;
+      border-radius: 0;
+      border: none;
+      background: #c92929;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+  }
+  .dec-req-btn:hover{
+      background: #dc3c69;
+      cursor: pointer;
+  }
 </style>
 <?php
 include 'approveEMRScript.html';

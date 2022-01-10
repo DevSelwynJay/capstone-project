@@ -4,7 +4,7 @@ session_start();
 $con = null;
 require '../DB_Connect.php';
 
-$patientOA_ID = $_SESSION['patientOA_ID'];//patient online account ID
+$patientOA_ID = $_SESSION['patient_id'];//patient account ID
 
 //check if may existing request na si online patient acc ng EMR
 //pag meron update lang para para maupdate din ung date requested

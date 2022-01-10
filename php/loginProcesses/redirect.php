@@ -15,7 +15,7 @@ if(!isset($_SESSION['account_type'])){
 
 
 
-//0->superadmin 1->admin 2->patient
+//0->superadmin 1->admin 2-> walk in patient 3-> registered online patient
 //make a condition kung saang page ireredirect using the session variable SESSION['account_type']
 $type = $_SESSION['account_type'];
 if($type==0){
@@ -25,7 +25,6 @@ else if($type==1){
 header("location:../../dashboard-admin.php",true);}
 else if($type==2){
     header("location:../../dashboard-patient.php",true);}
-else{
-    header("location:../../dashboard-patient.php",true);
-}
+else if($type==3){
+    header("location:../../dashboard-patient.php",true);}
 exit();

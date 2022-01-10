@@ -84,6 +84,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
+                       $("#modal-admin-name").html(result.admin_name)
                    }
                )
 
