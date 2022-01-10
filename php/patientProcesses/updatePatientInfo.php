@@ -89,6 +89,14 @@ else{
             echo "Cannot update. Duplication detected!";
             exit();
         }
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+    WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+    AND birthday = '$bday'
+    ");
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        echo "Cannot update. Duplication detected!";
+        exit();
+    }
 
 
     $result = mysqli_query($con,"UPDATE walk_in_patient SET
