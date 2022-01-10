@@ -12,25 +12,35 @@ $(document).ready(function (){
         checkEmpty();
     })
 })
-//click table to get admin ID and name
-$(document).ready(function (){
-    var table = document.getElementById('adminTable');
-    for(var i = 1; i < table.rows.length; i++)
-    {
-        $(table.rows[i]).on("click",function (){
-            document.getElementById("idno").value = this.cells[0].innerHTML;
-            document.getElementById("adminname").value = this.cells[1].innerHTML;
-            $('#show-del').modal();
-        })
-    }
-})
 
-//trigger if disable admin modal button is clicked
+//click table to get admin ID and name
+/*$(document).ready(function (){
+    $("#adminTable").click(function() {
+        var table = document.getElementById('adminTable');
+        for (var i = 1; i < table.rows.length; i++) {
+            $(table.rows[i]).on("click", function () {
+                document.getElementById("idno").value = this.cells[0].innerHTML;
+                document.getElementById("adminname").value = this.cells[1].innerHTML;
+                $('#show-del').modal();
+            })
+        }
+    })
+})
+*/
+//?trigger if disable admin modal button is clicked
 $(document).ready(function (){
     $("#disable-admin2").click(function (){
         var adminIds = $('#idno').val();
         var adminname = $('#adminname').val();
         adminDisableCheck(adminIds,adminname);
+    })
+})
+//?trigger if activate admin modal button is clicked
+$(document).ready(function (){
+    $("#reactivate-admin1").click(function (){
+        var adminIds = $('#idno3').val();
+        var adminname = $('#adminname3').val();
+        adminActivationCheck(adminIds,adminname);
     })
 })
 //By button disable ADMIN
@@ -234,8 +244,8 @@ function appendTableAdmin() {
             //$(result).appendTo( "#adminTable>tbody" );
        // })
 }
-
-//DISABLE ADMIN
+// ?-----------
+// *DISABLE ADMIN
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminDisableCheck(adminIds,adminname){
     $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
@@ -309,7 +319,7 @@ function disableAdmin(adminIds){
         })
 }
 
-//// DISABLE ADMIN BY BUTTON
+//// * DISABLE ADMIN BY BUTTON
 function adminDisableCheck2(adminIds){
     $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
         .done(function (data){
@@ -384,7 +394,7 @@ function disableAdmin2(adminIds){
         })
 }
 
-//PATIENT DISABLE
+// * PATIENT DISABLE
 function patientDisableCheck(patientIds,patname){
     $.post("php/superAdminProcesses/checkPatientId.php", {patId:patientIds})
         .done(function (data){
@@ -457,7 +467,7 @@ function disablePatient(patientIds){
         })
 }
 
-//// DISABLE Patient BY BUTTON
+//// * DISABLE Patient BY BUTTON
 function patientDisableCheck2(patientIds){
     $.post("php/superAdminProcesses/checkPatientId.php", {patId:patientIds})
         .done(function (data){
@@ -530,4 +540,95 @@ function disablePatient2(patientIds){
             }
 
         })
+}
+
+//// * ACTIVATE ADMIN ROW BUTTON
+//Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
+function adminActivationCheck(adminIds,adminname){
+    //$("#passmod").modal();
+    swal.fire({
+        title: 'Enter Super Admin Password',
+        html:
+            '<input type="password" id="swal-input1" class="swal2-input" style="width: fit-content">',
+        preConfirm: function () {
+            return new Promise(function (resolve) {
+                var swalInput = $('#swal-input1').val();
+                var loggedEmail = document.getElementById('emmm').innerText;
+                checkPass(loggedEmail, swalInput);
+            })
+        }
+    })
+}
+//Activate Admin and update the column status to 1
+function activateAdmin(adminIds){
+    $.post("php/superAdminProcesses/statusActivateProcess.php", {adminId:adminIds})
+        .done(function (data){
+            if(data == 1){
+
+            }else{
+                Swal.fire('Unsuccesful!', '', 'error')
+            }
+
+        })
+}
+function checkPass(superEmail,superPass){
+    $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
+        .done(function (data){
+            console.log(superEmail,superPass);
+            if(data == 1){
+                Swal.fire({
+                    title: 'Are you sure you want to activate this account?',
+                    showDenyButton: true,
+                    //showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    // Read more about isConfirmed, isDenied below
+                    if (result.isConfirmed) {
+                        activateAdmin(adminIds,adminname);
+                        let timerInterval
+                        Swal.fire({
+                            title: adminname+' Activated!',
+                            timer: 2500,
+                            timerProgressBar: true,
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                appendTableAdmin();
+                            }
+                        }).then((result) => {
+                            // Read more about handling dismissals below
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log('I was closed by the timer')
+                                appendTableAdmin();
+                            }
+                        })
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved!', '', 'info')
+                        $.modal.close();
+                    }
+                })
+            }else {
+                let timerInterval
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Wrong Password! Action Cancelled.',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    //Read more about handling dismissals below
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+                $.modal.close();
+            }
+
+
+
+        })
+
 }
