@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_assoc($res)){
     //logic select lahat ng online acc na may request
     //then iquery ung info sa online patient acc for displaying
     $id_of_patient_OA = $row['patientOA_ID'];// id of online patient account
-    $subRes = mysqli_query($con,"SELECT * FROM patient WHERE id = '$id_of_patient_OA' ");
+    $subRes = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '$id_of_patient_OA' ");
     if($subRow = mysqli_fetch_assoc($subRes)){
 
         if($row['status']==1){//int ung data type sa table column na status
