@@ -11,7 +11,7 @@ if(!$con) {
     exit();
 }
 
-$tables = array('walk_in_patient');
+$tables = array('walk_in_patient','pending_patient');
 $result=null;
 $errMsg = null;
 
@@ -27,6 +27,7 @@ foreach ($tables as $table){
         break;
     }
 }
+$tables = array('walk_in_patient','pending_patient','super_admin','admin');
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE email = '$email'");
     if(mysqli_num_rows($result)>=1){

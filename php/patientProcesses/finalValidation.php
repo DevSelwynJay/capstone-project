@@ -11,7 +11,7 @@ if(!$con) {
     exit();
 }
 
-$tables = array('walk_in_patient');
+$tables = array('walk_in_patient','pending_patient');
 $result=null;
 $errMsg = null;
 
@@ -32,6 +32,7 @@ foreach ($tables as $table){
         break;
     }
 }
+$tables = array('walk_in_patient','pending_patient','super_admin','admin');
 foreach ($tables as $table){
     if($email == $_SESSION['active_old_patient_info']['email']){
         //wala naman nabago sa contact skip na pagskip sa duplication
