@@ -44,14 +44,15 @@ $(document).ready(function (){
     })
 })
 //By button disable ADMIN
+/*
 $(document).ready(function (){
     $("#disable-admin").click(function (){
         var adminIds = $('#idno2').val();
         adminDisableCheck2(adminIds);
     })
 })
-
-//trigger if disable PATIENT modal button is clicked
+*/
+// ?trigger if disable PATIENT modal button is clicked
 $(document).ready(function (){
     $("#disable-patient2").click(function (){
         var patientIds = $('#patidno').val();
@@ -60,13 +61,14 @@ $(document).ready(function (){
     })
 })
 //By button disable PATIENT
+/*
 $(document).ready(function (){
     $("#disable-patient").click(function (){
         var patientIds = $('#patidno2').val();
         patientDisableCheck2(patientIds);
     })
 })
-
+*/
 //check if the fields are empty
 function checkEmpty(){
     console.log("dumaan sa empty");
@@ -248,23 +250,49 @@ function appendTableAdmin() {
 // *DISABLE ADMIN
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminDisableCheck(adminIds,adminname){
-    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
-        .done(function (data){
-            if(data == 1){
+    (async () => {
 
+        const { value: password } = await Swal.fire({
+            title: 'Enter your password',
+            input: 'password',
+                //customClass: 'swal-wide',
+            inputPlaceholder: 'Enter your password',
+            inputAttributes: {
+                //maxlength: 20,
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+
+        })
+
+        if (password) {
+            var loggedEmail = document.getElementById('emmm').innerText;
+            checkPassDisable(adminIds,adminname,loggedEmail, password);
+            //Swal.fire(`Entered password: ${password}`)
+        }
+
+    })()
+}
+//checks the password entered
+function checkPassDisable(adminIds,adminname,superEmail,superPass){
+    $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
+        .done(function (data){
+            console.log(superEmail,superPass);
+            if(data == 1){
                 Swal.fire({
-                    title: 'Are you sure you want to archive this account?',
+                    title: 'Are you sure you want to deactivate this account?',
                     showDenyButton: true,
                     //showCancelButton: true,
                     confirmButtonText: 'Yes',
                     denyButtonText: `No`,
                 }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
+                        console.log("dito passdisable");
                         disableAdmin(adminIds,adminname);
                         let timerInterval
                         Swal.fire({
-                            title: adminname+' Archived!',
+                            title: adminname+' Deactivated!',
                             timer: 2500,
                             timerProgressBar: true,
                             willClose: () => {
@@ -272,7 +300,7 @@ function adminDisableCheck(adminIds,adminname){
                                 appendTableAdmin();
                             }
                         }).then((result) => {
-                            /* Read more about handling dismissals below */
+                            // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
                                 appendTableAdmin();
@@ -284,19 +312,18 @@ function adminDisableCheck(adminIds,adminname){
                         $.modal.close();
                     }
                 })
-
-            }else{
+            }else {
                 let timerInterval
                 Swal.fire({
                     icon: 'error',
-                    title: 'User ID is already in the database!',
+                    title: 'Wrong Password! Action Cancelled.',
                     timer: 2500,
                     timerProgressBar: true,
                     willClose: () => {
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    /* Read more about handling dismissals below */
+                    //Read more about handling dismissals below
                     if (result.dismiss === Swal.DismissReason.timer) {
                         console.log('I was closed by the timer')
                     }
@@ -304,12 +331,16 @@ function adminDisableCheck(adminIds,adminname){
                 $.modal.close();
             }
 
+
+
         })
+
 }
 //Disable Admin and transfer the disabled to new DB
 function disableAdmin(adminIds){
     $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds})
         .done(function (data){
+            console.log("dito disableadmin");
             if(data == 1){
 
             }else{
@@ -546,6 +577,31 @@ function disablePatient2(patientIds){
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminActivationCheck(adminIds,adminname){
     //$("#passmod").modal();
+    (async () => {
+
+        const { value: password } = await Swal.fire({
+            title: 'Enter your password',
+            input: 'password',
+            inputLabel: 'Password',
+            inputPlaceholder: 'Enter your password',
+            inputAttributes: {
+                //maxlength: 20,
+                autocapitalize: 'off',
+                autocorrect: 'off',
+
+
+            }
+        })
+
+        if (password) {
+            var loggedEmail = document.getElementById('emmm').innerText;
+            checkPassActivate(adminIds,adminname,loggedEmail, password);
+            //Swal.fire(`Entered password: ${password}`)
+        }
+
+    })()
+
+/*
     swal.fire({
         title: 'Enter Super Admin Password',
         html:
@@ -557,7 +613,7 @@ function adminActivationCheck(adminIds,adminname){
                 checkPass(loggedEmail, swalInput);
             })
         }
-    })
+    }) */
 }
 //Activate Admin and update the column status to 1
 function activateAdmin(adminIds){
@@ -571,7 +627,8 @@ function activateAdmin(adminIds){
 
         })
 }
-function checkPass(superEmail,superPass){
+//checks the password of the admin
+function checkPassActivate(adminIds,adminname,superEmail,superPass){
     $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
         .done(function (data){
             console.log(superEmail,superPass);

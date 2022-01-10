@@ -1,10 +1,11 @@
 <?php
   session_start();
-  $emm = $_SESSION['email_session_for_sms_otp'];
-//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
-//   header("location:index.php",true);
-//    exit();
-//}
+
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
+    header("location:index.php",true);
+    exit();
+}
+$emm = $_SESSION['email_session_for_sms_otp'];
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,21 +203,6 @@
                          </div>
 
                      </div>
-                      <div class="col-sm-12">
-                          <div id="passmod" class="modal2">
-                              <style>#passmod{
-                                      display: none;
-                                  }</style>
-                              <form autocomplete="off">
-                                  <div class="row">
-                                      <label for="supid" style="color:#6D6D6DFF">Enter Super Admin ID:</label>
-                                      <input type="text" id="supid" placeholder="" />
-                                  </div>
-                                  <a href="#passmod" rel="modal:open" id="superpass" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
-                              </form>
-                          </div>
-                      </div>
-
                       <!-- Modal for disable admin upon click of data -->
                       <div class="col-sm-12">
                           <div id="show-del" class="modal2">
@@ -239,7 +225,11 @@
                           <div id="activemod" class="modal2">
                               <style>#activemod{
                                       display: none;
-                                  }</style>
+                                  }
+                              .swal-wide{
+                                  width: fit-content;
+                                  justify-content: center;
+                              }</style>
                               <form autocomplete="off">
                                   <div class="row">
                                       <label for="idno3" style="color:#6D6D6DFF">User ID:</label>
@@ -350,6 +340,23 @@
                               </form>
                           </div>
                       </div>
+                   <!-- Ptient Activation Modal -->
+                   <div class="col-sm-12">
+                       <div id="show-actpat" class="modal2">
+                           <style>#show-actpat{
+                                   display: none;
+                               }</style>
+                           <form autocomplete="off">
+                               <div class="row">
+                                   <label for="patidno3" style="color:#6D6D6DFF">User ID:</label>
+                                   <input type="text" id="patidno3" disabled placeholder="Enter Patient ID" />
+                                   <label for="patname3" style="color:#6D6D6DFF">Patient:</label>
+                                   <input type="text" id="patname3" disabled placeholder="" />
+                               </div>
+                               <a href="#show-actpat" rel="modal:open" id="activate-patient2" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
+                           </form>
+                       </div>
+                   </div>
                        <div class="col-sm-12">
                            <div id="show-delpat2" class="modal2">
                                <style>#show-delpat2{
@@ -556,20 +563,9 @@
             displayUsers(page);
         })
 
-        // ?click table button to get patient ID and name
-        $(document).ready(function (){
-            $("#patientTable").click(function (){
-                var pattable = document.getElementById('patientTable');
-                for(var i = 1; i < pattable.rows.length; i++)
-                {
-                    $(pattable.rows[i]).on("click",function (){
-                        document.getElementById("patidno").value = this.cells[0].innerHTML;
-                        document.getElementById("patname").value = this.cells[1].innerHTML;
-                        $('#show-delpat').modal();
-                    })
-                }
-            })
-        })
+
+
+        //// *ADMIN BUTTON CLICK
         // *click button activate to get admin ID and name
         $(".butactive").click(function() {
             console.log("dumaan sa active");
@@ -589,6 +585,31 @@
             document.getElementById("idno").value = $text1;
             document.getElementById("adminname").value = $text2;
             $('#show-del').modal();
+        })
+
+
+
+        // ?click button to get patient ID and name
+        $(document).ready(function (){
+            $("#patientTable").click(function (){
+                    var pattable = document.getElementById('patientTable');
+                    for(var i = 1; i < pattable.rows.length; i++)
+                    {
+                        $(pattable.rows[i]).on("click",function (){
+                            var statuses = this.cells[6].innerHTML;
+                            if(statuses=="Active"){//if status is active, disable modal will show
+                                document.getElementById("patidno").value = this.cells[0].innerHTML;
+                                document.getElementById("patname").value = this.cells[1].innerHTML;
+                                $('#show-delpat').modal();
+                            }else if (statuses=="Deactivated"){//if status is inactive, activate modal will show
+                                document.getElementById("patidno3").value = this.cells[0].innerHTML;
+                                document.getElementById("patname3").value = this.cells[1].innerHTML;
+                                $('#show-actpat').modal();
+                            }
+
+                        })
+                    }
+            })
         })
 
      </script>
