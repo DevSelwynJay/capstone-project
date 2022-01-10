@@ -53,7 +53,7 @@ function generate_6_Digits(): string
 
 function generateID($_6DigitCode): string
 {
-    return date('Y')."-03-".$_6DigitCode;
+    return date('Y')."-02-".$_6DigitCode;
 }
 
 function validateID($con,$new_id){//check the generated ID if existing
@@ -108,7 +108,7 @@ if(mysqli_num_rows($resultCheckDuplication)>0){
 
 
 $query = "INSERT INTO walk_in_patient VALUES (
-                 DEFAULT ,'$patientID','$lname','$fname','$mname'
+                 2,DEFAULT, '$patientID','$lname','$fname','$mname'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
                  ,'$occu','$civil','$bloodType','$weight','$height'
                  ,'$patientType','$email','','$contact',''
