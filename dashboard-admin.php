@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -96,6 +102,17 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     $("#name-sidebar").html(result.admin_name)
                 }
             )
+            $.post("dashboard-admin-backend.php").done(function (data) {
+                let result = JSON.parse(data);
+                $("#senior-count").html(result.Senior)
+                $("#adult-count").html(result.Adult)
+                $("#minor-count").html(result.Minor)
+                $("#infant-count").html(result.Infant)
+                $("#PWD").html(result.PWD)
+                $("#pregnant-count").html(result.Pregnant)
+                $("#total-patient-count").html(result.patientCount)
+                $("#total-vaccinated-count").html(result.vaccinated)
+            })
 
 
 
@@ -141,11 +158,12 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                             <h4 id="name-sidebar">Your Name</h4>
                         </div>
                         <ul class="menu">
-                            <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
+                            <li><a href="dashboard-admin.php" class="dashboard" style="background: var(--hover-color)">Dashboard</a></li>
                             <li><a href="patient.php" class="patient">Patient</a></li>
                             <li><a href="reports.php" class="reports">Reports</a></li>
                             <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                             <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                            <?php include 'sidebarFix.html'?>
                         </ul>
                     </div>
                     <div class="social-media-links">
@@ -229,7 +247,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
                                 <div class="drop-down-settings" id="dropdown">
                                     <ul>
-                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="approveEMR.php">Approve EMR</a></li>
                                         <li><a href="settings.php">settings</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>
@@ -246,14 +264,14 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 <div class="dashboard-cards card1">
                                     <i class="fas fa-syringe"></i>
                                     <div class="dashboard-cards-text text1">
-                                        <p>3,008</p>
+                                        <p id="total-vaccinated-count">3,008</p>
                                         <p>Total Number of Vaccinated Persons</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-cards card2">
                                     <i class="fas fa-user-injured"></i>
                                     <div class="dashboard-cards-text text2">
-                                        <p>186</p>
+                                        <p id="total-patient-count">186</p>
                                         <p>Total Number of Patients</p>
                                     </div>
                                 </div>
@@ -262,42 +280,42 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-user-tie"></i>
                                     <div class="small-cards-text">
-                                        <p>129</p>
+                                        <p id="senior-count">129</p>
                                         <p>Senior Citizen Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-male"></i>
                                     <div class="small-cards-text">
-                                        <p>63</p>
+                                        <p id="adult-count">63</p>
                                         <p>Adult Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-child"></i>
                                     <div class="small-cards-text">
-                                        <p>98</p>
+                                        <p id="minor-count">98</p>
                                         <p>Minor Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-baby"></i>
                                     <div class="small-cards-text">
-                                        <p>12</p>
+                                        <p id="infant-count">12</p>
                                         <p>Infant Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-wheelchair"></i>
                                     <div class="small-cards-text">
-                                        <p>31</p>
+                                        <p id="PWD">31</p>
                                         <p>PWD Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-small-cards">
                                     <i class="fas fa-hand-holding-heart"></i>
                                     <div class="small-cards-text">
-                                        <p>109</p>
+                                        <p id="pregnant-count">109</p>
                                         <p>Pregnant Patients</p>
                                     </div>
                                 </div>
@@ -381,6 +399,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     </section>
     <!--  graph   -->
     <script language="JavaScript">
+        // let arr = []
+        // arr.push([1,2,3,4,5]);arr.push([1,2,3,4,5])
+        // alert(arr[0])
+
         function drawChart() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([

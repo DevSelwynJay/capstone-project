@@ -12,9 +12,10 @@ $result = mysqli_query($con,"INSERT INTO patient (id,last_name,first_name,middle
 ,occupation,civil_status,patient_type,email,password,contact_no
 FROM pending_patient WHERE id='$id'");
 if($result){$success_query_count+=1;}
-$result = mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");
-if($result){$success_query_count+=1;}
-if($success_query_count==2){
+
+if($success_query_count==1){
+    require 'approvePendingEmail.php';
+    $result = mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");
     echo 1;
 }
 else{

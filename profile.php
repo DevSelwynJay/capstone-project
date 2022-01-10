@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,6 +69,7 @@
                             <li><a href="reports.php" class="reports">Reports</a></li>
                             <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                             <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                            <?php include 'sidebarFix.html'?>
                         </ul>
                     </div>
                     <div class="social-media-links">
@@ -96,7 +105,7 @@
      
                                 <div class="drop-down-settings" id="dropdown">
                                     <ul>
-                                        <li><a href="">Approve EMR</a></li>
+                                        <li><a href="approveEMR.php">Approve EMR</a></li>
                                         <li><a href="settings.php">settings</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -105,10 +111,11 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                        </div>
                        <ul class="menu">
                            <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
-                           <li><a href="patient.php" class="patient">Patient</a></li>
+                           <li><a href="patient.php" class="patient" style="background: var(--hover-color)">Patient</a></li>
                            <li><a href="reports.php" class="reports">Reports</a></li>
                            <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                            <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                           <?php include 'sidebarFix.html'?>
                        </ul>
                    </div>
                    <div class="social-media-links">
@@ -412,8 +419,9 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok",
-                   address:"Address",
+                   // address:"Address",
                }
            ,
            searchField: '.search-bar',
@@ -461,6 +469,7 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok"
                    // address:"Address",
                });
@@ -471,8 +480,9 @@ Closedropdown.addEventListener('click',function(){
                    name:"Name",
                    patient_type:"Type",
                    age: "Age",
+                   bday: "BirthDay",
                    purok:"Purok",
-                   address:"Address",
+                   // address:"Address",
                });
            }
        })//end of get/post method

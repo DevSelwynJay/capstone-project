@@ -76,24 +76,28 @@ if(!empty($fileNames)){
 
     }//for
 
-    $fname = strtoupper(substr($_POST['fname'],0,1)).strtolower(substr($_POST['fname'],1));
-    $mname = strtoupper(substr($_POST['mname'],0,1)).strtolower(substr($_POST['mname'],1));
-    $lname = strtoupper(substr($_POST['lname'],0,1)).strtolower(substr($_POST['lname'],1));
+    $trimmedFname = trim($_POST['fname']);
+    $trimmedMname = trim($_POST['mname']);
+    $trimmedLname = trim($_POST['lname']);
 
-    $suffix = $_POST['suffix'];
+    $fname = strtoupper(substr($trimmedFname,0,1)).strtolower(substr($trimmedFname,1));
+    $mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1));
+    $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
+
+    $suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
     if($suffix!=""){
         $lname.=" ".$suffix;
     }
 
-    $occupation = $_POST['occupation'];
-    $civil_status = $_POST['civil_status'];
-    $email = $_POST['email'];
-    $contact = $_POST['contact'];
-    $pwd = $_POST['pwd'];
-    $gender = $_POST['gender'];
-    $bday = $_POST['bday'];
-    $purok = $_POST['purok'];
-    $house_no = $_POST['house_no'];
+    $occupation = trim($_POST['occupation']);
+    $civil_status = trim($_POST['civil_status']);
+    $email = trim($_POST['email']);
+    $contact = trim($_POST['contact']);
+    $pwd = trim($_POST['pwd']);
+    $gender = trim($_POST['gender']);
+    $bday = trim($_POST['bday']);
+    $purok = trim($_POST['purok']);
+    $house_no = trim($_POST['house_no']);
 
     //add default value to patient type (Adult, Minor or Senior)
     $today = date('Y-m-d');
@@ -117,7 +121,7 @@ if(!empty($fileNames)){
     mysqli_query($con,
         "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
-
+    header("location:../../register.php");
 }
 
 ?>

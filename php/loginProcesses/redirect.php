@@ -9,6 +9,10 @@ need to add some codes later*/
 if(!isset($_SESSION['email'])){
     header("location:../../index.php",true);
 }
+if(!isset($_SESSION['account_type'])){
+    header("location:../../index.php",true);
+}
+
 
 
 //0->superadmin 1->admin 2->patient
@@ -21,4 +25,7 @@ else if($type==1){
 header("location:../../dashboard-admin.php",true);}
 else if($type==2){
     header("location:../../dashboard-patient.php",true);}
+else{
+    header("location:../../dashboard-patient.php",true);
+}
 exit();

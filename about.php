@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +26,16 @@
 <title>About</title>
 <!--Jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (data) {
+            $.post('php/admin_session.php').done(
+                function (data) {
+                    let result = JSON.parse(data)
+                    $("#name-sidebar").html(result.admin_name)
+                }
+            )
+        })
+    </script>
     <style>
         .drop-down-settings,.drop-down-settings open{
             z-index: 1000;
@@ -37,7 +55,7 @@
 <div class="profile-img">
 <img src="img/jay.jpg" alt="">
 </div>
-<h4>Your Name</h4>
+<h4 id="name-sidebar">Your Name</h4>
 </div>
 <ul class="menu">
 <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
@@ -45,6 +63,7 @@
 <li><a href="reports.php" class="reports">Reports</a></li>
 <li><a href="track-map.php" class="trackMap">Track Map</a></li>
 <li><a href="inventory.php" class="inventory">Inventory</a></li>
+    <?php include 'sidebarFix.html'?>
 </ul>
 </div>
 <div class="social-media-links">
@@ -81,7 +100,7 @@
 
     <div class="drop-down-settings" id="dropdown">
         <ul>
-            <li><a href="">Approve EMR</a></li>
+            <li><a href="approveEMR.php">Approve EMR</a></li>
             <li><a href="settings.php">settings</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="php/sessionDestroy.php">Logout</a></li>

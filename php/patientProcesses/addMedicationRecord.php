@@ -34,7 +34,7 @@ if($row = mysqli_fetch_assoc($res)){
 //reduce the inv stock based on the given quantity
 $ctr=0;
 $residualStock=0;//stock to reduce sa next row kung naging negative ung nauna na binawasan
-$res = mysqli_query($con,"SELECT * FROM medinventory WHERE name = '$medName' AND dosage='$dosage' AND stock>0 ORDER BY dateadded");
+$res = mysqli_query($con,"SELECT * FROM medinventory WHERE name = '$medName' AND dosage='$dosage' AND stock>0 AND expdate > DATE_FORMAT(NOW(),'%Y-%m-%d') ORDER BY dateadded");
 while($row = mysqli_fetch_assoc($res)){
     $id = $row['id'];//get the id coz it will use to update the stock of item
 

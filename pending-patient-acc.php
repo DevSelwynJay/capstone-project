@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -108,14 +114,15 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <div class="profile-img">
                             <img src="img/jay.jpg" alt="">
                         </div>
-                        <h4>Your Name</h4>
+                        <h4 id="name-sidebar">Your Name</h4>
                     </div>
                     <ul class="menu">
                         <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
-                        <li><a href="patient.php" class="patient">Patient</a></li>
+                        <li><a href="patient.php" class="patient" style="background: var(--hover-color)">Patient</a></li>
                         <li><a href="reports.php" class="reports">Reports</a></li>
                         <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
+                        <?php include 'sidebarFix.html'?>
                     </ul>
                 </div>
                 <div class="social-media-links">
@@ -200,7 +207,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 </div>
                             <div class="drop-down-settings" id="dropdown">
                                 <ul>
-                                    <li><a href="">Approve EMR</a></li>
+                                    <li><a href="approveEMR.php">Approve EMR</a></li>
                                     <li><a href="settings.php">settings</a></li>
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="php/sessionDestroy.php">Logout</a></li>
@@ -365,7 +372,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 </a>
 
 <!--modal for individual view-->
-<div class="modal" id="view-pending-patient">
+<div class="modal modal-full-width" id="view-pending-patient">
 
     <div class="flex-box-row justify-content-center align-items-center">
         <img src="img/user.png" class="modal-header-icon">
@@ -391,21 +398,89 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         }
     </style>
 
+    <div id="overflow-x-div" style="max-height: 50vh;overflow-y: auto; overflow-x: hidden">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div class="flex-box-row justify-content-lg-center justify-content-sm-end align-items-end" style="margin-bottom: clamp(0.2em,0.3em,5em)">
+                    <a id="fs" class="modal-p-lighter"><i class="fas fa-compress-arrows-alt"></i></i>View ID in Fullscreen</a>
+                </div>
+                <div class="gallery" style="margin-bottom: 1.5rem;">
+                    <!--        <div class="gallery-cell"></div>-->
+                    <!--        <div class="gallery-cell"></div>-->
+                    <!--        <div class="gallery-cell"></div>-->
+                    <!--        <div class="gallery-cell"></div>-->
+                    <!--        <div class="gallery-cell"></div>-->
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 row">
+                <div class="col-sm-12 justify-content-center">
+                    <h5 style="text-align: center;color: var(--third-color)">Online Account Information</h5>
+                    <div class="padding-all-15" id="info-cont">
+                        <div>
+                            <p class="modal-p">First Name</p>
+                            <p class="modal-p-2" id="fname">Alfredo</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Middle Name</p>
+                            <p class="modal-p-2" id="mname">Bas</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Last Name</p>
+                            <p class="modal-p-2" id="lname">Benitez</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Birthday</p>
+                            <p class="modal-p-2" id="bday">1999/01/11</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Purok</p>
+                            <p class="modal-p-2" id="purok">7</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Occupation</p>
+                            <p class="modal-p-2" id="occu">7</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Civil Status</p>
+                            <p class="modal-p-2" id="civil">7</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Email Used</p>
+                            <p class="modal-p-2" id="email-used">7</p>
+                        </div>
+                        <div>
+                            <p class="modal-p">Contact No.</p>
+                            <p class="modal-p-2" id="contact-used">7</p>
+                        </div>
+                    </div>
+                    <style>
+                        #info-cont div{
 
-    <div class="flex-box-row justify-content-end align-items-end" style="margin-bottom: clamp(0.2em,0.3em,5em)">
-        <a id="fs" class="modal-p-lighter"><i class="fas fa-compress-arrows-alt"></i></i>View ID in Fullscreen</a>
-    </div>
-    <div class="gallery" style="margin-bottom: 1.5rem">
-        <!--        <div class="gallery-cell"></div>-->
-        <!--        <div class="gallery-cell"></div>-->
-        <!--        <div class="gallery-cell"></div>-->
-        <!--        <div class="gallery-cell"></div>-->
-        <!--        <div class="gallery-cell"></div>-->
+                        }
+                        #info-cont div{
+                            margin-bottom: 0.2rem;
+                            display: flex;
+                            flex-direction: row;
+                            border-bottom: 1px solid var(--light-grey);
+                        }
+                        #info-cont div p{
+                            flex: 0 1 50%;
+                        }
+                        #info-cont div .modal-p{
+                           text-align: center;
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="flex-box-row justify-content-center">
-        <button class="modal-p-lighter margin-top-2 text-center" style="padding: 0.5rem;border:1px solid var(--dark-grey);cursor: pointer;border-radius: 0.2rem;"><i class="fas fa-info-circle fa-lg"></i>Show All Info</button>
-    </div>
+
+
+
+<!--    <div class="flex-box-row justify-content-center">-->
+<!--        <button class="modal-p-lighter margin-top-2 text-center" style="padding: 0.5rem;border:1px solid var(--dark-grey);cursor: pointer;border-radius: 0.2rem;"><i class="fas fa-info-circle fa-lg"></i>Show All Info</button>-->
+<!--    </div>-->
 
     <div class="row margin-top-1">
         <div class="col-sm-12">
@@ -540,7 +615,21 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 carouselInstance=true
 
 
-                id = $(this).data('id');
+                id = $(this).data('id');//session for selected pending account
+                $.post('php/registerProcesses/activeSelectedPendingSession.php',{id:id}).done(function (data) {
+                    // alert(data)
+                    let result = JSON.parse(data);
+                    $("#fname").html(result.first_name)
+                    $("#mname").html(result.middle_name)
+                    $("#lname").html(result.last_name)
+                    $("#bday").html(result.birthday)
+                    $("#purok").html(result.purok)
+                    $("#occu").html(result.occupation)
+                    $("#civil").html(result.civil_status)
+                    $("#email-used").html(result.email)
+                    $("#contact-used").html(result.contact_no)
+                })
+
                 name = $(this).data('lname')+", "+$(this).data('fname')+" "+$(this).data('mname');
                 email = $(this).data('email');//alert(email)
                 //alert(name)
@@ -614,7 +703,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     setTimeout(()=>{
                         $("#pop-up-error").modal({showClose: false, escapeClose: false, clickClose: false,})
                     },700)
-                    console.log("cant add data")
+                    console.log(data)
                 }
 
             })
