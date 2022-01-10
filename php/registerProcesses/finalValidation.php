@@ -54,6 +54,13 @@ if(mysqli_num_rows($resultCheckDuplication)>0){
     $errMsg.= "<p>Duplication Detected</p>";
 
 }
+$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+AND birthday = '$bday'
+");
+if(mysqli_num_rows($resultCheckDuplication)>0){
+    $errMsg.= "<p>Duplication Detected</p>";
+}
 
 if($errMsg==null){
     echo json_encode(array("success"=>true,"message"=>"okay"));
