@@ -7,7 +7,7 @@ if(!isset($_SESSION['email'])){
 }
 else{
     $isPatient=false;
-   foreach (array(1,2) as $item){
+   foreach (array(2,3) as $item){
        $isPatient=true;
        if($item==$_SESSION['account_type']){
            break;
