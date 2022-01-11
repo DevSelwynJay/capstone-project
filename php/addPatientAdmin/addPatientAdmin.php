@@ -90,24 +90,27 @@ if($contact==""||$contact==null){
 }
 
 //another added validation pag may kamuka na name bday purok bawal
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+$tables = array('walk_in_patient','pending_patient');
+foreach ($tables as $table){
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
 AND purok = $purok AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    echo "Cannot add patient. Duplication Detected!";
-    exit();
-}
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        echo "Cannot add patient. Duplication Detected!";
+        exit();
+    }
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
  AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    echo "Cannot add patient. Duplication Detected!";
-    exit();
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        echo "Cannot add patient. Duplication Detected!";
+        exit();
+    }
 }
 
-function generateRandomString($length = 6): string
+function generateRandomString($length = 8): string
 {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
