@@ -61,6 +61,8 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
     <script src="jquery-ui/jquery-ui.js"></script>
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
     <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
     <link rel="stylesheet" href="scss/notif.css">
@@ -225,14 +227,20 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 <div class="col-sm-12">
                     <div class="">
                         <div class="inventory__container">
-                            <div class="inventory__table-main-container"  >
-                                <!--Add Button para sa MEDS-->
-                                <button class="modal-primary-button-2" type="button" id="addbtn"><i class="fas fa-plus" style="margin-right: 0.3rem"></i>Add Medicine</button>
-<!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
-
-                                <div>
-                                    <input style="width: 40vw" type="text" id="meds" class="form-control" placeholder="Search Medicines" autocomplete="off">
+                            <div class="inventory__table-main-container">
+                                <div class="row flex-box-row justify-content-lg-around">
+                                    <div class="col-lg-6 flex-box-row  justify-content-lg-start margin-top-1">
+                                        <!--Add Button para sa MEDS-->
+                                        <button class="modal-primary-button-2" type="button" id="addbtn"><i class="fas fa-plus" style="margin-right: 0.3rem"></i>Add Medicine</button>
+                                        <!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
+                                    </div>
+                                    <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
+                                        <div class="search-container" style="width: clamp(50%,70%,80%) ">
+                                            <input style="" type="text" id="meds" class="form-control search-bar" placeholder="Search Medicines" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <!--Display ko dito yung Table of MEDS-->
                                 <div id="displayMedicineDataTable">
                                 </div>
@@ -252,9 +260,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         </div>
                         <!--Modals-->
                         <!-- Add New Meds Modal -->
-                        <div id="add-modal" class="modal">
+                        <div id="add-modal" class="modal" >
                             <div class="flex-box-row justify-content-center align-items-center">
-                                <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Add New Medicine</p>
+                                <img class="modal-header-icon-wider" src="img/medicine.png"><p class="modal-title-2">Add New Medicine</p>
                             </div>
                             <div class="modal-content-scrollable">
 
