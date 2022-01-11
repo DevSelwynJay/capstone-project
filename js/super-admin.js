@@ -287,6 +287,8 @@ function checkPassDisable(adminIds,adminname,superEmail,superPass){
     $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
         .done(function (data){
             console.log(superEmail,superPass);
+            var statt = "active";
+            var acttype = "1";
             if(data == 1){
                 Swal.fire({
                     title: 'Are you sure you want to deactivate this account?',
@@ -298,6 +300,7 @@ function checkPassDisable(adminIds,adminname,superEmail,superPass){
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         console.log("dito passdisable");
+                        sendmail(adminIds,statt,acttype);
                         disableAdmin(adminIds);
                         let timerInterval
                         Swal.fire({
@@ -465,6 +468,8 @@ function checkPatDisable (patientIds,patname,superEmail, superPass){
     $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
         .done(function (data){
             console.log(superEmail,superPass);
+            var statt = "active";
+            var acttype = "3";
             if(data == 1){
                 Swal.fire({
                     title: 'Are you sure you want to deactivate this account?',
@@ -475,6 +480,7 @@ function checkPatDisable (patientIds,patname,superEmail, superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
+                        sendmail(patientIds,statt,acttype);
                         disablePatient(patientIds);
                         let timerInterval
                         Swal.fire({
@@ -669,6 +675,8 @@ function checkPassActivate(adminIds,adminname,superEmail,superPass){
     $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
         .done(function (data){
             console.log(superEmail,superPass);
+            var statt = "inactive";
+            var acttype = "1";
             if(data == 1){
                 Swal.fire({
                     title: 'Are you sure you want to activate this account?',
@@ -679,6 +687,7 @@ function checkPassActivate(adminIds,adminname,superEmail,superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
+                        sendmail(adminIds,statt,acttype);
                         activateAdmin(adminIds);
                         let timerInterval
                         Swal.fire({
@@ -785,6 +794,8 @@ function activatePatient(patientIds){
 function checkPatActivate(patientIds,patname,superEmail, superPass){
     $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
         .done(function (data){
+            var statt = "inactive";
+            var acttype = "3";
             console.log(superEmail,superPass);
             if(data == 1){
                 Swal.fire({
@@ -796,6 +807,7 @@ function checkPatActivate(patientIds,patname,superEmail, superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
+                        sendmail(patientIds,statt,acttype);
                         activatePatient(patientIds);
                         let timerInterval
                         Swal.fire({
@@ -842,4 +854,11 @@ function checkPatActivate(patientIds,patname,superEmail, superPass){
 
         })
 
+}
+function sendmail(allId,stat,acttype){
+
+    $.post("php/superAdminProcesses/sendEmail.php", {allId:allId,status:stat,acttype:acttype})
+        .done(function (data){
+            console.log(data);
+        })
 }

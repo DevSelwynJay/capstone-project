@@ -17,8 +17,6 @@ mysqli_query($con,"UPDATE walk_in_patient SET account_status='1' WHERE id='$patI
 
 
 $result = mysqli_query($con, "SELECT account_status FROM walk_in_patient WHERE id='$patId'");
-//echo "<script>console.log(''+$result);</script>";
-
 if($row = mysqli_fetch_assoc($result) ){
     if($row['account_status'] == 1){
         echo 1;
