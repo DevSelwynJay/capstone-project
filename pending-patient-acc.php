@@ -112,7 +112,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 <div class="spacer">
                     <div class="profile">
                         <div class="profile-img">
-                            <img src="img/jay.jpg" alt="">
+                            <img src="img/user3.png" alt="">
                         </div>
                         <h4 id="name-sidebar">Your Name</h4>
                     </div>
