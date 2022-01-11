@@ -81,8 +81,9 @@ $patientID = $_SESSION['final_id'];
 //if many account added with no email and contact
 //empty column will produce resulting to error
 //to solve, if walk in patient provide empty email/pwd the value would be its ID including the word none
+$temp_email=null;
 if($email==""||$email==null){
-    $email = "none-".$patientID;
+   $temp_email = $email = "none-".$patientID;
 }
 if($contact==""||$contact==null){
     $contact = "none-".$patientID;
@@ -124,7 +125,12 @@ $query = "INSERT INTO walk_in_patient VALUES (
                                    
 )";
 
-require 'sendPassword.php';
+//if walk in patient nag provide ng email, magkakaaccess sa online acc si patient, then send ng temp password
+if($email!=$temp_email){
+    echo $email;
+    require 'sendPassword.php';
+}
+
 $result = mysqli_query($con,$query);
 
 if($result){

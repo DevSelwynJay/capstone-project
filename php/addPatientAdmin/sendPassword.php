@@ -71,4 +71,5 @@ $mail->Body = $messageBody;
 //send the message, check for errors
 if (!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    exit();
 }
