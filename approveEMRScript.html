@@ -128,9 +128,12 @@
             
             //decline account req
             $(".dec-req-btn").click(function (data) {
+                $("#decline-reason").val("")
                 let patientOA_ID = $(this).data("patientoa_id");
                 let email = $(this).data("email");
+                $("#dec-email").html("Name: "+email)
                 let name = $(this).data("name");
+                $("#to").html("To: "+name)
                 let reqID = $(this).data("reqid");
                 $("#pop-up-dec-req").modal({
                     // showClose:false,clickClose: false,escapeClose: false
@@ -144,7 +147,7 @@
                     email:email,
                     name:name
                 }).done(function (data) {
-                    // alert(data)
+                     // alert(data)
                 })
             })
         }
@@ -210,10 +213,83 @@
 
     });//end of document ready
 </script>
-<!--Modal for decline emr request-->
+
+<!--Modal for error-->
+<div class="modal" id="pop-up-error">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/Icons/exclamation-mark.png">
+        <p class="modal-p" id="pop-up-error-message">Can't process request. Please try again later</p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-error" rel="modal:close">
+            <button class="modal-primary-button" style="margin-right: 0.5rem">Okay</button>
+        </a>
+    </div>
+</div>
+
+<!--modal for decline-->
 <div id="pop-up-dec-req" class="modal">
-    <div class="row">
-        <div class="col-sm-12"><h4 style="color: var(--third-color)">Decline EMR Request</h4></div>
+    <div class="flex-box-row justify-content-center align-items-center">
+        <p class="modal-title-2 flex-box-row align-items-center justify-content-start">
+            <img class="modal-header-icon" src="img/decline.png">
+            Decline EMR Request
+        </p>
+    </div>
+    <div class="flex-box-column justify-content-center align-items-start  margin-top-3">
+        <p class="modal-smaller-p " id="to" style="font-weight: 400;width: 100%;color: var(--third-color)">To: Alfredo B. Benitez</p>
+        <p class="modal-smaller-p " id="dec-email" style="font-weight: 400;width: 100%;color: var(--third-color)">Email: alfredogie@gmail.com</p>
+    </div>
+    <div class="flex-box-row justify-content-start align-items-center margin-top-1" style="margin-bottom: clamp(0.2em,0.3em,5em);">
+        <a class="modal-smaller-p" style="cursor: inherit">Please type a reason</a>
+    </div>
+
+    <div class="flex-box-column justify-content-center align-items-start" style="margin-bottom: clamp(0.2em,0.3em,5em)">
+        <textarea id="decline-reason" placeholder="Message" style="font-family: Poppins;letter-spacing: 1px">
+        </textarea>
+        <p class="modal-p-error">Please input reason!</p>
+        <script>
+            $("#decline-reason").focus(function () {
+                $("#decline-reason").val("")
+            })
+        </script>
+        <style>
+            #decline-reason{
+                resize: none;width: 97%;max-width: 100%;border: none;
+                padding: 0.5rem;outline: none;margin: 0 0.3rem 0 0.3rem;
+                height: 25vh;
+                border-top: 0.1rem solid var(--light-grey);
+            }
+        </style>
+    </div>
+    <div class="flex-box-row justify-content-end align-items-end margin-top-1" style="margin: 0.5rem">
+        <a href="#pop-up-decline" rel="modal:close">
+            <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+        </a>
+        <button class="modal-primary-button" id="final-decline" style="margin-left: 0.5rem">Decline</button>
+        <script>
+            $("#final-decline").click(function (data) {
+                if($("#decline-reason").val()==""){
+                    $(".modal-p-error").css("visibility","visible")
+                    return
+                }
+                $("#pop-up-loading-message").html("Processing Request....")
+                $("#pop-up-loading").modal({showClose:false,clickClose:false,escapeClose:false})
+                $.post("php/approveEMR/declineEMR.php",{
+                    decline_msg:$("#decline-reason").val()
+                }).done(function (data) {
+                    if(data==1){
+                        setTimeout(()=>{
+                            location.reload();
+                        },1000)
+                    }
+                    else {
+                        $("#pop-up-error").modal({showClose:false})
+                    }
+                })
+
+            })
+        </script>
     </div>
 </div>
 

@@ -296,6 +296,16 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                              <input class="search-bar" type="number" name="contact" inputmode="tel" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Contact no (11-digit number)" data-container="body" />
                                          </div>
                                      </div>
+                                     <div class="row margin-top-1">
+                                         <div class="col-sm-12">
+                                             <p class="modal-p-2">
+                                                 <span style="color: darkred">Note: </span>
+                                                  If email is provided, it will used by the patient to access its online account.
+                                                  A temporary password will be sent to the email after registration and can be changed later after logging in
+                                             </p>
+
+                                         </div>
+                                     </div>
                                      <div style="display: flex;justify-content: center">
                                          <button class="primary-btn" id="trigger-add-patient-modal" type="button" style="width: 100%">Register</button>
                                      </div>
@@ -397,9 +407,11 @@ Closedropdown.addEventListener('click',function(){
 
               <p class="modal-p flex-box-row justify-content-center align-items-center">
                   <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
-                  Add this patient account?
+                  Add this patient?
               </p>
+
           </div>
+
 
           <div class="flex-box-row justify-content-end align-items-end">
               <a href="#pop-up-confirm-add-patient" rel="modal:close">

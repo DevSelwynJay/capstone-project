@@ -3,11 +3,27 @@ session_start();
 $con = null;
 require '../DB_Connect.php';
 
-if(!isset($_SESSION['email'])||$_SESSION['account_type']!=2){
+if(!isset($_SESSION['email'])){
     echo json_encode(array(
         "patient_name"=>"no logged patient"
     ));
     exit();
+}
+else{
+    $isPatient=false;
+    foreach (array(2,3) as $item){
+
+        if($item==$_SESSION['account_type']){
+            $isPatient=true;
+            break;
+        }
+    }
+    if(!$isPatient){
+        echo json_encode(array(
+            "patient_name"=>"no logged patient"
+        ));
+        exit();
+    }
 }
 $email = $_SESSION['email'];
 $res = mysqli_query($con,"SELECT *, timestampdiff(year ,birthday,NOW()) as age, DATE_FORMAT(birthday,'%M %e, %Y') as bday FROM walk_in_patient where email = '$email' ");

@@ -1,7 +1,15 @@
 <?php
 //sa add patient ng admin side
 $contact = trim($_POST['contact']);
-$email = trim($_POST['email']);
+
+$emails = trim($_POST['email']);
+$email = (string)$emails;
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//    echo 1;//true
+echo "Invalid email format";
+exit();
+}
 
 $con=null;
 require '../DB_Connect.php';

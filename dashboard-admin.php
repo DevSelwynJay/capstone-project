@@ -113,6 +113,26 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $("#total-patient-count").html(result.patientCount)
                 $("#total-vaccinated-count").html(result.vaccinated)
             })
+            $.post("dashboard-admin-get-admin.php").done(function (data) {
+                let result = JSON.parse(data);
+                $("#admin-list").html("")
+                for (const resultElement of result) {
+                    $("#admin-list").append("" +
+                        "<li>" +
+                        '<div class="name-list"><img src="img/user.png" alt="">' +
+                        "<p>"+resultElement.first_name + " " +resultElement.middle_name +" "+resultElement.last_name +"</p>"+
+                        "<p>"+resultElement.role+"</p>"+
+                        "" +
+                        "</li>")
+                }
+
+                // <li>
+                //     <div class="name-list"><img src="img/jay.jpg" alt="">
+                //         <p>Juan Dela Cruz</p>
+                //         <p>Midwife</p>
+                //     </div>
+                // </li>
+            })
 
 
 
@@ -331,7 +351,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <p>Name</p>
                                     <p>Position</p>
                                 </div>
-                                <ul>
+                                <ul id="admin-list">
                                     <li>
                                         <div class="name-list"><img src="img/jay.jpg" alt="">
                                             <p>Juan Dela Cruz</p>

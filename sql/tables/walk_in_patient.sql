@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2022 at 09:23 AM
+-- Generation Time: Jan 11, 2022 at 05:50 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `walk_in_patient` (
-  `account_type` int(1) NOT NULL DEFAULT 3 COMMENT '3 walk in patient',
+  `account_type` int(1) NOT NULL COMMENT '2 walk in// 3 register online ',
   `account_status` int(1) NOT NULL DEFAULT 1 COMMENT '1 active 0 disable',
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -57,8 +57,13 @@ CREATE TABLE `walk_in_patient` (
 --
 
 INSERT INTO `walk_in_patient` (`account_type`, `account_status`, `id`, `last_name`, `first_name`, `middle_name`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(2, 1, '2022-02-325788', 'Benitez', 'Alfredo', 'Bas', 'Male', '1999-01-11', '1', '2', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Adult', 'none-2022-02-325788', '', 'none-2022-02-325788', '', '2022-01-10 08:15:54'),
-(2, 1, '2022-02-779987', 'Cruz', 'Bebang', 'Biler', 'Male', '2009-10-14', '1', '0', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'none-2022-02-779987', '', 'none-2022-02-779987', '', '2022-01-10 08:16:23');
+(2, 1, '2022-02-336149', 'Aguilar', 'Eliezer', 'Acuña', 'Male', '1999-02-01', '3', '47', 'Sto. Rosario Paombong Bulacan', 'Student', 'Single', 'A', '85kg', '175cm', 'Adult', 'none-2022-02-336149', '7zbBXOUE', 'none-2022-02-336149', '', '2022-01-11 03:47:58'),
+(2, 1, '2022-02-639914', 'Benitez', 'Lowell', 'Galvez', 'Male', '1990-08-01', '6', '15', 'Sto. Rosario Paombong Bulacan', 'Driver', 'Married', 'AB', '60kg', '165cm', 'Senior', 'none-2022-02-639914', '6jAWH0LD', 'none-2022-02-639914', '', '2022-01-11 04:49:33'),
+(2, 1, '2022-02-779987', 'Cruz', 'Bebang', 'Biler', 'Male', '2009-10-14', '1', '0', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'none-2022-02-779987', '', 'none-2022-02-779987', '', '2022-01-10 08:16:23'),
+(3, 1, '2022-03-304737', 'Florentino', 'Dominic', 'Alba', 'Male', '2000-03-17', '7', '', 'Sto. Rosario Paombong Bulacan', 'nurse', 'Single', '', '', '', 'Adult', 'ian.dominic032@gmail.com', 'mukamo11', '09983672680', '', '2022-01-11 04:48:23'),
+(3, 1, '2022-03-539441', 'Cruz', 'Fredie', 'Biler', 'Male', '2012-01-10', '2', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'benitez.alfredo.b.1128@gmail.com', 'aaaaaaaa', '09422697903', '', '2022-01-10 09:59:18'),
+(3, 1, '2022-03-853659', 'Cajucom', 'Kurth', 'Zabala', 'Male', '2000-10-04', '4', '', 'Sto. Rosario Paombong Bulacan', 'student', 'Single', '', '', '', 'Adult', 'kurthcajucom4@gmail.com', 'mukamo11', '09750075284', '', '2022-01-11 04:48:14'),
+(3, 1, '2022-03-969011', 'De leon', 'John david', 'Bernardo', 'Male', '2000-12-25', '3', '', 'Sto. Rosario Paombong Bulacan', 'Student', 'Single', '', '', '', 'Adult', 'johndaviddeleon18@gmail.com', 'mukamo11', '09161103174', '', '2022-01-11 03:53:54');
 
 --
 -- Indexes for dumped tables

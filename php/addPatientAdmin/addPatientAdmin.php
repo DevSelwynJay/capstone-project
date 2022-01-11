@@ -81,41 +81,58 @@ $patientID = $_SESSION['final_id'];
 //if many account added with no email and contact
 //empty column will produce resulting to error
 //to solve, if walk in patient provide empty email/pwd the value would be its ID including the word none
+$temp_email=null;
 if($email==""||$email==null){
-    $email = "none-".$patientID;
+   $temp_email = $email = "none-".$patientID;
 }
 if($contact==""||$contact==null){
     $contact = "none-".$patientID;
 }
 
 //another added validation pag may kamuka na name bday purok bawal
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+$tables = array('walk_in_patient','pending_patient');
+foreach ($tables as $table){
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
 AND purok = $purok AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    echo "Cannot add patient. Duplication Detected!";
-    exit();
-}
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        echo "Cannot add patient. Duplication Detected!";
+        exit();
+    }
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
  AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    echo "Cannot add patient. Duplication Detected!";
-    exit();
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        echo "Cannot add patient. Duplication Detected!";
+        exit();
+    }
 }
 
+function generateRandomString($length = 8): string
+{
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+$_SESSION['randomPassword'] = $randomPassword = generateRandomString();
+$_SESSION['newAddWalkInPatientEmail'] = $email;
+$_SESSION['newAddWalkInPatientName'] = $fname." ".$mname." "." ".$lname;
 
 $query = "INSERT INTO walk_in_patient VALUES (
                  2,DEFAULT, '$patientID','$lname','$fname','$mname'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
                  ,'$occu','$civil','$bloodType','$weight','$height'
-                 ,'$patientType','$email','','$contact',''
+                 ,'$patientType','$email','$randomPassword','$contact',''
                  ,DEFAULT 
                                    
                                    
 )";
+
+//if walk in patient nag provide ng email, magkakaaccess sa online acc si patient, then send ng temp password
+if($email!=$temp_email){
+    require 'sendPassword.php';
+}
+
 $result = mysqli_query($con,$query);
 
 if($result){

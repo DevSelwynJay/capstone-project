@@ -417,10 +417,10 @@ Closedropdown.addEventListener('click',function(){
                {
                    id: "ID",
                    name:"Name",
-                   patient_type:"Type",
+                   patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
-                   account_type: "Status",
+                   account_type: "Acc. Type",
 
                    // address:"Address",
                }
@@ -431,7 +431,7 @@ Closedropdown.addEventListener('click',function(){
                    columns: {
                        id: "ID",
                        name:"Name",
-                       patient_type:"Type",
+                       patient_type:"Patient Type",
                        age: "Age",
                        purok:"Purok"
 
@@ -468,10 +468,10 @@ Closedropdown.addEventListener('click',function(){
                table.setData(JSON.parse(data),{
                    id: "ID",
                    name:"Name",
-                   patient_type:"Type",
+                   patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
-                   account_type: "Status",
+                   account_type: "Acc. Type",
                    // bday: "BirthDay",
 
                    // address:"Address",
@@ -481,10 +481,10 @@ Closedropdown.addEventListener('click',function(){
                table.setData(JSON.parse(data),{
                    id: "ID",
                    name:"Name",
-                   patient_type:"Type",
+                   patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
-                   account_type: "Status",
+                   account_type: "Acc. Type",
                    // bday: "BirthDay",
 
                    // address:"Address",

@@ -299,7 +299,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         function displayMainReport(page){
 
             $.ajax({
-                url: 'php/reportProcesses/DisplayMainReport.php',
+                url: 'php/reportProcesses/displayMainReport.php',
                 type:'POST',
                 data:{
                     page:page
@@ -316,7 +316,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         function displayMainReport2(page){
 
             $.ajax({
-                url: 'php/reportProcesses/DisplayMainReport2.php',
+                url: 'php/reportProcesses/displayMainReport2.php',
                 type:'POST',
                 data:{
                     page:page

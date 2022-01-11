@@ -79,23 +79,25 @@ last_name = '$lname', first_name= '$fname', middle_name = '$mname', gender = '$g
     exit();
 }
 else{
-    //kapag ung ung name bday at purok ay nagalaw
-        //another added validation pag may kamuka na name bday purok bawal
-        $resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
-    WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
-    AND purok = $purok AND birthday = '$bday'
-    ");
+    //another added validation pag may kamuka na name bday purok bawal
+    $tables = array('walk_in_patient','pending_patient');
+    foreach ($tables as $table){
+        $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
+        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+        AND purok = $purok AND birthday = '$bday'
+        ");
         if(mysqli_num_rows($resultCheckDuplication)>0){
-            echo "Cannot update. Duplication detected!";
+            echo "Cannot add patient. Duplication Detected!";
             exit();
         }
-    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
-    WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
-    AND birthday = '$bday'
-    ");
-    if(mysqli_num_rows($resultCheckDuplication)>0){
-        echo "Cannot update. Duplication detected!";
-        exit();
+        $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
+        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+         AND birthday = '$bday'
+        ");
+        if(mysqli_num_rows($resultCheckDuplication)>0){
+            echo "Cannot add patient. Duplication Detected!";
+            exit();
+        }
     }
 
 
