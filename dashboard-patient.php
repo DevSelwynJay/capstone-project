@@ -8,8 +8,9 @@ if(!isset($_SESSION['email'])){
 else{
     $isPatient=false;
    foreach (array(2,3) as $item){
-       $isPatient=true;
+
        if($item==$_SESSION['account_type']){
+           $isPatient=true;
            break;
        }
    }
