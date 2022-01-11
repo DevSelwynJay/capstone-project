@@ -60,6 +60,14 @@ $(document).ready(function (){
         patientDisableCheck(patientIds,patname);
     })
 })
+// ?trigger if disable PATIENT modal button is clicked
+$(document).ready(function (){
+    $("#activate-patient2").click(function (){
+        var patientIds = $('#patidno3').val();
+        var patname = $('#patname3').val();
+        patientActivateCheck(patientIds,patname);
+    })
+})
 //By button disable PATIENT
 /*
 $(document).ready(function (){
@@ -69,6 +77,7 @@ $(document).ready(function (){
     })
 })
 */
+//// * ADD ADMIN PROCESSES
 //check if the fields are empty
 function checkEmpty(){
     console.log("dumaan sa empty");
@@ -246,7 +255,7 @@ function appendTableAdmin() {
             //$(result).appendTo( "#adminTable>tbody" );
        // })
 }
-// ?-----------
+//// * DISABLE PROCESSESS
 // *DISABLE ADMIN
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminDisableCheck(adminIds,adminname){
@@ -289,7 +298,7 @@ function checkPassDisable(adminIds,adminname,superEmail,superPass){
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         console.log("dito passdisable");
-                        disableAdmin(adminIds,adminname);
+                        disableAdmin(adminIds);
                         let timerInterval
                         Swal.fire({
                             title: adminname+' Deactivated!',
@@ -350,7 +359,7 @@ function disableAdmin(adminIds){
         })
 }
 
-//// * DISABLE ADMIN BY BUTTON
+/* ///  DISABLE ADMIN BY BUTTON
 function adminDisableCheck2(adminIds){
     $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
         .done(function (data){
@@ -363,7 +372,7 @@ function adminDisableCheck2(adminIds){
                     confirmButtonText: 'Yes',
                     denyButtonText: `No`,
                 }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         disableAdmin2(adminIds);
                         $.post("php/superAdminProcesses/adminNameCaller.php", {adminId:adminIds})
@@ -379,7 +388,7 @@ function adminDisableCheck2(adminIds){
                                         appendTableAdmin();
                                     }
                                 }).then((result) => {
-                                    /* Read more about handling dismissals below */
+                                    // Read more about handling dismissals below
                                     if (result.dismiss === Swal.DismissReason.timer) {
                                         console.log('I was closed by the timer')
                                         appendTableAdmin();
@@ -402,7 +411,7 @@ function adminDisableCheck2(adminIds){
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    /* Read more about handling dismissals below */
+                    // Read more about handling dismissals below
                     if (result.dismiss === Swal.DismissReason.timer) {
                         console.log('I was closed by the timer')
                     }
@@ -412,6 +421,7 @@ function adminDisableCheck2(adminIds){
 
         })
 }
+
 //Disable Admin and transfer the disabled to new DB
 function disableAdmin2(adminIds){
     $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds})
@@ -424,26 +434,51 @@ function disableAdmin2(adminIds){
 
         })
 }
-
+ */
 // * PATIENT DISABLE
 function patientDisableCheck(patientIds,patname){
-    $.post("php/superAdminProcesses/checkPatientId.php", {patId:patientIds})
-        .done(function (data){
-            if(data == 1){
+    (async () => {
 
+        const { value: password } = await Swal.fire({
+            title: 'Enter your password',
+            input: 'password',
+            //customClass: 'swal-wide',
+            inputPlaceholder: 'Enter your password',
+            inputAttributes: {
+                //maxlength: 20,
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+
+        })
+
+        if (password) {
+            var loggedEmail = document.getElementById('emmm').innerText;
+            checkPatDisable(patientIds,patname,loggedEmail, password);
+            //Swal.fire(`Entered password: ${password}`)
+        }
+
+    })()
+}
+//check pasword and if correct disables the account of the patient
+function checkPatDisable (patientIds,patname,superEmail, superPass){
+    $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
+        .done(function (data){
+            console.log(superEmail,superPass);
+            if(data == 1){
                 Swal.fire({
-                    title: 'Are you sure you want to archive this account?',
+                    title: 'Are you sure you want to deactivate this account?',
                     showDenyButton: true,
                     //showCancelButton: true,
                     confirmButtonText: 'Yes',
                     denyButtonText: `No`,
                 }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         disablePatient(patientIds);
                         let timerInterval
                         Swal.fire({
-                            title: patname+' Archived!',
+                            title: patname+' Deactivated!',
                             timer: 2500,
                             timerProgressBar: true,
                             willClose: () => {
@@ -451,7 +486,7 @@ function patientDisableCheck(patientIds,patname){
                                 appendTableAdmin();
                             }
                         }).then((result) => {
-                            /* Read more about handling dismissals below */
+                            // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
                                 appendTableAdmin();
@@ -463,25 +498,26 @@ function patientDisableCheck(patientIds,patname){
                         $.modal.close();
                     }
                 })
-
-            }else{
+            }else {
                 let timerInterval
                 Swal.fire({
                     icon: 'error',
-                    title: 'User ID is already in the database!',
+                    title: 'Wrong Password! Action Cancelled.',
                     timer: 2500,
                     timerProgressBar: true,
                     willClose: () => {
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    /* Read more about handling dismissals below */
+                    //Read more about handling dismissals below
                     if (result.dismiss === Swal.DismissReason.timer) {
                         console.log('I was closed by the timer')
                     }
                 })
                 $.modal.close();
             }
+
+
 
         })
 }
@@ -498,7 +534,7 @@ function disablePatient(patientIds){
         })
 }
 
-//// * DISABLE Patient BY BUTTON
+/* ///  DISABLE Patient BY BUTTON
 function patientDisableCheck2(patientIds){
     $.post("php/superAdminProcesses/checkPatientId.php", {patId:patientIds})
         .done(function (data){
@@ -511,7 +547,7 @@ function patientDisableCheck2(patientIds){
                     confirmButtonText: 'Yes',
                     denyButtonText: `No`,
                 }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         disablePatient2(patientIds);
                         //$.post("php/superAdminProcesses/adminNameCaller.php", {patId:patIds})
@@ -527,7 +563,7 @@ function patientDisableCheck2(patientIds){
                                         appendTableAdmin();
                                     }
                                 }).then((result) => {
-                                    /* Read more about handling dismissals below */
+                                    // Read more about handling dismissals below
                                     if (result.dismiss === Swal.DismissReason.timer) {
                                         console.log('I was closed by the timer')
                                         appendTableAdmin();
@@ -550,7 +586,7 @@ function patientDisableCheck2(patientIds){
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    /* Read more about handling dismissals below */
+                    // Read more about handling dismissals below
                     if (result.dismiss === Swal.DismissReason.timer) {
                         console.log('I was closed by the timer')
                     }
@@ -572,8 +608,9 @@ function disablePatient2(patientIds){
 
         })
 }
-
-//// * ACTIVATE ADMIN ROW BUTTON
+*/
+//// * ACTIVATE PROCESSESS
+// * ACTIVATE ADMIN ROW BUTTON
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
 function adminActivationCheck(adminIds,adminname){
     //$("#passmod").modal();
@@ -642,10 +679,127 @@ function checkPassActivate(adminIds,adminname,superEmail,superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
-                        activateAdmin(adminIds,adminname);
+                        activateAdmin(adminIds);
                         let timerInterval
                         Swal.fire({
                             title: adminname+' Activated!',
+                            timer: 2500,
+                            timerProgressBar: true,
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                appendTableAdmin();
+                            }
+                        }).then((result) => {
+                            // Read more about handling dismissals below
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log('I was closed by the timer')
+                                appendTableAdmin();
+                            }
+                        })
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved!', '', 'info')
+                        $.modal.close();
+                    }
+                })
+            }else {
+                let timerInterval
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Wrong Password! Action Cancelled.',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    //Read more about handling dismissals below
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+                $.modal.close();
+            }
+
+
+
+        })
+
+}
+
+// * ACTIVATE PATIENT ROW BUTTON
+//Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
+function patientActivateCheck(patientIds,patname){
+    //$("#passmod").modal();
+    (async () => {
+
+        const { value: password } = await Swal.fire({
+            title: 'Enter your password',
+            input: 'password',
+            inputLabel: 'Password',
+            inputPlaceholder: 'Enter your password',
+            inputAttributes: {
+                //maxlength: 20,
+                autocapitalize: 'off',
+                autocorrect: 'off',
+
+
+            }
+        })
+
+        if (password) {
+            var loggedEmail = document.getElementById('emmm').innerText;
+            checkPatActivate(patientIds,patname,loggedEmail, password);
+            //Swal.fire(`Entered password: ${password}`)
+        }
+
+    })()
+
+    /*
+        swal.fire({
+            title: 'Enter Super Admin Password',
+            html:
+                '<input type="password" id="swal-input1" class="swal2-input" style="width: fit-content">',
+            preConfirm: function () {
+                return new Promise(function (resolve) {
+                    var swalInput = $('#swal-input1').val();
+                    var loggedEmail = document.getElementById('emmm').innerText;
+                    checkPass(loggedEmail, swalInput);
+                })
+            }
+        }) */
+}
+//Activate Admin and update the column status to 1
+function activatePatient(patientIds){
+    $.post("php/superAdminProcesses/patientStatusActivate.php", {patId:patientIds})
+        .done(function (data){
+            if(data == 1){
+
+            }else{
+                Swal.fire('Unsuccesful!', '', 'error')
+            }
+
+        })
+}
+//checks the password of the admin
+function checkPatActivate(patientIds,patname,superEmail, superPass){
+    $.post("php/superAdminProcesses/passCheck.php", {swalpass:superPass,loggedEmail:superEmail})
+        .done(function (data){
+            console.log(superEmail,superPass);
+            if(data == 1){
+                Swal.fire({
+                    title: 'Are you sure you want to activate this account?',
+                    showDenyButton: true,
+                    //showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    // Read more about isConfirmed, isDenied below
+                    if (result.isConfirmed) {
+                        activatePatient(patientIds);
+                        let timerInterval
+                        Swal.fire({
+                            title: patname+' Activated!',
                             timer: 2500,
                             timerProgressBar: true,
                             willClose: () => {

@@ -61,7 +61,7 @@ if(mysqli_num_rows($result)> 0) {
             <td>' . $lname . '</td>
             <td>' . $email . '</td>
             <td>' . $status . '</td>
-            <td ><button class="$butID" >' . $buttonstat . '</button></td>
+            <td ><button class="$butID" onclick="patclick(\''.str_replace("'", "\\'", $id).'\', \''.str_replace("'", "\\'", $fullname).'\', \''.str_replace("'", "\\'", $status).'\')">' . $buttonstat . '</button></td>
             </tr>';
         }
     }

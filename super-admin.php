@@ -590,27 +590,22 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
 
         // ?click button to get patient ID and name
-        $(document).ready(function (){
-            $("#patientTable").click(function (){
-                    var pattable = document.getElementById('patientTable');
-                    for(var i = 1; i < pattable.rows.length; i++)
-                    {
-                        $(pattable.rows[i]).on("click",function (){
-                            var statuses = this.cells[6].innerHTML;
-                            if(statuses=="Active"){//if status is active, disable modal will show
-                                document.getElementById("patidno").value = this.cells[0].innerHTML;
-                                document.getElementById("patname").value = this.cells[1].innerHTML;
+
+            function patclick(patids,patname, statuses){
+
+                            if(statuses=="Active"){// ?if status is active, disable modal will show
+                                document.getElementById("patidno").value = patids;
+                                document.getElementById("patname").value = patname;
                                 $('#show-delpat').modal();
-                            }else if (statuses=="Deactivated"){//if status is inactive, activate modal will show
-                                document.getElementById("patidno3").value = this.cells[0].innerHTML;
-                                document.getElementById("patname3").value = this.cells[1].innerHTML;
+                            }else if (statuses=="Deactivated"){// ?if status is inactive, activate modal will show
+                                document.getElementById("patidno3").value = patids;
+                                document.getElementById("patname3").value = patname;
                                 $('#show-actpat').modal();
                             }
 
-                        })
-                    }
-            })
-        })
+
+            }
+
 
      </script>
    </body>
