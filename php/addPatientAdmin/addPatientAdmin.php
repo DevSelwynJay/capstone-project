@@ -130,7 +130,6 @@ $query = "INSERT INTO walk_in_patient VALUES (
 
 //if walk in patient nag provide ng email, magkakaaccess sa online acc si patient, then send ng temp password
 if($email!=$temp_email){
-    echo $email;
     require 'sendPassword.php';
 }
 

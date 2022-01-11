@@ -51,7 +51,7 @@ $(document).ready(function () {
                     showClose:false,clickClose:false,escapeClose:false
                 })
 
-                $.post("php/addPatientAdmin/AddPatientAdmin.php",{
+                $.post("php/addPatientAdmin/addPatientAdmin.php",{
                     fname:fname, mname:mname, lname:lname, suffix:suffix,
                     occu:occu,
                     civil:civil,
