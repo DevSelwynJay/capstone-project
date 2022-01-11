@@ -1,11 +1,12 @@
 <?php
-session_start();
+  session_start();
+
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
-   header("location:index.php",true);
+    header("location:index.php",true);
     exit();
 }
-
-?>
+$emm = $_SESSION['email_session_for_sms_otp'];
+//?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -202,7 +203,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                          </div>
 
                      </div>
-
+                      <!-- Modal for disable admin upon click of data -->
                       <div class="col-sm-12">
                           <div id="show-del" class="modal2">
                               <style>#show-del{
@@ -216,6 +217,27 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                       <input type="text" id="adminname" disabled placeholder="" />
                                   </div>
                                   <a href="#show-del" rel="modal:open" id="disable-admin2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                              </form>
+                          </div>
+                      </div>
+                      <!-- Modal for activation of admin upon click of data -->
+                      <div class="col-sm-12">
+                          <div id="activemod" class="modal2">
+                              <style>#activemod{
+                                      display: none;
+                                  }
+                              .swal-wide{
+                                  width: fit-content;
+                                  justify-content: center;
+                              }</style>
+                              <form autocomplete="off">
+                                  <div class="row">
+                                      <label for="idno3" style="color:#6D6D6DFF">User ID:</label>
+                                      <input type="text" id="idno3" disabled placeholder="" />
+                                      <label for="adminname3" style="color:#6D6D6DFF">Admin:</label>
+                                      <input type="text" id="adminname3" disabled placeholder="" />
+                                  </div>
+                                  <a href="#activemod" rel="modal:open" id="reactivate-admin1" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
                               </form>
                           </div>
                       </div>
@@ -233,9 +255,14 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                                   </form>
                               </div>
                           </div>
-
+                      <p id="emmm" hidden class="color-black"><?php echo $emm; ?></p>
                      <h3 class="color-black">Manage Admin Accounts</h3>
                       <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
+                          <style>
+                              #adminTable tr td:nth-child(1), #adminTable th:nth-child(1) {
+                                  display: none;
+                              }
+                          </style>
                      <table id="adminTable">
                         <tr>
                            <th>Admin ID</th>
@@ -243,29 +270,47 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                            <th>Email</th>
                            <th>Contact No.</th>
                            <th>Work Category</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                          <!--Query Admin accounts-->
                          <tbody>
                          <?php
                          $con=null;
                          include 'php/DB_Connect.php';
-                         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role FROM admin");
+                         $adder = 1;
+                         $result = mysqli_query($con,"SELECT id, last_name, first_name, middle_name, email, contact_no, role, account_status FROM admin");
                          while ($row=mysqli_fetch_array($result)){
                              $id = $row[0];
                              $name = $row[1].", ".$row[2]." ".$row[3];
                              $email = $row[4];
                              $contact_no = $row[5];
                              $role = $row[6];
+
+                             if($row[7]==1){
+                                 $status="Active";
+                                 $buttonstat = "Deactivate";
+                                 $butID = "butinactive";
+                             }elseif ($row[7]==0){
+                                 $status="Deactivated";
+                                 $buttonstat = "Activate";
+                                 $butID = "butactive";
+                             }
                              echo "
-                             <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }</style>
+                             <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }
+                              #butactive : hover { background-color : rgba(87,102,243,0.82) }
+                             </style>
                              <tr>
-                               <td>$id</td>
-                               <td>$name</td>
+                               <td class=\"data1\">$id</td>
+                               <td class='data2'>$name</td>
                                <td>$email</td>
                                <td>$contact_no</td>
                                <td>$role</td>
+                               <td>$status</td>
+                               <td ><button class='$butID'>$buttonstat</button></td>
                             </tr>
                              ";
+                             //$adder++;
                          }
                          mysqli_close($con);
                          ?>
@@ -295,6 +340,23 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
                               </form>
                           </div>
                       </div>
+                   <!-- Ptient Activation Modal -->
+                   <div class="col-sm-12">
+                       <div id="show-actpat" class="modal2">
+                           <style>#show-actpat{
+                                   display: none;
+                               }</style>
+                           <form autocomplete="off">
+                               <div class="row">
+                                   <label for="patidno3" style="color:#6D6D6DFF">User ID:</label>
+                                   <input type="text" id="patidno3" disabled placeholder="Enter Patient ID" />
+                                   <label for="patname3" style="color:#6D6D6DFF">Patient:</label>
+                                   <input type="text" id="patname3" disabled placeholder="" />
+                               </div>
+                               <a href="#show-actpat" rel="modal:open" id="activate-patient2" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
+                           </form>
+                       </div>
+                   </div>
                        <div class="col-sm-12">
                            <div id="show-delpat2" class="modal2">
                                <style>#show-delpat2{
@@ -501,20 +563,49 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
             displayUsers(page);
         })
 
-        //click table to get patient ID and name
-        $(document).ready(function (){
-            $("#patientTable").click(function (){
-                var pattable = document.getElementById('patientTable');
-                for(var i = 1; i < pattable.rows.length; i++)
-                {
-                    $(pattable.rows[i]).on("click",function (){
-                        document.getElementById("patidno").value = this.cells[0].innerHTML;
-                        document.getElementById("patname").value = this.cells[1].innerHTML;
-                        $('#show-delpat').modal();
-                    })
-                }
-            })
+
+
+        //// *ADMIN BUTTON CLICK
+        // *click button activate to get admin ID and name
+        $(".butactive").click(function() {
+            console.log("dumaan sa active");
+            var $row = $(this).closest("tr");    // Find the row
+            var $text1 = $row.find(".data1").text(); // Find the text
+            var $text2 = $row.find(".data2").text(); // Find the text
+            document.getElementById("idno3").value = $text1;
+            document.getElementById("adminname3").value = $text2;
+            $('#activemod').modal();
         })
+        // *click button deactivate to get admin ID and name
+        $(".butinactive").click(function() {
+            console.log("dumaan sa active");
+            var $row = $(this).closest("tr");    // Find the row
+            var $text1 = $row.find(".data1").text(); // Find the text
+            var $text2 = $row.find(".data2").text(); // Find the text
+            document.getElementById("idno").value = $text1;
+            document.getElementById("adminname").value = $text2;
+            $('#show-del').modal();
+        })
+
+
+
+        // ?click button to get patient ID and name
+
+            function patclick(patids,patname, statuses){
+
+                            if(statuses=="Active"){// ?if status is active, disable modal will show
+                                document.getElementById("patidno").value = patids;
+                                document.getElementById("patname").value = patname;
+                                $('#show-delpat').modal();
+                            }else if (statuses=="Deactivated"){// ?if status is inactive, activate modal will show
+                                document.getElementById("patidno3").value = patids;
+                                document.getElementById("patname3").value = patname;
+                                $('#show-actpat').modal();
+                            }
+
+
+            }
+
 
      </script>
    </body>

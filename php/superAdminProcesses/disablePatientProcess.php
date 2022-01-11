@@ -1,7 +1,6 @@
 <?php
-//transfer data from patient table to patient archive and delete data transferred to patient table
 session_start();
-$patientId = $_POST['patId'];
+$patId = $_POST['patId'];
 
 $con=null;
 require '../DB_Connect.php';
@@ -11,33 +10,23 @@ if(!$con){
     exit();
 }
 
-$userDatas = array('patient_archive'/*,'patient'*/);
-foreach ($userDatas as $userData){
 
-    $result =  mysqli_query($con,"SELECT id FROM $userData WHERE id='$patientId'");
-    if($patientId==$result){// the email is already in the database
+
+mysqli_query($con,"UPDATE walk_in_patient SET account_status='0' WHERE id='$patId'");
+//$sql = mysqli_query($con,"UPDATE admin SET account_status='0' WHERE id='$adminId'");
+
+
+$result = mysqli_query($con, "SELECT account_status FROM walk_in_patient WHERE id='$patId'");
+//echo "<script>console.log(''+$result);</script>";
+
+if($row = mysqli_fetch_assoc($result) ){
+    if($row['account_status'] == 0){
+        echo 1;
+    }
+    else {// pass didn't match in the database
         echo 0;
-        break;
-    }else{// the record is to be added to archive and deleted to original record
-        //add sa db
-        // Performing insert query execution to patient db
-        $sql = "INSERT INTO patient_archive select * from patient where id='$patientId'";
-
-        if(mysqli_query($con, $sql)){
-            $sql = "DELETE FROM patient WHERE id='$patientId'";
-            if(mysqli_query($con, $sql)){
-                echo 1;
-                break;
-            }else{
-                echo 0;
-                break;
-            }
-        } else{
-            echo 0;
-            break;
-        }
-
     }
 
 }
+
 ?>
