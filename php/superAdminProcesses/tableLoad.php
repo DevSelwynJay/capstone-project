@@ -1,7 +1,7 @@
 <?php
 $con=null;
 require '../DB_Connect.php';
-$empty = 1;
+
 $ctr=1;
 $rpp = 5;
 $page = '';
@@ -14,10 +14,9 @@ else{
 }
 
 $start_from = ($page -1 )*$rpp;
-$usertable = "SELECT id, first_name, middle_name, last_name, email, account_status, password FROM walk_in_patient order by `date_created` asc limit $start_from, $rpp";
+$usertable = "SELECT id, first_name, middle_name, last_name, email, account_status, password FROM walk_in_patient where email like '%@%' order by `date_created` asc limit $start_from, $rpp";
 $result = mysqli_query($con, $usertable);
-if(mysqli_num_rows($result)> 0) {
-    $usertab = '<h3 class="margin-top-2" style="color:var(--third-color);font-weight: bold"></h3>
+$usertab = '<h3 class="margin-top-2" style="color:var(--third-color);font-weight: bold"></h3>
     
     <tbody>
       <tr class="title">
@@ -29,6 +28,8 @@ if(mysqli_num_rows($result)> 0) {
                     <th class="column_sort" id="pact" data-order="desc" style="cursor:pointer;">Action</th>
                 </tr>
     ';
+if(mysqli_num_rows($result)> 0) {
+
     while ($row = mysqli_fetch_assoc($result)) {
         $ctr++;
         $id = $row['id'];
@@ -50,9 +51,7 @@ if(mysqli_num_rows($result)> 0) {
         }
 
         $fullname = $lname .", ".$fname. " ". $mname;
-        if($row['password']==""){
-            $empty++;
-        }else {
+
             $usertab .= '<tr>
             <td class="patdata1"  scope="row" hidden>' . $id . '</td>
             <td class="patdata2"  hidden>' . $fullname . '</td>
@@ -63,13 +62,9 @@ if(mysqli_num_rows($result)> 0) {
             <td>' . $status . '</td>
             <td ><button class="$butID" onclick="patclick(\''.str_replace("'", "\\'", $id).'\', \''.str_replace("'", "\\'", $fullname).'\', \''.str_replace("'", "\\'", $status).'\')">' . $buttonstat . '</button></td>
             </tr>';
-        }
+
     }
-    $str = "Currently Zero Account...";
-    if ($empty==$ctr){
-        $usertab .= '<tr><td colspan="6">' . $str . '</td>
-            </tr>';
-    }
+
 
     $usertab .= '</tbody><br><div align="center">';
     $page_query = "SELECT id, first_name, middle_name, last_name, email, account_status FROM walk_in_patient order by `date_created` asc ";
@@ -87,6 +82,9 @@ if(mysqli_num_rows($result)> 0) {
     echo $usertab;
 }
 else{
+    $str = "Currently Zero Account...";
+    $usertab .= '<tr><td colspan="6">' . $str . '</td>
+            </tr>';
     echo $usertab;
 }
 
