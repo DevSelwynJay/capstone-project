@@ -22,13 +22,18 @@ $userTables = array('super_admin','admin','walk_in_patient');
 $isFound=false;
 foreach ($userTables as $userTable){
 
+    $querySuffix = "";
+    if($userTable!='super_admin'){//wala kasing acc type sa super admin
+        $querySuffix = "AND account_status = 1";
+    }
+
     $result=null;
     if($signInType==0){//regular sign in
         $password=$_POST['password'];
-        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email' AND password='$password'");
+        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email' AND password='$password' ".$querySuffix);
     }
     else if($signInType==1){//sign in with google
-        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email'");
+        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email' ".$querySuffix);
     }
 
     if(mysqli_num_rows($result)>0){//email or both email w/password is in the database
