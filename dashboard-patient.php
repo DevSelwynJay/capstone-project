@@ -1,9 +1,21 @@
 <?php
 session_start();
-if(!isset($_SESSION['email'])||$_SESSION['account_type']!=2){
+if(!isset($_SESSION['email'])){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
+}
+else{
+    $isPatient=false;
+   foreach (array(1,2) as $item){
+       $isPatient=true;
+       if($item==$_SESSION['account_type']){
+           break;
+       }
+   }
+   if(!$isPatient){
+       header("location:php/loginProcesses/redirect.php");
+   }
 }
 ?>
 <!DOCTYPE html>
