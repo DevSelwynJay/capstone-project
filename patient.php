@@ -235,7 +235,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                          </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                            <input type="text" class="search-bar">
-                           <a href="/"><i class="fas fa-search"></i></a>
+                           <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
                                     .search-bar{
