@@ -1051,6 +1051,35 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
        closeMobileMenu.style.display = "none"
        mobileMenu.style.display = "block";
     });
+    //reports_content
  </script>
+
+<script>
+    function adjustZoom() {
+        // document.body.style.zoom = "90%";
+        if($(document).width()<=1200){
+            // document.body.style.zoom = "100%";
+            $(".reports_content").css("zoom","100%")
+        }
+        else if($(document).width()<=1400){
+            // document.body.style.zoom = "80%";
+            $(".reports_content").css("zoom","75%")
+        }
+        else if($(document).width()<=1600){
+            // document.body.style.zoom = "90%";
+            $(".reports_content").css("zoom","80%")
+        }
+        else if($(document).width()<=2000){
+            // document.body.style.zoom = "100%";
+            $(".reports_content").css("zoom","87%")
+        }
+        else {
+            $(".reports_content").css("zoom","100%")
+        }
+    }
+
+    adjustZoom();
+</script>
+
 </body>
 </html>
