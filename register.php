@@ -145,16 +145,12 @@
                                </div>
                                <div class="row">
                                    <div class="col-sm-12">
-                                       <p style="color: var(--dark-grey);margin: 1rem 0 0 0;text-align: center">
+                                       <p style="color: var(--third-color);margin: 1rem 0 0 0;text-align: center">
                                            To make your account approved by admin, please attach a photo of your <b>VALID ID</b>
                                        </p>
                                    </div>
                                </div>
-                               <div class="row">
-                                   <div class="col-sm-12">
-                                       <p style="text-align: center;margin: 1rem 0 0.5rem 0 ;font-size: small">-The address in your ID will be the proof that you are from Brgy. Sto. Rosario-</p>
-                                   </div>
-                               </div>
+
                                <div class="row">
                                    <div class="col-sm-6">
                                        <style>
@@ -206,6 +202,14 @@
                                           -->
                                    </div>
                                </div>
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                       <p style="text-align: center;margin: 1rem 0 0.5rem 0 ;font-size: small">-The address in your ID will be the proof that you are from Brgy. Sto. Rosario-</p>
+                                   </div>
+                                   <div class="col-sm-12" style="margin-top: 0.1rem!important;">
+                                       <p style="text-align: center;font-size: small">-The account will be rejected if the information from valid ID did not matched to the information you provided-</p>
+                                   </div>
+                               </div>
                                <div style="display: flex;justify-content: center">
                                    <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
                                </div>
@@ -228,14 +232,8 @@
 
       <!--Modal to preview images uploaded-->
       <div class="modal fade" id="pop-up-preview-id" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true"  data-show="false">
-          <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
               <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="pop-upLabel" style="color: var(--dark-grey)">Image Preview</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
                   <div class="modal-body">
 
                       <div id="modal-content" class="preview-id-cont" style="display: flex;flex-flow: column;align-items: center">
