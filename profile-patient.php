@@ -120,14 +120,7 @@ else{
                         </div>
                     </div>
 
-                    <div class="flex-box-row justify-content-start margin-top-2 padding-all-15">
-                        <button class="modal-primary-button" id="back-to-home">Back to home page</button>
-                        <script>
-                            $("#back-to-home").click(function () {
-                                location.href = 'dashboard-patient.php';
-                            })
-                        </script>
-                    </div>
+
 
                     <!--bago-->
                     <div class="row margin-top-3 flex-md-row-reverse" id="profile-cont">
@@ -139,6 +132,14 @@ else{
                             <div class="flex-box-column align-content-lg-start" id="acc-sett">
                                 <a href="#" id="update-email"><i class="fas fa-edit"></i><span>Update Email</span></a>
                                 <a href="#" id="change-pwd-btn"><i class="fas fa-user-edit"></i><span>Update Password</span></a>
+                            </div>
+                            <div class="flex-box-row justify-content-start margin-top-2 padding-all-15">
+                                <button class="modal-primary-button" id="back-to-home"><i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>Back to Home Page</button>
+                                <script>
+                                    $("#back-to-home").click(function () {
+                                        location.href = 'dashboard-patient.php';
+                                    })
+                                </script>
                             </div>
                             <style>
                                 #right{
@@ -205,6 +206,12 @@ else{
                                     <td>Email</td>
                                     <td id="email">Guinhawa, Malolos, Bulacan</td>
                                 </tr>
+                                <style>
+                                    tr:first-child{
+                                        text-align: end !important;
+                                        color: #0c6893;!important;
+                                    }
+                                </style>
                             </table>
                         </div>
                     </div>

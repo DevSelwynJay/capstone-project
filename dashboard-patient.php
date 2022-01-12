@@ -220,7 +220,6 @@ else{ // Open Mobile Menu
                            <div class="patient-details-container">
                               <div class="profile-image">
                                 <img src="img/user3.png" alt=""><br>
-                                  <h4 class="margin-top-1">Patient Information</h4>
                                 <h2 class="patient-name">SURNAME, First Name, Middle Name</h2>
                               </div>
 
@@ -345,7 +344,7 @@ else{ // Open Mobile Menu
                   let result = JSON.parse(data);
                   if(result.status=="ok"){
                       $("#pop-up-req-emr").modal({
-                          showClose:false
+                          // showClose:false
                       })
                   }
                   else {

@@ -133,6 +133,10 @@
         $("#pop-up-update-email").modal({})
     })
 
+    $("#back-new-email").click(function () {
+        $('[href="#pop-up-update-email"]').trigger("click")
+    })
+
     $("#new-email-btn").click(function (data) {
 
         let char = $("#confirm-pwd").val();
