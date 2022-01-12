@@ -132,12 +132,12 @@ else{
                     <!--bago-->
                     <div class="row margin-top-3 flex-md-row-reverse" id="profile-cont">
 
-                        <div class="col-lg-5 flex-box-column align-items-lg-start margin-top-2" id="right">
+                        <div class="col-lg-4 flex-box-column align-items-lg-start margin-top-2" id="right">
                             <div class="flex-box-row justify-content-lg-start">
                                 <h1 style="color: var(--third-color);text-transform: uppercase;font-size: 1.5em;font-weight: 500">Account Settings</h1>
                             </div>
                             <div class="flex-box-column align-content-lg-start" id="acc-sett">
-                                <a href="change-email-settings.php"><i class="fas fa-edit"></i><span>Update Email</span></a>
+                                <a href="#"><i class="fas fa-edit"></i><span>Update Email</span></a>
                                 <a href="#" id="change-pwd-btn"><i class="fas fa-user-edit"></i><span>Update Password</span></a>
                             </div>
                             <style>
@@ -161,7 +161,7 @@ else{
                             </style>
 
                         </div>
-                        <div class="col-lg-7 margin-top-2">
+                        <div class="col-lg-8 margin-top-2">
                             <div class="flex-box-row justify-content-center">
                                 <h1 style="color: var(--third-color);font-size: 2em;text-transform: uppercase;font-weight: 800;">My Profile</h1>
                             </div>
