@@ -7,6 +7,7 @@ require '../DB_Connect.php';
 $query = mysqli_query($con,"UPDATE walk_in_patient SET password = '$pass' WHERE id = '$patient_id' ");
 if($query){
     echo 1;
+    $_SESSION['patientOA_pwd'] = $pass;
 }
 else{
     echo 0;

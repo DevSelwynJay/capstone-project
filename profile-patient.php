@@ -51,6 +51,8 @@ else{
     <link rel="stylesheet" href="scss/tooltip.css">
     <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
     <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
@@ -124,7 +126,7 @@ else{
                             </div>
                             <style>
                                 #right{
-                                    padding-left: 3rem!important;
+                                    padding-left: 2rem!important;
                                 }
                                 #acc-sett a i{
                                    margin-right: 0.3rem;
@@ -143,7 +145,7 @@ else{
                             </style>
 
                         </div>
-                        <div class="col-lg-7 margin-top-2">
+                        <div class="col-lg-7 margin-top-3">
                             <div class="flex-box-row justify-content-center">
                                 <h1 style="color: var(--third-color);font-size: 2em;text-transform: uppercase;font-weight: 800;">My Profile</h1>
                             </div>
@@ -251,6 +253,9 @@ else{
             $(".modal-p-error").css("visibility","hidden")
             $("#close-dropdown-2").trigger("click")
             $("#pop-up-change-pwd").modal({})
+        })
+        $("a").click(function () {
+            $("input").val("")
         })
         $("#logout").click(function () {
             location.href = "php/sessionDestroy.php";
