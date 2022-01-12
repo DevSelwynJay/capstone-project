@@ -608,5 +608,29 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
 
      </script>
+
+   <style>
+       .swal2-input{
+           max-width: 50%;
+           margin: 0 auto;
+       }
+       td button{
+           padding: 0.5em;
+           border:none;
+           outline: none;
+           background: var(--primary-color);
+           color: var(--secondary-color);
+                      }
+       tr:nth-child(odd){
+           background: var(--light-grey)!important;
+       }
+       tr:nth-child(even){
+           background: white!important;
+       }
+       tr:nth-child(odd):hover,tr:nth-child(even):hover{
+           background: var(--light-grey)!important;
+       }
+
+   </style>
    </body>
 </html>
