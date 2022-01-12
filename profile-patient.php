@@ -137,7 +137,7 @@ else{
                                 <h1 style="color: var(--third-color);text-transform: uppercase;font-size: 1.5em;font-weight: 500">Account Settings</h1>
                             </div>
                             <div class="flex-box-column align-content-lg-start" id="acc-sett">
-                                <a href="#"><i class="fas fa-edit"></i><span>Update Email</span></a>
+                                <a href="#" id="update-email"><i class="fas fa-edit"></i><span>Update Email</span></a>
                                 <a href="#" id="change-pwd-btn"><i class="fas fa-user-edit"></i><span>Update Password</span></a>
                             </div>
                             <style>
@@ -280,6 +280,7 @@ else{
         })
         $("a").click(function () {
             $("input").val("")
+            $(".modal-p-error").css("visibility","hidden")
         })
         $("#logout").click(function () {
             location.href = "php/sessionDestroy.php";
@@ -342,6 +343,7 @@ else{
                 $("#pop-up-loading").modal({
                     showClose:false,clickClose:false,escapeClose:false
                 })
+                $("#pop-up-loading-message").html("Requesting....")
                 setTimeout(()=>{
                     $.post("php/patientSide/requestEMR.php").done(function (data) {
                         $('[href="#pop-up-loading"]').trigger("click");
