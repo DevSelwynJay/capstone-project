@@ -28,7 +28,7 @@
                             })
                         }
                         else {
-                            $(".modal-p-error").css("visibility","visible")
+                            $(".modal-p-error").css("visibility","visible").html("Invalid Password")
                         }
                     }
                 )
@@ -46,15 +46,32 @@
     <div class="flex-box-column align-items-center margin-top-2">
         <input id="new-pwd" type="password" class="search-bar" placeholder="password" style="width: 60%">
         <p class="modal-p-error">Invalid Password</p>
-        <button id="new-pwd-btn" class="modal-primary-button-2 margin-top-2">
-            Confirm
-        </button>
+       <div class="flex-box-row justify-content-center">
+           <button id="back-new-pwd" class="modal-cancel-button-2 margin-top-2" style="margin-right: 0.3rem">
+               Cancel
+           </button>
+           <button id="new-pwd-btn" class="modal-primary-button-2 margin-top-2">
+               Confirm
+           </button>
+           <a href="#pop-up-new-pwd" rel="modal:close" style="display: none"></a>
+       </div>
         <script>
+            $("#back-new-pwd").click(function () {
+                $('[href="#pop-up-new-pwd"]').trigger("click")
+            })
             $("#new-pwd").focus(function () {
                 $(".modal-p-error").css("visibility","hidden")
             })
             $("#new-pwd-btn").click(function (data) {
                 let char = $("#new-pwd").val().trim();
+                if(char.length==0){
+                    $(".modal-p-error").css("visibility","visible").html("Please input password")
+                    return
+                }
+                if(char.length<8){
+                    $(".modal-p-error").css("visibility","visible").html("Please input 8 or more character")
+                    return
+                }
 
 
                 $("#pop-up-loading").modal({showClose: false,clickClose: false,escapeClose: false})

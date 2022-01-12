@@ -116,7 +116,7 @@ else{
                             <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
                         <div class="settings">
-                            <a href="#"><i class="fas fa-user-circle"></i></a>
+                            <a href="profile-patient.php"><i class="fas fa-user-circle"></i></a>
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
                             <a id="close-dropdown"><i id="close-dropdown-2" class="fas fa-times"></i></a>
                             <!--
@@ -138,39 +138,7 @@ else{
                             <div class="drop-down-settings" id="dropdown">
                                <ul>
                                   <li><a id="request_emr" href="#">Request EMR</a></li>
-                                  <li><a id="change-pwd-btn" href="#">Changed Password</a></li>
-                                   <?php include 'change-password-patient.php'?>
                                   <li id="logout"><a>Logout</a></li>
-                                   <script>
-                                       $("#change-pwd-btn").click(function (data) {
-                                           $(".modal-p-error").css("visibility","hidden")
-                                           $("#close-dropdown-2").trigger("click")
-                                           $("#pop-up-change-pwd").modal({})
-                                       })
-                                       $("#logout").click(function () {
-                                           location.href = "php/sessionDestroy.php";
-                                       })
-                                       $("#request_emr").click(function (data) {
-                                           $(".modal-p-error").css("visibility","hidden")
-                                           $("#close-dropdown-2").trigger("click")
-                                           $.post("php/patientSide/isLinked.php").done(function (data) {
-                                               let result = JSON.parse(data);
-                                               if(result.status=="ok"){
-                                                   $("#pop-up-req-emr").modal({
-                                                       showClose:false
-                                                   })
-                                               }
-                                               else {
-                                                   $("#pop-up-error").modal({
-                                                       showClose:false
-                                                   })
-                                                   $("#pop-up-error-message").html(result.err_msg)
-                                                   // Cannot request an EMR. You do not have any medical record.
-
-                                               }
-                                           })
-                                       })
-                                   </script>
                                </ul>
                             </div>
                          </div>
@@ -359,6 +327,39 @@ else{ // Open Mobile Menu
 
       </div>
 
+<!--      --><?php //include 'change-password-patient.php'?>
+
+      <script>
+          // $("#change-pwd-btn").click(function (data) {
+          //     $(".modal-p-error").css("visibility","hidden")
+          //     $("#close-dropdown-2").trigger("click")
+          //     $("#pop-up-change-pwd").modal({})
+          // })
+          $("#logout").click(function () {
+              location.href = "php/sessionDestroy.php";
+          })
+          $("#request_emr").click(function (data) {
+              $(".modal-p-error").css("visibility","hidden")
+              $("#close-dropdown-2").trigger("click")
+              $.post("php/patientSide/isLinked.php").done(function (data) {
+                  let result = JSON.parse(data);
+                  if(result.status=="ok"){
+                      $("#pop-up-req-emr").modal({
+                          showClose:false
+                      })
+                  }
+                  else {
+                      $("#pop-up-error").modal({
+                          showClose:false
+                      })
+                      $("#pop-up-error-message").html(result.err_msg)
+                      // Cannot request an EMR. You do not have any medical record.
+
+                  }
+              })
+          })
+      </script>
+
       <!--modal for REQUEST EMR-->
       <div id="pop-up-req-emr" class="modal">
           <div class="flex-box-row justify-content-center align-items-center">
@@ -440,7 +441,7 @@ else{ // Open Mobile Menu
               </a>
               <script>
                   $("#pop-up-success-ok-btn").on('click',function () {
-                      location.href = 'dashboard-patient.php'
+                      // location.href = 'dashboard-patient.php'
                   })
               </script>
           </div>
