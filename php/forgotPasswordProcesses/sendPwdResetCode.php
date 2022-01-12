@@ -97,7 +97,7 @@ $messageBody= '
 
 
 $mail->Body = $messageBody;
-$mail->addAttachment('../../img/jay.jpg',"jay");
+//$mail->addAttachment('../../img/jay.jpg',"jay");
 //send the message, check for errors
 if (!$mail->send()) {
    // echo 'Mailer Error: ' . $mail->ErrorInfo;
