@@ -56,9 +56,25 @@ else{
     <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
-
-
+            $.post("php/patientSide/patientSession.php").done(function (data){
+                let result = JSON.parse(data)
+                $("#fname").html(result.patient_name.split(" ")[0])
+                $("#mname").html(result.patient_name.split(" ")[1])
+                $("#lname").html(result.patient_name.split(" ")[2])
+                $("#age").html(result.age)
+                $("#gender").html(result.gender)
+                $("#birthday").html(result.birthday)
+                if(result.contact_no.includes("none")){
+                    $("#contact").html("none")
+                }
+                else {
+                    $("#contact").html(result.contact_no)
+                }
+                $("#address").html(result.address)
+                $("#email").html(result.email)
+            })
         })
+
     </script>
 </head>
 
@@ -145,7 +161,7 @@ else{
                             </style>
 
                         </div>
-                        <div class="col-lg-7 margin-top-3">
+                        <div class="col-lg-7 margin-top-2">
                             <div class="flex-box-row justify-content-center">
                                 <h1 style="color: var(--third-color);font-size: 2em;text-transform: uppercase;font-weight: 800;">My Profile</h1>
                             </div>
@@ -180,6 +196,14 @@ else{
                                 <tr>
                                     <td >Address</td>
                                     <td id="address">Guinhawa, Malolos, Bulacan</td>
+                                </tr>
+                                <tr>
+                                    <td >Contact</td>
+                                    <td id="contact">Guinhawa, Malolos, Bulacan</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td id="email">Guinhawa, Malolos, Bulacan</td>
                                 </tr>
                             </table>
                         </div>
