@@ -213,6 +213,17 @@
                                <div style="display: flex;justify-content: center">
                                    <button class="primary-btn" id="trigger-reg-modal" type="submit" style="width: 100%">Register</button>
                                </div>
+                               <div style="display: flex;justify-content: center">
+                                   <p class="modal-p">--------or--------</p>
+                               </div>
+                               <div style="display: flex;justify-content: center" class="margin-top-2">
+                                   <button class="modal-primary-button"  id="login-btn" type="button" style="width: 50%">Go back to login page</button>
+                                   <script>
+                                       $("#login-btn").click(function () {
+                                           location.href = "index.php";
+                                       })
+                                   </script>
+                               </div>
 
                            </div>
                            <!--testing button only
