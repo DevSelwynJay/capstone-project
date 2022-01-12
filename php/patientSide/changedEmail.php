@@ -24,7 +24,7 @@ $userTables = array('super_admin','admin','walk_in_patient','pending_patient');
 foreach ($userTables as $table){
     if($_SESSION['email']==$emails){
         //wala namang nabago
-        echo "You entered old email";
+        echo "You only entered your current email";
         exit();
     }
 
