@@ -289,12 +289,12 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="medicineName">Medicine Name:</p>
-                                            <input type="text" class="modal-field" id="medicineName" autocomplete="off" placeholder="Enter Medicine Name" required>
+                                            <p class="modal-p" for="medicineName">Name:</p>
+                                            <input type="text" class="modal-field" id="medicineName" autocomplete="off" placeholder="Enter Medicine/Vaccine Name" required>
                                             <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="medicineDosage">Medicine Dosage:</p><input type="text" id="medicineDosage" class="modal-field" placeholder="Enter Medicine Dosage" autocomplete="off" required>
+                                            <p class="modal-p" for="medicineDosage">Dosage:</p><input type="text" id="medicineDosage" class="modal-field" placeholder="Enter  Dosage" autocomplete="off" required>
 
                                         </div>
 
@@ -302,17 +302,17 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <div class="row">
                                         <div class="col-sm-12" >
                                             <p class="modal-p"for="medicineStocks">Stock:</p>
-                                            <input type="text" id="medicineStocks"  class="modal-field" placeholder="Enter Medicine Stocks" autocomplete="off" required>
+                                            <input type="text" id="medicineStocks"  class="modal-field" placeholder="Enter  Stocks" autocomplete="off" required>
                                             <p class="modal-p" class="error" id="stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="medicineMfgDate" >Mfg. Date:</p>
-                                            <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" placeholder="Enter Mfg Date" autocomplete="off" required>
+                                            <input type="text" id="medicineMfgDate" contenteditable="false"  class="modal-field" placeholder="Enter Manufacturing Date" autocomplete="off" required>
                                             <p class="modal-p" class="error" id="mfgdate-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p"  for="medicineExpDate" >Exp Date:</p>
-                                            <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" placeholder="Enter Exp Date" autocomplete="off" required>
+                                            <input type="text" id="medicineExpDate" contenteditable="false"  class="modal-field" placeholder="Enter Expiration Date" autocomplete="off" required>
                                             <p class="modal-p" class="error" id="expdate-incorrect-indcator" style="color: red; visibility: hidden;"></p>
                                         </div>
                                         <p class="modal-p" class="error" id="all-incorrect-indcator" style="color: red; visibility: hidden"></p>
@@ -340,12 +340,12 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <div class="row">
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="upmedicineCategory">Category:</p>
-                                            <select class="modal-field" id="upmedcategorySelect" disabled>
+                                            <select class="modal-field" id="upmedcategorySelect" >
 
                                                 <option value="Medicine">Medicine</option>
                                                 <option value="Vaccine">Vaccine</option>
                                             </select>
-                                            <script>
+                                            <!--<script>
                                                 $('#upmedcategorySelect').change(function (){
                                                     if($('#upmedcategorySelect').val() == "Vaccine"){
                                                         $('#upmedSubCategory').css("display","none");
@@ -356,17 +356,17 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                                         $('#upmedSubCategory').css("display","block");
                                                     }
                                                 })
-                                            </script>
-                                            <input class="modal-field" type="text" id="upmedSubCategory" autocomplete="off" placeholder="Medicine Sub-Category" readonly>
+                                            </script>-->
+                                            <input class="modal-field" type="text" id="upmedSubCategory" autocomplete="off" placeholder="Medicine Sub-Category" >
 
-                                            <input class="modal-field" type="text" id="upvacSubCategory" autocomplete="off" placeholder="Vaccine Sub-Category" style="display: none" readonly>
+                                            <input class="modal-field" type="text" id="upvacSubCategory" autocomplete="off" placeholder="Vaccine Sub-Category" style="display: none" >
 
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="updatemedicineName">Medicine Name:</p><input type="text" id="updatemedicineName" class="modal-field" readonly >
+                                            <p class="modal-p" for="updatemedicineName">Name:</p><input type="text" id="updatemedicineName" class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="upmedicineDosage">Medicine Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Medicine Dosage" autocomplete="off" readonly>
+                                            <p class="modal-p" for="upmedicineDosage">Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Dosage" autocomplete="off" >
 
                                         </div>
 
@@ -377,11 +377,11 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
-                                            <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" readonly>
+                                            <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineExpDate" >Exp Date:</p>
-                                            <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" readonly>
+                                            <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" >
                                             <input type="hidden" id="hiddendata" >
                                         </div>
                                     </div>
@@ -603,7 +603,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
     })
-    /*    $("#updatemedicineMfgDate").datepicker({
+        $("#updatemedicineMfgDate").datepicker({
             changeMonth: true,
             changeYear: true,
             yearRange:'1970:new Date()',
@@ -624,7 +624,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
             $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
             console.log($(this).val())
-        })*/
+        })
     //Display To Expire Table
     function displayToExpTab(displayToExpDatapage){
         var displayToExpData = true;
@@ -673,46 +673,98 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         var medMfgDate = $('#medicineMfgDate').val()
         var medExpDate = $('#medicineExpDate').val()
 
-        if(medName == "" || vacSubCategory == "" || medSubCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""|| medsubCategory == ""|| meddosage == ""){
-            $('#all-incorrect-indcator').css("visibility","visible");
-            $('#all-incorrect-indcator').html('Please Fill out all the fields!');
+        if(medCategory == "Medicine"){
+            var medsubCategory = $('#medSubCategory').val()
+            if(medName == "" || medSubCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""||  meddosage == ""){
+                $('#all-incorrect-indcator').css("visibility","visible");
+                $('#all-incorrect-indcator').html('Please Fill out all the fields!');
+            }
+            else {
+
+
+                $.ajax({
+                    url: "php/inventoryProcesses/inventoryAddProc.php",
+                    type: 'POST',
+                    data: {
+                        newMedName: medName,
+                        newMedCategory: medCategory,
+                        newMedsubCategory:medsubCategory,
+                        newMedDosage:meddosage,
+                        newMedStocks: medStocks,
+                        newMedMfgDate: medMfgDate,
+                        newMedExpDate: medExpDate
+                    },
+                    success: function (data, status) {
+                        console.log(status);
+                        $("[href='#add-modal']").trigger('click');
+                        displayMedicines();
+                        displayToExpTab();
+                        displayExpTab();
+                    }
+                });
+            }
+        }
+        else if(medCategory == "Vaccine"){
+            var medsubCategory2 = $('#vacSubCategory').val()
+            if(medName == "" || vacSubCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""||  meddosage == ""){
+                $('#all-incorrect-indcator').css("visibility","visible");
+                $('#all-incorrect-indcator').html('Please Fill out all the fields!');
+            }
+            else {
+
+
+                $.ajax({
+                    url: "php/inventoryProcesses/inventoryAddProc.php",
+                    type: 'POST',
+                    data: {
+                        newMedName: medName,
+                        newMedCategory: medCategory,
+                        newMedsubCategory:medsubCategory2,
+                        newMedDosage:meddosage,
+                        newMedStocks: medStocks,
+                        newMedMfgDate: medMfgDate,
+                        newMedExpDate: medExpDate
+                    },
+                    success: function (data, status) {
+                        console.log(status);
+                        $("[href='#add-modal']").trigger('click');
+                        $('#meds').trigger("focus");
+                        $('#medicineName').val("");
+                        $('#medcategorySelect').selectedIndex = 1;
+                        $('#medicineStocks').val("");
+                        $('#medSubCategory').val("");
+                        $('#vacSubCategory').val("");
+                        $('#medicineDosage').val("");
+                        $('#medicineMfgDate').val("");
+                        $('#medicineExpDate').val("");
+                        $('#name-incorrect-indcator').css("visibility","hidden");
+                        $('#category-incorrect-indcator').css("visibility","hidden");
+                        $('#stock-incorrect-indcator').css("visibility","hidden");
+                        $('#mfgdate-incorrect-indcator').css("visibility","hidden");
+                        $('#expdate-incorrect-indcator').css("visibility","hidden");
+                        $('#all-incorrect-indcator').css("visibility","hidden");
+                        $('#all-incorrect-indcator').html('');
+                        $('#name-incorrect-indcator').html('')
+                        displayMedicines();
+                        displayToExpTab();
+                        displayExpTab();
+                    }
+                });
+            }
         }
 
-        else {
-            if(medsubCategory == ""){
-                var newMedsubCategory = medsubCategory;
-            }
-            else{
-                var newMedsubCategory =medsubCategory2;
-            }
 
-            $.ajax({
-                url: "php/inventoryProcesses/inventoryAddProc.php",
-                type: 'POST',
-                data: {
-                    newMedName: medName,
-                    newMedCategory: medCategory,
-                    newMedsubCategory:newMedsubCategory,
-                    newMedDosage:meddosage,
-                    newMedStocks: medStocks,
-                    newMedMfgDate: medMfgDate,
-                    newMedExpDate: medExpDate
-                },
-                success: function (data, status) {
-                    console.log(status);
-                    $("[href='#add-modal']").trigger('click');
-                    displayMedicines();
-                    displayToExpTab();
-                    displayExpTab();
-                }
-            });
-        }
+
+
 
         $('#addcancel').on("click", function (){
             $('#meds').trigger("focus");
             $('#medicineName').val("");
             $('#medcategorySelect').selectedIndex = 1;
             $('#medicineStocks').val("");
+            $('#medSubCategory').val("");
+            $('#vacSubCategory').val("");
+            $('#medicineDosage').val("");
             $('#medicineMfgDate').val("");
             $('#medicineExpDate').val("");
             $('#name-incorrect-indcator').css("visibility","hidden");
@@ -733,7 +785,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
             var medid = JSON.parse(data);
             $('#updatemedicineName').val(medid.name);
-            $('#updatemedicineCategory').val(medid.category);
+            $('#upmedSubCategory').val(medid.subcategory);
+            $('#upmedicineDosage').val(medid.dosage);
+
+            $('#upmedcategorySelect').val(medid.category);
             $('#updatemedicineStocks').val(medid.stock);
             $('#updatemedicineMfgDate').val(medid.mfgdate);
             $('#updatemedicineExpDate').val(medid.expdate);
@@ -758,7 +813,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     //Update Medicine Stocks function
     function medUpdate(){
         var updatemedicineName=$('#updatemedicineName').val();
-        var updatemedicineCategory=$('#updatemedicineCategory').val();
+        var updatemedicineCategory=$('#upmedcategorySelect').val();
+        var updatemedicinesubCategory=$('#upmedSubCategory').val();
+        var upmedicineDosage=$('#upmedicineDosage').val();
         var updatemedicineStocks=$('#updatemedicineStocks').val();
         var updatemedicineMfgDate=$('#updatemedicineMfgDate').val();
         var updatemedicineExpDate=$('#updatemedicineExpDate').val();
@@ -767,6 +824,8 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         $.post("php/inventoryProcesses/medUpdate.php",{
             updatemedicineName:updatemedicineName,
             updatemedicineCategory:updatemedicineCategory,
+            updatemedicinesubCategory:updatemedicinesubCategory,
+            upmedicineDosage:upmedicineDosage,
             updatemedicineStocks:updatemedicineStocks,
             updatemedicineMfgDate:updatemedicineMfgDate,
             updatemedicineExpDate:updatemedicineExpDate,

@@ -20,13 +20,15 @@ if(isset($_POST['id'])){
     $id = $_POST['id'];
     $name = $_POST['updatemedicineName'];
     $category = $_POST['updatemedicineCategory'];
+    $subcategory = $_POST['updatemedicinesubCategory'];
+    $dosage = $_POST['upmedicineDosage'];
     $medstock=$_POST['updatemedicineStocks'];
     $medmfgdate=$_POST['updatemedicineMfgDate'];
     $medexpdate=$_POST['updatemedicineExpDate'];
     $type = "Update";
-    $updatesql = "Update `medinventory` set `stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`=$id";
+    $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`=$id";
     $result=mysqli_query($con,$updatesql);
-    $reportupdatesql = "Insert into `medreport` (`name`, `category`, `stock`, `mfgdate`, `expdate`,`type`) values ('$name','$category','$medstock','$medmfgdate','$medexpdate','$type')";
+    $reportupdatesql = "Insert into `medreport` (`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
     $reportresult = mysqli_query($con,$reportupdatesql);
 }
 ?>
