@@ -415,103 +415,58 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     </section>
     <!--  graph   -->
     <script language="JavaScript">
-
         // let arr = []
         // arr.push([1,2,3,4,5]);arr.push([1,2,3,4,5])
         // alert(arr[0])
-        $(document).ready(function (data) {
-            function drawChart() {
-                // Define the chart to be drawn.
-                $.get("dashboard-chart-backend.php").done(function (data) {
-                    let result = JSON.parse(data)
-                    var data = google.visualization.arrayToDataTable(result);
+     $(document).ready(function () {
+         function drawChart() {
 
-                    var options = {
-                        title: 'Popular Vaccines (as of '+result[result.length-1][0] +' - '+result[1][0] +')',
-                        titleTextStyle: {
-                            color: "#FFFFFF",
-                            fontSize: 20,
-                            fontName: "Lato, sans-serif",
-                        },
-                        animation: {
-                            startup: true,
-                            duration: 1000,
-                            easing: 'out',
-                        },
-                        bar: { groupWidth: "70%" },
-                        legend: { position: "bottom" },
-                        backgroundColor: "#192734",
-                        isStacked: true,
-                        width: 620,
-                        height: 450,
-                        is3D: true,
-                        legendTextStyle: { color: '#FFF' },
-                        tooltip: {isHtml: true},
-                        hAxis: {
-                            format: '#\'%\'',
-                            textStyle: { color: '#FFF' }
+             $.get("dashboard-chart-backend.php").done(function (data) {
+                 let result = JSON.parse(data)
+                 // Define the chart to be drawn.
+                 var data = google.visualization.arrayToDataTable(result);
 
-                        },
-                        vAxis: {
-                            textStyle: { color: '#FFF' }
-                        },
+                 var options = {
+                     title: 'Popular Vaccines (as of 2015 - 2021)',
+                     titleTextStyle: {
+                         color: "#FFFFFF",
+                         fontSize: 20,
+                         fontName: "Lato, sans-serif",
+                     },
+                     animation: {
+                         startup: true,
+                         duration: 1000,
+                         easing: 'out',
+                     },
+                     bar: { groupWidth: "70%" },
+                     legend: { position: "bottom" },
+                     backgroundColor: "#527c88",
+                     isStacked: true,
+                     width: 620,
+                     height: 450,
+                     is3D: true,
+                     legendTextStyle: { color: '#FFF' },
+                     tooltip: {isHtml: true},
+                     hAxis: {
+                         format: '#\'%\'',
+                         textStyle: { color: '#FFF' }
 
-                    }
+                     },
+                     vAxis: {
+                         textStyle: { color: '#FFF' }
+                     },
 
-<<<<<<< HEAD
-        function drawChart() {
-            // Define the chart to be drawn.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'MMR(Measles)', 'BCG(Tuberculosis)', 'DTP(Tetanus)', 'COVID-19'],
-                ['2015', 8, 25, 10, 0],
-                ['2016', 55, 25, 0, 0],
-                ['2017', 30, 30, 6, 0],
-                ['2018', 15, 10, 8, 0],
-                ['2019', 55, 20, 10, 0],
-                ['2020', 5, 10, 5, 10],
-                ['2021', 3, 2, 2, 93],
-            ]);
+                 }
 
-            var options = {
-                title: 'Popular Vaccines (as of 2015 - 2021)',
-                titleTextStyle: {
-                    color: "#FFFFFF",
-                    fontSize: 20,
-                    fontName: "Lato, sans-serif",
-                },
-                animation: {
-                    startup: true,
-                    duration: 1000,
-                    easing: 'out',
-                },
-                bar: { groupWidth: "70%" },
-                legend: { position: "bottom" },
-                backgroundColor: "#527c88",
-                isStacked: true,
-                width: 620,
-                height: 450,
-                is3D: true,
-                legendTextStyle: { color: '#FFF' },
-                tooltip: {isHtml: true},
-                hAxis: {
-                    format: '#\'%\'',
-                    textStyle: { color: '#FFF' }
-                    
-                },
-                vAxis: {
-                    textStyle: { color: '#FFF' }
-                },
-=======
-                    // Instantiate and draw the chart.
-                    var chart = new google.visualization.BarChart(document.getElementById('container'));
-                    document.onload(chart.draw(data, options));
+                 // Instantiate and draw the chart.
+                 var chart = new google.visualization.BarChart(document.getElementById('container'));
+                 document.onload(chart.draw(data, options));
 
-                })
->>>>>>> 50918dcf86e7cc145211c18f2c3c101f4e434b4c
+             })
 
-            }
-            google.charts.setOnLoadCallback(drawChart);
-        })
+         }//function
+         google.charts.setOnLoadCallback(drawChart);
+     })
 
     </script>
     <!--Drop down script-->
