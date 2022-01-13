@@ -95,25 +95,24 @@ $json = json_encode($arr);
 </div>
 <!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="speedChart" style="padding: 10px; width: 100%; height: 80vh; background: #192734; border-radius: 5px; margin-top: 10px;"></canvas>
+    <canvas id="speedChart" style="padding: 10px; width: 100%; height: 80vh; background: white; border-radius: 5px; margin-top: 10px;"></canvas>
 </div>
 <script>
     document.getElementById("ov2").style.color = "#ffffff";
     document.getElementById("ov2").style.backgroundColor = "#363636";
     var speedCanvas = document.getElementById("speedChart");
     speedCanvas.fillStyle = 'lightGreen';
-    Chart.defaults.color = "#ffffff";
+    Chart.defaults.color = "black";
     var ipvInfant = {
         label: "Infant",
         data: <?php  echo $babyJson?>,
         lineTension: 0.1,//curve of line
         fill: false,
         borderWidth: 5,
-        borderColor: 'red',
-        pointBackgroundColor: 'red',
+        borderColor: '#0B84A5',
+        pointBackgroundColor: '#0B84A5',
         pointRadius: 7,
         pointBorderWidth: 2,
-        pointBorderColor: 'white',
     };
 
     var ipvMinor = {
@@ -122,11 +121,10 @@ $json = json_encode($arr);
         lineTension: 0.1,
         borderWidth: 5,
         fill: false,
-        borderColor: 'lightBlue',
-        pointBackgroundColor: 'lightBlue',
+        borderColor: '#6F4E7C',
+        pointBackgroundColor: '#6F4E7C',
         pointRadius: 7,
         pointBorderWidth: 2,
-        pointBorderColor: 'white',
     };
 
     var speedData = {
@@ -159,7 +157,7 @@ $json = json_encode($arr);
                 },
                 y: {
                     grid:{
-                        color: "gray"
+                        color: "black"
                         //    display:false
                     }
                 }
@@ -167,19 +165,20 @@ $json = json_encode($arr);
             plugins: {
                 title: {
                     font: {
-                        size: 24,
+                        size: 28,
                     },
                     display: true,
-                    text: 'IPV Graph'
+                    text: 'Inactivated Polio Vaccine (IPV) Graph'
                 },
                 legend: {
                     labels: {
                         // This more specific font property overrides the global property
                         font: {
-                            size: 14,
+                            size: 18,
                             family: 'Poppins',
                             color: 'black'
-                        }
+                        },
+                        boxWidth: 20,
                     }
                 }
             }

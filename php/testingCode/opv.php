@@ -247,7 +247,7 @@ $json = json_encode($arr);
 </div>
 <!--this is where the linechart goes-->
 <div class="container" style="width: 100%; height: 100%">
-    <canvas id="opvChart" style="padding: 10px; width: 100%; height: 80vh; background: #192734; border-radius: 5px; margin-top: 10px;"></canvas>
+    <canvas id="opvChart" style="padding: 10px; width: 100%; height: 80vh; background: white; border-radius: 5px; margin-top: 10px;"></canvas>
 </div>
 <script>
     document.getElementById("ov1").style.color = "#ffffff";
@@ -255,7 +255,7 @@ $json = json_encode($arr);
 //creation of variable to handle and manipulate the canvas that was made
     var speedCanvas = document.getElementById("opvChart");
     speedCanvas.fillStyle = 'lightGreen';
-    Chart.defaults.color = "#ffffff";
+    Chart.defaults.color = "black";
     //creating multiple datasets
     var opvinfant = {
         label: "Infant",
@@ -263,11 +263,10 @@ $json = json_encode($arr);
         lineTension: 0.1,//curve of line
         fill: false,
         borderWidth: 5,
-        borderColor: 'yellow',
-        pointBackgroundColor: 'yellow',
+        borderColor: '#0B84A5',
+        pointBackgroundColor: '#0B84A5',
         pointRadius: 7,
         pointBorderWidth: 2,
-        pointBorderColor: 'white',
         
     };
 
@@ -277,11 +276,10 @@ $json = json_encode($arr);
         lineTension: 0.1,
         borderWidth: 5,
         fill: false,
-        borderColor: 'lightGreen',
-        pointBackgroundColor: 'lightGreen',
+        borderColor: '#6F4E7C',
+        pointBackgroundColor: '#6F4E7C',
         pointRadius: 7,
         pointBorderWidth: 2,
-        pointBorderColor: 'white',
     };
 // inputing all needed data into a finalized dataset
     var speedData = {
@@ -295,7 +293,7 @@ $json = json_encode($arr);
             position: 'top',
             labels: {
                 boxWidth: 100,
-                fontColor: 'white'
+                fontColor: 'black'
             }
         }
     };
@@ -318,7 +316,7 @@ $json = json_encode($arr);
                 },
                 y: {
                     grid:{
-                        color: "gray"
+                        color: "black"
                         //    display:false
                     },
                     font:{
@@ -329,20 +327,21 @@ $json = json_encode($arr);
             plugins: {
                 title: {
                     font: {
-                        size: 24,
+                        size: 28,
                         family: 'Poppins'
                     },
                     display: true,
-                    text: 'OPV Graph'
+                    text: 'Oral Polio Vaccine (OPV) Graph'
                 },
                 legend: {
                     labels: {
                         // This more specific font property overrides the global property
                         font: {
-                            size: 14,
+                            size: 18,
                             family: 'Poppins',
                             color: 'black'
-                        }
+                        },
+                        boxWidth: 20,
                     }
                 }
                 
