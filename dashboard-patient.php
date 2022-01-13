@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['email'])){
     //redirect to main page
@@ -18,6 +19,7 @@ else{
        header("location:php/loginProcesses/redirect.php");
    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,12 +159,11 @@ else{
                                     <p class="modal-p"><span style="color: darkred">Important Note: </span> If you cannot see any record on this online account, it means that you do not have any patient record on the admin side</p>
                                 </div>
                               </div>
-                              <img class="greetings-img" src="img/Icons/dashboard-img.png" alt="">
-                               <style>
-                                   .greetings-img{
-                                       max-width: 10rem !important;
-                                   }
-                               </style>
+
+                             <div class="img-container">
+                             <img class="greetings-img" src="img/Icons/dashboard-img.png" alt="">
+                             </div>
+                            
                            </div>
 
                            <div class="calendar-container">
