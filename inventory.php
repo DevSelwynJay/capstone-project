@@ -671,17 +671,24 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         var medName = $('#medicineName').val()
         var medCategory = $('#medcategorySelect').val()
         var medsubCategory = $('#medSubCategory').val()
+        var medsubCategory2 = $('#vacSubCategory').val()
         var meddosage = $('#medicineDosage').val();
         var medStocks = $('#medicineStocks').val()
         var medMfgDate = $('#medicineMfgDate').val()
         var medExpDate = $('#medicineExpDate').val()
 
-        if(medName == "" || medCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""|| medsubCategory == ""|| meddosage == ""){
+        if(medName == "" || vacSubCategory == "" || medSubCategory == "" || medStocks == "" || medMfgDate == "" || medExpDate == ""|| medsubCategory == ""|| meddosage == ""){
             $('#all-incorrect-indcator').css("visibility","visible");
             $('#all-incorrect-indcator').html('Please Fill out all the fields!');
         }
 
         else {
+            if(medsubCategory == ""){
+                var newMedsubCategory = medsubCategory;
+            }
+            else{
+                var newMedsubCategory =medsubCategory2;
+            }
 
             $.ajax({
                 url: "php/inventoryProcesses/inventoryAddProc.php",
@@ -689,7 +696,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 data: {
                     newMedName: medName,
                     newMedCategory: medCategory,
-                    newMedsubCategory:medsubCategory,
+                    newMedsubCategory:newMedsubCategory,
                     newMedDosage:meddosage,
                     newMedStocks: medStocks,
                     newMedMfgDate: medMfgDate,
