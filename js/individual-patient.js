@@ -71,11 +71,22 @@ $(document).ready(function() {
                     freq_sentence = "With "+interval+" day/s of interval"
                 }
 
+                let edit_btn = "";
+                let status =  "";
+                if(resultElement.can_edit==1){// edit only if end of medication is greater than date today
+                    edit_btn = "<button onclick='getEventID("+resultElement.event_id+")' class='edit-event-btn'><i class=\"fas fa-edit\"></i>edit</button><br>"
+                    status = "<strong><span style='color:darkblue;'>Status:</span> Active</strong><br><br>";
+                }
+                else {
+                    status = "<strong style='color:darkred;'><span style='color:darkblue;'>Status:</span> Finished</strong><br><br>";
+                }
+
                 let formattedMedName = resultElement.medicine_name.substr(0,1).toUpperCase()+resultElement.medicine_name.substr(1).toLowerCase()
                 $('#calendar').evoCalendar('addCalendarEvent', {
                     id: resultElement.event_id,
                     name: formattedMedName,
                     description:
+                        status+
                         "<strong>Type</strong>" +
                         "<br> - Medicine: "+resultElement.medicine_sub_category+ "<br><br>"+
                         "<strong>Strenght</strong>" +
@@ -92,7 +103,7 @@ $(document).ready(function() {
                         "<br> - "+resultElement.end_date_formatted+
                         "<br><br>"+"<strong>Date Given: </strong> "+resultElement.date_given+
                         "<br>"+"<strong>Quantity Given: </strong> "+resultElement.given_med_quantity +" tablets<br>"+
-                        "<button onclick='getEventID("+resultElement.event_id+")' class='edit-event-btn'><i class=\"fas fa-edit\"></i>edit</button><br>"
+                        edit_btn
                     ,
                     date: date,
                     type: ' ',
