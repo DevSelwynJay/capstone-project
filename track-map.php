@@ -86,7 +86,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 <div class="spacer">
                     <div class="profile">
                         <div class="profile-img">
-                            <img src="img/jay.jpg" alt="">
+                            <img src="img/user3.png" alt="">
                         </div>
                         <h4 id="name-sidebar">Your Name</h4>
                     </div>
@@ -177,6 +177,63 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
                     }
 
+                </script>
+
+                <!--Drop down script-->
+                <script>
+                    const dropdown = document.querySelector('#dropdown');
+                    const dropdownToggle = document.querySelector('#dropdown-toggle');
+                    const Closedropdown = document.querySelector('#close-dropdown');
+
+                    dropdownToggle.addEventListener('click', function () {//Conditions
+                        if (dropdown.classList.contains('open')) { // Close Mobile Menu
+                            dropdown.classList.remove('open');
+                        }
+                        else { // Open Mobile Menu
+                            dropdown.classList.add('open');
+                        }
+                    });
+
+
+                    dropdownToggle.addEventListener('click', function () {
+                        dropdown.classList.add('open');
+                        dropdownToggle.style.display = "none";
+                        Closedropdown.style.display = "block"
+                    });
+
+                    Closedropdown.addEventListener('click', function () {
+                        dropdown.classList.remove('open');
+                        Closedropdown.style.display = "none"
+                        dropdownToggle.style.display = "block";
+                    });
+
+                </script>
+                <script>
+                    const menu = document.querySelector('#menu');
+                    const mobileMenu = document.querySelector('#mobile-menu');
+                    const closeMobileMenu = document.querySelector('#close-mobile-menu');
+
+                    mobileMenu.addEventListener('click', function () {//Conditions
+                        if (menu.classList.contains('open')) { // Close Mobile Menu
+                            menu.classList.remove('open');
+                        }
+                        else {
+                            menu.classList.add('open');
+                        }
+                    });
+
+
+                    mobileMenu.addEventListener('click', function () {
+                        menu.classList.add('open');
+                        mobileMenu.style.display = "none";
+                        closeMobileMenu.style.display = "block"
+                    });
+
+                    closeMobileMenu.addEventListener('click', function () {
+                        menu.classList.remove('open');
+                        closeMobileMenu.style.display = "none"
+                        mobileMenu.style.display = "block";
+                    });
                 </script>
 
 </body>

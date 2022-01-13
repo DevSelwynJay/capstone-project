@@ -105,7 +105,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                    <div class="spacer">
                        <div class="profile">
                            <div class="profile-img">
-                               <img src="img/jay.jpg" alt="">
+                               <img src="img/user3.png" alt="">
                            </div>
                            <h4 id="name-sidebar">Your Name</h4>
                        </div>
@@ -235,7 +235,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                          </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
                            <input type="text" class="search-bar">
-                           <a href="/"><i class="fas fa-search"></i></a>
+                           <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
                                     .search-bar{

@@ -55,7 +55,19 @@ function handleCredentialResponse(response) {
                 if(xhr.responseText==1){
                     //window.location.href="main.php"
                     //prevent from clicking outside
-                    modalPopupMain();
+                    // modalPopupMain();
+                    $("#pop-up-loading").modal("show");
+                    $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data) {
+                        if(data==1){
+                            modalPopupEmailConfirmation();
+                        }
+                        else {
+                            $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                            $("#pop-up-error-message").html("Can't send OTP")
+                        }
+
+                    })
+
                 }
                 else{
                     //alert("Google Account is not registered !!!");
@@ -86,7 +98,17 @@ function loginProcess(){
             .done(function (data){
 
                 if(data==1){
-                    modalPopupMain();
+                    $("#pop-up-loading").modal("show");
+                    $.post("php/loginProcesses/sendOTPviaEmail.php",{email: logged_gmail}).done(function (data) {
+                        if(data==1){
+                            modalPopupEmailConfirmation();
+                        }
+                        else {
+                            $("#pop-up-error").modal('show'); //toggle pop-up error prompt
+                            $("#pop-up-error-message").html("Can't send OTP")
+                        }
+
+                    })
                 }
                 else {
                     $("#pop-up-error").modal('show'); //toggle pop-up error prompt
@@ -162,6 +184,7 @@ function  modalPopupMain(){
 //if email was selected where to send OTP
 //pop-up where to input OTP
 function modalPopupEmailConfirmation(){
+    $("#pop-up-loading").modal("hide");
 
     $("#pop-up-email").modal('show');
 

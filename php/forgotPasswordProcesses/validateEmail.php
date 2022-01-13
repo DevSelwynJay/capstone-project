@@ -4,12 +4,17 @@ $email = $_POST['email'];
 $con=null;
 require '../DB_Connect.php';
 
-$userTables = array('admin','patient','super_admin');
+$userTables = array('admin','walk_in_patient','super_admin');
 
 $isFound=false;
 foreach ($userTables as $userTable){
 
-        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email'");
+    $querySuffix = "";
+    if($userTable!='super_admin'){//wala kasing acc type sa super admin
+        $querySuffix = "AND account_status = 1";
+    }
+
+        $result =  mysqli_query($con,"SELECT * FROM $userTable WHERE email='$email' ".$querySuffix);
 
     if(mysqli_num_rows($result)>0){//email or is in the database
         $_SESSION['email_in_forgot_pwd'] = $email;

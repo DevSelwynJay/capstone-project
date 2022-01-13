@@ -16,7 +16,7 @@ $ctr = 0;$cc=1;
 $temp = '';
 while ($cc<8){
     $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='Covid' group by patient_id");
+                                            AND vaccine_sub_category LIKE '%Covid%' group by patient_id");
     $number[$ctr] = mysqli_num_rows($results[$ctr]);
     $ctr++;$cc++;
 }
@@ -35,7 +35,7 @@ $results2 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
     $results2[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Adult'
-                                            AND vaccine_name='Covid' group by patient_id");
+                                            AND vaccine_sub_category LIKE '%Covid%' group by patient_id");
     $number2[$ctr] = mysqli_num_rows($results2[$ctr]);
     $ctr++;$cc++;
 }
@@ -53,7 +53,7 @@ $results3 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
     $results3[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Senior'
-                                            AND vaccine_name='Covid' group by patient_id");
+                                            AND vaccine_sub_category LIKE '%Covid%' group by patient_id");
     $number3[$ctr] = mysqli_num_rows($results3[$ctr]);
     $ctr++;$cc++;
 }
@@ -71,7 +71,7 @@ $results4 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
     $results4[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='PWD'
-                                            AND vaccine_name='Covid' group by patient_id");
+                                            AND vaccine_sub_category LIKE '%Covid%' group by patient_id");
     $number4[$ctr] = mysqli_num_rows($results4[$ctr]);
     $ctr++;$cc++;
 }
@@ -89,7 +89,7 @@ $results5 = array();
 $ctr = 0;$cc=1;
 while ($cc<8){
     $results5[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Pregnant'
-                                            AND vaccine_name='Covid' group by patient_id");
+                                            AND vaccine_sub_category LIKE '%Covid%' group by patient_id");
     $number5[$ctr] = mysqli_num_rows($results5[$ctr]);
     $ctr++;$cc++;
 }
