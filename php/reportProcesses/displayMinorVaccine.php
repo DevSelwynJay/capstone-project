@@ -74,7 +74,7 @@ if(mysqli_num_rows($result)>0){
 
     }
     $patienttable .= '</tbody></table><br><div align="center">';
-    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' and `date_given` > NOW()-interval ".$time." order by `date_created` asc";
+    $page_qry = "Select * from `walk_in_patient` where `patient_type` = 'Minor' order by `date_created` asc";
     $page_result = mysqli_query($con, $page_qry);
     $total_records = mysqli_num_rows($page_result);
     $total_pages = ceil($total_records / $rpp);
