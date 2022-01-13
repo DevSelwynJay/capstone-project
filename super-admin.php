@@ -84,7 +84,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                            <img src="img/HIS logo blue.png" alt="">
                         </div>
                         <div class="settings">
-                            <a><i class="fas fa-user-circle"></i></a>
+<!--                            <a><i class="fas fa-user-circle"></i></a>-->
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                             <a id="close-dropdown"><i class="fas fa-times"></i></a>
                             <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>

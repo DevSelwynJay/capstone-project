@@ -316,14 +316,14 @@
             }
       </style>
       <div class="modal fade" id="pop-up-reg" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true"  data-show="false" >
-          <div class="modal-dialog  modal-dialog-centered">
+          <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
               <div class="modal-content">
                   <div class="modal-body">
 
                       <div id="modal-content" class="disclaimer-cont" style="display: flex;flex-flow: column;align-items: center" >
                           <img src="img/HIS%20logo%20blue.png" width="200" height="100"/>
                           <h3 style="color: #3f3b3b;text-align: center;font-weight: normal">Terms and Condition</h3>
-                          <p style="color: #3f3b3b;font-size: smaller">Lorem korem hehehehe mag agree na kayo kundi patay kayo sakin</p>
+                          <p style="color: #3f3b3b;font-size: smaller">Welcome to PHRMS. These are our terms and conditions for use of the network, which you may access in several ways, including but not limited to computer, tablets, laptops, and cellphones. In these terms and conditions, you agree that all the information that you will provide will be seen only by the admin users with the condition that it will only be used for the sole purpose of catering the patient in the entirety of the system.</p>
 
                           <p></p>
                           <div style="width: 90%" class="disclaimer-cont">
