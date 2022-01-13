@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
@@ -24,7 +25,6 @@ $critstocks = "There ".$count." Critical Stocks in our Inventory";
 $toexp = "There ".$count3." To Expire Medicine in our Inventory";
 $exp = "There ".$count2." Expired Medicine in our Inventory";
 $ofs = "There ".$count4." Out of Stocks in our Inventory";
-
 
 ?>
 <!DOCTYPE html>
@@ -344,6 +344,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <h1>Workers</h1>
                                 </div>
                                 <div class="list-header">
+                                    <p style="opacity:0;">img</p>
                                     <p>Name</p>
                                     <p>Position</p>
                                 </div>
@@ -399,7 +400,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 </ul>
                             </div>
                             <div class="popular-vaccines-container">
-                                <div id="container" style="width: 43vw; height: 64vh; font-style: Lato, sans-serif; margin-left: 5px; margin-top: 5px;">
+                                <div id="container">
                                 </div>
                             </div>
                         </div>
