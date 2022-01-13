@@ -65,33 +65,36 @@ $_6DigitCode = generate_6_Digits();
 $_SESSION['final_id'] = $new_id = generateID($_6DigitCode);
 validateID($con,$new_id);
 //END TRY CODES
+$adminID = $_SESSION['final_id'];
 
-$userTables = array('admin_archive','admin');
+$userTables = array('admin','super_admin','walk_in_patient','pending_patient');
 //pending problem nag eerror na may nag eexist na kahit wala pa
 foreach ($userTables as $userTable){
-    $adminID = $_SESSION['final_id'];
+
     $result =  mysqli_query($con,"SELECT email FROM $userTable WHERE email='$email'");
     if(mysqli_num_rows($result)>=1){// the email is already in the database
         echo 0;
-        break;
-    }else {// the email is to be added
-        //add sa db
-        // Performing insert query execution to admin db
-        $sql = "INSERT INTO admin (account_type, id, last_name, first_name, middle_name, gender, birthday, address, email, password, contact_no, role) VALUES
+       exit();
+    }
+}//for
+
+//kapag walang existing email dederetso dito
+// the email is to be added
+//add sa db
+// Performing insert query execution to admin db
+$sql = "INSERT INTO admin (account_type, id, last_name, first_name, middle_name, gender, birthday, address, email, password, contact_no, role) VALUES
         ('1', '$adminID', '$lname', '$fname', '$mname ', '$gender', '$bday', '$address', '$email', '$password', '$contactno', '$workcat')";
 
-        //mysqli_query($sql);
+//mysqli_query($sql);
 
-        if(mysqli_query($con, $sql)){
-            echo 1;
-            break;
-        } else{
-            echo 0;
-            break;
-        }
-
-    }
-
+if(mysqli_query($con, $sql)){
+    echo 1;
+//    break;
+} else{
+    echo 0;
+//    break;
 }
+
+
 
 ?>

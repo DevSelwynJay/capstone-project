@@ -84,7 +84,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                            <img src="img/HIS logo blue.png" alt="">
                         </div>
                         <div class="settings">
-                            <a><i class="fas fa-user-circle"></i></a>
+<!--                            <a><i class="fas fa-user-circle"></i></a>-->
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
                             <a id="close-dropdown"><i class="fas fa-times"></i></a>
                             <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
@@ -320,7 +320,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                      <div class="cta-wrapper2">
                          <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
                          <!--Palagyan ng Disable Account na button din dito.  -->
-                         <a href="#show-del2" rel="modal:open" id="disable-admin1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
+<!--                         <a href="#show-del2" rel="modal:open" id="disable-admin1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>-->
                      </div>
                   </div>
 
@@ -422,7 +422,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                      <div class="cta-wrapper2">
                          <!--Patanggal nung show more kasi scrollable naman na  -->
                          <a href="#blank"/>
-                         <a href="#show-delpat2" rel="modal:open"  id="disable-patient1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>
+<!--                         <a href="#show-delpat2" rel="modal:open"  id="disable-patient1" class="red-square-btn"><i class="fas fa-trash-alt"></i>Disable Account</a>-->
                      </div>
                   </div>
                </div>
@@ -608,5 +608,29 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
 
      </script>
+
+   <style>
+       .swal2-input{
+           max-width: 50%;
+           margin: 0 auto;
+       }
+       td button{
+           padding: 0.5em;
+           border:none;
+           outline: none;
+           background: var(--primary-color);
+           color: var(--secondary-color);
+                      }
+       tr:nth-child(odd){
+           background: var(--light-grey)!important;
+       }
+       tr:nth-child(even){
+           background: white!important;
+       }
+       tr:nth-child(odd):hover,tr:nth-child(even):hover{
+           background: var(--light-grey)!important;
+       }
+
+   </style>
    </body>
 </html>

@@ -419,10 +419,50 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     </section>
     <!--  graph   -->
     <script language="JavaScript">
+
         // let arr = []
         // arr.push([1,2,3,4,5]);arr.push([1,2,3,4,5])
         // alert(arr[0])
+        $(document).ready(function (data) {
+            function drawChart() {
+                // Define the chart to be drawn.
+                $.get("dashboard-chart-backend.php").done(function (data) {
+                    let result = JSON.parse(data)
+                    var data = google.visualization.arrayToDataTable(result);
 
+                    var options = {
+                        title: 'Popular Vaccines (as of '+result[result.length-1][0] +' - '+result[1][0] +')',
+                        titleTextStyle: {
+                            color: "#FFFFFF",
+                            fontSize: 20,
+                            fontName: "Lato, sans-serif",
+                        },
+                        animation: {
+                            startup: true,
+                            duration: 1000,
+                            easing: 'out',
+                        },
+                        bar: { groupWidth: "70%" },
+                        legend: { position: "bottom" },
+                        backgroundColor: "#192734",
+                        isStacked: true,
+                        width: 620,
+                        height: 450,
+                        is3D: true,
+                        legendTextStyle: { color: '#FFF' },
+                        tooltip: {isHtml: true},
+                        hAxis: {
+                            format: '#\'%\'',
+                            textStyle: { color: '#FFF' }
+
+                        },
+                        vAxis: {
+                            textStyle: { color: '#FFF' }
+                        },
+
+                    }
+
+<<<<<<< HEAD
         function drawChart() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
@@ -465,15 +505,18 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 vAxis: {
                     textStyle: { color: '#FFF' }
                 },
+=======
+                    // Instantiate and draw the chart.
+                    var chart = new google.visualization.BarChart(document.getElementById('container'));
+                    document.onload(chart.draw(data, options));
+
+                })
+>>>>>>> 50918dcf86e7cc145211c18f2c3c101f4e434b4c
 
             }
+            google.charts.setOnLoadCallback(drawChart);
+        })
 
-            // Instantiate and draw the chart.
-            var chart = new google.visualization.BarChart(document.getElementById('container'));
-            document.onload(chart.draw(data, options));
-            
-        }
-        google.charts.setOnLoadCallback(drawChart);
     </script>
     <!--Drop down script-->
     <script>

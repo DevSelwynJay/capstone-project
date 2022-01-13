@@ -46,21 +46,26 @@ foreach ($tables as $table){
         break;
     }
 }
+
 //another added validation pag may kamuka na name bday purok bawal
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+$tables = array('walk_in_patient','pending_patient');
+foreach ($tables as $table){
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
 AND purok = $purok AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    $errMsg.= "<p>Duplication Detected</p>";
-
-}
-$resultCheckDuplication = mysqli_query($con,"SELECT * FROM walk_in_patient 
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        $errMsg = "<p>Cannot add patient. Duplication Detected!</p>";
+       break;
+    }
+    $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
 WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
-AND birthday = '$bday'
+ AND birthday = '$bday'
 ");
-if(mysqli_num_rows($resultCheckDuplication)>0){
-    $errMsg.= "<p>Duplication Detected</p>";
+    if(mysqli_num_rows($resultCheckDuplication)>0){
+        $errMsg = "<p>Cannot add patient. Duplication Detected!</p>";
+       break;
+    }
 }
 
 if($errMsg==null){

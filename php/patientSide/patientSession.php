@@ -43,7 +43,8 @@ if($res){
             "patient_id"=>$row['id']
             ,"patient_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name']
             ,"age"=>$row['age'],"gender"=>$row['gender'],"birthday"=>$row['bday'],
-            "contact_no"=>$row['contact_no'], "address"=>"Purok ".$row['purok'].", ".$row['house_no']." ".$row['address']
+            "contact_no"=>$row['contact_no'], "address"=>"Purok ".$row['purok'].", ".$row['house_no']." ".$row['address'],
+            "email"=>$row['email']
         ));
 
 
