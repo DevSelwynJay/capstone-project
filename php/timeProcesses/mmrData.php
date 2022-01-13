@@ -21,7 +21,7 @@ if($count==1){
     $results = array();
     while ($cc<8){
         $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' 
-                                          AND vaccine_name='MMR' AND WEEKOFYEAR(date_vaccinated) = WEEKOFYEAR(NOW()) group by patient_id");
+                                          AND vaccine_name='MMR' AND date_vaccinated BETWEEN (NOW() - INTERVAL 7 DAY) AND NOW() group by patient_id");
         $number1[$ctr] = mysqli_num_rows($results1[$ctr]);
         $ctr++;$cc++;
     }
@@ -31,7 +31,7 @@ if($count==1){
     $ctr = 0;$cc=1;
     while ($cc<8){
         $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='MMR' AND WEEKOFYEAR(date_vaccinated) = WEEKOFYEAR(NOW()) group by patient_id");
+                                            AND vaccine_name='MMR' AND date_vaccinated BETWEEN (NOW() - INTERVAL 7 DAY) AND NOW() group by patient_id");
         $number[$ctr] = mysqli_num_rows($results[$ctr]);
         $ctr++;$cc++;
     }
@@ -53,8 +53,7 @@ if($count==1){
     $results = array();
     while ($cc<8){
         $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' 
-                                          AND vaccine_name='MMR' AND MONTH(date_vaccinated)=MONTH(now())
-                                          AND YEAR(date_vaccinated)=YEAR(now()) group by patient_id");
+                                          AND vaccine_name='MMR' AND date_vaccinated>now() - interval 1 month group by patient_id");
         $number1[$ctr] = mysqli_num_rows($results1[$ctr]);
         $ctr++;$cc++;
     }
@@ -64,8 +63,7 @@ if($count==1){
     $ctr = 0;$cc=1;
     while ($cc<8){
         $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='MMR' AND MONTH(date_vaccinated)=MONTH(now())
-                                            AND YEAR(date_vaccinated)=YEAR(now()) group by patient_id");
+                                            AND vaccine_name='MMR' AND date_vaccinated>now() - interval 1 month group by patient_id");
         $number[$ctr] = mysqli_num_rows($results[$ctr]);
         $ctr++;$cc++;
     }
@@ -87,7 +85,7 @@ if($count==1){
     $results = array();
     while ($cc<8){
         $results1[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Infant' 
-                                          AND vaccine_name='MMR' AND YEAR(date_vaccinated)=YEAR(now()) group by patient_id");
+                                          AND vaccine_name='MMR' AND date_vaccinated BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW() group by patient_id");
         $number1[$ctr] = mysqli_num_rows($results1[$ctr]);
         $ctr++;$cc++;
     }
@@ -97,7 +95,7 @@ if($count==1){
     $ctr = 0;$cc=1;
     while ($cc<8){
         $results[$ctr] = mysqli_query($con, "SELECT event_id FROM vaccination_record WHERE patient_purok='$cc' AND patient_type='Minor'
-                                            AND vaccine_name='MMR' AND YEAR(date_vaccinated)=YEAR(now()) group by patient_id");
+                                            AND vaccine_name='MMR' AND date_vaccinated BETWEEN (NOW() - INTERVAL 1 YEAR) AND NOW() group by patient_id");
         $number[$ctr] = mysqli_num_rows($results[$ctr]);
         $ctr++;$cc++;
     }
