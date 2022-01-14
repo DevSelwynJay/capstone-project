@@ -1074,7 +1074,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         }
     }
 
-    adjustZoom();
+    // adjustZoom();
 </script>
 
 </body>

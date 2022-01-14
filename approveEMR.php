@@ -217,7 +217,7 @@
 
 
           </div>
-            <div class="content patients-view-container">
+            <div class="content patients-view-container" style="margin-bottom: 3rem">
                 <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-start">
                     <img src="img/history.png" class="modal-header-icon" style="margin-right: 0.3rem">
                      EMR Request History
