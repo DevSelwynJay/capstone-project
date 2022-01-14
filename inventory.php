@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
@@ -25,6 +24,7 @@ $critstocks = "There ".$count." Critical Stocks in our Inventory";
 $toexp = "There ".$count3." To Expire Medicine in our Inventory";
 $exp = "There ".$count2." Expired Medicine in our Inventory";
 $ofs = "There ".$count4." Out of Stocks in our Inventory";
+
 
 ?>
 
@@ -129,7 +129,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <li><a href="reports.php" class="reports" >Reports</a></li>
                         <li><a href="track-map.php" class="trackMap" >Track Map</a></li>
                         <li><a href="inventory.php" class="inventory" style="background: var(--hover-color)">Inventory</a></li>
-                        <?php include 'sidebarFix.html'?>
+                        <?php include 'sidebarFix.html' ?>
                     </ul>
                 </div>
 

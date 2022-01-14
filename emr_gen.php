@@ -46,8 +46,8 @@ class PDF extends FPDF{
         $first = $height+2;
         $second = $height+$height+$height+3;
         $len = strlen($t);
-        if($len>15){
-            $txt = str_split($t,15);
+        if($len>20){
+            $txt = str_split($t,20);
             $this->SetX($x);
             $this->Cell($w,$first,$txt[0],'','','');
             $this->SetX($x);
@@ -74,7 +74,7 @@ $pdf->Text(170,40,"$datetoday");
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',20);
 //
-$pdf->Cell(13);
+$pdf->Cell(20);
 $pdf->Cell(35,10, $_SESSION['active_emr_account']['name'],0,0,'C');
 
 $pdf->SetFont('Arial','',14);

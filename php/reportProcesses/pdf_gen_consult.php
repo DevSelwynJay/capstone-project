@@ -36,6 +36,26 @@ class PDF extends FPDF{
         $this->Cell(30,15,'Sto. Rosario Rural Health Center');
         $this->Ln(37);
     }
+    function myCell($w,$h,$x,$t){
+        $height = $h/3;
+        $first = $height+2;
+        $second = $height+$height+$height+3;
+        $len = strlen($t);
+        if($len>15){
+            $txt = str_split($t,15);
+            $this->SetX($x);
+            $this->Cell($w,$first,$txt[0],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$second,$txt[1],'','','');
+            $this->SetX($x);
+            $this->Cell($w,$h,'','T',0,'L',0);
+
+        }
+        else{
+            $this->SetX($x);
+            $this->Cell($w,$h,$t,'T');
+        }
+    }
 
 
 }
@@ -47,6 +67,8 @@ $pdf->SetFont('Arial','B',14);
 $datetoday = Date("M-d-Y");
 $pdf->Text(170,40,"$datetoday");
 $pdf->Text(10,40,"Consultation Reports (".$type.")");
+$w = 45;
+$h = 16;
 $pdf->Cell(50,10,"Patient Name",0,0,'C');
 $pdf->Cell(0,10,"Patient Description",0,1,'C');
 
@@ -67,7 +89,8 @@ while($row1 = mysqli_fetch_assoc($record1)){
             $comaddress = 'Purok '.$purok.' House No.'.$house_no.' '.$address;
             $gender = $row3['gender'];
 
-            $pdf->Cell(50,10,"$pat_name","T",0,'C');
+            $x = $pdf->GetX();
+            $pdf->myCell($w,$h,$x,$pat_name);
             $pdf->MultiCell(0,10,"Address: ".$comaddress ."\nBirthday: ".$bday."\nGender: " .$gender."\n Consultation Date: ".$date_given,"LT",'C');
 
         }
