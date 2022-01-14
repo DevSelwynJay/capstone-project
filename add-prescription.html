@@ -257,36 +257,12 @@
         <div id="add-vaccine-UI-cont"style="display: none">
             <div class="row justify-content-sm-center justify-content-md-start">
 
-                <div class="col-lg-4 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
-                    <label class="modal-p-2 " ><span style="color: red">*</span>Recommended No. of Dose</label>
-                    <input id="rec_no_dosage" type="number" class="search-bar" placeholder="x">
-                    <script>
-                        $("#rec_no_dosage").keyup(function () {
-                            let val = $(this).val();
-                            if(val.length=0){
-                                $("#set-next-sched-cont").css("display","none")
-                                $("#set-next-sched").val("")
-                            }
-                            else if(parseInt(val)>1){
-                                $("#set-next-sched-cont").css("display","block")
-                            }
-                            else {
-                                $("#set-next-sched-cont").css("display","none")
-                                $("#set-next-sched").val("")
-                            }
-                            $(".modal-p-error").css("visibility","hidden")
-                        }).on("wheel",function () {//disable scroll in number input
-                            $(this).blur();
-                        })
-                    </script>
-                </div>
+
                 <div class="col-lg-4 col-md-6  col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 " >No. of  Dose Taken</label>
                     <input id="curr_dose" type="text" class="search-bar" value="x of x" readonly>
                 </div>
-            </div>
-            <div class="row justify-content-sm-center justify-content-md-start">
-                <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+                <div class="col-lg-4 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 ">Last Vaccination</label>
                     <input id="last-given" class="search-bar" type="text" placeholder="none" readonly>
                     <script>
@@ -306,11 +282,11 @@
                         // $("#date-given").val(today)
                     </script>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+                <div class="col-lg-4 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
                     <label class="modal-p-2 ">Next Schedule</label>
                     <div class="flex-box-row align-items-center">
                         <input id="next-date" class="search-bar" type="text" placeholder="none" readonly>
-<!--                        <i id="del-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(&#45;&#45;third-color);margin-left: 0.2rem"></i>-->
+                        <!--                        <i id="del-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(&#45;&#45;third-color);margin-left: 0.2rem"></i>-->
                     </div>
                     <script>
                         $("#del-next-sched").click(function () {
@@ -335,8 +311,34 @@
                         // today =  yyyy+'-'+mm+'-'+dd;
                     </script>
                 </div>
+            </div>
+            <div class="row justify-content-sm-center justify-content-lg-center">
+
+                <div class="col-lg-4 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+                    <label class="modal-p-2 " ><span style="color: red;font-size: large">*</span>Recommended No. of Dose</label>
+                    <input id="rec_no_dosage" type="number" class="search-bar" placeholder="x">
+                    <script>
+                        $("#rec_no_dosage").keyup(function () {
+                            let val = $(this).val();
+                            if(val.length=0){
+                                $("#set-next-sched-cont").css("display","none")
+                                $("#set-next-sched").val("")
+                            }
+                            else if(parseInt(val)>1){
+                                $("#set-next-sched-cont").css("display","block")
+                            }
+                            else {
+                                $("#set-next-sched-cont").css("display","none")
+                                $("#set-next-sched").val("")
+                            }
+                            $(".modal-p-error").css("visibility","hidden")
+                        }).on("wheel",function () {//disable scroll in number input
+                            $(this).blur();
+                        })
+                    </script>
+                </div>
                 <div class="col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
-                    <p class="modal-p-2"><span style="color: red">*</span>Description</p>
+                    <p class="modal-p-2"><span style="color: red;font-size: large">*</span>Description</p>
                     <textarea  id="description-vaccine" class="search-bar" style="width: 100%;height: 12vh;padding: 0.5rem" placeholder="Description">
                     </textarea>
                     <script>
