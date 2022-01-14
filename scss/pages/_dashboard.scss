@@ -8,18 +8,21 @@
     border-radius: 10px;
     padding: 2rem 1rem;
     margin-bottom: 30px;
-  }
-  .greetings-container > * {
     @media (max-width: 768px) {
-      flex: 1;
+     flex-direction: column;
+     align-items:center;
+    }
+
+    .img-container{
+      padding: 1rem;
+      @media (max-width: 768px) {
+        display: grid;
+        place-items: center;
+       }
     }
   }
-  .greetings-img {
-    margin-top: -10%;
-    @media (max-width: 768px) {
-      margin: 0 !important;
-    }
-  }
+  
+  
   .greetings-container h1.title {
     font-weight: 800;
     color: #0c6893;
@@ -32,12 +35,30 @@
     text-align: center;
   }
   .greetings-container img {
-    width: 100%;
-    object-fit: contain;
+    max-width: 10rem;
+    @media (max-width: 768px) {
+      width: 60%;
+      object-fit: unset !important;
+      margin: 1rem;
+      display: block;
+      max-width: unset;
+    }
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
   .text {
     display: grid;
     place-items: center;
+
+    .text-wrap {
+      h1{
+        margin-bottom: .7rem;
+      }
+      p{
+        margin-bottom: .5rem !important;
+      }
+    }
   }
   
   .vaccination-schedule-container {
@@ -49,6 +70,90 @@
     h3 {
       margin-bottom: 0.5rem;
     }
+
+    table {
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      table-layout: fixed;
+    }
+    
+    table caption {
+      font-size: 1.5em;
+      margin: .5em 0 .75em;
+    }
+    
+    table tr {
+     
+      padding: .35em;
+    }
+    
+    table th,
+    table td {
+      padding: .625em;
+      text-align: center;
+    }
+    
+    table th {
+      font-size: .85em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    
+    @media screen and (max-width: 600px) {
+      table {
+        border: 0;
+      }
+    
+      table caption {
+        font-size: 1.3em;
+      }
+      
+      table  th {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      table tr:first-child{
+        display: none;
+      }
+      
+      table tr {
+       
+        display: block;
+        margin-bottom: .625em;
+      }
+      
+      table td {
+      
+        display: block;
+        font-size: .8em;
+        text-align: right;
+      }
+      
+      table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      table td:last-child {
+        border-bottom: 0;
+      }
+    }
+
+   
   }
   .current-medication-container {
     background-color: var(--light-grey);
@@ -60,19 +165,87 @@
       margin-bottom: 0.5rem;
     }
 
-    table{
-      tbody{
-        @media (max-width: 520px) {
-          display: flex !important;
-        }
+    table {
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      table-layout: fixed;
+    }
+    
+    table caption {
+      font-size: 1.5em;
+      margin: .5em 0 .75em;
+    }
+    
+    table tr {
+      padding: .35em;
+    }
+    
+    table th,
+    table td {
+      padding: .625em;
+      text-align: center;
+    }
+    
+    table th {
+      font-size: .85em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    
+    @media screen and (max-width: 600px) {
+      table {
+        border: 0;
       }
-      th{
-        @media (max-width: 520px) {
-          display: flex;
-          flex-direction: column;
-        }
+    
+      table caption {
+        font-size: 1.3em;
+      }
+      
+      table  th {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      table tr:first-child{
+        display: none;
+      }
+      
+      table tr {
+        display: block;
+        margin-bottom: .625em;
+      }
+      
+      table td {
+        display: block;
+        font-size: .8em;
+        text-align: right;
+      }
+      
+      table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      table td:last-child {
+        border-bottom: 0;
       }
     }
+    
+
+  
   }
   .calendar-container {
     background-color: var(--light-grey);
@@ -152,6 +325,13 @@
     outline: none;
     background-color: none;
     font-family: Poppins;
+
+    tr{
+      @media (max-width: 520px) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
   tr:nth-child(even) {
     background: none;

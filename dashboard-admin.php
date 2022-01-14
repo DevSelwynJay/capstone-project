@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
@@ -24,7 +25,6 @@ $critstocks = "There ".$count." Critical Stocks in our Inventory";
 $toexp = "There ".$count3." To Expire Medicine in our Inventory";
 $exp = "There ".$count2." Expired Medicine in our Inventory";
 $ofs = "There ".$count4." Out of Stocks in our Inventory";
-
 
 ?>
 
@@ -120,7 +120,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 for (const resultElement of result) {
                     $("#admin-list").append("" +
                         "<li>" +
-                        '<div class="name-list"><img src="img/user.png" alt="">' +
+                        '<div class="name-list"><img src="img/user3.png" alt="">' +
                         "<p>"+resultElement.first_name + " " +resultElement.middle_name +" "+resultElement.last_name +"</p>"+
                         "<p>"+resultElement.role+"</p>"+
                         "" +
@@ -187,11 +187,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                             <?php include 'sidebarFix.html'?>
                         </ul>
                     </div>
-                    <div class="social-media-links">
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-instagram"></i>
-                    </div>
+
                 </div>
             </div>
             <div class="global__main-content">
@@ -349,6 +345,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <h1>Workers</h1>
                                 </div>
                                 <div class="list-header">
+                                    <p style="opacity:0;">img</p>
                                     <p>Name</p>
                                     <p>Position</p>
                                 </div>
@@ -404,7 +401,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                 </ul>
                             </div>
                             <div class="popular-vaccines-container">
-                                <div id="container" style="width: 43vw; height: 64vh; font-style: Lato, sans-serif; margin-left: 5px; margin-top: 5px;">
+                                <div id="container">
                                 </div>
                             </div>
                         </div>
@@ -420,103 +417,58 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     </section>
     <!--  graph   -->
     <script language="JavaScript">
-
         // let arr = []
         // arr.push([1,2,3,4,5]);arr.push([1,2,3,4,5])
         // alert(arr[0])
-        $(document).ready(function (data) {
-            function drawChart() {
-                // Define the chart to be drawn.
-                $.get("dashboard-chart-backend.php").done(function (data) {
-                    let result = JSON.parse(data)
-                    var data = google.visualization.arrayToDataTable(result);
+     $(document).ready(function () {
+         function drawChart() {
 
-                    var options = {
-                        title: 'Popular Vaccines (as of '+result[result.length-1][0] +' - '+result[1][0] +')',
-                        titleTextStyle: {
-                            color: "#FFFFFF",
-                            fontSize: 20,
-                            fontName: "Lato, sans-serif",
-                        },
-                        animation: {
-                            startup: true,
-                            duration: 1000,
-                            easing: 'out',
-                        },
-                        bar: { groupWidth: "70%" },
-                        legend: { position: "bottom" },
-                        backgroundColor: "#192734",
-                        isStacked: true,
-                        width: 620,
-                        height: 450,
-                        is3D: true,
-                        legendTextStyle: { color: '#FFF' },
-                        tooltip: {isHtml: true},
-                        hAxis: {
-                            format: '#\'%\'',
-                            textStyle: { color: '#FFF' }
+             $.get("dashboard-chart-backend.php").done(function (data) {
+                 let result = JSON.parse(data)
+                 // Define the chart to be drawn.
+                 var data = google.visualization.arrayToDataTable(result);
 
-                        },
-                        vAxis: {
-                            textStyle: { color: '#FFF' }
-                        },
+                 var options = {
+                     title: 'Popular Vaccines (as of 2015 - 2021)',
+                     titleTextStyle: {
+                         color: "#FFFFFF",
+                         fontSize: 20,
+                         fontName: "Lato, sans-serif",
+                     },
+                     animation: {
+                         startup: true,
+                         duration: 1000,
+                         easing: 'out',
+                     },
+                     bar: { groupWidth: "70%" },
+                     legend: { position: "bottom" },
+                     backgroundColor: "#527c88",
+                     isStacked: true,
+                     width: 620,
+                     height: 450,
+                     is3D: true,
+                     legendTextStyle: { color: '#FFF' },
+                     tooltip: {isHtml: true},
+                     hAxis: {
+                         format: '#\'%\'',
+                         textStyle: { color: '#FFF' }
 
-                    }
+                     },
+                     vAxis: {
+                         textStyle: { color: '#FFF' }
+                     },
 
-<<<<<<< HEAD
-        function drawChart() {
-            // Define the chart to be drawn.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'MMR(Measles)', 'BCG(Tuberculosis)', 'DTP(Tetanus)', 'COVID-19'],
-                ['2015', 8, 25, 10, 0],
-                ['2016', 55, 25, 0, 0],
-                ['2017', 30, 30, 6, 0],
-                ['2018', 15, 10, 8, 0],
-                ['2019', 55, 20, 10, 0],
-                ['2020', 5, 10, 5, 10],
-                ['2021', 3, 2, 2, 93],
-            ]);
+                 }
 
-            var options = {
-                title: 'Popular Vaccines (as of 2015 - 2021)',
-                titleTextStyle: {
-                    color: "#FFFFFF",
-                    fontSize: 20,
-                    fontName: "Lato, sans-serif",
-                },
-                animation: {
-                    startup: true,
-                    duration: 1000,
-                    easing: 'out',
-                },
-                bar: { groupWidth: "70%" },
-                legend: { position: "bottom" },
-                backgroundColor: "#527c88",
-                isStacked: true,
-                width: 620,
-                height: 450,
-                is3D: true,
-                legendTextStyle: { color: '#FFF' },
-                tooltip: {isHtml: true},
-                hAxis: {
-                    format: '#\'%\'',
-                    textStyle: { color: '#FFF' }
-                    
-                },
-                vAxis: {
-                    textStyle: { color: '#FFF' }
-                },
-=======
-                    // Instantiate and draw the chart.
-                    var chart = new google.visualization.BarChart(document.getElementById('container'));
-                    document.onload(chart.draw(data, options));
+                 // Instantiate and draw the chart.
+                 var chart = new google.visualization.BarChart(document.getElementById('container'));
+                 document.onload(chart.draw(data, options));
 
-                })
->>>>>>> 50918dcf86e7cc145211c18f2c3c101f4e434b4c
+             })
 
-            }
-            google.charts.setOnLoadCallback(drawChart);
-        })
+         }//function
+         google.charts.setOnLoadCallback(drawChart);
+     })
 
     </script>
     <!--Drop down script-->

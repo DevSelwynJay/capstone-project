@@ -1,10 +1,11 @@
 <?php
-session_start();
-if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
-    //redirect to main page
-    header("location:php/loginProcesses/redirect.php");
-    exit();
-}
+
+//session_start();
+//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+//    //redirect to main page
+//    header("location:php/loginProcesses/redirect.php");
+//    exit();
+//}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -115,11 +116,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <?php include 'sidebarFix.html'?>
                     </ul>
                  </div>
-                 <div class="social-media-links">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                 </div>
+
               </div>
            </div>
            <div class="global__main-content">

@@ -104,11 +104,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                             <?php include 'sidebarFix.html'?>
                         </ul>
                     </div>
-                    <div class="social-media-links">
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-instagram"></i>
-                    </div>
+
                 </div>
             </div>
             <div class="global__main-content">

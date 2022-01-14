@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
@@ -24,7 +25,6 @@ $critstocks = "There ".$count." Critical Stocks in our Inventory";
 $toexp = "There ".$count3." To Expire Medicine in our Inventory";
 $exp = "There ".$count2." Expired Medicine in our Inventory";
 $ofs = "There ".$count4." Out of Stocks in our Inventory";
-
 
 ?>
 
@@ -118,11 +118,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            <?php include 'sidebarFix.html'?>
                        </ul>
                    </div>
-                   <div class="social-media-links">
-                       <i class="fab fa-facebook"></i>
-                       <i class="fab fa-twitter"></i>
-                       <i class="fab fa-instagram"></i>
-                   </div>
+
                </div>
            </div>
            <div class="global__main-content">
@@ -258,7 +254,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                      </div>
 
                      <div class="content patients-view-container">
-                         <h3 style="color: var(--third-color)"class="margin-top-2">Patient List</h3>
+                         <h3 style="color: var(--third-color)">Patient List</h3>
 
 <!--                         <h3 class="table-title margin-top-3">-->
 <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->

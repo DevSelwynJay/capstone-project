@@ -62,11 +62,11 @@
             <li><a href="inventory.php" class="inventory">Inventory</a></li>
           </ul>
         </div>
-        <div class="social-media-links">
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-instagram"></i>
-        </div>
+<!--        <div class="social-media-links">-->
+<!--          <i class="fab fa-facebook"></i>-->
+<!--          <i class="fab fa-twitter"></i>-->
+<!--          <i class="fab fa-instagram"></i>-->
+<!--        </div>-->
       </div>
     </div>
 

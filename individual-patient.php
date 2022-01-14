@@ -208,11 +208,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <?php include 'sidebarFix.html'?>
                      </ul>
                   </div>
-                  <div class="social-media-links">
-                     <i class="fab fa-facebook"></i>
-                     <i class="fab fa-twitter"></i>
-                     <i class="fab fa-instagram"></i>
-                  </div>
+
                </div>
             </div>
             <div class="global__main-content">
@@ -363,6 +359,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            <div class="patient-content__calendar holder">
                               <p>Medication/Vaccination Calendar</p>
                               <div id="calendar"></div>
+                               <p class="modal-p" style="font-weight: 500!important;font-size: medium!important;text-align: center!important;"><span style="color: darkred">Note:</span> You can only edit medication/vaccination that is currently active.</p>
                            </div>
                            <div class="patient-content__medical-history holder">
                                <p>Medication/Vaccination History</p>
