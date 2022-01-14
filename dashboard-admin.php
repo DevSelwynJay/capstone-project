@@ -119,7 +119,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 for (const resultElement of result) {
                     $("#admin-list").append("" +
                         "<li>" +
-                        '<div class="name-list"><img src="img/user.png" alt="">' +
+                        '<div class="name-list"><img src="img/user3.png" alt="">' +
                         "<p>"+resultElement.first_name + " " +resultElement.middle_name +" "+resultElement.last_name +"</p>"+
                         "<p>"+resultElement.role+"</p>"+
                         "" +
