@@ -27,6 +27,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
