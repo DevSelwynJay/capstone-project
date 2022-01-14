@@ -1,11 +1,10 @@
 <?php
-
-//session_start();
-//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
-//    //redirect to main page
-//    header("location:php/loginProcesses/redirect.php");
-//    exit();
-//}
+session_start();
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+    //redirect to main page
+    header("location:php/loginProcesses/redirect.php");
+    exit();
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -113,7 +112,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         <li><a href="reports.php" class="reports" style="background: var(--hover-color)">Reports</a></li>
                         <li><a href="track-map.php" class="trackMap">Track Map</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
-                        <?php include 'sidebarFix.html'?>
+                        <?php include 'sidebarFix.html' ?>
                     </ul>
                  </div>
 
@@ -209,8 +208,11 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            </div>
                            <ul class="reports-menu col-lg-9">
                                <li><a id="minor-link" class="active">Minor</a></li>
+                               <li><a id="infant-link" >Infant</a></li>
                                <li><a id="adult-link" >Adult</a></li>
+                               <li><a id="pregnant-link" >Pregnant</a></li>
                                <li><a id="senior-link" >Senior Citizen</a></li>
+                               <li><a id="pwd-link" >PWD</a></li>
                            </ul>
                         </div>
                        <div class="row-container">
@@ -278,6 +280,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $('#senior-link').attr('class','');
                 $('#adult-link').attr('class','');
                 $('#minor-link').attr('class','active');
+                $('#infant-link').attr('class','');
+                $('#pregnant-link').attr('class','');
+                $('#pwd-link').attr('class','');
                 displayMinor();
 
             });
@@ -285,6 +290,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $('#minor-link').attr('class','');
                 $('#adult-link').attr('class','');
                 $('#senior-link').attr('class','active');
+                $('#infant-link').attr('class','');
+                $('#pregnant-link').attr('class','');
+                $('#pwd-link').attr('class','');
                 displaySenior();
 
             });
@@ -292,7 +300,39 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 $('#senior-link').attr('class','');
                 $('#minor-link').attr('class','');
                 $('#adult-link').attr('class','active');
+                $('#infant-link').attr('class','');
+                $('#pregnant-link').attr('class','');
+                $('#pwd-link').attr('class','');
                 displayAdult();
+            });
+            $('#infant-link').on('click',function (){
+                $('#senior-link').attr('class','');
+                $('#minor-link').attr('class','');
+                $('#adult-link').attr('class','');
+                $('#infant-link').attr('class','active');
+                $('#pregnant-link').attr('class','');
+                $('#pwd-link').attr('class','');
+                displayInfant();
+
+            });
+            $('#pregnant-link').on('click',function (){
+                $('#senior-link').attr('class','');
+                $('#minor-link').attr('class','');
+                $('#adult-link').attr('class','');
+                $('#infant-link').attr('class','');
+                $('#pregnant-link').attr('class','active');
+                $('#pwd-link').attr('class','');
+                displayPregnant();
+
+            });
+            $('#pwd-link').on('click',function (){
+                $('#senior-link').attr('class','');
+                $('#minor-link').attr('class','');
+                $('#adult-link').attr('class','');
+                $('#infant-link').attr('class','');
+                $('#pregnant-link').attr('class','');
+                $('#pwd-link').attr('class','active');
+                displayPwd();
 
             });
             $('#daily-link').on("click", function(){
@@ -304,6 +344,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
                 if(getminor=="active"){
                     displayMinor();
                     console.log("dminor"+getminor);
@@ -316,6 +359,19 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     displaySenior();
                     console.log("dsenior"+getsenior);
                 }
+                else if(getinfant=="active"){
+                    displayInfant();
+
+                    console.log("dinfant"+getsenior);
+                }
+                else if(getpregnant=="active"){
+                    displayPregnant()
+                    console.log("dpreggy"+getsenior);
+                }
+                else if(getpwd=="active"){
+                    displayPwd()
+                    console.log("dpwd"+getsenior);
+                }
 
             });
             $('#weekly-link').on('click',function (){
@@ -327,6 +383,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
                 if(getminor=="active"){
                     displayMinor();
                     console.log("wminor"+getminor);
@@ -339,6 +398,19 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     displaySenior();
                     console.log("wsenior"+getsenior);
                 }
+                else if(getinfant=="active"){
+                    displayInfant();
+
+                    console.log("dinfant"+getsenior);
+                }
+                else if(getpregnant=="active"){
+                    displayPregnant()
+                    console.log("dpreggy"+getsenior);
+                }
+                else if(getpwd=="active"){
+                    displayPwd()
+                    console.log("dpwd"+getsenior);
+                }
             });
             $('#monthly-link').on('click',function (){
                 $('#weekly-link').attr('class','');
@@ -349,6 +421,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
                 if(getminor=="active"){
                     displayMinor();
                     console.log("mminor"+getminor);
@@ -361,6 +436,19 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     displaySenior();
                     console.log("msenior"+getsenior);
                 }
+                else if(getinfant=="active"){
+                    displayInfant();
+
+                    console.log("dinfant"+getsenior);
+                }
+                else if(getpregnant=="active"){
+                    displayPregnant()
+                    console.log("dpreggy"+getsenior);
+                }
+                else if(getpwd=="active"){
+                    displayPwd()
+                    console.log("dpwd"+getsenior);
+                }
             });
             $('#quarterly-link').on('click',function (){
                 $('#weekly-link').attr('class','');
@@ -371,6 +459,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
                 if(getminor=="active"){
                     displayMinor();
                     console.log("qminor"+getminor);
@@ -383,6 +474,19 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     displaySenior();
                     console.log("qsenior"+getsenior);
                 }
+                else if(getinfant=="active"){
+                    displayInfant();
+
+                    console.log("dinfant"+getsenior);
+                }
+                else if(getpregnant=="active"){
+                    displayPregnant()
+                    console.log("dpreggy"+getsenior);
+                }
+                else if(getpwd=="active"){
+                    displayPwd()
+                    console.log("dpwd"+getsenior);
+                }
             });
             $('#anually-link').on('click',function (){
                 $('#weekly-link').attr('class','');
@@ -393,6 +497,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
                 if(getminor=="active"){
                     displayMinor();
                     console.log("aminor"+getminor);
@@ -405,12 +512,28 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     displaySenior();
                     console.log("asenior"+getsenior);
                 }
-            })
+                else if(getinfant=="active"){
+                    displayInfant();
+
+                    console.log("dinfant"+getsenior);
+                }
+                else if(getpregnant=="active"){
+                    displayPregnant()
+                    console.log("dpreggy"+getsenior);
+                }
+                else if(getpwd=="active"){
+                    displayPwd()
+                    console.log("dpwd"+getsenior);
+                }
+            });
 
             $('#pdf-link').on("click", function(){
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
 
                 var getdaily = $('#daily-link').attr('class');
                 var getweekly = $('#weekly-link').attr('class');
@@ -504,6 +627,91 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     }
 
                 }
+                else if(getinfant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=Infant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=Infant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=Infant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=Infant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=Infant');
+
+
+                    }
+
+                }
+                else if(getpregnant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=Pregnant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=Pregnant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=Pregnant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=Pregnant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=Pregnant');
+
+
+                    }
+
+                }
+                else if(getpwd == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?daily=1&type=PWD');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?weekly=1&type=PWD');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?monthly=1&type=PWD');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?quarterly=1&type=PWD');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_consult.php?annually=1&type=PWD');
+
+
+                    }
+
+                }
+
 
 
             });
@@ -512,6 +720,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
 
                 var getdaily = $('#daily-link').attr('class');
                 var getweekly = $('#weekly-link').attr('class');
@@ -600,6 +811,90 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     }
                     else if(getannually=='active'){
                         $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Senior');
+
+
+                    }
+
+                }
+                else if(getinfant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Infant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Infant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Infant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Infant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Infant');
+
+
+                    }
+
+                }
+                else if(getpregnant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Pregnant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Pregnant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Pregnant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Pregnant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Pregnant');
+
+
+                    }
+
+                }
+                else if(getpwd == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=PWD');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=PWD');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=PWD');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=PWD');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=PWD');
 
 
                     }
@@ -739,6 +1034,139 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 }
             })
         }
+        $(document).on("click",".pagination_linksenior",function (){
+            var page = $(this).attr("id");
+            displaySenior(page);
+        });
+        function displayInfant(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayInfantConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        }
+        $(document).on("click",".pagination_linkinfant",function (){
+            var page = $(this).attr("id");
+            displayInfant(page);
+        });
+        function displayPregnant(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayPregnantConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        }
+        $(document).on("click",".pagination_linkpregnant",function (){
+            var page = $(this).attr("id");
+            displayPregnant(page);
+        });
+        function displayPwd(page){
+            var getdaily = $('#daily-link').attr('class');
+            var getweekly = $('#weekly-link').attr('class');
+            var getmonthly = $('#monthly-link').attr('class');
+            var getquarterly = $('#quarterly-link').attr('class');
+            var getannually = $('#anually-link').attr('class');
+            var interval = '';
+            if(getdaily == 'active'){
+                interval = 'daily';
+
+            }
+            else if(getweekly=='active'){
+                interval = 'weekly';
+
+            }
+            else if(getmonthly=='active'){
+                interval = 'monthly';
+
+            }
+            else if(getquarterly=='active'){
+                interval = 'quarterly';
+
+            }
+            else if(getannually=='active'){
+                interval = 'annually';
+
+            }
+            $.ajax({
+                url: 'php/reportProcesses/displayPwdConsult.php',
+                type: 'POST',
+                data:{
+                    page:page,
+                    interval:interval
+                },
+                success: function (data, status){
+                    $('#tablediv').html(data);
+                }
+            })
+        }
+        $(document).on("click",".pagination_linkpwd",function (){
+            var page = $(this).attr("id");
+            displayPwd(page);
+        });
 
 
     </script>
