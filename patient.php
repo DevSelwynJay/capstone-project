@@ -253,7 +253,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 <!--                        </div>-->
                      </div>
 
-                     <div class="content patients-view-container">
+                     <div class="content patients-view-container" style="margin-bottom: 5rem">
                          <h3 style="color: var(--third-color)">Patient List</h3>
 
 <!--                         <h3 class="table-title margin-top-3">-->
@@ -422,18 +422,18 @@ Closedropdown.addEventListener('click',function(){
                }
            ,
            searchField: '.search-bar',
-           responsive: {
-               720: {
-                   columns: {
-                       id: "ID",
-                       name:"Name",
-                       patient_type:"Patient Type",
-                       age: "Age",
-                       purok:"Purok"
-
-                   },
-               },
-           },
+           // responsive: {
+           //     720: {
+           //         columns: {
+           //             id: "ID",
+           //             name:"Name",
+           //             patient_type:"Patient Type",
+           //             age: "Age",
+           //             purok:"Purok"
+           //
+           //         },
+           //     },
+           // },
            rowsPerPage: 5,
            pagination: true,
            tableWillMount: function() {
@@ -446,6 +446,14 @@ Closedropdown.addEventListener('click',function(){
            tableDidUpdate: function() {
                console.log('table did update')
                row_click()
+               for (a=0;a<parseInt(window.rowCount);a++){
+                   $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                   $($($(".gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
+                   $($($(".gs-table-body").children()[a]).children()[2]).attr("data-label","Patient Type")
+                   $($($(".gs-table-body").children()[a]).children()[3]).attr("data-label","Age")
+                   $($($(".gs-table-body").children()[a]).children()[4]).attr("data-label","Purok")
+                   $($($(".gs-table-body").children()[a]).children()[5]).attr("data-label","Acc. Type")
+               }
            },
            tableWillUnmount: function() {console.log('table will unmount')},
            tableDidUnmount: function() {console.log('table did unmount')},
@@ -458,7 +466,7 @@ Closedropdown.addEventListener('click',function(){
            // Push data into existing data
            console.log(JSON.parse(data))
            //table.setData(JSON.parse(data), null, true);
-
+           window.rowCount = JSON.parse(data).length;
            // or Set new data on table, columns is optional.
            if($(document).width()<=720){
                table.setData(JSON.parse(data),{
@@ -486,6 +494,11 @@ Closedropdown.addEventListener('click',function(){
                    // address:"Address",
                });
            }
+           // alert(window.rowCount)
+           // for (a=0;a<parseInt(window.rowCount);a++){
+           //     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+           // }
+           // alert($($($(".gs-table-body").children()[0]).children()[0]).attr("data-label","ID"))
        })//end of get/post method
        $('#changeRows').on('change', function() {
            table.updateRowsPerPage(parseInt($(this).val(), 10));
@@ -528,6 +541,7 @@ Closedropdown.addEventListener('click',function(){
                //console.log(a[0].innerHTML)//just another way
            })
        }
+
 
 });//end of document ready
 </script>

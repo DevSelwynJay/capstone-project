@@ -746,7 +746,6 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             data: [],
             columns:
                 {
-                    id: "ID",
                     name:"Name",
                     date:"Date",
                     // address:"Address",
@@ -756,24 +755,24 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 }
             ,
             searchField: '.search-bar',
-            responsive: {
-                720: {
-                    columns: {
-                        // id: "ID",
-                        name:"Name",
-                        date:"Date Requested",
-                        button:"Action"
-                    },
-                },
-                512:{
-                    columns: {
-                        // id: "ID",
-                        name:"Name",
-                        date:"Date Requested",
-                        button:"Action"
-                    },
-                }
-            },
+            // responsive: {
+            //     720: {
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     },
+            //     512:{
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     }
+            // },
             rowsPerPage: 5,
             pagination: true,
             tableWillMount: function() {
@@ -783,7 +782,15 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                 console.log('table did mount')
             },
             tableWillUpdate: function() {console.log('table will update')},
-            tableDidUpdate: function() {console.log('table did update');  click_view_button();},
+            tableDidUpdate: function() {
+                console.log('table did update');  click_view_button();
+                for (a=0;a<parseInt(window.rowCount_pending);a++){
+                    $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($(".gs-table-body").children()[a]).children()[1]).attr("data-label","Date Requested")
+                    $($($(".gs-table-body").children()[a]).children()[2]).attr("data-label","Action")
+
+                    }
+                },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
             onPaginationChange: function(nextPage, setPage) {
@@ -794,7 +801,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             // Push data into existing data
             console.log(JSON.parse(data))
             //table.setData(JSON.parse(data), null, true);
-
+            window.rowCount_pending = JSON.parse(data).length;
             // or Set new data on table, columns is optional.
             table.setData(JSON.parse(data),{
                 // id: "ID",
