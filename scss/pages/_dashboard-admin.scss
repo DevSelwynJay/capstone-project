@@ -12,38 +12,33 @@
 
 .admin-upper{
     width: 100%;
-    display: grid;
+    display: flex;
+    margin: 10px 25px;
     color: white;
-    grid-template-columns: 1fr 2fr;
-    gap: 1rem;
-    margin: 2rem 0;
 
     .fas{
         color: white;
         font-size: 1.8rem;
     }
-
-    @media(max-width:999px){
-        grid-template-columns: 1fr;
-    }
-
-    
-
     .admin-upper-left{
+        width: 34vw;
         height: auto;
-        display: grid;
-        gap: 1rem;
 
         .dashboard-cards{
-            min-height: 22vh;
+            height: 22vh;
+            margin: 10px;
             border-radius: 10px;
             display: flex;
             align-items: center; 
-            justify-content: space-between;
-            padding: 2rem;
         }
         .dashboard-cards-text{
             text-align: right;
+        }
+        .text1{
+            margin-left: 110px;
+        }
+        .text2{
+            margin-left: 200px;
         }
         .dashboard-cards-text p:nth-child(1){
             font-weight: 800;
@@ -58,46 +53,33 @@
         }
         .card2{
             background: #eb4151;
-           
+            margin-top: 20px;
         }
         .fa-syringe{
-           
+            margin-left: 20px;
         }
         .fa-user-injured{
-           
+            margin-left: 20px;
         }
     }
-
-
-
     .admin-upper-right{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
-
-        @media(max-width:500px){
-            grid-template-columns: 1fr 1fr;
-        }
-        @media(max-width:430px){
-            grid-template-columns: 1fr;
-        }
-
 
         .dashboard-small-cards{
-            background: #527c88;
+            width: 11vw;
+            height: 22vh;
+            background: #0063b2ff;
+            margin: 10px;
             border-radius: 10px;
             text-align: center;
-            display: flex;
-            place-items: center;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem;
+
         }
         .dashboard-small-cards i{
-          
+            margin-top: 10px;
         }
         .small-cards-text{
-         
+            margin-top: 10px;
         }
         .small-cards-text p:nth-child(1){
             font-weight: 800;
@@ -114,39 +96,38 @@
 .admin-lower{
     display: grid;
     grid-template-columns: 1fr 2fr;
+    margin-top: 0; 
+    margin-left: 22px;
+    margin-bottom: 20px;
     color: white;
-    gap: 1rem;
-    margin: 2rem 0;
-
-    @media(max-width:999px){
-        grid-template-columns: 1fr;
-    }
     
     .workers-list-container{
-        background-color: #527c88;
+        width: 22vw;
+        height: 70vh;
+        background-color: #0063b2ff;
         border-radius: 10px;
-      
+        margin: 0 10px;
+        padding-right: 5px;
+
         img{
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            margin-top: 8px;
         }
 
         ul{
             font-family: Lato, sans-serif;
+            height: 320px;
             overflow: scroll;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            height: 70%;
         }
         ul li{
-            width: 100%;
+            height: 60px;
+            width: 90%;
             border-bottom: 1px solid gray;
+            margin-left: 15px;
             list-style: none;
-            padding: .5rem;
         }
         ul li:hover{
             cursor: pointer;
@@ -158,13 +139,19 @@
         .list-header{
             font-family: Lato, sans-serif;
             display: flex;
-            justify-content: space-evenly   ;
+        }
+        .list-header p:nth-child(1){
+            padding-left: 100px;
+        }
+        .list-header p:nth-child(2){
+            padding-left: 50px;
         }
         .name-list{
             display: flex;
             font-size: 0.8rem;
-            align-items: center;
-            justify-content: space-evenly;
+            p{
+                padding: 20px 0 0 25px;
+            }
         }
         
         
@@ -172,9 +159,11 @@
         
     }
     .popular-vaccines-container{
-        background-color: #527c88;
+        width: 46vw;
+        height: 70vh;
+        background-color: #0063b2ff;
         border-radius: 10px;
-        overflow-x: scroll;
+        margin: 0 10px;
     }
     
 }
