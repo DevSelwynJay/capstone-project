@@ -442,7 +442,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                      },
                      bar: { groupWidth: "70%" },
                      legend: { position: "bottom" },
-                     backgroundColor: "#527c88",
+                     backgroundColor: "#3d59ab",
                      isStacked: true,
                      width: 620,
                      height: 450,
