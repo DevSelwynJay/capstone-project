@@ -2843,13 +2843,11 @@ td:nth-child(1) {
 
 .admin-upper {
   width: 100%;
-  display: -ms-grid;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 25px;
   color: white;
-  -ms-grid-columns: 1fr 2fr;
-      grid-template-columns: 1fr 2fr;
-  gap: 1rem;
-  margin: 2rem 0;
 }
 
 .admin-upper .fas {
@@ -2857,22 +2855,14 @@ td:nth-child(1) {
   font-size: 1.8rem;
 }
 
-@media (max-width: 999px) {
-  .admin-upper {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
-}
-
 .admin-upper .admin-upper-left {
+  width: 34vw;
   height: auto;
-  display: -ms-grid;
-  display: grid;
-  gap: 1rem;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards {
-  min-height: 22vh;
+  height: 22vh;
+  margin: 10px;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2880,14 +2870,18 @@ td:nth-child(1) {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 2rem;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards-text {
   text-align: right;
+}
+
+.admin-upper .admin-upper-left .text1 {
+  margin-left: 110px;
+}
+
+.admin-upper .admin-upper-left .text2 {
+  margin-left: 200px;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(1) {
@@ -2906,6 +2900,15 @@ td:nth-child(1) {
 
 .admin-upper .admin-upper-left .card2 {
   background: #eb4151;
+  margin-top: 20px;
+}
+
+.admin-upper .admin-upper-left .fa-syringe {
+  margin-left: 20px;
+}
+
+.admin-upper .admin-upper-left .fa-user-injured {
+  margin-left: 20px;
 }
 
 .admin-upper .admin-upper-right {
@@ -2913,39 +2916,23 @@ td:nth-child(1) {
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-}
-
-@media (max-width: 500px) {
-  .admin-upper .admin-upper-right {
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 430px) {
-  .admin-upper .admin-upper-right {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
 }
 
 .admin-upper .admin-upper-right .dashboard-small-cards {
-  background: #527c88;
+  width: 11vw;
+  height: 22vh;
+  background: #3d59ab;
+  margin: 10px;
   border-radius: 10px;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  place-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 2rem;
+}
+
+.admin-upper .admin-upper-right .dashboard-small-cards i {
+  margin-top: 10px;
+}
+
+.admin-upper .admin-upper-right .small-cards-text {
+  margin-top: 10px;
 }
 
 .admin-upper .admin-upper-right .small-cards-text p:nth-child(1) {
@@ -2963,52 +2950,41 @@ td:nth-child(1) {
   display: grid;
   -ms-grid-columns: 1fr 2fr;
       grid-template-columns: 1fr 2fr;
+  margin-top: 0;
+  margin-left: 22px;
+  margin-bottom: 20px;
   color: white;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-@media (max-width: 999px) {
-  .admin-lower {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
 }
 
 .admin-lower .workers-list-container {
-  background-color: #527c88;
+  width: 22vw;
+  height: 70vh;
+  background-color: #3d59ab;
   border-radius: 10px;
+  margin: 0 10px;
+  padding-right: 5px;
 }
 
 .admin-lower .workers-list-container img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  margin-top: 8px;
 }
 
 .admin-lower .workers-list-container ul {
   font-family: Lato, sans-serif;
+  height: 320px;
   overflow: scroll;
   overflow-x: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 20px;
-  height: 70%;
 }
 
 .admin-lower .workers-list-container ul li {
-  width: 100%;
+  height: 60px;
+  width: 90%;
   border-bottom: 1px solid gray;
+  margin-left: 15px;
   list-style: none;
-  padding: .5rem;
 }
 
 .admin-lower .workers-list-container ul li:hover {
@@ -3025,9 +3001,14 @@ td:nth-child(1) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+}
+
+.admin-lower .workers-list-container .list-header p:nth-child(1) {
+  padding-left: 100px;
+}
+
+.admin-lower .workers-list-container .list-header p:nth-child(2) {
+  padding-left: 50px;
 }
 
 .admin-lower .workers-list-container .name-list {
@@ -3035,18 +3016,18 @@ td:nth-child(1) {
   display: -ms-flexbox;
   display: flex;
   font-size: 0.8rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+}
+
+.admin-lower .workers-list-container .name-list p {
+  padding: 20px 0 0 25px;
 }
 
 .admin-lower .popular-vaccines-container {
-  background-color: #527c88;
+  width: 46vw;
+  height: 70vh;
+  background-color: #3d59ab;
   border-radius: 10px;
-  overflow-x: scroll;
+  margin: 0 10px;
 }
 
 .pending-patient-container {
