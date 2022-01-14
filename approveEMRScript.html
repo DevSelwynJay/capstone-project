@@ -14,17 +14,17 @@
                 }
             ,
             // searchField: '.search-bar',
-            responsive: {
-                720: {
-                    columns: {
-                        complete_name:"Name",
-                        email:"Email",
-                        date_requested:"Date Requested",
-                        view_button:"Action"
-
-                    },
-                },
-            },
+            // responsive: {
+            //     720: {
+            //         columns: {
+            //             complete_name:"Name",
+            //             email:"Email",
+            //             date_requested:"Date Requested",
+            //             view_button:"Action"
+            //
+            //         },
+            //     },
+            // },
             rowsPerPage: 5,
             pagination: true,
             tableWillMount: function() {
@@ -37,6 +37,13 @@
             tableDidUpdate: function() {
                 console.log('table did update')
                 row_click()
+                for (a=0;a<parseInt(window.rowCount_emr_req);a++){
+                    $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($(".gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($(".gs-table-body").children()[a]).children()[2]).attr("data-label","Date Requested")
+                    $($($(".gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+
+                }
             },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
@@ -49,7 +56,7 @@
             // Push data into existing data
             console.log(JSON.parse(data))
             //table.setData(JSON.parse(data), null, true);
-
+            window.rowCount_emr_req = JSON.parse(data).length;
             // or Set new data on table, columns is optional.
             table.setData(JSON.parse(data),{
                 complete_name:"Name",
@@ -187,6 +194,12 @@
             tableDidUpdate: function() {
                 console.log('table did update')
                 // row_click()
+                for (a=0;a<parseInt(window.rowCount_emr_history);a++){
+                    $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[2]).attr("data-label","Date Processed")
+                    $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[3]).attr("data-label","Status")
+                }
             },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
@@ -199,7 +212,8 @@
             // Push data into existing data
             console.log(JSON.parse(data))
             //table.setData(JSON.parse(data), null, true);
-
+            window.rowCount_emr_history = JSON.parse(data).length;
+            // alert(window.rowCount_emr_history)
             // or Set new data on table, columns is optional.
             tableHistory.setData(JSON.parse(data),{
                 complete_name:"Name",
