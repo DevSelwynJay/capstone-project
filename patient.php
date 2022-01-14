@@ -254,7 +254,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                      </div>
 
                      <div class="content patients-view-container">
-                         <h3 style="color: var(--third-color)"class="margin-top-2">Patient List</h3>
+                         <h3 style="color: var(--third-color)">Patient List</h3>
 
 <!--                         <h3 class="table-title margin-top-3">-->
 <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->

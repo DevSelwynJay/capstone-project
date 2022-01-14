@@ -71,14 +71,9 @@
       margin-bottom: 0.5rem;
     }
 
-    #vacc-sched{
-      tr{
-        @media (max-width: 520px) {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-    }
+   
+
+   
   }
   .current-medication-container {
     background-color: var(--light-grey);
@@ -90,19 +85,9 @@
       margin-bottom: 0.5rem;
     }
 
-    table{
-      tbody{
-        @media (max-width: 520px) {
-          display: flex !important;
-        }
-      }
-      th{
-        @media (max-width: 520px) {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-    }
+    
+
+  
   }
   .calendar-container {
     background-color: var(--light-grey);
