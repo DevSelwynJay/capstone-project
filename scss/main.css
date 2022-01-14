@@ -1431,6 +1431,84 @@ tr:nth-child(even) {
   }
 }
 
+.patients-view-container h3 {
+  margin: 1rem 0;
+}
+
+.patients-view-container table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.patients-view-container table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.patients-view-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.patients-view-container table th,
+.patients-view-container table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.patients-view-container table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  .patients-view-container table {
+    border: 0;
+  }
+  .patients-view-container table caption {
+    font-size: 1.3em;
+  }
+  .patients-view-container table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .patients-view-container table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .patients-view-container table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .patients-view-container table td::before {
+    /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+          */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .patients-view-container table td:last-child {
+    border-bottom: 0;
+  }
+}
+
 .patients-view .patients-view-title {
   background-color: var(--primary-color);
 }
@@ -2000,18 +2078,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-@media (max-width: 520px) {
-  .vaccination-schedule-container #vacc-sched tr {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
 .current-medication-container {
   background-color: var(--light-grey);
   padding: 1rem;
@@ -2021,26 +2087,6 @@ body {
 
 .current-medication-container h3 {
   margin-bottom: 0.5rem;
-}
-
-@media (max-width: 520px) {
-  .current-medication-container table tbody {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .current-medication-container table th {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
 }
 
 .calendar-container {
@@ -2853,6 +2899,7 @@ td:nth-child(1) {
 .admin-lower .popular-vaccines-container {
   background-color: #527c88;
   border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .pending-patient-container {
