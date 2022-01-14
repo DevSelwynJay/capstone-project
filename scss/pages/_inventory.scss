@@ -1,162 +1,463 @@
-.inventory{
-    &__container{
-        padding: 1rem;
-
-        h1{
-            font-weight: 400 !important;
-            color: var(--third-color );
-        }
-
-        i{
-            cursor: pointer !important;
-        }
-
-        .td-spacer{
-            background-color: white;
-        }
+.inventory {
+    &__container {
+      padding: 1rem;
+  
+      h1 {
+        font-weight: 400 !important;
+        color: var(--third-color);
+      }
+  
+      i {
+        cursor: pointer !important;
+      }
+  
+      .td-spacer {
+        background-color: white;
+      }
     }
-    table{
-        margin-top: 0 !important;
-    }
-   
-    
-
-&__table-toexpire-container{
-
+  
     table {
+      margin-top: 0 !important;
+    }
+  
+    &__table-main-container {
+      tr.title {
+        background-color: var(--primary-color);
+        th {
+          color: white !important;
+          font-weight: 400;
+        }
+  
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
+      }
+      h3 {
+        margin: 2rem 0 1rem 0 !important;
+      }
+  
+      td,
+      th {
+        color: var(--third-color);
+        padding: 0.5rem 1rem;
+        text-align: center;
+      }
+  
+      td {
+        font-weight: 300 !important;
+      }
+  
+      td.add-btn {
+        background-color: white;
+        padding-left: 0.3rem !important;
+        i {
+          background-color: var(--primary-color);
+          color: white !important;
+          padding: 0.6rem;
+          border-radius: 0.4rem;
+  
+          transition: all 200ms ease-in-out;
+  
+          &:hover {
+            background-color: var(--hover-color) !important;
+          }
+        }
+      }
+  
+      th.add-row {
+        background-color: white;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #b7c6d1 !important;
+        @media screen and (max-width: 1024px) {
+          background-color: unset !important;
+        }
+      }
+  
+      table {
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+  
+      table caption {
+        font-size: 1.5em;
+        margin: 0.5em 0 0.75em;
+      }
+  
+      table th,
+      table td {
+        padding: 0.625em;
+        text-align: center;
+      }
+  
+      table th {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+  
+      @media screen and (max-width: 1024px) {
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 0.35em;
+        }
+
+        table {
+          border: 0;
+        }
+  
+        table caption {
+          font-size: 1.3em;
+        }
+  
+        table tr th {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          display: none;
+        }
+  
+        table tr {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+  
+        table td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.8em;
+          text-align: right;
+        }
+  
+        table td::before {
+          /*
+                    * aria-label has no advantage, it won't be read inside a table
+                    content: attr(aria-label);
+                    */
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+  
+        table td:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  
+    &__table-toexpire-container {
+      td:nth-child(1) {
+        width: 35%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td:nth-child(2) {
+        width: 25%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td:nth-child(3) {
+        width: 35%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td:nth-child(4) {
+        width: 5%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td {
+        font-weight: 300 !important;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #b7c6d1 !important;
+      }
+  
+      td.expired-text {
+        color: red !important;
+      }
+  
+      td.warning-btn {
+        background-color: white;
+        padding-left: 0.3rem !important;
+        text-align: center !important;
+        i {
+          color: #ff1515 !important;
+          padding: 0.6rem;
+          border-radius: 0.4rem;
+          font-size: 1.4rem !important;
+          cursor: unset !important;
+        }
+      }
+  
+      table {
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+  
+      table caption {
+        font-size: 1.5em;
+        margin: 0.5em 0 0.75em;
+      }
+  
+  
+      table th,
+      table td {
+        padding: 0.625em;
+        text-align: center;
+      }
+  
+      table th {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+  
+      @media screen and (max-width: 1024px) {
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 0.35em;
+          }
+
+        table {
+          border: 0;
+        }
+  
+        table caption {
+          font-size: 1.3em;
+        }
+  
+        table tr th {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          display: none;
+        }
+  
+        table tr {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+  
+        table td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.8em;
+          text-align: right;
+        }
+  
+        table td::before {
+          /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+  
+        table td:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  
+    &__table-expired-container {
+      margin-top: 3rem !important;
+      margin-bottom: 3rem !important;
+  
+      h1 {
+        color: var(--third-color) !important;
+        font-weight: 900 !important;
+        font-size: 21px !important;
+        margin: 1rem 0 !important;
+      }
+  
+      table {
         border-collapse: collapse;
         width: 100%;
         margin-top: 0 !important;
-        }
-        
-        td{
+      }
+  
+      td {
         font-weight: 300 !important;
         width: 200px;
+      }
+  
+      td:nth-child(1) {
+        width: 35%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
         }
-        
-        tr:nth-child(even) {
+      }
+  
+      td:nth-child(2) {
+        width: 25%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td:nth-child(3) {
+        width: 35%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      td:nth-child(4) {
+        width: 5%;
+        @media screen and (max-width: 1024px) {
+          width: 100% !important;
+        }
+      }
+  
+      tr:nth-child(even) {
         background-color: #b7c6d1 !important;
-        }
-        
-        td.expired-text{
+      }
+  
+      td.expired-text {
         color: red !important;
-        }
-        
-        td.warning-btn{
+      }
+  
+      td.delete-btn {
         background-color: white;
-        padding-left: .3rem !important;
-        text-align: left !important;
-        i{
-        color: #ff1515 !important;
-        padding: .6rem;
-        border-radius: .4rem;
-        font-size: 1.4rem !important;
-        cursor: unset !important;
-    
+        padding-left: 0.3rem !important;
+        text-align: center !important;
+        i {
+          background-color: red;
+          color: white !important;
+          padding: 0.6rem;
+          border-radius: 0.4rem;
+          transition: all 200ms ease-in-out;
+          font-size: 1.1rem !important;
+  
+          &:hover {
+            background-color: #ac0202 !important;
+          }
         }
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+  
+      table caption {
+        font-size: 1.5em;
+        margin: 0.5em 0 0.75em;
+      }
+  
+  
+      table th,
+      table td {
+        padding: 0.625em;
+        text-align: center;
+      }
+  
+      table th {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+  
+      @media screen and (max-width: 1024px) {
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 0.35em;
+          }
+
+        table {
+          border: 0;
         }
+  
+        table caption {
+          font-size: 1.3em;
+        }
+  
+        table tr th {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          display: none;
+        }
+  
+        table tr {
+          border-bottom: 3px solid #ddd;
+          display: block;
+          margin-bottom: 0.625em;
+        }
+  
+        table td {
+          border-bottom: 1px solid #ddd;
+          display: block;
+          font-size: 0.8em;
+          text-align: right;
+        }
+  
+        table td::before {
+          /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+  
+        table td:last-child {
+          border-bottom: 0;
+        }
+      }
 
-}
 
-&__table-expired-container{
-margin-top: 3rem !important;
-margin-bottom: 3rem !important;
-
-table {
-border-collapse: collapse;
-width: 100%;
-margin-top: 0 !important;
-}
-
-td{
-font-weight: 300 !important;
-width: 200px;
-}
-
-tr:nth-child(even) {
-background-color: #b7c6d1 !important;
-}
-
-td.expired-text{
-color: red !important;
-}
-
-td.delete-btn{
-background-color: white;
-padding-left: .3rem !important;
-text-align: left !important;
-i{
-background-color: red;
-color: white !important;
-padding: .6rem;
-border-radius: .4rem;
-transition: all 200ms ease-in-out;
-font-size: 1.1rem !important;
-
-&:hover{
-background-color: #ac0202 !important;
-}
-}
-}
-}
-
-
-&__table-main-container{
-
-tr.title{
-    background-color: var(--primary-color);
-    th{
-        color: white !important;
-        font-weight: 400;
     }
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 1rem;
-    }
-    
-    td, th {
+  
+  .modal-title,
+  .form-group label {
     color: var(--third-color);
-    padding: .5rem 1rem;
-    text-align: center;
-    }
-
-    td{
-        font-weight: 300 !important;
-    }
-
-    td.add-btn{
-        background-color: white;
-        padding-left: .3rem !important;
-        i{
-            background-color: var(--primary-color);
-            color: white !important;
-            padding: .6rem;
-            border-radius: .4rem;
-
-            transition: all 200ms ease-in-out;
-
-            &:hover{
-                background-color: var(--hover-color) !important;
-            }
-        }
-    }
-    th.add-row{
-        background-color: white;
-    }
-    
-
-    
-    tr:nth-child(even) {
-    background-color: #b7c6d1 !important;
-    }
-}
-
-
-}
-
-.modal-title, .form-group label{
-    color: var(--third-color);
-}
-
+  }
+  
