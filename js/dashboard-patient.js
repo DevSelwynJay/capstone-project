@@ -114,9 +114,9 @@ $(document).ready(function (e) {
              for (const resultElement of result) {
                  $("#curr-med").append("" +
                      "<tr>" +
-                             "<td>" +  resultElement.medicine_name + " (" + resultElement.dosage + ")" + "</td>" +
-                             "<td>" + resultElement.no_times + "</td>" +
-                             "<td>" + resultElement.duration_days+  " day/s, Until " +  resultElement.end_date  +"</td>" +
+                             "<td data-label='Name'>" +  resultElement.medicine_name + " (" + resultElement.dosage + ")" + "</td>" +
+                             "<td data-label='Times per day'>" + resultElement.no_times + "</td>" +
+                             "<td data-label='Duration'>" + resultElement.duration_days+  " day/s, Until " +  resultElement.end_date  +"</td>" +
                      "</tr>")
              }
          })
@@ -252,8 +252,8 @@ $(document).ready(function (e) {
 
                     $("#vac-sched-tbody").append(
                         "<tr>" +
-                        "<td>"+resultElement.vaccine_name+" <span style='font-size: 1rem'>(Dose "+curr_dose+" of "+rec_no_dose+")</span></td>" +
-                        "<td>"+nextSched+"</td>" +
+                        "<td data-label='Name'>"+resultElement.vaccine_name+" <span style='font-size: 1rem'>(Dose "+curr_dose+" of "+rec_no_dose+")</span></td>" +
+                        "<td data-label='Next Shedule'>"+nextSched+"</td>" +
                         "<tr>" +
                     "")
                 }
