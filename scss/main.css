@@ -3077,10 +3077,24 @@ td:nth-child(1) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .upper-part {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
 }
 
 .upper-part .left-part {
-  margin-left: 100px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  padding: 1rem;
 }
 
 .upper-part .left-part p {
@@ -3090,14 +3104,25 @@ td:nth-child(1) {
 }
 
 .upper-part .left-part img {
-  margin-left: 200px;
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  margin-top: 1rem;
+}
+
+.upper-part .left-part .lower-part table tr td:nth-child(1) {
+  width: 50%;
+}
+
+.upper-part .left-part .lower-part table tr td:nth-child(2) {
+  width: 50%;
 }
 
 .upper-part .right-part {
-  margin-left: 300px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  padding: 1rem;
 }
 
 .upper-part .right-part p {
@@ -3124,11 +3149,11 @@ td:nth-child(1) {
 }
 
 .lower-part {
-  margin-left: 150px;
+  margin-bottom: 20px;
 }
 
 .lower-part table {
-  margin-bottom: 20px;
+  margin-top: 2rem;
 }
 
 .lower-part table tr td {
