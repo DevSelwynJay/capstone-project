@@ -30,9 +30,9 @@ $start_from = ($page -1 )*$rpp;
         $date = $row['expdate'];
         $remaindays=datediff($datetoday,$date);
         $exptable .= '<tr>
-                    <td class="expired-text">'.$id.'</td>
-                    <td class="expired-text">'.$name.'</td>
-                    <td class="expired-text">'.$remaindays.'</td>
+                    <td data-label="Medicine ID" class="expired-text">'.$id.'</td>
+                    <td data-label="Medicine Name" class="expired-text">'.$name.'</td>
+                    <td data-label="Remaining Days" class="expired-text">'.$remaindays.'</td>
                     <td class="warning-btn"><i class="fas fa-exclamation"></i></td>
                </tr>
                ';

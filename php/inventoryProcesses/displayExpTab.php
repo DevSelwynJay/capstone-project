@@ -28,9 +28,9 @@ $start_from = ($page -1 )*$rpp;
         $id = $row['id'];
         $name = $row['name'];
         $expiredtab .= '<tr>
-                    <td>'.$id.'</td>
-                    <td>'.$name.'</td>
-                    <td class="expired-text">Expired</td>
+                    <td data-label="Medicine ID">'.$id.'</td>
+                    <td data-label="Medicine Name">'.$name.'</td>
+                    <td data-label="Expired" class="expired-text">Expired</td>
                     <td class="delete-btn"><i class="fas fa-trash" onclick="delModal('.$id.')" ></i></td>
                 </tr>';
     }
