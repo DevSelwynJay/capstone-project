@@ -1,0 +1,14 @@
+<script>
+  function getEventIDVaccine(event_id) {
+      $(window).scrollTop(0)
+      $("#pop-up-update-vaccination").modal({clickClose:false,escapeClose:false,showClose:false})
+    // alert(event_id)
+      $.post("php/patientProcesses/retrieveSelVac.php",{event_id:event_id}).done(function (data) {
+
+      })
+  }
+</script>
+
+<div class="modal modal-full-width" id="pop-up-update-vaccination">
+
+</div>

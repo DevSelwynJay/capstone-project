@@ -511,6 +511,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 <?php
 require 'add-prescription-script.html';
 require 'updateMedication.html';
+require 'updateVaccination.html';
 require 'edit-patient-info.html';
 require 'edit-patient-info-script.html';
 ?>

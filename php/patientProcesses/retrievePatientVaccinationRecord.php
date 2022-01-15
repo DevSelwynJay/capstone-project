@@ -27,6 +27,20 @@ while($row= mysqli_fetch_assoc($result)){
         $row['current_dose'] = $subRow['vaccine_count'];
     }
 
+    //kunin ung updated date vaccinated ng specific vaccine tapos icompare sa date_vaccinated ng current loop
+    //pag mas mababa ung date_vaccinated ng current loop di maeedit,,,, ung latest lang ang maeddit
+    $can_edit_date_record =mysqli_query($con,"SELECT *, DATE_FORMAT(date_vaccinated,'%Y-%m-%d') as latest_date_vaccinated FROM vaccination_record
+                WHERE patient_id = '$patientID' AND vaccine_name = '$CurrentVaccineName' ORDER BY date_vaccinated DESC
+                ");
+    if($_3rdRow = mysqli_fetch_assoc($can_edit_date_record)){
+        if($CurrentDateVaccinated<$_3rdRow['latest_date_vaccinated']){
+            $row['can_edit']= 0;
+        }
+        else{
+            $row['can_edit']= 1;
+        }
+    }
+
     //$row['sample']="sample"; singit key value pair
     $arr[] = $row;
 
