@@ -180,8 +180,8 @@ $(document).ready(function() {
                     // "<br> - "+freq_sentence+
                     // "<br> - Duration of "+duration+" day/s"+
                     "<br><br><strong>Description: </strong><br>"+resultElement.description+
-                    // "<br><br><strong>Date Vaccinated:</strong>" +
-                    // "<br> - "+resultElement.date_vaccinated_fd+
+                    "<br><br><strong>Date Vaccinated:</strong>" +
+                    "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
                     "<br> - "+nextSched +
                     edit_btn

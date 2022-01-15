@@ -1,14 +1,229 @@
 <script>
   function getEventIDVaccine(event_id) {
       $(window).scrollTop(0)
-      $("#pop-up-update-vaccination").modal({clickClose:false,escapeClose:false,showClose:false})
+      //reset inputs and message in modal
+      $("#note-next-sched").html('<span style="color: red">*Note: </span>Update next schedule for the next dose').css("visibility","visible")
+      $("#update-vac-set-next-sched").prop("disabled",false).css("opacity","1").val()
+      $("#update-vac-reset-set-next-sched").prop("disabled",false).css("opacity","1")
+
+      $("#pop-up-update-vaccination").modal({escapeClose:false,showClose:false})
     // alert(event_id)
       $.post("php/patientProcesses/retrieveSelVac.php",{event_id:event_id}).done(function (data) {
+            let result = JSON.parse(data);
+          $("#update-vac-date-given").html(result.date_given_fd)
 
+          $("#update-vac-name").val(result.vaccine_name);window.vaccine_name = result.vaccine_name;
+          $("#update-vac-type").val(result.type)
+          $("#update-vac-sub-category").val(result.vaccine_sub_category)
+          $("#update-vac-curr_dose").val(result.dose_taken)
+
+          //the editable text fields
+          $("#update-vac-rec_no_dosage").val(result.reccommended_no_of_dosage)
+          $("#update-vac-set-next-sched").val(result.next_date)
+          window.next_date = result.next_date;
+
+          //if current dose = required dose, No need to set next sched
+          if(parseInt(result.reccommended_no_of_dosage)==parseInt(result.dose_taken)){
+              $("#note-next-sched").css("visibility","visible").html('<span style="color: red">*Note: </span>No need to set next sched.')
+              $("#update-vac-set-next-sched").prop("disabled",true).css("opacity","0.5")
+              $("#update-vac-reset-set-next-sched").prop("disabled",true).css("opacity","0.5")
+          }
       })
   }
 </script>
 
 <div class="modal modal-full-width" id="pop-up-update-vaccination">
+    <div class="flex-box-row justify-content-center">
+        <h3 style="color: var(--third-color)">Edit Vaccination Info</h3>
+    </div>
+    <div class="margin-top-2 flex-box-row">
+        <p class="modal-p-2">Given on <span id="update-vac-date-given"></span></p>
+    </div>
 
+    <!--first row-->
+    <div class="row flex-box-row justify-content-center margin-top-1">
+        <div class="col-lg-6 col-md-12 col-sm-11 flex-box-column justify-content-end margin-top-2">
+            <label class="modal-p-2 ">Selected <span id="update-vac-category-lbl">Vaccine</span></label>
+            <input id="update-vac-name" type="text" class="search-bar" placeholder="none" readonly style="font-weight: bold">
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+            <label class="modal-p-2 ">Type</label>
+            <input id="update-vac-type" class="search-bar" type="text" placeholder="none" readonly>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+            <label class="modal-p-2 "><span id="update-vac-sub-category-lbl">Vaccine</span> Category</label>
+            <input id="update-vac-sub-category" class="search-bar" type="text" placeholder="none" readonly>
+        </div>
+    </div>
+
+    <!--second row-->
+    <div class="row flex-box-row justify-content-center margin-top-1">
+        <!--No. of  Dose Taken-->
+        <div class="col-lg-3 col-md-6  col-sm-11 flex-box-column justify-content-end margin-top-2">
+            <label class="modal-p-2 " >No. of  Dose Taken</label>
+            <input id="update-vac-curr_dose" type="text" class="search-bar" value="x of x" readonly>
+        </div>
+
+        <!--Update Recommended No. of Dose-->
+        <div class="col-lg-3 col-md-6 col-sm-11 flex-box-column justify-content-end margin-top-2">
+            <label class="modal-p-2 " ><span style="color: red;font-size: large">*</span>Update No. of Dose Needed</label>
+            <input id="update-vac-rec_no_dosage" type="number" class="search-bar" placeholder="x">
+            <script>
+                $("#update-vac-rec_no_dosage").keyup(function () {
+                    let dose_taken = $("#update-vac-curr_dose").val();
+                    let updated_rec_dose = $("#update-vac-rec_no_dosage").val();
+
+                    if(updated_rec_dose==""){
+                        $("#update-vac-set-next-sched").prop("disabled",true).css("opacity","0.5").val("")
+                        $("#update-vac-reset-set-next-sched").prop("disabled",true).css("opacity","0.5")
+                        $("#note-next-sched").css("visibility","hidden")
+                        return;
+                    }
+
+                    if(parseInt(updated_rec_dose)<=parseInt(dose_taken)){
+                        $("#update-vac-set-next-sched").prop("disabled",true).css("opacity","0.5").val("")
+                        $("#update-vac-reset-set-next-sched").prop("disabled",true).css("opacity","0.5")
+                        $("#note-next-sched").css("visibility","hidden")
+                        if(parseInt(updated_rec_dose)==parseInt(dose_taken)){
+                            $("#note-next-sched").css("visibility","visible").html('<span style="color: red">*Note: </span>No need to set next sched.')
+                        }
+                        return;
+                    }
+                    else {
+                        $("#update-vac-set-next-sched").prop("disabled",false).css("opacity","1").val(window.next_date)
+                        $("#update-vac-reset-set-next-sched").prop("disabled",false).css("opacity","1")
+                        $("#note-next-sched").html('<span style="color: red">*Note: </span>Update next schedule for the next dose').css("visibility","visible")
+                        return;
+                    }
+
+                    $(".modal-p-error").css("visibility","hidden")
+                }).on("wheel",function () {//disable scroll in number input
+                    $(this).blur();
+                })
+            </script>
+        </div>
+
+    </div>
+
+    <!--3rd row-->
+    <div id="update-vac-set-next-sched-cont" class="row margin-top-2 justify-content-center" style="">
+
+        <div class="col-lg-8 flex-box-row align-items-center justify-content-center" style="flex-wrap: wrap">
+            <div class="flex-box-column margin-top-1" style="flex: 0 1 50%;">
+                <p class="modal-p" id="note-next-sched" style="text-align: center!important;"><span style="color: red">*Note: </span>Update next schedule for the next dose</p>
+                <div class="flex-box-row align-items-center">
+                    <input id="update-vac-set-next-sched" type="text" class="search-bar" readonly placeholder="Set Next Schedule">
+                    <i id="update-vac-reset-set-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(--third-color);margin-left: 0.3rem"></i>
+                    <script>
+                        $("#update-vac-set-next-sched").datepicker({
+                            dateFormat: 'yy-mm-dd',
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange:'new Date():2100',
+                            minDate: new Date(),
+                            defaultDate: new Date(),
+                        })
+                        $("#update-vac-reset-set-next-sched").click(function () {
+                            $("#update-vac-set-next-sched").val("")
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <p class="modal-p-error" style="padding: 0 !important;">Please fill all the required fields!</p>
+    <script>
+        $("input").click(function () {
+            $(".modal-p-error").css('visibility','hidden')
+        })
+    </script>
+
+    <!--4th row-->
+    <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
+        <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-vac-btn">
+            Update
+        </button>
+        <script>
+            //validation of input
+            $("#update-vac-btn").click(function (data) {
+                let dose_taken = $("#update-vac-curr_dose").val();
+                let updated_rec_dose = $("#update-vac-rec_no_dosage").val();
+                let updated_next_sched =  $("#update-vac-set-next-sched").val();
+
+                if(updated_rec_dose==""){
+                    $(".modal-p-error").css("visibility","visible").html("Please fill all the required fields!")
+                    $("#update-vac-rec_no_dosage").trigger("focus")
+                    return;
+                }
+
+                if(!$("#update-vac-set-next-sched").prop("disabled")){//i require ang next sched if dose needed is > than dose taken
+                    if(updated_next_sched==""){
+
+                        $(".modal-p-error").css("visibility","visible").html("Please fill all the required fields!")
+                        return;
+                    }
+                }
+
+                if(parseInt(updated_rec_dose)<parseInt(dose_taken)){
+                    $(".modal-p-error").css("visibility","visible").html("Cannot set lower than "+ dose_taken)
+                    $("#update-vac-rec_no_dosage").trigger("focus")
+                    return;
+                }
+
+                $("#pop-up-confirm-update-vac").modal({
+                    showClose: false,closeExisting:false
+                })
+
+            })
+        </script>
+        <a href="#pop-up-update-vaccination" rel="modal:close">
+            <button class="modal-primary-button" id="update-vac-back">Back</button>
+            <script>
+                $("#update-vac-back").click(function () {
+                    location.href = "#calendar";
+                })
+            </script>
+        </a>
+    </div>
+</div>
+</div>
+
+<!--modal for updating vaccination-->
+<div id="pop-up-confirm-update-vac" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+
+        <p class="modal-p flex-box-row justify-content-center align-items-center">
+            <img class="modal-header-icon" src="img/question.png" style="margin-right: 0.3rem">
+            Update?
+        </p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end">
+        <a href="#pop-up-confirm-update-vac" rel="modal:close">
+            <button class="modal-cancel-button"  style="margin-right: 0.5rem">Cancel</button>
+        </a>
+        <button class="modal-primary-button" id="update-vac-final-btn" style="margin-left: 0.5rem">Confirm</button>
+        <script>
+            $("#update-vac-final-btn").click(function () {
+                let vaccine_name = window.vaccine_name;
+                let updated_rec_dose = $("#update-vac-rec_no_dosage").val();
+                let updated_next_sched =  $("#update-vac-set-next-sched").val();
+
+                $.post("php/patientProcesses/updateSelVac.php",{
+                    updated_rec_dose:updated_rec_dose,
+                    updated_next_sched:updated_next_sched,
+                    vaccine_name:vaccine_name
+
+                }).done(function (data) {
+                    $('[href="#pop-up-confirm-update-vac"]').trigger("click")
+                    $('[href="#pop-up-update-vaccination"]').trigger("click")
+                    retrieve_inventory();//refresh the inventory na lumalabas sa search bar
+                    $("#hidden-refresh-button").trigger('click')
+                })
+
+            })
+        </script>
+    </div>
 </div>
