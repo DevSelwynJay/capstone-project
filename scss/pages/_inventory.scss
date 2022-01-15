@@ -50,12 +50,15 @@
       td.add-btn {
         background-color: white;
         padding-left: 0.3rem !important;
+        @media screen and (max-width: 1024px) {
+          background-color: transparent;
+          text-align: center;
+        }
         i {
           background-color: var(--primary-color);
           color: white !important;
           padding: 0.6rem;
           border-radius: 0.4rem;
-  
           transition: all 200ms ease-in-out;
   
           &:hover {
@@ -66,12 +69,16 @@
   
       th.add-row {
         background-color: white;
+        @media screen and (max-width: 1024px) {
+          background-color: transparent;
+          text-align: center;
+        }
       }
   
       tr:nth-child(even) {
         background-color: #b7c6d1 !important;
         @media screen and (max-width: 1024px) {
-          background-color: unset !important;
+          background-color: white !important;
         }
       }
   
@@ -290,6 +297,7 @@
   
         table td:last-child {
           border-bottom: 0;
+          background: transparent;
         }
       }
     }
@@ -449,6 +457,7 @@
   
         table td:last-child {
           border-bottom: 0;
+          background: transparent;
         }
       }
 

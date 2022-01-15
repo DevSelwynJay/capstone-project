@@ -1533,6 +1533,10 @@ tr:nth-child(even) {
   color: white;
 }
 
+.table-reports {
+  padding: 0;
+}
+
 @media (max-width: 991px) {
   .table-reports {
     -webkit-box-ordinal-group: 2 !important;
@@ -1569,6 +1573,15 @@ tr:nth-child(even) {
   border-radius: .5rem;
 }
 
+.reports__left-col-container h1 {
+  text-align: center;
+  padding: 1rem 0 !important;
+}
+
+.reports__table {
+  margin: 0;
+}
+
 .reports__table th {
   padding: 1.5rem 0;
   color: #222;
@@ -1577,6 +1590,7 @@ tr:nth-child(even) {
 
 .reports__table td {
   font-weight: 300 !important;
+  color: black !important;
 }
 
 .reports__table tr:nth-child(even) {
@@ -1735,13 +1749,97 @@ tr:nth-child(even) {
   font-weight: 300 !important;
 }
 
-.reports__individual-reports-table tr:nth-child(even) {
-  background-color: #a0a0a0;
+.reports__individual-container h1 {
+  text-align: center;
+  padding: 3rem 0 !important;
 }
 
-.reports__individual-container {
-  background-color: #eeeded;
-  border-radius: .5rem;
+.reports__individual-container table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.reports__individual-container table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.reports__individual-container table tr th {
+  background-color: white;
+}
+
+.reports__individual-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-container table tr {
+    margin: .5rem 0;
+  }
+}
+
+.reports__individual-container table th,
+.reports__individual-container table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.reports__individual-container table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-container table {
+    border: 0;
+  }
+  .reports__individual-container table caption {
+    font-size: 1.3em;
+  }
+  .reports__individual-container table tr th {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    display: none;
+  }
+  .reports__individual-container table tr:first-child {
+    display: none;
+  }
+  .reports__individual-container table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .reports__individual-container table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .reports__individual-container table td::before {
+    /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+          */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .reports__individual-container table td:last-child {
+    border-bottom: 0;
+  }
 }
 
 .reports_individual-report-links a {
@@ -1849,6 +1947,13 @@ tr:nth-child(even) {
   padding-left: 0.3rem !important;
 }
 
+@media screen and (max-width: 1024px) {
+  .inventory__table-main-container td.add-btn {
+    background-color: transparent;
+    text-align: center;
+  }
+}
+
 .inventory__table-main-container td.add-btn i {
   background-color: var(--primary-color);
   color: white !important;
@@ -1866,13 +1971,20 @@ tr:nth-child(even) {
   background-color: white;
 }
 
+@media screen and (max-width: 1024px) {
+  .inventory__table-main-container th.add-row {
+    background-color: transparent;
+    text-align: center;
+  }
+}
+
 .inventory__table-main-container tr:nth-child(even) {
   background-color: #b7c6d1 !important;
 }
 
 @media screen and (max-width: 1024px) {
   .inventory__table-main-container tr:nth-child(even) {
-    background-color: unset !important;
+    background-color: white !important;
   }
 }
 
@@ -2085,6 +2197,7 @@ tr:nth-child(even) {
   }
   .inventory__table-toexpire-container table td:last-child {
     border-bottom: 0;
+    background: transparent;
   }
 }
 
@@ -2249,6 +2362,7 @@ tr:nth-child(even) {
   }
   .inventory__table-expired-container table td:last-child {
     border-bottom: 0;
+    background: transparent;
   }
 }
 
