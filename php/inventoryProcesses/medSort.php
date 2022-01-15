@@ -45,16 +45,16 @@ if(mysqli_num_rows($result)> 0) {
         $expdate = $row['expdate'];
         $dateadded = $row['dateadded'];
         $output .= '<tr>
-        <td scope="row">' . $id . '</td>
-        <td>' . $medname .' ('.$dosage. ')</td>
-        <td>' . $category.' ('.$subcategory. ')</td>';
+        <td scope="row" data-label="Medicine ID">' . $id . '</td>
+        <td data-label="Medicine Name">' . $medname .' ('.$dosage. ')</td>
+        <td data-label="Medicine Category">' . $category.' ('.$subcategory. ')</td>';
         if ($stocks >= 100) {
-            $output .= '<td>' . $stocks . '</td>';
+            $output .= '<td data-label="No. of Stocks">' . $stocks . '</td>';
         } else {
-            $output .= '<td style="color: red">' . $stocks . '</td>';
+            $output .= '<td style="color: red" data-label="No. of Stocks">' . $stocks . '</td>';
         }
-        $output .= '<td>' . $mfgdate .'-'.$expdate .'</td>
-        <td>' . $dateadded . '</td>
+        $output .= '<td data-label="Date">' . $mfgdate .'-'.$expdate .'</td>
+        <td data-label="Date Added">' . $dateadded . '</td>
         <td class="add-btn"><i class="fas fa-plus" onclick="medDisplayUpdateModal(' . $id . ')"></i></td>
         </tr>';
     }

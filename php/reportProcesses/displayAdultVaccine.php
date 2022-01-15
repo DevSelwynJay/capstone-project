@@ -39,7 +39,6 @@ if(mysqli_num_rows($result)>0){
                                 <tbody>
                                    <tr>
                                       <th>Name</th>
-                                      
                                       <th>Address</th>
                                       <th>Gender</th>
                                       <th>Date of Consultation</th>
@@ -61,11 +60,10 @@ if(mysqli_num_rows($result)>0){
                 $gender = $row['gender'];
 
                 $patienttable .= '<tr>
-        <td>' . $fname . ' ' . $mname . ' ' . $lname . '</td>
-        
-        <td>Purok ' . $purok . ' House No.' . $house_no . ' ' . $address . '</td>
-        <td>' . $gender . '</td>
-        <td>' . $date . '</td></tr>';
+        <td data-label="Patient Name">' . $fname . ' ' . $mname . ' ' . $lname . '</td>
+        <td data-label="Address">Purok ' . $purok . ' House No.' . $house_no . ' ' . $address . '</td>
+        <td data-label="Gender">' . $gender . '</td>
+        <td data-label="Date of Consultation">' . $date . '</td></tr>';
             }
 
         }

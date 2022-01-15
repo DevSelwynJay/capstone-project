@@ -41,9 +41,9 @@ while($rowmed = mysqli_fetch_assoc($medresult)){
             $type = $rowresult['patient_type'];
 
             $reportable .='<tr>
-        <td>'.$fname.' '.$mname.' '.$lname.'</td>
-        <td>'.$type.'</td>
-        <td>Medication</td></tr>';
+        <td data-label="Patient Name">'.$fname.' '.$mname.' '.$lname.'</td>
+        <td data-label="Patient Type">'.$type.'</td>
+        <td data-label="Consultation Type">Medication</td></tr>';
         }
     }
 }
