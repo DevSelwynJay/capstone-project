@@ -1,10 +1,12 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +82,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                     <div class="col-sm-12">
                         <div class="inner-page-nav">
                             <div class="logo">
-                                <img src="img/HIS logo blue.png" alt="">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                          <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                             </div>
                             <div class="settings">
                                 <a><i class="fas fa-user-circle"></i></a> 
@@ -117,17 +120,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                 <div class="left-part">
                                     <p>My Profile</p>
                                     <img src="img/user3.png" alt="">
-                                </div>
-                                <div class="right-part">
-                                    <p>Account Settings</p>
-                                    <ul>
-                                        <li><i class="fas fa-user-edit"></i><a href="settings.php">Modify Information</a></li>
-                                        <li><i class="fas fa-edit"></i><a href="change-email-settings.php">Update Email and Password</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="lower-part">
+                                    <div class="lower-part">
                                 <table>
                                     <tr>
                                         <td >First Name</td>
@@ -159,6 +152,17 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                     </tr>
                                 </table>
                             </div>
+                                </div>
+                                <div class="right-part">
+                                    <p>Account Settings</p>
+                                    <ul>
+                                        <li><i class="fas fa-user-edit"></i><a href="settings.php">Modify Information</a></li>
+                                        <li><i class="fas fa-edit"></i><a href="change-email-settings.php">Update Email and Password</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                           
                             
                         </div>
                     </div>
