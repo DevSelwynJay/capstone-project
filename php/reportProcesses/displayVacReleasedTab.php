@@ -39,7 +39,7 @@ if(mysqli_num_rows($res)> 0) {
                                 <tbody>
                                    <tr>
                                       <th>Medicine Id</th>
-                                      <th>Medicine Name</th>
+                                      <th>Vaccine Name</th>
                                       <th>Category</th>
                                       <th>No. of Stocks</th>
                                       <th>Mfg. Date</th>
@@ -53,12 +53,12 @@ if(mysqli_num_rows($res)> 0) {
         $mfgdate = $row['mfgdate'];
         $expdate = $row['expdate'];
         $medtable .= '<tr>
-        <td scope="row">' . $id . '</td>
-        <td>' . $name . '</td>
-        <td>' . $category . '</td>
-        <td>' . $stock . '</td>
-        <td>' . $mfgdate . '</td>
-        <td>' . $expdate . '</td></tr>';
+        <td scope="row" data-label="Medicine ID">' . $id . '</td>
+        <td data-label="Vaccine Name">' . $name . '</td>
+        <td data-label="Category">' . $category . '</td>
+        <td data-label="No. of Stocks">' . $stock . '</td>
+        <td data-label="MFG. Date">' . $mfgdate . '</td>
+        <td data-label="EXP. Date">' . $expdate . '</td></tr>';
     }
     $medtable .= '</tbody></table><br><div align="center">';
     $page_query = "Select * from `medreport`  where `type` = 'Vaccine' order by `dateadded` asc ";

@@ -42,9 +42,9 @@ if(mysqli_num_rows($medresult)>0){
                 $type = $rowresult['patient_type'];
 
                 $reportable .='<tr>
-        <td>'.$fname.' '.$mname.' '.$lname.'</td>
-        <td>'.$type.'</td>
-        <td>Vaccination</td></tr>';
+        <td data-label="Patient Name">'.$fname.' '.$mname.' '.$lname.'</td>
+        <td data-label="Patient Type">'.$type.'</td>
+        <td data-label="Consultation Type">Vaccination</td></tr>';
             }
         }
     }
