@@ -145,6 +145,11 @@ $(document).ready(function() {
             return i + "th";
         }
 
+        let edit_btn = "";
+        if(resultElement.can_edit==1){
+            edit_btn = "<br><button onclick='getEventIDVaccine("+resultElement.event_id+")' class='edit-event-btn'><i class=\"fas fa-edit\"></i>edit</button><br>";
+        }
+
         let indicator =  ordinal_suffix_of(parseInt(resultElement.current_dose)+1);//1st 2nd 3rd and so on......
         function generateDarkColorHex() {
             let color = "#";
@@ -175,10 +180,12 @@ $(document).ready(function() {
                     // "<br> - "+freq_sentence+
                     // "<br> - Duration of "+duration+" day/s"+
                     "<br><br><strong>Description: </strong><br>"+resultElement.description+
-                    "<br><br><strong>Date Vaccinated:</strong>" +
-                    "<br> - "+resultElement.date_vaccinated_fd+
+                    // "<br><br><strong>Date Vaccinated:</strong>" +
+                    // "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
-                    "<br> - "+nextSched
+                    "<br> - "+nextSched +
+                    edit_btn
+
                     // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
                 ,
                 date: resultElement.date_vaccinated,//date vaccinated
