@@ -230,6 +230,9 @@
                            <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
                                test modal only-->
                            </button>
+                           <button type="button" class="modal-primary-button" data-toggle="modal" data-target="#pop-up-reg">
+                               Launch demo modal
+                           </button>
                        </form>
                    </div>
 
@@ -284,6 +287,7 @@
                   <div class="modal-footer">
                       <button type="button" class="btn btn-primary" style="font-weight: bold;font-size: 0.8rem;margin-top: 2rem" data-dismiss="modal">Back</button>
                   </div>
+
               </div>
           </div>
       </div>
@@ -316,19 +320,49 @@
             }
       </style>
       <div class="modal fade" id="pop-up-reg" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true"  data-show="false" >
-          <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
               <div class="modal-content">
                   <div class="modal-body">
 
                       <div id="modal-content" class="disclaimer-cont" style="display: flex;flex-flow: column;align-items: center" >
                           <img src="img/HIS%20logo%20blue.png" width="200" height="100"/>
-                          <h3 style="color: #3f3b3b;text-align: center;font-weight: normal">Terms and Condition</h3>
-                          <p style="color: #3f3b3b;font-size: smaller">Welcome to PHRMS. These are our terms and conditions for use of the network, which you may access in several ways, including but not limited to computer, tablets, laptops, and cellphones. In these terms and conditions, you agree that all the information that you will provide will be seen only by the admin users with the condition that it will only be used for the sole purpose of catering the patient in the entirety of the system.</p>
+                          <h3 style="color: #3f3b3b;text-align: center;font-weight: normal">Privacy Policy for Sto. Rosario Health Information System</h3>
+                          <p style="color: #3f3b3b;font-size: smaller">
+                              At Sto Rosario HIS Paombong Bulacan, accessible from <span><a style="text-decoration: none;color: var(--primary-color)" href="https://storosariohis.online">https://storosariohis.online</a></span>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Sto Rosario HIS Paombong Bulacan and how we use it.
+<!--                              Welcome to PHRMS. These are our terms and conditions for use of the network, which you may access in several ways, including but not limited to computer, tablets, laptops, and cellphones. In these terms and conditions, you agree that all the information that you will provide will be seen only by the admin users with the condition that it will only be used for the sole purpose of catering the patient in the entirety of the system.-->
+<!--                          -->
 
-                          <p></p>
+                          </p>
+                          <p style="color: #3f3b3b;font-size: smaller">If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+                          <p style="color: #3f3b3b;font-size: smaller">This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Sto Rosario HIS Paombong Bulacan. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info">Free Privacy Policy Generator</a>.</p>
+
+                          <p style="font-weight: 700">Consent</p>
+                          <p  style="color: #3f3b3b;font-size: smaller">By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+
+                          <p style="font-weight: 700">Information we collect</p>
+                          <p style="color: #3f3b3b;font-size: smaller">The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+                          <p style="color: #3f3b3b;font-size: smaller">If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
+                          <p style="color: #3f3b3b;font-size: smaller">When you register for an Account, we may ask for your personal information, including items such as name, address, email address, and telephone number. We also ask for the picture of your valid ID that will only be used to verify and validate your online account registration.</p>
+                          <p style="color: #3f3b3b;font-size: smaller">The account you registered will be used to store all of your medication list</p>
+
+                          <p style="font-weight: 700">We use the information we collect for the different services of the health center, including to:</p>
+                          <div class="flex-box-column justify-content-center align-items-center padding-all-15">
+                              <ul id="ul-policy">
+                                  <style>
+                                      #ul-policy li{
+                                          color: #3f3b3b;font-size: smaller
+                                      }
+                                  </style>
+                                  <li>Provide you a patient account</li>
+                                  <li>Record the medication you currently taking for monitoring</li>
+                                  <li>Analyze patient records to easily identify the demands in medicine/vaccine</li>
+                                  <li>Send you an email message containing an EMR (Electronic Medical Record)</li>
+                              </ul>
+                          </div>
+
                           <div style="width: 90%" class="disclaimer-cont">
-                              <div class="form-check" style="margin-bottom: 1rem">
-                                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                              <div class="form-check" style="margin-bottom: 1rem;display: none">
+                                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
                                   <label class="form-check-label" for="defaultCheck1" style="color:#3f3b3b">
                                       I have read and agree to the <span style="color: #02a9f7">Term of Service</span>.
                                   </label>
