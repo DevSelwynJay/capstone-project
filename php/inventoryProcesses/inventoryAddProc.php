@@ -13,7 +13,8 @@ if(isset($_POST['newMedName']) && isset($_POST['newMedCategory']) && isset($_POS
     $type = "Add";
     $newmedicinesql = "Insert into `medinventory` (`name`, `category`, `subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`) values ('$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate')";
     $result = mysqli_query($con,$newmedicinesql);
-    $newmedreportsql = "Insert into `medreport` (`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
+    $last_id = $con->insert_id;
+    $newmedreportsql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$last_id','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
     $reportresult = mysqli_query($con,$newmedreportsql);
 }
 

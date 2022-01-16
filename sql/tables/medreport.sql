@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2022 at 07:50 AM
+-- Generation Time: Jan 16, 2022 at 10:03 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -41,6 +41,14 @@ CREATE TABLE `medreport` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `medreport`
+--
+
+INSERT INTO `medreport` (`id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `mfgdate`, `expdate`, `dateadded`, `type`) VALUES
+(49, 'diatabs', 'Medicine', 'gamot', '500mg', 120, '2022-01-16', '2022-01-26', '2022-01-16', 'Add'),
+(50, 'Pfizer', 'Vaccine', 'covid', '10ml', 120, '2022-01-16', '2022-01-20', '2022-01-16', 'Add');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -50,16 +58,6 @@ CREATE TABLE `medreport` (
 ALTER TABLE `medreport`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `medreport`
---
-ALTER TABLE `medreport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

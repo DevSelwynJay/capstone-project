@@ -15,7 +15,7 @@ if(isset($_POST['id'])){
     $expdate = $row['expdate'];
     }
     $type = "Delete";
-    $reportin = "Insert into `medreport`(`name`,`category`,`stock`,`mfgdate`,`expdate`,`type`) values ('$name','$category','$stocks','$mfgdate','$expdate','$type')";
+    $reportin = "Insert into `medreport`(`id`,`name`,`category`,`stock`,`mfgdate`,`expdate`,`type`) values ('$id','$name','$category','$stocks','$mfgdate','$expdate','$type')";
     $reportinsert = mysqli_query($con,$reportin);
     $deletesql = "Delete from `medinventory` where id = $id";
     $deleteresult = mysqli_query($con,$deletesql);

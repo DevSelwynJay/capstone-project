@@ -28,7 +28,7 @@ if(isset($_POST['id'])){
     $type = "Update";
     $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`=$id";
     $result=mysqli_query($con,$updatesql);
-    $reportupdatesql = "Insert into `medreport` (`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
+    $reportupdatesql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$id','$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
     $reportresult = mysqli_query($con,$reportupdatesql);
 }
 ?>

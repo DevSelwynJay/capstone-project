@@ -1,11 +1,10 @@
 <?php
-
-session_start();
+/*session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
-}
+}*/
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -700,6 +699,23 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         displayMedicines();
                         displayToExpTab();
                         displayExpTab();
+                        $('#meds').trigger("focus");
+                        $('#medicineName').val("");
+                        $('#medcategorySelect').selectedIndex = 1;
+                        $('#medicineStocks').val("");
+                        $('#medSubCategory').val("");
+                        $('#vacSubCategory').val("");
+                        $('#medicineDosage').val("");
+                        $('#medicineMfgDate').val("");
+                        $('#medicineExpDate').val("");
+                        $('#name-incorrect-indcator').css("visibility","hidden");
+                        $('#category-incorrect-indcator').css("visibility","hidden");
+                        $('#stock-incorrect-indcator').css("visibility","hidden");
+                        $('#mfgdate-incorrect-indcator').css("visibility","hidden");
+                        $('#expdate-incorrect-indcator').css("visibility","hidden");
+                        $('#all-incorrect-indcator').css("visibility","hidden");
+                        $('#all-incorrect-indcator').html('');
+                        $('#name-incorrect-indcator').html('')
                     }
                 });
             }
