@@ -39,16 +39,21 @@
       td,
       th {
         color: var(--third-color);
-        padding: 0.5rem 1rem;
         text-align: center;
+      }
+
+      th{
+        padding: .625em !important;
+        font-weight: 600 !important;
       }
   
       td {
         font-weight: 300 !important;
+        padding: .625em !important;
       }
   
       td.add-btn {
-        background-color: white;
+        background-color: transparent;
         padding-left: 0.3rem !important;
         @media screen and (max-width: 1024px) {
           background-color: transparent;
@@ -68,7 +73,7 @@
       }
   
       th.add-row {
-        background-color: white;
+        background-color: transparent;
         @media screen and (max-width: 1024px) {
           background-color: transparent;
           text-align: center;
@@ -87,6 +92,11 @@
         margin: 0;
         padding: 0;
         width: 100%;
+      }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
       }
   
       table caption {
@@ -193,9 +203,22 @@
         }
       }
   
+      td,
+      th {
+        color: var(--third-color);
+        text-align: center;
+      }
+
+      th{
+        padding: .600em !important;
+        font-weight: 600 !important;
+      }
+  
       td {
         font-weight: 300 !important;
+        padding: .600em !important;
       }
+
   
       tr:nth-child(even) {
         background-color: #b7c6d1 !important;
@@ -206,7 +229,7 @@
       }
   
       td.warning-btn {
-        background-color: white;
+        background-color: transparent;
         padding-left: 0.3rem !important;
         text-align: center !important;
         i {
@@ -224,6 +247,11 @@
         padding: 0;
         width: 100%;
       }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+      }
   
       table caption {
         font-size: 1.5em;
@@ -231,17 +259,8 @@
       }
   
   
-      table th,
-      table td {
-        padding: 0.625em;
-        text-align: center;
-      }
-  
-      table th {
-        font-size: 0.85em;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
+     
+
   
       @media screen and (max-width: 1024px) {
 
@@ -285,10 +304,6 @@
         }
   
         table td::before {
-          /*
-            * aria-label has no advantage, it won't be read inside a table
-            content: attr(aria-label);
-            */
           content: attr(data-label);
           float: left;
           font-weight: bold;
@@ -309,7 +324,7 @@
       h1 {
         color: var(--third-color) !important;
         font-weight: 900 !important;
-        font-size: 21px !important;
+        font-size: 18.72px !important;
         margin: 1rem 0 !important;
       }
   
@@ -317,6 +332,12 @@
         border-collapse: collapse;
         width: 100%;
         margin-top: 0 !important;
+      }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
       }
   
       td {
@@ -361,7 +382,7 @@
       }
   
       td.delete-btn {
-        background-color: white;
+        background-color: transparent;
         padding-left: 0.3rem !important;
         text-align: center !important;
         i {
@@ -401,6 +422,22 @@
         font-size: 0.85em;
         letter-spacing: 0.1em;
         text-transform: uppercase;
+      }
+
+      td,
+      th {
+        color: var(--third-color);
+        text-align: center;
+      }
+
+      th{
+        padding: .625em !important;
+        font-weight: 600 !important;
+      }
+  
+      td {
+        font-weight: 300 !important;
+        padding: .625em !important;
       }
   
       @media screen and (max-width: 1024px) {

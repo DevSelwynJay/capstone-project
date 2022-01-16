@@ -2126,16 +2126,21 @@ tr:nth-child(even) {
 .inventory__table-main-container td,
 .inventory__table-main-container th {
   color: var(--third-color);
-  padding: 0.5rem 1rem;
   text-align: center;
+}
+
+.inventory__table-main-container th {
+  padding: .625em !important;
+  font-weight: 600 !important;
 }
 
 .inventory__table-main-container td {
   font-weight: 300 !important;
+  padding: .625em !important;
 }
 
 .inventory__table-main-container td.add-btn {
-  background-color: white;
+  background-color: transparent;
   padding-left: 0.3rem !important;
 }
 
@@ -2160,7 +2165,7 @@ tr:nth-child(even) {
 }
 
 .inventory__table-main-container th.add-row {
-  background-color: white;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2185,6 +2190,11 @@ tr:nth-child(even) {
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+.inventory__table-main-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
 }
 
 .inventory__table-main-container table caption {
@@ -2293,8 +2303,20 @@ tr:nth-child(even) {
   }
 }
 
+.inventory__table-toexpire-container td,
+.inventory__table-toexpire-container th {
+  color: var(--third-color);
+  text-align: center;
+}
+
+.inventory__table-toexpire-container th {
+  padding: .600em !important;
+  font-weight: 600 !important;
+}
+
 .inventory__table-toexpire-container td {
   font-weight: 300 !important;
+  padding: .600em !important;
 }
 
 .inventory__table-toexpire-container tr:nth-child(even) {
@@ -2306,7 +2328,7 @@ tr:nth-child(even) {
 }
 
 .inventory__table-toexpire-container td.warning-btn {
-  background-color: white;
+  background-color: transparent;
   padding-left: 0.3rem !important;
   text-align: center !important;
 }
@@ -2326,21 +2348,14 @@ tr:nth-child(even) {
   width: 100%;
 }
 
+.inventory__table-toexpire-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+}
+
 .inventory__table-toexpire-container table caption {
   font-size: 1.5em;
   margin: 0.5em 0 0.75em;
-}
-
-.inventory__table-toexpire-container table th,
-.inventory__table-toexpire-container table td {
-  padding: 0.625em;
-  text-align: center;
-}
-
-.inventory__table-toexpire-container table th {
-  font-size: 0.85em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2378,10 +2393,6 @@ tr:nth-child(even) {
     text-align: right;
   }
   .inventory__table-toexpire-container table td::before {
-    /*
-            * aria-label has no advantage, it won't be read inside a table
-            content: attr(aria-label);
-            */
     content: attr(data-label);
     float: left;
     font-weight: bold;
@@ -2401,7 +2412,7 @@ tr:nth-child(even) {
 .inventory__table-expired-container h1 {
   color: var(--third-color) !important;
   font-weight: 900 !important;
-  font-size: 21px !important;
+  font-size: 18.72px !important;
   margin: 1rem 0 !important;
 }
 
@@ -2409,6 +2420,12 @@ tr:nth-child(even) {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0 !important;
+}
+
+.inventory__table-expired-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .inventory__table-expired-container td {
@@ -2465,7 +2482,7 @@ tr:nth-child(even) {
 }
 
 .inventory__table-expired-container td.delete-btn {
-  background-color: white;
+  background-color: transparent;
   padding-left: 0.3rem !important;
   text-align: center !important;
 }
@@ -2506,6 +2523,22 @@ tr:nth-child(even) {
   font-size: 0.85em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.inventory__table-expired-container td,
+.inventory__table-expired-container th {
+  color: var(--third-color);
+  text-align: center;
+}
+
+.inventory__table-expired-container th {
+  padding: .625em !important;
+  font-weight: 600 !important;
+}
+
+.inventory__table-expired-container td {
+  font-weight: 300 !important;
+  padding: .625em !important;
 }
 
 @media screen and (max-width: 1024px) {
