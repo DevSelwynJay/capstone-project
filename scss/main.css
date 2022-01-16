@@ -835,6 +835,87 @@ input[type="radio"] {
   color: white;
 }
 
+.super-admin--container table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.super-admin--container table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.super-admin--container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.super-admin--container table th,
+.super-admin--container table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.super-admin--container table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 900px) {
+  .super-admin--container table {
+    border: 0;
+  }
+  .super-admin--container table caption {
+    font-size: 1.3em;
+  }
+  .super-admin--container table th {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    display: none;
+  }
+  .super-admin--container table tr:first-child {
+    display: none;
+  }
+  .super-admin--container table tr:nth-child(even) {
+    background-color: white !important;
+  }
+  .super-admin--container table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .super-admin--container table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .super-admin--container table td::before {
+    /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+          */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .super-admin--container table td:last-child {
+    border-bottom: 0;
+  }
+}
+
 .super-admin .main {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 80%;
@@ -849,87 +930,6 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #b7c6d1;
-}
-
-table {
-  border-collapse: collapse;
-  margin-top: 1rem;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
-}
-
-table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
-table th,
-table td {
-  padding: .625em;
-  text-align: center;
-}
-
-table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-@media screen and (max-width: 900px) {
-  table {
-    border: 0;
-  }
-  table caption {
-    font-size: 1.3em;
-  }
-  table th {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    display: none;
-  }
-  table tr:first-child {
-    display: none;
-  }
-  table tr:nth-child(even) {
-    background-color: white !important;
-  }
-  table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-  }
-  table td::before {
-    /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  table td:last-child {
-    border-bottom: 0;
-  }
 }
 
 .cta-wrapper {
