@@ -487,6 +487,22 @@ section .inner-page-content .dropdown-settings {
   }
 }
 
+.about--page {
+  padding: 2rem !important;
+}
+
+@media (max-width: 1024px) {
+  .about--page p {
+    max-width: 70% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .about--page p {
+    max-width: 100% !important;
+  }
+}
+
 .text-content {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -109,7 +109,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 </div>
 </div>
 <div class="col-sm-12">
-<div class="content">
+<div class="content about--page">
 <h1>About Us</h1>
 <div>
 <div class="heading-holder">
