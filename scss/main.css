@@ -232,6 +232,7 @@ input[type=number] {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: fixed;
+  max-width: 20%;
 }
 
 section .profile h4 {
