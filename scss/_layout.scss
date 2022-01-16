@@ -136,7 +136,7 @@
     align-items: center;
     justify-content: space-between;
     padding: .5rem 1rem;
-    @media(max-width: 1200px){
+    @media(max-width: 1500px){
       background-color: var(--primary-color);
       color: #fff;
 
@@ -177,7 +177,7 @@
         justify-content: center;
         min-height: 100vh;
 
-        @media(max-width: 1200px){
+        @media(max-width: 1500px){
           display: none !important;
         }
     }
@@ -190,13 +190,13 @@
 
 .hide-for-mobile{
   display: none;
-  @media(min-width: 1201px){
+  @media(min-width: 1501px){
     display: block;
   }
 }
 .hide-for-desktop{
   display: none;
-  @media(max-width: 1200px){
+  @media(max-width: 1500px){
     display: block;
   }
 }
