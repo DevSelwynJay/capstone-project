@@ -109,10 +109,11 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
             </div>
             <div class="global__main-content">
                 <div class="inner-page-content">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 p-0">
                         <div class="inner-page-nav">
                             <div class="logo">
-                                <img src="img/HIS logo blue.png" alt="">
+                                <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                                <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                             </div>
                             <div class="settings">
                                 <a href="profile.php"><i class="fas fa-user-circle"></i></a>
@@ -144,12 +145,12 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                     </div>
 
 
-                    <div class="content">
+                    <div class="content settings-page">
                         <div class="text-content">
                             <div class="left-text">
                                 <p>Settings</p>
                                 <ul>
-                                    <li><a href=settings.php#" style="color: #0c6893">Change Personal Information</a></li>
+                                    <li><a href="settings.php#" style="color: #0c6893">Change Personal Information</a></li>
                                     <li><a href="change-email-settings.php">Update Existing Email</a></li>
                                     <li><a href="change-password-settings.php">Change Password</a></li>
                                 </ul>

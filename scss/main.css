@@ -2776,10 +2776,36 @@ td:nth-child(1) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+  .text-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.settings-page {
+  padding: 2rem 3rem !important;
+}
+
+.text-content > * {
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  .text-content > * {
+    width: 100%;
+  }
 }
 
 .left-text {
-  margin-left: 5%;
+  margin-left: 0 !important;
 }
 
 .left-text p {
@@ -2793,7 +2819,7 @@ td:nth-child(1) {
 }
 
 .left-text ul li {
-  margin-top: 3%;
+  margin-top: .5rem !important;
 }
 
 .left-text a {
@@ -2802,13 +2828,27 @@ td:nth-child(1) {
 }
 
 .right-text {
-  margin-left: 15%;
-  margin-top: 5%;
+  margin-left: 0 !important;
+  margin-top: 3.5rem !important;
+}
+
+.right-text table {
+  margin: 0;
+}
+
+.right-text table td {
+  padding: .5rem 0 !important;
+}
+
+.right-text table td .fa-edit {
+  cursor: pointer !important;
+  margin-right: .3rem !important;
 }
 
 .right-text p {
   font-size: 1.5em;
   font-weight: 800;
+  margin-bottom: 1rem !important;
 }
 
 .right-text table tr td {
@@ -2816,18 +2856,20 @@ td:nth-child(1) {
 }
 
 .save-changes {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: white;
   border: none;
   outline: none;
   font-family: Poppins;
   padding: 15px;
-  margin-top: 50px;
-  margin-left: 300px;
+  margin: 1rem 0 !important;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 
 .save-changes:hover {
-  background-color: var(--hover-color);
+  background-color: var(--hover-color) !important;
 }
 
 .inner-page-nav {
