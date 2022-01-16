@@ -23,6 +23,7 @@ $start_from = ($page -1 )*$rpp;
                     <th>Medicine ID</th>
                     <th>Medicine Name</th>
                     <th>Remaining Days</th>
+                    <th></th>
                 </tr>';
     while($row = mysqli_fetch_assoc($result)){
         $id = $row['id'];
