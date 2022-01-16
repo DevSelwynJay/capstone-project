@@ -1674,6 +1674,9 @@ tr:nth-child(even) {
   height: 40vh;
   padding: 1rem;
   overflow-y: auto;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
 .reports__left-col-container h1 {

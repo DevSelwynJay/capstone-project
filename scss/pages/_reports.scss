@@ -30,6 +30,8 @@
         height: 40vh;
         padding: 1rem;
         overflow-y:auto;
+        display: grid;
+        place-items: center;
 
         h1{
             text-align: center;
