@@ -1671,7 +1671,7 @@ tr:nth-child(even) {
   -webkit-box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: .5rem;
-  min-height: 40vh;
+  height: 40vh;
   padding: 1rem;
   overflow-y: auto;
 }
