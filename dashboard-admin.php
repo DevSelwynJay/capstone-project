@@ -51,6 +51,8 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon-sto.png" />
+
     <title>Dashboard</title>
     <!--    &lt;!&ndash;Jquery&ndash;&gt;-->
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->

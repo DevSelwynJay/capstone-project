@@ -20,6 +20,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 <link rel="stylesheet" href="scss/main.css">
 <!--Font Awesome-->
 <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
+<link rel="shortcut icon" href="img/favicon-sto.png" />
 <!-- Font Family Poppins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

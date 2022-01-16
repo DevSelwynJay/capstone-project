@@ -17,7 +17,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     <link rel="stylesheet" href="scss/bootstrap-grid.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/main.css">
-
+    <link rel="shortcut icon" href="img/favicon-sto.png" />
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
     <!-- Font Family Poppins -->

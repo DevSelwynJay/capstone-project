@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--CSS Grid Bootstrap-->
   <link rel="stylesheet" href="scss/bootstrap-grid.css">
+  <link rel="shortcut icon" href="img/favicon-sto.png" />
   <!--Custom CSS-->
   <link rel="stylesheet" href="scss/main.css">
   <!--Font Awesome-->
