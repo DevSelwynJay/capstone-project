@@ -451,7 +451,7 @@ section .inner-page-content .dropdown-settings {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-height: 100vh;
+  min-height: 130vh;
 }
 
 @media (max-width: 1300px) {
@@ -1632,6 +1632,26 @@ tr:nth-child(even) {
   }
 }
 
+.reports {
+  /*&__table{
+        margin: 0;
+        th{
+            padding: .5rem 1rem;
+            color: #222;
+            font-size: 1.2rem;
+        }
+        td{
+            font-weight: 300 !important;
+            color: black !important;
+        }
+        tr{
+            &:nth-child(even){
+                background-color: rgb(160, 160, 160);
+            }
+        }
+    }*/
+}
+
 .reports_content {
   padding: 1rem 2rem;
 }
@@ -1647,9 +1667,12 @@ tr:nth-child(even) {
 }
 
 .reports__left-col-container {
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: .5rem;
+  min-height: 40vh;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .reports__left-col-container h1 {
@@ -1657,23 +1680,99 @@ tr:nth-child(even) {
   padding: 1rem 0 !important;
 }
 
-.reports__table {
+.reports__left-col-container table {
+  border-collapse: collapse;
   margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
 }
 
-.reports__table th {
-  padding: 1.5rem 0;
-  color: #222;
-  font-size: 1.2rem;
+.reports__left-col-container table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
 }
 
-.reports__table td {
-  font-weight: 300 !important;
-  color: black !important;
+.reports__left-col-container table tr th {
+  background-color: white;
 }
 
-.reports__table tr:nth-child(even) {
-  background-color: #a0a0a0;
+.reports__left-col-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.reports__left-col-container table tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__left-col-container table tr:nth-child(even) {
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .reports__left-col-container table tr {
+    margin: .5rem 0;
+  }
+}
+
+.reports__left-col-container table th,
+.reports__left-col-container table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.reports__left-col-container table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__left-col-container table {
+    border: 0;
+  }
+  .reports__left-col-container table caption {
+    font-size: 1.3em;
+  }
+  .reports__left-col-container table tr th {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    display: none;
+  }
+  .reports__left-col-container table tr:first-child {
+    display: none;
+  }
+  .reports__left-col-container table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .reports__left-col-container table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .reports__left-col-container table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .reports__left-col-container table td:last-child {
+    border-bottom: 0;
+  }
 }
 
 .reports__right-col {
@@ -1826,6 +1925,16 @@ tr:nth-child(even) {
 
 .reports__individual-reports-table td {
   font-weight: 300 !important;
+}
+
+.reports__individual-reports-table tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tr:nth-child(even) {
+    background-color: white;
+  }
 }
 
 .reports__individual-container h1 {
