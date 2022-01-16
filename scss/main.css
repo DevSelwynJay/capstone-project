@@ -510,40 +510,21 @@ section .inner-page-content .dropdown-settings {
   text-decoration: none;
 }
 
-.right-text {
-  margin-left: 20%;
-  margin-top: 5%;
-}
-
-.right-text p {
-  font-size: 1.5em;
-  font-weight: 800;
-}
-
-.right-text input {
-  border: 3px solid var(--light-grey);
-  width: 300px;
-  height: 50px;
-  border-radius: 10px;
-}
-
-.right-text label, .right-text input {
-  margin-top: 20px;
-}
-
 .save-changes2 {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: white;
   border: none;
   outline: none;
   font-family: Poppins;
   padding: 15px;
-  margin-top: 50px;
-  margin-left: 300px;
+  margin: 1rem 0 !important;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 
 .save-changes2:hover {
-  background-color: var(--hover-color);
+  background-color: var(--hover-color) !important;
 }
 
 /* Login Form */
@@ -2781,7 +2762,7 @@ td:nth-child(1) {
           align-items: flex-start;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .text-content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -2798,7 +2779,7 @@ td:nth-child(1) {
   width: 50%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .text-content > * {
     width: 100%;
   }
@@ -2855,6 +2836,36 @@ td:nth-child(1) {
   text-align: left;
 }
 
+.right-text {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.right-text .input--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  margin: 1rem 0 !important;
+}
+
+.right-text .input--container label {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 30%;
+          flex: 1 1 30%;
+}
+
+.right-text .input--container input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 70%;
+          flex: 1 1 70%;
+  padding: 0 1rem;
+}
+
 .save-changes {
   background-color: var(--primary-color) !important;
   color: white;
@@ -2870,6 +2881,10 @@ td:nth-child(1) {
 
 .save-changes:hover {
   background-color: var(--hover-color) !important;
+}
+
+.right-text label, .right-text input {
+  margin: 0;
 }
 
 .inner-page-nav {
@@ -3017,46 +3032,21 @@ td:nth-child(1) {
   text-decoration: none;
 }
 
-.right-text {
-  margin-left: 20%;
-  margin-top: 5%;
-}
-
-.right-text p {
-  font-size: 1.5em;
-  font-weight: 800;
-}
-
-.right-text input {
-  border: 3px solid var(--light-grey);
-  width: 300px;
-  height: 50px;
-  border-radius: 10px;
-}
-
-.right-text label, .right-text input {
-  margin-top: 20px;
-}
-
 .save-changes2 {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: white;
   border: none;
   outline: none;
   font-family: Poppins;
   padding: 15px;
-  margin-top: 50px;
-  margin-left: 300px;
+  margin: 1rem 0 !important;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 
 .save-changes2:hover {
-  background-color: var(--hover-color);
-}
-
-.text-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  background-color: var(--hover-color) !important;
 }
 
 .left-text {
@@ -3082,11 +3072,6 @@ td:nth-child(1) {
   text-decoration: none;
 }
 
-.right-text {
-  margin-left: 20%;
-  margin-top: 5%;
-}
-
 .right-text p {
   font-size: 1.5em;
   font-weight: 800;
@@ -3094,28 +3079,26 @@ td:nth-child(1) {
 
 .right-text input {
   border: 3px solid var(--light-grey);
-  width: 300px;
+  width: 100%;
   height: 50px;
   border-radius: 10px;
 }
 
-.right-text label, .right-text input {
-  margin-top: 20px;
-}
-
 .save-changes3 {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: white;
   border: none;
   outline: none;
   font-family: Poppins;
   padding: 15px;
-  margin-top: 50px;
-  margin-left: 300px;
+  margin: 1rem 0 !important;
+  cursor: pointer;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 
 .save-changes3:hover {
-  background-color: var(--hover-color);
+  background-color: var(--hover-color) !important;
 }
 
 .forgot-cont p {

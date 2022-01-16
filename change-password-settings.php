@@ -77,7 +77,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
             </div>
             <div class="global__main-content">
                 <div class="inner-page-content">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 p-0">
                         <div class="inner-page-nav">
                             <div class="logo">
                             <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
@@ -113,7 +113,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                     </div>
 
 
-                    <div class="content">
+                    <div class="content settings-page">
                         <div class="text-content">
                             <div class="left-text">
                                 <p>Settings</p>
@@ -125,12 +125,19 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                             </div>
                             <div class="right-text">
                                 <p>Change Password</p>
+
+                                <div class="input--container">
                                 <label for="current-pass">Current Password</label>
-                                <input type="password" name = "current-pass" id = "current-pass"><br>
+                                <input type="password" name = "current-pass" id = "current-pass">
+                                </div>
+                                <div class="input--container">
                                 <label for="new-pass">New Password</label>
-                                <input type="password" name = "new-pass" id = "new-pass"><br>
+                                <input type="password" name = "new-pass" id = "new-pass">
+                                </div>
+                                <div class="input--container">
                                 <label for="confirm-pass">Confirm Password</label>
                                 <input type="password" name = "confirm-pass" id = "confirm-pass">
+                                </div>
                                 <button class = "save-changes3">Save Changes</button>
                             </div>
                         </div>

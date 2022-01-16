@@ -104,7 +104,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
             </div>
             <div class="global__main-content">
                 <div class="inner-page-content">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 p-0">
                         <div class="inner-page-nav">
                             <div class="logo">
                             <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
@@ -140,7 +140,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                     </div>
 
 
-                    <div class="content">
+                    <div class="content settings-page">
                         <div class="text-content">
                             <div class="left-text">
                                 <p>Settings</p>
@@ -157,10 +157,14 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                             </style>
                             <div class="right-text">
                                     <p>Modify Email Address</p>
+                                    <div class="input--container">
                                     <label for="current-email">Current Email</label>
-                                    <input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body"><br>
-                                    <label for="new-email">New Email</label>
+                                    <input type="email" name = "current-email" id = "current-email" title="Please type your current email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body">
+                                    </div>
+                                   <div class="input--container">
+                                   <label for="new-email">New Email</label>
                                     <input type="email" name = "new-email" id = "new-email" title="Please type your new email" data-toggle="tooltip" data-placement="top" title="House #" data-container="body">
+                                   </div>
                                     <a><button class="save-changes2" id="save">Save Changes</button></a>
                             </div>
                         </div>
