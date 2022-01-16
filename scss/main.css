@@ -22,7 +22,7 @@ p {
 }
 
 html {
-  font-size: 110%;
+  font-size: 100%;
 }
 
 body {
@@ -216,7 +216,7 @@ input[type=number] {
 .inner-sidenav {
   background-color: var(--primary-color);
   height: 100vh;
-  padding: 1.2rem;
+  padding: 2rem 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -264,12 +264,13 @@ section .menu li a {
   display: block;
   text-decoration: none;
   cursor: pointer;
+  padding: .5rem 1rem;
 }
 
 section .menu li a::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  margin-right: .2rem;
+  margin-right: .5rem;
 }
 
 section .menu li .dashboard::before {
@@ -404,7 +405,7 @@ section .inner-page-nav {
   padding: .5rem 1rem;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   section .inner-page-nav {
     background-color: var(--primary-color);
     color: #fff;
@@ -449,7 +450,7 @@ section .inner-page-content .dropdown-settings {
   min-height: 100vh;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .global__sidenav {
     display: none !important;
   }
@@ -465,7 +466,7 @@ section .inner-page-content .dropdown-settings {
   display: none;
 }
 
-@media (min-width: 1501px) {
+@media (min-width: 1301px) {
   .hide-for-mobile {
     display: block;
   }
@@ -475,7 +476,7 @@ section .inner-page-content .dropdown-settings {
   display: none;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .hide-for-desktop {
     display: block;
   }
@@ -2902,13 +2903,13 @@ td:nth-child(1) {
   display: none;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1300px) {
   .mobile-menu {
     display: none !important;
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .mobile-menu {
     display: block;
   }
@@ -3329,7 +3330,7 @@ td:nth-child(1) {
 
 .admin-upper .fas {
   color: white;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 @media (max-width: 999px) {
@@ -3367,12 +3368,12 @@ td:nth-child(1) {
 
 .admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(1) {
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(2) {
   font-weight: 200;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .admin-upper .admin-upper-left .card1 {
@@ -3425,7 +3426,7 @@ td:nth-child(1) {
 
 .admin-upper .admin-upper-right .small-cards-text p:nth-child(1) {
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .admin-upper .admin-upper-right .small-cards-text p:nth-child(2) {

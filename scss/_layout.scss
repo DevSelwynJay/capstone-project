@@ -1,7 +1,7 @@
 .inner-sidenav{
     background-color:var(--primary-color);
     height: 100vh;
-    padding: 1.2rem;
+    padding: 2rem 1.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,11 +38,12 @@
     display: block;
     text-decoration: none;
     cursor: pointer;
+    padding: .5rem 1rem;
   }
   section .menu li a::before{
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    margin-right: .2rem;
+    margin-right: .5rem;
   }
   section .menu li .dashboard::before{
     content: "\f0db";
@@ -136,7 +137,7 @@
     align-items: center;
     justify-content: space-between;
     padding: .5rem 1rem;
-    @media(max-width: 1500px){
+    @media(max-width: 1300px){
       background-color: var(--primary-color);
       color: #fff;
 
@@ -177,7 +178,7 @@
         justify-content: center;
         min-height: 100vh;
 
-        @media(max-width: 1500px){
+        @media(max-width: 1300px){
           display: none !important;
         }
     }
@@ -190,13 +191,13 @@
 
 .hide-for-mobile{
   display: none;
-  @media(min-width: 1501px){
+  @media(min-width: 1301px){
     display: block;
   }
 }
 .hide-for-desktop{
   display: none;
-  @media(max-width: 1500px){
+  @media(max-width: 1300px){
     display: block;
   }
 }
