@@ -1,4 +1,5 @@
 <?php
+
   session_start();
 
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
@@ -6,6 +7,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     exit();
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
+
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,10 +80,11 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                -->
             <div class="main">
                <div class="inner-page-content">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 p-0">
                      <div class="inner-page-nav">
                         <div class="logo">
-                           <img src="img/HIS logo blue.png" alt="">
+                        <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
                         <div class="settings">
 <!--                            <a><i class="fas fa-user-circle"></i></a>-->
@@ -108,7 +111,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                         </div>
                      </div>
                   </div>
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 super-admin--container">
                      <div id="show" class="modal">
                          <div class="flex-box-row align-items-center justify-content-center">
                              <style>
@@ -373,9 +376,9 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                        </div>
                    <br> <br>
 
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 super-admin--container">
                      <h3 class="color-black">Manage User Accounts</h3>
-                      <div id ="patTable" style="max-height: 50vh;overflow-y: auto">
+                      <div id ="patTable" style="max-height: 70vh;overflow-y: auto">
                           <table id="patientTable">
 
                           </table>
