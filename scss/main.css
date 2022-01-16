@@ -406,7 +406,7 @@ section .inner-page-nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: .5rem 1rem;
+  padding: 1.2rem 2rem;
 }
 
 @media (max-width: 1300px) {
