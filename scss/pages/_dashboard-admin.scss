@@ -210,6 +210,11 @@
         background-color: #527c88;
         border-radius: 10px;
         overflow-x: scroll;
+
+        #container{
+            display: grid;
+            place-items: center;
+        }
     }
     
 }

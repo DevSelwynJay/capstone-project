@@ -3562,6 +3562,12 @@ td:nth-child(1) {
   overflow-x: scroll;
 }
 
+.admin-lower .popular-vaccines-container #container {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
 .pending-patient-container {
   display: -webkit-box;
   display: -ms-flexbox;
