@@ -3503,6 +3503,23 @@ td:nth-child(1) {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  list-style: none;
+  padding: 0 20px;
+}
+
+.admin-lower .workers-list-container .list-header li {
+  width: 100%;
+  padding: 0 .5rem;
+}
+
+.admin-lower .workers-list-container .list-header .name-list p {
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0 1rem;
+}
+
+.admin-lower .workers-list-container .list-header .name-list p:last-child {
+  margin-left: -1rem !important;
 }
 
 .admin-lower .workers-list-container .name-list {
@@ -3516,6 +3533,27 @@ td:nth-child(1) {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+
+.admin-lower .workers-list-container .name-list img p:nth-child(1) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 10%;
+          flex: 1 1 10%;
+}
+
+.admin-lower .workers-list-container .name-list p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 60%;
+          flex: 1 1 60%;
+  text-align: left;
+  padding: 0 1rem;
+}
+
+.admin-lower .workers-list-container .name-list p:last-child {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 30%;
+          flex: 1 1 30%;
+  padding: 0 !important;
 }
 
 .admin-lower .popular-vaccines-container {

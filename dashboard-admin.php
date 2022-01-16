@@ -345,9 +345,13 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <h1>Workers</h1>
                                 </div>
                                 <div class="list-header">
-                                    <p style="opacity:0;">img</p>
-                                    <p>Name</p>
-                                    <p>Position</p>
+                                     <li>
+                                        <div class="name-list">
+                                            <img src="img/jay.jpg" style="opacity:0">
+                                            <p>Name</p>
+                                            <p>Position</p>
+                                        </div>
+                                    </li>
                                 </div>
                                 <ul id="admin-list">
                                     <li>

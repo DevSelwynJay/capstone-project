@@ -158,13 +158,48 @@
         .list-header{
             font-family: Lato, sans-serif;
             display: flex;
-            justify-content: space-evenly   ;
+            justify-content: space-evenly;
+            list-style: none;
+            padding: 0 20px;
+            
+            li{
+                width: 100%;
+                padding: 0 .5rem;
+            }
+
+            .name-list{
+                p{
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    padding: 0 1rem;
+                }
+                p:last-child{
+                    margin-left: -1rem !important;
+                }
+            }
         }
         .name-list{
             display: flex;
             font-size: 0.8rem;
             align-items: center;
             justify-content: space-evenly;
+
+            img{
+                p:nth-child(1){
+                    flex: 1 1 10%;
+                }
+            }
+
+            p{
+                flex: 1 1 60%;
+                text-align: left;
+                padding: 0 1rem;
+            }
+            p:last-child{
+                flex: 1 1 30%;
+                padding: 0 !important;
+            }
+
         }
         
         
