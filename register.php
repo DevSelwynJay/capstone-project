@@ -229,11 +229,11 @@
                            </div>
                            <!--testing button only
                            <button id="test-btn" type="button" class="btn btn-primary"data-toggle="modal" data-target="#pop-up-error">
-                               test modal only-->
-                           </button>
-                           <button type="button" class="modal-primary-button" data-toggle="modal" data-target="#pop-up-reg">
-                               Launch demo modal
-                           </button>
+                               test modal only
+                           </button>-->
+<!--                           <button type="button" class="modal-primary-button" data-toggle="modal" data-target="#pop-up-reg">-->
+<!--                               Launch demo modal-->
+<!--                           </button>-->
                        </form>
                    </div>
 
