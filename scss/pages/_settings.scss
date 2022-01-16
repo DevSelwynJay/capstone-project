@@ -114,10 +114,10 @@
 }
 .mobile-menu{
    
-    @media(min-width: 1500px){
+    @media(min-width: 1300px){
         display: none !important ;
       }
-    @media(max-width: 1500px){
+    @media(max-width: 1300px){
         display: block;
       }
 }

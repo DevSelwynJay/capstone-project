@@ -22,7 +22,7 @@ p {
 }
 
 html {
-  font-size: 110%;
+  font-size: 100%;
 }
 
 body {
@@ -60,6 +60,10 @@ h5 {
   display: flex !important;
   -ms-flex-wrap: wrap !important;
       flex-wrap: wrap !important;
+}
+
+.navbar > ul > li > a .count {
+  padding: 0.5rem 0.5rem !important;
 }
 
 .flex {
@@ -216,7 +220,7 @@ input[type=number] {
 .inner-sidenav {
   background-color: var(--primary-color);
   height: 100vh;
-  padding: 1.2rem;
+  padding: 2rem 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -264,12 +268,13 @@ section .menu li a {
   display: block;
   text-decoration: none;
   cursor: pointer;
+  padding: .5rem 1rem;
 }
 
 section .menu li a::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  margin-right: .2rem;
+  margin-right: .5rem;
 }
 
 section .menu li .dashboard::before {
@@ -401,10 +406,10 @@ section .inner-page-nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: .5rem 1rem;
+  padding: 1.2rem 2rem;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   section .inner-page-nav {
     background-color: var(--primary-color);
     color: #fff;
@@ -449,7 +454,7 @@ section .inner-page-content .dropdown-settings {
   min-height: 100vh;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .global__sidenav {
     display: none !important;
   }
@@ -465,7 +470,7 @@ section .inner-page-content .dropdown-settings {
   display: none;
 }
 
-@media (min-width: 1501px) {
+@media (min-width: 1301px) {
   .hide-for-mobile {
     display: block;
   }
@@ -475,7 +480,7 @@ section .inner-page-content .dropdown-settings {
   display: none;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .hide-for-desktop {
     display: block;
   }
@@ -810,16 +815,111 @@ input[type="radio"] {
   height: 100vh;
 }
 
+.super-admin--container {
+  margin-top: 2rem !important;
+  padding: 2rem 5rem !important;
+}
+
+@media screen and (max-width: 900px) {
+  .super-admin--container {
+    padding: 2rem 2rem !important;
+  }
+}
+
+.super-admin--container h3 {
+  margin: 0 !important;
+}
+
+.super-admin--container th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.super-admin--container table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.super-admin--container table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.super-admin--container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.super-admin--container table th,
+.super-admin--container table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.super-admin--container table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 900px) {
+  .super-admin--container table {
+    border: 0;
+  }
+  .super-admin--container table caption {
+    font-size: 1.3em;
+  }
+  .super-admin--container table th {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    display: none;
+  }
+  .super-admin--container table tr:first-child {
+    display: none;
+  }
+  .super-admin--container table tr:nth-child(even) {
+    background-color: white !important;
+  }
+  .super-admin--container table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .super-admin--container table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  .super-admin--container table td::before {
+    /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+          */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .super-admin--container table td:last-child {
+    border-bottom: 0;
+  }
+}
+
 .super-admin .main {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 80%;
           flex: 1 1 80%;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 1rem;
 }
 
 td, th {
@@ -895,7 +995,6 @@ tr:nth-child(even) {
   padding: .6rem .8rem;
   display: block;
   text-align: center;
-  width: 20%;
 }
 
 .cta-wrapper2 .square-btn:hover {
@@ -909,7 +1008,6 @@ tr:nth-child(even) {
   padding: .6rem .8rem;
   display: block;
   text-align: center;
-  width: 20%;
 }
 
 .cta-wrapper2 .red-square-btn i {
@@ -2902,13 +3000,13 @@ td:nth-child(1) {
   display: none;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1300px) {
   .mobile-menu {
     display: none !important;
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   .mobile-menu {
     display: block;
   }
@@ -3329,7 +3427,7 @@ td:nth-child(1) {
 
 .admin-upper .fas {
   color: white;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 @media (max-width: 999px) {
@@ -3367,12 +3465,12 @@ td:nth-child(1) {
 
 .admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(1) {
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .admin-upper .admin-upper-left .dashboard-cards-text p:nth-child(2) {
   font-weight: 200;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .admin-upper .admin-upper-left .card1 {
@@ -3425,7 +3523,7 @@ td:nth-child(1) {
 
 .admin-upper .admin-upper-right .small-cards-text p:nth-child(1) {
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .admin-upper .admin-upper-right .small-cards-text p:nth-child(2) {
