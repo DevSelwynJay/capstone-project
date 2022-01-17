@@ -384,10 +384,10 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
                           </table>
                           <style>
-                              #patientTable tr td:nth-child(1), #patientTable th:nth-child(1) {
+                              #patientTable tr td:nth-child(1){
                                   display: none;
                               }
-                              #patientTable tr td:nth-child(2), #patientTable th:nth-child(2) {
+                              #patientTable tr td:nth-child(2){
                                   display: none;
                               }
                           </style>
