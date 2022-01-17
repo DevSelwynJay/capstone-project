@@ -53,15 +53,16 @@ if(mysqli_num_rows($result)> 0) {
         $fullname = $lname .", ".$fname. " ". $mname;
 
             $usertab .= '<tr>
-            <td class="patdata1"  scope="row" hidden>' . $id . '</td>
-            <td class="patdata2"  hidden>' . $fullname . '</td>
-            <td>' . $fname . '</td>
-            <td>' . $mname . '</td>
-            <td>' . $lname . '</td>
-            <td>' . $email . '</td>
-            <td>' . $status . '</td>
-            <td ><button class="$butID" onclick="patclick(\''.str_replace("'", "\\'", $id).'\', \''.str_replace("'", "\\'", $fullname).'\', \''.str_replace("'", "\\'", $status).'\')">' . $buttonstat . '</button></td>
-            </tr>';
+            <td class="patdata1"  scope="row" data-label="User ID">' . $id . '</td>
+            <td class="patdata2" data-label="Full Name" >' . $fullname . '</td>
+            <td data-label="First Name">' . $fname . '</td>
+            <td data-label="Middle Name">' . $mname . '</td>
+            <td data-label="Last Name">' . $lname . '</td>
+            <td data-label="Email">' . $email . '</td>
+            <td data-label="Status">' . $status . '</td>
+            <td data-label="Action"><button class="$butID" onclick="patclick(\''.str_replace("'", "\\'", $id).'\', \''.str_replace("'", "\\'", $fullname).'\', \''.str_replace("'", "\\'", $status).'\')">' . $buttonstat . '</button></td>
+            </tr>
+            ';
 
     }
 

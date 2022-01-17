@@ -305,13 +305,13 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                               #butactive : hover { background-color : rgba(87,102,243,0.82) }
                              </style>
                              <tr>
-                               <td class=\"data1\">$id</td>
-                               <td class='data2'>$name</td>
-                               <td>$email</td>
-                               <td>$contact_no</td>
-                               <td>$role</td>
-                               <td>$status</td>
-                               <td ><button class='$butID'>$buttonstat</button></td>
+                               <td class=\"data1\" data-label='Admin ID'>$id</td>
+                               <td class='data2' data-label='Name'>$name</td>
+                               <td data-label='Email'>$email</td>
+                               <td data-label='Contact No.'>$contact_no</td>
+                               <td data-label='Work Category'>$role</td>
+                               <td data-label='Status'>$status</td>
+                               <td data-label='Action'><button class='$butID'>$buttonstat</button></td>
                             </tr>
                              ";
                              //$adder++;
@@ -383,6 +383,14 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                           <table id="patientTable">
 
                           </table>
+                          <style>
+                              #patientTable tr td:nth-child(1), #patientTable th:nth-child(1) {
+                                  display: none;
+                              }
+                              #patientTable tr td:nth-child(2), #patientTable th:nth-child(2) {
+                                  display: none;
+                              }
+                          </style>
    <!--                  <table id="patientTable">
                         <tr>
                            <th>User/Patient ID</th>
