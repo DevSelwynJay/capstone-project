@@ -69,6 +69,8 @@ $messageBody= '
             
                     <h1 style="font-family: Arial;font-size: large;color: #4d4949">Our system accepted your online account request.</h1>
                     <p style="font-family: Arial;color: #3f3b3b">You can now login your online patient account. Thank you!</p>
+                    <br>
+                    <h2 style="font-family: Arial;color: #3f3b3b">Note: You will be required to bring the id you provided on the registration to your first consultation</h2>
                     </div>
 ';
 
