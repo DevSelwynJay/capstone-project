@@ -36,8 +36,9 @@
     <div class="flex-box-row justify-content-center">
         <h3 style="color: var(--third-color)">Edit Vaccination Info</h3>
     </div>
-    <div class="margin-top-2 flex-box-row">
-        <p class="modal-p-2">Given on <span id="update-vac-date-given"></span></p>
+    <div class="margin-top-2 flex-box-column align-items-start">
+        <p class="modal-p-2"><span style="font-weight: 600!important;">Given on:</span> <span id="update-vac-date-given"></span></p>
+        <p class="modal-p-2" style="margin-top: 0.3rem!important;"><span style="font-weight: 600!important;">Given to:</span> <span id="update-vac-given-to"></span></p>
     </div>
 
     <!--first row-->
@@ -106,11 +107,12 @@
     </div>
 
     <!--3rd row-->
-    <div id="update-vac-set-next-sched-cont" class="row margin-top-2 justify-content-center" style="">
+    <p class="modal-p" id="note-next-sched" style="text-align: center!important;margin-top: 1rem!important;"><span style="color: red">*Note: </span>Update next schedule for the next dose</p>
+    <div id="update-vac-set-next-sched-cont" class="row justify-content-center" style="">
 
         <div class="col-lg-8 flex-box-row align-items-center justify-content-center" style="flex-wrap: wrap">
             <div class="flex-box-column margin-top-1" style="flex: 0 1 50%;">
-                <p class="modal-p" id="note-next-sched" style="text-align: center!important;"><span style="color: red">*Note: </span>Update next schedule for the next dose</p>
+
                 <div class="flex-box-row align-items-center">
                     <input id="update-vac-set-next-sched" type="text" class="search-bar" readonly placeholder="Set Next Schedule">
                     <i id="update-vac-reset-set-next-sched" class="fas fa-trash-alt fa-lg" style="color: var(--third-color);margin-left: 0.3rem"></i>
@@ -143,6 +145,7 @@
     <!--4th row-->
     <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
         <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-vac-btn">
+            <i class="fas fa-edit"></i>
             Update
         </button>
         <script>

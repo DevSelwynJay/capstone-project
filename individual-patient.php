@@ -125,6 +125,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            $("#name").html(name);
                            $("#modal-patient-name").html("To: "+name);
                            $("#update-med-given-to").html(name);
+                           $("#update-vac-given-to").html(name);
                            $("#patient-type").html(arrayOfObjectElement.patient_type)
                            $("#modal-patient-type").html("Type: "+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)
