@@ -8,9 +8,9 @@
 
       $("#update-date-given").html(result.date_given)
 
-        $("#update-inv-name").val(result.name)
+        $("#update-inv-name").val(result.name);window.med_name = result.name;
         $("#update-inv-type").val(result.type)
-        $("#update-dosage").val(result.dosage)
+        $("#update-dosage").val(result.dosage);window.med_dosage = result.dosage;
         $("#update-no_of_times").val(result.no_times)
         $("#update-sub-category").val(result.med_sub_cat)
 
@@ -27,6 +27,20 @@
         $("#update-end-date").val(result.end_date)
         $("#update-description").val(result.description)
 
+        //lower part ng modal
+        $("#update-med-qty-given").html(result.given_qty)
+        $("#update-med-qty-given-input").val(result.given_qty)//the inputs para maedit ung qty
+        $("#update-med-name-lower").html(result.name)
+
+        //para sa message na Medicine Name currently has xxx stocks
+        $("#update-selected-med-name-lower").html(result.name)
+        $("#update-selected-med-current-qty-lower").html(result.curr_stock);
+
+        window.sel_med_curr_stock = result.curr_stock;
+        window.sel_med_curr_qty_given = result.given_qty;
+        // alert( window.sel_med_curr_stock);alert( window.sel_med_curr_qty_given)
+
+
     })
   }//end of function
   // $("#update-start-date").flatpickr()
@@ -37,9 +51,11 @@
   <div class="flex-box-row justify-content-center">
      <h3 style="color: var(--third-color)">Edit Medication Info</h3>
   </div>
-  <div class="margin-top-2 flex-box-row">
-   <p class="modal-p-2">Given on <span id="update-date-given"></span></p>
+  <div class="margin-top-2 flex-box-column align-items-start">
+    <p class="modal-p-2"><span style="font-weight: 600!important;">Given on:</span> <span id="update-date-given"></span></p>
+    <p class="modal-p-2" style="margin-top: 0.3rem!important;"><span style="font-weight: 600!important;">Given to:</span> <span id="update-med-given-to"></span></p>
   </div>
+
 
   <!--first row-->
   <div class="row flex-box-row justify-content-center margin-top-1">
@@ -196,11 +212,37 @@
         }
       </style>
     </div>
+
+    <div class="col-lg-12 margin-top-2">
+      <h5 style="color: var(--third-color);text-align: center">Already gave
+        <span id="update-med-qty-given" style="color:var(--primary-color)">5</span>
+        <span id="update-med-name-lower"> paracetamol </span>
+        on this current medication</h5>
+    </div>
+  </div>
+
+
+
+  <div class="row flex-box-row justify-content-center margin-top-1">
+    <div class="col-lg-6 flex-box-column align-items-lg-end align-items-sm-center">
+      <div class="flex-box-column align-items-center" style="width: clamp(40%,60%,75%);">
+        <label class="modal-p-2"><span style="color: red;font-size: large">*</span>Update quantity given</label>
+        <input type="number" class="search-bar" placeholder="x" id="update-med-qty-given-input" style="text-align: center;font-weight: 600">
+      </div>
+      </div>
+    <div class="col-lg-6 flex-box-row justify-content-lg-start justify-content-sm-center align-items-center">
+        <p class="modal-p-2">
+          <span id="update-selected-med-name-lower" style="font-weight: 600"></span>
+          currently has
+          <span id="update-selected-med-current-qty-lower" style="color: var(--primary-color)"></span>
+          stock/s
+        </p>
+    </div>
   </div>
 
   <p class="modal-p-error">Please fill the all required fields</p>
   <script>
-    $("input").focus(function (data) {
+    $("input").click(function (data) {
       $(".modal-p-error").css("visibility","hidden")
     })
   </script>
@@ -246,11 +288,31 @@
     let description = $("#update-description").val()
     let no_times = $("#update-no_of_times").val()
     let interval = $("#update-interval").val()
+    let updated_qty = $("#update-med-qty-given-input").val();
 
-    if(start==""||description==""||no_times==""){
-      $(".modal-p-error").css("visibility","visible")
+    if(start==""||description==""||no_times==""||updated_qty==""){
+      $(".modal-p-error").css("visibility","visible").html("Please fill the all required fields")
       return
     }
+
+    //validating the updated qty given
+    if(parseInt(updated_qty)<1){
+      $(".modal-p-error").css("visibility","visible").html("Can't set lower than 1")
+      $("#update-med-qty-given-input").trigger("focus")
+      return
+    }
+    // window.sel_med_curr_stock = result.curr_stock;
+    // window.sel_med_curr_qty_given = result.given_qty;
+    //kapag mas mataas ung updated qty sa original value, check if mas malaki sa stock
+    if(parseInt(updated_qty)>parseInt(window.sel_med_curr_qty_given)){
+      if(parseInt(updated_qty)>parseInt(window.sel_med_curr_stock)){
+        $(".modal-p-error").css("visibility","visible").html("Out of stock")
+        return
+      }
+
+    }
+
+
     //kapag ok na lahat call the final confirm modal
     $("#pop-up-confirm-update-med").modal({showClose: false,closeExisting:false})
   })
@@ -261,6 +323,7 @@
     let description = $("#update-description").val()
     let no_times = $("#update-no_of_times").val()
     let interval = $("#update-interval").val()
+    let updated_qty = $("#update-med-qty-given-input").val();
 
     if($("#update-frequency").val()=="0"){
       interval = 0;
@@ -269,11 +332,23 @@
       end= start;
     }
 
+    let qtyIsUpdate = 0; //1 naupdate nadagdagan qty //2 naupdate pero nabawasan qty
+    if(parseInt(updated_qty)==parseInt(window.sel_med_curr_qty_given)){
+      qtyIsUpdate = 0;//walang nag bago
+    }
+    else if(parseInt(updated_qty)>parseInt(window.sel_med_curr_qty_given)){
+      qtyIsUpdate = 1;//nadagdagan ang qty given
+    }
+    else if(parseInt(updated_qty)<parseInt(window.sel_med_curr_qty_given)){
+      qtyIsUpdate = 2;//nabawasan ang qty given
+    }
+
     //update selected medicine
     $.post("php/patientProcesses/updateSelMed.php",{
-     start:start,end:end,description:description,no_times:no_times,interval:interval
+     start:start,end:end,description:description,no_times:no_times,interval:interval,qtyIsUpdate:qtyIsUpdate,
+      updated_qty:updated_qty,med_name:window.med_name,med_dosage:window.med_dosage
     }).done(function (data) {
-      // alert(data)
+       // alert(data)
       $('[href="#pop-up-confirm-update-med"]').trigger("click")
       $('[href="#pop-up-update-medication"]').trigger("click")
       retrieve_inventory();//refresh the inventory na lumalabas sa search bar

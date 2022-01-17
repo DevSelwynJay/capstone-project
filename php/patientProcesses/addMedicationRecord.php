@@ -31,6 +31,18 @@ if($row = mysqli_fetch_assoc($res)){
     $patientType = $row['patient_type'];
 }
 
+$query = "
+INSERT INTO medication_record VALUES (
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$medName','$medSubCat','$qty', '$dosage','$no_of_times',
+                                      '$interval',DEFAULT ,'$start_date', '$end_date', '$description'
+                      
+)
+
+";
+$res = mysqli_query($con,$query);
+
+$event_id = mysqli_insert_id($con);
+
 //reduce the inv stock based on the given quantity
 $ctr=0;
 $residualStock=0;//stock to reduce sa next row kung naging negative ung nauna na binawasan
@@ -57,8 +69,8 @@ while($row = mysqli_fetch_assoc($res)){
 
         if($subRow['stock']>=0){
             //record item released in medreport table
-            mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($id ,'$medName','$medCat','$medSubCat','$dosage',$qty,'$mfg','$exp','Medicine')
+            mysqli_query($con,"INSERT INTO medreport (event_id,id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
+                            VALUES ($event_id,$id ,'$medName','$medCat','$medSubCat','$dosage',$qty,'$mfg','$exp','Medicine')
                         ");
             break;
         }
@@ -66,26 +78,15 @@ while($row = mysqli_fetch_assoc($res)){
             mysqli_query($con,"UPDATE medinventory SET stock = 0 WHERE id = $id");
             $residualStock = abs($subRow['stock']);
             //record item released in medreport table
-            mysqli_query($con,"INSERT INTO medreport (id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($id,'$medName','$medCat','$medSubCat','$dosage',$qty-$residualStock,'$mfg','$exp','Medicine')
+            mysqli_query($con,"INSERT INTO medreport (event_id,id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
+                            VALUES ($event_id,$id,'$medName','$medCat','$medSubCat','$dosage',$qty-$residualStock,'$mfg','$exp','Medicine')
                         ");
         }
     }
 $ctr++;
 }
 
-
-$qty=$_POST['qty'];//just to ensure that the qty is correct coz it can be reduce if 2 or more medicine are deducted
-
-$query = "
-INSERT INTO medication_record VALUES (
-                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$medName','$medSubCat','$qty', '$dosage','$no_of_times',
-                                      '$interval',DEFAULT ,'$start_date', '$end_date', '$description'
-                      
-)
-
-";
-$res = mysqli_query($con,$query);
+//$qty=$_POST['qty'];//just to ensure that the qty is correct coz it can be reduce if 2 or more medicine are deducted
 
 if($res){
     echo 1;

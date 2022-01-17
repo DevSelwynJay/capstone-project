@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 13, 2022 at 07:14 AM
--- Server version: 10.5.13-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Jan 17, 2022 at 07:14 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u232612118_capstonehis`
+-- Database: `capstonehis`
 --
 
 -- --------------------------------------------------------
@@ -50,11 +50,8 @@ CREATE TABLE `vaccination_record` (
 --
 
 INSERT INTO `vaccination_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `vaccine_id`, `vaccine_name`, `vaccine_dosage`, `vaccine_sub_category`, `reccommended_no_of_dosage`, `date_given`, `date_vaccinated`, `expected_next_date_vaccination`, `description`) VALUES
-(96, '2022-01-515702', '2022-02-306030', 'Infant', '3', 'Vaccine', '15', 'IPV', '120ml', 'child immunization', '2', '2022-01-12 12:29:05', '2022-01-12 12:29:05', '2022-02-09 00:00:00', 'unang ipv'),
-(97, '2018-01-120123', '2022-02-259672', 'Adult', '1', 'Vaccine', '43', 'Pfizer', '100ml', 'Covid', '2', '2022-01-12 15:01:46', '2022-01-12 15:01:46', '2022-02-14 00:00:00', '1st dose'),
-(98, '2018-01-120123', '2022-02-639914', 'Adult', '6', 'Vaccine', '45', 'IPV', '100ml', 'child immunization', '1', '2021-11-10 17:30:07', '2021-11-10 17:30:07', NULL, '1st ipv'),
-(99, '2018-01-120123', '2022-02-306030', 'Infant', '3', 'Vaccine', '43', 'Pfizer', '100ml', 'Covid', '2', '2022-01-13 06:07:11', '2022-01-13 06:07:11', '2022-02-10 00:00:00', 'hehehehe'),
-(100, '2022-01-419239', '2022-03-853659', 'Adult', '4', 'Vaccine', '43', 'Pfizer', '100ml', 'Covid', '1', '2022-01-13 06:32:35', '2022-01-13 06:32:35', NULL, 'Anti Covid');
+(2, '2021-01-111222', '2022-02-259672', 'Adult', '1', 'Vaccine', '41', 'BCG', '100ml', 'child immunization', '2', '2022-01-17 18:09:49', '2022-01-17 18:09:49', '2022-02-01 16:00:00', 'unang bcg'),
+(3, '2021-01-111222', '2022-02-336149', 'Adult', '3', 'Vaccine', '41', 'BCG', '100ml', 'child immunization', '1', '2022-01-17 18:10:54', '2022-01-17 18:10:54', NULL, 'hehe');
 
 --
 -- Indexes for dumped tables
@@ -74,7 +71,7 @@ ALTER TABLE `vaccination_record`
 -- AUTO_INCREMENT for table `vaccination_record`
 --
 ALTER TABLE `vaccination_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

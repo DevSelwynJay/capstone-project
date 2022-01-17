@@ -85,7 +85,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
-                       $("#modal-admin-name").html(result.admin_name)
+                       $("#modal-admin-name").html("Given by: "+ result.admin_name)
                    }
                )
 
@@ -124,6 +124,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                " "+arrayOfObjectElement.last_name
                            $("#name").html(name);
                            $("#modal-patient-name").html("To: "+name);
+                           $("#update-med-given-to").html(name);
                            $("#patient-type").html(arrayOfObjectElement.patient_type)
                            $("#modal-patient-type").html("Type: "+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)

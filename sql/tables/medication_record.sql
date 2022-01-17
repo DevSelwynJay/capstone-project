@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 13, 2022 at 07:13 AM
--- Server version: 10.5.13-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Jan 17, 2022 at 07:15 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u232612118_capstonehis`
+-- Database: `capstonehis`
 --
 
 -- --------------------------------------------------------
@@ -52,9 +52,8 @@ CREATE TABLE `medication_record` (
 --
 
 INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `medicine_sub_category`, `given_med_quantity`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
-(92, '2018-01-120124', '2022-02-306030', 'Infant', '3', 'Medicine', 8, 'calpol', 'pain reliver', '2', '500mg', '2', '0', '2022-01-12 11:49:55', '2022-01-12 00:00:00', '2022-01-12 00:00:00', 'Headache'),
-(93, '2018-01-120123', '2022-02-259672', 'Adult', '1', 'Medicine', 39, 'paracetamol', 'antibiotics', '5', '500mg', '3', '0', '2022-01-12 13:32:44', '2022-01-12 00:00:00', '2022-01-16 00:00:00', 'sumakit ulo'),
-(94, '2022-01-419239', '2022-03-853659', 'Adult', '4', 'Medicine', 20, 'diatabs', 'antibiotics', '4', '500mg', '2', '0', '2022-01-13 06:31:46', '2022-01-13 00:00:00', '2022-01-14 00:00:00', 'LBM');
+(3, '2021-01-111222', '2022-02-259672', 'Adult', '1', 'Medicine', 20, 'diatabs', 'antibiotics', '2', '500mg', '1', '0', '2022-01-17 17:24:17', '2022-01-17 16:00:00', '2022-01-18 16:00:00', 'nag tate baho'),
+(4, '2021-01-111222', '2022-02-336149', 'Adult', '3', 'Medicine', 20, 'diatabs', 'antibiotics', '7', '500mg', '2', '0', '2022-01-17 17:56:09', '2022-01-17 16:00:00', '2022-01-19 16:00:00', 'hehehehe');
 
 --
 -- Indexes for dumped tables
@@ -75,7 +74,7 @@ ALTER TABLE `medication_record`
 -- AUTO_INCREMENT for table `medication_record`
 --
 ALTER TABLE `medication_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

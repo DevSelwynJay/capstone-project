@@ -8,11 +8,24 @@ $result = mysqli_query($con,"SELECT *,DATE_FORMAT(start_date,'%Y-%m-%d') as star
        DATE_FORMAT(date_given,'%b %d, %Y') as date_given
 FROM medication_record WHERE event_id = $event_id ");
 if($row = mysqli_fetch_assoc($result)){
-   echo json_encode(array(
+
+    //get the current stock of the medicine in the selected medication
+    $selectedMed = $row['medicine_name'];
+    $selectedMedDosage = $row['dosage'];
+  $get_curr_stock =  mysqli_query($con,"SELECT *, SUM(stock) as stock_count from medinventory WHERE
+                 name = '$selectedMed' AND dosage = '$selectedMedDosage' AND
+                 stock > 0 AND expdate > DATE_FORMAT(NOW(),'%Y-%m-%d') GROUP BY name,dosage");
+  if($curr_stock_row= mysqli_fetch_assoc($get_curr_stock)){
+      $curr_stock_row['stock_count'];
+  }
+
+    echo json_encode(array(
         "med_id"=>$row['medicine_id'],
         "name"=>$row['medicine_name'],
         "type"=>$row['type'], "med_sub_cat"=>$row['medicine_sub_category'],
          "dosage"=>$row['dosage'],
+        "given_qty"=>$row['given_med_quantity'],
+        "curr_stock"=>$curr_stock_row['stock_count'],
         "no_times"=>$row['no_times'],
          "interval"=>$row['interval_days'],
         "date_given"=> $row['date_given'],
