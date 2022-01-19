@@ -3075,15 +3075,35 @@ td:nth-child(1) {
 
 .right-text table {
   margin: 0;
+  max-width: 80%;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .right-text table {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .right-text table {
+    max-width: 100%;
+  }
 }
 
 .right-text table td {
-  padding: .5rem 0 !important;
+  padding: .5rem .2rem !important;
 }
 
 .right-text table td .fa-edit {
   cursor: pointer !important;
   margin-right: .3rem !important;
+}
+
+.right-text table td:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .right-text p {
@@ -3113,10 +3133,27 @@ td:nth-child(1) {
   margin: 1rem 0 !important;
 }
 
+@media (max-width: 500px) {
+  .right-text .input--container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .right-text .input--container label {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 30%;
           flex: 1 1 30%;
+}
+
+@media (max-width: 500px) {
+  .right-text .input--container label {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+  }
 }
 
 .right-text .input--container input {
@@ -3124,6 +3161,14 @@ td:nth-child(1) {
       -ms-flex: 1 1 70%;
           flex: 1 1 70%;
   padding: 0 1rem;
+}
+
+@media (max-width: 500px) {
+  .right-text .input--container input {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+  }
 }
 
 .save-changes {
@@ -3213,6 +3258,15 @@ td:nth-child(1) {
   padding: .5rem 0;
   display: inline-block;
   text-align: center;
+  text-transform: capitalize !important;
+}
+
+.drop-down-settings ul li:last-child a::after {
+  content: "\f2f5";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-left: .5rem;
+  color: #535151;
 }
 
 .menu-mobile {
