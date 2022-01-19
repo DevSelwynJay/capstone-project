@@ -29,7 +29,9 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
        <script src="js/jquery-3.6.0.js"></script>
        <!--Jquery UI css and js-->
        <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+       <link rel="stylesheet" href="scss/tooltip.css">
        <script src="jquery-ui/jquery-ui.js"></script>
+
        <!-- jQuery Modal-->
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -204,11 +206,11 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                          </div>
                                          <div class="col-sm-2 margin-top-2">
                                              <p class="modal-p">Height</p>
-                                             <input class="search-bar" type="text"  name="height" placeholder="x" id="height" data-toggle="tooltip" data-placement="top" title="Height" data-container="body"/>
+                                             <input class="search-bar" type="text"  name="height" placeholder="ex. 100cm" id="height" data-toggle="tooltip" data-placement="top" title="Please include unit of measurement (ex. cm, in, ft)" data-container="body"/>
                                          </div>
                                          <div class="col-sm-2 margin-top-2">
                                              <p class="modal-p">Weight</p>
-                                             <input class="search-bar" type="text"  name="weight" placeholder="x" id="weight" data-toggle="tooltip" data-placement="top" title="Weight" data-container="body"/>
+                                             <input class="search-bar" type="text"  name="weight" placeholder="ex. 150kg" id="weight" data-toggle="tooltip" data-placement="top" title="Please include unit of measurement (ex. kg, lb)" data-container="body"/>
                                          </div>
                                      </div>
 
@@ -588,5 +590,27 @@ Closedropdown.addEventListener('click',function(){
             }
         })
     </script>
+
+      <!--tooltip for important fields-->
+      <script>
+
+          let tooltips = {
+              position: {
+                  my: "center bottom-20",
+                  at: "center top",
+                  using: function (position, feedback) {
+                      $(this).css(position);
+                      $("<div>")
+                          .addClass("arrow")
+                          .addClass(feedback.vertical)
+                          .addClass(feedback.horizontal)
+                          .appendTo(this);
+                  }
+              }
+          }
+          $('[name="height"]').tooltip(tooltips);
+          $('[name="weight"]').tooltip(tooltips);
+
+      </script>
    </body>
 </html>
