@@ -200,6 +200,7 @@
                     $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[2]).attr("data-label","Date Processed")
                     $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[3]).attr("data-label","Status")
                 }
+                $("#approve-emr-req-cont div .gs-table thead tr th").css("background","darkslategrey")
             },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
