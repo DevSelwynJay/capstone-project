@@ -40,14 +40,27 @@
     margin-top: 3.5rem !important;
     table{
         margin: 0;
+        max-width: 80%;
+        width: 100%;
+
+        @media(max-width: 800px){
+            max-width: 60%;
+        }
+        @media(max-width: 600px){
+            max-width: 100%;
+        }
+
     }
     table td{
-        padding: .5rem 0 !important;
+        padding: .5rem .2rem !important;
 
         .fa-edit{
             cursor: pointer !important;
             margin-right: .3rem !important;
         }
+    }
+    table td:first-child{
+        display: flex;
     }
 }
 .right-text p{
@@ -68,14 +81,23 @@
       width: 100%;
       gap: 1rem;
       margin: 1rem 0 !important;
+      @media(max-width: 500px){
+        flex-direction: column;
+    }
     }
   
     .input--container label{
       flex: 1 1 30%;
+      @media(max-width: 500px){
+        flex: unset;
+    }
     }
     .input--container input{
       flex: 1 1 70%;
       padding: 0 1rem;
+      @media(max-width: 500px){
+        flex: unset;
+    }
     }
   
   }
@@ -157,6 +179,7 @@
         padding: .5rem 0;
         display: inline-block;
         text-align: center;
+        text-transform: capitalize !important;
     }
 }
 .menu-mobile{
