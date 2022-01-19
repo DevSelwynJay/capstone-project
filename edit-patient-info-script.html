@@ -16,7 +16,14 @@
                         $('[name="suffix"]').val("")
                     }
                     else {
-                        $('[name="lname"]').val(result.last_name.split(" ")[0])
+                        let lname = "";
+                        for (let a=0;a<last_name.length;a++) {
+                            if(a==last_name.length-1){
+                                break
+                            }
+                            lname += last_name[a] +" ";
+                        }
+                        $('[name="lname"]').val(lname)
                         $('[name="suffix"]').val(result.last_name.split(" ").slice(-1))
                     }
 

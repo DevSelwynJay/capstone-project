@@ -136,6 +136,14 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                            $("#height").html(arrayOfObjectElement.height)
                            $("#weight").html(arrayOfObjectElement.weight)
 
+                           let acc_type = arrayOfObjectElement.account_type;
+                           if(acc_type==2){
+                               $("#acc-type").html("(Walk In)")
+                           }
+                           else {
+                               $("#acc-type").html("(From Online)")
+                           }
+
                            //ung nasa hidden input sa modal
                            $("#purok").val(arrayOfObjectElement.purok)
                        }
@@ -319,6 +327,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
                                  <p id="name">Selwyn Jay D. Faustino</p>
+                                  <p class="margin-top-1" id="acc-type" style="color:var(--primary-color);font-weight: 500!important;font-size: medium">From Online</p>
                                  <a href="#" id="trigger-view-edit-btn">Update Info</a>
                               </div>
                            </div>
