@@ -170,7 +170,7 @@ $(document).ready(function (e) {
                     "<strong><span style='color:darkblue;'>Status:</span> Dose "+resultElement.current_dose+" of "+resultElement.reccommended_no_of_dosage+"</strong><br><br>" +
                     "<strong>Type</strong>" +
                     "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
-                    "<strong>Strenght</strong>" +
+                    "<strong>Strength</strong>" +
                     "<br> - "+resultElement.vaccine_dosage+
                     "<br><br>"+
                     "<strong>Required No. of Dosage</strong>" +
@@ -198,7 +198,7 @@ $(document).ready(function (e) {
                         // "<br><br>"+
                         "<strong>Type</strong>" +
                         "<br> - Vaccine: "+resultElement.vaccine_sub_category+ "<br><br>"+
-                        "<strong>Strenght</strong>" +
+                        "<strong>Strength</strong>" +
                         "<br> - "+resultElement.vaccine_dosage+
                         // "<br><br>"+
                         // "<strong>Required No. of Dosage</strong>" +
