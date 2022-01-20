@@ -15,9 +15,6 @@ $mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1
 $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
 $suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
-if($suffix!=""){
-    $lname.=" ".$suffix;
-}
 
 $occu = trim($_POST['occu']);
 $civil = trim($_POST['civil']);
@@ -55,16 +52,17 @@ if($contact==""||$contact==null){
 }
 
 //logic for updating
-//kapag ung ung name bday at purok ndi nagalaw simple update lang ung record
+//kapag ung ung name bday ndi nagalaw simple update lang ung record
 if($fname == $_SESSION['active_old_patient_info']['first_name']
     && $mname ==  $_SESSION['active_old_patient_info']['middle_name']
     && $lname ==  $_SESSION['active_old_patient_info']['last_name']
     && $bday ==  $_SESSION['active_old_patient_info']['birthday']
+    && $suffix ==  $_SESSION['active_old_patient_info']['suffix']
 //    && $purok == $_SESSION['active_old_patient_info']['purok']
   )
 {
    $result = mysqli_query($con,"UPDATE walk_in_patient SET
-last_name = '$lname', first_name= '$fname', middle_name = '$mname', gender = '$gender', birthday = '$bday',
+last_name = '$lname', first_name= '$fname', middle_name = '$mname', suffix='$suffix',gender = '$gender', birthday = '$bday',
     purok = '$purok', house_no = '$house_no',   occupation = '$occu'  ,civil_status = '$civil', blood_type = '$bloodType',
                  weight = '$weight',    height = '$height', patient_type = '$patientType',
                            email = '$email', contact_no = '$contact' WHERE id = '$patientID'
@@ -83,7 +81,7 @@ else{
     $tables = array('walk_in_patient','pending_patient');
     foreach ($tables as $table){
         $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
         AND purok = $purok AND birthday = '$bday'
         ");
         if(mysqli_num_rows($resultCheckDuplication)>0){
@@ -91,7 +89,7 @@ else{
             exit();
         }
         $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+        WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
          AND birthday = '$bday'
         ");
         if(mysqli_num_rows($resultCheckDuplication)>0){
@@ -102,7 +100,7 @@ else{
 
 
     $result = mysqli_query($con,"UPDATE walk_in_patient SET
-last_name = '$lname', first_name= '$fname', middle_name = '$mname', gender = '$gender', birthday = '$bday',
+last_name = '$lname', first_name= '$fname', middle_name = '$mname', suffix='$suffix',gender = '$gender', birthday = '$bday',
     purok = '$purok', house_no = '$house_no',   occupation = '$occu'  ,civil_status = '$civil', blood_type = '$bloodType',
                  weight = '$weight',    height = '$height', patient_type = '$patientType',
                            email = '$email', contact_no = '$contact' WHERE id = '$patientID'

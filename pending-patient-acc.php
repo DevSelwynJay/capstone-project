@@ -621,7 +621,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                     let result = JSON.parse(data);
                     $("#fname").html(result.first_name)
                     $("#mname").html(result.middle_name)
-                    $("#lname").html(result.last_name)
+                    $("#lname").html(result.last_name+" "+result.suffix)
                     $("#bday").html(result.birthday)
                     $("#purok").html(result.purok)
                     $("#occu").html(result.occupation)

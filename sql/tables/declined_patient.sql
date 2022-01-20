@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 10:21 AM
+-- Generation Time: Jan 20, 2022 at 10:19 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pending_patient`
+-- Table structure for table `declined_patient`
 --
 
-CREATE TABLE `pending_patient` (
+CREATE TABLE `declined_patient` (
   `account_type` int(1) NOT NULL DEFAULT 3 COMMENT '3 online registered patient',
   `id` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -53,20 +53,20 @@ CREATE TABLE `pending_patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pending_patient`
+-- Dumping data for table `declined_patient`
 --
 
-INSERT INTO `pending_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `suffix`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(3, '2022-03-967028', 'Benitez', 'Bebang', 'Bas', 'III', 'Male', '2008-01-16', '4', '123', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'alfredpogiebenitez@gmail.com', 'aaaaaaaa', '09422697952', '', '2022-01-20 08:47:59');
+INSERT INTO `declined_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `suffix`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(3, '2022-03-302600', 'Benitez', 'Alfredo', 'Bas', '', 'Male', '1999-01-11', '1', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Adult', 'BENITEZ.ALFREDO.B.1128@GMAIL.COM', 'MUKAMO11', '09422697955', '', '2022-01-20 05:30:07');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `pending_patient`
+-- Indexes for table `declined_patient`
 --
-ALTER TABLE `pending_patient`
+ALTER TABLE `declined_patient`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`,`contact_no`);
 COMMIT;

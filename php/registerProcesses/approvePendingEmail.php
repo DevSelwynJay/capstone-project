@@ -14,7 +14,7 @@ $user_full_name="";
 
 
     $patient_email = $_SESSION['selected_pending_account']['email'];
-    $user_full_name = $_SESSION['selected_pending_account']['last_name'].", ".$_SESSION['selected_pending_account']['first_name']." ".$_SESSION['selected_pending_account']['middle_name'];
+    $user_full_name =$_SESSION['selected_pending_account']['first_name']." ".$_SESSION['selected_pending_account']['middle_name']." ".$_SESSION['selected_pending_account']['last_name']." ".$_SESSION['selected_pending_account']['suffix'];
 
 $mail = new PHPMailer();
 $mail->isSMTP();

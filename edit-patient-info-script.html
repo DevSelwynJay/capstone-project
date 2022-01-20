@@ -9,25 +9,8 @@
                     $('[name="fname"]').val(result.first_name)
                     $('[name="mname"]').val(result.middle_name)
 
-
-                    let last_name = result.last_name.split(" ")//check kung may suffix sa last name
-                    if(last_name.length==1){
-                        $('[name="lname"]').val(result.last_name)
-                        $('[name="suffix"]').val("")
-                    }
-                    else {
-                        let lname = "";
-                        for (let a=0;a<last_name.length;a++) {
-                            if(a==last_name.length-1){
-                                break
-                            }
-                            lname += last_name[a] +" ";
-                        }
-                        $('[name="lname"]').val(lname)
-                        $('[name="suffix"]').val(result.last_name.split(" ").slice(-1))
-                    }
-
-
+                    $('[name="lname"]').val(result.last_name)
+                    $('[name="suffix"]').val(result.suffix)
 
                     $('[name="patient-type"][value='+result.patient_type+']').prop('checked', true);
                     $('[name="blood-type"]').val(result.blood_type)

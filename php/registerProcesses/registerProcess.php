@@ -85,9 +85,6 @@ if(!empty($fileNames)){
     $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
     $suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
-    if($suffix!=""){
-        $lname.=" ".$suffix;
-    }
 
     $occupation = trim($_POST['occupation']);
     $civil_status = trim($_POST['civil_status']);
@@ -119,7 +116,7 @@ if(!empty($fileNames)){
     $address = "Sto. Rosario Paombong Bulacan";
 
     mysqli_query($con,
-        "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
+        "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$suffix','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
     header("location:../../index.php");
 }

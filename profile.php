@@ -39,10 +39,9 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                 function (data) {
                     let result = JSON.parse(data)
                     $("#name-sidebar").html(result.admin_name)
-                    let splittedName = result.admin_name.split(" ");
-                    $("#fname").html(splittedName[0])
-                    $("#mname").html(splittedName[1])
-                    $("#lname").html(splittedName[2])
+                    $("#fname").html(result.fname)
+                    $("#mname").html(result.mname)
+                    $("#lname").html(result.lname)
                     $("#gender").html(result.gender)
                     $("#age").html(result.age)
                     $("#birthday").html(result.birthday)

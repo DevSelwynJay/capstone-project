@@ -11,9 +11,6 @@ $mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1
 $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
 $suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
-if($suffix!=""){
-    $lname.=" ".$suffix;
-}
 
 $bday = trim($_POST['bday']);
 $purok = trim($_POST['purok']);
@@ -51,7 +48,7 @@ foreach ($tables as $table){
 $tables = array('walk_in_patient','pending_patient');
 foreach ($tables as $table){
     $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
 AND purok = $purok AND birthday = '$bday'
 ");
     if(mysqli_num_rows($resultCheckDuplication)>0){
@@ -59,7 +56,7 @@ AND purok = $purok AND birthday = '$bday'
        break;
     }
     $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
  AND birthday = '$bday'
 ");
     if(mysqli_num_rows($resultCheckDuplication)>0){

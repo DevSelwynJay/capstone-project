@@ -87,8 +87,8 @@ if (!$mail->send()) {
     $admin_id = $_SESSION['active_admin_ID'];
 
     // echo 'Message sent!';
-    mysqli_query($con,"INSERT INTO declined_patient (account_type,id,last_name,first_name,middle_name,gender,birthday,purok,address
-,occupation,civil_status,patient_type,email,password,contact_no ) SELECT account_type,id,last_name,first_name,middle_name,gender,birthday,purok,address
+    mysqli_query($con,"INSERT INTO declined_patient (account_type,id,last_name,first_name,middle_name,suffix,gender,birthday,purok,address
+,occupation,civil_status,patient_type,email,password,contact_no ) SELECT account_type,id,last_name,first_name,middle_name,suffix,gender,birthday,purok,address
 ,occupation,civil_status,patient_type,email,password,contact_no
 FROM pending_patient WHERE id='$id'");
     mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");

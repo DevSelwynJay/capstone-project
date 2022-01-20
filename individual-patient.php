@@ -121,7 +121,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                        for (let arrayOfObjectElement of arrayOfObject) {//one time lang aandar
                            ///alert(arrayOfObjectElement.first_name)
                            let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
-                               " "+arrayOfObjectElement.last_name
+                               " "+arrayOfObjectElement.last_name+ " "+arrayOfObjectElement.suffix
                            $("#name").html(name);
                            $("#modal-patient-name").html("To: "+name);
                            $("#update-med-given-to").html(name);

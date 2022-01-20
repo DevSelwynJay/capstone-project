@@ -24,6 +24,7 @@ if($res){
        echo json_encode(array(
            "admin_id"=>$row['id']
            ,"admin_name"=>$row['first_name']." ".$row['middle_name']." ".$row['last_name'],
+           "fname"=>$row['first_name'],"mname"=>$row['middle_name'],"lname"=>$row['last_name'],
            "gender"=>$row['gender'], "birthday"=>$row['fd'], "age"=>$row['age'],
            "address"=> $row['address']
         ));

@@ -15,9 +15,6 @@ $mname = strtoupper(substr($trimmedMname,0,1)).strtolower(substr($trimmedMname,1
 $lname = strtoupper(substr($trimmedLname,0,1)).strtolower(substr($trimmedLname,1));
 
 $suffix = preg_replace('/[^A-Za-z0-9\-]/', '', trim($_POST['suffix']));//remove special character
-if($suffix!=""){
-    $lname.=" ".$suffix;
-}
 
 $occu = trim($_POST['occu']);
 $civil = trim($_POST['civil']);
@@ -93,7 +90,7 @@ if($contact==""||$contact==null){
 $tables = array('walk_in_patient','pending_patient');
 foreach ($tables as $table){
     $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
 AND purok = $purok AND birthday = '$bday'
 ");
     if(mysqli_num_rows($resultCheckDuplication)>0){
@@ -101,7 +98,7 @@ AND purok = $purok AND birthday = '$bday'
         exit();
     }
     $resultCheckDuplication = mysqli_query($con,"SELECT * FROM $table 
-WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname'
+WHERE last_name = '$lname' AND first_name='$fname' AND middle_name='$mname' AND suffix = '$suffix'
  AND birthday = '$bday'
 ");
     if(mysqli_num_rows($resultCheckDuplication)>0){
@@ -116,10 +113,10 @@ function generateRandomString($length = 8): string
 }
 $_SESSION['randomPassword'] = $randomPassword = generateRandomString();
 $_SESSION['newAddWalkInPatientEmail'] = $email;
-$_SESSION['newAddWalkInPatientName'] = $fname." ".$mname." "." ".$lname;
+$_SESSION['newAddWalkInPatientName'] = $fname." ".$mname." "." ".$lname." ".$suffix;
 
 $query = "INSERT INTO walk_in_patient VALUES (
-                 2,DEFAULT, '$patientID','$lname','$fname','$mname'
+                 2,DEFAULT, '$patientID','$lname','$fname','$mname','$suffix'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
                  ,'$occu','$civil','$bloodType','$weight','$height'
                  ,'$patientType','$email','$randomPassword','$contact',''
