@@ -222,6 +222,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     Go Back to Patient List
                                 </button>
                             </a>
+                            <button id="acc-req-logs-btn" class="modal-primary-button" style="background: darkslategray!important;margin-left: 0.3rem"><i class="fas fa-history"></i>View Logs</button>
 
                         </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
@@ -252,7 +253,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
 
                         <h3 style="color: var(--third-color)" class="margin-top-2">Pending Online Account Request for Patient</h3>
                         <table class="patients-view">
-                            <tbody>
+                            <tbody id="pending-patient-table">
                             <tr class="patients-view-title">
                                 <th>Patient Id</th>
                                 <th>Patient Name</th>
@@ -288,8 +289,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                             </tbody>
                         </table>
 
-
                     </div>
+                    <?php
+                    include 'pending-patient-logs.html';
+                    ?>
                 </div>
             </div>
         </div>
@@ -743,7 +746,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         })
 
         //================PAGINATION RELATED CODE================================
-        var table = $('tbody').tableSortable({
+        var table = $('#pending-patient-table').tableSortable({
             data: [],
             columns:
                 {

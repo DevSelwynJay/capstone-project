@@ -84,8 +84,19 @@ if (!$mail->send()) {
     // echo 'Mailer Error: ' . $mail->ErrorInfo;
     echo 0;
 } else {
+    $admin_id = $_SESSION['active_admin_ID'];
+
     // echo 'Message sent!';
+    mysqli_query($con,"INSERT INTO declined_patient (account_type,id,last_name,first_name,middle_name,gender,birthday,purok,address
+,occupation,civil_status,patient_type,email,password,contact_no ) SELECT account_type,id,last_name,first_name,middle_name,gender,birthday,purok,address
+,occupation,civil_status,patient_type,email,password,contact_no
+FROM pending_patient WHERE id='$id'");
     mysqli_query($con,"DELETE FROM pending_patient WHERE id = '$id'");
+
+    //PUT IN THE LOGS
+    mysqli_query($con,"INSERT INTO logs_acc_req (admin_id,patient_id,admin_action,description) 
+    VALUES ('$admin_id','$id','0','$decline_msg')
+    ");
     echo 1;
 }
 
