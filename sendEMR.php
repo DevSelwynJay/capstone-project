@@ -69,8 +69,9 @@ if (!$mail->send()) {
 } else {
 //    echo 'Message sent!';
     //update the request status to approved put 1 to status column
+    $admin_id = $_SESSION['active_admin_ID'];
     $con = null;
     require 'php/DB_Connect.php';
-    mysqli_query($con,"UPDATE emr_request SET status = 1 WHERE request_id = ".$_SESSION['active_reqID']);
+    mysqli_query($con,"UPDATE emr_request SET admin_id='$admin_id', status = 1 WHERE request_id = ".$_SESSION['active_reqID']);
 
 }

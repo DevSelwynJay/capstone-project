@@ -18,7 +18,7 @@ if(mysqli_num_rows($res)>0){ //may existing request
 echo 1;
 }
 else{
-    mysqli_query($con,"INSERT INTO emr_request VALUES (DEFAULT, '$patientOA_ID', DEFAULT,DEFAULT )");
+    mysqli_query($con,"INSERT INTO emr_request VALUES (DEFAULT,DEFAULT, '$patientOA_ID', DEFAULT,DEFAULT,DEFAULT )");
 echo 2;
 }
 

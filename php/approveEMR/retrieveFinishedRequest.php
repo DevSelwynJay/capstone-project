@@ -8,7 +8,7 @@ $response = array();
 //select online acc with finished request
 $res = mysqli_query($con,"SELECT * FROM emr_request ORDER BY date_requested DESC");
 while ($row = mysqli_fetch_assoc($res)){
-    //logic select lahat ng online acc na may request
+    //logic select lahat ng online acc na may request history ,
     //then iquery ung info sa online patient acc for displaying
     $id_of_patient_OA = $row['patientOA_ID'];// id of online patient account
     $subRes = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '$id_of_patient_OA' ");
@@ -17,11 +17,20 @@ while ($row = mysqli_fetch_assoc($res)){
         if($row['status']==0){//not yet approved or decline
            continue;
         }
+
+        $adminID= $row['admin_id'];//get the admin info who in charged of accepting/declining request
+        if(is_null($adminID)){
+            $subRow['admin_name'] = $adminID = "Unknown";
+        }
+        else if($adminInfo = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM admin WHERE id ='$adminID'"))){
+            $subRow['admin_name']=$adminInfo['first_name']." ".$adminInfo['middle_name']." ".$adminInfo['last_name'];
+        }
+
         if($row['status']==1){//int ung data type sa table column na status
-            $subRow['status'] = "Approved";
+            $subRow['status'] = "Approved by ". $subRow['admin_name'];
         }
         if($row['status']==-1){
-            $subRow['status'] = "Declined";
+            $subRow['status'] = "Declined by ". $subRow['admin_name'];
         }
 
 

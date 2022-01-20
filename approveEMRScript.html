@@ -142,9 +142,9 @@
                 $("#decline-reason").val("")
                 let patientOA_ID = $(this).data("patientoa_id");
                 let email = $(this).data("email");
-                $("#dec-email").html("Name: "+email)
+                $("#dec-email").html("<span style='font-weight: 600'>Email:</span> "+email)
                 let name = $(this).data("name");
-                $("#to").html("To: "+name)
+                $("#to").html("<span style='font-weight: 600'>To:</span> "+name)
                 let reqID = $(this).data("reqid");
                 $("#pop-up-dec-req").modal({
                     // showClose:false,clickClose: false,escapeClose: false

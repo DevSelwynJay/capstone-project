@@ -70,8 +70,10 @@ $mail->Body = $messageBody;
 if (!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
+    $admin_id = $_SESSION['active_admin_ID'];
+    $decline_msg = $_POST["decline_msg"];
     $con = null;
     require '../DB_Connect.php';
-    mysqli_query($con,"UPDATE emr_request SET status = -1 WHERE request_id = ".$_SESSION['active_reqID']." ");
+    mysqli_query($con,"UPDATE emr_request SET admin_id='$admin_id', status = -1, description='$decline_msg' WHERE request_id = ".$_SESSION['active_reqID']." ");
     echo 1;
 }
