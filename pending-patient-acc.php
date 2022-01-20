@@ -804,6 +804,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         $.get('php/registerProcesses/retrievePendingList.php', function(data) {
             // Push data into existing data
             console.log(JSON.parse(data))
+            if(JSON.parse(data).length==0){
+                $("#pending-patient-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                return
+            }
             //table.setData(JSON.parse(data), null, true);
             window.rowCount_pending = JSON.parse(data).length;
             // or Set new data on table, columns is optional.

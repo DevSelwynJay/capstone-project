@@ -55,6 +55,10 @@
             d = data;
             // Push data into existing data
             console.log(JSON.parse(data))
+            if(JSON.parse(data).length==0){
+                $("#emr-req-cont div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                return
+            }
             //table.setData(JSON.parse(data), null, true);
             window.rowCount_emr_req = JSON.parse(data).length;
             // or Set new data on table, columns is optional.
@@ -212,6 +216,10 @@
             d = data;
             // Push data into existing data
             console.log(JSON.parse(data))
+            if(JSON.parse(data).length==0){
+                $("#approve-emr-req-cont div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                return
+            }
             //table.setData(JSON.parse(data), null, true);
             window.rowCount_emr_history = JSON.parse(data).length;
             // alert(window.rowCount_emr_history)
@@ -225,7 +233,7 @@
 
         })//end of get/post method
 
-
+        $("#approve-emr-req-cont div .gs-table thead tr th").css("background","darkslategrey")
     });//end of document ready
 </script>
 
