@@ -186,7 +186,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                          </select>
                                      </div>
                                      <div class="col-sm-6">
-                                         <input type="date" placeholder="birthday" id="birthday"/>
+                                         <input type="text" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}" placeholder="Birthday" id="birthday"/>
                                      </div>
                                  </div>
                                  <div class="row">
