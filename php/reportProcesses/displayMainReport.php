@@ -17,7 +17,7 @@ $start_from = ($page - 1)*$rpp;
 //$medpatientqry = "Select * from `medication_record` limit $start_from,$rpp";
 
 //Official Query
-$medpatientqry = "Select * from `medication_record` where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') limit $start_from,$rpp";
+$medpatientqry = "Select * from `medication_record` where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')  GROUP BY patient_id limit $start_from,$rpp";
 $medresult = mysqli_query($con,$medpatientqry);
 
 if(mysqli_num_rows($medresult)>0){

@@ -18,7 +18,7 @@ $start_from = ($page - 1)*$rpp;
 
 //Official Query
 
-$vacpatientqry = "Select * from `vaccination_record`where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') limit $start_from,$rpp";
+$vacpatientqry = "Select * from `vaccination_record`where DATE_FORMAT(date_given,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') GROUP BY patient_id limit $start_from,$rpp";
 $medresult = mysqli_query($con,$vacpatientqry);
 
 if(mysqli_num_rows($medresult)>0){
