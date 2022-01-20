@@ -108,7 +108,7 @@ function queryActiveVaccine($con,$patientID){
             $row['next_sched'] =  $subRow['next_sched'];
 
             $_SESSION['allHistory'][] = array(
-                "name"=>$curr_vaccine,
+                "name"=>$curr_vaccine." (Dose ".$row['curr_dose']." of ".$row['rec_no_dose'].")",
                 "type"=> $subRow['type'].": ".$subRow['vaccine_sub_category'],
                 "date"=>$subRow['fd'],
                 "description"=>$subRow['description'],

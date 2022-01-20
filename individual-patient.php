@@ -51,6 +51,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
            .col-sm-12{
                padding: 0;
            }
+           .event-indicator *:not(:first-child) {
+              display: none;
+           }
        </style>
        <!--Custom CSS-->
        <link rel="stylesheet" href="scss/main.css">

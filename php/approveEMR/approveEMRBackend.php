@@ -8,7 +8,8 @@ $active_patientOA_ID = $_SESSION['active_patientOA_ID'];
 $active_reqID = $_SESSION['active_reqID'];
 
 //find the patient id from the request table to patient db
-$result = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '$active_patientOA_ID' ");
+$result = mysqli_query($con,"SELECT *,DATE_FORMAT(birthday,'%b %d, %Y') as bday, timestampdiff(year,birthday,NOW()) as age
+FROM walk_in_patient WHERE id = '$active_patientOA_ID' ");
 if(mysqli_num_rows($result)<=0){
     echo "no account";
     exit();

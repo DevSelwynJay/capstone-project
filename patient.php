@@ -378,6 +378,16 @@ Closedropdown.addEventListener('click',function(){
           //alert($(document).width())
       </script>
       <style>
+          .active{
+              background: var(--primary-color)!important;
+              color: var(--secondary-color)!important;
+              border:none!important;
+              padding: 0.5em 0.5rem!important;
+          }
+          .btn-default{
+              border:1px solid var(--light-grey)!important;
+              padding: 0.5em 0.5rem!important;
+          }
           .gs-pagination{
               margin-top: 0.5em;
           }
