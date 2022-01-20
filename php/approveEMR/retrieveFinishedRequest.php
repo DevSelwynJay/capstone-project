@@ -18,11 +18,9 @@ while ($row = mysqli_fetch_assoc($res)){
            continue;
         }
 
+        $subRow['admin_name'] = "Unknown";
         $adminID= $row['admin_id'];//get the admin info who in charged of accepting/declining request
-        if(is_null($adminID)){
-            $subRow['admin_name'] = $adminID = "Unknown";
-        }
-        else if($adminInfo = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM admin WHERE id ='$adminID'"))){
+        if($adminInfo = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM admin WHERE id ='$adminID'"))){
             $subRow['admin_name']=$adminInfo['first_name']." ".$adminInfo['middle_name']." ".$adminInfo['last_name'];
         }
 
