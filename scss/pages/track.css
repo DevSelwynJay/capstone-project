@@ -44,12 +44,12 @@
 }
 
 button:visited {
-  color: #000000;
+  color: #249ad2;
   background-color: #ffffff;
 }
 
 button:focus {
   color: #ffffff;
-  background-color: black;
+  background-color: #249ad2;
 }
 /*# sourceMappingURL=track.css.map */

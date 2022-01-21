@@ -4,7 +4,7 @@ body{
 .covid-container{
     width: 74vw;
     height: 50vh;
-    background-color: #192734;
+    background-color: #249ad2;
     margin: 20px 0px 10px 40px;
     border-radius: 10px;
 }
@@ -16,11 +16,18 @@ body{
     margin: 10px;
     width: 36.2vw;
     height: 50vh;
-    background-color: #192734;
+    background-color: #249ad2;
     border-radius: 10px;
 }
 .tab{
     flex-wrap: wrap !important;
     width: 90% !important;
     margin: 0 auto !important;
+    padding: 1rem !important;
+    margin: 1rem auto !important;
+}
+
+.tab button{
+    border: solid 1px white !important;
+    margin: 1rem !important;
 }

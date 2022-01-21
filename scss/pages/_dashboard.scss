@@ -1,6 +1,19 @@
 .dashboard-content {
     color: #222;
     padding: 2rem 1rem;
+
+
+    table{
+      width: 100% !important;
+    }
+
+    table tr {
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: .35em;
+    }
+
+
   }
   .greetings-container {
     background-color: #cdefff;
@@ -20,6 +33,10 @@
         place-items: center;
        }
     }
+
+
+   
+
   }
   
   

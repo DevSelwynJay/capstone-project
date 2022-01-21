@@ -2667,7 +2667,7 @@ body {
 .covid-container {
   width: 74vw;
   height: 50vh;
-  background-color: #192734;
+  background-color: #249ad2;
   margin: 20px 0px 10px 40px;
   border-radius: 10px;
 }
@@ -2683,7 +2683,7 @@ body {
   margin: 10px;
   width: 36.2vw;
   height: 50vh;
-  background-color: #192734;
+  background-color: #249ad2;
   border-radius: 10px;
 }
 
@@ -2692,11 +2692,28 @@ body {
       flex-wrap: wrap !important;
   width: 90% !important;
   margin: 0 auto !important;
+  padding: 1rem !important;
+  margin: 1rem auto !important;
+}
+
+.tab button {
+  border: solid 1px white !important;
+  margin: 1rem !important;
 }
 
 .dashboard-content {
   color: #222;
   padding: 2rem 1rem;
+}
+
+.dashboard-content table {
+  width: 100% !important;
+}
+
+.dashboard-content table tr {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .35em;
 }
 
 .greetings-container {
@@ -3738,7 +3755,7 @@ td:nth-child(1) {
 }
 
 .admin-upper .admin-upper-left .card1 {
-  background-color: #75aec8;
+  background-color: #1dbf73;
 }
 
 .admin-upper .admin-upper-left .card2 {
@@ -3768,7 +3785,7 @@ td:nth-child(1) {
 }
 
 .admin-upper .admin-upper-right .dashboard-small-cards {
-  background: #527c88;
+  background: #22809b;
   border-radius: 10px;
   text-align: center;
   display: -webkit-box;
@@ -3813,7 +3830,7 @@ td:nth-child(1) {
 }
 
 .admin-lower .workers-list-container {
-  background-color: #527c88;
+  background-color: #22809b;
   border-radius: 10px;
 }
 
@@ -3919,7 +3936,7 @@ td:nth-child(1) {
 }
 
 .admin-lower .popular-vaccines-container {
-  background-color: #527c88;
+  background-color: #22809b;
   border-radius: 10px;
   overflow-x: scroll;
 }

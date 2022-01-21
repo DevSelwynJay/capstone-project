@@ -54,7 +54,7 @@
             font-size: 0.9rem;
         }
         .card1{
-            background-color: #75aec8;
+            background-color: #1dbf73;
         }
         .card2{
             background: #eb4151;
@@ -84,7 +84,7 @@
 
 
         .dashboard-small-cards{
-            background: #527c88;
+            background: #22809b;
             border-radius: 10px;
             text-align: center;
             display: flex;
@@ -123,7 +123,7 @@
     }
     
     .workers-list-container{
-        background-color: #527c88;
+        background-color: #22809b;
         border-radius: 10px;
       
         img{
@@ -207,13 +207,15 @@
         
     }
     .popular-vaccines-container{
-        background-color: #527c88;
+        background-color: #22809b;
         border-radius: 10px;
         overflow-x: scroll;
 
         #container{
             display: grid;
             place-items: center;
+
+            
         }
     }
     
