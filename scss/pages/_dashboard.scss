@@ -357,3 +357,49 @@
     font-weight: 800;
   }
   
+
+
+  #profile-cont{
+    table{
+      width: 100% !important;
+      table-layout: fixed;
+    }
+
+    table tr {
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: .35em;
+    }
+  }
+  .profile-patient-settings{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media(max-width:600px){
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &>*{
+      padding: 2rem;
+    }
+
+    .title{
+       margin-bottom: .5rem;
+    }
+    .settings{
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start !important;
+       margin-bottom: 1rem;
+    }
+
+    .right{
+      .image{
+        margin: 1rem ;
+        display: grid;
+        place-items: center;
+      }
+    }
+    
+    
+  }

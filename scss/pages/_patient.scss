@@ -55,9 +55,12 @@
 //GRID LAYOUT
 .patient-content{
 
+    
 
     &__container{
        display: grid;
+
+
       
        padding: 0 1.5rem 2rem 1.5rem;
        grid-template-columns: repeat(4, 1fr);
@@ -74,6 +77,18 @@
         border-radius: .5rem;
         padding: 1rem;
        }
+
+       table{
+        width: 100% !important;
+      }
+  
+      table tr {
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: .35em;
+      }
+
+
     }
 
     &__ctas{

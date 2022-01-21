@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();//patient
 if(!isset($_SESSION['email'])){
     //redirect to main page
@@ -18,6 +19,7 @@ else{
         header("location:php/loginProcesses/redirect.php");
     }
 }
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,17 +126,20 @@ else{
 
 
                     <!--bago-->
-                    <div class="row margin-top-3 flex-md-row-reverse" id="profile-cont">
+                    <div class="profile-patient-settings" id="profile-cont">
 
-                        <div class="col-lg-4 flex-box-column align-items-lg-start margin-top-2" id="right">
-                            <div class="flex-box-row justify-content-lg-start">
+                        <div class="left">
+
+                            <div class="title">
                                 <h1 style="color: var(--third-color);text-transform: uppercase;font-size: 1.5em;font-weight: 500">Account Settings</h1>
                             </div>
-                            <div class="flex-box-column align-content-lg-start" id="acc-sett">
+
+                            <div class="settings" id="acc-sett">
                                 <a href="#" id="update-email"><i class="fas fa-edit"></i><span>Update Email</span></a>
                                 <a href="#" id="change-pwd-btn"><i class="fas fa-user-edit"></i><span>Update Password</span></a>
                             </div>
-                            <div class="flex-box-row justify-content-start margin-top-2 padding-all-15">
+
+                            <div class="backbtn">
                                 <button class="modal-primary-button" id="back-to-home"><i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>Back to Home Page</button>
                                 <script>
                                     $("#back-to-home").click(function () {
@@ -142,6 +147,7 @@ else{
                                     })
                                 </script>
                             </div>
+
                             <style>
                                 #right{
                                     padding-left: 2rem!important;
@@ -163,11 +169,13 @@ else{
                             </style>
 
                         </div>
-                        <div class="col-lg-8 margin-top-2">
+
+
+                        <div class="right">
                             <div class="flex-box-row justify-content-center">
                                 <h1 style="color: var(--third-color);font-size: 2em;text-transform: uppercase;font-weight: 800;">My Profile</h1>
                             </div>
-                            <div class="flex-box-row justify-content-center margin-top-1">
+                            <div class="image">
                                 <img src="img/user3.png" width="150" height="150">
                             </div>
                             <table>
@@ -215,6 +223,8 @@ else{
                                 </style>
                             </table>
                         </div>
+
+
                     </div>
                     </div>
                 </div>

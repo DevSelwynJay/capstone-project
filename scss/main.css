@@ -1184,6 +1184,16 @@ table tr {
   padding: 1rem;
 }
 
+.patient-content__container table {
+  width: 100% !important;
+}
+
+.patient-content__container table tr {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .35em;
+}
+
 .patient-content__ctas {
   padding: 1rem 2rem;
   display: -webkit-box;
@@ -3078,6 +3088,60 @@ td:nth-child(1) {
   font-weight: 800;
 }
 
+#profile-cont table {
+  width: 100% !important;
+  table-layout: fixed;
+}
+
+#profile-cont table tr {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .35em;
+}
+
+.profile-patient-settings {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 600px) {
+  .profile-patient-settings {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.profile-patient-settings > * {
+  padding: 2rem;
+}
+
+.profile-patient-settings .title {
+  margin-bottom: .5rem;
+}
+
+.profile-patient-settings .settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: flex-start !important;
+  margin-bottom: 1rem;
+}
+
+.profile-patient-settings .right .image {
+  margin: 1rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
 .text-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3094,6 +3158,16 @@ td:nth-child(1) {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+
+.text-content table {
+  width: 100% !important;
+}
+
+.text-content table tr {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .35em;
 }
 
 .settings-page {
@@ -3597,6 +3671,16 @@ td:nth-child(1) {
   display: flex;
   width: 80%;
   margin: 0 auto;
+}
+
+.upper-part table {
+  width: 100% !important;
+}
+
+.upper-part table tr {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .35em;
 }
 
 @media (max-width: 768px) {

@@ -3,6 +3,16 @@
     width: 80%;
     margin: 0 auto;
 
+    table{
+        width: 100% !important;
+      }
+  
+      table tr {
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: .35em;
+      }
+
     @media(max-width:768px){
         flex-direction: column-reverse;
     }

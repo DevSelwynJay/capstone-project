@@ -5,6 +5,16 @@
     @media(max-width:800px){
         flex-direction: column;
     }
+
+    table{
+        width: 100% !important;
+      }
+  
+      table tr {
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: .35em;
+      }
 }
 .settings-page{
     padding: 2rem 3rem !important;
