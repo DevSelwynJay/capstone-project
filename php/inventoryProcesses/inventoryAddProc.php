@@ -1,9 +1,9 @@
 <?php
+session_start();
 $con=null;
 require '../DB_Connect.php';
 extract($_POST);
-if(isset($_POST['newMedName']) && isset($_POST['newMedCategory']) && isset($_POST['newMedsubCategory']) && isset($_POST['newMedDosage']) && isset($_POST['newMedStocks']) && isset($_POST['newMedMfgDate']) && isset($_POST['newMedExpDate'])){
-    $newMedName = $_POST['newMedName'];
+   $newMedName = $_POST['newMedName'];
     $newMedCategory = $_POST['newMedCategory'];
     $newMedsubCategory = $_POST['newMedsubCategory'];
     $newMedDosage = $_POST['newMedDosage'];
@@ -11,12 +11,57 @@ if(isset($_POST['newMedName']) && isset($_POST['newMedCategory']) && isset($_POS
     $newmedCritStocks = $_POST['newMedCritStocks'];
     $newMedMfgDate = $_POST['newMedMfgDate'];
     $newMedExpDate = $_POST['newMedExpDate'];
+
+    $_6DigitCode = generate_6_Digits();
+    if($newMedCategory == "Medicine"){
+        $_SESSION['category'] = '04';
+    }
+    else{
+        $_SESSION['category'] = '05';
+    }
+    $_SESSION['final_id'] = $new_id = generateID($_6DigitCode,$_SESSION['category']);
+    validateID($con,$new_id);
+
+    $medicineID = $_SESSION['final_id'];//final
+
     $type = "Add";
-    $newmedicinesql = "Insert into `medinventory` (`name`, `category`, `subcategory`, `dosage` , `stock`,`criticalstocks`, `mfgdate`, `expdate`) values ('$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newmedCritStocks','$newMedMfgDate','$newMedExpDate')";
+    $newmedicinesql = "Insert into `medinventory` (`id`,`name`, `category`, `subcategory`, `dosage` , `stock`,`criticalstock`, `mfgdate`, `expdate`) values ('$medicineID','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newmedCritStocks','$newMedMfgDate','$newMedExpDate')";
     $result = mysqli_query($con,$newmedicinesql);
-    $last_id = $con->insert_id;
-    $newmedreportsql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$last_id','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
+    $newmedreportsql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$medicineID','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
     $reportresult = mysqli_query($con,$newmedreportsql);
+
+
+
+
+function generate_6_Digits(): string
+{
+    $key=0;
+    try {
+        $key = random_int(0, 999999);
+    } catch (Exception $e) {
+    }
+    return str_pad($key, 6, 0, STR_PAD_LEFT);
 }
+
+function generateID($_6DigitCode,$finalCategory): string
+{
+    return date('Y')."-".$finalCategory."-".$_6DigitCode;
+}
+
+function validateID($con,$new_id){//check the generated ID if existing
+
+    $tables = array('medinventory');
+    foreach ($tables as $table){
+        $result = mysqli_query($con,"SELECT id FROM $table WHERE id = '$new_id'");
+        if(mysqli_num_rows($result)>0){
+            //nag eexist na ung ID
+            $_6DigitCode = generate_6_Digits();
+            $_SESSION['final_id'] = $new_id = generateID($_6DigitCode,$_SESSION['category']);
+            validateID($con,$new_id);
+        }
+    }
+}
+
+
 
 ?>

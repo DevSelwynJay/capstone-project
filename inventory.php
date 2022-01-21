@@ -183,21 +183,21 @@ $ofs = $count4." Out of Stocks in our Inventory";
                                 <!--Display ko dito yung Table of MEDS-->
                                 <?php
                                 include 'inventoryTable.html'?>
+                                <button id="nakatago" style="display: none"></button>
 
 
                             <div class="inventory__table-toexpire-container"  >
                                 <?php
                                 include 'inventoryToTable.html'?>
-                                <div id="toExptab">
-                                </div>
+                                <button id="nakatago2" style="display: none"></button>
+
                             </div>
 
                             <div class="inventory__table-expired-container" >
                                 <?php
                                 include 'inventoryToExp.html'?>
+                                <button id="nakatago3" style="display: none"></button>
 
-                                <div id="exptab">
-                                </div>
                             </div>
                             </div>
                         </div>
@@ -432,6 +432,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
             id:id
         },function(data,status){
             $("[href='#delete-modal']").trigger('click');
+            $('#nakatago').trigger("click");
+            $('#nakatago2').trigger("click");
+            $('#nakatago3').trigger("click");
 
             Swal.fire({
                 title:'Medicine Deleted Successfully!',
@@ -467,24 +470,6 @@ $ofs = $count4." Out of Stocks in our Inventory";
     })
 
 
-    //Display Expired Table
-    function displayExpTab(displayExpTabpage){
-        var displayExpTab = true;
-        $.ajax({
-            url:'php/inventoryProcesses/displayExpTab.php',
-            type:'POST',
-            data:{
-                displayExpTabpage: displayExpTabpage
-            },
-            success:function(data,status){
-                $('#exptab').html(data);
-            }
-        });
-    }
-    $(document).on("click",".pagination_linkexp", function (){
-        var displayExpTabpage = $(this).attr("id");
-        displayExpTab(displayExpTabpage);
-    })
     //Add New Medicine Function
     function addNewMedicine() {
 
@@ -540,7 +525,10 @@ $ofs = $count4." Out of Stocks in our Inventory";
                         $('#expdate-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').html('');
-                        $('#name-incorrect-indcator').html('')
+                        $('#name-incorrect-indcator').html('');
+                        $('#nakatago').trigger("click");
+                        $('#nakatago2').trigger("click");
+                        $('#nakatago3').trigger("click");
                         Swal.fire({
                             title:'Medicine Added Successfully!',
                             icon:'success'
@@ -590,7 +578,10 @@ $ofs = $count4." Out of Stocks in our Inventory";
                         $('#expdate-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').html('');
-                        $('#name-incorrect-indcator').html('')
+                        $('#name-incorrect-indcator').html('');
+                        $('#nakatago').trigger("click");
+                        $('#nakatago2').trigger("click");
+                        $('#nakatago3').trigger("click");
 
 
 
@@ -652,7 +643,8 @@ $ofs = $count4." Out of Stocks in our Inventory";
         console.log($(this).val())
     })
     //Display Update Modal function
-    function medDisplayUpdateModal(medupdateid){
+
+    /*function medDisplayUpdateModal(medupdateid){
         $('#hiddendata').val(medupdateid);
         $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
             var medid = JSON.parse(data);
@@ -680,7 +672,7 @@ $ofs = $count4." Out of Stocks in our Inventory";
             $('#updatemedicineExpDate').val("");
         })
 
-    }
+    }*/
 
 
     //Update Medicine Stocks function
@@ -705,6 +697,10 @@ $ofs = $count4." Out of Stocks in our Inventory";
             id:id
         },function(data,status){
             $("[href='#update-modal']").trigger('click');
+            $('#nakatago').trigger("click");
+            $('#nakatago2').trigger("click");
+            $('#nakatago3').trigger("click");
+
             Swal.fire({
                 title:'Medicine/Vaccine Updated Successfully!',
                 icon:'success'
@@ -712,6 +708,7 @@ $ofs = $count4." Out of Stocks in our Inventory";
 
         });
     }
+
 
 
 

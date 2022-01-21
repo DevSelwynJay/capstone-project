@@ -4,7 +4,7 @@ require '../DB_Connect.php';
 //Display the Data on the Modal Update
 if(isset($_POST['medupdateid'])){
     $med_id=$_POST['medupdateid'];
-    $medupdatesql = "Select * from `medinventory` where `id`=$med_id";
+    $medupdatesql = "Select * from `medinventory` where `id`='$med_id'";
     $result = mysqli_query($con,$medupdatesql);
     $response = array();
     while($row=mysqli_fetch_assoc($result)){
@@ -26,7 +26,7 @@ if(isset($_POST['id'])){
     $medmfgdate=$_POST['updatemedicineMfgDate'];
     $medexpdate=$_POST['updatemedicineExpDate'];
     $type = "Update";
-    $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`=$id";
+    $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`='$id'";
     $result=mysqli_query($con,$updatesql);
     $reportupdatesql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$id','$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
     $reportresult = mysqli_query($con,$reportupdatesql);

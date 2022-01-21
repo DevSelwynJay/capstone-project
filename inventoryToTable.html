@@ -9,108 +9,126 @@
 
 <script>
     $(document).ready(function () {
-        var table = $('#medicine-to-expire-table').tableSortable({
-            data: [],
-            /*columns:
-                {
-                    action:"Action",
-                    admin:"Admin",
-                    // address:"Address",
-                    // contact_no: "Contact",
-                    // email:'Email',
-                    date:"Date"
-                }
-            ,*/
-            //searchField: '#meds',
-            // responsive: {
-            //     720: {
-            //         columns: {
-            //             // id: "ID",
-            //             name:"Name",
-            //             date:"Date Requested",
-            //             button:"Action"
-            //         },
-            //     },
-            //     512:{
-            //         columns: {
-            //             // id: "ID",
-            //             name:"Name",
-            //             date:"Date Requested",
-            //             button:"Action"
-            //         },
-            //     }
-            // },
-            rowsPerPage: 5,
-            pagination: true,
-            sorting:false,
-            tableWillMount: function() {
-                console.log('table will mount')
-            },
-            tableDidMount: function() {
-                console.log('table did mount')
-            },
-            tableWillUpdate: function() {console.log('table will update')},
-            tableDidUpdate: function() {
-                // console.log('table did update');  click_view_button();
-                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
-                for (a=0;a<parseInt( window.rowCount_logs_acc_req);a++){
-                    $($($("#medicine-to-expire-table div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
-                }
+
+        function displayToExpTable(){
+            $.post('php/inventoryP/displayToExpTab2.php').done(function (data){
+                let result = JSON.parse(data);
+                var table = $('#medicine-to-expire-table').tableSortable({
+                    data: result,
+                    columns:
+                        {
+                            id:"Medicine ID",
+                            name:"Medicine Name",
+                            remaindays:"Remaining Days",
+                            icon:""
+                        }
+                    ,
+                    //searchField: '#meds',
+                    // responsive: {
+                    //     720: {
+                    //         columns: {
+                    //             // id: "ID",
+                    //             name:"Name",
+                    //             date:"Date Requested",
+                    //             button:"Action"
+                    //         },
+                    //     },
+                    //     512:{
+                    //         columns: {
+                    //             // id: "ID",
+                    //             name:"Name",
+                    //             date:"Date Requested",
+                    //             button:"Action"
+                    //         },
+                    //     }
+                    // },
+                    rowsPerPage: 5,
+                    pagination: true,
+                    sorting:['id','name','stock','dateadded'],
+                    tableWillMount: function() {
+                        console.log('table will mount')
+                    },
+                    tableDidMount: function() {
+                        console.log('table did mount')
+                    },
+                    tableWillUpdate: function() {console.log('table will update')},
+                    tableDidUpdate: function() {
+                        // console.log('table did update');  click_view_button();
+                        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                        for (a=0;a<parseInt( window.rowCount_logs_acc_req);a++){
+                            $($($("#medicine-to-expire-table div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                        }
+                        //thead color
+                        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                        $(".gs-table-head tr th span").css("color","white!important");
+                    },
+                    tableWillUnmount: function() {console.log('table will unmount')},
+                    tableDidUnmount: function() {console.log('table did unmount')},
+                    onPaginationChange: function(nextPage, setPage) {
+                        setPage(nextPage);
+                    }
+                });
+                // if(JSON.parse(data).length==0){
+                //     $("#medicine-to-expire-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Expired Medicines</h3></td></tr>")
+                //     return
+                // }
+                /*$.get('php/inventoryP/displayMeds2.php', function(data) {
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    if(JSON.parse(data).length==0){
+                        $("#medicine-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                        return
+                    }
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_logs_acc_req = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+                    table.setData(JSON.parse(data),{
+                        // id: "ID",
+                        id:"Medicine ID",
+                        name:"Medicine Name",
+                        category:"Category",
+                        stock:"No. of Stocks",
+                        mfgdate:"DATE",
+                        dateadded:"DateAdded",
+                        button:"Action"
+                        // address:"Address",
+                        // contact_no: "Contact",
+                        // email:'Email',
+                        // admin_name:"Admin",
+                        // date_occured:"Date"
+                    });
+                })*/
+                $('#changeRows').on('change', function() {
+                    table.updateRowsPerPage(parseInt($(this).val(), 10));
+                })
+
+                $('#rerender').click(function() {
+                    table.refresh(true);
+                })
+
+                $('#distory').click(function() {
+                    table.distroy();
+                })
+
+                $('#refresh').click(function() {
+                    table.refresh();
+                })
+
+                $('#setPage2').click(function() {
+                    table.setPage(1);
+                })
                 //thead color
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 $(".gs-table-head tr th span").css("color","white!important");
-            },
-            tableWillUnmount: function() {console.log('table will unmount')},
-            tableDidUnmount: function() {console.log('table did unmount')},
-            onPaginationChange: function(nextPage, setPage) {
-                setPage(nextPage);
-            }
+
+            })//
+        }
+
+        displayToExpTable()
+        $('#nakatago2').click(function(){
+            displayToExpTable();
         });
-        $.get('php/inventoryP/displayToExpTab2.php', function(data) {
-            // Push data into existing data
-            console.log(JSON.parse(data))
-            if(JSON.parse(data).length==0){
-                $("#medicine-to-expire-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No To Expired Medicines</h3></td></tr>")
-                return
-            }
-            //table.setData(JSON.parse(data), null, true);
-            window.rowCount_logs_acc_req = JSON.parse(data).length;
-            // or Set new data on table, columns is optional.
-            table.setData(JSON.parse(data),{
-                // id: "ID",
-                id:"Medicine ID",
-                name:"Medicine Name",
-                remaindays:"Remaining Days",
-                icon:""
-                // address:"Address",
-                // contact_no: "Contact",
-                // email:'Email',
-                // admin_name:"Admin",
-                // date_occured:"Date"
-            });
-        })
-        $('#changeRows').on('change', function() {
-            table.updateRowsPerPage(parseInt($(this).val(), 10));
-        })
 
-        $('#rerender').click(function() {
-            table.refresh(true);
-        })
-
-        $('#distory').click(function() {
-            table.distroy();
-        })
-
-        $('#refresh').click(function() {
-            table.refresh();
-        })
-
-        $('#setPage2').click(function() {
-            table.setPage(1);
-        })
-        //thead color
-        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
-        $(".gs-table-head tr th span").css("color","white!important");
 
 
     })//document ready
