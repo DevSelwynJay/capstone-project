@@ -173,6 +173,14 @@
         width: 20rem;
     }
 
+    ul li:nth-child(3){
+        display: none;
+    }
+
+    ul .show-menu{
+        display: block !important;
+    }
+
     ul li{
         list-style: none;
         text-align: center;

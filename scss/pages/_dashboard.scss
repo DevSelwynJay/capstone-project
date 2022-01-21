@@ -372,14 +372,17 @@
     }
   }
   .profile-patient-settings{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row-reverse;
+    
 
-    @media(max-width:600px){
-      grid-template-columns: repeat(1, 1fr);
+    @media(max-width:768px){
+      flex-direction: column;
+
     }
 
     &>*{
+      flex: 1 1 50%;
       padding: 2rem;
     }
 
@@ -393,7 +396,12 @@
        margin-bottom: 1rem;
     }
 
+    .left{
+      grid-column: 2;
+    }
+
     .right{
+      grid-column: 1;
       .image{
         margin: 1rem ;
         display: grid;

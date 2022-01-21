@@ -140,7 +140,8 @@ else{
                             <div class="drop-down-settings" id="dropdown">
                                <ul>
                                   <li><a id="request_emr" href="#">Request EMR</a></li>
-                                  <li id="logout"><a>Logout</a></li>
+                                  <li><a href="about.php">About</a></li>
+                                  <li id="logout" class="show-menu"><a>Logout</a></li>
                                </ul>
                             </div>
                          </div>
