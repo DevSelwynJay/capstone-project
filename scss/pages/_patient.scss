@@ -6,19 +6,21 @@
 .search-container{
     display: flex;
     align-items: center;
+    position: relative;
+    width: 100%;
     
     a{
-        padding: .65rem;
-        background-color: var(--primary-color);
-        color: white;
+        padding: .65rem .65rem .65rem .9rem;
+        color: #838282;
         transition: all 300ms ease-in-out;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        cursor: default;
 
         i{
-            font-size: 1.3rem;
-        }
-
-        &:hover{
-            background-color: var(--hover-color);
+            font-size: 1.1rem;
         }
     }
 }
@@ -27,6 +29,7 @@
     margin-top: 0 !important;
     border-radius: unset !important;
     border: 3px solid var(--light-grey) !important;
+    padding: 0.6rem 2.5rem !important;
 
     &:focus{
         border: 3px solid var(--primary-color) !important;
