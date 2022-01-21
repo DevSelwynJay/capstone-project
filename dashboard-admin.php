@@ -339,6 +339,8 @@ require 'php/DB_Connect.php';
 
 
     </section>
+
+
     <!--  graph   -->
     <script language="JavaScript">
         // let arr = []
@@ -348,8 +350,9 @@ require 'php/DB_Connect.php';
          function drawChart() {
 
              $.get("dashboard-chart-backend.php").done(function (data) {
+
                  let result = JSON.parse(data)
-                 // Define the chart to be drawn.
+               
                  var data = google.visualization.arrayToDataTable(result);
 
                  var options = {
@@ -368,7 +371,7 @@ require 'php/DB_Connect.php';
                      legend: { position: "bottom" },
                      backgroundColor: "#22809b",
                      isStacked: true,
-                     width: 620,
+                     width: 800,
                      height: 450,
                      is3D: true,
                      legendTextStyle: { color: '#FFF' },
@@ -395,6 +398,8 @@ require 'php/DB_Connect.php';
      })
 
     </script>
+
+
     <!--Drop down script-->
     <script>
         const dropdown = document.querySelector('#dropdown');
