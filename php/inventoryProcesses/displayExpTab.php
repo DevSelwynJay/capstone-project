@@ -22,7 +22,6 @@ $start_from = ($page -1 )*$rpp;
             <tr class="title">
                     <th>Medicine ID</th>
                     <th>Medicine Name</th>
-                    <th>Status</th>
                     <th></th>
                 </tr>';
     while($row = mysqli_fetch_assoc($result)){
@@ -31,7 +30,6 @@ $start_from = ($page -1 )*$rpp;
         $expiredtab .= '<tr>
                     <td data-label="Medicine ID">'.$id.'</td>
                     <td data-label="Medicine Name">'.$name.'</td>
-                    <td data-label="Expired" class="expired-text">Expired</td>
                     <td class="delete-btn"><i class="fas fa-trash" onclick="delModal('.$id.')" ></i></td>
                 </tr>';
     }

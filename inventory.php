@@ -1,10 +1,10 @@
 <?php
-session_start();
-if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
-    //redirect to main page
-    header("location:php/loginProcesses/redirect.php");
-    exit();
-}
+//session_start();
+//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+//    //redirect to main page
+//    header("location:php/loginProcesses/redirect.php");
+//    exit();
+//}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -20,20 +20,12 @@ $res1 = mysqli_query($con,$expire);
 $res2 = mysqli_query($con,$exptab);
 $count2 = mysqli_num_rows($res1);
 $count3 = mysqli_num_rows($res2);
-$critstocks = "There ".$count." Critical Stocks in our Inventory";
-$toexp = "There ".$count3." To Expire Medicine in our Inventory";
-$exp = "There ".$count2." Expired Medicine in our Inventory";
-$ofs = "There ".$count4." Out of Stocks in our Inventory";
+$critstocks = $count." Critical Stocks in our Inventory";
+$toexp = $count3." To Expire Medicine in our Inventory";
+$exp = $count2." Expired Medicine in our Inventory";
+$ofs = $count4." Out of Stocks in our Inventory";
 
 ?>
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +58,9 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
     <link rel="stylesheet" href="scss/notif.css">
+    <!--Sweet Alert-->
+    <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
 
     <!--Get admin info from session-->
 
@@ -165,21 +160,21 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                             }
                                             ?>
                                             <?php
-                                            if($count > 0){
+                                            if($count3 > 0){
                                                 ?><li><?php
                                                 echo $toexp;
                                                 ?></li><?php
                                             }
                                             ?>
                                             <?php
-                                            if($count > 0){
+                                            if($count2 > 0){
                                                 ?><li><?php
                                                 echo $exp;
                                                 ?></li><?php
                                             }
                                             ?>
                                             <?php
-                                            if($count > 0){
+                                            if($count4 > 0){
                                                 ?><li><?php
                                                 echo $ofs;
                                                 ?></li><?php
@@ -411,35 +406,14 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                                     <div class="row flex-row justify-content-start" style="display: flex">
                                         <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                                             <a href="#delete-modal" rel="modal:close"><button class="modal-cancel-button" id="adddelcancel" style="margin-right: 0.5rem">Cancel</button></a>
-                                            <a><button id="delete-btn" class="modal-primary-button" onclick="medDelete()" >Delete</button></a>
+                                            <a><button id="delete-btn" class="modal-primary-button" onclick="medDelete()">Delete</button></a>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div id="crit-modal" class="modal">
-                            <div class="flex-box-row justify-content-center align-items-center">
-                                <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Out of Stock Medicines</p>
-                            </div>
-                            <div class="modal-content-scrollable">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-sm-12" >
-                                            <p class="modal-p">Do you want to Delete this Expired Medicine?</p>
-                                            <input type="hidden" id="hideid" >
-                                        </div>
-                                    </div>
-                                    <div class="row flex-row justify-content-start" style="display: flex">
-                                        <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
-                                            <a href="#crit-modal" rel="modal:close"><button class="modal-cancel-button" id="adddelcancel" style="margin-right: 0.5rem">Cancel</button></a>
-                                            <a><button id="crit-btn" class="modal-primary-button" >Delete</button></a>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -552,12 +526,17 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             id:id
         },function(data,status){
             $("[href='#delete-modal']").trigger('click');
+
             displayMedicines();
             displayToExpTab();
             displayExpTab();
+            Swal.fire({
+                title:'Medicine Deleted Successfully!',
+                icon:'success'
+
+            });
+
         });
-
-
     }
 
 
@@ -603,28 +582,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
     })
-        $("#updatemedicineMfgDate").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            yearRange:'1970:new Date()',
-            maxDate: new Date()
-        }).datepicker("option", "dateFormat", "yy-mm-dd")
-        $("#updatemedicineMfgDate").focus(function () {
-            $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
-            $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
-            console.log($(this).val())
-        })
-        $("#updatemedicineExpDate").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            yearRange:'new Date():2100',
-            minDate: new Date()
-        }).datepicker("option", "dateFormat", "yy-mm-dd")
-        $("#updatemedicineExpDate").focus(function () {
-            $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
-            $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
-            console.log($(this).val())
-        })
+
     //Display To Expire Table
     function displayToExpTab(displayToExpDatapage){
         var displayToExpData = true;
@@ -717,6 +675,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         $('#all-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').html('');
                         $('#name-incorrect-indcator').html('')
+                        Swal.fire({
+                            title:'Medicine Added Successfully!',
+                            icon:'success'
+                        })
                     }
                 });
             }
@@ -765,6 +727,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
                         displayMedicines();
                         displayToExpTab();
                         displayExpTab();
+                        Swal.fire({
+                            title:'Vaccine Added Successfully!',
+                            icon:'success'
+                        })
                     }
                 });
             }
@@ -796,6 +762,28 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
     }
     //Below this are the Update Process
 
+    $("#updatemedicineMfgDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'1970:new Date()',
+        maxDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#updatemedicineMfgDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
+    $("#updatemedicineExpDate").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange:'new Date():2100',
+        minDate: new Date()
+    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    $("#updatemedicineExpDate").focus(function () {
+        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
+        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
+        console.log($(this).val())
+    })
     //Display Update Modal function
     function medDisplayUpdateModal(medupdateid){
         $('#hiddendata').val(medupdateid);
@@ -804,12 +792,12 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             $('#updatemedicineName').val(medid.name);
             $('#upmedSubCategory').val(medid.subcategory);
             $('#upmedicineDosage').val(medid.dosage);
-
             $('#upmedcategorySelect').val(medid.category);
             $('#updatemedicineStocks').val(medid.stock);
             $('#updatemedicineMfgDate').val(medid.mfgdate);
             $('#updatemedicineExpDate').val(medid.expdate);
         });
+
         $('#update-modal').modal("show");
         $("#update-modal").modal({
             //escapeClose: false,
@@ -826,6 +814,7 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
         })
 
     }
+
 
     //Update Medicine Stocks function
     function medUpdate(){
@@ -852,6 +841,10 @@ $ofs = "There ".$count4." Out of Stocks in our Inventory";
             displayMedicines();
             displayToExpTab();
             displayExpTab();
+            Swal.fire({
+                title:'Medicine/Vaccine Updated Successfully!',
+                icon:'success'
+            })
 
         });
     }

@@ -22,7 +22,8 @@ else{
 $query = "select * from `medinventory` where expdate > NOW() order by ".$_POST["column_name"]." ".$_POST["order"]." limit $start_from, $rpp ";
 $result = mysqli_query($con, $query);
 if(mysqli_num_rows($result)> 0) {
-    $output .= '<table >
+    $output .= '<h3 class="margin-top-2" style="color:var(--third-color);font-weight: bold">Medicine Inventory</h3>
+<table >
     <tbody>
       <tr class="title">
                     <th class="column_sort" id="id" data-order="' . $order . '" style="cursor:pointer;"> Medicine ID</th>
