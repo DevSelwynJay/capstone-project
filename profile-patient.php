@@ -1,5 +1,5 @@
 <?php
-/*
+
 session_start();//patient
 if(!isset($_SESSION['email'])){
     //redirect to main page
@@ -19,7 +19,7 @@ else{
         header("location:php/loginProcesses/redirect.php");
     }
 }
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
