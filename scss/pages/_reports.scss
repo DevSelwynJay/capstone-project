@@ -46,6 +46,15 @@
             table-layout: fixed;
           }
 
+          table tr:first-child {
+            th {
+              background-color: #02a9f7 !important;
+              color: #f8f8f8 !important;
+              font-weight: 400;
+              font-weight: 600 !important;
+            }
+        }
+
           table caption {
             font-size: 1.5em;
             margin: .5em 0 .75em;
@@ -62,16 +71,25 @@
             border: 1px solid #ddd;
             padding: .35em;
 
-            &:nth-child(even){
-                background-color: #c4c4c4;
-                @media screen and (max-width: 700px) {
-                    background-color: white;
-                }
-            }
-    
             @media screen and (max-width: 700px) {
              margin: .5rem 0;
             }
+
+          }
+
+          tr:nth-child(even) {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+            @media screen and (max-width: 1024px) {
+              background-color: #f8f8f8 !important;
+            }
+          }
+    
+          table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
           }
           
           table th,
@@ -277,15 +295,30 @@
         td{
             font-weight: 300 !important;
         }
-        tr{
-            &:nth-child(even){
-                background-color: #c4c4c4;
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+            @media screen and (max-width: 1024px) {
+              background-color: #f8f8f8 !important;
+            }
+          }
+    
+          table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+          }
 
-                @media screen and (max-width: 700px) {
-                    background-color: white;
-                }
+          table tr:first-child {
+            th {
+              background-color: #02a9f7 !important;
+              color: #f8f8f8 !important;
+              font-weight: 400;
+              font-weight: 600 !important;
             }
         }
+      
     }
 
     &__individual-container{

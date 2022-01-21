@@ -12,7 +12,7 @@
       }
   
       .td-spacer {
-        background-color: white;
+        background-color: #f8f8f8;
       }
     }
   
@@ -24,7 +24,7 @@
       tr.title {
         background-color: var(--primary-color);
         th {
-          color: white !important;
+          color: #f8f8f8 !important;
           font-weight: 400;
         }
   
@@ -61,7 +61,7 @@
         }
         i {
           background-color: var(--primary-color);
-          color: white !important;
+          color: #f8f8f8 !important;
           padding: 0.6rem;
           border-radius: 0.4rem;
           transition: all 200ms ease-in-out;
@@ -81,10 +81,18 @@
       }
   
       tr:nth-child(even) {
-        background-color: #b7c6d1 !important;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
         @media screen and (max-width: 1024px) {
-          background-color: white !important;
+          background-color: #f8f8f8 !important;
         }
+      }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
       }
   
       table {
@@ -94,10 +102,6 @@
         width: 100%;
       }
 
-      table tr {
-        background-color: #f8f8f8;
-        border: 1px solid #ddd;
-      }
   
       table caption {
         font-size: 1.5em;
@@ -219,10 +223,7 @@
         padding: .600em !important;
       }
 
-  
-      tr:nth-child(even) {
-        background-color: #b7c6d1 !important;
-      }
+
   
       td.expired-text {
         color: red !important;
@@ -248,9 +249,19 @@
         width: 100%;
       }
 
+      tr:nth-child(even) {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
+        @media screen and (max-width: 1024px) {
+          background-color: #f8f8f8 !important;
+        }
+      }
+
       table tr {
         background-color: #f8f8f8;
         border: 1px solid #ddd;
+        padding: .35em;
       }
   
       table caption {
@@ -374,7 +385,18 @@
       }
   
       tr:nth-child(even) {
-        background-color: #b7c6d1 !important;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
+        @media screen and (max-width: 1024px) {
+          background-color: #f8f8f8 !important;
+        }
+      }
+
+      table tr {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: .35em;
       }
   
       td.expired-text {
@@ -387,7 +409,7 @@
         text-align: center !important;
         i {
           background-color: red;
-          color: white !important;
+          color: #f8f8f8 !important;
           padding: 0.6rem;
           border-radius: 0.4rem;
           transition: all 200ms ease-in-out;

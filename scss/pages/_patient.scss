@@ -463,15 +463,11 @@
         }
     }
     tr{
-        background-color: var(--light-grey);
         cursor: pointer;
-        transition: all 300ms ease-in-out;
+        
 
         &:hover{
-            background-color: var(--hover-color);
-            td{
-                color: white;
-            }
+            background-color: var(--dark-grey) !important;
         }
     }
  }

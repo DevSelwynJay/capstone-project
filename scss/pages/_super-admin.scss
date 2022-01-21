@@ -38,7 +38,7 @@
       }
       
       table tr {
-        background-color: #f8f8f8;
+        background-color: #f8f8f8 !important;
         border: 1px solid #ddd;
         padding: .35em;
       }
@@ -80,10 +80,7 @@
             display: none;
         }
     
-        table tr:nth-child(even){
-            background-color: white !important;
-        }
-        
+      
         table tr {
           border-bottom: 3px solid #ddd;
           display: block;
@@ -128,8 +125,10 @@ td, th {
 }
 
 
-tr:nth-child(even) {
-  background-color: #b7c6d1;
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 

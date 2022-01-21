@@ -866,7 +866,7 @@ input[type="radio"] {
 }
 
 .super-admin--container table tr {
-  background-color: #f8f8f8;
+  background-color: #f8f8f8 !important;
   border: 1px solid #ddd;
   padding: .35em;
 }
@@ -903,9 +903,6 @@ input[type="radio"] {
   }
   .super-admin--container table tr:first-child {
     display: none;
-  }
-  .super-admin--container table tr:nth-child(even) {
-    background-color: white !important;
   }
   .super-admin--container table tr {
     border-bottom: 3px solid #ddd;
@@ -945,8 +942,10 @@ td, th {
   text-align: center;
 }
 
-tr:nth-child(even) {
-  background-color: #b7c6d1;
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .cta-wrapper {
@@ -1615,18 +1614,11 @@ tr:nth-child(even) {
 }
 
 .patients-view tr {
-  background-color: var(--light-grey);
   cursor: pointer;
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
 }
 
 .patients-view tr:hover {
-  background-color: var(--hover-color);
-}
-
-.patients-view tr:hover td {
-  color: white;
+  background-color: var(--dark-grey) !important;
 }
 
 .table-reports {
@@ -1708,6 +1700,13 @@ tr:nth-child(even) {
   table-layout: fixed;
 }
 
+.reports__left-col-container table tr:first-child th {
+  background-color: #02a9f7 !important;
+  color: #f8f8f8 !important;
+  font-weight: 400;
+  font-weight: 600 !important;
+}
+
 .reports__left-col-container table caption {
   font-size: 1.5em;
   margin: .5em 0 .75em;
@@ -1723,20 +1722,28 @@ tr:nth-child(even) {
   padding: .35em;
 }
 
-.reports__left-col-container table tr:nth-child(even) {
-  background-color: #c4c4c4;
-}
-
-@media screen and (max-width: 700px) {
-  .reports__left-col-container table tr:nth-child(even) {
-    background-color: white;
-  }
-}
-
 @media screen and (max-width: 700px) {
   .reports__left-col-container table tr {
     margin: .5rem 0;
   }
+}
+
+.reports__left-col-container tr:nth-child(even) {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+@media screen and (max-width: 1024px) {
+  .reports__left-col-container tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+  }
+}
+
+.reports__left-col-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .reports__left-col-container table th,
@@ -1948,13 +1955,28 @@ tr:nth-child(even) {
 }
 
 .reports__individual-reports-table tr:nth-child(even) {
-  background-color: #c4c4c4;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1024px) {
   .reports__individual-reports-table tr:nth-child(even) {
-    background-color: white;
+    background-color: #f8f8f8 !important;
   }
+}
+
+.reports__individual-reports-table table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.reports__individual-reports-table table tr:first-child th {
+  background-color: #02a9f7 !important;
+  color: #f8f8f8 !important;
+  font-weight: 400;
+  font-weight: 600 !important;
 }
 
 .reports__individual-container h1 {
@@ -2113,7 +2135,7 @@ tr:nth-child(even) {
 }
 
 .inventory__container .td-spacer {
-  background-color: white;
+  background-color: #f8f8f8;
 }
 
 .inventory table {
@@ -2125,7 +2147,7 @@ tr:nth-child(even) {
 }
 
 .inventory__table-main-container tr.title th {
-  color: white !important;
+  color: #f8f8f8 !important;
   font-weight: 400;
 }
 
@@ -2169,7 +2191,7 @@ tr:nth-child(even) {
 
 .inventory__table-main-container td.add-btn i {
   background-color: var(--primary-color);
-  color: white !important;
+  color: #f8f8f8 !important;
   padding: 0.6rem;
   border-radius: 0.4rem;
   -webkit-transition: all 200ms ease-in-out;
@@ -2192,13 +2214,21 @@ tr:nth-child(even) {
 }
 
 .inventory__table-main-container tr:nth-child(even) {
-  background-color: #b7c6d1 !important;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 @media screen and (max-width: 1024px) {
   .inventory__table-main-container tr:nth-child(even) {
-    background-color: white !important;
+    background-color: #f8f8f8 !important;
   }
+}
+
+.inventory__table-main-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .inventory__table-main-container table {
@@ -2206,11 +2236,6 @@ tr:nth-child(even) {
   margin: 0;
   padding: 0;
   width: 100%;
-}
-
-.inventory__table-main-container table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
 }
 
 .inventory__table-main-container table caption {
@@ -2335,10 +2360,6 @@ tr:nth-child(even) {
   padding: .600em !important;
 }
 
-.inventory__table-toexpire-container tr:nth-child(even) {
-  background-color: #b7c6d1 !important;
-}
-
 .inventory__table-toexpire-container td.expired-text {
   color: red !important;
 }
@@ -2364,9 +2385,22 @@ tr:nth-child(even) {
   width: 100%;
 }
 
+.inventory__table-toexpire-container tr:nth-child(even) {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+@media screen and (max-width: 1024px) {
+  .inventory__table-toexpire-container tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+  }
+}
+
 .inventory__table-toexpire-container table tr {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .inventory__table-toexpire-container table caption {
@@ -2490,7 +2524,21 @@ tr:nth-child(even) {
 }
 
 .inventory__table-expired-container tr:nth-child(even) {
-  background-color: #b7c6d1 !important;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+@media screen and (max-width: 1024px) {
+  .inventory__table-expired-container tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+  }
+}
+
+.inventory__table-expired-container table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 }
 
 .inventory__table-expired-container td.expired-text {
@@ -2505,7 +2553,7 @@ tr:nth-child(even) {
 
 .inventory__table-expired-container td.delete-btn i {
   background-color: red;
-  color: white !important;
+  color: #f8f8f8 !important;
   padding: 0.6rem;
   border-radius: 0.4rem;
   -webkit-transition: all 200ms ease-in-out;
