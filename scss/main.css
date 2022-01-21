@@ -4022,7 +4022,7 @@ td:nth-child(1) {
 
 .admin-lower .workers-list-container ul li {
   width: 100%;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #e6e6e6;
   list-style: none;
   padding: .5rem;
 }
