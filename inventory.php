@@ -593,6 +593,7 @@ $ofs = $count4." Out of Stocks in our Inventory";
                         $('#name-incorrect-indcator').html('')
 
 
+
                         Swal.fire({
                             title:'Vaccine Added Successfully!',
                             icon:'success'
