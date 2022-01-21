@@ -231,7 +231,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       <label for="adminname" style="color:#6D6D6DFF">Admin:</label>
                                       <input type="text" id="adminname" disabled placeholder="" />
                                   </div>
-                                  <a href="#show-del" rel="modal:open" id="disable-admin2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                  <a href="#show-del" rel="modal:open" id="disable-admin2" class="button-square">Deactivate Account</a>
                               </form>
                           </div>
                       </div>
@@ -252,7 +252,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       <label for="adminname3" style="color:#6D6D6DFF">Admin:</label>
                                       <input type="text" id="adminname3" disabled placeholder="" />
                                   </div>
-                                  <a href="#activemod" rel="modal:open" id="reactivate-admin1" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
+                                  <a href="#activemod" rel="modal:open" id="reactivate-admin1" class="button-square">Activate Account</a>
                               </form>
                           </div>
                       </div>
@@ -266,7 +266,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                           <label for="idno2" style="color:#6D6D6DFF">User ID:</label>
                                           <input type="text" id="idno2" placeholder="Enter Admin ID" />
                                       </div>
-                                      <a href="#show-del2" rel="modal:open" id="disable-admin" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                      <a href="#show-del2" rel="modal:open" id="disable-admin" class="button-square">Deactivate Account</a>
                                   </form>
                               </div>
                           </div>
@@ -351,7 +351,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       <label for="patname" style="color:#6D6D6DFF">Patient:</label>
                                       <input type="text" id="patname" disabled placeholder="" />
                                   </div>
-                                  <a href="#show-delpat" rel="modal:open" id="disable-patient2" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                  <a href="#show-delpat" rel="modal:open" id="disable-patient2" class="button-square">Deactivate Account</a>
                               </form>
                           </div>
                       </div>
@@ -382,7 +382,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                        <label for="patidno2" style="color:#6D6D6DFF">User ID:</label>
                                        <input type="text" id="patidno2" placeholder="Enter Patient ID" />
                                    </div>
-                                   <a href="#show-delpat2" rel="modal:open" id="disable-patient" class="button-square"><i class="fas fa-plus"></i>Disable Account</a>
+                                   <a href="#show-delpat2" rel="modal:open" id="disable-patient" class="button-square">Deactivate Account</a>
                                </form>
                            </div>
                        </div>
@@ -612,7 +612,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
 
 
-        // ?click button to get patient ID and name
+        // *click button to get patient ID and name
 
             function patclick(patids,patname, statuses){
 

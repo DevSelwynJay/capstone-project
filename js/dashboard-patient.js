@@ -111,6 +111,13 @@ $(document).ready(function (e) {
         $("#curr-med").html("").append(header)
          $.post("php/patientSide/retrieveCurrentMedication.php").done(function (data) {
              let result = JSON.parse(data);
+
+             if(result.length==0){
+                 $("#curr-med").html("")
+                 $("#curr-med").append("<h5 style='color:var(--third-color);'>No Record Available</h5>")
+                 return
+             }
+
              for (const resultElement of result) {
                  $("#curr-med").append("" +
                      "<tr>" +
@@ -235,7 +242,7 @@ $(document).ready(function (e) {
 
                 if(result.length==0){
                     $("#vac-sched-tbody").html("")
-                    $("#vac-sched-tbody").append("<h4>No Record Available</h4>")
+                    $("#vac-sched-tbody").append("<h5 style='color:var(--third-color);'>No Record Available</h5>")
                     return
                 }
 

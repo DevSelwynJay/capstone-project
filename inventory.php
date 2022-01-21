@@ -68,34 +68,12 @@ $ofs = $count4." Out of Stocks in our Inventory";
 
 
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)
                     $("#name-sidebar").html(result.admin_name)
                 }
             )
-
-
-
-            function Notif(){
-                var data = true;
-                $.ajax({
-                    url:"php/inventoryProcesses/Notif_function.php",
-                    method: "POST",
-                    data: {data},
-                    success:function(data){
-                        $('.count').html(data);
-
-                    }
-                })
-            }
-            setInterval(Notif,1000);
-        });
-        $(function() {
-            $(".navbar").click(function() {
-                $(".dropdown").toggle();
-            });
         });
 
 
@@ -140,53 +118,7 @@ $ofs = $count4." Out of Stocks in our Inventory";
                         </div>
 
                         <div class="settings">
-                            <div class="navbar">
-                                <ul class="notif" >
-                                    <li>
 
-                                        <a href="#">
-
-                                                <i style="cursor: pointer" class="fa fa-bell-o"></i>
-
-                                            <span class="count">3</span>
-                                        </a>
-
-                                        <ul class="dropdown">
-                                            <?php
-                                            if($count >= 0){
-                                                ?><li><?php
-                                                echo $critstocks;
-                                                ?></li><?php
-                                            }
-                                            ?>
-                                            <?php
-                                            if($count3 > 0){
-                                                ?><li><?php
-                                                echo $toexp;
-                                                ?></li><?php
-                                            }
-                                            ?>
-                                            <?php
-                                            if($count2 > 0){
-                                                ?><li><?php
-                                                echo $exp;
-                                                ?></li><?php
-                                            }
-                                            ?>
-                                            <?php
-                                            if($count4 > 0){
-                                                ?><li><?php
-                                                echo $ofs;
-                                                ?></li><?php
-                                            }
-                                            ?>
-
-                                        </ul>
-                                    </li>
-
-                                </ul>
-
-                            </div>
 
                             <a href="profile.php"><i class="fas fa-user-circle"></i></a>
                             <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>

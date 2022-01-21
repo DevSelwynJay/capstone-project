@@ -168,7 +168,7 @@ else{
                            </div>
 
                            <div class="calendar-container">
-                               <h3>Calendar</h3>
+                               <h3>Medication/Vaccination Calendar</h3>
                               <div id="calendar"></div>
                                  <script>
                                 
