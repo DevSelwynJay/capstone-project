@@ -307,9 +307,17 @@ require 'php/DB_Connect.php';
                            </div>
                            <div class="patient-content__medical-history holder">
                                <p>Medication/Vaccination History</p>
-                               <div class="search-container flex-box-row justify-content-end margin-top-1">
-                                   <input type="text" id="search-med-history" class="search-bar" style="width: 40%"> <a href="/"><i class="fas fa-search"></i></a>
+                               <div class="row flex-box-row justify-content-lg-end">
+                                   <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
+                                       <div class="search-container search-container-inventory" >
+                                           <input style="" type="text" id="search-med-history" class="form-control search-bar" placeholder="Search Medicines" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                                       </div>
+                                   </div>
                                </div>
+
+<!--                               <div class="search-container flex-box-row justify-content-end margin-top-1">-->
+<!--                                   <input type="text" id="search-med-history" class="search-bar" style="width: 40%"> <a href="/"><i class="fas fa-search"></i></a>-->
+<!--                               </div>-->
                                <div id="history-filter" class="row margin-top-1">
 
                                    <div class="col-sm-12 align-items-center justify-content-start flex-box-row">
