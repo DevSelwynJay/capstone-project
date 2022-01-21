@@ -46,7 +46,6 @@ require 'php/DB_Connect.php';
     <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)

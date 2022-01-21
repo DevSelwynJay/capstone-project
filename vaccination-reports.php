@@ -42,7 +42,6 @@ require 'php/DB_Connect.php';
     </style>
     <script>
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)

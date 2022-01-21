@@ -68,7 +68,6 @@ $ofs = $count4." Out of Stocks in our Inventory";
 
 
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)

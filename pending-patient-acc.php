@@ -52,7 +52,6 @@ require 'php/DB_Connect.php';
     <link rel="stylesheet" href="scss/notif.css">
     <script>
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)

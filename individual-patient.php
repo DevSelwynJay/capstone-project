@@ -67,7 +67,6 @@ require 'php/DB_Connect.php';
        <script>
            //<!--Get admin info from session-->
            $(document).ready(function () {
-               Notif();
                $.post('php/admin_session.php').done(
                    function (data) {
                        let result = JSON.parse(data)
@@ -75,11 +74,6 @@ require 'php/DB_Connect.php';
                        $("#modal-admin-name").html("Given by: "+ result.admin_name)
                    }
                )
-
-           });
-               function setPatientInfo() {
-
-               }
                ///<!--Set patient info to page-->
                $.post('php/patientProcesses/retrieveIndivPatient.php').done(
                    function (data) {
@@ -116,8 +110,7 @@ require 'php/DB_Connect.php';
                        }
                    }
                )
-
-           });//document ready
+           });
        </script>
        <script src="evo-calendar-master/evo-calendar/js/evo-calendar.min.js"></script>
        <script src="js/individual-patient.js"></script>
