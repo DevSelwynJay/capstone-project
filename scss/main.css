@@ -1120,7 +1120,19 @@ table tr {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  width: 100%;
+  width: 100% !important;
+}
+
+.search-container .search-bar {
+  padding: 0.6rem 2.5rem !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+.search-container #meds {
+  padding: 0.6rem 2.5rem !important;
+  position: relative !important;
+  width: 100% !important;
 }
 
 .search-container a {
@@ -1140,11 +1152,19 @@ table tr {
   font-size: 1.1rem;
 }
 
+.search-container-patient a {
+  left: 15px;
+}
+
+.search-container-inventory a {
+  left: 0px;
+}
+
 .search-bar {
   margin-top: 0 !important;
   border-radius: unset !important;
   border: 3px solid var(--light-grey) !important;
-  padding: 0.6rem 2.5rem !important;
+  padding: 0.6rem;
 }
 
 .search-bar:focus {

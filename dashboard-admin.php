@@ -198,7 +198,7 @@ require 'php/DB_Connect.php';
                                         <li><a href="php/sessionDestroy.php">Logout</a></li>
                                     </ul>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -493,6 +493,7 @@ require 'php/DB_Connect.php';
             }
         });
     </script>
+
 
 </body>
 

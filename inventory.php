@@ -174,7 +174,7 @@ $ofs = $count4." Out of Stocks in our Inventory";
                                         <!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
                                     </div>
                                     <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
-                                        <div class="search-container" style="width: clamp(50%,70%,80%) ">
+                                        <div class="search-container search-container-inventory" >
                                             <input style="" type="text" id="meds" class="form-control search-bar" placeholder="Search Medicines" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                                         </div>
                                     </div>
