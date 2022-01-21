@@ -12,7 +12,7 @@ else{
     $page = 1;
 }
 $start_from = ($page -1 )*$rpp;
-$meddatatable = "Select * from `medinventory`  where `stock` > 0 AND `expdate` > NOW() order by `dateadded` asc limit $start_from, $rpp";
+$meddatatable = "Select * from `medinventory`  where  `expdate` > NOW() order by `dateadded` asc limit $start_from, $rpp";
 $result = mysqli_query($con, $meddatatable);
 
 if(mysqli_num_rows($result)> 0) {
@@ -24,7 +24,7 @@ if(mysqli_num_rows($result)> 0) {
                     <th class="column_sort" id="name" data-order="desc" style="cursor:pointer;">Medicine Name</th>
                     <th >Category</th>
                     <th class="column_sort" id="stock" data-order="desc" style="cursor:pointer;">No. of Stocks</th>
-                    <th id="date" title="Manufacturing Date - Expiration Date" >Date</th>
+                    <th id="date" title="Manufacturing Date - Expiration Date" >Date <i class="fas fa-info-circle" title="Manufacturing Date - Expiration Date"></i></th>
                     <th class="column_sort" id="dateadded" data-order="desc" style="cursor:pointer;">Date Added</th>
                     <th class="add-row"></th>
                 </tr>
