@@ -110,59 +110,43 @@ $ofs = $count4." Out of Stocks in our Inventory";
         </div>
         <div class="global__main-content">
             <div class="inner-page-content">
-            <div class="col-sm-12 p-0">
+                <div class="col-sm-12 p-0">
+                    <div class="inner-page-nav">
+                        <div class="logo">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
+                        </div>
 
-<div class="inner-page-nav">
-
-    <div class="logo">
-        <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
-        <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
-    </div>
-
-    <div class="settings">
-
-        <a class="notification-toggle">
-        <i style="cursor: pointer" class="fa fa-bell-o"></i>
-        <span class="counter">3+</span>
-        </a>
-        <!--UPDATED NOTIF STYLING-->
-        <ul class="notification-dropdown">
-        <li>Lorem ipsum dolor sit amet consectetur </li>
-        <li>Lorem ipsum dolor sit amet consectetur </li>
-        <li>Lorem ipsum dolor sit amet consectetur </li>
-        </ul>
-        <!--UPDATED NOTIF STYLING-->
-
-        <a href="profile.php"><i class="fas fa-user-circle"></i></a>
-        <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
-        <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                        <div class="settings">
 
 
-        <div class="drop-down-settings" id="dropdown">
-            <ul>
-                <li><a href="approveEMR.php">Approve EMR</a></li>
-                <li><a href="settings.php">settings</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="php/sessionDestroy.php">Logout</a></li>
-            </ul>
-        </div>
+                            <a href="profile.php"><i class="fas fa-user-circle"></i></a>
+                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
+                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                            <!--MOBILE MENU-->
+                            <div class="menu-mobile " id="menu">
+                                <ul>
+                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                </ul>
+                            </div>
 
-    </div>
-
-</div>
-
-<!--MOBILE MENU-->
-<div class="menu-mobile " id="menu">
-    <ul>
-        <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i></a></li>
-        <li><a href="patient.php"><i class="fas fa-user"></i></a></li>
-        <li><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
-        <li><a href="track-map.php"><i class="fas fa-map-marker"></i></a></li>
-        <li><a href="inventory.php"><i class="fas fa-box"></i></a></li>
-    </ul>
-</div>
-
-</div>
+                            <div class="drop-down-settings" id="dropdown">
+                                <ul>
+                                    <li><a href="approveEMR.php">Approve EMR</a></li>
+                                    <li><a href="settings.php">settings</a></li>
+                                    <li><a href="about.php">About</a></li>
+                                    <li><a href="php/sessionDestroy.php">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-12">
                     <div class="">
                         <div class="inventory__container">
@@ -174,27 +158,23 @@ $ofs = $count4." Out of Stocks in our Inventory";
                                         <!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
                                     </div>
                                     <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
-                                        <div class="search-container search-container-inventory" >
+                                        <div class="search-container" style="width: clamp(50%,70%,80%) ">
                                             <input style="" type="text" id="meds" class="form-control search-bar" placeholder="Search Medicines" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!--Display ko dito yung Table of MEDS-->
-                                <?php
-                                include 'inventoryTable.html'?>
+                                <div id="displayMedicineDataTable">
+                                </div>
 
 
                             <div class="inventory__table-toexpire-container"  >
-                                <?php
-                                include 'inventoryToTable.html'?>
                                 <div id="toExptab">
                                 </div>
                             </div>
 
                             <div class="inventory__table-expired-container" >
-                                <?php
-                                include 'inventoryToExp.html'?>
 
                                 <div id="exptab">
                                 </div>
@@ -380,7 +360,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
 <script type="text/javascript">
     //Display Automatically
     $(document).ready(function(){
-
+        displayMedicines();
+        displayToExpTab();
+        displayExpTab();
 
         $( "#medNameSelect" )
             .selectmenu()
@@ -388,6 +370,55 @@ $ofs = $count4." Out of Stocks in our Inventory";
             .addClass( "overflow" );
 
 
+    });
+    //Sort function
+    $(document).ready(function(){
+        $(document).on('click','.column_sort', function (){
+            var column_name = $(this).attr("id");
+            var order = $(this).data("order");
+            var arrow = '';
+            if(order == 'desc'){
+                arrow = '&nbsp;<i class="fas fa-arrow-down"></i>';
+            }
+            else {
+                arrow = '&nbsp;<i class="fas fa-arrow-up"></i>';
+            }
+            $.ajax({
+                url:"php/inventoryProcesses/medSort.php",
+                method:"POST",
+                data:{column_name:column_name, order:order},
+                success:function(data){
+                    $('#displayMedicineDataTable').html(data);
+                    $('#'+column_name+'').append(arrow);
+                }
+            })
+
+        })
+    });
+    //Search Function
+    $(document).ready(function(){
+
+        $('#meds').autocomplete({
+            source: function( request, response){
+                $.ajax({
+                    url: 'php/inventoryProcesses/medSearch.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        search:request.term
+                    },
+                    success: function(data){
+                        response(data);
+                    }
+                });
+            },
+            select:function(event,ui){
+                medDisplayUpdateModal(ui.item.value);
+                $('#meds').val("");
+                return false;
+
+            }
+        });
     });
     //Modals
     $(document).ready(function(){
@@ -433,6 +464,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
         },function(data,status){
             $("[href='#delete-modal']").trigger('click');
 
+            displayMedicines();
+            displayToExpTab();
+            displayExpTab();
             Swal.fire({
                 title:'Medicine Deleted Successfully!',
                 icon:'success'
@@ -442,6 +476,26 @@ $ofs = $count4." Out of Stocks in our Inventory";
         });
     }
 
+
+
+    <!--    Display Function ng MEDS-->
+    function displayMedicines(page) {
+        var displayData = true;
+        $.ajax({
+            url: 'php/inventoryProcesses/displayMeds.php',
+            type: 'POST',
+            data: {
+                page: page
+            },
+            success: function(data, status) {
+                $('#displayMedicineDataTable').html(data);
+            }
+        });
+    }
+    $(document).on("click",".pagination_link",function (){
+        var page = $(this).attr("id");
+        displayMedicines(page);
+    })
     //Datepicker Validation
     $("#medicineMfgDate").datepicker({
         changeMonth: true,
@@ -466,7 +520,24 @@ $ofs = $count4." Out of Stocks in our Inventory";
         console.log($(this).val())
     })
 
-
+    //Display To Expire Table
+    function displayToExpTab(displayToExpDatapage){
+        var displayToExpData = true;
+        $.ajax({
+            url:'php/inventoryProcesses/displayToExpTab.php',
+            type:'POST',
+            data:{
+                displayToExpDatapage: displayToExpDatapage
+            },
+            success:function(data, status){
+                $('#toExptab').html(data);
+            }
+        });
+    }
+    $(document).on("click",".pagination_linktoexp", function (){
+        var displayToExpDatapage = $(this).attr("id");
+        displayToExpTab(displayToExpDatapage);
+    })
     //Display Expired Table
     function displayExpTab(displayExpTabpage){
         var displayExpTab = true;
@@ -523,7 +594,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
                     success: function (data, status) {
                         console.log(status);
                         $("[href='#add-modal']").trigger('click');
-
+                        displayMedicines();
+                        displayToExpTab();
+                        displayExpTab();
                         $('#meds').trigger("focus");
                         $('#medicineName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
@@ -591,8 +664,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
                         $('#all-incorrect-indcator').css("visibility","hidden");
                         $('#all-incorrect-indcator').html('');
                         $('#name-incorrect-indcator').html('')
-
-
+                        displayMedicines();
+                        displayToExpTab();
+                        displayExpTab();
                         Swal.fire({
                             title:'Vaccine Added Successfully!',
                             icon:'success'
@@ -704,6 +778,9 @@ $ofs = $count4." Out of Stocks in our Inventory";
             id:id
         },function(data,status){
             $("[href='#update-modal']").trigger('click');
+            displayMedicines();
+            displayToExpTab();
+            displayExpTab();
             Swal.fire({
                 title:'Medicine/Vaccine Updated Successfully!',
                 icon:'success'
@@ -769,59 +846,5 @@ $ofs = $count4." Out of Stocks in our Inventory";
         mobileMenu.style.display = "block";
     });
 </script>
-<script src="js/table-sortable.js"></script>
-<style>
-    .active{
-        background: var(--primary-color)!important;
-        color: var(--secondary-color)!important;
-        border:none!important;
-        padding: 0.5em 0.5rem!important;
-    }
-    .btn-default{
-        border:1px solid var(--light-grey)!important;
-        padding: 0.5em 0.5rem!important;
-    }
-    .gs-pagination{
-        margin-top: 0.5em;
-    }
-    .gs-pagination .row .col-md-6 span{
-        font-size: clamp(0.4rem,0.8rem,1rem);
-    }
-    .gs-button,.gs-button span{
-        color: var(--secondary-color);
-    }
-    th{
-        background: var(--primary-color);
-    }
-    .btn-group button,.btn-group button span{/*sa pagination na button*/
-        outline: none;
-        padding: 0.2em 0.3rem;
-        margin: 0.2%;
-        word-wrap: normal;
-    }
-    @media(max-width: 1150px) {
-        td{
-            font-size: clamp(0.4rem,0.8rem,1rem);
-        }
-    }
-    .gs-table-head tr th span {
-        color: white!important;
-    }
-    #updatebtn{
-        background-color: var(--primary-color);
-        color: #f8f8f8 !important;
-        padding: 0.6rem;
-        border-radius: 0.4rem;
-        -webkit-transition: all 200ms ease-in-out;
-        transition: all 200ms ease-in-out;
-    }
-    #exclamation{
-        color: #ff1515 !important;
-        padding: 0.6rem;
-        border-radius: 0.4rem;
-        font-size: 1.4rem !important;
-        cursor: unset !important;
-    }
-</style>
 </body>
 </html>

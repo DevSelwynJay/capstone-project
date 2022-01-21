@@ -8,10 +8,11 @@ if(isset($_POST['newMedName']) && isset($_POST['newMedCategory']) && isset($_POS
     $newMedsubCategory = $_POST['newMedsubCategory'];
     $newMedDosage = $_POST['newMedDosage'];
     $newMedStocks = $_POST['newMedStocks'];
+    $newmedCritStocks = $_POST['newMedCritStocks'];
     $newMedMfgDate = $_POST['newMedMfgDate'];
     $newMedExpDate = $_POST['newMedExpDate'];
     $type = "Add";
-    $newmedicinesql = "Insert into `medinventory` (`name`, `category`, `subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`) values ('$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate')";
+    $newmedicinesql = "Insert into `medinventory` (`name`, `category`, `subcategory`, `dosage` , `stock`,`criticalstocks`, `mfgdate`, `expdate`) values ('$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newmedCritStocks','$newMedMfgDate','$newMedExpDate')";
     $result = mysqli_query($con,$newmedicinesql);
     $last_id = $con->insert_id;
     $newmedreportsql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$last_id','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
