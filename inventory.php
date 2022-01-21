@@ -110,43 +110,59 @@ $ofs = $count4." Out of Stocks in our Inventory";
         </div>
         <div class="global__main-content">
             <div class="inner-page-content">
-                <div class="col-sm-12 p-0">
-                    <div class="inner-page-nav">
-                        <div class="logo">
-                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
-                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
-                        </div>
+            <div class="col-sm-12 p-0">
 
-                        <div class="settings">
+<div class="inner-page-nav">
 
+    <div class="logo">
+        <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+        <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
+    </div>
 
-                            <a href="profile.php"><i class="fas fa-user-circle"></i></a>
-                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
-                            <a id="close-dropdown"><i class="fas fa-times"></i></a>
-                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                            <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                            <!--MOBILE MENU-->
-                            <div class="menu-mobile " id="menu">
-                                <ul>
-                                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
-                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                                </ul>
-                            </div>
+    <div class="settings">
 
-                            <div class="drop-down-settings" id="dropdown">
-                                <ul>
-                                    <li><a href="approveEMR.php">Approve EMR</a></li>
-                                    <li><a href="settings.php">settings</a></li>
-                                    <li><a href="about.php">About</a></li>
-                                    <li><a href="php/sessionDestroy.php">Logout</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <a class="notification-toggle">
+        <i style="cursor: pointer" class="fa fa-bell-o"></i>
+        <span class="counter">3+</span>
+        </a>
+        <!--UPDATED NOTIF STYLING-->
+        <ul class="notification-dropdown">
+        <li>Lorem ipsum dolor sit amet consectetur </li>
+        <li>Lorem ipsum dolor sit amet consectetur </li>
+        <li>Lorem ipsum dolor sit amet consectetur </li>
+        </ul>
+        <!--UPDATED NOTIF STYLING-->
+
+        <a href="profile.php"><i class="fas fa-user-circle"></i></a>
+        <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+        <a id="close-dropdown"><i class="fas fa-times"></i></a>
+       
+
+        <div class="drop-down-settings" id="dropdown">
+            <ul>
+                <li><a href="approveEMR.php">Approve EMR</a></li>
+                <li><a href="settings.php">settings</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="php/sessionDestroy.php">Logout</a></li>
+            </ul>
+        </div>
+        
+    </div>
+
+</div>
+
+<!--MOBILE MENU-->
+<div class="menu-mobile " id="menu">
+    <ul>
+        <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i></a></li>
+        <li><a href="patient.php"><i class="fas fa-user"></i></a></li>
+        <li><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
+        <li><a href="track-map.php"><i class="fas fa-map-marker"></i></a></li>
+        <li><a href="inventory.php"><i class="fas fa-box"></i></a></li>
+    </ul>
+</div>
+
+</div>
                 <div class="col-sm-12">
                     <div class="">
                         <div class="inventory__container">
@@ -838,5 +854,19 @@ $ofs = $count4." Out of Stocks in our Inventory";
         mobileMenu.style.display = "block";
     });
 </script>
+<script>
+        const toggle = document.querySelector('.notification-toggle');
+        const drop = document.querySelector('.notification-dropdown');
+        
+
+        toggle.addEventListener('click', function () {//Conditions
+            if (drop.classList.contains('notification--show')) { // Close Mobile Menu
+                drop.classList.remove('notification--show');
+            }
+            else {
+                drop.classList.add('notification--show');
+            }
+        });
+    </script>
 </body>
 </html>

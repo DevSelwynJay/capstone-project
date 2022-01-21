@@ -159,8 +159,8 @@
     background-color: var(--primary-color);
     border-radius: .4rem;
     position: absolute;
-    right: 2rem;
-    top: 6rem;
+    right: 0;
+    top: 160%;
     opacity: 0;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     z-index: 9999;
@@ -170,7 +170,6 @@
 
     ul{
         padding: 2rem;
-        width: 20rem;
     }
 
     ul li:nth-child(3){
@@ -194,10 +193,11 @@
     ul li a{
         text-decoration: none;
         color: white;
-        padding: .5rem 0;
+        padding: .5rem 2rem;
         display: inline-block;
         text-align: center;
         text-transform: capitalize !important;
+        white-space: nowrap;
     }
 
     ul li:last-child a::after{
@@ -210,56 +210,43 @@
 }
 .menu-mobile{
 
-    visibility: hidden;
+   display: none;
     background-color: var(--primary-color);
-    border-radius: .4rem;
-    position: absolute;
-    top: 7rem;
-    right: 2rem;
-    opacity: 0;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    z-index: 9999;
-    transform: translateY( -5%) !important;
-    transition: all 300ms ease-in-out;
-    width: 50%;
-
-    @media(max-width: 650px){
-        width: 70%;
-      }
     
+   @media(max-width:1300px){
+       display: block;
+   }
+
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 1.5rem 0;
+    }
+
+    ul{
+        list-style: none;
+    }
+
+    ul li a{
+        color: white;
+        
+        i{
+            font-size: 26px;
+            
+        }
+    }
   
 
 
 
-    ul{
-        padding: 2rem;
-        width: 100%;
-    }
 
-    ul li{
-        list-style: none;
-        transition: all 300ms ease-in;
-        padding: 0 1rem;
-
-        &:hover{
-            background-color: var(--hover-color);
-        }
-    }
-
-    ul li a{
-        text-decoration: none;
-        color: white;
-        padding: .5rem 0;
-        display: inline-block;
-        text-align: left;
-    }
 }
 
 .notification-dropdown{
 position: absolute;
 width: 250px;
-top: 100%;
-right: 0;
+top: 160%;
+right: 70%;
 color: black;
 background-color: white;
 border: 1px solid #ccc;
@@ -268,11 +255,17 @@ z-index: 9999;
 display: none;
 transition: 0.3s;
 border-radius: .4rem;
+list-style-type: none;
+
+@media(max-width:600px){
+    right: 2%;
+}
 
 li{
     margin: .5rem 0;
     padding: .5rem 0;
     border-bottom: 1px solid #ccc;
+    list-style: none;
 }
 li:last-child{
     border-bottom: unset;
@@ -286,11 +279,11 @@ li:last-child{
 
     .counter{
         position: absolute;
-        top: 10px;
+        top: 0;
         left: 13px;
         background-color: #eb4151;
         color: white;
-        font-size: 14px;
+        font-size: 12px;
         border-radius: 22px;
         text-align: center;
         cursor: pointer;

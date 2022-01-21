@@ -123,6 +123,15 @@
   section .inner-page-content .settings{
     display: flex;
     align-items: center;
+    position: relative;
+    gap: 1.5rem;
+
+    a{
+      i{
+        margin: 0;
+      }
+    }
+    
   }
   section .inner-page-content .settings a{
      cursor: pointer;

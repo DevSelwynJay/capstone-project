@@ -87,41 +87,43 @@ else{
         <div class="global__container">
             <div class="global__main-content">
                 <div class="inner-page-content">
-                    <div class="col-sm-12 p-0">
-                        <div class="inner-page-nav">
-                            <div class="logo">
-                                <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
-                                <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
-                            </div>
-                            <div class="settings">
-                                <a href="#"><i class="fas fa-user-circle"></i></a>
-                                <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
-                                <a id="close-dropdown"><i id="close-dropdown-2" class="fas fa-times"></i></a>
-                                <!--
-                                <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                               <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-
-                                    <div class="menu-mobile " id="menu">
-                                       <ul>
-                                        <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
-                                        <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                                        <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                        <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                        <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                                       </ul>
-                                    </div>
-                                     -->
-
-                                <!--DROPDOWN SETTINGS-->
-                                <div class="drop-down-settings" id="dropdown">
-                                    <ul>
-                                        <li><a id="request_emr" href="#">Request EMR</a></li>
-                                        <li id="logout"><a>Logout</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    
+                <div class="col-sm-12 p-0">
+                     <div class="inner-page-nav">
+                        <div class="logo">
+                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
                         </div>
-                    </div>
+                        <div class="settings">
+                            <a href="profile-patient.php"><i class="fas fa-user-circle"></i></a>
+                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
+                            <a id="close-dropdown"><i id="close-dropdown-2" class="fas fa-times"></i></a>
+                            <!--
+                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                               
+                                <div class="menu-mobile " id="menu">
+                                   <ul>
+                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
+                                   </ul>
+                                </div>
+                                 -->
+                          
+                            <!--DROPDOWN SETTINGS-->
+                            <div class="drop-down-settings" id="dropdown">
+                               <ul>
+                                  <li><a id="request_emr" href="#">Request EMR</a></li>
+                                  <li><a href="about.php">About</a></li>
+                                  <li id="logout" class="show-menu"><a>Logout</a></li>
+                               </ul>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
 
 
 
