@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 07:15 PM
+-- Generation Time: Jan 21, 2022 at 01:35 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -34,7 +34,7 @@ CREATE TABLE `medication_record` (
   `patient_type` varchar(50) NOT NULL,
   `patient_purok` char(1) NOT NULL COMMENT '1 to 7',
   `type` varchar(50) NOT NULL DEFAULT 'Medicine' COMMENT 'Medicine',
-  `medicine_id` int(11) NOT NULL,
+  `medicine_id` varchar(50) NOT NULL,
   `medicine_name` varchar(50) NOT NULL,
   `medicine_sub_category` varchar(50) NOT NULL,
   `given_med_quantity` varchar(50) NOT NULL COMMENT 'ilang piraso ng gamot binigay',
@@ -52,8 +52,7 @@ CREATE TABLE `medication_record` (
 --
 
 INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `medicine_sub_category`, `given_med_quantity`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
-(3, '2021-01-111222', '2022-02-259672', 'Adult', '1', 'Medicine', 20, 'diatabs', 'antibiotics', '2', '500mg', '1', '0', '2022-01-17 17:24:17', '2022-01-17 16:00:00', '2022-01-18 16:00:00', 'nag tate baho'),
-(4, '2021-01-111222', '2022-02-336149', 'Adult', '3', 'Medicine', 20, 'diatabs', 'antibiotics', '7', '500mg', '2', '0', '2022-01-17 17:56:09', '2022-01-17 16:00:00', '2022-01-19 16:00:00', 'hehehehe');
+(1, '2021-01-111222', '2022-02-023567', 'Adult', '1', 'Medicine', '2022-04-243587', 'Paracetamol', 'antibiotics', '4', '500mg', '2', '0', '2022-01-21 12:29:23', '2022-01-20 16:00:00', '2022-01-22 16:00:00', 'masakit ulo');
 
 --
 -- Indexes for dumped tables
@@ -74,7 +73,7 @@ ALTER TABLE `medication_record`
 -- AUTO_INCREMENT for table `medication_record`
 --
 ALTER TABLE `medication_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

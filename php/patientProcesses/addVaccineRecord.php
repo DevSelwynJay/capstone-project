@@ -30,7 +30,7 @@ $query="";//nadoble kasi need nnull kapag wlang laman ung date
 if($set_next_sched==""||$set_next_sched==null){
     $query = "
 INSERT INTO vaccination_record VALUES (
-                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , '$inv_id', '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
                                       DEFAULT ,NULL, '$description_vaccine'
                       
 )
@@ -40,7 +40,7 @@ INSERT INTO vaccination_record VALUES (
 else{
     $query = "
 INSERT INTO vaccination_record VALUES (
-                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , $inv_id, '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
+                DEFAULT , '$amdinID','$patientID','$patientType','$patientPurok' ,DEFAULT , '$inv_id', '$inv_name','$dosage','$sub_category', '$rec_no_dosage',DEFAULT,
                                       DEFAULT ,'$set_next_sched', '$description_vaccine'
                       
 )
@@ -58,17 +58,17 @@ while($row = mysqli_fetch_assoc($res)){
     $id = $row['id'];//get the id coz it will use to update the stock of item
 
     if($ctr==0){
-        mysqli_query($con,"UPDATE medinventory SET stock = stock - $qty WHERE id = $id");
+        mysqli_query($con,"UPDATE medinventory SET stock = stock - $qty WHERE id = '$id'");
     }
     else{
         $qty = $residualStock;
-        mysqli_query($con,"UPDATE medinventory SET stock = stock - $residualStock WHERE id = $id");
+        mysqli_query($con,"UPDATE medinventory SET stock = stock - $residualStock WHERE id = '$id'");
     }
 
     //check if the current row na nabawasan ng stock is naging negative
     //if naging negative gawin zero ung stock ng current row
     // tos ung negative value convert sa postive tos bawas sa kasunod na row haha
-    $subQuery = mysqli_query($con,"SELECT * FROM medinventory WHERE id= $id");
+    $subQuery = mysqli_query($con,"SELECT * FROM medinventory WHERE id= '$id'");
     if ($subRow = mysqli_fetch_assoc($subQuery)){
 
         $mfg = $row['mfgdate'];
@@ -77,16 +77,16 @@ while($row = mysqli_fetch_assoc($res)){
         if($subRow['stock']>=0){
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (event_id,id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($event_id,$id ,'$inv_name','$inv_type','$sub_category','$dosage',$qty,'$mfg','$exp','Vaccine')
+                            VALUES ($event_id,'$id' ,'$inv_name','$inv_type','$sub_category','$dosage',$qty,'$mfg','$exp','Vaccine')
                         ");
             break;
         }
         else{
-            mysqli_query($con,"UPDATE medinventory SET stock = 0 WHERE id = $id");
+            mysqli_query($con,"UPDATE medinventory SET stock = 0 WHERE id = '$id'");
             $residualStock = abs($subRow['stock']);
             //record item released in medreport table
             mysqli_query($con,"INSERT INTO medreport (event_id,id,name,category,subcategory,dosage,stock,mfgdate,expdate,type)
-                            VALUES ($event_id,$id,'$inv_name','$inv_type','$sub_category','$dosage',$qty-$residualStock,'$mfg','$exp','Vaccine')
+                            VALUES ($event_id,'$id','$inv_name','$inv_type','$sub_category','$dosage',$qty-$residualStock,'$mfg','$exp','Vaccine')
                         ");
         }
     }

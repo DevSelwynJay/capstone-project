@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2021 at 02:51 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Jan 21, 2022 at 01:36 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,13 +34,6 @@ CREATE TABLE `patient_id` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `patient_id`
---
-
-INSERT INTO `patient_id` (`index_only`, `id`, `file_path`) VALUES
-(1, '2021-02-538075', 'ID/2021-02-538075/913558.jpg');
-
---
 -- Indexes for dumped tables
 --
 
@@ -58,7 +51,7 @@ ALTER TABLE `patient_id`
 -- AUTO_INCREMENT for table `patient_id`
 --
 ALTER TABLE `patient_id`
-  MODIFY `index_only` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `index_only` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

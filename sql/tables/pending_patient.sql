@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 10:21 AM
+-- Generation Time: Jan 21, 2022 at 01:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -57,7 +57,7 @@ CREATE TABLE `pending_patient` (
 --
 
 INSERT INTO `pending_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `suffix`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(3, '2022-03-967028', 'Benitez', 'Bebang', 'Bas', 'III', 'Male', '2008-01-16', '4', '123', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'alfredpogiebenitez@gmail.com', 'aaaaaaaa', '09422697952', '', '2022-01-20 08:47:59');
+(3, '2022-03-046248', 'Benitez', 'Alfredo', 'Bas', '', 'Male', '1999-01-06', '2', '12', 'Sto. Rosario Paombong Bulacan', 'driver', 'Single', '', '', '', 'Adult', 'benitez.alfredo.b.1128@gmail.com', 'aaaaaaaa', '09422697900', '', '2022-01-21 12:38:00');
 
 --
 -- Indexes for dumped tables

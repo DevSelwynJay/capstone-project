@@ -353,7 +353,7 @@ Closedropdown.addEventListener('click',function(){
                    patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
-                   account_type: "Acc. Type",
+                   account_type: "Reg. Type",
 
                    // address:"Address",
                }

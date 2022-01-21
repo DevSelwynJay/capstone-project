@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 07:14 PM
+-- Generation Time: Jan 21, 2022 at 01:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -50,8 +50,7 @@ CREATE TABLE `vaccination_record` (
 --
 
 INSERT INTO `vaccination_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `vaccine_id`, `vaccine_name`, `vaccine_dosage`, `vaccine_sub_category`, `reccommended_no_of_dosage`, `date_given`, `date_vaccinated`, `expected_next_date_vaccination`, `description`) VALUES
-(2, '2021-01-111222', '2022-02-259672', 'Adult', '1', 'Vaccine', '41', 'BCG', '100ml', 'child immunization', '2', '2022-01-17 18:09:49', '2022-01-17 18:09:49', '2022-02-01 16:00:00', 'unang bcg'),
-(3, '2021-01-111222', '2022-02-336149', 'Adult', '3', 'Vaccine', '41', 'BCG', '100ml', 'child immunization', '1', '2022-01-17 18:10:54', '2022-01-17 18:10:54', NULL, 'hehe');
+(1, '2021-01-111222', '2022-02-023567', 'Adult', '1', 'Vaccine', '2022-05-086555', 'BCG', '100ml', 'child immunization', '1', '2022-01-21 12:30:24', '2022-01-21 12:30:24', NULL, 'bcg turok');
 
 --
 -- Indexes for dumped tables
@@ -71,7 +70,7 @@ ALTER TABLE `vaccination_record`
 -- AUTO_INCREMENT for table `vaccination_record`
 --
 ALTER TABLE `vaccination_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

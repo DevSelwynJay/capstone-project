@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 10:19 AM
+-- Generation Time: Jan 21, 2022 at 01:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -51,13 +51,6 @@ CREATE TABLE `declined_patient` (
   `OTP` varchar(6) NOT NULL,
   `date_created` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `declined_patient`
---
-
-INSERT INTO `declined_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `suffix`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
-(3, '2022-03-302600', 'Benitez', 'Alfredo', 'Bas', '', 'Male', '1999-01-11', '1', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Adult', 'BENITEZ.ALFREDO.B.1128@GMAIL.COM', 'MUKAMO11', '09422697955', '', '2022-01-20 05:30:07');
 
 --
 -- Indexes for dumped tables

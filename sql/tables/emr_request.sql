@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 03:21 PM
+-- Generation Time: Jan 21, 2022 at 01:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -37,14 +37,6 @@ CREATE TABLE `emr_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `emr_request`
---
-
-INSERT INTO `emr_request` (`request_id`, `admin_id`, `patientOA_ID`, `date_requested`, `status`, `description`) VALUES
-(1, '2021-01-111222', '2022-03-805831', '2022-01-20 13:33:37', -1, 'makulit ka saka nalang'),
-(3, '2021-01-111222', '2022-03-805831', '2022-01-20 14:19:42', 1, '');
-
---
 -- Indexes for dumped tables
 --
 
@@ -62,7 +54,7 @@ ALTER TABLE `emr_request`
 -- AUTO_INCREMENT for table `emr_request`
 --
 ALTER TABLE `emr_request`
-  MODIFY `request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `request_id` int(50) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
