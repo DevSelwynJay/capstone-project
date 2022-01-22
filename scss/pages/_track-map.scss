@@ -25,9 +25,13 @@ body{
     margin: 0 auto !important;
     padding: 1rem !important;
     margin: 1rem auto !important;
+    @media(max-width:1300px){
+        display: none !important;
+    }
 }
 
 .tab button{
     border: solid 1px white !important;
     margin: 1rem !important;
 }
+
