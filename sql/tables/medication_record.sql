@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:35 PM
+-- Generation Time: Jan 22, 2022 at 05:28 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -52,7 +52,7 @@ CREATE TABLE `medication_record` (
 --
 
 INSERT INTO `medication_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `medicine_id`, `medicine_name`, `medicine_sub_category`, `given_med_quantity`, `dosage`, `no_times`, `interval_days`, `date_given`, `start_date`, `end_date`, `description`) VALUES
-(1, '2021-01-111222', '2022-02-023567', 'Adult', '1', 'Medicine', '2022-04-243587', 'Paracetamol', 'antibiotics', '4', '500mg', '2', '0', '2022-01-21 12:29:23', '2022-01-20 16:00:00', '2022-01-22 16:00:00', 'masakit ulo');
+(2, '2021-01-111222', '2022-03-080861', 'Minor', '4', 'Medicine', '2022-04-223587', 'Paracetamol', 'antibiotics', '3', '500mg', '3', '0', '2022-01-22 08:01:41', '2022-01-21 16:00:00', '2022-01-21 16:00:00', 'headache');
 
 --
 -- Indexes for dumped tables
@@ -73,7 +73,7 @@ ALTER TABLE `medication_record`
 -- AUTO_INCREMENT for table `medication_record`
 --
 ALTER TABLE `medication_record`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

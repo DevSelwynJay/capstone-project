@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:36 PM
+-- Generation Time: Jan 22, 2022 at 05:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -46,8 +46,13 @@ CREATE TABLE `medreport` (
 --
 
 INSERT INTO `medreport` (`event_id`, `id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `mfgdate`, `expdate`, `dateadded`, `type`) VALUES
-(1, '2022-04-243587', 'Paracetamol', 'Medicine', 'antibiotics', '500mg', 4, '2021-10-31', '2028-01-13', '2022-01-21', 'Medicine'),
-(1, '2022-05-086555', 'BCG', 'Vaccine', 'child immunization', '100ml', 1, '2021-11-02', '2024-03-13', '2022-01-21', 'Vaccine');
+(1, '2022-05-086555', 'BCG', 'Vaccine', 'child immunization', '100ml', 1, '2021-11-02', '2024-03-13', '2022-01-22', 'Vaccine'),
+(2, '2022-04-223587', 'Paracetamol', 'Medicine', 'antibiotics', '500mg', 3, '2021-10-31', '2028-01-13', '2022-01-22', 'Medicine'),
+(0, '2022-05-086254', 'IPV', 'Vaccine', 'child immunization', '120ml', 100, '2021-11-01', '2022-02-17', '2022-01-22', 'Update'),
+(0, '2022-04-772295', 'Calpol', 'Medicine', 'Gamot', '500mg', 150, '2022-01-01', '2022-02-10', '2022-01-22', 'Update'),
+(0, '2022-04-942529', 'Neozep', 'Medicine', 'colds', '250mg', 40, '2021-08-18', '2024-04-18', '2022-01-22', 'Add'),
+(0, '2022-04-942529', 'Neozep', 'Medicine', 'colds', '250mg', 42, '2021-08-18', '2024-04-18', '2022-01-23', 'Update'),
+(0, '2022-04-519167', 'Paracetamol', 'Medicine', 'headache', '250mg', 120, '2021-10-06', '2030-01-09', '2022-01-23', 'Add');
 
 --
 -- Indexes for dumped tables

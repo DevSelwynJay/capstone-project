@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:38 PM
+-- Generation Time: Jan 22, 2022 at 05:31 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -50,7 +50,7 @@ CREATE TABLE `vaccination_record` (
 --
 
 INSERT INTO `vaccination_record` (`event_id`, `admin_id`, `patient_id`, `patient_type`, `patient_purok`, `type`, `vaccine_id`, `vaccine_name`, `vaccine_dosage`, `vaccine_sub_category`, `reccommended_no_of_dosage`, `date_given`, `date_vaccinated`, `expected_next_date_vaccination`, `description`) VALUES
-(1, '2021-01-111222', '2022-02-023567', 'Adult', '1', 'Vaccine', '2022-05-086555', 'BCG', '100ml', 'child immunization', '1', '2022-01-21 12:30:24', '2022-01-21 12:30:24', NULL, 'bcg turok');
+(1, '2021-01-111222', '2022-02-023567', 'Adult', '1', 'Vaccine', '2022-05-086555', 'BCG', '100ml', 'child immunization', '1', '2022-01-22 08:22:32', '2022-01-22 08:22:32', NULL, '1st BCG');
 
 --
 -- Indexes for dumped tables

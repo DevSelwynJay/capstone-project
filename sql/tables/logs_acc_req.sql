@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:35 PM
+-- Generation Time: Jan 22, 2022 at 05:28 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -37,6 +37,14 @@ CREATE TABLE `logs_acc_req` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `logs_acc_req`
+--
+
+INSERT INTO `logs_acc_req` (`log_id`, `admin_id`, `patient_id`, `admin_action`, `description`, `date_occured`) VALUES
+(3, '2021-01-111222', '2022-03-549690', '0', 'nantrip lang', '2022-01-22 03:19:02'),
+(4, '2021-01-111222', '2022-03-542653', '0', 'prank ung pic', '2022-01-22 06:16:37');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -54,7 +62,7 @@ ALTER TABLE `logs_acc_req`
 -- AUTO_INCREMENT for table `logs_acc_req`
 --
 ALTER TABLE `logs_acc_req`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

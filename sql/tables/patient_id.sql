@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:36 PM
+-- Generation Time: Jan 22, 2022 at 05:30 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -34,6 +34,14 @@ CREATE TABLE `patient_id` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `patient_id`
+--
+
+INSERT INTO `patient_id` (`index_only`, `id`, `file_path`) VALUES
+(8, '2022-03-626198', 'ID/2022-03-626198/aaa.png'),
+(9, '2022-03-626198', 'ID/2022-03-626198/history.png');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -51,7 +59,7 @@ ALTER TABLE `patient_id`
 -- AUTO_INCREMENT for table `patient_id`
 --
 ALTER TABLE `patient_id`
-  MODIFY `index_only` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `index_only` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

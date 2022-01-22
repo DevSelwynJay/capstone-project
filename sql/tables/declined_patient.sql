@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:34 PM
+-- Generation Time: Jan 22, 2022 at 05:26 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -51,6 +51,14 @@ CREATE TABLE `declined_patient` (
   `OTP` varchar(6) NOT NULL,
   `date_created` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `declined_patient`
+--
+
+INSERT INTO `declined_patient` (`account_type`, `id`, `last_name`, `first_name`, `middle_name`, `suffix`, `gender`, `birthday`, `purok`, `house_no`, `address`, `occupation`, `civil_status`, `blood_type`, `weight`, `height`, `patient_type`, `email`, `password`, `contact_no`, `OTP`, `date_created`) VALUES
+(3, '2022-03-542653', 'Bas', 'Ogie', 'Cruz', '', 'Male', '2009-01-15', '6', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'alfredpogiebenitez@gmail.com', 'aaaaaaaa', '09455698955', '', '2022-01-22 06:16:37'),
+(3, '2022-03-549690', 'Ben', 'Alfred', 'Ogie', '', 'Male', '2009-01-28', '3', '', 'Sto. Rosario Paombong Bulacan', '', 'Single', '', '', '', 'Minor', 'benitez.alfredo.b.1128@gmail.com', 'aaaaaaaa', '09422656522', '', '2022-01-22 03:19:02');
 
 --
 -- Indexes for dumped tables

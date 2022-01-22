@@ -19,7 +19,7 @@ $out_of_stocks_row_count =mysqli_num_rows($out_of_stocks);
 //critical stocks
 $critical_stock = mysqli_query($con,"SELECT * FROM `medinventory` WHERE `stock` <= `criticalstock`");
 $critical_stock_row_count = mysqli_num_rows($critical_stock);
-$emr_req =  mysqli_query($con,"SELECT * FROM `emr_request`");
+$emr_req =  mysqli_query($con,"SELECT * FROM `emr_request` WHERE status = 0");
 $emr_req_count = mysqli_num_rows($emr_req);
 
 if($row_count>0){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 01:35 PM
+-- Generation Time: Jan 22, 2022 at 05:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -45,16 +45,16 @@ CREATE TABLE `medinventory` (
 --
 
 INSERT INTO `medinventory` (`id`, `name`, `category`, `subcategory`, `dosage`, `stock`, `criticalstock`, `mfgdate`, `expdate`, `dateadded`) VALUES
-('2022-04-243337', 'Pfizer', 'Vaccine', 'Covid', '100ml', 100, 50, '2021-11-02', '2022-09-07', '2021-11-22'),
-('2022-04-243587', 'Paracetamol', 'Medicine', 'antibiotics', '500mg', 486, 150, '2021-10-31', '2028-01-13', '2021-12-30'),
+('2022-04-223587', 'Paracetamol', 'Medicine', 'antibiotics', '500mg', 497, 150, '2021-10-31', '2028-01-13', '2021-12-30'),
 ('2022-04-492307', 'Diatabs', 'Medicine', 'antidiarrheal agents', '500mg', 69, 10, '2021-12-07', '2023-02-09', '2022-01-21'),
+('2022-04-519167', 'Paracetamol', 'Medicine', 'headache', '250mg', 120, 30, '2021-10-06', '2030-01-09', '2022-01-23'),
 ('2022-04-524021', 'Alaxan', 'Medicine', 'pain reliver', '500mg', 120, 15, '2022-01-13', '2025-01-15', '2022-01-21'),
-('2022-04-772295', 'Calpol', 'Medicine', 'Gamot', '500ml', 150, 12, '2022-01-01', '2022-01-29', '2022-01-21'),
-('2022-05-000004', 'MMR', 'Vaccine', 'child immunization', '100ml', 555, 500, '2021-11-02', '2023-01-11', '2021-11-30'),
-('2022-05-086111', 'OPV', 'Vaccine', 'child immunization', '100ml', 498, 500, '2021-11-02', '2022-06-08', '2021-11-30'),
-('2022-05-086254', 'IPV', 'Vaccine', 'child immunization', '120ml', 200, 50, '2021-11-01', '2022-02-16', '2021-11-20'),
-('2022-05-086555', 'BCG', 'Vaccine', 'child immunization', '100ml', 496, 180, '2021-11-02', '2024-03-13', '2021-11-30'),
-('2022-05-086884', 'Moderna', 'Vaccine', 'Covid', '12ml', 15, 12, '2021-11-17', '2022-01-27', '2022-01-21');
+('2022-04-772295', 'Calpol', 'Medicine', 'Gamot', '500mg', 150, 12, '2022-01-01', '2022-02-10', '2022-01-21'),
+('2022-04-942529', 'Neozep', 'Medicine', 'colds', '250mg', 42, 50, '2021-08-18', '2024-04-18', '2022-01-22'),
+('2022-05-000004', 'OPV', 'Vaccine', 'child immunization', '100ml', 555, 500, '2021-11-02', '2022-06-08', '2021-11-30'),
+('2022-05-086111', 'IPV', 'Vaccine', 'child immunization', '120ml', 200, 50, '2021-11-01', '2022-03-17', '2021-11-30'),
+('2022-05-086555', 'BCG', 'Vaccine', 'child immunization', '100ml', 494, 180, '2021-11-02', '2024-03-13', '2021-11-30'),
+('2022-05-086884', 'Moderna', 'Vaccine', 'Covid', '120ml', 30, 12, '2021-11-17', '2022-02-11', '2022-01-21');
 
 --
 -- Indexes for dumped tables
