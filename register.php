@@ -184,7 +184,7 @@
                                            <input type="file" name="upload[]" multiple class="custom-file-input" id="customFileInput" aria-describedby="customFileInput" accept="image/*" data-toggle="tooltip" data-placement="top" title="Photo of ID" data-container="body" required>
                                            <label class="custom-file-label" for="customFileInput">Select Photo</label>
                                            <!--<p style="margin: 0.5rem 0;text-align: center;font-size: small">Upload first photo</p>-->
-                                           <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center">Image Selected: 0</p>
+                                           <p id="reg-pic-no" style="margin: 0.5rem 0;text-align: center;display: none">Image Selected: 0</p>
                                        </div>
                                    </div>
                                    <div class="col-sm-6">

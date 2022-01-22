@@ -35,7 +35,8 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
                         $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
                         $('#customFileInput').val('')
                         noOfPicture = 0
-                        $("#reg-pic-no").html("Image Selected: 0")
+                        // $("#reg-pic-no").html("Image Selected: 0")
+                        $(".custom-file-label").html("Select Photo")
                         return;
                     }
                 }
@@ -43,10 +44,12 @@ $(document).ready(function (){$( '[data-target="#pop-up-preview-id"]' ).trigger(
 
                 noOfPicture = filesAmount
                 console.log("no if image selected"+filesAmount)
-                $("#reg-pic-no").html("Image Selected: "+filesAmount)
+                // $("#reg-pic-no").html("Image Selected: "+filesAmount)
+                $(".custom-file-label").html("Image Selected: <span style='font-weight: 600'>"+filesAmount+"</span>")
 
                 if(filesAmount<=0){
                     $($.parseHTML('<p>')).html('No image was selected').appendTo(placeToInsertImagePreview);
+                    $(".custom-file-label").html("Select Photo")
                     return;
                 }
 
