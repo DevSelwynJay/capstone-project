@@ -1,6 +1,10 @@
 .inventory {
     &__container {
       padding: 1rem;
+
+      @media(max-width: 500px){
+        padding:1rem 0;
+      }
   
       h1 {
         font-weight: 400 !important;

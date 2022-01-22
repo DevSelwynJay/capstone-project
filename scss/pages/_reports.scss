@@ -20,17 +20,27 @@
         @media(max-width: 1200px){
             padding: 1rem .5rem;
         }
+        @media(max-width: 500px){
+          padding: 1rem 0;
+      }
 
         .left-column{
           @media(max-width: 991px){
             order: 2;
+        }
+        @media(max-width: 500px){
+          padding:0;
         }
         }
         .right-column{
           @media(max-width: 991px){
            order: 1;
         }
+        @media(max-width: 500px){
+          padding:0;
         }
+        }
+        
     }
     &__left-col{
         margin-bottom: 2rem;
