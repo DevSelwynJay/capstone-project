@@ -29,6 +29,10 @@ extract($_POST);
     $result = mysqli_query($con,$newmedicinesql);
     $newmedreportsql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`, `dosage` , `stock`, `mfgdate`, `expdate`,`type`) values ('$medicineID','$newMedName','$newMedCategory','$newMedsubCategory','$newMedDosage','$newMedStocks','$newMedMfgDate','$newMedExpDate','$type')";
     $reportresult = mysqli_query($con,$newmedreportsql);
+    $admin_id = $_SESSION['active_admin_ID'];
+    $admin_action = '0';
+    $logsql = "Insert into `inventory_logs`(`admin_id`,`medicine_id`,`admin_action`) values('$admin_id','$medicineID','$admin_action')";
+    $logresult = mysqli_query($con,$logsql);
 
 
 

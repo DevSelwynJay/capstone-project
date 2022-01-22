@@ -30,6 +30,10 @@ if(isset($_POST['id'])){
     $result=mysqli_query($con,$updatesql);
     $reportupdatesql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$id','$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
     $reportresult = mysqli_query($con,$reportupdatesql);
+    $admin_id = $_SESSION['active_admin_ID'];
+    $admin_action = '1';
+    $logsql = "Insert into `inventory_logs`(`admin_id`,`medicine_id`,`admin_action`) values('$admin_id','$id','$admin_action')";
+    $logresult = mysqli_query($con,$logsql);
 }
 ?>
 

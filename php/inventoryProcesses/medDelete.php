@@ -21,3 +21,7 @@ require '../DB_Connect.php';
     $reportinsert = mysqli_query($con,$reportin);
     $deletesql = "DELETE FROM `medinventory` WHERE id = '$id'";
     $deleteresult = mysqli_query($con,$deletesql);
+    $admin_id = $_SESSION['active_admin_ID'];
+    $admin_action = '2';
+    $logsql = "Insert into `inventory_logs`(`admin_id`,`medicine_id`,`admin_action`) values('$admin_id','$id','$admin_action')";
+    $logresult = mysqli_query($con,$logsql);
