@@ -26,14 +26,14 @@ if(!$con) {
 $tables = array('pending_patient','walk_in_patient');
 $result=null;
 $errMsg = null;
-foreach ($tables as $table){
-    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
-    if(mysqli_num_rows($result)>=1){
-        //echo json_encode(array("success"=>false,"message"=>""));
-        $errMsg.="<p>Contact number already exist</p>";
-        break;
-    }
-}
+//foreach ($tables as $table){
+//    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
+//    if(mysqli_num_rows($result)>=1){
+//        //echo json_encode(array("success"=>false,"message"=>""));
+//        $errMsg.="<p>Contact number already exist</p>";
+//        break;
+//    }
+//}
 $tables = array('pending_patient','walk_in_patient','super_admin','admin');//bawal may mag kamukang email sa system
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE email = '$email'");

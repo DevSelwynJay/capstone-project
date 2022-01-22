@@ -271,7 +271,7 @@ require 'php/DB_Connect.php';
                                     <i class="fas fa-syringe"></i>
                                     <div class="dashboard-cards-text text1">
                                         <p id="total-vaccinated-count">3,008</p>
-                                        <p>Total Number of Vaccinated Persons</p>
+                                        <p>Total Number of Vaccinated Patients</p>
                                     </div>
                                 </div>
                                 <div class="dashboard-cards card2">

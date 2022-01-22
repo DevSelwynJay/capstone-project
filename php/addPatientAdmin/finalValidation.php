@@ -26,15 +26,15 @@ $errMsg = null;
 $existEmail = null;
 $existContact = null;
 
-foreach ($tables as $table){
-    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
-    if(mysqli_num_rows($result)>=1){
-        //echo json_encode(array("success"=>false,"message"=>""));
-        $errMsg.="Contact number already exist!";
-        $existContact = true;
-        break;
-    }
-}
+//foreach ($tables as $table){
+//    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
+//    if(mysqli_num_rows($result)>=1){
+//        //echo json_encode(array("success"=>false,"message"=>""));
+//        $errMsg.="Contact number already exist!";
+//        $existContact = true;
+//        break;
+//    }
+//}
 $tables = array('walk_in_patient','pending_patient','super_admin','admin');
 foreach ($tables as $table){
     $result = mysqli_query($con,"SELECT * FROM $table WHERE email = '$email'");
