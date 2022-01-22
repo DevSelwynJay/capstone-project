@@ -23,16 +23,16 @@ if($row_count>0){
     $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$row_count</span> Pending Account Request</a></li>";
 }
 if($toexpire_row_count>0){
-    $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$toexpire_row_count</span> To Expire Medicine/s in our Inventory</a></li>";
+    $notif_msg[]=  "<li><a href='inventory.php'><span>$toexpire_row_count</span> To Expire Medicine/s in our Inventory</a></li>";
 }
 if($expired_row_count>0){
-    $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$expired_row_count</span> Expired Medicine/s in our Inventory</a></li>";
+    $notif_msg[]=  "<li><a href='inventory.php'><span>$expired_row_count</span> Expired Medicine/s in our Inventory</a></li>";
 }
 if($out_of_stocks_row_count>0){
-    $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$out_of_stocks_row_count</span> Out of Stocks Medicine/s in our Inventory</a></li>";
+    $notif_msg[]=  "<li><a href='inventory.php'><span>$out_of_stocks_row_count</span> Out of Stocks Medicine/s in our Inventory</a></li>";
 }
 if($critical_stock_row_count>0){
-    $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$critical_stock_row_count</span> Critical Stocks Medicine/s in our Inventory</a></li>";
+    $notif_msg[]=  "<li><a href='inventory.php'><span>$critical_stock_row_count</span> Critical Stocks Medicine/s in our Inventory</a></li>";
 }
 
 
