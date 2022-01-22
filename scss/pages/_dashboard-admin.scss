@@ -79,6 +79,9 @@
             grid-template-columns: 1fr 1fr;
         }
         @media(max-width:430px){
+            grid-template-columns: 1fr 1fr;
+        }
+        @media(max-width:350px){
             grid-template-columns: 1fr;
         }
 
@@ -140,7 +143,9 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            height: 70%;
+            min-height: 20rem;
+            max-height: 20rem;
+            margin-bottom: 2rem;
         }
         ul li{
             width: 100%;
