@@ -191,7 +191,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
         <!--modal for success-->
         <div id="pop-up-success" class="modal">
             <div style="display: flex;align-items: center;justify-content: center">
-                <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+                <img src="img/check.png" class="modal-header-icon"/>
                 <p class="modal-p" id="pop-up-success-message" style="display: flex;justify-content: center;">
 
                 </p>

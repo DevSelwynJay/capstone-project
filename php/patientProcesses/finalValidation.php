@@ -18,20 +18,20 @@ $errMsg = null;
 $existEmail = null;
 $existContact = null;
 
-foreach ($tables as $table){
-    if($contact == $_SESSION['active_old_patient_info']['contact_no']){
-        //wala naman nabago sa contact skip na pagskip sa duplication
-        break;
-    }
-
-    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
-    if(mysqli_num_rows($result)>=1){
-        //echo json_encode(array("success"=>false,"message"=>""));
-        $errMsg.="Newly added contact is already taken!";
-        $existContact = true;
-        break;
-    }
-}
+//foreach ($tables as $table){
+//    if($contact == $_SESSION['active_old_patient_info']['contact_no']){
+//        //wala naman nabago sa contact skip na pagskip sa duplication
+//        break;
+//    }
+//
+//    $result = mysqli_query($con,"SELECT * FROM $table WHERE contact_no = '$contact'");
+//    if(mysqli_num_rows($result)>=1){
+//        //echo json_encode(array("success"=>false,"message"=>""));
+//        $errMsg.="Newly added contact is already taken!";
+//        $existContact = true;
+//        break;
+//    }
+//}
 $tables = array('walk_in_patient','pending_patient','super_admin','admin');
 foreach ($tables as $table){
     if($email == $_SESSION['active_old_patient_info']['email']){
