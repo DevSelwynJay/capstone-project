@@ -96,6 +96,10 @@
         grid-template-rows: repeat(1, 1fr);
       }
 
+      @media(max-width: 500px){
+        padding: 1rem 0;
+      }
+
        .holder{
         background-color: #eeeeee;
         margin: .8rem;
@@ -119,12 +123,20 @@
     &__ctas{
         padding: 1rem 2rem ;
         display: flex;
-       align-items: baseline;
+        align-items: center;
+
+        @media(max-width: 500px){
+            padding: 0 1rem;
+          }
 
         a{
             color: var(--primary-color);
             text-shadow: none;
             font-size: 32px;
+
+            @media(max-width: 500px){
+                font-size: 26px;
+            }
 
             i{
                 margin-right: .4rem;
@@ -135,16 +147,20 @@
             }
         }
 
+        .back-button{
+            cursor: pointer;
+        }
+
         .add-prescription{
             text-align: right;
+            flex-grow: 1;
             a{
                 font-size: 20px;
+                cursor: pointer !important
             }
         }
     }
-    &__ctas > *{
-        flex: 1;
-    }
+  
 
     &__name{
         grid-column: 1/2;
