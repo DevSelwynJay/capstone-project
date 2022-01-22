@@ -220,27 +220,37 @@
     ul{
         display: flex;
         justify-content: space-evenly;
-        padding: 1.5rem 0;
+        list-style: none;
+        padding: 0 1rem;
     }
 
-    ul{
-        list-style: none;
-    }
 
     ul li a{
         color: white;
-        
+        padding: .8rem 1.3rem;
+        border-top-left-radius: .4rem;
+        border-top-right-radius: .4rem;
+        display: inline-block;
         i{
             font-size: 26px;
-            
+            @media(max-width: 400px){
+                font-size: 22px;
+            }
         }
     }
+
+    ul .active{
+        padding: 0 !important;
+    }
+
+    ul .active a{
+        background: white;
+        color: #02a9f7;
+      
+    }
   
-
-
-
-
 }
+
 
 .notification-dropdown{
 position: absolute;
@@ -249,7 +259,7 @@ top: 160%;
 right: 70%;
 color: black;
 background-color: white;
-border: 1px solid #ccc;
+border: 1px solid rgb(7, 5, 5);
 padding: 1rem;
 z-index: 9999;
 display: none;

@@ -3553,19 +3553,35 @@ td:nth-child(1) {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 1.5rem 0;
-}
-
-.menu-mobile ul {
   list-style: none;
+  padding: 0 1rem;
 }
 
 .menu-mobile ul li a {
   color: white;
+  padding: .8rem 1.3rem;
+  border-top-left-radius: .4rem;
+  border-top-right-radius: .4rem;
+  display: inline-block;
 }
 
 .menu-mobile ul li a i {
   font-size: 26px;
+}
+
+@media (max-width: 400px) {
+  .menu-mobile ul li a i {
+    font-size: 22px;
+  }
+}
+
+.menu-mobile ul .active {
+  padding: 0 !important;
+}
+
+.menu-mobile ul .active a {
+  background: white;
+  color: #02a9f7;
 }
 
 .notification-dropdown {
@@ -3575,7 +3591,7 @@ td:nth-child(1) {
   right: 70%;
   color: black;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #070505;
   padding: 1rem;
   z-index: 9999;
   display: none;
