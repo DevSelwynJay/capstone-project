@@ -55,6 +55,11 @@ require 'php/DB_Connect.php';
 
         });
     </script>
+
+    <!--==========FOR NOTIFICATION SCRIPT ===========================-->
+　　　<script src="notif/notif.js"></script>
+    <!--==========Notification Style ===========================-->
+    <link rel="stylesheet" href="notif/notif.css">
 </head>
 <body>
     <section class="global">

@@ -44,7 +44,6 @@ require 'php/DB_Connect.php';
     </style>
     <script>
         $(document).ready(function () {
-            Notif();
             $.post('php/admin_session.php').done(
                 function (data) {
                     let result = JSON.parse(data)
@@ -53,8 +52,12 @@ require 'php/DB_Connect.php';
             )
 
         });
-
     </script>
+
+    <!--==========FOR NOTIFICATION SCRIPT ===========================-->
+    <script src="notif/notif.js"></script>
+    <!--==========Notification Style ===========================-->
+    <link rel="stylesheet" href="notif/notif.css">
 
 </head>
 <body>
@@ -1160,5 +1163,20 @@ require 'php/DB_Connect.php';
        mobileMenu.style.display = "block";
     });
  </script>
+
+    <script>
+        const toggle = document.querySelector('.notification-toggle');
+        const drop = document.querySelector('.notification-dropdown');
+
+
+        toggle.addEventListener('click', function () {//Conditions
+            if (drop.classList.contains('notification--show')) { // Close Mobile Menu
+                drop.classList.remove('notification--show');
+            }
+            else {
+                drop.classList.add('notification--show');
+            }
+        });
+    </script>
 </body>
 </html>

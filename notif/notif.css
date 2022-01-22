@@ -1,0 +1,17 @@
+.notification-dropdown li{
+    padding: 0.4rem;
+    text-align: justify-all;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.notification-dropdown li span{
+    color: #2b2b2b;
+    font-weight: 600;
+}
+.notification-dropdown li a{
+    text-decoration: none;
+    all: inherit;
+}
+.notification-dropdown li:hover{
+    background: #e5e7ec;
+}

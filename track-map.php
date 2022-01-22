@@ -62,6 +62,11 @@ require 'php/DB_Connect.php';
     <script type="text/javascript">
         google.charts.load('current', { packages: ['corechart'] });
     </script>
+
+    <!--==========FOR NOTIFICATION SCRIPT ===========================-->
+    <script src="notif/notif.js"></script>
+    <!--==========Notification Style ===========================-->
+    <link rel="stylesheet" href="notif/notif.css">
 </head>
 <body>
 <section class="global">
@@ -275,7 +280,7 @@ require 'php/DB_Connect.php';
                     });
                 </script>
 
-<script>
+    <script>
         const toggle = document.querySelector('.notification-toggle');
         const drop = document.querySelector('.notification-dropdown');
         
