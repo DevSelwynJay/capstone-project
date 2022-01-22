@@ -1948,6 +1948,13 @@ table tr {
   margin: 1rem 0 2rem 0;
   padding: 0;
   width: 100%;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .reports__right-col .mobile-select {
+    display: block;
+  }
 }
 
 .reports__right-col_links {
