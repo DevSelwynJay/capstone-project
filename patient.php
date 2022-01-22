@@ -137,7 +137,7 @@ require 'php/DB_Connect.php';
 <div class="menu-mobile " id="menu">
     <ul>
         <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i></a></li>
-        <li><a href="patient.php"><i class="fas fa-user"></i></a></li>
+        <li class="active"><a href="patient.php"><i class="fas fa-user"></i></a></li>
         <li><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
         <li><a href="track-map.php"><i class="fas fa-map-marker"></i></a></li>
         <li><a href="inventory.php"><i class="fas fa-box"></i></a></li>

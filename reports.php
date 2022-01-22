@@ -56,10 +56,12 @@ require 'php/DB_Connect.php';
         });
     </script>
 
-    <!--==========FOR NOTIFICATION SCRIPT ===========================-->
-　　　<script src="notif/notif.js"></script>
-    <!--==========Notification Style ===========================-->
-    <link rel="stylesheet" href="notif/notif.css">
+<!--==========FOR NOTIFICATION SCRIPT ===========================-->
+<script src="notif/notif.js"></script>
+<!--==========Notification Style ===========================-->
+<link rel="stylesheet" href="notif/notif.css">
+
+
 </head>
 <body>
     <section class="global">
@@ -133,7 +135,7 @@ require 'php/DB_Connect.php';
     <ul>
         <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i></a></li>
         <li><a href="patient.php"><i class="fas fa-user"></i></a></li>
-        <li><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
+        <li class="active"><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
         <li><a href="track-map.php"><i class="fas fa-map-marker"></i></a></li>
         <li><a href="inventory.php"><i class="fas fa-box"></i></a></li>
     </ul>
