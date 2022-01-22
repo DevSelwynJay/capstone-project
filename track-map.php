@@ -17,6 +17,7 @@ require 'php/DB_Connect.php';
     <script src="js/jquery-3.6.0.js"></script>
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <title>Track Map</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -149,9 +150,49 @@ require 'php/DB_Connect.php';
                     <button id="tab4" class="tablinks" onclick="openMMR();">MMR</button>
                     <button id="tab5" class="tablinks" onclick="openCovid();">Covid Vaccine</button>
                 </div>
+
+                <div class="mobile-select">
+                <select id="tab-mobile" onchange="check()">
+                   <option selected="selected">Choose options</option>
+                   <option value="openOPV()">OPV</option>
+                   <option value="openIPV()">IPV</option>
+                   <option value="openBCG()">BCG</option>
+                   <option value="openMMR()">MMR</option>
+                   <option value="openCovid()">Covid Vaccine</option>
+                </select>
+                </div>
+
+
+
+                    <script type="text/javascript">
+                    document.getElementById("tab1").focus();
+                    function check()
+                    {
+                        var val = document.getElementById("tab-mobile").value;
+                        if(val == "openOPV()"){
+                            document.getElementById("myframe").src = "php/testingCode/opv.php";
+                        }
+                        else if(val == "openIPV()"){
+                            document.getElementById("myframe").src = "php/testingCode/ipv.php";
+                        }
+                        else if(val == "openBCG()"){
+                            document.getElementById("myframe").src = "php/testingCode/bcg.php";
+                        }
+                        else if(val == "openMMR()"){
+                            document.getElementById("myframe").src = "php/testingCode/mmr.php";
+                        }
+                        else if(val == "openCovid()"){
+                            document.getElementById("myframe").src = "php/testingCode/covid.php";
+                        }
+                    }
+                    </script>
+
+
+
                 <div class="gridd">
                     <div id="framecont"><iframe frameborder = "0" id="myframe" src="php/testingCode/opv.php" style="-webkit-transform:scale(0.9);"></iframe></div>
                 </div>
+
                 <script>
                     document.getElementById("tab1").focus();
 

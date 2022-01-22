@@ -20,6 +20,17 @@
         @media(max-width: 1200px){
             padding: 1rem .5rem;
         }
+
+        .left-column{
+          @media(max-width: 991px){
+            order: 2;
+        }
+        }
+        .right-column{
+          @media(max-width: 991px){
+           order: 1;
+        }
+        }
     }
     &__left-col{
         margin-bottom: 2rem;
@@ -186,6 +197,14 @@
         @media(max-width: 990px){
             margin-top: 1rem;
         }
+
+        .mobile-select{
+          margin: 1rem 0 2rem 0;
+          padding: 0;
+          width: 100%;
+        }
+
+     
         
         &_links{
 
@@ -194,6 +213,9 @@
             text-align: center;
             justify-content: center;
            
+            @media(max-width: 991px){
+              display: none;
+            }
            
             a{
                 transition: all 300ms ease-in-out;

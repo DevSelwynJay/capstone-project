@@ -141,6 +141,8 @@ require 'php/DB_Connect.php';
                            <div class="reports-title col-lg-3">
                             <h4>Medicine Reports</h4>
                            </div>
+
+
                            <ul class="reports-menu col-lg-9">
                                <li><a id="medicine-link" class="active">Medicine Released</a></li>
                                <li><a id="added-link">Added</a></li>
@@ -148,6 +150,20 @@ require 'php/DB_Connect.php';
                                <li><a id="update-link">Updated</a></li>
                                <li><a id="vaccine-link">Vaccine Released</a></li>
                            </ul>
+
+                           <!--
+                           <div class="mobile-select">
+                            <select id="tab-mobile">
+                                <option selected="selected">Choose options</option>
+                                <option value="medicine-reports.php"><a id="added-link">Added</a></option>
+                                <option value="consultation-reports.php"><a id="expired-link">Expired</a></option>
+                                <option value="vaccination-reports.php"><a id="update-link">Updated</a></option>
+                                <option value="vaccination-reports.php"><a id="vaccine-link">Vaccine Released</a></option>
+                            </select>
+                           </div>
+                             -->
+
+
                         </div>
                        <div class="row-container">
                          <div class="col-lg-3 left-reports">

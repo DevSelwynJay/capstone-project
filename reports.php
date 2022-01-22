@@ -138,7 +138,7 @@ require 'php/DB_Connect.php';
                  <div class="col-sm-12">
                     <div class="reports_content">
                        <div class="row-container">
-                          <div class="col-md-12 col-lg-8">
+                          <div class="left-column col-md-12 order-md-2 col-lg-8">
                              <div class="reports__left-col">
                                  <h2 style="color:var(--third-color);font-weight: bold">Today&#39;s Patients</h2>
                                  <h2 style="color:var(--third-color);font-weight: bold">Medical Consultation</h2>
@@ -203,13 +203,21 @@ require 'php/DB_Connect.php';
                                   </div>
                               </div>
                           </div>
-                          <div class="col-md-12  col-lg-4">
+                          <div class="right-column col-md-12  order-md-1 col-lg-4">
                              <div class="reports__right-col">
                                <div class="reports__right-col_links">
                                 <a href="medicine-reports.php">Medicine</a>
                                 <a href="consultation-reports.php">Consulted</a>
                                 <a href=vaccination-reports.php>Vaccinated Patient</a>
                                </div>
+                                <div class="mobile-select">
+                                    <select id="tab-mobile" onchange="javascript:handleSelect(this)">
+                                    <option selected="selected">Choose options</option>
+                                    <option value="medicine-reports.php">Medicine</option>
+                                    <option value="consultation-reports.php">Consulted</option>
+                                    <option value="vaccination-reports.php">Vaccinated Patient</option>
+                                    </select>
+                                </div>
                              </div>
                           </div>
                        </div>
@@ -219,6 +227,15 @@ require 'php/DB_Connect.php';
            </div>
         </div>
      </section>
+
+
+    <script type="text/javascript">
+    function handleSelect(elm)
+    {
+    window.location = elm.value;
+    }
+    </script>
+
 
     <script>
         $(document).ready(function(){

@@ -62,3 +62,38 @@ h5{
 .navbar > ul > li > a .count {
   padding: 0.5rem 0.5rem !important;
 }
+
+
+.mobile-select{
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  padding: 2rem 0;
+
+  @media(max-width:1300px){
+      display: block;
+  }
+
+  select{
+      -webkit-appearance: none;
+      -moz-appearance: none;
+       border: 2px solid var(--light-grey);
+       height: 45px;
+       background-color: transparent;
+       margin: 0;
+  }
+
+  &::after{
+      content: "\f078";
+      position: absolute;
+      font-size: 1rem;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1.5rem;
+      z-index: -1;
+      color: var(--primary-color);
+  }
+}
