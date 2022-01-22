@@ -1,10 +1,23 @@
 <?php
 
 session_start();
-if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
+if(!isset($_SESSION['email'])){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
+}
+else{
+    $isPatient=false;
+    foreach (array(2,3) as $item){
+
+        if($item==$_SESSION['account_type']){
+            $isPatient=true;
+            break;
+        }
+    }
+    if(!$isPatient){
+        header("location:php/loginProcesses/redirect.php");
+    }
 }
 
 ?>
@@ -14,9 +27,9 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--CSS Bootstrap-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<!--custom CSS-->
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="scss/bootstrap-grid.css">
+    <!--custom CSS-->
 <link rel="stylesheet" href="scss/main.css">
 <!--Font Awesome-->
 <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
@@ -31,12 +44,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function (data) {
-            $.post('php/admin_session.php').done(
-                function (data) {
-                    let result = JSON.parse(data)
-                    $("#name-sidebar").html(result.admin_name)
-                }
-            )
+
         })
     </script>
     <style>
@@ -44,6 +52,19 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
             z-index: 1000;
         }
     </style>
+    <!--Custom Modal Design-->
+    <link rel="stylesheet" href="scss/modal.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
+    <!--Jquery-->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!-- jQuery Modal-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--Jquery UI css and js-->
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="scss/tooltip.css">
 </head>
 <body>
 
@@ -51,27 +72,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 <section>
 
 <div class="global__container">
-<div class="global__sidenav">
-<div class="inner-sidenav">
-<div class="spacer">
-<div class="profile">
-<div class="profile-img">
-<img src="img/user3.png" alt="">
-</div>
-<h4 id="name-sidebar">Your Name</h4>
-</div>
-<ul class="menu">
-<li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
-<li><a href="patient.php" class="patient">Patient</a></li>
-<li><a href="reports.php" class="reports">Reports</a></li>
-<li><a href="track-map.php" class="trackMap">Track Map</a></li>
-<li><a href="inventory.php" class="inventory">Inventory</a></li>
-    <?php include 'sidebarFix.html'?>
-</ul>
-</div>
 
-</div>    
-</div>
 <div class="global__main-content">
 <div class="inner-page-content">
 <div class="col-sm-12 p-0">
@@ -111,6 +112,17 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                      </div>
                   </div>
 <div class="col-sm-12">
+    <div class="row">
+        <div class="backbtn col-lg-12 flex-box-row justify-content-lg-end justify-content-md-start margin-top-2">
+            <button class="modal-primary-button" id="back-to-home"><i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>Back to Home Page</button>
+            <script>
+                $("#back-to-home").click(function () {
+                    location.href = 'dashboard-patient.php';
+                })
+            </script>
+        </div>
+    </div>
+
 <div class="content about--page">
 <h1>About Us</h1>
 <div>
@@ -192,5 +204,140 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
        mobileMenu.style.display = "block";
     });
  </script>
+
+<!--modal for error-->
+<div id="pop-up-error" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+        <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;">
+            Cannot request an EMR. You do not have any medical record.
+        </p>
+    </div>
+    <div class="flex-box-row justify-content-end align-items-center">
+        <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
+    </div>
+
+</div>
+
+<!--      --><?php //include 'change-password-patient.php'?>
+
+<script>
+    // $("#change-pwd-btn").click(function (data) {
+    //     $(".modal-p-error").css("visibility","hidden")
+    //     $("#close-dropdown-2").trigger("click")
+    //     $("#pop-up-change-pwd").modal({})
+    // })
+    $("#logout").click(function () {
+        location.href = "php/sessionDestroy.php";
+    })
+    $("#request_emr").click(function (data) {
+        $("#pwd-for-emr-req").val("")
+        $(".modal-p-error").css("visibility","hidden")
+        $("#close-dropdown-2").trigger("click")
+        $.post("php/patientSide/isLinked.php").done(function (data) {
+            let result = JSON.parse(data);
+            if(result.status=="ok"){
+                $("#pop-up-req-emr").modal({
+                    // showClose:false
+                })
+            }
+            else {
+                $("#pop-up-error").modal({
+                    showClose:false
+                })
+                $("#pop-up-error-message").html(result.err_msg)
+                // Cannot request an EMR. You do not have any medical record.
+
+            }
+        })
+    })
+</script>
+
+<!--modal for REQUEST EMR-->
+<div id="pop-up-req-emr" class="modal">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img src="img/HIS%20logo%20blue.png" width="250" height="90">
+    </div>
+    <p class="modal-title-2">Request for an EMR</p>
+    <p class="modal-p" style="text-align: center!important;">(Electronic Medical Record)</p>
+    <p class="modal-p-2" style="text-align: center!important;">Please Re-enter your Password Again</p>
+    <div class="flex-box-column align-items-center margin-top-2">
+        <input id="pwd-for-emr-req" type="password" class="search-bar" placeholder="password" style="width: 60%">
+        <p class="modal-p-error">Invalid Password</p>
+        <button id="req-emr-btn" class="modal-primary-button-2 margin-top-2" disabled style="opacity: 0.5">
+            Request EMR
+        </button>
+    </div>
+    <script>
+        //request emr
+        $("#pwd-for-emr-req").keyup(function (data) {
+
+            let char = $(this).val().trim();
+
+            $.post("php/patientSide/checkPatientOnlineAccountPassword.php",{pwd:char}).done(
+                function (data) {
+                    if(data==1){
+                        $("#req-emr-btn").css("opacity","1").prop("disabled",false)
+                    }
+                    else {
+                        $("#req-emr-btn").css("opacity","0.5").prop("disabled",true)
+                    }
+                }
+            )
+        })
+        $("#req-emr-btn").click(function () {
+            $("#pop-up-loading").modal({
+                showClose:false,clickClose:false,escapeClose:false
+            })
+            setTimeout(()=>{
+                $.post("php/patientSide/requestEMR.php").done(function (data) {
+                    $('[href="#pop-up-loading"]').trigger("click");
+                    $("#pop-up-success").modal({
+                        showClose:false
+                    })
+                    if(data==2){//no existing request
+                        $("#pop-up-success-message").html("Your EMR request is waiting to approve!")
+                    }
+                    if(data==1){//there is existing request that is replaced by new one
+                        $("#pop-up-success-message").html("Your last EMR request had been replaced by this new request.")
+                    }
+                })
+            },2000)
+
+        })
+    </script>
+</div>
+
+
+<!--Modal for loading-->
+<div id="pop-up-loading" class="modal">
+    <div style="display: flex;align-items: center;justify-content: center">
+        <div class="loader"></div>
+        <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+            Requesting...
+        </p>
+        <a href="#pop-up-loading" rel="modal:close" id="close-loading" style="display: none">
+        </a>
+    </div>
+</div>
+
+<!--Modal for success-->
+<div class="modal" id="pop-up-success">
+    <div class="flex-box-row justify-content-center align-items-center">
+        <img class="modal-header-icon" src="img/check.png">
+        <p class="modal-p" id="pop-up-success-message" style="text-align: center!important;">Your EMR request is waiting to approve!</p>
+    </div>
+
+    <div class="flex-box-row justify-content-end align-items-end margin-top-1">
+        <a href="#pop-up-success" rel="modal:close">
+            <button class="modal-primary-button" id="pop-up-success-ok-btn" style="margin-right: 0.5rem">Okay</button>
+        </a>
+        <script>
+            $("#pop-up-success-ok-btn").on('click',function () {
+                // location.href = 'dashboard-patient.php'
+            })
+        </script>
+    </div>
+</div>
 </body>
 </html>

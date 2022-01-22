@@ -56,7 +56,6 @@ else{
     <link rel="stylesheet" href="scss/modal.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/scrollbar_loading.css">
-    <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
             $.post("php/patientSide/patientSession.php").done(function (data){
@@ -236,59 +235,7 @@ else{
 
     </section>
 
-    <script>
-        const dropdown = document.querySelector('#dropdown');
-        const dropdownToggle = document.querySelector('#dropdown-toggle');
-        const Closedropdown = document.querySelector('#close-dropdown');
-        
-        dropdownToggle.addEventListener('click',function(){//Conditions
-        if(dropdown.classList.contains('open')){ // Close Mobile Menu
-        dropdown.classList.remove('open');
-        }
-        else{ // Open Mobile Menu
-        dropdown.classList.add('open');
-        }});
-        
-        
-        dropdownToggle.addEventListener('click',function(){
-            dropdown.classList.add('open');
-            dropdownToggle.style.display = "none";
-            Closedropdown.style.display = "block"
-        });
-        
-        Closedropdown.addEventListener('click',function(){
-           dropdown.classList.remove('open');
-           Closedropdown.style.display = "none"
-           dropdownToggle.style.display = "block";
-        });
-        
-        </script>
-         <script>
-            const menu = document.querySelector('#menu');
-            const mobileMenu = document.querySelector('#mobile-menu');
-            const closeMobileMenu = document.querySelector('#close-mobile-menu');
-            
-            mobileMenu.addEventListener('click',function(){//Conditions
-            if(menu.classList.contains('open')){ // Close Mobile Menu
-            menu.classList.remove('open');
-            }
-            else{ 
-            menu.classList.add('open');
-            }});
-            
-            
-            mobileMenu.addEventListener('click',function(){
-                menu.classList.add('open');
-                mobileMenu.style.display = "none";
-                closeMobileMenu.style.display = "block"
-            });
-            
-            closeMobileMenu.addEventListener('click',function(){
-               menu.classList.remove('open');
-               closeMobileMenu.style.display = "none"
-               mobileMenu.style.display = "block";
-            });
-         </script>
+
 
     <?php include 'change-password-patient.php'?>
 
@@ -306,10 +253,12 @@ else{
             location.href = "php/sessionDestroy.php";
         })
         $("#request_emr").click(function (data) {
+            $("#pwd-for-emr-req").val("")
             $(".modal-p-error").css("visibility","hidden")
             $("#close-dropdown-2").trigger("click")
             $.post("php/patientSide/isLinked.php").done(function (data) {
                 let result = JSON.parse(data);
+                console.log(result)
                 if(result.status=="ok"){
                     $("#pop-up-req-emr").modal({
                         showClose:false
@@ -324,6 +273,7 @@ else{
 
                 }
             })
+
         })
     </script>
 
@@ -383,6 +333,18 @@ else{
         </script>
     </div>
 
+    <!--modal for error-->
+    <div id="pop-up-error" class="modal">
+        <div class="flex-box-row justify-content-center align-items-center">
+            <img src="img/Icons/exclamation-mark.png" class="modal-header-icon"/>
+            <p class="modal-p" id="pop-up-error-message" style="display: flex;justify-content: center;">
+                Cannot request an EMR. You do not have any medical record.
+            </p>
+        </div>
+        <div class="flex-box-row justify-content-end align-items-center">
+            <a href="#pop-up-error" rel="modal:close"><button class="modal-primary-button">Okay</button></a>
+        </div>
+    </div>
 
     <!--Modal for loading-->
     <div id="pop-up-loading" class="modal">
@@ -414,5 +376,59 @@ else{
             </script>
         </div>
     </div>
+
+    <script>
+        const dropdown = document.querySelector('#dropdown');
+        const dropdownToggle = document.querySelector('#dropdown-toggle');
+        const Closedropdown = document.querySelector('#close-dropdown');
+
+        dropdownToggle.addEventListener('click',function(){//Conditions
+            if(dropdown.classList.contains('open')){ // Close Mobile Menu
+                dropdown.classList.remove('open');
+            }
+            else{ // Open Mobile Menu
+                dropdown.classList.add('open');
+            }});
+
+
+        dropdownToggle.addEventListener('click',function(){
+            dropdown.classList.add('open');
+            dropdownToggle.style.display = "none";
+            Closedropdown.style.display = "block"
+        });
+
+        Closedropdown.addEventListener('click',function(){
+            dropdown.classList.remove('open');
+            Closedropdown.style.display = "none"
+            dropdownToggle.style.display = "block";
+        });
+
+    </script>
+    <script>
+        const menu = document.querySelector('#menu');
+        const mobileMenu = document.querySelector('#mobile-menu');
+        const closeMobileMenu = document.querySelector('#close-mobile-menu');
+
+        mobileMenu.addEventListener('click',function(){//Conditions
+            if(menu.classList.contains('open')){ // Close Mobile Menu
+                menu.classList.remove('open');
+            }
+            else{
+                menu.classList.add('open');
+            }});
+
+
+        mobileMenu.addEventListener('click',function(){
+            menu.classList.add('open');
+            mobileMenu.style.display = "none";
+            closeMobileMenu.style.display = "block"
+        });
+
+        closeMobileMenu.addEventListener('click',function(){
+            menu.classList.remove('open');
+            closeMobileMenu.style.display = "none"
+            mobileMenu.style.display = "block";
+        });
+    </script>
 </body>
 </html>

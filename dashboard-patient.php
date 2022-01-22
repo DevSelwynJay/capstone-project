@@ -342,6 +342,7 @@ else{ // Open Mobile Menu
               location.href = "php/sessionDestroy.php";
           })
           $("#request_emr").click(function (data) {
+              $("#pwd-for-emr-req").val("")
               $(".modal-p-error").css("visibility","hidden")
               $("#close-dropdown-2").trigger("click")
               $.post("php/patientSide/isLinked.php").done(function (data) {
