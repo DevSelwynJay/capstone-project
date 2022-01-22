@@ -49,7 +49,57 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                    }
                )
            })
+           //==========FOR NOTIFICATION SCRIPT ===========================
+           $(document).ready(function () {
+               function getNotif() {
+                   $.post("notif/getNotif_1.php").done(function (data) {
+                       let notifMessages = JSON.parse(data);//get notif messages
+
+                       $(".counter").css("visibility","hidden")//hide first the counter
+                       $(".notification-dropdown").html("")//reset notification items
+
+                       if(notifMessages.length==0){//pag walang notif stop ang code
+                           $(".notification-dropdown").html("<li>No new notification</li>")//reset notification items
+                           return
+                       }
+                       // alert("may laman")
+                       for (const notifMessage of notifMessages) {
+                           $(".notification-dropdown").append(notifMessage)
+                       }
+
+                       //put notification count
+                       let notif_count = $(".notification-dropdown li").length;
+                       $(".counter").html(notif_count).css("visibility","visible")
+                       // alert()
+                   })
+               }//end of function
+               getNotif()
+               setInterval(()=>{
+                   getNotif()
+               },6000)
+
+           })
        </script>
+       <!--Notif Styling--->
+       <style>
+           .notification-dropdown li{
+               padding: 0.4rem;
+               text-align: justify-all;
+               border-radius: 0.5rem;
+               cursor: pointer;
+           }
+           .notification-dropdown li span{
+               color: #2b2b2b;
+               font-weight: 600;
+           }
+           .notification-dropdown li a{
+               text-decoration: none;
+               all: inherit;
+           }
+           .notification-dropdown li:hover{
+               background: #e5e7ec;
+           }
+       </style>
        <script src="js/add-patient-admin.js"></script>
        <link rel="stylesheet" href="scss/modal.css"/>
    </head>
@@ -630,6 +680,21 @@ Closedropdown.addEventListener('click',function(){
           $('[name="height"]').tooltip(tooltips);
           $('[name="weight"]').tooltip(tooltips);
 
+      </script>
+
+      <script>
+          const toggle = document.querySelector('.notification-toggle');
+          const drop = document.querySelector('.notification-dropdown');
+
+
+          toggle.addEventListener('click', function () {//Conditions
+              if (drop.classList.contains('notification--show')) { // Close Mobile Menu
+                  drop.classList.remove('notification--show');
+              }
+              else {
+                  drop.classList.add('notification--show');
+              }
+          });
       </script>
    </body>
 </html>

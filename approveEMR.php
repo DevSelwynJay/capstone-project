@@ -40,7 +40,57 @@
               $("#name-sidebar").html(result.admin_name)
             }
     )
+    //==========FOR NOTIFICATION SCRIPT ===========================
+    $(document).ready(function () {
+        function getNotif() {
+            $.post("notif/getNotif_1.php").done(function (data) {
+                let notifMessages = JSON.parse(data);//get notif messages
+
+                $(".counter").css("visibility","hidden")//hide first the counter
+                $(".notification-dropdown").html("")//reset notification items
+
+                if(notifMessages.length==0){//pag walang notif stop ang code
+                    $(".notification-dropdown").html("<li>No new notification</li>")//reset notification items
+                    return
+                }
+                // alert("may laman")
+                for (const notifMessage of notifMessages) {
+                    $(".notification-dropdown").append(notifMessage)
+                }
+
+                //put notification count
+                let notif_count = $(".notification-dropdown li").length;
+                $(".counter").html(notif_count).css("visibility","visible")
+                // alert()
+            })
+        }//end of function
+        getNotif()
+        setInterval(()=>{
+            getNotif()
+        },6000)
+
+    })
   </script>
+    <!--Notif Styling--->
+    <style>
+        .notification-dropdown li{
+            padding: 0.4rem;
+            text-align: justify-all;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        .notification-dropdown li span{
+            color: #2b2b2b;
+            font-weight: 600;
+        }
+        .notification-dropdown li a{
+            text-decoration: none;
+            all: inherit;
+        }
+        .notification-dropdown li:hover{
+            background: #e5e7ec;
+        }
+    </style>
   <link rel="stylesheet" href="scss/modal.css"/>
 </head>
 <body>
@@ -80,41 +130,47 @@
               <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
               <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
             </div>
-            <div class="settings">
-              <a href="profile.php"><i class="fas fa-user-circle"></i></a>
-              <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
-              <a id="close-dropdown"><i class="fas fa-times" id="x-1"></i></a>
-              <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-              <a id="close-mobile-menu"><i class="fas fa-times" id="x-2"></i></a>
-              <!--MOBILE MENU-->
-              <div class="menu-mobile " id="menu">
-                <ul>
-                  <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i>Dashboard</a></li>
-                  <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                  <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                  <li><a href="track-map.php"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                  <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                </ul>
-              </div>
+              <div class="settings">
 
-              <div class="drop-down-settings" id="dropdown">
-                <ul>
-                  <li><a id="approved-emr" href="#">Approve EMR</a></li>
-                  <script>
-                    $("#approved-emr").click(function (data) {
-                      $("#pop-up-approve-emr").modal({
-                        showClose:false,escapeClose:false
-                      })
-                      $("#x-1").trigger("click")
-                    })
-                  </script>
-                  <li><a href="settings.php">settings</a></li>
-                  <li><a href="about.php">About</a></li>
-                  <li><a href="php/sessionDestroy.php">Logout</a></li>
-                </ul>
+                  <a class="notification-toggle">
+                      <i style="cursor: pointer" class="fa fa-bell-o"></i>
+                      <span class="counter">3+</span>
+                  </a>
+                  <!--UPDATED NOTIF STYLING-->
+                  <ul class="notification-dropdown">
+                      <li>Lorem ipsum dolor sit amet consectetur </li>
+                      <li>Lorem ipsum dolor sit amet consectetur </li>
+                      <li>Lorem ipsum dolor sit amet consectetur </li>
+                  </ul>
+                  <!--UPDATED NOTIF STYLING-->
+
+                  <a href="profile.php"><i class="fas fa-user-circle"></i></a>
+                  <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                  <a id="close-dropdown"><i class="fas fa-times"></i></a>
+
+
+                  <div class="drop-down-settings" id="dropdown">
+                      <ul>
+                          <li><a href="approveEMR.php">Approve EMR</a></li>
+                          <li><a href="settings.php">settings</a></li>
+                          <li><a href="about.php">About</a></li>
+                          <li><a href="php/sessionDestroy.php">Logout</a></li>
+                      </ul>
+                  </div>
+
               </div>
-            </div>
           </div>
+            <!--MOBILE MENU-->
+            <div class="menu-mobile " id="menu">
+                <ul>
+                    <li><a href="dashboard-admin.php"><i class="fas fa-columns"></i></a></li>
+                    <li><a href="patient.php"><i class="fas fa-user"></i></a></li>
+                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i></a></li>
+                    <li><a href="track-map.php"><i class="fas fa-map-marker"></i></a></li>
+                    <li><a href="inventory.php"><i class="fas fa-box"></i></a></li>
+                </ul>
+            </div>
+
         </div>
         <div class="col-sm-12">
           <div class="search-tab margin-top-2 row justify-content-sm-around">
@@ -408,6 +464,21 @@
 <?php
 include 'approveEMRScript.html';
 ?>
+
+<script>
+    const toggle = document.querySelector('.notification-toggle');
+    const drop = document.querySelector('.notification-dropdown');
+
+
+    toggle.addEventListener('click', function () {//Conditions
+        if (drop.classList.contains('notification--show')) { // Close Mobile Menu
+            drop.classList.remove('notification--show');
+        }
+        else {
+            drop.classList.add('notification--show');
+        }
+    });
+</script>
 </body>
 </html>
 <style>

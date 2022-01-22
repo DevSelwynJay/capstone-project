@@ -19,8 +19,14 @@ $out_of_stocks_row_count =mysqli_num_rows($out_of_stocks);
 //critical stocks
 $critical_stock = mysqli_query($con,"SELECT * FROM `medinventory` WHERE `stock` <= `criticalstock`");
 $critical_stock_row_count = mysqli_num_rows($critical_stock);
+$emr_req =  mysqli_query($con,"SELECT * FROM `emr_request`");
+$emr_req_count = mysqli_num_rows($emr_req);
+
 if($row_count>0){
     $notif_msg[]=  "<li><a href='pending-patient-acc.php'><span>$row_count</span> Pending Account Request</a></li>";
+}
+if($emr_req_count>0){
+    $notif_msg[]=  "<li><a href='approveEMR.php'><span>$emr_req_count</span> EMR Request</a></li>";
 }
 if($toexpire_row_count>0){
     $notif_msg[]=  "<li><a href='inventory.php'><span>$toexpire_row_count</span> To Expire Medicine/s in our Inventory</a></li>";
