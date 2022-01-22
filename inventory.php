@@ -206,6 +206,8 @@ require 'php/DB_Connect.php';
                                         <!--Add Button para sa MEDS-->
                                         <button class="modal-primary-button-2" type="button" id="addbtn"><i class="fas fa-plus" style="margin-right: 0.3rem"></i>Add Medicine</button>
                                         <!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
+                                        <button id="inventory-logs-btn" class="modal-primary-button" style="background: darkslategray!important;margin-left: 0.3rem"><i class="fas fa-history"></i>View Inventory Logs</button>
+
                                     </div>
                                     <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
                                         <div class="search-container search-container-inventory" >
@@ -217,6 +219,7 @@ require 'php/DB_Connect.php';
                                 <!--Display ko dito yung Table of MEDS-->
                                 <?php
                                 include 'inventoryTable.html'?>
+
                                 <button id="nakatago" style="display: none"></button>
 
 
@@ -234,6 +237,10 @@ require 'php/DB_Connect.php';
 
                             </div>
                             </div>
+                            <?php
+                            include 'inventorylogs.html';
+                            ?>
+
                         </div>
                         <!--Modals-->
                         <!-- Add New Meds Modal -->

@@ -13,6 +13,7 @@
         function displayToExpTable(){
             $.post('php/inventoryP/displayToExpTab2.php').done(function (data){
                 let result = JSON.parse(data);
+                window.rowCount_medicine_to_expire = JSON.parse(data).length;
                 var table = $('#medicine-to-expire-table').tableSortable({
                     data: result,
                     columns:
@@ -50,6 +51,12 @@
                     },
                     tableDidMount: function() {
                         console.log('table did mount')
+                        for (a=0;a<parseInt(window.rowCount_medicine_to_expire);a++){
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Remaining Days")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[3]).attr("data-label","")
+                        }
                     },
                     tableWillUpdate: function() {console.log('table will update')},
                     tableDidUpdate: function() {
@@ -57,6 +64,12 @@
                         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                         for (a=0;a<parseInt( window.rowCount_logs_acc_req);a++){
                             $($($("#medicine-to-expire-table div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                        }
+                        for (a=0;a<parseInt( window.rowCount_medicine_to_expire);a++){
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Remaining Days")
+                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[3]).attr("data-label","")
                         }
                         //thead color
                         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
