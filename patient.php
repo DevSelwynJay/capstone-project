@@ -163,7 +163,7 @@ require 'php/DB_Connect.php';
 
                          </div>
                         <div class="search-container search-container-patient col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
-                           <input type="text" class="search-bar" >
+                           <input type="text" class="search-bar" placeholder="Search Patients" >
                            <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
@@ -172,7 +172,7 @@ require 'php/DB_Connect.php';
                                     }
                                     .search-container{
                                         justify-content: flex-end;
-                                        margin-top: 2rem !important;
+                                        margin-top: 1rem !important;
                                     }
                                     .button-container{
                                         justify-content: center !important;

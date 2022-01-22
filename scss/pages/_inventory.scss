@@ -151,6 +151,10 @@
           width: 1px;
           display: none;
         }
+
+        table thead tr{
+          display: none;
+        }
   
         table tr {
           border-bottom: 3px solid #ddd;
@@ -302,6 +306,10 @@
           padding: 0;
           position: absolute;
           width: 1px;
+          display: none;
+        }
+
+        table thead tr{
           display: none;
         }
   

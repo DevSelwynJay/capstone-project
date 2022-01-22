@@ -2407,6 +2407,9 @@ table tr {
     width: 1px;
     display: none;
   }
+  .inventory__table-main-container table thead tr {
+    display: none;
+  }
   .inventory__table-main-container table tr {
     border-bottom: 3px solid #ddd;
     display: block;
@@ -2558,6 +2561,9 @@ table tr {
     padding: 0;
     position: absolute;
     width: 1px;
+    display: none;
+  }
+  .inventory__table-toexpire-container table thead tr {
     display: none;
   }
   .inventory__table-toexpire-container table tr {
