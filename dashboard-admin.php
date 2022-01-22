@@ -76,26 +76,8 @@ require 'php/DB_Connect.php';
         }
     </style>
 
-    <!--Notif Styling--->
-    <style>
-        .notification-dropdown li{
-            padding: 0.4rem;
-            text-align: justify-all;
-            border-radius: 0.5rem;
-            cursor: pointer;
-        }
-        .notification-dropdown li span{
-            color: #2b2b2b;
-            font-weight: 600;
-        }
-        .notification-dropdown li a{
-            text-decoration: none;
-            all: inherit;
-        }
-        .notification-dropdown li:hover{
-            background: #e5e7ec;
-        }
-    </style>
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="scss/scrollbar_loading.css">
 
     <!--Get admin info from session-->
     <script>
@@ -396,11 +378,15 @@ require 'php/DB_Connect.php';
              $.get("dashboard-chart-backend.php").done(function (data) {
 
                  let result = JSON.parse(data)
+                 if(result.length==0){
+                     $("#container").html("<div style='height: 30vh;display: flex;flex-direction: column;align-items: center;justify-content: center'><h3>No record for popular vaccine</h3><div>")
+                     return
+                 }
                
                  var data = google.visualization.arrayToDataTable(result);
 
                  var options = {
-                     title: 'Popular Vaccines (as of 2015 - 2021)',
+                     title: 'Popular Vaccines (as of '+result[result.length-1][0]+' - '+result[1][0]+')',
                      titleTextStyle: {
                          color: "#FFFFFF",
                          fontSize: 20,
