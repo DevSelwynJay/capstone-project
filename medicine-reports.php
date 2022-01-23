@@ -979,10 +979,13 @@ require 'php/DB_Connect.php';
                 tableDidMount: function() {
                     console.log('table did mount')
                     for (a=0;a<parseInt(window.rowCount_vaccinereport);a++){
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","CATEGORY")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","No. OF Stocks")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","MFG. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","EXP. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OCCURED")
 
                     }
                 },
@@ -994,10 +997,13 @@ require 'php/DB_Connect.php';
                         $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
                     }
                     for (a=0;a<parseInt(window.rowCount_vaccinereport);a++){
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","CATEGORY")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","No. OF Stocks")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","MFG. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","EXP. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OCCURED")
 
                     }
                     //thead color
