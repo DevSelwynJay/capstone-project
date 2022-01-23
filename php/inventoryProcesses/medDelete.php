@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con=null;
 require '../DB_Connect.php';
 
