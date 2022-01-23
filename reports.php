@@ -62,6 +62,7 @@ require 'php/DB_Connect.php';
 <link rel="stylesheet" href="notif/notif.css">
 
 
+
 </head>
 <body>
     <section class="global">
@@ -149,64 +150,22 @@ require 'php/DB_Connect.php';
                              <div class="reports__left-col">
                                  <h2 style="color:var(--third-color);font-weight: bold">Today&#39;s Patients</h2>
                                  <h2 style="color:var(--third-color);font-weight: bold">Medical Consultation</h2>
-                                <div class="reports__left-col-container" id="displayreport">
-                                    <table >
-                                        <tbody>
-                                           <tr>
-                                              <th>Name</th>
-                                              <th>Type</th>
-                                           </tr>
-                                           <tr>
-                                              <td>Name</td>
-                                              <td>Illness</td>
-                                           </tr>
-                                           <tr>
-                                            <td>Name</td>
-                                            <td>Illness</td>
-                                           </tr>
-                                           <tr>
-                                            <td>Name</td>
-                                            <td>Illness</td>
-                                           </tr>
-                                           <tr>
-                                            <td>Name</td>
-                                            <td>Illness</td>
-                                           </tr>
-                                          
-                                        </tbody>
-                                     </table>
+                                <div class="reports__left-col-container">
+                                    <button id="nakatagoreport" style="display: none"></button>
+                                    <?php
+                                    include "reportMain.html";
+                                    ?>
                                 </div>
 
                              </div>
                               <div class="reports__left-col">
 
                                   <h2 style="color:var(--third-color);font-weight: bold">Vaccination Consultation</h2>
-                                  <div class="reports__left-col-container" id="displayreport2">
-                                      <table >
-                                          <tbody>
-                                          <tr>
-                                              <th>Name</th>
-                                              <th>Type</th>
-                                          </tr>
-                                          <tr>
-                                              <td>Name</td>
-                                              <td>Illness</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Name</td>
-                                              <td>Illness</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Name</td>
-                                              <td>Illness</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Name</td>
-                                              <td>Illness</td>
-                                          </tr>
-
-                                          </tbody>
-                                      </table>
+                                  <div class="reports__left-col-container">
+                                      <button id="nakatagoreport2" style="display: none"></button>
+                                      <?php
+                                      include "reportMain2.html";
+                                      ?>
                                   </div>
                               </div>
                           </div>
@@ -246,45 +205,9 @@ require 'php/DB_Connect.php';
 
     <script>
         $(document).ready(function(){
-            displayMainReport();
-            displayMainReport2();
+            $('#nakatagoreport').trigger("click");
+            $('#nakatagoreport2').trigger("click");
         })
-
-        function displayMainReport(page){
-
-            $.ajax({
-                url: 'php/reportProcesses/displayMainReport.php',
-                type:'POST',
-                data:{
-                    page:page
-                },
-                success:function (data,status){
-                    $('#displayreport').html(data);
-                }
-            })
-        }
-        $(document).on("click",".pagination_link",function (){
-            var page = $(this).attr("id");
-            displayMainReport(page);
-        })
-        function displayMainReport2(page){
-
-            $.ajax({
-                url: 'php/reportProcesses/displayMainReport2.php',
-                type:'POST',
-                data:{
-                    page:page
-                },
-                success:function (data,status){
-                    $('#displayreport2').html(data);
-                }
-            })
-        }
-        $(document).on("click",".pagination_link2",function (){
-            var page = $(this).attr("id");
-            displayMainReport2(page);
-        })
-
 
     </script>
 <!--Drop down script-->
@@ -355,5 +278,59 @@ require 'php/DB_Connect.php';
             }
         });
     </script>
+    <script src="js/table-sortable.js"></script>
+    <style>
+        .active{
+            background: var(--primary-color)!important;
+            color: var(--secondary-color)!important;
+            border:none!important;
+            padding: 0.5em 0.5rem!important;
+        }
+        .btn-default{
+            border:1px solid var(--light-grey)!important;
+            padding: 0.5em 0.5rem!important;
+        }
+        .gs-pagination{
+            margin-top: 0.5em;
+        }
+        .gs-pagination .row .col-md-6 span{
+            font-size: clamp(0.4rem,0.8rem,1rem);
+        }
+        .gs-button,.gs-button span{
+            color: var(--secondary-color);
+        }
+        th{
+            background: var(--primary-color);
+        }
+        .btn-group button,.btn-group button span{/*sa pagination na button*/
+            outline: none;
+            padding: 0.2em 0.3rem;
+            margin: 0.2%;
+            word-wrap: normal;
+        }
+        @media(max-width: 1150px) {
+            td{
+                font-size: clamp(0.4rem,0.8rem,1rem);
+            }
+        }
+        .gs-table-head tr th span {
+            color: white!important;
+        }
+        #updatebtn{
+            background-color: var(--primary-color);
+            color: #f8f8f8 !important;
+            padding: 0.6rem;
+            border-radius: 0.4rem;
+            -webkit-transition: all 200ms ease-in-out;
+            transition: all 200ms ease-in-out;
+        }
+        #exclamation{
+            color: #ff1515 !important;
+            padding: 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 1.4rem !important;
+            cursor: unset !important;
+        }
+    </style>
 </body>
 </html>

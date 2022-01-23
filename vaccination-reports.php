@@ -56,6 +56,7 @@ require 'php/DB_Connect.php';
     <script src="notif/notif.js"></script>
     <!--==========Notification Style ===========================-->
     <link rel="stylesheet" href="notif/notif.css">
+
 </head>
 <body>
     <section class="global">
@@ -173,31 +174,10 @@ require 'php/DB_Connect.php';
                              </div>
                          </div>
                          <div class="col-lg-9 table-reports">
-                           <div class="reports__individual-container" id="tablediv">
+                           <div class="reports__individual-container" >
                             <table class="reports__individual-reports-table">
-                                <tbody>
-                                   <tr>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Address</th>
-                                    <th>Gender</th>
-                                    <th>Date of Vaccination</th>
-                                   </tr>
-                                   <tr>
-                                      <td>Name</td>
-                                      <td>Illness</td>
-                                      <td>Illness</td>
-                                      <td>Illness</td>
-                                      <td>Illness</td>
-                                   </tr>
-                                   <tr>
-                                    <td>Name</td>
-                                    <td>Illness</td>
-                                    <td>Illness</td>
-                                    <td>Illness</td>
-                                    <td>Illness</td>
-                                 </tr>
-                                   
+                                <tbody id="tablediv">
+
                                 </tbody>
                              </table>
                            </div>
@@ -211,6 +191,10 @@ require 'php/DB_Connect.php';
      </section>
 
     <script>
+
+
+
+
         $(document).ready(function (){
             displayMinor();
             $('#minor-link').on('click',function (){
@@ -667,7 +651,7 @@ require 'php/DB_Connect.php';
             });
         });
 
-        function displayMinor(page){
+        function displayMinor(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -698,21 +682,18 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displayMinorVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"minor");
+                    displayreport(data)
                 }
             })
 
         };//end of displayMinor
-        $(document).on("click",".pagination_linkminor",function (){
-            var page = $(this).attr("id");
-            displayMinor(page);
-        });
 
-        function displayAdult(page){
+
+        function displayAdult(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -743,21 +724,22 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displayAdultVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"adult");
+                    displayreport(data);
+
+
                 }
+
             })
 
-        };//end of displayAdult
-        $(document).on("click",".pagination_linkadult",function (){
-            var page = $(this).attr("id");
-            displayMinor(page);
-        });
 
-        function displaySenior(page){
+        };//end of displayAdult
+
+
+        function displaySenior(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -788,19 +770,16 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displaySeniorVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"senior");
+                    displayreport(data)
                 }
             })
         }
-        $(document).on("click",".pagination_linksenior",function (){
-            var page = $(this).attr("id");
-            displaySenior(page);
-        });
-        function displayInfant(page){
+
+        function displayInfant(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -831,19 +810,16 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displayInfantVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"infant");
+                    displayreport(data)
                 }
             })
         }
-        $(document).on("click",".pagination_linkinfant",function (){
-            var page = $(this).attr("id");
-            displayInfant(page);
-        });
-        function displayPregnant(page){
+
+        function displayPregnant(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -874,19 +850,16 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displayPregnantVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"pregnant");
+                    displayreport(data);
                 }
             })
         }
-        $(document).on("click",".pagination_linkpregnant",function (){
-            var page = $(this).attr("id");
-            displayPregnant(page);
-        });
-        function displayPwd(page){
+
+        function displayPwd(){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
@@ -917,18 +890,117 @@ require 'php/DB_Connect.php';
                 url: 'php/reportProcesses/displayPwdVaccine.php',
                 type: 'POST',
                 data:{
-                    page:page,
                     interval:interval
                 },
                 success: function (data, status){
-                    $('#tablediv').html(data);
+                    //console.log(JSON.parse(data)+"pwd");
+                    displayreport(data);
                 }
             })
         }
-        $(document).on("click",".pagination_linkpwd",function (){
-            var page = $(this).attr("id");
-            displayPwd(page);
-        });
+
+        function displayreport(data){
+            var record = data;
+            let result = JSON.parse(record);
+            window.rowCount_vaccinereport = JSON.parse(record).length;
+            var table = $('#tablediv').tableSortable({
+                data: result,
+                columns:
+                    {
+                        name:"Name",
+                        address:"Address",
+                        gender:"Gender",
+                        date:"Date of Consultation",
+                    }
+                ,
+                //searchField: '#meds',
+                // responsive: {
+                //     720: {
+                //         columns: {
+                //             // id: "ID",
+                //             name:"Name",
+                //             date:"Date Requested",
+                //             button:"Action"
+                //         },
+                //     },
+                //     512:{
+                //         columns: {
+                //             // id: "ID",
+                //             name:"Name",
+                //             date:"Date Requested",
+                //             button:"Action"
+                //         },
+                //     }
+                // },
+                rowsPerPage: 5,
+                pagination: true,
+                sorting:false,
+                tableWillMount: function() {
+                    console.log('table will mount')
+                },
+                tableDidMount: function() {
+                    console.log('table did mount')
+                    for (a=0;a<parseInt(window.rowCount_vaccinereport);a++){
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+
+                    }
+                },
+                tableWillUpdate: function() {console.log('table will update')},
+                tableDidUpdate: function() {
+                    // console.log('table did update');  click_view_button();
+                    //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                    for (a=0;a<parseInt( window.rowCount_vaccinereport);a++){
+                        $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                    }
+                    for (a=0;a<parseInt(window.rowCount_vaccinereport);a++){
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+
+                    }
+                    //thead color
+                    //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                    $(".gs-table-head tr th span").css("color","white!important");
+                },
+                tableWillUnmount: function() {console.log('table will unmount')},
+                tableDidUnmount: function() {console.log('table did unmount')},
+                onPaginationChange: function(nextPage, setPage) {
+                    setPage(nextPage);
+                }
+            });
+            if(JSON.parse(record).length==0){
+                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+                return
+            }
+            $('#changeRows').on('change', function() {
+                table.updateRowsPerPage(parseInt($(this).val(), 10));
+            })
+
+            $('#rerender').click(function() {
+                table.refresh(true);
+            })
+
+            $('#distory').click(function() {
+                table.distroy();
+            })
+
+            $('#refresh').click(function() {
+                table.refresh();
+            })
+
+            $('#setPage2').click(function() {
+                table.setPage(1);
+            })
+            //thead color
+            //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+            $(".gs-table-head tr th span").css("color","white!important");
+        }
+
+
 
 
     </script>
@@ -1001,5 +1073,59 @@ require 'php/DB_Connect.php';
             }
         });
     </script>
+    <script src="js/table-sortable.js"></script>
+    <style>
+        /*.active{
+            background: var(--primary-color)!important;
+            color: var(--secondary-color)!important;
+            border:none!important;
+            padding: 0.5em 0.5rem!important;
+        }*/
+        .btn-default{
+            border:1px solid var(--light-grey)!important;
+            padding: 0.5em 0.5rem!important;
+        }
+        .gs-pagination{
+            margin-top: 0.5em;
+        }
+        .gs-pagination .row .col-md-6 span{
+            font-size: clamp(0.4rem,0.8rem,1rem);
+        }
+        .gs-button,.gs-button span{
+            color: var(--secondary-color);
+        }
+        th{
+            background: var(--primary-color);
+        }
+        .btn-group button,.btn-group button span{/*sa pagination na button*/
+            outline: none;
+            padding: 0.2em 0.3rem;
+            margin: 0.2%;
+            word-wrap: normal;
+        }
+        @media(max-width: 1150px) {
+            td{
+                font-size: clamp(0.4rem,0.8rem,1rem);
+            }
+        }
+        .gs-table-head tr th span {
+            color: white!important;
+        }
+        #updatebtn{
+            background-color: var(--primary-color);
+            color: #f8f8f8 !important;
+            padding: 0.6rem;
+            border-radius: 0.4rem;
+            -webkit-transition: all 200ms ease-in-out;
+            transition: all 200ms ease-in-out;
+        }
+        #exclamation{
+            color: #ff1515 !important;
+            padding: 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 1.4rem !important;
+            cursor: unset !important;
+        }
+    </style>
 </body>
 </html>

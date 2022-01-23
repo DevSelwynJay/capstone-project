@@ -1,7 +1,6 @@
 <div class="content patients-view-container margin-top-3">
-    <h3 style="color: var(--third-color)" class="">Medicine to Expire</h3>
     <table class="patients-view">
-        <tbody id="medicine-to-expire-table">
+        <tbody id="displayreport2">
 
         </tbody>
     </table>
@@ -10,18 +9,18 @@
 <script>
     $(document).ready(function () {
 
-        function displayToExpTable(){
-            $.post('php/inventoryP/displayToExpTab2.php').done(function (data){
+        function displayMainReport2(){
+            $.post('php/reportProcesses/displayMainReport2.php').done(function (data){
                 let result = JSON.parse(data);
-                window.rowCount_medicine_to_expire = JSON.parse(data).length;
-                var table = $('#medicine-to-expire-table').tableSortable({
+
+                window.rowCount_report2 = JSON.parse(data).length;
+                var table = $('#displayreport2').tableSortable({
                     data: result,
                     columns:
                         {
-                            id:"Medicine ID",
-                            name:"Medicine Name",
-                            remaindays:"Remaining Days",
-                            icon:""
+                            name:"Name",
+                            patient_type:"Patient Type",
+                            consultation_type:"Consultation Type",
                         }
                     ,
                     //searchField: '#meds',
@@ -45,17 +44,17 @@
                     // },
                     rowsPerPage: 5,
                     pagination: true,
-                    sorting:['id','name','stock','dateadded'],
+                    sorting:false,
                     tableWillMount: function() {
                         console.log('table will mount')
                     },
                     tableDidMount: function() {
                         console.log('table did mount')
-                        for (a=0;a<parseInt(window.rowCount_medicine_to_expire);a++){
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Remaining Days")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[3]).attr("data-label","")
+                        for (a=0;a<parseInt(window.rowCount_report2);a++){
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[1]).attr("data-label","Patient Type")
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[2]).attr("data-label","Consultation Type")
+
                         }
                     },
                     tableWillUpdate: function() {console.log('table will update')},
@@ -65,11 +64,11 @@
                         for (a=0;a<parseInt( window.rowCount_logs_acc_req);a++){
                             $($($("#medicine-to-expire-table div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
                         }
-                        for (a=0;a<parseInt( window.rowCount_medicine_to_expire);a++){
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Remaining Days")
-                            $($($("#medicine-to-expire-table .gs-table-body").children()[a]).children()[3]).attr("data-label","")
+                        for (a=0;a<parseInt( window.rowCount_report2);a++){
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[1]).attr("data-label","Patient Type")
+                            $($($("#displayreport2 .gs-table-body").children()[a]).children()[2]).attr("data-label","Consultation Type")
+
                         }
                         //thead color
                         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
@@ -82,7 +81,7 @@
                     }
                 });
                 if(JSON.parse(data).length==0){
-                    $("#medicine-to-expire-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No To Expire Medicines</h3></td></tr>")
+                    $("#displayreport2 div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Vaccination Today</h3></td></tr>")
                     return
                 }
                 // if(JSON.parse(data).length==0){
@@ -141,12 +140,10 @@
             })//
         }
 
-        displayToExpTable()
-        $('#nakatago2').click(function(){
-            displayToExpTable();
+        displayMainReport2()
+        $('#nakatagoreport2').click(function(){
+            displayMainReport2();
         });
-
-
 
     })//document ready
 </script>
