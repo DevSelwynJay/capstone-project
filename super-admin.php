@@ -226,7 +226,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                   }</style>
                               <form autocomplete="off">
                                   <div class="row">
-                                      <label for="idno" style="color:#6D6D6DFF">User ID:</label>
+                                      <label for="idno" style="color:#6D6D6DFF">Admin ID:</label>
                                       <input type="text" id="idno" disabled placeholder="Enter Admin ID" />
                                       <label for="adminname" style="color:#6D6D6DFF">Admin:</label>
                                       <input type="text" id="adminname" disabled placeholder="" />
@@ -247,7 +247,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                               }</style>
                               <form autocomplete="off">
                                   <div class="row">
-                                      <label for="idno3" style="color:#6D6D6DFF">User ID:</label>
+                                      <label for="idno3" style="color:#6D6D6DFF">Admin ID:</label>
                                       <input type="text" id="idno3" disabled placeholder="" />
                                       <label for="adminname3" style="color:#6D6D6DFF">Admin:</label>
                                       <input type="text" id="adminname3" disabled placeholder="" />
@@ -263,7 +263,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       }</style>
                                   <form autocomplete="off">
                                       <div class="row">
-                                          <label for="idno2" style="color:#6D6D6DFF">User ID:</label>
+                                          <label for="idno2" style="color:#6D6D6DFF">Admin ID:</label>
                                           <input type="text" id="idno2" placeholder="Enter Admin ID" />
                                       </div>
                                       <a href="#show-del2" rel="modal:open" id="disable-admin" class="button-square">Deactivate Account</a>
@@ -346,7 +346,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                   }</style>
                               <form autocomplete="off">
                                   <div class="row">
-                                      <label for="patidno" style="color:#6D6D6DFF">User ID:</label>
+                                      <label for="patidno" style="color:#6D6D6DFF">Patient ID:</label>
                                       <input type="text" id="patidno" disabled placeholder="Enter Patient ID" />
                                       <label for="patname" style="color:#6D6D6DFF">Patient:</label>
                                       <input type="text" id="patname" disabled placeholder="" />
@@ -363,7 +363,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                }</style>
                            <form autocomplete="off">
                                <div class="row">
-                                   <label for="patidno3" style="color:#6D6D6DFF">User ID:</label>
+                                   <label for="patidno3" style="color:#6D6D6DFF">Patient ID:</label>
                                    <input type="text" id="patidno3" disabled placeholder="Enter Patient ID" />
                                    <label for="patname3" style="color:#6D6D6DFF">Patient:</label>
                                    <input type="text" id="patname3" disabled placeholder="" />
@@ -379,7 +379,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                    }</style>
                                <form autocomplete="off">
                                    <div class="row">
-                                       <label for="patidno2" style="color:#6D6D6DFF">User ID:</label>
+                                       <label for="patidno2" style="color:#6D6D6DFF">Patient ID:</label>
                                        <input type="text" id="patidno2" placeholder="Enter Patient ID" />
                                    </div>
                                    <a href="#show-delpat2" rel="modal:open" id="disable-patient" class="button-square">Deactivate Account</a>
@@ -389,7 +389,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                    <br> <br>
 
                   <div class="col-sm-12 super-admin--container">
-                     <h3 class="color-black">Manage User Accounts</h3>
+                     <h3 class="color-black">Manage Patient Accounts</h3>
                       <div id ="patTable" style="max-height: 70vh;overflow-y: auto">
                           <table id="patientTable">
 
