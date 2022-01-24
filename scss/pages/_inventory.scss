@@ -519,6 +519,10 @@
         table caption {
           font-size: 1.3em;
         }
+
+        table thead{
+          display: none;
+        }
   
         table tr th {
           border: none;

@@ -2920,6 +2920,9 @@ table tr {
   .inventory__table-expired-container table caption {
     font-size: 1.3em;
   }
+  .inventory__table-expired-container table thead {
+    display: none;
+  }
   .inventory__table-expired-container table tr th {
     border: none;
     clip: rect(0 0 0 0);
