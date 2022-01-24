@@ -152,7 +152,7 @@ require 'php/DB_Connect.php';
 
 </div>
                 <div class="col-sm-12">
-                    <div class="search-tab margin-top-2 row justify-content-sm-around">
+                    <div class="search-tab margin-top-2 row justify-content-sm-between patients-view-container">
                         <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row justify-content-start align-items-center">
                             <a href="patient.php">
                                 <button class="modal-primary-button">

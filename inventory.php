@@ -217,11 +217,13 @@ require 'php/DB_Connect.php';
                                 </div>
 
                                 <!--Display ko dito yung Table of MEDS-->
+
+                                <div class="inventory__table-medicine-container"  >
                                 <?php
                                 include 'inventoryTable.html'?>
 
                                 <button id="nakatago" style="display: none"></button>
-
+    </div>
 
                             <div class="inventory__table-toexpire-container"  >
                                 <?php

@@ -103,6 +103,26 @@ h5 {
   color: var(--primary-color);
 }
 
+.gs-pagination .row .col-md-6:last-child {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .gs-pagination .row .col-md-6:last-child .btn-group {
+    margin-top: .3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gs-pagination .row .col-md-6:last-child {
+    text-align: left;
+  }
+}
+
+.gs-table-body tr td h3 {
+  padding: 1rem 0;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1739,32 +1759,51 @@ table tr {
 }
 
 .reports {
-  /*&__table{
-        margin: 0;
-        th{
-            padding: .5rem 1rem;
-            color: #222;
-            font-size: 1.2rem;
-        }
-        td{
-            font-weight: 300 !important;
-            color: black !important;
-        }
-        tr{
-            &:nth-child(even){
-                background-color: rgb(160, 160, 160);
-            }
-        }
-    }*/
+  /*
+  &__individual-reports-table {
+    margin: 2rem 0;
+    th {
+      padding: 1rem 0.6rem;
+      color: #222;
+      font-size: 1rem;
+    }
+    td {
+      font-weight: 300 !important;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 0.35em;
+      @media screen and (max-width: 1024px) {
+        background-color: #f8f8f8 !important;
+      }
+    }
+
+    table tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 0.35em;
+    }
+
+    table tr:first-child {
+      th {
+        background-color: #02a9f7 !important;
+        color: #f8f8f8 !important;
+        font-weight: 400;
+        font-weight: 600 !important;
+      }
+    }
+  }
+*/
 }
 
 .reports_content {
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
 
 @media (max-width: 1200px) {
   .reports_content {
-    padding: 1rem .5rem;
+    padding: 1rem 0.5rem;
   }
 }
 
@@ -1809,13 +1848,12 @@ table tr {
 .reports__left-col-container {
   -webkit-box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: 40vh;
   padding: 1rem;
   overflow-y: auto;
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
+  /* MEDICAL CONSULTATION TABLE STYLING */
+  /* VACCINATION CONSULTATION TABLE STYLING */
 }
 
 .reports__left-col-container h1 {
@@ -1823,7 +1861,7 @@ table tr {
   padding: 1rem 0 !important;
 }
 
-.reports__left-col-container table {
+.reports__left-col-container .medical--consultation table {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
@@ -1831,73 +1869,73 @@ table tr {
   table-layout: fixed;
 }
 
-.reports__left-col-container table tr:first-child th {
+.reports__left-col-container .medical--consultation table tr:first-child th {
   background-color: #02a9f7 !important;
   color: #f8f8f8 !important;
   font-weight: 400;
   font-weight: 600 !important;
 }
 
-.reports__left-col-container table caption {
+.reports__left-col-container .medical--consultation table caption {
   font-size: 1.5em;
-  margin: .5em 0 .75em;
+  margin: 0.5em 0 0.75em;
 }
 
-.reports__left-col-container table tr th {
+.reports__left-col-container .medical--consultation table tr th {
   background-color: white;
 }
 
-.reports__left-col-container table tr {
+.reports__left-col-container .medical--consultation table tr {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
-  padding: .35em;
+  padding: 0.35em;
 }
 
 @media screen and (max-width: 700px) {
-  .reports__left-col-container table tr {
-    margin: .5rem 0;
+  .reports__left-col-container .medical--consultation table tr {
+    margin: 0.5rem 0;
   }
 }
 
-.reports__left-col-container tr:nth-child(even) {
+.reports__left-col-container .medical--consultation tr:nth-child(even) {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
-  padding: .35em;
+  padding: 0.35em;
 }
 
 @media screen and (max-width: 1024px) {
-  .reports__left-col-container tr:nth-child(even) {
+  .reports__left-col-container .medical--consultation tr:nth-child(even) {
     background-color: #f8f8f8 !important;
   }
 }
 
-.reports__left-col-container table tr {
+.reports__left-col-container .medical--consultation table tr {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
-  padding: .35em;
+  padding: 0.35em;
 }
 
-.reports__left-col-container table th,
-.reports__left-col-container table td {
-  padding: .625em;
+.reports__left-col-container .medical--consultation table th,
+.reports__left-col-container .medical--consultation table td {
+  padding: 0.625em;
   text-align: center;
 }
 
-.reports__left-col-container table th {
-  font-size: .85em;
-  letter-spacing: .1em;
+.reports__left-col-container .medical--consultation table th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: black;
 }
 
 @media screen and (max-width: 700px) {
-  .reports__left-col-container table {
+  .reports__left-col-container .medical--consultation table {
     border: 0;
   }
-  .reports__left-col-container table caption {
+  .reports__left-col-container .medical--consultation table caption {
     font-size: 1.3em;
   }
-  .reports__left-col-container table tr th {
+  .reports__left-col-container .medical--consultation table thead tr {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -1908,27 +1946,129 @@ table tr {
     width: 1px;
     display: none;
   }
-  .reports__left-col-container table tr:first-child {
-    display: none;
-  }
-  .reports__left-col-container table tr {
-    border-bottom: 3px solid #ddd;
+  .reports__left-col-container .medical--consultation table tr {
     display: block;
-    margin-bottom: .625em;
+    margin-bottom: 0.625em;
   }
-  .reports__left-col-container table td {
+  .reports__left-col-container .medical--consultation table td {
     border-bottom: 1px solid #ddd;
     display: block;
-    font-size: .8em;
+    font-size: 0.8em;
     text-align: right;
   }
-  .reports__left-col-container table td::before {
+  .reports__left-col-container .medical--consultation table td::before {
     content: attr(data-label);
     float: left;
     font-weight: bold;
     text-transform: uppercase;
   }
-  .reports__left-col-container table td:last-child {
+  .reports__left-col-container .medical--consultation table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.reports__left-col-container .vaccination--consultation table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.reports__left-col-container .vaccination--consultation table tr:first-child th {
+  background-color: #02a9f7 !important;
+  color: #f8f8f8 !important;
+  font-weight: 400;
+  font-weight: 600 !important;
+}
+
+.reports__left-col-container .vaccination--consultation table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+
+.reports__left-col-container .vaccination--consultation table tr th {
+  background-color: white;
+}
+
+.reports__left-col-container .vaccination--consultation table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__left-col-container .vaccination--consultation table tr {
+    margin: 0.5rem 0;
+  }
+}
+
+.reports__left-col-container .vaccination--consultation tr:nth-child(even) {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+@media screen and (max-width: 1024px) {
+  .reports__left-col-container .vaccination--consultation tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+  }
+}
+
+.reports__left-col-container .vaccination--consultation table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+.reports__left-col-container .vaccination--consultation table th,
+.reports__left-col-container .vaccination--consultation table td {
+  padding: 0.625em;
+  text-align: center;
+}
+
+.reports__left-col-container .vaccination--consultation table th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__left-col-container .vaccination--consultation table {
+    border: 0;
+  }
+  .reports__left-col-container .vaccination--consultation table caption {
+    font-size: 1.3em;
+  }
+  .reports__left-col-container .vaccination--consultation table thead tr {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    display: none;
+  }
+  .reports__left-col-container .vaccination--consultation table tr {
+    display: block;
+    margin-bottom: 0.625em;
+  }
+  .reports__left-col-container .vaccination--consultation table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+  .reports__left-col-container .vaccination--consultation table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .reports__left-col-container .vaccination--consultation table td:last-child {
     border-bottom: 0;
   }
 }
@@ -1987,7 +2127,7 @@ table tr {
   font-weight: 700;
   padding: 1rem 2rem;
   margin-bottom: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .reports__right-col_links a:hover {
@@ -2061,10 +2201,10 @@ table tr {
   color: white;
   font-size: 1.2rem;
   padding: 1rem 2rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   display: inline-block;
 }
 
@@ -2090,51 +2230,12 @@ table tr {
   color: #222;
 }
 
-.reports__individual-reports-table {
-  margin: 2rem 0;
-}
-
-.reports__individual-reports-table th {
-  padding: 1rem .6rem;
-  color: #222;
-  font-size: 1rem;
-}
-
-.reports__individual-reports-table td {
-  font-weight: 300 !important;
-}
-
-.reports__individual-reports-table tr:nth-child(even) {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
-@media screen and (max-width: 1024px) {
-  .reports__individual-reports-table tr:nth-child(even) {
-    background-color: #f8f8f8 !important;
-  }
-}
-
-.reports__individual-reports-table table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
-.reports__individual-reports-table table tr:first-child th {
-  background-color: #02a9f7 !important;
-  color: #f8f8f8 !important;
-  font-weight: 400;
-  font-weight: 600 !important;
-}
-
 .reports__individual-container h1 {
   text-align: center;
   padding: 3rem 0 !important;
 }
 
-.reports__individual-container table {
+.reports__individual-reports-table tbody .gs-table-container table {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
@@ -2142,84 +2243,96 @@ table tr {
   table-layout: fixed;
 }
 
-.reports__individual-container table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
-}
-
-.reports__individual-container table tr th {
-  background-color: white;
-}
-
-.reports__individual-container table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
 @media screen and (max-width: 700px) {
-  .reports__individual-container table tr {
-    margin: .5rem 0;
-  }
-}
-
-.reports__individual-container table th,
-.reports__individual-container table td {
-  padding: .625em;
-  text-align: center;
-}
-
-.reports__individual-container table th {
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-@media screen and (max-width: 700px) {
-  .reports__individual-container table {
+  .reports__individual-reports-table tbody .gs-table-container table {
     border: 0;
   }
-  .reports__individual-container table caption {
-    font-size: 1.3em;
-  }
-  .reports__individual-container table tr th {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table thead {
     display: none;
   }
-  .reports__individual-container table tr:first-child {
-    display: none;
-  }
-  .reports__individual-container table tr {
+}
+
+.reports__individual-reports-table tbody .gs-table-container table thead tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table thead tr {
     border-bottom: 3px solid #ddd;
     display: block;
-    margin-bottom: .625em;
+    margin-bottom: 0.625em;
   }
-  .reports__individual-container table td {
+}
+
+.reports__individual-reports-table tbody .gs-table-container table thead th {
+  background-color: white;
+  padding: 0.625em;
+  text-align: center;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  word-wrap: break-word !important;
+}
+
+.reports__individual-reports-table tbody .gs-table-container table thead th span {
+  color: black !important;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table thead th {
+    display: none;
+  }
+}
+
+.reports__individual-reports-table tbody .gs-table-container table tbody tr {
+  background-color: #f8f8f8 !important;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table tbody tr {
+    margin: .5rem 0 !important;
+    display: block;
+  }
+}
+
+.reports__individual-reports-table tbody .gs-table-container table tbody tr td:last-child {
+  border: none;
+}
+
+.reports__individual-reports-table tbody .gs-table-container table tbody tr td {
+  padding: 0.625em;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table tbody tr td {
     border-bottom: 1px solid #ddd;
     display: block;
-    font-size: .8em;
+    font-size: 0.8em;
     text-align: right;
   }
-  .reports__individual-container table td::before {
-    /*
-          * aria-label has no advantage, it won't be read inside a table
-          content: attr(aria-label);
-          */
+}
+
+@media screen and (max-width: 700px) {
+  .reports__individual-reports-table tbody .gs-table-container table tbody tr td::before {
     content: attr(data-label);
     float: left;
     font-weight: bold;
     text-transform: uppercase;
   }
-  .reports__individual-container table td:last-child {
-    border-bottom: 0;
-  }
+}
+
+.reports__individual-reports-table tbody .gs-table-container .gs-pagination .active {
+  background: var(--primary-color) !important;
+  color: var(--secondary-color) !important;
+  border: none !important;
+  padding: 0.5em 0.5rem !important;
 }
 
 .reports_individual-report-links a {
@@ -2254,7 +2367,7 @@ table tr {
   padding: 1rem 2rem;
   margin-bottom: 1rem;
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .reports_individual-report-download a:hover {
@@ -2272,7 +2385,7 @@ table tr {
 }
 
 .inventory__container {
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 @media (max-width: 500px) {
@@ -2294,58 +2407,63 @@ table tr {
   background-color: #f8f8f8;
 }
 
-.inventory table {
-  margin-top: 0 !important;
+.inventory__table-medicine-container {
+  margin-top: 2rem !important;
 }
 
-.inventory__table-main-container tr.title {
+.inventory__table-medicine-container tr:hover {
+  background-color: #f8f8f8 !important;
+  cursor: default;
+}
+
+.inventory__table-medicine-container tr.title {
   background-color: var(--primary-color);
 }
 
-.inventory__table-main-container tr.title th {
+.inventory__table-medicine-container tr.title th {
   color: #f8f8f8 !important;
   font-weight: 400;
 }
 
 @media screen and (max-width: 1024px) {
-  .inventory__table-main-container tr.title {
+  .inventory__table-medicine-container tr.title {
     display: none;
   }
 }
 
-.inventory__table-main-container h3 {
-  margin: 2rem 0 1rem 0 !important;
+.inventory__table-medicine-container h3 {
+  margin: 1rem  0 !important;
 }
 
-.inventory__table-main-container td,
-.inventory__table-main-container th {
+.inventory__table-medicine-container td,
+.inventory__table-medicine-container th {
   color: var(--third-color);
   text-align: center;
 }
 
-.inventory__table-main-container th {
+.inventory__table-medicine-container th {
   padding: .625em !important;
   font-weight: 600 !important;
 }
 
-.inventory__table-main-container td {
+.inventory__table-medicine-container td {
   font-weight: 300 !important;
   padding: .625em !important;
 }
 
-.inventory__table-main-container td.add-btn {
+.inventory__table-medicine-container td.add-btn {
   background-color: transparent;
   padding-left: 0.3rem !important;
 }
 
 @media screen and (max-width: 1024px) {
-  .inventory__table-main-container td.add-btn {
+  .inventory__table-medicine-container td.add-btn {
     background-color: transparent;
     text-align: center;
   }
 }
 
-.inventory__table-main-container td.add-btn i {
+.inventory__table-medicine-container td.add-btn i {
   background-color: var(--primary-color);
   color: #f8f8f8 !important;
   padding: 0.6rem;
@@ -2354,76 +2472,76 @@ table tr {
   transition: all 200ms ease-in-out;
 }
 
-.inventory__table-main-container td.add-btn i:hover {
+.inventory__table-medicine-container td.add-btn i:hover {
   background-color: var(--hover-color) !important;
 }
 
-.inventory__table-main-container th.add-row {
+.inventory__table-medicine-container th.add-row {
   background-color: transparent;
 }
 
 @media screen and (max-width: 1024px) {
-  .inventory__table-main-container th.add-row {
+  .inventory__table-medicine-container th.add-row {
     background-color: transparent;
     text-align: center;
   }
 }
 
-.inventory__table-main-container tr:nth-child(even) {
+.inventory__table-medicine-container tr:nth-child(even) {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
   padding: .35em;
 }
 
 @media screen and (max-width: 1024px) {
-  .inventory__table-main-container tr:nth-child(even) {
+  .inventory__table-medicine-container tr:nth-child(even) {
     background-color: #f8f8f8 !important;
   }
 }
 
-.inventory__table-main-container table tr {
+.inventory__table-medicine-container table tr {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
   padding: .35em;
 }
 
-.inventory__table-main-container table {
+.inventory__table-medicine-container table {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.inventory__table-main-container table caption {
+.inventory__table-medicine-container table caption {
   font-size: 1.5em;
   margin: 0.5em 0 0.75em;
 }
 
-.inventory__table-main-container table th,
-.inventory__table-main-container table td {
+.inventory__table-medicine-container table th,
+.inventory__table-medicine-container table td {
   padding: 0.625em;
   text-align: center;
 }
 
-.inventory__table-main-container table th {
+.inventory__table-medicine-container table th {
   font-size: 0.85em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 @media screen and (max-width: 1024px) {
-  .inventory__table-main-container table tr {
+  .inventory__table-medicine-container table tr {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: 0.35em;
   }
-  .inventory__table-main-container table {
+  .inventory__table-medicine-container table {
     border: 0;
   }
-  .inventory__table-main-container table caption {
+  .inventory__table-medicine-container table caption {
     font-size: 1.3em;
   }
-  .inventory__table-main-container table tr th {
+  .inventory__table-medicine-container table tr th {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -2434,21 +2552,22 @@ table tr {
     width: 1px;
     display: none;
   }
-  .inventory__table-main-container table thead tr {
+  .inventory__table-medicine-container table thead tr {
     display: none;
   }
-  .inventory__table-main-container table tr {
-    border-bottom: 3px solid #ddd;
+  .inventory__table-medicine-container table tr {
+    border-bottom: none;
+    border-bottom: 1px solid #ddd;
     display: block;
     margin-bottom: 0.625em;
   }
-  .inventory__table-main-container table td {
+  .inventory__table-medicine-container table td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 0.8em;
     text-align: right;
   }
-  .inventory__table-main-container table td::before {
+  .inventory__table-medicine-container table td::before {
     /*
                     * aria-label has no advantage, it won't be read inside a table
                     content: attr(aria-label);
@@ -2458,9 +2577,22 @@ table tr {
     font-weight: bold;
     text-transform: uppercase;
   }
-  .inventory__table-main-container table td:last-child {
+  .inventory__table-medicine-container table td:last-child {
     border-bottom: 0;
   }
+}
+
+.inventory__table-toexpire-container {
+  margin-top: 2rem !important;
+}
+
+.inventory__table-toexpire-container h3 {
+  margin: 1rem  0 !important;
+}
+
+.inventory__table-toexpire-container tr:hover {
+  background-color: #f8f8f8 !important;
+  cursor: default;
 }
 
 .inventory__table-toexpire-container td:nth-child(1) {
@@ -2594,7 +2726,8 @@ table tr {
     display: none;
   }
   .inventory__table-toexpire-container table tr {
-    border-bottom: 3px solid #ddd;
+    border-bottom: none;
+    border-bottom: 1px solid #ddd;
     display: block;
     margin-bottom: 0.625em;
   }
@@ -2617,8 +2750,16 @@ table tr {
 }
 
 .inventory__table-expired-container {
-  margin-top: 3rem !important;
-  margin-bottom: 3rem !important;
+  margin-top: 2rem !important;
+}
+
+.inventory__table-expired-container h3 {
+  margin: 1rem  0 !important;
+}
+
+.inventory__table-expired-container tr:hover {
+  background-color: #f8f8f8 !important;
+  cursor: default;
 }
 
 .inventory__table-expired-container h1 {
@@ -2791,7 +2932,8 @@ table tr {
     display: none;
   }
   .inventory__table-expired-container table tr {
-    border-bottom: 3px solid #ddd;
+    border-bottom: none;
+    border-bottom: 1px solid #ddd;
     display: block;
     margin-bottom: 0.625em;
   }
@@ -3666,8 +3808,8 @@ td:nth-child(1) {
 }
 
 .notification-dropdown li a {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   border-bottom: none !important;
 }
 
@@ -4014,7 +4156,7 @@ td:nth-child(1) {
 }
 
 .dashboard-admin-content {
-  padding: 0 2rem;
+  padding: 0 48px;
   color: black;
 }
 

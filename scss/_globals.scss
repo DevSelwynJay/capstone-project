@@ -97,3 +97,30 @@ h5{
       color: var(--primary-color);
   }
 }
+
+.gs-pagination{
+  .row{
+    .col-md-6:last-child{
+      text-align: right;
+
+      .btn-group{
+        @media(max-width: 768px){
+          margin-top: .3rem;
+        }
+      }
+
+      @media(max-width: 768px){
+        text-align: left;
+      }
+    }
+  }
+}
+.gs-table-body{
+  tr{
+    td{
+      h3{
+        padding: 1rem 0;
+      }
+    }
+  }
+}

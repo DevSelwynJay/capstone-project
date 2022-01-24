@@ -141,8 +141,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 
 </div>
                   <div class="col-sm-12">
-                     <div class="search-tab margin-top-2 row justify-content-sm-around">
-                         <div class="button-container col-11 flex-box-row justify-content-start align-items-center">
+                     <div class="search-tab margin-top-2 row justify-content-sm-between patients-view-container">
+                         <div class="button-container col-11 flex-box-row  justify-content-start align-items-center">
                              <a href="patient.php">
                                  <button class="modal-primary-button">
                                      <i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>

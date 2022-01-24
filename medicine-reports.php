@@ -192,10 +192,11 @@ require 'php/DB_Connect.php';
                              </div>
                          </div>
                          <div class="col-lg-9 table-reports">
-                           <div class="reports__individual-container" >
+                           <div class="reports__individual-container">
                             <table class="reports__individual-reports-table">
                                 <tbody id="tablediv">
-                                   <tr>
+                                  
+                                    <tr>
                                       <th>Medicine Id</th>
                                       <th>Medicine Name</th>
                                       <th>Category</th>
