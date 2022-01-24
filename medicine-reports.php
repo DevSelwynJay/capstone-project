@@ -984,9 +984,9 @@ require 'php/DB_Connect.php';
                         $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","NAME")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","CATEGORY")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","No. OF Stocks")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","MFG. DATE")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","EXP. DATE")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OCCURED")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","MFG. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[5]).attr("data-label","EXP. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[6]).attr("data-label","DATE OCCURED")
 
                     }
                 },
@@ -1002,9 +1002,9 @@ require 'php/DB_Connect.php';
                         $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","NAME")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","CATEGORY")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","No. OF Stocks")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","MFG. DATE")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","EXP. DATE")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OCCURED")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","MFG. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[5]).attr("data-label","EXP. DATE")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[6]).attr("data-label","DATE OCCURED")
 
                     }
                     //thead color
@@ -1019,6 +1019,7 @@ require 'php/DB_Connect.php';
             });
             if(JSON.parse(record).length==0){
                 $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+
                 return
             }
             $('#changeRows').on('change', function() {
