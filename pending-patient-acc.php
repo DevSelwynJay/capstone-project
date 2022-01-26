@@ -164,7 +164,7 @@ require 'php/DB_Connect.php';
 
                         </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
-                            <input type="text" class="search-bar">
+                            <input type="text" class="search-bar" id="pending-search">
                             <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
@@ -696,7 +696,7 @@ require 'php/DB_Connect.php';
                     button:"Action"
                 }
             ,
-            searchField: '.search-bar',
+            searchField: '#pending-search',
             // responsive: {
             //     720: {
             //         columns: {
