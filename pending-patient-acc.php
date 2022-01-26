@@ -510,11 +510,13 @@ require 'php/DB_Connect.php';
                 $( '.gallery' ).flickity('viewFullscreen');
                 $("#close-pic").css("display","inline")
                 $(".gallery-cell img").css("max-height","80vh")
+                window.dispatchEvent(new Event('resize'));
             });
             function exit_fullscreen() {
                 $( '.gallery' ).flickity('exitFullscreen')
                 $("#close-pic").css("display","none")
                 $(".gallery-cell img").css("max-height","100%")
+                window.dispatchEvent(new Event('resize'));
             }
             $("#exit-fs").on( 'click', function() {
                 exit_fullscreen()
@@ -526,7 +528,7 @@ require 'php/DB_Connect.php';
             });
             $(document).on('click',function (e) {//close fullscreen when black bg was clicked
                 if(e.target.id=='flickity-slider'){
-                    exit_fullscreen()
+                    // exit_fullscreen()
                 }
             })
 
