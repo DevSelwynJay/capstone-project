@@ -229,7 +229,7 @@ require 'php/DB_Connect.php';
 
                     </div>
                     <?php
-                    include 'pending-patient-logs.html';
+                    include 'pending-patient-logs.php';
                     ?>
                 </div>
             </div>

@@ -8,6 +8,9 @@
 
 
         <h3 style="color: var(--third-color)" class=""><i class="fas fa-history"></i>Account Request Logs</h3>
+
+        <?php require 'logs/logs-search.html'?>
+
         <table class="patients-view">
             <tbody id="logs-patient-view-table">
             <tr class="patients-view-title">
@@ -51,7 +54,7 @@
                 date:"Date"
             }
         ,
-        // searchField: '.search-bar',
+        searchField: '#search-logs',
         // responsive: {
         //     720: {
         //         columns: {
@@ -80,13 +83,21 @@
         },
         tableWillUpdate: function() {console.log('table will update')},
         tableDidUpdate: function() {
+            //thead color
+            $("#logs-patient-view-table div .gs-table thead tr th").css("background","darkslategrey")
+
+            if($("#logs-patient-view-table div .gs-table tbody tr").length==0){
+                let searchVal = "for "+ $("#search-logs").val()
+                $("#logs-patient-view-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record "+searchVal+"</h3></td></tr>")
+                return
+            }
+
             // console.log('table did update');  click_view_button();
             $("#logs-patient-view-table div .gs-table thead tr th").css("background","darkslategrey")
             for (a=0;a<parseInt( window.rowCount_logs_acc_req);a++){
                 $($($("#logs-patient-view-table div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
             }
-            //thead color
-            $("#logs-patient-view-table div .gs-table thead tr th").css("background","darkslategrey")
+
         },
         tableWillUnmount: function() {console.log('table will unmount')},
         tableDidUnmount: function() {console.log('table did unmount')},

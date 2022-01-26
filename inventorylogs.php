@@ -8,6 +8,9 @@
 
 
         <h3 style="color: var(--third-color)" class=""><i class="fas fa-history"></i>Inventory Logs</h3>
+
+        <?php require 'logs/logs-search.html'?>
+
         <table class="patients-view">
             <tbody id="logs-inventory-view-table">
             <tr class="patients-view-title">
@@ -51,7 +54,7 @@
                     date:"Date"
                 }
             ,
-            // searchField: '.search-bar',
+            searchField: '#search-logs',
             // responsive: {
             //     720: {
             //         columns: {

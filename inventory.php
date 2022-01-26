@@ -240,7 +240,7 @@ require 'php/DB_Connect.php';
                             </div>
                             </div>
                             <?php
-                            include 'inventorylogs.html';
+                            include 'inventorylogs.php';
                             ?>
 
                         </div>

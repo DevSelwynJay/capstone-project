@@ -54,7 +54,7 @@
                     date:"Date"
                 }
             ,
-            searchField: '.search-bar',
+            searchField: '#search-logs',
             // responsive: {
             //     720: {
             //         columns: {
