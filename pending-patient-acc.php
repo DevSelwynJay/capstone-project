@@ -500,7 +500,8 @@ require 'php/DB_Connect.php';
         function call_carousel() {
             $( '.gallery' ).flickity( {
                 cellAlign: 'center',
-                autoplay:true
+                autoplay:true,
+                lazyLoad: true
                 //contain: true,
                 //prevNextButtons: false,
                 //groupCells: 2,
@@ -512,17 +513,23 @@ require 'php/DB_Connect.php';
                 $(".gallery-cell img").css("max-height","80vh")
                 window.dispatchEvent(new Event('resize'));
             });
+            $("#exit-fs").off("click")
+            $("#exit-fs").on( 'click', function() {
+                window.dispatchEvent(new Event('resize'));
+                exit_fullscreen()
+                var esc = $.Event("keydown", { keyCode: 27 });
+                $(document).trigger(esc);
+            });
             function exit_fullscreen() {
-                $( '.gallery' ).flickity('exitFullscreen')
                 $("#close-pic").css("display","none")
                 $(".gallery-cell img").css("max-height","100%")
+                $( '.gallery' ).flickity('exitFullscreen')
+                window.dispatchEvent(new Event('resize'));
                 window.dispatchEvent(new Event('resize'));
             }
-            $("#exit-fs").on( 'click', function() {
-                exit_fullscreen()
-            });
             $(document).keyup(function(e) {
                 if (e.key === "Escape") { // escape key maps to keycode `27`
+                    window.dispatchEvent(new Event('resize'));
                     exit_fullscreen()
                 }
             });
@@ -606,6 +613,7 @@ require 'php/DB_Connect.php';
                             $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
                             //$( '.gallery' ).flickity('reloadCells')
                             $( '.gallery' ).flickity('resize')
+                            window.dispatchEvent(new Event('resize'));
                             window.dispatchEvent(new Event('resize'));
 
                         },300)
