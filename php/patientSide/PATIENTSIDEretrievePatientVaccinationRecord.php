@@ -27,6 +27,16 @@ while($row= mysqli_fetch_assoc($result)){
         $row['current_dose'] = $subRow['vaccine_count'];
     }
 
+    //get admin name who give medicine
+    $admin_id = $row['admin_id'];$admin_name = "unknown";
+    $getAdminInfo = mysqli_query($con,"SELECT*FROM admin WHERE id = '$admin_id' ");
+    if($r1 = mysqli_fetch_assoc($getAdminInfo)){
+        $admin_name = $r1['first_name']." ".$r1['middle_name']." ".$r1['last_name'];
+    }
+
+    //singit ang admin name sa response
+    $row['admin_name'] = $admin_name;
+
     //$row['sample']="sample"; singit key value pair
     $arr[] = $row;
 
