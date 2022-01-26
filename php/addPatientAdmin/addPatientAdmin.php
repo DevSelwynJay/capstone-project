@@ -133,6 +133,12 @@ if($email!=$temp_email){
 $result = mysqli_query($con,$query);
 
 if($result){
+
+    $admin_id = $_SESSION['active_admin_ID'];
+    //PUT IN THE LOGS
+    mysqli_query($con,"INSERT INTO logs_add_walkin (admin_id,patient_id,admin_action,description) 
+    VALUES ('$admin_id','$patientID','1','Account was added')
+    ");
     echo 1;
 }
 else{

@@ -149,6 +149,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                      Go Back to Patient List
                                  </button>
                              </a>
+                             <button id="logs-btn" class="modal-primary-button" style="background: darkslategray!important;margin-left: 0.3rem"><i class="fas fa-history"></i>View Logs</button>
 
                          </div>
                      </div>
@@ -652,5 +653,7 @@ Closedropdown.addEventListener('click',function(){
               }
           });
       </script>
+
+      <?php require 'add-patient-logs.php' ?>
    </body>
 </html>
