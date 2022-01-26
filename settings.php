@@ -105,7 +105,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                             <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                             <li><a href="patient.php" class="patient">Patient</a></li>
                             <li><a href="reports.php" class="reports">Reports</a></li>
-                            <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                            <li><a href="track-map.php" class="trackMap">Vaccine Graph</a></li>
                             <li><a href="inventory.php" class="inventory">Inventory</a></li>
                             <?php include 'sidebarFix.html'?>
                         </ul>
