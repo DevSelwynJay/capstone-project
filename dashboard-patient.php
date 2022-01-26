@@ -104,6 +104,12 @@ else{
                /*default is 1*/
                z-index: 1000;
            }
+           .col-sm-12{
+               padding: 0;
+           }
+           .event-indicator *:not(:first-child) {
+               display: none;
+           }
        </style>
    </head>
    <body>

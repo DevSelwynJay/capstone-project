@@ -237,8 +237,8 @@
                     <img src="img/history.png" class="modal-header-icon" style="margin-right: 0.3rem">
                      EMR Request History
                 </h1>
+                <?php require "logs/logs-search.html"?>
                 <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>The table below shows all of the request history of  EMR (Electronic Medical Record)</p>
-
                 <!--                         <h3 class="table-title margin-top-3">-->
                 <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
                 <!--                             Patient List-->

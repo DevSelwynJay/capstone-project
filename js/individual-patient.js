@@ -103,6 +103,7 @@ $(document).ready(function() {
                         "<br> - "+resultElement.end_date_formatted+
                         "<br><br>"+"<strong>Date Given: </strong> "+resultElement.date_given+
                         "<br>"+"<strong>Quantity Given: </strong> "+resultElement.given_med_quantity +" tablets<br>"+
+                        "<br>"+"<strong>Given by: </strong> "+resultElement.admin_name +"<br>"+
                         edit_btn
                     ,
                     date: date,
@@ -184,6 +185,7 @@ $(document).ready(function() {
                     "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
                     "<br> - "+nextSched +
+                    "<br><br>"+"<strong>Given by: </strong> "+resultElement.admin_name +"<br>"+
                     edit_btn
 
                     // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
