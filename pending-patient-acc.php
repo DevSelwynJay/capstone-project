@@ -500,6 +500,7 @@ require 'php/DB_Connect.php';
         function call_carousel() {
             $( '.gallery' ).flickity( {
                 cellAlign: 'center',
+                autoplay:true
                 //contain: true,
                 //prevNextButtons: false,
                 //groupCells: 2,
@@ -603,6 +604,7 @@ require 'php/DB_Connect.php';
                             $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
                             //$( '.gallery' ).flickity('reloadCells')
                             $( '.gallery' ).flickity('resize')
+                            window.dispatchEvent(new Event('resize'));
 
                         },300)
 
