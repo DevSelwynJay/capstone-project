@@ -91,7 +91,8 @@ $(document).ready(function (e) {
                         "<br><br><strong>End of Medication</strong>" +
                         "<br> - "+resultElement.end_date_formatted+
                         "<br><br>"+"<strong>Date Received: </strong> "+resultElement.date_given+
-                        "<br>"+"<strong>Quantity Received: </strong> "+resultElement.given_med_quantity +" tablets"
+                        "<br>"+"<strong>Quantity Received: </strong> "+resultElement.given_med_quantity +" tablets"+
+                        "<br><br>"+"<strong>Given by:</strong> "+resultElement.admin_name
                     ,
                     date: date,
                     type: ' ',
@@ -188,7 +189,9 @@ $(document).ready(function (e) {
                     "<br><br><strong>Date Vaccinated:</strong>" +
                     "<br> - "+resultElement.date_vaccinated_fd+
                     "<br><br><strong>Expected Next Schedule</strong>" +
-                    "<br> - "+resultElement.next_date_fd
+                    "<br> - "+resultElement.next_date_fd +
+                    "<br><br>"+"<strong>Given by:</strong> "+resultElement.admin_name
+
                 // "<br><br>"+"<strong>Date of First Dose: </strong> "+resultElement.date_given
                 ,
                 date: resultElement.date_vaccinated,//date vaccinated

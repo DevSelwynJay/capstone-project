@@ -76,7 +76,7 @@ require 'php/DB_Connect.php';
                         <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                         <li><a href="patient.php" class="patient" >Patient</a></li>
                         <li><a href="reports.php" class="reports" style="background: var(--hover-color)">Reports</a></li>
-                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                        <li><a href="track-map.php" class="trackMap">Vaccine Graph</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
                         <?php include 'sidebarFix.html' ?>
                     </ul>
@@ -1139,7 +1139,8 @@ require 'php/DB_Connect.php';
                 }
             });
             if(JSON.parse(record).length==0){
-                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'<td colspan='3'>><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+
                 return
             }
             $('#changeRows').on('change', function() {

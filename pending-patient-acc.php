@@ -86,7 +86,7 @@ require 'php/DB_Connect.php';
                         <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                         <li><a href="patient.php" class="patient" style="background: var(--hover-color)">Patient</a></li>
                         <li><a href="reports.php" class="reports">Reports</a></li>
-                        <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                        <li><a href="track-map.php" class="trackMap">Vaccine Graph</a></li>
                         <li><a href="inventory.php" class="inventory">Inventory</a></li>
                         <?php include 'sidebarFix.html'?>
                     </ul>
@@ -164,7 +164,7 @@ require 'php/DB_Connect.php';
 
                         </div>
                         <div class="search-container col-lg-4 col-md-6 col-sm-5 col-xs-6 margin-top-2">
-                            <input type="text" class="search-bar">
+                            <input type="text" class="search-bar" id="pending-search">
                             <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
@@ -229,7 +229,7 @@ require 'php/DB_Connect.php';
 
                     </div>
                     <?php
-                    include 'pending-patient-logs.html';
+                    include 'pending-patient-logs.php';
                     ?>
                 </div>
             </div>
@@ -500,6 +500,8 @@ require 'php/DB_Connect.php';
         function call_carousel() {
             $( '.gallery' ).flickity( {
                 cellAlign: 'center',
+                autoplay:true,
+                lazyLoad: true
                 //contain: true,
                 //prevNextButtons: false,
                 //groupCells: 2,
@@ -509,23 +511,31 @@ require 'php/DB_Connect.php';
                 $( '.gallery' ).flickity('viewFullscreen');
                 $("#close-pic").css("display","inline")
                 $(".gallery-cell img").css("max-height","80vh")
+                window.dispatchEvent(new Event('resize'));
+            });
+            $("#exit-fs").off("click")
+            $("#exit-fs").on( 'click', function() {
+                window.dispatchEvent(new Event('resize'));
+                exit_fullscreen()
+                var esc = $.Event("keydown", { keyCode: 27 });
+                $(document).trigger(esc);
             });
             function exit_fullscreen() {
-                $( '.gallery' ).flickity('exitFullscreen')
                 $("#close-pic").css("display","none")
                 $(".gallery-cell img").css("max-height","100%")
+                $( '.gallery' ).flickity('exitFullscreen')
+                window.dispatchEvent(new Event('resize'));
+                window.dispatchEvent(new Event('resize'));
             }
-            $("#exit-fs").on( 'click', function() {
-                exit_fullscreen()
-            });
             $(document).keyup(function(e) {
                 if (e.key === "Escape") { // escape key maps to keycode `27`
+                    window.dispatchEvent(new Event('resize'));
                     exit_fullscreen()
                 }
             });
             $(document).on('click',function (e) {//close fullscreen when black bg was clicked
                 if(e.target.id=='flickity-slider'){
-                    exit_fullscreen()
+                    // exit_fullscreen()
                 }
             })
 
@@ -603,6 +613,8 @@ require 'php/DB_Connect.php';
                             $("#view-pending-patient").modal({/*clickClose:false,*/ escapeClose: false,/*showClose:false*/})
                             //$( '.gallery' ).flickity('reloadCells')
                             $( '.gallery' ).flickity('resize')
+                            window.dispatchEvent(new Event('resize'));
+                            window.dispatchEvent(new Event('resize'));
 
                         },300)
 
@@ -696,7 +708,7 @@ require 'php/DB_Connect.php';
                     button:"Action"
                 }
             ,
-            searchField: '.search-bar',
+            searchField: '#pending-search',
             // responsive: {
             //     720: {
             //         columns: {

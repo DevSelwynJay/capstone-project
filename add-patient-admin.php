@@ -75,7 +75,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                      <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
                             <li><a href="patient.php" class="patient" style="background: var(--hover-color)">Patient</a></li>
                             <li><a href="reports.php" class="reports">Reports</a></li>
-                            <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+                            <li><a href="track-map.php" class="trackMap">Vaccine Graph</a></li>
                             <li><a href="inventory.php" class="inventory">Inventory</a></li>
                              <?php include 'sidebarFix.html'?>
                      </ul>
@@ -149,6 +149,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                      Go Back to Patient List
                                  </button>
                              </a>
+                             <button id="logs-btn" class="modal-primary-button" style="background: darkslategray!important;margin-left: 0.3rem"><i class="fas fa-history"></i>View Logs</button>
 
                          </div>
                      </div>
@@ -652,5 +653,7 @@ Closedropdown.addEventListener('click',function(){
               }
           });
       </script>
+
+      <?php require 'add-patient-logs.php' ?>
    </body>
 </html>

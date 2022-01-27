@@ -67,7 +67,7 @@
             <li><a href="dashboard-admin.php" class="dashboard">Dashboard</a></li>
             <li><a href="patient.php" class="patient">Patient</a></li>
             <li><a href="reports.php" class="reports">Reports</a></li>
-            <li><a href="track-map.php" class="trackMap">Track Map</a></li>
+            <li><a href="track-map.php" class="trackMap">Vaccine Graph</a></li>
             <li><a href="inventory.php" class="inventory">Inventory</a></li>
           </ul>
         </div>
@@ -237,8 +237,8 @@
                     <img src="img/history.png" class="modal-header-icon" style="margin-right: 0.3rem">
                      EMR Request History
                 </h1>
+                <?php require "logs/logs-search.html"?>
                 <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>The table below shows all of the request history of  EMR (Electronic Medical Record)</p>
-
                 <!--                         <h3 class="table-title margin-top-3">-->
                 <!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
                 <!--                             Patient List-->

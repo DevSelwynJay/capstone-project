@@ -18,7 +18,7 @@ while($rowmed = mysqli_fetch_assoc($medresult)){
     $datemed = $rowmed ['date_given'];
     $patientmedqry = "Select * from `walk_in_patient` where `id` = '".$idmed."' ";
     $medresult2 = mysqli_query($con,$patientmedqry);
-    if(mysqli_num_rows($medresult2)>0){
+
         while($rowresult = mysqli_fetch_assoc($medresult2)){
             $rowresult['name'] = $rowresult['first_name'].' '.$rowresult['middle_name'].' '.$rowresult['last_name'];
             $rowresult['consultation_type']="Medication";
@@ -26,7 +26,7 @@ while($rowmed = mysqli_fetch_assoc($medresult)){
 
             $arr[]=$rowresult;
         }
-    }
+
 }
     echo json_encode($arr);
 
