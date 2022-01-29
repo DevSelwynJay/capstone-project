@@ -148,7 +148,7 @@ require 'php/DB_Connect.php';
 </div>
                     <div class="col-sm-12">
                      <div class="search-tab margin-top-2 row  patients-view-container justify-content-sm-between">
-                         <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row margin-bottom-2 justify-content-start align-items-center">
+                         <div class="button-container col-lg-8 col-md-6 col-sm-7 col-xs-6 flex-box-row margin-bottom-2 justify-content-start align-items-center">
                              <a href="add-patient-admin.php">
                                  <button class="modal-primary-button-2" style="margin-right: 1rem">
                                      <i class="fas fa-plus" style="margin-right: 0.3rem"></i>

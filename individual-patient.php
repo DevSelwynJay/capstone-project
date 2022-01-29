@@ -97,6 +97,8 @@ require 'php/DB_Connect.php';
                            $("#height").html(arrayOfObjectElement.height)
                            $("#weight").html(arrayOfObjectElement.weight)
 
+                           $("#date-reg").html(arrayOfObjectElement.date_reg)
+
                            let acc_type = arrayOfObjectElement.account_type;
                            if(acc_type==2){
                                $("#acc-type").html("(Walk In)")
@@ -248,6 +250,7 @@ require 'php/DB_Connect.php';
                         <div class="patient-content__ctas">
                            <div class="back-button">
                               <a class="back-btn"><i class="fas fa-arrow-circle-left"></i></a>
+
                            </div>
                            <div class="add-prescription">
                               <a id="add-prescription-modal-caller"><i class="fas fa-plus"></i>Add Prescription</a>
@@ -304,6 +307,10 @@ require 'php/DB_Connect.php';
                                     <td><strong>Weight</strong></td>
                                     <td id="weight">...</td>
                                  </tr>
+                                  <tr>
+                                      <td><strong>Date Registered</strong></td>
+                                      <td id="date-reg">...</td>
+                                  </tr>
                               </table>
                            </div>
                            <div class="patient-content__calendar holder">
