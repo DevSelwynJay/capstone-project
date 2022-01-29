@@ -7,11 +7,13 @@
     <div class="content patients-view-container margin-top-3">
 
 
-        <h3 style="color: var(--third-color)" class=""><i class="fas fa-history"></i>Adding of Patient Logs</h3>
+        <h3 style="color: var(--third-color);margin: 0.3rem 0 0.3rem 0!important;" class=""><i class="fas fa-history"></i>Prescription Logs</h3>
 
         <?php require 'logs/logs-search.html' ?>
 
         <table class="patients-view">
+            <p class="modal-p-2" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can click the highlighted name of the patient to go to the individual patient page.</p>
+
             <tbody id="logs-patient-view-table">
             <tr class="patients-view-title">
                 <th>Patient Id</th>
@@ -51,9 +53,10 @@
                     // address:"Address",
                     // contact_no: "Contact",
                     // email:'Email',
-                    date:"Date"
+                    date_occured:"Date"
                 }
             ,
+            sorting:['date_occured'],
             searchField: '#search-logs',
             // responsive: {
             //     720: {
@@ -83,6 +86,8 @@
             },
             tableWillUpdate: function() {console.log('table will update')},
             tableDidUpdate: function() {
+                patientNameClick();
+
                 if($("#logs-patient-view-table div .gs-table tbody tr").length==0){
                     let searchVal = "for "+ $("#search-logs").val()
                     $("#logs-patient-view-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record "+searchVal+"</h3></td></tr>")
@@ -95,6 +100,8 @@
                 }
                 //thead color
                 $("#logs-patient-view-table div .gs-table thead tr th").css("background","darkslategrey")
+
+
             },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
@@ -102,7 +109,7 @@
                 setPage(nextPage);
             }
         });
-        $.get('logs/logs-add-walkin.php', function(data) {
+        $.get('logs/logs-prescription.php', function(data) {
             // Push data into existing data
             console.log(JSON.parse(data))
             if(JSON.parse(data).length==0){
@@ -122,9 +129,9 @@
                 date_occured:"Date"
             });
         })
-        $('#changeRows').on('change', function() {
-            table.updateRowsPerPage(parseInt($(this).val(), 10));
-        })
+        // $('#changeRows').on('change', function() {
+        //     table.updateRowsPerPage(parseInt($(this).val(), 10));
+        // })
 
         $('#rerender').click(function() {
             table.refresh(true);
@@ -144,6 +151,23 @@
         //thead color
         $("#logs-patient-view-table div .gs-table thead tr th").css("background","darkslategrey")
 
+        //sa logs prescription
+        function patientNameClick() {
+            //#logs-patient-view-table div table tbody tr
+            $(".view").on("click",function () {
+                //alert($($($(this).children()[0]).children()[0]).data("id"))
+                // let id = $($($(this).children()[0]).children()[0]).data("id");
+                let id = $(this).data("id")
+                setTimeout(()=>{
+                    $.post('php/patientProcesses/setPatientSessionID.php',{id:id}).done(
+                        function (data) {
+                            //alert(data)
+                            location.href="individual-patient.php"
+                        }
+                    )
+                },200)
+            })
+        }
 
     })//document ready
 </script>
@@ -189,6 +213,15 @@
     }
     #logs-patient-view-table div .gs-table thead tr th{
         background: darkslategray!important;
+    }
+    #logs-patient-view-table div table tbody tr{
+        cursor: text;
+    }
+    #logs-patient-view-table div table tbody tr td span{
+        cursor: pointer;
+    }
+    #logs-patient-view-table div table tbody tr td span:hover{
+        color: #444343;
     }
 
 </style>

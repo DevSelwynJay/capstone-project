@@ -156,15 +156,22 @@ require 'php/DB_Connect.php';
                                  </button>
                              </a>
                              <a href="pending-patient-acc.php">
-                                 <button class="modal-primary-button">
+                                 <button class="modal-primary-button" style="margin-right: 1rem">
                                      <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
                                      Pending Online Account Request
                                  </button>
                              </a>
+                             <a href="#">
+                                 <button class="modal-primary-button" style="background: darkslategray!important;" id="logs-btn">
+                                     <i class="fas fa-history" style="margin-right: 0.3rem"></i>
+                                     Prescription Logs
+                                 </button>
+                             </a>
+                             <?php require "prescription-logs.php"?>
 
                     </div>
                         <div class="search-container search-container-patient col-lg-4 col-md-6 col-sm-5 col-xs-6">
-                           <input type="text" class="search-bar" placeholder="Search Patients" >
+                           <input type="text" class="search-bar" placeholder="Search Patients" id="search-patient">
                            <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
@@ -226,7 +233,7 @@ require 'php/DB_Connect.php';
                         <table class="patients-view">
 
                             <p class="modal-p" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
-                            <tbody>
+                            <tbody id="patient-table">
 <!--                <tr class="patients-view-title">-->
 <!--                    <th>Patient Id</th>-->
 <!--                    <th>Patient Name</th>-->
@@ -364,6 +371,10 @@ Closedropdown.addEventListener('click',function(){
                   font-size: clamp(0.4rem,0.8rem,1rem);
               }
           }
+          .gs-table-head tr th span {
+              color: white!important;
+          }
+
       </style>
 <script>
 
@@ -371,7 +382,7 @@ Closedropdown.addEventListener('click',function(){
     // $(".clickable-row").click(function() {
     //     window.location = $(this).data("href");
     // });
-       var table = $('tbody').tableSortable({
+       var table = $('#patient-table').tableSortable({
            data: [],
            columns:
                {
@@ -385,7 +396,7 @@ Closedropdown.addEventListener('click',function(){
                    // address:"Address",
                }
            ,
-           searchField: '.search-bar',
+           searchField: '#search-patient',
            // responsive: {
            //     720: {
            //         columns: {
@@ -411,12 +422,13 @@ Closedropdown.addEventListener('click',function(){
                console.log('table did update')
                row_click()
                for (a=0;a<parseInt(window.rowCount);a++){
-                   $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
-                   $($($(".gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                   $($($(".gs-table-body").children()[a]).children()[2]).attr("data-label","Patient Type")
-                   $($($(".gs-table-body").children()[a]).children()[3]).attr("data-label","Age")
-                   $($($(".gs-table-body").children()[a]).children()[4]).attr("data-label","Purok")
-                   $($($(".gs-table-body").children()[a]).children()[5]).attr("data-label","Acc. Type")
+
+                   $($($("#patient-table div table tbody").children()[a]).children()[0]).attr("data-label","ID")
+                   $($($("#patient-table div table tbody").children()[a]).children()[1]).attr("data-label","Name")
+                   $($($("#patient-table div table tbody").children()[a]).children()[2]).attr("data-label","Patient Type")
+                   $($($("#patient-table div table tbody").children()[a]).children()[3]).attr("data-label","Age")
+                   $($($("#patient-table div table tbody").children()[a]).children()[4]).attr("data-label","Purok")
+                   $($($("#patient-table div table tbody").children()[a]).children()[5]).attr("data-label","Acc. Type")
                }
            },
            tableWillUnmount: function() {console.log('table will unmount')},
@@ -486,7 +498,7 @@ Closedropdown.addEventListener('click',function(){
 
        //========Action Function======================//
        function row_click() {
-           $("tr").click(function () {
+           $("#patient-table div table tbody tr").click(function () {
                let a =  $(this).children();
                let id =  $($(this).children()[0]).html();//get the ID
                console.log(id)
