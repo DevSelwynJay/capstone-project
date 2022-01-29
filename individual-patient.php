@@ -264,8 +264,8 @@ require 'php/DB_Connect.php';
                            <div class="patient-content__name holder">
                               <div class="patient-content__name-container">
                                  <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                 <p id="name">Selwyn Jay D. Faustino</p>
-                                  <p class="margin-top-1" id="acc-type" style="color:var(--primary-color);font-weight: 500!important;font-size: medium">From Online</p>
+                                 <p id="name">.....</p>
+                                  <p class="margin-top-1" id="acc-type" style="color:var(--primary-color);font-weight: 500!important;font-size: medium">.....</p>
                                  <a href="#" id="trigger-view-edit-btn">Update Info</a>
                               </div>
                            </div>
@@ -274,19 +274,19 @@ require 'php/DB_Connect.php';
                               <table>
                                   <tr>
                                       <td><strong>Type</strong></td>
-                                      <td id="patient-type">Senior</td>
+                                      <td id="patient-type">...</td>
                                   </tr>
                                  <tr>
                                     <td><strong>Gender</strong></td>
-                                    <td id="gender">M</td>
+                                    <td id="gender">...</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Age</strong></td>
-                                    <td id="age">21</td>
+                                    <td id="age">...</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Address</strong></td>
-                                    <td id="address">Address</td>
+                                    <td id="address">...</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Occupation</strong></td>
@@ -294,15 +294,15 @@ require 'php/DB_Connect.php';
                                  </tr>
                                  <tr>
                                     <td><strong>Blood Type</strong></td>
-                                    <td id="blood-type">O</td>
+                                    <td id="blood-type">...</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Height</strong></td>
-                                    <td id="height">6'1</td>
+                                    <td id="height">...</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Weight</strong></td>
-                                    <td id="weight">70</td>
+                                    <td id="weight">...</td>
                                  </tr>
                               </table>
                            </div>
@@ -316,7 +316,7 @@ require 'php/DB_Connect.php';
                                <div class="row flex-box-row justify-content-lg-end">
                                    <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
                                        <div class="search-container search-container-inventory" >
-                                           <input style="" type="text" id="search-med-history" class="form-control search-bar" placeholder="Search Medicines" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                                           <input style="" type="text" id="search-med-history" class="form-control search-bar" placeholder="Search History" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                                        </div>
                                    </div>
                                </div>
@@ -544,6 +544,30 @@ require 'edit-patient-info-script.html';
                   drop.classList.add('notification--show');
               }
           });
+      </script>
+
+
+      <!--Modal for loading indiv patient-->
+      <div id="pop-up-loading-indiv" class="modal">
+          <div style="display: flex;align-items: center;justify-content: center">
+              <div class="loader"></div>
+              <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+                  Retrieving Patient Info...
+              </p>
+              <a href="#pop-up-loading-indiv" rel="modal:close" id="close-loading" style="display: none">
+              </a>
+          </div>
+      </div>
+      <script>
+          $("#pop-up-loading-indiv").modal({
+              showClose:false,clickClose:false,escapeClose:false
+          })
+          $(window).on("load",function () {
+              setTimeout(()=>{
+                  $('[href="#pop-up-loading-indiv"]').trigger("click")
+              },500)
+
+          })
       </script>
    </body>
 </html>

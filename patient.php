@@ -22,6 +22,7 @@ require 'php/DB_Connect.php';
        <link rel="stylesheet" href="scss/bootstrap-grid.css">
       <!--Custom CSS-->
       <link rel="stylesheet" href="scss/main.css">
+       <link rel="stylesheet" href="scss/modal.css">
       <!--Font Awesome-->
       <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
       <!-- Font Family Poppins -->
@@ -187,25 +188,45 @@ require 'php/DB_Connect.php';
                      </div>
 
                      <div class="content patients-view-container" style="margin-bottom: 5rem">
-                         <h3 style="color: var(--third-color)">Patient List</h3>
+                         <div class="flex-box-row justify-content-between">
+                             <h3 style="color: var(--third-color)">Patient List</h3>
+                             <div class="row" style="margin-bottom: 0.5rem;padding: 0 0.5rem 0 0.5rem">
+                                 <div class="col-xs-2 flex-box-row align-items-center" style="margin-right: 0.6rem">
+                                     <p class="modal-p" style="margin-right: 0.2rem!important;">Rows:</p>
+                                     <select id="changeRows" style="">
+                                         <option selected>3</option>
+                                         <option selected>5</option>
+                                         <option>10</option>
+                                         <option>15</option>
+                                     </select>
+                                 </div>
+                                 <!--                                <div class="col-xs-3 flex-box-row align-items-center">-->
+                                 <!--                                    <p class="modal-p" style="margin-right: 0.2rem!important;">Purok:</p>-->
+                                 <!--                                    <select id="changePurok">-->
+                                 <!--                                        <option value="0" selected>All</option>-->
+                                 <!--                                        --><?php
+                                 //                                        for ($a=1;$a<=7;$a++){
+                                 //                                            echo "<option>$a</option>";
+                                 //                                        }
+                                 //                                        ?>
+                                 <!--                                    </select>-->
+                                 <!--                                </div>-->
+                                 <style>
+                                     #changeRows, #changePurok{
+                                         all:revert;padding: 0.3rem!important;outline: none;border: 2px solid var(--light-grey)!important;
+                                     }
+                                     option{
+                                         padding: 0.3rem;
+                                         font-weight: 600;
+                                     }
+                                 </style>
+                             </div>
+                         </div>
 
-<!--                         <h3 class="table-title margin-top-3">-->
-<!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
-<!--                             Patient List-->
-<!--                         </h3>-->
-<!--                         <style>-->
-<!--                             .table-title{-->
-<!--                                 font-weight:700;-->
-<!--                                 margin-bottom: 0.5rem;-->
-<!--                                 font-size: clamp(1.5rem,2rem,1vw);-->
-<!--                                 font-family: 'Poppins', sans-serif;-->
-<!--                                 color: var(--third-color);-->
-<!--                                 display: flex;-->
-<!--                                 align-items: center;-->
-<!--                             }-->
-<!--                         </style>-->
                         <table class="patients-view">
-            <tbody>
+
+                            <p class="modal-p" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
+                            <tbody>
 <!--                <tr class="patients-view-title">-->
 <!--                    <th>Patient Id</th>-->
 <!--                    <th>Patient Name</th>-->
@@ -485,6 +506,74 @@ Closedropdown.addEventListener('click',function(){
            })
        }
 
+       //filter table
+       $("#changePurok").change(function (event) {
+           $(".search-bar").val("")
+
+           if($(this).val()=="0"){
+               resetTable()
+               return
+           }
+           $.get('php/patientProcesses/filter/filterPurok.php',{
+               filter: "purok",
+               filterValue:$(this).val()
+
+           }).done(function (data) {
+                console.log(data)
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Patient Type",
+                   age: "Age",
+                   purok:"Purok",
+                   account_type: "Reg. Type",
+                   // bday: "BirthDay",
+                   // address:"Address",
+               });
+           })//done
+
+
+
+       })//change purok
+
+
+       function resetTable() {
+           $.get('php/patientProcesses/retrievePatientList.php', function(data) {
+               d = data;
+               // Push data into existing data
+               console.log(JSON.parse(data))
+               //table.setData(JSON.parse(data), null, true);
+               window.rowCount = JSON.parse(data).length;
+               // or Set new data on table, columns is optional.
+               if($(document).width()<=720){
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               }
+               else{
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               }
+           })//end of get/post method
+       }
+
 
 });//end of document ready
 </script>
@@ -504,5 +593,29 @@ Closedropdown.addEventListener('click',function(){
         });
     </script>
 
+   <script src="js/patientFilter.js"></script>
+
+   <!--Modal for loading-->
+   <div id="pop-up-loading-patient" class="modal">
+       <div style="display: flex;align-items: center;justify-content: center">
+           <div class="loader"></div>
+           <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+               Retrieving Patient List...
+           </p>
+           <a href="#pop-up-loading-patient" rel="modal:close" id="close-loading" style="display: none">
+           </a>
+       </div>
+   </div>
+   <script>
+       $("#pop-up-loading-patient").modal({
+           showClose:false,clickClose:false,escapeClose:false
+       })
+       $(window).on("load",function () {
+           setTimeout(()=>{
+               $('[href="#pop-up-loading-patient"]').trigger("click")
+           },500)
+
+       })
+   </script>
    </body>
 </html>

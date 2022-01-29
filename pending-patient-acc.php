@@ -191,6 +191,7 @@ require 'php/DB_Connect.php';
 
                         <h3 style="color: var(--third-color)" class="margin-top-2">Pending Online Account Request for Patient</h3>
                         <table class="patients-view">
+                            <p class="modal-p" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
                             <tbody id="pending-patient-table">
                             <tr class="patients-view-title">
                                 <th>Patient Id</th>
@@ -708,6 +709,7 @@ require 'php/DB_Connect.php';
                     button:"Action"
                 }
             ,
+            sorting:['name','date'],
             searchField: '#pending-search',
             // responsive: {
             //     720: {
@@ -770,6 +772,7 @@ require 'php/DB_Connect.php';
                 date:"Date Requested",
                 button:"Action"
             });
+
         })
         $('#changeRows').on('change', function() {
             table.updateRowsPerPage(parseInt($(this).val(), 10));
@@ -790,6 +793,7 @@ require 'php/DB_Connect.php';
         $('#setPage2').click(function() {
             table.setPage(1);
         })
+
     });// END OF DOCUMENT REDY FUNCTION
 
 
@@ -893,6 +897,9 @@ require 'php/DB_Connect.php';
             font-size: clamp(0.4rem,0.8rem,1rem);
         }
     }
+    .gs-table-head tr th span {
+        color: white!important;
+    }
 
 </style>
 
@@ -909,6 +916,29 @@ require 'php/DB_Connect.php';
             drop.classList.add('notification--show');
         }
     });
+</script>
+
+<!--Modal for loading list-->
+<div id="pop-up-loading-list" class="modal">
+    <div style="display: flex;align-items: center;justify-content: center">
+        <div class="loader"></div>
+        <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+            Retrieving List...
+        </p>
+        <a href="#pop-up-loading-list" rel="modal:close" id="close-loading" style="display: none">
+        </a>
+    </div>
+</div>
+<script>
+    $("#pop-up-loading-list").modal({
+        showClose:false,clickClose:false,escapeClose:false
+    })
+    $(window).on("load",function () {
+        setTimeout(()=>{
+            $('[href="#pop-up-loading-list"]').trigger("click")
+        },500)
+
+    })
 </script>
 </body>
 </html>
