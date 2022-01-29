@@ -118,6 +118,7 @@ if(!empty($fileNames)){
     mysqli_query($con,
         "INSERT INTO pending_patient VALUES (DEFAULT ,'$patientID','$lname','$fname','$mname','$suffix','$gender','$bday','$purok','$house_no','$address','$occupation','$civil_status',DEFAULT ,DEFAULT ,DEFAULT, '$patient_type','$email','$pwd','$contact',DEFAULT ,DEFAULT )");
     //insert the records in pending_patient table
+    $_SESSION['showRegSuccess']=1;
     header("location:../../index.php");
 }
 

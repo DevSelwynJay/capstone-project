@@ -5,6 +5,10 @@ if(isset($_SESSION['email'])&&isset($_SESSION['account_type'])){
     header("location:php/loginProcesses/redirect.php");
     exit();
 }
+if(!isset($_SESSION['showRegSuccess'])){
+    $_SESSION['showRegSuccess']=0;
+}
+
 //test 123
 ?>
 <!DOCTYPE html>
@@ -653,5 +657,43 @@ if(isset($_SESSION['email'])&&isset($_SESSION['account_type'])){
 
   </script>
   <div id="sign-in-button"></div>
+
+    <!--Success Register-->
+    <div class="modal fade" id="pop-up-success" tabindex="-1" aria-labelledby="pop-upLabel" aria-hidden="true" data-backdrop="static" data-show="false" data-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                     <h5 class="modal-title" id="pop-upLabel">Message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>-->
+                <div class="modal-body">
+                    <div class="flex-box-row justify-content-center align-items-center">
+                        <img class="modal-header-icon" src="img/check.png">
+                        <p class="modal-p" id="pop-up-success-message">Please wait for the email confirming whether your account will be approved or not.</p>
+                    </div>
+                </div><!--end of modal body-->
+
+                <div class="modal-footer">
+                    <button type="button" class="modal-primary-button-2" data-dismiss="modal" id="pop-up-success-ok-btn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <?php
+     if($_SESSION['showRegSuccess']==1){
+         echo "
+         
+         <script> 
+            $('#pop-up-success').modal('show')
+         </script>
+         ";
+     }
+    $_SESSION['showRegSuccess']=0;
+    ?>
+
   </body>
 </html>
