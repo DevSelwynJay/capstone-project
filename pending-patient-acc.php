@@ -232,6 +232,83 @@ require 'php/DB_Connect.php';
                     <?php
                     include 'pending-patient-logs.php';
                     ?>
+
+                    <!--Floating-->
+                    <div id="draggable" class="ui-widget-content" style="">
+                        <div class="flex-box-column align-items-center">
+                            <div class="flex-box-row justify-content-center align-items-start">
+                                <p class="modal-p-2 flex-box-row align-items-start" style="padding: 0!important;"> <img src="img/swipe.png" width="25" height="25">Draggable Window</p>
+                            </div>
+                            <div class="flex-box-row justify-content-center align-items-start margin-top-1">
+                                <h4>Account Information</h4>
+
+                            </div>
+                            <button class="modal-primary-button" id="expand-shrink" style="width: 50%;padding: 0.2rem!important;">Show All Info</button>
+                            <script>
+                                $("#expand-shrink").click(function () {
+                                    if($(this).html()=="Show All Info"){
+                                        $(this).html("Minimize")
+                                        $(".min").css("display","revert")
+                                    }
+                                    else {
+                                        $(this).html("Show All Info")
+                                        $(".min").css("display","none")
+                                    }
+                                })
+                            </script>
+                            <table id="float-table" class="margin-top-1">
+                                <tr>
+                                    <td class="modal-p">First Name</td>
+                                    <td class="modal-p-2 fname" id="">Alfredo</td>
+                                </tr>
+                                <tr>
+                                    <td class="modal-p">Middle Name</td>
+                                    <td class="modal-p-2 mname" id="">Bas</td>
+                                </tr>
+                                <tr>
+                                    <td class="modal-p">Last Name</td>
+                                    <td class="modal-p-2 lname" id="">Benitez</td>
+                                </tr>
+                                <tr>
+                                    <td class="modal-p">Birthday</td>
+                                    <td class="modal-p-2 bday" id="">1999/01/11</td>
+                                </tr>
+                                <tr class="min">
+                                    <td class="modal-p">Purok</td>
+                                    <td class="modal-p-2 purok" id="">7</td>
+                                </tr>
+                                <tr class="min">
+                                    <td class="modal-p">Occupation</td>
+                                    <td class="modal-p-2 occu" id="">7</td>
+                                </tr>
+                                <tr class="min">
+                                    <td class="modal-p">Civil Status</td>
+                                    <td class="modal-p-2 civil" id="">7</td>
+                                </tr>
+                                <tr class="min">
+                                    <td class="modal-p">Email Used</td>
+                                    <td class="modal-p-2 email-used" id="">7</td>
+                                </tr>
+                                <tr class="min">
+                                    <td class="modal-p">Contact No.</td>
+                                    <td class="modal-p-2 contact-used" id="">7</td>
+                                </tr>
+                                <style>
+                                    .min{
+                                        display: none;
+                                    }
+                                    #draggable{
+                                        width: fit-content;padding: 1rem!important;z-index: 999999!important;border-radius: 0.5rem;display: none;box-shadow: 4px 4px 21px 9px rgba(0,0,0,0.75);
+                                        -webkit-box-shadow: 4px 4px 21px 9px rgba(0,0,0,0.75);
+                                        -moz-box-shadow: 4px 4px 21px 9px rgba(0,0,0,0.75);
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $("#draggable").draggable({ containment: "parent" })
+                    </script>
                 </div>
             </div>
         </div>
@@ -307,7 +384,7 @@ require 'php/DB_Connect.php';
 
 
 <a href="#" class="float" id="close-pic" style="display: none">
-    <i class="fa fa-sign-out my-float" id="exit-fs"></i>
+    <i class="fa fa-sign-out my-float" id="exit-fs" style="color: aliceblue;"></i>
 </a>
 
 <!--modal for individual view-->
@@ -357,39 +434,39 @@ require 'php/DB_Connect.php';
                     <div class="padding-all-15" id="info-cont">
                         <div>
                             <p class="modal-p">First Name</p>
-                            <p class="modal-p-2" id="fname">Alfredo</p>
+                            <p class="modal-p-2 fname" id="">Alfredo</p>
                         </div>
                         <div>
                             <p class="modal-p">Middle Name</p>
-                            <p class="modal-p-2" id="mname">Bas</p>
+                            <p class="modal-p-2 mname" id="">Bas</p>
                         </div>
                         <div>
                             <p class="modal-p">Last Name</p>
-                            <p class="modal-p-2" id="lname">Benitez</p>
+                            <p class="modal-p-2 lname" id="">Benitez</p>
                         </div>
                         <div>
                             <p class="modal-p">Birthday</p>
-                            <p class="modal-p-2" id="bday">1999/01/11</p>
+                            <p class="modal-p-2 bday" id="">1999/01/11</p>
                         </div>
                         <div>
                             <p class="modal-p">Purok</p>
-                            <p class="modal-p-2" id="purok">7</p>
+                            <p class="modal-p-2 purok" id="">7</p>
                         </div>
                         <div>
                             <p class="modal-p">Occupation</p>
-                            <p class="modal-p-2" id="occu">7</p>
+                            <p class="modal-p-2 occu" id="occu">7</p>
                         </div>
                         <div>
                             <p class="modal-p">Civil Status</p>
-                            <p class="modal-p-2" id="civil">7</p>
+                            <p class="modal-p-2 civil" id="civil">7</p>
                         </div>
                         <div>
                             <p class="modal-p">Email Used</p>
-                            <p class="modal-p-2" id="email-used">7</p>
+                            <p class="modal-p-2 email-used" id="">7</p>
                         </div>
                         <div>
                             <p class="modal-p">Contact No.</p>
-                            <p class="modal-p-2" id="contact-used">7</p>
+                            <p class="modal-p-2 contact-used" id="">7</p>
                         </div>
                     </div>
                     <style>
@@ -510,22 +587,26 @@ require 'php/DB_Connect.php';
             $(".flickity-slider").prop('id','flickity-slider')
             $('#fs').on( 'click', function() {
                 $( '.gallery' ).flickity('viewFullscreen');
+                window.dispatchEvent(new Event('resize'));
                 $("#close-pic").css("display","inline")
+                $("#draggable").css("display","block")
                 $(".gallery-cell img").css("max-height","80vh")
+                $("#draggable").position({
+                    my: "right bottom",
+                    at: "right bottom",
+                    of: ".flickity-viewport"
+                });
                 window.dispatchEvent(new Event('resize'));
             });
             $("#exit-fs").off("click")
             $("#exit-fs").on( 'click', function() {
-                window.dispatchEvent(new Event('resize'));
                 exit_fullscreen()
-                var esc = $.Event("keydown", { keyCode: 27 });
-                $(document).trigger(esc);
             });
             function exit_fullscreen() {
                 $("#close-pic").css("display","none")
+                $("#draggable").css("display","none")
                 $(".gallery-cell img").css("max-height","100%")
                 $( '.gallery' ).flickity('exitFullscreen')
-                window.dispatchEvent(new Event('resize'));
                 window.dispatchEvent(new Event('resize'));
             }
             $(document).keyup(function(e) {
@@ -568,15 +649,15 @@ require 'php/DB_Connect.php';
                 $.post('php/registerProcesses/activeSelectedPendingSession.php',{id:id}).done(function (data) {
                     // alert(data)
                     let result = JSON.parse(data);
-                    $("#fname").html(result.first_name)
-                    $("#mname").html(result.middle_name)
-                    $("#lname").html(result.last_name+" "+result.suffix)
-                    $("#bday").html(result.birthday)
-                    $("#purok").html(result.purok)
-                    $("#occu").html(result.occupation)
-                    $("#civil").html(result.civil_status)
-                    $("#email-used").html(result.email)
-                    $("#contact-used").html(result.contact_no)
+                    $(".fname").html(result.first_name)
+                    $(".mname").html(result.middle_name)
+                    $(".lname").html(result.last_name+" "+result.suffix)
+                    $(".bday").html(result.birthday)
+                    $(".purok").html(result.purok)
+                    $(".occu").html(result.occupation)
+                    $(".civil").html(result.civil_status)
+                    $(".email-used").html(result.email)
+                    $(".contact-used").html(result.contact_no)
                 })
 
                 name = $(this).data('lname')+", "+$(this).data('fname')+" "+$(this).data('mname');
