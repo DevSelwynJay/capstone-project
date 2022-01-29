@@ -292,12 +292,12 @@ require 'php/DB_Connect.php';
                                     <div class="row">
                                         <div class="col-sm-12" >
                                             <p class="modal-p"for="medicineStocks">Stock:</p>
-                                            <input type="text" id="medicineStocks"  class="modal-field" placeholder="Enter  Stocks" autocomplete="off" required>
+                                            <input type="number" id="medicineStocks"  class="modal-field" placeholder="Enter  Stocks" autocomplete="off" required>
                                             <p class="modal-p" class="error" id="stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p"for="medicinecriticalStocks">Critical Stock:</p>
-                                            <input type="text" id="medicinecriticalStocks"  class="modal-field" placeholder="Enter Critical Stocks" autocomplete="off" required>
+                                            <input type="number" id="medicinecriticalStocks"  class="modal-field" placeholder="Enter Critical Stocks" autocomplete="off" required>
                                             <p class="modal-p" class="error" id="critical-stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
@@ -368,7 +368,7 @@ require 'php/DB_Connect.php';
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12" >
-                                            <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="text" id="updatemedicineStocks"  class="modal-field" autocomplete="off" required>
+                                            <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="number" id="updatemedicineStocks"  class="modal-field" autocomplete="off" required>
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
@@ -877,6 +877,11 @@ require 'php/DB_Connect.php';
         border-radius: 0.4rem;
         font-size: 1.4rem !important;
         cursor: unset !important;
+    }
+    #medicinecriticalStocks, #medicinecriticalStocks, #updatemedicineStocks{
+        -webkit-appearance: none;
+        margin: 0;
+        -moz-appearance: textfield;
     }
 </style>
 </body>

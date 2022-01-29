@@ -186,7 +186,6 @@ require 'php/DB_Connect.php';
                                     <div class="reports_individual-report-download">
                                         <a id="excel-link">Download Report (csv)</a>
                                         <a id="pdf-link">Dowload Report (pdf)</a>
-                                        <a href="">Print Report</a>
                                       </div>
                                 </div>
                              </div>
