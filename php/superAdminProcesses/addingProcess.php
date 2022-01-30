@@ -49,7 +49,7 @@ function generateID($_6DigitCode): string
 
 function validateID($con,$new_id){//check the generated ID if existing
 
-    $tables = array('admin','admin_archive');
+    $tables = array('admin');
     foreach ($tables as $table){
         $result = mysqli_query($con,"SELECT id FROM $table WHERE id = '$new_id'");
         if(mysqli_num_rows($result)>0){
