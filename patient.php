@@ -22,6 +22,7 @@ require 'php/DB_Connect.php';
        <link rel="stylesheet" href="scss/bootstrap-grid.css">
       <!--Custom CSS-->
       <link rel="stylesheet" href="scss/main.css">
+       <link rel="stylesheet" href="scss/modal.css">
       <!--Font Awesome-->
       <script src="https://kit.fontawesome.com/617ba34092.js" crossorigin="anonymous"></script>
       <!-- Font Family Poppins -->
@@ -147,7 +148,7 @@ require 'php/DB_Connect.php';
 </div>
                     <div class="col-sm-12">
                      <div class="search-tab margin-top-2 row  patients-view-container justify-content-sm-between">
-                         <div class="button-container col-lg-6 col-md-6 col-sm-6 col-xs-6 flex-box-row margin-bottom-2 justify-content-start align-items-center">
+                         <div class="button-container col-lg-8 col-md-6 col-sm-7 col-xs-6 flex-box-row margin-bottom-2 justify-content-start align-items-center">
                              <a href="add-patient-admin.php">
                                  <button class="modal-primary-button-2" style="margin-right: 1rem">
                                      <i class="fas fa-plus" style="margin-right: 0.3rem"></i>
@@ -155,15 +156,22 @@ require 'php/DB_Connect.php';
                                  </button>
                              </a>
                              <a href="pending-patient-acc.php">
-                                 <button class="modal-primary-button">
+                                 <button class="modal-primary-button" style="margin-right: 1rem">
                                      <i class="fas fa-user-check" style="margin-right: 0.3rem"></i>
                                      Pending Online Account Request
                                  </button>
                              </a>
+                             <a href="#">
+                                 <button class="modal-primary-button" style="background: darkslategray!important;" id="logs-btn">
+                                     <i class="fas fa-history" style="margin-right: 0.3rem"></i>
+                                     Prescription Logs
+                                 </button>
+                             </a>
+                             <?php require "prescription-logs.php"?>
 
                     </div>
                         <div class="search-container search-container-patient col-lg-4 col-md-6 col-sm-5 col-xs-6">
-                           <input type="text" class="search-bar" placeholder="Search Patients" >
+                           <input type="text" class="search-bar" placeholder="Search Patients" id="search-patient">
                            <a href="#"><i class="fas fa-search"></i></a>
                             <style>
                                 @media ( max-width: 575px) {
@@ -187,25 +195,45 @@ require 'php/DB_Connect.php';
                      </div>
 
                      <div class="content patients-view-container" style="margin-bottom: 5rem">
-                         <h3 style="color: var(--third-color)">Patient List</h3>
+                         <div class="flex-box-row justify-content-between">
+                             <h3 style="color: var(--third-color)">Patient List</h3>
+                             <div class="row" style="margin-bottom: 0.5rem;padding: 0 0.5rem 0 0.5rem">
+                                 <div class="col-xs-2 flex-box-row align-items-center" style="margin-right: 0.6rem">
+                                     <p class="modal-p" style="margin-right: 0.2rem!important;">Rows:</p>
+                                     <select id="changeRows" style="">
+                                         <option selected>3</option>
+                                         <option selected>5</option>
+                                         <option>10</option>
+                                         <option>15</option>
+                                     </select>
+                                 </div>
+                                 <!--                                <div class="col-xs-3 flex-box-row align-items-center">-->
+                                 <!--                                    <p class="modal-p" style="margin-right: 0.2rem!important;">Purok:</p>-->
+                                 <!--                                    <select id="changePurok">-->
+                                 <!--                                        <option value="0" selected>All</option>-->
+                                 <!--                                        --><?php
+                                 //                                        for ($a=1;$a<=7;$a++){
+                                 //                                            echo "<option>$a</option>";
+                                 //                                        }
+                                 //                                        ?>
+                                 <!--                                    </select>-->
+                                 <!--                                </div>-->
+                                 <style>
+                                     #changeRows, #changePurok{
+                                         all:revert;padding: 0.3rem!important;outline: none;border: 2px solid var(--light-grey)!important;
+                                     }
+                                     option{
+                                         padding: 0.3rem;
+                                         font-weight: 600;
+                                     }
+                                 </style>
+                             </div>
+                         </div>
 
-<!--                         <h3 class="table-title margin-top-3">-->
-<!--                             <img src="img/patient.png"class="modal-icon-wider" style="margin-right: 0.3rem"/>-->
-<!--                             Patient List-->
-<!--                         </h3>-->
-<!--                         <style>-->
-<!--                             .table-title{-->
-<!--                                 font-weight:700;-->
-<!--                                 margin-bottom: 0.5rem;-->
-<!--                                 font-size: clamp(1.5rem,2rem,1vw);-->
-<!--                                 font-family: 'Poppins', sans-serif;-->
-<!--                                 color: var(--third-color);-->
-<!--                                 display: flex;-->
-<!--                                 align-items: center;-->
-<!--                             }-->
-<!--                         </style>-->
                         <table class="patients-view">
-            <tbody>
+
+                            <p class="modal-p" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
+                            <tbody id="patient-table">
 <!--                <tr class="patients-view-title">-->
 <!--                    <th>Patient Id</th>-->
 <!--                    <th>Patient Name</th>-->
@@ -343,6 +371,10 @@ Closedropdown.addEventListener('click',function(){
                   font-size: clamp(0.4rem,0.8rem,1rem);
               }
           }
+          .gs-table-head tr th span {
+              color: white!important;
+          }
+
       </style>
 <script>
 
@@ -350,7 +382,7 @@ Closedropdown.addEventListener('click',function(){
     // $(".clickable-row").click(function() {
     //     window.location = $(this).data("href");
     // });
-       var table = $('tbody').tableSortable({
+       var table = $('#patient-table').tableSortable({
            data: [],
            columns:
                {
@@ -364,7 +396,7 @@ Closedropdown.addEventListener('click',function(){
                    // address:"Address",
                }
            ,
-           searchField: '.search-bar',
+           searchField: '#search-patient',
            // responsive: {
            //     720: {
            //         columns: {
@@ -390,12 +422,13 @@ Closedropdown.addEventListener('click',function(){
                console.log('table did update')
                row_click()
                for (a=0;a<parseInt(window.rowCount);a++){
-                   $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
-                   $($($(".gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                   $($($(".gs-table-body").children()[a]).children()[2]).attr("data-label","Patient Type")
-                   $($($(".gs-table-body").children()[a]).children()[3]).attr("data-label","Age")
-                   $($($(".gs-table-body").children()[a]).children()[4]).attr("data-label","Purok")
-                   $($($(".gs-table-body").children()[a]).children()[5]).attr("data-label","Acc. Type")
+
+                   $($($("#patient-table div table tbody").children()[a]).children()[0]).attr("data-label","ID")
+                   $($($("#patient-table div table tbody").children()[a]).children()[1]).attr("data-label","Name")
+                   $($($("#patient-table div table tbody").children()[a]).children()[2]).attr("data-label","Patient Type")
+                   $($($("#patient-table div table tbody").children()[a]).children()[3]).attr("data-label","Age")
+                   $($($("#patient-table div table tbody").children()[a]).children()[4]).attr("data-label","Purok")
+                   $($($("#patient-table div table tbody").children()[a]).children()[5]).attr("data-label","Acc. Type")
                }
            },
            tableWillUnmount: function() {console.log('table will unmount')},
@@ -465,7 +498,7 @@ Closedropdown.addEventListener('click',function(){
 
        //========Action Function======================//
        function row_click() {
-           $("tr").click(function () {
+           $("#patient-table div table tbody tr").click(function () {
                let a =  $(this).children();
                let id =  $($(this).children()[0]).html();//get the ID
                console.log(id)
@@ -483,6 +516,74 @@ Closedropdown.addEventListener('click',function(){
 
                //console.log(a[0].innerHTML)//just another way
            })
+       }
+
+       //filter table
+       $("#changePurok").change(function (event) {
+           $(".search-bar").val("")
+
+           if($(this).val()=="0"){
+               resetTable()
+               return
+           }
+           $.get('php/patientProcesses/filter/filterPurok.php',{
+               filter: "purok",
+               filterValue:$(this).val()
+
+           }).done(function (data) {
+                console.log(data)
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Patient Type",
+                   age: "Age",
+                   purok:"Purok",
+                   account_type: "Reg. Type",
+                   // bday: "BirthDay",
+                   // address:"Address",
+               });
+           })//done
+
+
+
+       })//change purok
+
+
+       function resetTable() {
+           $.get('php/patientProcesses/retrievePatientList.php', function(data) {
+               d = data;
+               // Push data into existing data
+               console.log(JSON.parse(data))
+               //table.setData(JSON.parse(data), null, true);
+               window.rowCount = JSON.parse(data).length;
+               // or Set new data on table, columns is optional.
+               if($(document).width()<=720){
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               }
+               else{
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               }
+           })//end of get/post method
        }
 
 
@@ -504,5 +605,29 @@ Closedropdown.addEventListener('click',function(){
         });
     </script>
 
+   <script src="js/patientFilter.js"></script>
+
+   <!--Modal for loading-->
+   <div id="pop-up-loading-patient" class="modal">
+       <div style="display: flex;align-items: center;justify-content: center">
+           <div class="loader"></div>
+           <p class="modal-p" id="pop-up-loading-message" style="display: flex;justify-content: center;margin-left: 1rem">
+               Retrieving Patient List...
+           </p>
+           <a href="#pop-up-loading-patient" rel="modal:close" id="close-loading" style="display: none">
+           </a>
+       </div>
+   </div>
+   <script>
+       $("#pop-up-loading-patient").modal({
+           showClose:false,clickClose:false,escapeClose:false
+       })
+       $(window).on("load",function () {
+           setTimeout(()=>{
+               $('[href="#pop-up-loading-patient"]').trigger("click")
+           },500)
+
+       })
+   </script>
    </body>
 </html>

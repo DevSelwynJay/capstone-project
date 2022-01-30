@@ -3,27 +3,32 @@ $con = null;
 require ('../pdflib/fpdf.php');
 require ('../DB_Connect.php');
 
-
+$type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW())';
+
 }
 elseif(isset($_GET['monthly'])){
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW())';
+    //MONTH(`dateadded`) = MONTH(NOW())
     $time = '1 month';
 }
 elseif(isset($_GET['quarterly'])){
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW())';
     $time = '1 quarter';
 }
 elseif(isset($_GET['annually'])){
-
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW())';
+    //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
 
-    $type = $_GET['type'];
-
-$pdfquery = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
+$pdfquery = $sql;
 
 $record = mysqli_query($con,$pdfquery);
 

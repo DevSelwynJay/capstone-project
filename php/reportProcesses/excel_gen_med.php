@@ -1,7 +1,7 @@
 <?php
+// Load the database configuration file
 $con = null;
-require ('../DB_Connect.php');
-
+require '../DB_Connect.php';
 
 // Filter the excel data
 function filterData(&$str){
@@ -9,24 +9,68 @@ function filterData(&$str){
     $str = preg_replace("/\r?\n/", "\\n", $str);
     if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
+$type = $_GET['type'];
+if(isset($_GET['daily'])){
+    $time = '1 day';
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and `date_given` > NOW()- interval '.$time.' ';
+}
+elseif(isset($_GET['weekly'])){
+    $time = '1 week';
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and yearweek(`date_given`) = yearweek(NOW())';
+
+}
+elseif(isset($_GET['monthly'])){
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and MONTH(`date_given`) = MONTH(NOW())';
+    //MONTH(`dateadded`) = MONTH(NOW())
+    $time = '1 month';
+}
+elseif(isset($_GET['quarterly'])){
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and QUARTER(`date_given`) = QUARTER(NOW())';
+    $time = '1 quarter';
+}
+elseif(isset($_GET['annually'])){
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and YEAR(`date_given`) = YEAR(NOW())';
+    //YEAR(`dateadded`) = YEAR(NOW())
+    $time = '1 year';
+}
+
+
 // Excel file name for download
-$fileName = "members-data_" . date('Y-m-d') . ".xls";
+$fileName = "REPORT_".$type.'_'. date('Y-m-d') . ".xls";
 
 // Column names
-$fields = array('ID', 'FIRST NAME', 'LAST NAME', 'EMAIL', 'GENDER', 'COUNTRY', 'CREATED', 'STATUS');
+$fields = array('PATIENT NAME', 'BIRTHDATE', 'ADDRESS', 'GENDER', 'DATE GIVEN');
+
 // Display column names as first row
 $excelData = implode("\t", array_values($fields)) . "\n";
 
 // Fetch records from database
-
-$query = $db->query("SELECT * FROM members ORDER BY id ASC");
-if($query->num_rows > 0){
+$excelquery = $sql;
+$res = mysqli_query($con,$excelquery);
+if(mysqli_num_rows($res)>0){
     // Output each row of the data
-    while($row = $query->fetch_assoc()){
-        $status = ($row['status'] == 1)?'Active':'Inactive';
-        $lineData = array($row['id'], $row['first_name'], $row['last_name'], $row['email'], $row['gender'], $row['country'], $row['created'], $status);
-        array_walk($lineData, 'filterData');
-        $excelData .= implode("\t", array_values($lineData)) . "\n";
+    while($row = mysqli_fetch_assoc($res)){
+        $patient_id = $row['patient_id'];
+        $date_given = $row['date_given'];
+        $patqry = 'Select * from `walk_in_patient` where id = "'.$patient_id.'"';
+        $record2 = mysqli_query($con,$patqry);
+        while($row3 = mysqli_fetch_assoc($record2)){
+            $lname = $row3['last_name'];
+            $fname = $row3['first_name'];
+            $mname = $row3['middle_name'];
+            $pat_name = $fname .' '.$mname.' '.$lname;
+            $bday = $row3['birthday'];
+            $purok = $row3['purok'];
+            $house_no = $row3['house_no'];
+            $address = $row3['address'];
+            $comaddress = 'Purok '.$purok.' House No.'.$house_no.' '.$address;
+            $gender = $row3['gender'];
+            $lineData = array($pat_name,$bday,$comaddress,$gender,$date_given);
+            array_walk($lineData, 'filterData');
+            $excelData .= implode("\t", array_values($lineData)) . "\n";
+
+        }
+
     }
 }else{
     $excelData .= 'No records found...'. "\n";

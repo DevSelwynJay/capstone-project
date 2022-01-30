@@ -7,20 +7,28 @@ $arr = array();
 $time = $_POST['interval'];
 if($time == 'daily'){
     $time = '1 day';
+    $sql = 'Select * from `medication_record` where `patient_type` = "PWD" and `date_given` > NOW()- interval '.$time.' order by `date_given` asc';
 }
 elseif ($time == 'weekly'){
     $time = '1 week';
+    $sql = 'Select * from `medication_record` where `patient_type` = "PWD" and yearweek(`date_given`) = yearweek(NOW()) order by `date_given` asc';
+
 }
 elseif ($time == 'monthly'){
+    $sql = 'Select * from `medication_record` where `patient_type` = "PWD" and MONTH(`date_given`) = MONTH(NOW()) order by `date_given` asc';
+    //MONTH(`dateadded`) = MONTH(NOW())
     $time = '1 month';
 }
-elseif($time == 'quarterly'){
+elseif ($time == 'quarterly'){
+    $sql = 'Select * from `medication_record` where `patient_type` = "PWD" and QUARTER(`date_given`) = QUARTER(NOW()) order by `date_given` asc';
     $time = '1 quarter';
 }
 elseif ($time == 'annually'){
+    $sql = 'Select * from `medication_record` where `patient_type` = "PWD" and YEAR(`date_given`) = YEAR(NOW()) order by `date_given` asc';
+    //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
-$patientqry = "Select * from `medication_record` where `patient_type` = 'PWD' and `date_given` > NOW()-interval ".$time." order by `date_given` asc";
+$patientqry = $sql;
 $result = mysqli_query($con,$patientqry);
 
 while ($row = mysqli_fetch_assoc($result)){

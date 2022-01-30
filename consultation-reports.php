@@ -170,7 +170,6 @@ require 'php/DB_Connect.php';
                                     <div class="reports_individual-report-download">
                                         <a id="excel-link">Download Report (csv)</a>
                                         <a id="pdf-link">Dowload Report (pdf)</a>
-                                        <a href="">Print Report</a>
                                       </div>
                                 </div>
                              </div>
@@ -1139,7 +1138,7 @@ require 'php/DB_Connect.php';
                 }
             });
             if(JSON.parse(record).length==0){
-                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'<td colspan='3'>><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>");
 
                 return
             }

@@ -9,24 +9,30 @@ function filterData(&$str){
     $str = preg_replace("/\r?\n/", "\\n", $str);
     if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
+$type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW())';
+
 }
 elseif(isset($_GET['monthly'])){
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW())';
+    //MONTH(`dateadded`) = MONTH(NOW())
     $time = '1 month';
 }
 elseif(isset($_GET['quarterly'])){
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW())';
     $time = '1 quarter';
 }
 elseif(isset($_GET['annually'])){
-
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW())';
+    //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
-
-$type = $_GET['type'];
 
 
 // Excel file name for download
@@ -39,7 +45,7 @@ $fields = array('ID', 'MEDICINE NAME', 'CATEGORY', 'SUBCATEGORY', 'DOSAGE', 'STO
 $excelData = implode("\t", array_values($fields)) . "\n";
 
 // Fetch records from database
-$excelquery = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
+$excelquery = $sql;
 $res = mysqli_query($con,$excelquery);
 if(mysqli_num_rows($res)>0){
     // Output each row of the data

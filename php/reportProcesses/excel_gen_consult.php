@@ -9,24 +9,30 @@ function filterData(&$str){
     $str = preg_replace("/\r?\n/", "\\n", $str);
     if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
+$type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and `date_given` > NOW()- interval '.$time.' ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and yearweek(`date_given`) = yearweek(NOW())';
+
 }
 elseif(isset($_GET['monthly'])){
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and MONTH(`date_given`) = MONTH(NOW())';
+    //MONTH(`dateadded`) = MONTH(NOW())
     $time = '1 month';
 }
 elseif(isset($_GET['quarterly'])){
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and QUARTER(`date_given`) = QUARTER(NOW())';
     $time = '1 quarter';
 }
 elseif(isset($_GET['annually'])){
-
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and YEAR(`date_given`) = YEAR(NOW())';
+    //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
-
-$type = $_GET['type'];
 
 
 // Excel file name for download
@@ -39,7 +45,7 @@ $fields = array('PATIENT NAME', 'BIRTHDATE', 'ADDRESS', 'GENDER', 'DATE GIVEN');
 $excelData = implode("\t", array_values($fields)) . "\n";
 
 // Fetch records from database
-$excelquery = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and `date_given` > NOW()- interval '.$time.' ';
+$excelquery = $sql;
 $res = mysqli_query($con,$excelquery);
 if(mysqli_num_rows($res)>0){
     // Output each row of the data
