@@ -566,6 +566,73 @@ section .inner-page-content .dropdown-settings {
   }
 }
 
+.about--page_hero {
+  min-height: 30vh;
+  background-color: grey;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.about--page_hero h1 {
+  font-size: 2rem;
+}
+
+.about--page_left {
+  text-align: left !important;
+  padding-right: 2rem;
+}
+
+.about--page_left h2 {
+  max-width: 100% !important;
+}
+
+.about--page_left p {
+  max-width: 100% !important;
+}
+
+.about--page_right .address {
+  margin-bottom: 1rem;
+}
+
+.about--page_right .contact-number {
+  margin-bottom: 1rem;
+}
+
+.about--page_right .email {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about--page_right {
+    margin-top: 2rem;
+  }
+}
+
+.about--page_right small {
+  width: 100% !important;
+  text-align: left !important;
+}
+
+.about--page_wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about--page .backbtn {
+  margin: 2rem 0 !important;
+}
+
+.about--page iframe {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.about--page p {
+  max-width: 100% !important;
+  text-align: left;
+}
+
 .text-content {
   display: -webkit-box;
   display: -ms-flexbox;
