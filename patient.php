@@ -567,7 +567,7 @@ Closedropdown.addEventListener('click',function(){
            if(filterValue=="0"){
                resetTable();//show all of the patient
            }
-           else  if(filterValue=="1"){
+           else  {
                 filterTable(filterValue);
            }
        })

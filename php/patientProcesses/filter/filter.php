@@ -10,6 +10,22 @@ $symbol = "=";
 $minusClause = "";
 query($con,$symbol,$minusClause);
 }
+else if($val=="2"){
+    $symbol = ">=";
+    $minusClause = "-interval 1 day";
+    query($con,$symbol,$minusClause);
+}
+else if($val=="3"){
+    $symbol = ">=";
+    $minusClause = "-interval 7 day";
+    query($con,$symbol,$minusClause);
+}
+else if($val=="4"){
+    $symbol = ">=";
+    $minusClause = "-interval 30 day";
+    query($con,$symbol,$minusClause);
+}
+
 
 
 //$result = mysqli_query($con,"SELECT*FROM walk_in_patient WHERE DATE_FORMAT(date_created,'%Y-%m-%d') >= DATE_FORMAT(NOW()-interval 7 day,'%Y-%m-%d')");
