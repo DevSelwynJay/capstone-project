@@ -2,11 +2,12 @@
 
 session_start();
 
-//if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
-//    header("location:index.php",true);
-//    exit();
-//}
+if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
+    header("location:index.php",true);
+    exit();
+}
 $emm = $_SESSION['email_session_for_sms_otp'];
+
 
 //?>
 <!DOCTYPE html>
@@ -47,40 +48,12 @@ $emm = $_SESSION['email_session_for_sms_otp'];
     <link rel="stylesheet" href="scss/scrollbar_loading.css">
     <!--Custom Modal Design-->
     <link rel="stylesheet" href="scss/modal.css">
-    <!-- PAGINATION STYLESHEET -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 
 </head>
 <body>
 <section>
     <div class="super-admin">
-        <!--
-           <div class="sidenav">
-              <div class="inner-sidenav">
-                 <div class="spacer">
-                    <div class="profile">
-                       <div class="profile-img">
-                          <img src="img/jay.jpg" alt="">
-                       </div>
-                       <h4>Your Name</h4>
-                    </div>
-                    <ul class="menu">
-                       <li><a href="" class="dashboard">Dashboard</a></li>
-                       <li><a href="" class="patient">Patient</a></li>
-                       <li><a href="" class="reports">Reports</a></li>
-                       <li><a href="" class="trackMap">Track Map</a></li>
-                       <li><a href="" class="inventory">Inventory</a></li>
-                    </ul>
-                 </div>
-                 <div class="social-media-links">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                 </div>
-              </div>
-           </div>
 
-           -->
         <div class="main">
             <div class="inner-page-content">
                 <div class="col-sm-12 p-0">
@@ -393,25 +366,60 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                 <div class="col-sm-12 super-admin--container">
                     <h3 class="color-black">Manage Patient Accounts</h3>
                     <div id ="patTable" style="max-height: 70vh;overflow-y: auto">
-                        <table id="customersTable" class="display" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                        </table>
+                        <div class="reports__individual-container" >
+                            <table class="reports__individual-reports-table">
+                                <tbody id="pattablediv">
 
+                                </tbody>
+                            </table>
+                        </div>
                         <style>
-                            #customersTable tr td:nth-child(1){
+                            #patientTable tr td:nth-child(1){
+                                display: none;
+                            }
+                            #patientTable tr td:nth-child(2){
                                 display: none;
                             }
                         </style>
-
+                        <!--                  <table id="patientTable">
+                        <tr>
+                           <th>User/Patient ID</th>
+                           <th>First Name</th>
+                           <th>Middle Name</th>
+                           <th>Last Name</th>
+                           <th>Email</th>
+                        </tr>
+                         <tbody>
+                            <?php
+                        /*$con=null;
+                        include 'php/DB_Connect.php';
+                        $count = 0;
+                        $result = mysqli_query($con,"SELECT id, first_name, middle_name, last_name, email FROM patient");
+                        while ($row=mysqli_fetch_array($result)){
+                            $ids = $row[0];
+                            $fnames = $row[1];
+                            $mnames = $row[2];
+                            $lnames = $row[3];
+                            $ems = $row[4];
+                            echo "
+                         <style>tr:not(:first-child):hover { background-color : rgba(87,191,243,0.82) }</style>
+                         <tr>
+                           <td>$ids</td>
+                           <td>$fnames</td>
+                           <td>$mnames</td>
+                           <td>$lnames</td>
+                           <td>$ems</td>
+                        </tr>
+                         ";
+                            $count++;
+                            if ($count<5){
+                                break;
+                            }
+                        }
+                        mysqli_close($con); */
+                        ?>
+                         </tbody>
+                     </table> -->
                     </div>
                     <div class="cta-wrapper2">
                         <!--Patanggal nung show more kasi scrollable naman na  -->
@@ -423,26 +431,125 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         </div>
     </div>
 </section>
+<script>
+    function displayPtnts(){//? patient
+        $.ajax({
+            url: 'php/superAdminProcesses/ptientload.php',
+            type: 'POST',
+            data:{
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" charset="utf8" type="text/javascript"></script>
+            },
+            success: function (data, status){
+                //console.log(JSON.parse(data)+"pwd");
+                displayreport(data);
+            }
+        })
+    }
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#customersTable').dataTable({
-            "processing": true,
-            "ajax": "php/superAdminProcesses/fetch_records.php",
-            "columns": [
-                {data: 'id'},
-                {data: 'first_name'},
-                {data: 'middle_name'},
-                {data: 'last_name'},
-                {data: 'email'},
-                {data: 'account_status'}
-            ]
+    function displayreport(data){
+        var record = data;
+        let result = JSON.parse(record);
+        window.rowCount_patients = JSON.parse(record).length;
+        var table = $('#pattablediv').tableSortable({
+            data: result,
+            columns:
+                {
+                    name:"Name",
+                    email:"Email",
+                    status:"Status",
+                    action:"Action",
+                }
+            ,
+            //searchField: '#meds',
+            // responsive: {
+            //     720: {
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     },
+            //     512:{
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     }
+            // },
+            rowsPerPage: 5,
+            pagination: true,
+            sorting:false,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+                for (a=0;a<parseInt(window.rowCount_patients);a++){
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+
+                }
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {
+                // console.log('table did update');  click_view_button();
+                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                for (a=0;a<parseInt( window.rowCount_patients);a++){
+                    $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                }
+                for (a=0;a<parseInt(window.rowCount_patients);a++){
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+
+                }
+                //thead color
+                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                $(".gs-table-head tr th span").css("color","white!important");
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
         });
-    });
+        if(JSON.parse(record).length==0){
+            $("#pattablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+
+            return
+        }
+        $('#changeRows').on('change', function() {
+            table.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            table.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            table.distroy();
+        })
+
+        $('#refresh').click(function() {
+            table.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            table.setPage(1);
+        })
+        //thead color
+        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+        $(".gs-table-head tr th span").css("color","white!important");
+    }
+    displayPtnts();
 </script>
+
 <script>
 
 
@@ -485,7 +592,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         dropdownToggle.style.display = "block";
     });
 
-
+    address_autocomlete();
     function address_autocomlete() {
         //$("#address-edit-2").autocomplete({
         //  source:['Sto. Rosario Paombong Bulacan',"Paombong","Bulacan"]
@@ -529,7 +636,6 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                 }
             });
     }//
-    address_autocomlete();
 </script>
 <script>
     const menu = document.querySelector('#menu');
@@ -556,11 +662,33 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         closeMobileMenu.style.display = "none"
         mobileMenu.style.display = "block";
     });
+    // !past patientTable
+    /*
+    $(document).ready(function() {
+        displayUsers();
+    })
 
 
 
+    function displayUsers(page) {
+        var displayData = true;
+        $.ajax({
+            url: 'php/superAdminProcesses/tableLoad.php',
+            type: 'POST',
+            data: {
+                page: page
+            },
+            success: function(data, status) {
+                $('#patientTable').html(data);
+            }
+        });
+    }
+    $(document).on("click",".pagination_link",function (){
+        var page = $(this).attr("id");
+        displayUsers(page);
+    })
 
-
+*/
 
     //// *ADMIN BUTTON CLICK
     // *click button activate to get admin ID and name
@@ -628,6 +756,60 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         background: var(--light-grey)!important;
     }
 
+</style>
+<script src="js/table-sortable.js"></script>
+<style>
+    /*.active{
+        background: var(--primary-color)!important;
+        color: var(--secondary-color)!important;
+        border:none!important;
+        padding: 0.5em 0.5rem!important;
+    }*/
+    .btn-default{
+        border:1px solid var(--light-grey)!important;
+        padding: 0.5em 0.5rem!important;
+    }
+    .gs-pagination{
+        margin-top: 0.5em;
+    }
+    .gs-pagination .row .col-md-6 span{
+        font-size: clamp(0.4rem,0.8rem,1rem);
+    }
+    .gs-button,.gs-button span{
+        color: var(--secondary-color);
+    }
+    th{
+        background: var(--primary-color);
+    }
+    .btn-group button,.btn-group button span{/*sa pagination na button*/
+        outline: none;
+        padding: 0.2em 0.3rem;
+        margin: 0.2%;
+        word-wrap: normal;
+    }
+    @media(max-width: 1150px) {
+        td{
+            font-size: clamp(0.4rem,0.8rem,1rem);
+        }
+    }
+    .gs-table-head tr th span {
+        color: white!important;
+    }
+    #updatebtn{
+        background-color: var(--primary-color);
+        color: #f8f8f8 !important;
+        padding: 0.6rem;
+        border-radius: 0.4rem;
+        -webkit-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out;
+    }
+    #exclamation{
+        color: #ff1515 !important;
+        padding: 0.6rem;
+        border-radius: 0.4rem;
+        font-size: 1.4rem !important;
+        cursor: unset !important;
+    }
 </style>
 </body>
 </html>

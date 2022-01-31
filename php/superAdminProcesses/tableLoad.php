@@ -68,7 +68,7 @@ if(mysqli_num_rows($result)> 0) {
 
 
     $usertab .= '</tbody><br><div align="center">';
-    $page_query = "SELECT id, first_name, middle_name, last_name, email, account_status FROM walk_in_patient order by `date_created` asc ";
+    $page_query = "SELECT id, first_name, middle_name, last_name, email, account_status FROM walk_in_patient where email like '%@%' order by `date_created` asc ";
     $page_result = mysqli_query($con, $page_query);
     $total_records = mysqli_num_rows($page_result);
     $total_pages = ceil($total_records / $rpp);
@@ -76,7 +76,7 @@ if(mysqli_num_rows($result)> 0) {
 
     }
     else{
-        for($i =1;$i<=$total_pages;$i++){
+        for($i =1;$i<=($total_pages);$i++){
             $usertab .= '<span class="pagination_link" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
         }
     }
