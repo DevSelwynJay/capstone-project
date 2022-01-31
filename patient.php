@@ -198,11 +198,22 @@ require 'php/DB_Connect.php';
                          <div class="flex-box-row justify-content-between">
                              <h3 style="color: var(--third-color)">Patient List</h3>
                              <div class="row" style="margin-bottom: 0.5rem;padding: 0 0.5rem 0 0.5rem">
+                                 <div class="col-xs-5 flex-box-row align-items-center" style=";margin-right: 0.6rem">
+                                     <p class="modal-p" style="margin-right: 0.2rem!important;">Filter:</p>
+                                     <select id="showingFilter" style="">
+                                         <option value="0" selected>All Patients</option>
+                                         <option value="1" >Today's Patient</option>
+                                         <option value="2">Yesterday</option>
+                                         <option value="3">Last 7 days</option>
+                                         <option value="4">Last 30 days</option>
+                                         <option value="5">Custom Range</option>
+                                     </select>
+                                 </div>
                                  <div class="col-xs-2 flex-box-row align-items-center" style="margin-right: 0.6rem">
                                      <p class="modal-p" style="margin-right: 0.2rem!important;">Rows:</p>
                                      <select id="changeRows" style="">
                                          <option selected>3</option>
-                                         <option selected>5</option>
+                                         <option>5</option>
                                          <option>10</option>
                                          <option>15</option>
                                      </select>
@@ -219,7 +230,7 @@ require 'php/DB_Connect.php';
                                  <!--                                    </select>-->
                                  <!--                                </div>-->
                                  <style>
-                                     #changeRows, #changePurok{
+                                     #changeRows, #changePurok,#showingFilter{
                                          all:revert;padding: 0.3rem!important;outline: none;border: 2px solid var(--light-grey)!important;
                                      }
                                      option{
@@ -229,10 +240,14 @@ require 'php/DB_Connect.php';
                                  </style>
                              </div>
                          </div>
+                         <div class="flex-box-row justify-content-end">
+                             <p class="modal-p-2">Showing <span id="filter-msg">All Patients</span></p>
+                         </div>
+
 
                         <table class="patients-view">
 
-                            <p class="modal-p" style="margin: .5rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
+                            <p class="modal-p" style="margin: 1rem 0 0 0 !important;padding: 0 !important;"><span style="color: darkred">Note: </span>You can sort out the table by clicking on its header.</p>
                             <tbody id="patient-table">
 <!--                <tr class="patients-view-title">-->
 <!--                    <th>Patient Id</th>-->
@@ -519,35 +534,43 @@ Closedropdown.addEventListener('click',function(){
        }
 
        //filter table
-       $("#changePurok").change(function (event) {
-           $(".search-bar").val("")
-
-           if($(this).val()=="0"){
-               resetTable()
-               return
+       // $("#changePurok").change(function (event) {
+       //     $(".search-bar").val("")
+       //
+       //     if($(this).val()=="0"){
+       //         resetTable()
+       //         return
+       //     }
+       //     $.get('php/patientProcesses/filter/filterPurok.php',{
+       //         filter: "purok",
+       //         filterValue:$(this).val()
+       //
+       //     }).done(function (data) {
+       //          console.log(data)
+       //         table.setData(JSON.parse(data),{
+       //             id: "ID",
+       //             name:"Name",
+       //             patient_type:"Patient Type",
+       //             age: "Age",
+       //             purok:"Purok",
+       //             account_type: "Reg. Type",
+       //             // bday: "BirthDay",
+       //             // address:"Address",
+       //         });
+       //     })//done
+       //
+       //
+       //
+       // })//change purok
+       $("#showingFilter").change(function () {
+           let filterValue = $("#showingFilter").val()
+           if(filterValue=="0"){
+               resetTable();//show all of the patient
            }
-           $.get('php/patientProcesses/filter/filterPurok.php',{
-               filter: "purok",
-               filterValue:$(this).val()
-
-           }).done(function (data) {
-                console.log(data)
-               table.setData(JSON.parse(data),{
-                   id: "ID",
-                   name:"Name",
-                   patient_type:"Patient Type",
-                   age: "Age",
-                   purok:"Purok",
-                   account_type: "Reg. Type",
-                   // bday: "BirthDay",
-                   // address:"Address",
-               });
-           })//done
-
-
-
-       })//change purok
-
+           else  if(filterValue=="1"){
+                filterTable(filterValue);
+           }
+       })
 
        function resetTable() {
            $.get('php/patientProcesses/retrievePatientList.php', function(data) {
@@ -557,7 +580,6 @@ Closedropdown.addEventListener('click',function(){
                //table.setData(JSON.parse(data), null, true);
                window.rowCount = JSON.parse(data).length;
                // or Set new data on table, columns is optional.
-               if($(document).width()<=720){
                    table.setData(JSON.parse(data),{
                        id: "ID",
                        name:"Name",
@@ -569,22 +591,34 @@ Closedropdown.addEventListener('click',function(){
 
                        // address:"Address",
                    });
-               }
-               else{
-                   table.setData(JSON.parse(data),{
-                       id: "ID",
-                       name:"Name",
-                       patient_type:"Patient Type",
-                       age: "Age",
-                       purok:"Purok",
-                       account_type: "Reg. Type",
-                       // bday: "BirthDay",
-
-                       // address:"Address",
-                   });
-               }
            })//end of get/post method
        }
+
+       function filterTable(filterValue) {
+            $.post("php/patientProcesses/filter/filter.php",{filterValue:filterValue}).done(function (data) {
+
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+                table.setData(JSON.parse(data),{
+                    id: "ID",
+                    name:"Name",
+                    patient_type:"Patient Type",
+                    age: "Age",
+                    purok:"Purok",
+                    account_type: "Reg. Type",
+                    // bday: "BirthDay",
+
+                    // address:"Address",
+                });
+            })
+
+       }
+
+
+
 
 
 });//end of document ready
