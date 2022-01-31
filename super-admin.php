@@ -225,7 +225,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       display: none;
                                   }</style>
                               <form autocomplete="off">
-                                  <div class="row">
+                                  <div class="">
                                       <label for="idno" style="color:#6D6D6DFF">Admin ID:</label>
                                       <input type="text" id="idno" disabled placeholder="Enter Admin ID" />
                                       <label for="adminname" style="color:#6D6D6DFF">Admin:</label>
@@ -345,7 +345,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                                       display: none;
                                   }</style>
                               <form autocomplete="off">
-                                  <div class="row">
+                                  <div class="">
                                       <label for="patidno" style="color:#6D6D6DFF">Patient ID:</label>
                                       <input type="text" id="patidno" disabled placeholder="Enter Patient ID" />
                                       <label for="patname" style="color:#6D6D6DFF">Patient:</label>
