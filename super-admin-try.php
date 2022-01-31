@@ -8,7 +8,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
 
-
+//$emm = 'galvezirish17@gmail.com';
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -365,6 +365,13 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
                 <div class="col-sm-12 super-admin--container">
                     <h3 class="color-black">Manage Patient Accounts</h3>
+                    <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
+                        <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                            <div class="search-container search-container-inventory" >
+                                <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
                     <div id ="patTable" style="max-height: 70vh;overflow-y: auto">
                         <div class="reports__individual-container" >
                             <table class="reports__individual-reports-table">
@@ -460,6 +467,17 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     action:"Action",
                 }
             ,
+            searchField: '#search-pat',
+            responsive: {
+                1750: {
+                    columns: {
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    },
+                },
+            },
             //searchField: '#meds',
             // responsive: {
             //     720: {
@@ -495,7 +513,8 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
                 }
             },
-            tableWillUpdate: function() {console.log('table will update')},
+            tableWillUpdate: function() {
+                console.log('table will update')},
             tableDidUpdate: function() {
                 // console.log('table did update');  click_view_button();
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
