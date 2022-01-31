@@ -68,87 +68,99 @@ else{
 </head>
 <body>
 
-
 <section>
-
-<div class="global__container">
-
-<div class="global__main-content">
-<div class="inner-page-content">
-<div class="col-sm-12 p-0">
-                     <div class="inner-page-nav">
-                        <div class="logo">
-                            <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
-                            <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
-                        </div>
-                        <div class="settings">
-                            <a href="profile-patient.php"><i class="fas fa-user-circle"></i></a>
-                            <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
-                            <a id="close-dropdown"><i id="close-dropdown-2" class="fas fa-times"></i></a>
-                            <!--
-                            <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
-                           <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
-                               
-                                <div class="menu-mobile " id="menu">
-                                   <ul>
-                                    <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
-                                    <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
-                                    <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
-                                    <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
-                                    <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
-                                   </ul>
-                                </div>
-                                 -->
-                          
-                            <!--DROPDOWN SETTINGS-->
-                            <div class="drop-down-settings" id="dropdown">
+   <div class="global__container">
+      <div class="global__main-content">
+         <div class="inner-page-content">
+            <div class="col-sm-12 p-0">
+               <div class="inner-page-nav">
+                  <div class="logo">
+                     <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
+                     <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
+                  </div>
+                  <div class="settings">
+                     <a href="profile-patient.php"><i class="fas fa-user-circle"></i></a>
+                     <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a> 
+                     <a id="close-dropdown"><i id="close-dropdown-2" class="fas fa-times"></i></a>
+                     <!--
+                        <a id="mobile-menu" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                        <a id="close-mobile-menu"><i class="fas fa-times"></i></a>
+                           
+                            <div class="menu-mobile " id="menu">
                                <ul>
-                                  <li><a id="request_emr" href="#">Request EMR</a></li>
-                                  <li><a href="about.php">About</a></li>
-                                  <li id="logout" class="show-menu"><a>Logout</a></li>
+                                <li><a href="dashboard-admin.html"><i class="fas fa-columns"></i>Dashboard</a></li>
+                                <li><a href="patient.php"><i class="fas fa-user"></i>Patient</a></li>
+                                <li><a href="reports.php"><i class="fas fa-chart-bar"></i>Reports</a></li>
+                                <li><a href="track-map.html"><i class="fas fa-map-marker"></i>Track Map</a></li>
+                                <li><a href="inventory.php"><i class="fas fa-box"></i>Inventory</a></li>
                                </ul>
                             </div>
-                         </div>
+                             -->
+                     <!--DROPDOWN SETTINGS-->
+                     <div class="drop-down-settings" id="dropdown">
+                        <ul>
+                           <li><a id="request_emr" href="#">Request EMR</a></li>
+                           <li><a href="about.php">About</a></li>
+                           <li id="logout" class="show-menu"><a>Logout</a></li>
+                        </ul>
                      </div>
                   </div>
-<div class="col-sm-12">
-    <div class="row">
-        <div class="backbtn col-lg-12 flex-box-row justify-content-lg-end justify-content-md-start margin-top-2">
+               </div>
+            </div>
+            <div class="about--page_hero">
+                       <h1>About Us</h1>
+            </div>
+         
+            <div class="col-sm-12">
+   <div class="content about--page">
+      <div class="row">
+         <div class="backbtn col-lg-12 flex-box-row justify-content-lg-end justify-content-md-start">
             <button class="modal-primary-button" id="back-to-home"><i class="fas fa-arrow-circle-left" style="margin-right: 0.3rem"></i>Back to Home Page</button>
             <script>
-                $("#back-to-home").click(function () {
-                    location.href = 'dashboard-patient.php';
-                })
+               $("#back-to-home").click(function () {
+                   location.href = 'dashboard-patient.php';
+               })
             </script>
-        </div>
-    </div>
-
-<div class="content about--page">
-<h1>About Us</h1>
-<div>
-<div class="heading-holder">
-<div class="line"></div>
-<h2>our vision</h2>
-<div class="line"></div>
+         </div>
+         <div class="about--page_wrapper">
+            <div class="row">
+            <div class="col-md-6 about--page_left">
+               <div>
+                  <h2>our vision</h2>
+               </div>
+               <br>
+               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
+               <br><br>
+               <div>
+                  <h2>our mission</h2>
+               </div>
+               <br>
+               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
+            </div>
+            <div class="col-md-6 about--page_right">
+            <small>Please note: This map is not accurate at the moment.</small>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.740603929667!2d120.80889346525676!3d14.839809425147163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396522c40411b89%3A0xfc4e05bc63d5a0b7!2sSanto%20Rosario%2C%20Malolos%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1643610270023!5m2!1sen!2sph" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="address">
+                <p>address</p>
+                <p>address</p>
+                <p>address</p>
+                </div>
+                <div class="email">
+                    <p>email</p>
+                </div>
+                <div class="contact-number">
+                    <p>contact number</p>
+                </div>
+            </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-</div>
-<br>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
-<br><br>
-<div>
-<div class="heading-holder">
-<div class="line"></div>
-<h2>our mission</h2>
-<div class="line"></div>
-</div>
-</div>
-<br>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+          
+         </div>
+      </div>
+   </div>
 </section>
 <!--Drop down script-->
 <script>

@@ -9,4 +9,65 @@
             max-width: 100% !important;
         }
     }
+
+    &_hero{
+        min-height: 30vh;
+        background-color: grey;
+        display: grid;
+        place-items: center;
+
+        h1{
+            font-size: 2rem;
+        }
+    }
+
+    &_left{
+        text-align: left !important;
+        padding-right: 2rem;
+
+        h2{
+            max-width: 100% !important;
+        }
+        p{
+            max-width: 100% !important;
+        }
+    }
+
+    &_right{
+        .address{
+            margin-bottom: 1rem;
+        }
+        .contact-number{
+            margin-bottom: 1rem;
+        }
+        .email{
+            margin-bottom: 1rem;
+        }
+        @media(max-width:768px){
+            margin-top: 2rem;
+        }
+        small{
+            width: 100% !important;
+            text-align: left !important;
+        }
+    }
+
+    &_wrapper{
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .backbtn{
+        margin: 2rem 0 !important;
+    }
+
+    iframe{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    p{
+        max-width: 100% !important;
+        text-align: left;
+    }
+
 }
