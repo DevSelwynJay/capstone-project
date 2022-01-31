@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-/*
+
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     header("location:index.php",true);
     exit();
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
-*/
-$emm = 'galvezirish17@gmail.com';
+
+//$emm = 'galvezirish17@gmail.com';
 //?>
 <!DOCTYPE html>
 <html lang="en">
