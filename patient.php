@@ -544,6 +544,7 @@ Closedropdown.addEventListener('click',function(){
            })
        }
 
+       //====Date range code
        $('#custom-range').daterangepicker({
            // options here
        },function(start, end, label) {
@@ -569,6 +570,35 @@ Closedropdown.addEventListener('click',function(){
                });
            })
        });
+
+       window.applyBtnPressed = false;//nasa labas na
+
+       $('#custom-range').on('hide.daterangepicker',function(ev, picker) {
+           //first time load ni page tapos hinide ng di pa pinipindot apply
+           setTimeout(()=>{
+               if(!window.applyBtnPressed){
+                   // alert("ndi naapply")
+                   $("#custom-range").prop("disabled",true).css("visibility","hidden").prop("placeholder","Select Range")
+                   $("#edit-range").css("visibility","hidden")
+                   $("#showingFilter").val("0").trigger("change")
+               }
+               else {
+                   // alert("naapply")
+               }
+           },300)
+
+       });
+
+       $('#custom-range').on('apply.daterangepicker',function(ev, picker) {
+           window.applyBtnPressed = true;
+       });
+       $('#custom-range').on('cancel.daterangepicker',function(ev, picker) {
+           // alert(123)
+       });
+
+
+
+
 
        //filter table
        // $("#changePurok").change(function (event) {
@@ -599,12 +629,14 @@ Closedropdown.addEventListener('click',function(){
        //
        //
        // })//change purok
+
        $("#showingFilter").change(function () {
 
            $("#custom-range").prop("disabled",true).css("visibility","hidden").prop("placeholder","Select Range")
            $("#edit-range").css("visibility","hidden")
 
            let filterValue = $("#showingFilter").val()
+
            if(filterValue=="0"){
                resetTable();//show all of the patient
            }
