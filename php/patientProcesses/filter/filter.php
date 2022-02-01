@@ -11,7 +11,7 @@ $minusClause = "";
 query($con,$symbol,$minusClause);
 }
 else if($val=="2"){
-    $symbol = ">=";
+    $symbol = "=";
     $minusClause = "-interval 1 day";
     query($con,$symbol,$minusClause);
 }
@@ -34,7 +34,7 @@ function query($con,$symbol,$minusClause){
     $rowmain=array();
 
     //para sa patient na wala pang record
-    $whereClause = "WHERE DATE_FORMAT(date_created,'%Y-%m-%d') $symbol DATE_FORMAT(NOW()$minusClause,'%Y-%m-%d')";
+    $whereClause = "AND DATE_FORMAT(date_created,'%Y-%m-%d') $symbol DATE_FORMAT(NOW()$minusClause,'%Y-%m-%d')";
     //para sa patient na may record
     $whereClause2 = "AND DATE_FORMAT(date_given,'%Y-%m-%d') $symbol DATE_FORMAT(NOW()$minusClause,'%Y-%m-%d')";
 
@@ -85,7 +85,7 @@ function query($con,$symbol,$minusClause){
             //pag walang med/vac record at
             //huling tingan ung registration date pag di parin pasok sa selected date filter skip ang loop i continue
             $row['last_consultation'] = "None";
-            $r2s = mysqli_query($con,"SELECT* FROM walk_in_patient $whereClause");
+            $r2s = mysqli_query($con,"SELECT* FROM walk_in_patient WHERE id='".$row["id"]."' $whereClause");
             if(mysqli_num_rows($r2s)==0){
                 continue;
             }

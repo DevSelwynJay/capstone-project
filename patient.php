@@ -212,8 +212,8 @@ require 'php/DB_Connect.php';
                                  <div class="col-xs-2 flex-box-row align-items-center" style="margin-right: 0.6rem">
                                      <p class="modal-p" style="margin-right: 0.2rem!important;">Rows:</p>
                                      <select id="changeRows" style="">
-                                         <option selected>3</option>
-                                         <option>5</option>
+                                         <option>3</option>
+                                         <option selected>5</option>
                                          <option>10</option>
                                          <option>15</option>
                                      </select>
