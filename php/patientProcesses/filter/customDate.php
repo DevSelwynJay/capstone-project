@@ -81,7 +81,6 @@ $dates = explode("%%%",$val);
             //huling tingan ung registration date pag di parin pasok sa selected date filter skip ang loop i continue
             $r2s = mysqli_query($con,"SELECT* FROM walk_in_patient WHERE id='".$row["id"]."' $whereClause");
             if(mysqli_num_rows($r2s)>0){
-                $row["sort"] = $row['date_created_fd'];
                 $execute=true;
             }
 
