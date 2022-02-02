@@ -1338,5 +1338,17 @@ require 'php/DB_Connect.php';
             cursor: unset !important;
         }
     </style>
+    <!--filter calendar override css-->
+    <style>
+        .table-condensed tbody tr td, .table-condensed thead tr th{
+            padding: 0.3rem !important;
+        }
+        .table-condensed thead tr th{
+            background: var(--secondary-color)!important;
+        }
+        .table-condensed tr{
+            background: none!important;
+        }
+    </style>
 </body>
 </html>
