@@ -470,32 +470,20 @@ Closedropdown.addEventListener('click',function(){
            //table.setData(JSON.parse(data), null, true);
            window.rowCount = JSON.parse(data).length;
            // or Set new data on table, columns is optional.
-           if($(document).width()<=720){
+
                table.setData(JSON.parse(data),{
                    id: "ID",
                    name:"Name",
                    patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
+                   last_consultation:"Last Consulted",
                    account_type: "Reg. Type",
                    // bday: "BirthDay",
 
                    // address:"Address",
                });
-           }
-           else{
-               table.setData(JSON.parse(data),{
-                   id: "ID",
-                   name:"Name",
-                   patient_type:"Patient Type",
-                   age: "Age",
-                   purok:"Purok",
-                   account_type: "Reg. Type",
-                   // bday: "BirthDay",
 
-                   // address:"Address",
-               });
-           }
            // alert(window.rowCount)
            // for (a=0;a<parseInt(window.rowCount);a++){
            //     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
@@ -563,6 +551,7 @@ Closedropdown.addEventListener('click',function(){
                    patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
+                   last_consultation:"Last Consulted",
                    account_type: "Reg. Type",
                    // bday: "BirthDay",
 
@@ -640,6 +629,34 @@ Closedropdown.addEventListener('click',function(){
            if(filterValue=="0"){
                resetTable();//show all of the patient
            }
+           else if(filterValue=="2"){
+               const today = new Date()
+               const yesterday = new Date(today)
+               yesterday.setDate(yesterday.getDate() - 1)
+               today.toDateString()
+               // yesterday.toDateString()
+               let kahapon = yesterday.toLocaleDateString('en-CA', {year: 'numeric', month: '2-digit', day: '2-digit'})
+               $.post("php/patientProcesses/filter/yesterday.php",{date:kahapon}).done(function (data) {
+
+                   // Push data into existing data
+                   console.log(JSON.parse(data))
+                   //table.setData(JSON.parse(data), null, true);
+                   window.rowCount = JSON.parse(data).length;
+                   // or Set new data on table, columns is optional.
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       last_consultation:"Last Consulted",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               })
+           }
            else if(filterValue=="5"){
                   $("#custom-range").prop("disabled",false).css("visibility","visible").prop("placeholder","Select Range").trigger("focus")
                   $("#edit-range").css("visibility","visible")
@@ -663,6 +680,7 @@ Closedropdown.addEventListener('click',function(){
                        patient_type:"Patient Type",
                        age: "Age",
                        purok:"Purok",
+                       last_consultation:"Last Consulted",
                        account_type: "Reg. Type",
                        // bday: "BirthDay",
 
@@ -685,6 +703,7 @@ Closedropdown.addEventListener('click',function(){
                     patient_type:"Patient Type",
                     age: "Age",
                     purok:"Purok",
+                    last_consultation:"Last Consulted",
                     account_type: "Reg. Type",
                     // bday: "BirthDay",
 
