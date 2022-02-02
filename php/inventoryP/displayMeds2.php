@@ -13,8 +13,6 @@ while($row=mysqli_fetch_assoc($res)){
     } else {
         $row['stock'] = '<span   title="Critital Stocks: '.$row['criticalstock'].'">'.$row['stock'].'</span>';
     }
-
-
     $arr[]=$row;
 }
 echo json_encode($arr);

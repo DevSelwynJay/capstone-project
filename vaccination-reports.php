@@ -1,10 +1,10 @@
 <?php
-/*session_start();
+session_start();
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
     //redirect to main page
     header("location:php/loginProcesses/redirect.php");
     exit();
-}*/
+}
 $con=null;
 require 'php/DB_Connect.php';
 
@@ -56,6 +56,11 @@ require 'php/DB_Connect.php';
     <script src="notif/notif.js"></script>
     <!--==========Notification Style ===========================-->
     <link rel="stylesheet" href="notif/notif.css">
+
+    <!--    daterange-->
+    <script src="php/daterange/moment.min.js"></script>
+    <link rel="stylesheet" href="php/daterange/daterangepicker.css" />
+    <script src="php/daterange/daterangepicker.js"></script>
 
 </head>
 <body>
@@ -162,6 +167,9 @@ require 'php/DB_Connect.php';
                                       <a id="monthly-link">Monthly</a>
                                       <a id="quarterly-link">Quarterly</a>
                                       <a id="anually-link">Annually</a>
+                                      <a id="custom-label">Date Filter</a>
+                                      <input id="custom" type="text" style="margin-top: 0!important;display: none">
+<!--                                      <input id="custom" type="text" style="margin-top: 0!important;">-->
                                   </div>
                                  </div>
                                  <div class="col-lg-12 reports_lower-col">
@@ -189,6 +197,7 @@ require 'php/DB_Connect.php';
         </div>
      </section>
 
+
     <script>
 
 
@@ -203,6 +212,13 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','');
                 $('#pregnant-link').attr('class','');
                 $('#pwd-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 displayMinor();
 
             });
@@ -213,6 +229,13 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','');
                 $('#pregnant-link').attr('class','');
                 $('#pwd-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 displaySenior();
 
             });
@@ -223,6 +246,13 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','');
                 $('#pregnant-link').attr('class','');
                 $('#pwd-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 displayAdult();
             });
             $('#infant-link').on('click',function (){
@@ -232,6 +262,13 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','active');
                 $('#pregnant-link').attr('class','');
                 $('#pwd-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 displayInfant();
 
             });
@@ -242,6 +279,13 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','');
                 $('#pregnant-link').attr('class','active');
                 $('#pwd-link').attr('class','');
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 displayPregnant();
 
             });
@@ -252,15 +296,37 @@ require 'php/DB_Connect.php';
                 $('#infant-link').attr('class','');
                 $('#pregnant-link').attr('class','');
                 $('#pwd-link').attr('class','active');
-                displayPwd();
-
-            });
-            $('#daily-link').on("click", function(){
-                $('#weekly-link').attr('class','');
                 $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
+                displayPwd();
+
+            });
+
+            $('#custom-label').click(function(){
+                $('#weekly-link').attr('class','');
+                $('#daily-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','active');
+                $('#custom').css('display','block');
+            })
+
+            $('#daily-link').on("click", function(){
+
+                $('#daily-link').attr('class','active');
+                $('#weekly-link').attr('class','');
+                $('#monthly-link').attr('class','');
+                $('#quarterly-link').attr('class','');
+                $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
+
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
@@ -300,6 +366,8 @@ require 'php/DB_Connect.php';
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
@@ -338,6 +406,8 @@ require 'php/DB_Connect.php';
                 $('#monthly-link').attr('class','active');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
@@ -376,6 +446,8 @@ require 'php/DB_Connect.php';
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','active');
                 $('#anually-link').attr('class','');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
@@ -414,6 +486,9 @@ require 'php/DB_Connect.php';
                 $('#monthly-link').attr('class','');
                 $('#quarterly-link').attr('class','');
                 $('#anually-link').attr('class','active');
+                $('#custom-label').attr('class','');
+                $('#custom').css('display','none');
+                $('#custom').css('display','none');
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
@@ -451,12 +526,19 @@ require 'php/DB_Connect.php';
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
 
                 var getdaily = $('#daily-link').attr('class');
                 var getweekly = $('#weekly-link').attr('class');
                 var getmonthly = $('#monthly-link').attr('class');
                 var getquarterly = $('#quarterly-link').attr('class');
                 var getannually = $('#anually-link').attr('class');
+                var date = $('#custom').val();
+                var datearr = date.split(" - ");
+                var datefinal = datearr[0]+','+datearr[1];
+                var getcustomdate = $('#custom-label').attr('class');
                 if(getminor == 'active'){
                     if(getdaily == 'active'){
                         $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Minor');
@@ -483,6 +565,11 @@ require 'php/DB_Connect.php';
                     }
                     else if(getannually=='active'){
                         $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Minor');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=Minor');
 
 
                     }
@@ -514,6 +601,11 @@ require 'php/DB_Connect.php';
 
 
                     }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=Adult');
+
+
+                    }
 
                 }
                 else if(getsenior == 'active'){
@@ -542,106 +634,316 @@ require 'php/DB_Connect.php';
 
 
                     }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=Senior');
+
+
+                    }
 
                 }
+                else if(getinfant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Infant');
 
 
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=Infant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=Infant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=Infant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Infant');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=Infant');
+
+
+                    }
+
+                }
+                else if(getpregnant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=Pregnant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=Pregnant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=Pregnant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=Pregnant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=Pregnant');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=Pregnant');
+
+
+                    }
+
+                }
+                else if(getpwd == 'active'){
+                    if(getdaily == 'active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?daily=1&type=PWD');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?weekly=1&type=PWD');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?monthly=1&type=PWD');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?quarterly=1&type=PWD');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?annually=1&type=PWD');
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#pdf-link').attr('href','php/reportProcesses/pdf_gen_vaccine.php?customdate='+datefinal+'&type=PWD');
+                    }
+
+                }
             });
 
             $('#excel-link').on("click", function(){
                 var getminor = $('#minor-link').attr('class');
                 var getadult = $('#adult-link').attr('class');
                 var getsenior = $('#senior-link').attr('class');
+                var getinfant = $('#infant-link').attr('class');
+                var getpregnant = $('#pregnant-link').attr('class');
+                var getpwd = $('#pwd-link').attr('class');
+
+                var date = $('#custom').val();
+                var datearr = date.split(" - ");
+                var datefinal = datearr[0]+','+datearr[1];
 
                 var getdaily = $('#daily-link').attr('class');
                 var getweekly = $('#weekly-link').attr('class');
                 var getmonthly = $('#monthly-link').attr('class');
                 var getquarterly = $('#quarterly-link').attr('class');
                 var getannually = $('#anually-link').attr('class');
+                var getcustomdate = $('#custom-label').attr('class');
                 if(getminor == 'active'){
                     if(getdaily == 'active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Minor');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=Minor');
 
 
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Minor');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=Minor');
 
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Minor');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=Minor');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Minor');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=Minor');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Minor');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=Minor');
 
 
+                    }
+                    else if(getcustomdate=='active'){
+                        console.log(datearr[1]+','+datearr[0]);
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=Minor');
                     }
 
                 }
                 else if(getadult=='active'){
                     if(getdaily == 'active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Adult');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=Adult');
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Adult');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=Adult');
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Adult');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=Adult');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Adult');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=Adult');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Adult');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=Adult');
 
 
+                    }
+                    else if(getcustomdate=='active'){
+                        console.log(datearr[1]+','+datearr[0]);
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=Adult');
                     }
 
                 }
                 else if(getsenior == 'active'){
                     if(getdaily == 'active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?daily=1&type=Senior');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=Senior');
 
 
                     }
                     else if(getweekly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?weekly=1&type=Senior');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=Senior');
 
 
                     }
                     else if(getmonthly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?monthly=1&type=Senior');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=Senior');
 
 
                     }
                     else if(getquarterly=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?quarterly=1&type=Senior');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=Senior');
 
 
                     }
                     else if(getannually=='active'){
-                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_consult.php?annually=1&type=Senior');
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=Senior');
 
 
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=Senior');
+                    }
+
+                }
+                else if(getinfant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=Infant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=Infant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=Infant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=Infant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=Infant');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=Infant');
+                    }
+
+                }
+                else if(getpregnant == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=Pregnant');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=Pregnant');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=Pregnant');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=Pregnant');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=Pregnant');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=Pregnant');
+                    }
+
+                }
+                else if(getpwd == 'active'){
+                    if(getdaily == 'active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?daily=1&type=PWD');
+
+
+                    }
+                    else if(getweekly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?weekly=1&type=PWD');
+
+
+                    }
+                    else if(getmonthly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?monthly=1&type=PWD');
+
+
+                    }
+                    else if(getquarterly=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?quarterly=1&type=PWD');
+
+
+                    }
+                    else if(getannually=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?annually=1&type=PWD');
+
+
+                    }
+                    else if(getcustomdate=='active'){
+                        $('#excel-link').attr('href','php/reportProcesses/excel_gen_med.php?customdate='+datefinal+'&type=PWD');
                     }
 
                 }
@@ -650,13 +952,13 @@ require 'php/DB_Connect.php';
             });
         });
 
-        function displayMinor(){
+        function displayMinor(interval){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+            var interval = interval;
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -692,13 +994,14 @@ require 'php/DB_Connect.php';
         };//end of displayMinor
 
 
-        function displayAdult(){
+        function displayAdult(interval){
+            var interval = interval;
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -727,7 +1030,9 @@ require 'php/DB_Connect.php';
                 },
                 success: function (data, status){
                     //console.log(JSON.parse(data)+"adult");
+                    console.log(data);
                     displayreport(data);
+
 
 
                 }
@@ -738,13 +1043,13 @@ require 'php/DB_Connect.php';
         };//end of displayAdult
 
 
-        function displaySenior(){
+        function displaySenior(interval){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+            var interval = interval;
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -778,13 +1083,13 @@ require 'php/DB_Connect.php';
             })
         }
 
-        function displayInfant(){
+        function displayInfant(interval){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+            var interval = interval;
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -818,13 +1123,13 @@ require 'php/DB_Connect.php';
             })
         }
 
-        function displayPregnant(){
+        function displayPregnant(interval){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+            var interval = interval;
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -858,13 +1163,13 @@ require 'php/DB_Connect.php';
             })
         }
 
-        function displayPwd(){
+        function displayPwd(interval){
             var getdaily = $('#daily-link').attr('class');
             var getweekly = $('#weekly-link').attr('class');
             var getmonthly = $('#monthly-link').attr('class');
             var getquarterly = $('#quarterly-link').attr('class');
             var getannually = $('#anually-link').attr('class');
-            var interval = '';
+            var interval = interval;
             if(getdaily == 'active'){
                 interval = 'daily';
 
@@ -909,6 +1214,7 @@ require 'php/DB_Connect.php';
                         name:"Name",
                         address:"Address",
                         gender:"Gender",
+                        vaccineName:"Vaccine Name",
                         date:"Date of Consultation",
                     }
                 ,
@@ -943,7 +1249,8 @@ require 'php/DB_Connect.php';
                         $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","VACCINE NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","DATE OF CONSULTATION")
 
                     }
                 },
@@ -958,7 +1265,8 @@ require 'php/DB_Connect.php';
                         $($($("#tablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","NAME")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","ADDRESS")
                         $($($("#tablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","GENDER")
-                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","DATE OF CONSULTATION")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","VACCINE NAME")
+                        $($($("#tablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","DATE OF CONSULTATION")
 
                     }
                     //thead color
@@ -972,7 +1280,7 @@ require 'php/DB_Connect.php';
                 }
             });
             if(JSON.parse(record).length==0){
-                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+                $("#tablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='5'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
 
                 return
             }
@@ -1000,7 +1308,42 @@ require 'php/DB_Connect.php';
             $(".gs-table-head tr th span").css("color","white!important");
         }
 
+        $('#custom').daterangepicker({},function(start, end, label) {
+            var interval = start.format('YYYY-MM-DD') +',' + end.format('YYYY-MM-DD')
+            console.log(interval);
+            var getminor = $('#minor-link').attr('class');
+            var getadult = $('#adult-link').attr('class');
+            var getsenior = $('#senior-link').attr('class');
+            var getinfant = $('#infant-link').attr('class');
+            var getpregnant = $('#pregnant-link').attr('class');
+            var getpwd = $('#pwd-link').attr('class');
+            if(getminor=="active"){
+                displayMinor(interval);
+                console.log("aminor"+getminor);
+            }
+            else if(getadult=="active"){
+                displayAdult(interval);
+                console.log("aadult"+getadult);
+            }
+            else if(getsenior=="active"){
+                displaySenior(interval);
+                console.log("asenior"+getsenior);
+            }
+            else if(getinfant=="active"){
+                displayInfant(interval);
 
+                console.log("dinfant"+getsenior);
+            }
+            else if(getpregnant=="active"){
+                displayPregnant(interval)
+                console.log("dpreggy"+getsenior);
+            }
+            else if(getpwd=="active"){
+                displayPwd(interval)
+                console.log("dpwd"+getsenior);
+            }
+
+        })
 
 
     </script>
@@ -1126,6 +1469,10 @@ require 'php/DB_Connect.php';
             font-size: 1.4rem !important;
             cursor: unset !important;
         }
+        .ranges{
+            color: #222;
+        }
     </style>
+
 </body>
 </html>

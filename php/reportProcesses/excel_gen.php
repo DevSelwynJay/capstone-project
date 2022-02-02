@@ -10,9 +10,10 @@ function filterData(&$str){
     if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
 $type = $_GET['type'];
+
 if(isset($_GET['daily'])){
     $time = '1 day';
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
@@ -32,6 +33,15 @@ elseif(isset($_GET['annually'])){
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW())';
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
+}
+elseif(isset($_GET['customdate'])){
+    $date = $_GET['customdate'];
+    $datearr = explode(',',$date);
+    $date1 = $datearr[0];
+    $startdate = date("Y-m-d", strtotime($date1));
+    $date2 = $datearr[1];
+    $enddate = date("Y-m-d", strtotime($date2));
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
 }
 
 

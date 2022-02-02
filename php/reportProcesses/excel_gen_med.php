@@ -12,7 +12,7 @@ function filterData(&$str){
 $type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
-    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and `date_given` > NOW()- interval '.$time.' ';
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and DATE_FORMAT(`date_given`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
@@ -33,13 +33,23 @@ elseif(isset($_GET['annually'])){
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
+elseif(isset($_GET['customdate'])){
+    $date = $_GET['customdate'];
+    $datearr = explode(',',$date);
+    $date1 = $datearr[0];
+    $startdate = date("Y-m-d", strtotime($date1));
+    $date2 = $datearr[1];
+    $enddate = date("Y-m-d", strtotime($date2));
+    $sql = 'Select * from `vaccination_record` where `patient_type` = "'.$type.'" and date(date_given) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
+
+}
 
 
 // Excel file name for download
 $fileName = "REPORT_".$type.'_'. date('Y-m-d') . ".xls";
 
 // Column names
-$fields = array('PATIENT NAME', 'BIRTHDATE', 'ADDRESS', 'GENDER', 'DATE GIVEN');
+$fields = array('PATIENT NAME', 'BIRTHDATE', 'ADDRESS', 'GENDER', 'VACCINE GIVEN','DATE GIVEN' );
 
 // Display column names as first row
 $excelData = implode("\t", array_values($fields)) . "\n";
@@ -52,6 +62,8 @@ if(mysqli_num_rows($res)>0){
     while($row = mysqli_fetch_assoc($res)){
         $patient_id = $row['patient_id'];
         $date_given = $row['date_given'];
+        $vaccine_name = $row['vaccine_name'].' ('.$row['vaccine_dosage'].')';
+
         $patqry = 'Select * from `walk_in_patient` where id = "'.$patient_id.'"';
         $record2 = mysqli_query($con,$patqry);
         while($row3 = mysqli_fetch_assoc($record2)){
@@ -65,7 +77,7 @@ if(mysqli_num_rows($res)>0){
             $address = $row3['address'];
             $comaddress = 'Purok '.$purok.' House No.'.$house_no.' '.$address;
             $gender = $row3['gender'];
-            $lineData = array($pat_name,$bday,$comaddress,$gender,$date_given);
+            $lineData = array($pat_name,$bday,$comaddress,$gender,$vaccine_name,$date_given);
             array_walk($lineData, 'filterData');
             $excelData .= implode("\t", array_values($lineData)) . "\n";
 

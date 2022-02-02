@@ -7,7 +7,7 @@ require ('../DB_Connect.php');
 $type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
-    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and `date_given` > NOW()- interval '.$time.' ';
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and DATE_FORMAT(`date_given`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
@@ -28,6 +28,16 @@ elseif(isset($_GET['annually'])){
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
+elseif(isset($_GET['customdate'])){
+    $date = $_GET['customdate'];
+    $datearr = explode(',',$date);
+    $date1 = $datearr[0];
+    $startdate = date("Y-m-d", strtotime($date1));
+    $date2 = $datearr[1];
+    $enddate = date("Y-m-d", strtotime($date2));
+    $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and date(date_given) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
+
+}
 
 $pdfquery = $sql;
 
@@ -47,8 +57,8 @@ class PDF extends FPDF{
         $first = $height+2;
         $second = $height+$height+$height+3;
         $len = strlen($t);
-        if($len>15){
-            $txt = str_split($t,15);
+        if($len>25){
+            $txt = str_split($t,25);
             $this->SetX($x);
             $this->Cell($w,$first,$txt[0],'','','');
             $this->SetX($x);
@@ -73,7 +83,7 @@ $pdf->SetFont('Arial','B',14);
 $datetoday = Date("M-d-Y");
 $pdf->Text(170,40,"$datetoday");
 $pdf->Text(10,40,"Consultation Reports (".$type.")");
-$w = 45;
+$w = 70;
 $h = 16;
 $pdf->Cell(50,10,"Patient Name",0,0,'C');
 $pdf->Cell(0,10,"Patient Description",0,1,'C');
@@ -81,6 +91,8 @@ $pdf->Cell(0,10,"Patient Description",0,1,'C');
 while($row1 = mysqli_fetch_assoc($record1)){
     $patient_id = $row1['patient_id'];
     $date_given = $row1['date_given'];
+    $medicine_name = $row1['medicine_name'];
+    $medicine_dosage = $row1['dosage'];
     $patqry = 'Select * from `walk_in_patient` where id = "'.$patient_id.'"';
     $record2 = mysqli_query($con,$patqry);
         while($row3 = mysqli_fetch_assoc($record2)){
@@ -97,7 +109,7 @@ while($row1 = mysqli_fetch_assoc($record1)){
 
             $x = $pdf->GetX();
             $pdf->myCell($w,$h,$x,$pat_name);
-            $pdf->MultiCell(0,10,"Address: ".$comaddress ."\nBirthday: ".$bday."\nGender: " .$gender."\n Consultation Date: ".$date_given,"LT",'C');
+            $pdf->MultiCell(0,10,"Address: ".$comaddress ."\nBirthday: ".$bday."\nGender: " .$gender."\n Medicine Given: ".$medicine_name." (".$medicine_dosage.")"."\n Consultation Date: ".$date_given,"LT",'C');
 
         }
 
@@ -105,4 +117,4 @@ while($row1 = mysqli_fetch_assoc($record1)){
 
 }
 
-$pdf->Output('D','Consulation-'.$datetoday.'.pdf');
+$pdf->Output('D','Consulation-'.$type.'-'.$datetoday.'.pdf');
