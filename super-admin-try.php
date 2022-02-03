@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-
+/*
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     header("location:index.php",true);
     exit();
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
-
-//$emm = 'galvezirish17@gmail.com';
+*/
+$emm = 'galvezirish17@gmail.com';
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--Super Admin JS-->
-    <script src="js/super-admin.js"></script>
+    <script src="js/super-ad1.js"></script>
     <!--<script src="js/sa_pagination.js"></script> -->
     <!--Sweet Alert-->
     <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
@@ -368,6 +368,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
                         <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
                             <div class="search-container search-container-inventory" >
+                                <button class="triggerbut" hidden></button>
                                 <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
@@ -457,16 +458,8 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         var record = data;
         let result = JSON.parse(record);
         window.rowCount_patients = JSON.parse(record).length;
-        var table = $('#pattablediv').tableSortable({
+        var tablepat = $('#pattablediv').tableSortable({
             data: result,
-            columns:
-                {
-                    name:"Name",
-                    email:"Email",
-                    status:"Status",
-                    action:"Action",
-                }
-            ,
             searchField: '#search-pat',
             responsive: {
                 1750: {
@@ -514,8 +507,11 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                 }
             },
             tableWillUpdate: function() {
-                console.log('table will update')},
+                console.log('table will update')
+
+            },
             tableDidUpdate: function() {
+
                 // console.log('table did update');  click_view_button();
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 for (a=0;a<parseInt( window.rowCount_patients);a++){
@@ -544,6 +540,113 @@ $emm = $_SESSION['email_session_for_sms_otp'];
             return
         }
         $('#changeRows').on('change', function() {
+            tablepat.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            tablepat.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            tablepat.distroy();
+        })
+
+        $('#refresh').click(function() {
+            tablepat.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            tablepat.setPage(1);
+        })
+        //thead color
+        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+        $(".gs-table-head tr th span").css("color","white!important");
+
+    }
+    //displayPtnts();
+    function getpatient(getdata, data){
+        getdata.setData(JSON.parse(data),{
+            name:"Name",
+            email:"Email",
+            status:"Status",
+            action:"Action",
+        });
+    }
+
+</script>
+<script>
+
+    jQuery(document).ready(function() {
+        // $(".clickable-row").click(function() {
+        //     window.location = $(this).data("href");
+        // });
+        var tablepat = $('#pattablediv').tableSortable({
+            data: [],
+            columns: {
+                name:"Name",
+                email:"Email",
+                status:"Status",
+                action:"Action",
+            },
+            searchField: '#search-pat',
+
+
+            rowsPerPage: 5,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {
+                console.log('table did update')
+                //resetTable();
+                for (a=0;a<parseInt(window.rowCount_patients);a++){
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#pattablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+
+                }
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        $.get('php/superAdminProcesses/ptientload.php', function(data) {
+            d = data;
+            // Push data into existing data
+            console.log(JSON.parse(data))
+            //table.setData(JSON.parse(data), null, true);
+            window.rowCount_patients = JSON.parse(data).length;
+            // or Set new data on table, columns is optional.
+            if($(document).width()<=720){
+                tablepat.setData(JSON.parse(data),{
+                    name:"Name",
+                    email:"Email",
+                    status:"Status",
+                    action:"Action",
+                });
+            }
+            else{
+                tablepat.setData(JSON.parse(data),{
+                    name:"Name",
+                    email:"Email",
+                    status:"Status",
+                    action:"Action",
+                });
+            }
+            // alert(window.rowCount)
+            // for (a=0;a<parseInt(window.rowCount);a++){
+            //     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+            // }
+            // alert($($($(".gs-table-body").children()[0]).children()[0]).attr("data-label","ID"))
+        })//end of get/post method
+        $('#changeRows').on('change', function() {
             table.updateRowsPerPage(parseInt($(this).val(), 10));
         })
 
@@ -562,13 +665,33 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         $('#setPage2').click(function() {
             table.setPage(1);
         })
-        //thead color
-        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
-        $(".gs-table-head tr th span").css("color","white!important");
-    }
-    displayPtnts();
-</script>
 
+            $('.triggerbut').click(function(){
+                console.log('potaaa');
+                $.get('php/superAdminProcesses/ptientload.php', function(data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_patients = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+                    tablepat.setData(JSON.parse(data),{
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    });
+                })//end of get/post method
+
+            });
+
+
+
+
+
+    });//end of document ready
+
+</script>
 <script>
 
 
