@@ -1,0 +1,140 @@
+<script>
+  $(function() {
+    (function(name) {
+
+      $.post("php/testingCode/retrieveInventory.php").done(function (data) {
+        let response = JSON.parse(data);
+        var container = $(name);
+        var sources = function () {
+          var result = response;
+
+          // for (const responseElement of response) {
+          //     result.push(responseElement.id)
+          // }
+
+          // for (var i = 1; i < 196; i++) {
+          //     result.push(i);
+          // }
+
+          return result;
+        }();
+
+        var options = {
+          dataSource: sources,
+          pageSize: 5,
+          callback: function (response, pagination) {
+            window.console && console.log(response, pagination);
+
+            // var dataHtml = '<ul>';
+            //
+            // $.each(response, function (index, item) {
+            //     dataHtml += '<li data-id="'+item.id+'" class="root-inv">' + item.name + '</li>';
+            // });
+            //
+            // dataHtml += '</ul>';
+
+            var dataHtml = '';
+
+            dataHtml += '<tr><th colspan="7" style="text-align: start!important;color: white!important;">Inventory</th></tr>'
+
+            $.each(response, function (index, item) {
+
+              dataHtml+="<tr class='root-inv root-inv-"+item.name+"'>"
+                dataHtml+= "<td colspan='3'>"+item.name+"</td>"
+                dataHtml+= "<td colspan='2'>"+item.stock+"</td>"
+                dataHtml+= "<td colspan='2'><button class='root-action' data-name='"+item.name+"'>Expand</button></td>"
+              dataHtml+="</tr>"
+
+            });
+
+            container.prev().html(dataHtml);
+
+            //expand was click
+            $(".root-action").click(function () {
+
+                let inv_name = $(this).data("name");
+
+                if($(this).html()=="Collapse"){
+                    $(".child-inv-"+inv_name).remove()
+                    $(this).html("Expand")//sa huli to wag iuuna
+                    return
+                }
+
+                $(this).html("Collapse")//sa huli to wag iuuna
+
+                $.post("php/testingCode/retIndiv.php",{name:inv_name}).done(function (data) {
+                    let child = ""
+                    //ung sa drop down pababa
+                    let result = JSON.parse(data);
+                    let length = result.length
+                    let ctr=1;
+                    let margin=""
+
+                    child+="<tr class='child-inv child-inv-"+inv_name+"'><td>ID</td><td>Name</td><td>Category</td><td>Dosage</td><td>Stock</td><td>Date Added</td><td>Action</td></tr>";
+
+                    for (const resultElement of result) {
+
+                        if(length==ctr){
+                                margin="margin-bottom:1rem;padding-bottom:1rem"
+                        }
+                        if(ctr==1){
+                                margin="padding-top:1rem"
+                        }
+                        // alert(resultElement.name)
+                        child+="<tr class='child-inv child-inv-"+inv_name+"' style='"+margin+"'>"
+                            child+="<td colspan=''>"+resultElement.id+"</td>"
+                            child+="<td colspan=''>"+resultElement.name+"</td>"
+                            child+="<td colspan=''>"+resultElement.category+" "+resultElement.subcategory+"</td>"
+                            child+="<td colspan=''>"+resultElement.dosage+"</td>"
+                            child+="<td colspan=''>"+resultElement.stock+"</td>"
+                            child+="<td colspan=''>"+resultElement.dateadded+"</td>"
+                            child+="<td colspan=''><button>Update</button></td>"
+                        child+="</tr>"
+
+                        $(".root-inv-"+inv_name).after(child)
+                        ctr+=1;
+
+                    }
+                })
+
+            })
+
+          }
+        };
+
+        //$.pagination(container, options);
+
+        container.addHook('beforeInit', function () {
+          window.console && console.log('beforeInit...');
+        });
+        container.pagination(options);
+
+        container.addHook('beforePageOnClick', function () {
+          window.console && console.log('beforePageOnClick...');
+          //return false
+        });
+      })
+
+    })('#inv-table');
+
+  })
+
+  $(window).click(function () {
+      jQuery('tr').each(function(){
+          if( jQuery(this).html() == '&nbsp;' ||jQuery(this).html() == '')
+              jQuery(this).remove();
+      })
+  })
+</script>
+<style>
+    .child-inv {
+        background: whitesmoke!important;
+    }
+    .root-action{
+        padding: 0.5em;
+        border:none;
+        outline: none;
+        background: var(--primary-color);
+        color: var(--secondary-color);
+    }
+</style>
