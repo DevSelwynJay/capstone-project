@@ -9,6 +9,7 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
 $emm = $_SESSION['email_session_for_sms_otp'];
 */
 $emm = 'galvezirish17@gmail.com';
+//$emm = 'projectcapstone3m@gmail.com';
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -439,8 +440,16 @@ $emm = 'galvezirish17@gmail.com';
         </div>
     </div>
 </section>
+<button id="reload-patient" class="modal-primary-button" type="button" style="display: none">test dyanmic</button>
+<script>
+$("#reload-patient").click(function () {
+    displayPtnts();
+})
+</script>
+
 <script>
     function displayPtnts(){//? patient
+        alert("natawag display patients")
         $.ajax({
             url: 'php/superAdminProcesses/ptientload.php',
             type: 'POST',

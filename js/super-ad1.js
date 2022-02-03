@@ -534,7 +534,7 @@ function disablePatient(patientIds){
     $.post("php/superAdminProcesses/disablePatientProcess.php", {patId:patientIds})
         .done(function (data){
             if(data == 1){
-
+                $("#reload-patient").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
@@ -785,7 +785,7 @@ function activatePatient(patientIds){
     $.post("php/superAdminProcesses/patientStatusActivate.php", {patId:patientIds})
         .done(function (data){
             if(data == 1){
-
+                $("#reload-patient").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
