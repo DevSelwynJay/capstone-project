@@ -3,14 +3,18 @@ session_start();
 $con=null;
 require '../DB_Connect.php';
 extract($_POST);
-   $newMedName = $_POST['newMedName'];
-    $newMedCategory = $_POST['newMedCategory'];
-    $newMedsubCategory = $_POST['newMedsubCategory'];
+    $newMedName2 = $_POST['newMedName'];
+    $newMedCategory2 = $_POST['newMedCategory'];
+    $newMedsubCategory2 = $_POST['newMedsubCategory'];
     $newMedDosage = $_POST['newMedDosage'];
     $newMedStocks = $_POST['newMedStocks'];
     $newmedCritStocks = $_POST['newMedCritStocks'];
     $newMedMfgDate = $_POST['newMedMfgDate'];
     $newMedExpDate = $_POST['newMedExpDate'];
+
+    $newMedName = ucwords($newMedName2);
+    $newMedCategory = ucwords($newMedCategory2);
+    $newMedsubCategory = ucwords($newMedsubCategory2);
 
     $_6DigitCode = generate_6_Digits();
     if($newMedCategory == "Medicine"){

@@ -7,7 +7,8 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
 }
 $con=null;
 require 'php/DB_Connect.php';
-
+$sql = "Select name, SUM(stock) as stock, dosage from `medinventory` Group by name order by dateadded asc";
+$res2 = mysqli_query($con,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,9 +46,15 @@ require 'php/DB_Connect.php';
     <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
 
+
+
+
+
+
     <!--Get admin info from session-->
 
     <script>
+
 
 
         $(document).ready(function () {
@@ -117,6 +124,13 @@ require 'php/DB_Connect.php';
             height: 200px;
         }
     </style>
+
+
+    <!--    Tree Table-->
+    <link href="treeTable/treetable/css/jquery.treetable.css" rel="stylesheet" type="text/css" />
+    <script src="treeTable/treetable/jquery.treetable.js"></script>
+
+
 </head>
 <body>
 <section class="global">
@@ -218,26 +232,84 @@ require 'php/DB_Connect.php';
 
                                 <!--Display ko dito yung Table of MEDS-->
 
-                                <div class="inventory__table-medicine-container"  >
-                                <?php
-                                include 'inventoryTable.html'?>
+                                <div  class="inventory__table-medicine-container" >
+                                    <table id="tab" class="treeview">
+                                        <tbody>
+                                        <tr>
+                                            <th>MEDICINE NAME</th>
+                                            <th>STOCKS</th>
+                                            <th>MEDICINE ID</th>
+                                            <th>CATEGORY</th>
+                                            <th>DATE</th>
+                                            <th>DATEADDED</th>
+                                            <th>ACTION</th>
+                                        </tr>
+
+                                        <?php
+
+                                        $ctr1 = 1;
+                                        $ctr2 = 2;
+
+                                        while($row=mysqli_fetch_assoc($res2)){
+                                        $medname = $row['name'];
+                                        $medstocks = $row['stock'];
+                                        ?>
+                                        <tr data-tt-id="<?php echo $ctr1; ?>">
+                                            <td ><?php echo $medname.'('.$row['dosage'].')'; ?></td>
+                                            <td><?php echo $medstocks; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <?php
+                                        $sql2 = "Select * from `medinventory` where name='$medname'";
+                                        $result = mysqli_query($con,$sql2);
+                                        while($row2=mysqli_fetch_assoc($result)){
+                                        ?>
+                                        <tr data-tt-id="<?php echo $ctr2; ?>" data-tt-parent-id="<?php echo $ctr1; ?>">
+                                            <td><?php echo $row2['name'].'('.$row2['dosage'].')'; ?></td>
+                                            <td><?php echo $row2['stock']; ?></td>
+                                            <td><?php echo $row2['id']; ?></td>
+                                            <td><?php echo $row2['category'].'('.$row2['subcategory'].')'; ?></td>
+                                            <td><?php echo $row2['mfgdate'].'-'.$row2['expdate']; ?></td>
+                                            <td><?php echo $row2['dateadded']; ?></td>
+                                            <td><i id="updatebtn" class="fas fa-plus updta"  data-id="<?php echo $row2['id']; ?>" ></i></td>
+                                        </tr>
+                                        <?php
+                                            $ctr2++;
+
+                                        }
+                                            $numrow = mysqli_num_rows($result);
+                                            $ctr1+=$numrow;
+                                        }
+                                        ?>
+
+                                    </table>
+
+
+
+
+
+/*                                include 'inventoryTable.html'*/
 
                                 <button id="nakatago" style="display: none"></button>
-    </div>
+                                </div>
 
-                            <div class="inventory__table-toexpire-container"  >
+                                <div class="inventory__table-toexpire-container"  >
                                 <?php
                                 include 'inventoryToTable.html'?>
                                 <button id="nakatago2" style="display: none"></button>
 
-                            </div>
+                                </div>
 
-                            <div class="inventory__table-expired-container" >
+                                <div class="inventory__table-expired-container" >
                                 <?php
                                 include 'inventoryToExp.html'?>
                                 <button id="nakatago3" style="display: none"></button>
 
-                            </div>
+                                </div>
                             </div>
                             <?php
                             include 'inventorylogs.php';
@@ -371,6 +443,11 @@ require 'php/DB_Connect.php';
                                             <p class="modal-p"for="updatemedicineStocks">Stock:</p> <input type="number" id="updatemedicineStocks"  class="modal-field" autocomplete="off" required>
                                         </div>
                                         <div class="col-sm-12" >
+                                            <p class="modal-p"for="updatemedicinecriticalStocks">Critical Stock:</p>
+                                            <input type="number" id="updatemedicinecriticalStocks"  class="modal-field" placeholder="Enter Critical Stocks" autocomplete="off" required>
+                                            <p class="modal-p" class="error" id="upcritical-stock-incorrect-indcator" style="color: red; visibility: hidden"></p>
+                                        </div>
+                                        <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineMfgDate" >Mfg. Date:</p>
                                             <input type="text" id="updatemedicineMfgDate" contenteditable="false"  class="modal-field" autocomplete="off" >
                                         </div>
@@ -434,6 +511,7 @@ require 'php/DB_Connect.php';
     });
     //Modals
     $(document).ready(function(){
+        displaymed();
         $('#addbtn').on("click",function (){
             $("#add-modal").modal({
                 //escapeClose: false,
@@ -444,10 +522,22 @@ require 'php/DB_Connect.php';
         $('#addcancel').on("click", function (){
             $('#meds').trigger("focus");
             $('#medicineName').val("");
-            $('#medicineCategory').val("");
+            $('#medcategorySelect').selectedIndex = 1;
             $('#medicineStocks').val("");
+            $('#medicinecriticalStocks').val("");
+            $('#medSubCategory').val("");
+            $('#vacSubCategory').val("");
+            $('#medicineDosage').val("");
             $('#medicineMfgDate').val("");
             $('#medicineExpDate').val("");
+            $('#name-incorrect-indcator').css("visibility","hidden");
+            $('#category-incorrect-indcator').css("visibility","hidden");
+            $('#stock-incorrect-indcator').css("visibility","hidden");
+            $('#mfgdate-incorrect-indcator').css("visibility","hidden");
+            $('#expdate-incorrect-indcator').css("visibility","hidden");
+            $('#all-incorrect-indcator').css("visibility","hidden");
+            $('#all-incorrect-indcator').html('');
+            $('#name-incorrect-indcator').html('')
         })
         $('#critbtn').on("click",function(){
             $("#crit-modal").modal({
@@ -455,8 +545,61 @@ require 'php/DB_Connect.php';
                 showClose:false
             })
         })
+        $('#medicineName').on("keyup",function(){
+            var medName = $('#medicineName').val();
 
+            $.ajax({
+                url: "php/inventoryProcesses/checkCriticalStock.php",
+                type:'POST',
+                data:{
+                    medName:medName
+                },
+                success:function(data,status){
+                    console.log(data);
+                    if(data == ''){
 
+                    }
+                    else{
+                        $('#medicinecriticalStocks').attr('disabled','disabled');
+                        $('#medicinecriticalStocks').val(data);
+                    }
+                }
+            })
+        });
+
+        $('.updta').click(function(){
+            var medupdateid = $(this).data('id');
+            $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
+                var medid = JSON.parse(data);
+                $('#hiddendata').val(medupdateid);
+                $('#updatemedicineName').val(medid.name);
+                $('#upmedSubCategory').val(medid.subcategory);
+                $('#upmedicineDosage').val(medid.dosage);
+                $('#upmedcategorySelect').val(medid.category);
+                $('#updatemedicineStocks').val(medid.stock);
+                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
+                $('#updatemedicineMfgDate').val(medid.mfgdate);
+                $('#updatemedicineExpDate').val(medid.expdate);
+            });
+
+            $('#update-modal').modal("show");
+            $("#update-modal").modal({
+                //escapeClose: false,
+                clickClose: false,
+                showClose: false
+            })
+            $('#addupcancel').on("click", function (){
+                $('#meds').trigger("focus");
+                $('#updatemedicineName').val("");
+                $('#updatemedicineCategory').val("");
+                $('#upmedSubCategory').val("");
+                $('#updatemedicineStocks').val("");
+                $('#updatemedicinecriticalStocks').val("");
+                $('#updatemedicineStocks').val("");
+                $('#updatemedicineMfgDate').val("");
+                $('#updatemedicineExpDate').val("");
+            })
+        });
     })
     function delModal(id){
         $('#hideid').val(id);
@@ -487,6 +630,19 @@ require 'php/DB_Connect.php';
 
         });
     }
+    function displaymed(){
+        display = true;
+        $.ajax({
+            url:'php/inventoryP/displayMeds2.php',
+            type:'POST',
+            data: {data:display},
+            success:function(data,status){
+
+
+            }
+        })
+    }
+
 
     //Datepicker Validation
     $("#medicineMfgDate").datepicker({
@@ -556,6 +712,7 @@ require 'php/DB_Connect.php';
                         $('#medicineName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
+                        $('#medicinecriticalStocks').val("");
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
@@ -609,6 +766,7 @@ require 'php/DB_Connect.php';
                         $('#medicineName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
+                        $('#medicinecriticalStocks').val("");
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
@@ -646,6 +804,7 @@ require 'php/DB_Connect.php';
             $('#medicineName').val("");
             $('#medcategorySelect').selectedIndex = 1;
             $('#medicineStocks').val("");
+            $('#medicinecriticalStocks').val("");
             $('#medSubCategory').val("");
             $('#vacSubCategory').val("");
             $('#medicineDosage').val("");
@@ -725,6 +884,7 @@ require 'php/DB_Connect.php';
         var updatemedicinesubCategory=$('#upmedSubCategory').val();
         var upmedicineDosage=$('#upmedicineDosage').val();
         var updatemedicineStocks=$('#updatemedicineStocks').val();
+        var updatemedicineCritStocks=$('#updatemedicinecriticalStocks').val();
         var updatemedicineMfgDate=$('#updatemedicineMfgDate').val();
         var updatemedicineExpDate=$('#updatemedicineExpDate').val();
         var id=$('#hiddendata').val();
@@ -735,6 +895,7 @@ require 'php/DB_Connect.php';
             updatemedicinesubCategory:updatemedicinesubCategory,
             upmedicineDosage:upmedicineDosage,
             updatemedicineStocks:updatemedicineStocks,
+            updatemedicineCritStocks:updatemedicineCritStocks,
             updatemedicineMfgDate:updatemedicineMfgDate,
             updatemedicineExpDate:updatemedicineExpDate,
             id:id
@@ -883,6 +1044,13 @@ require 'php/DB_Connect.php';
         margin: 0;
         -moz-appearance: textfield;
     }
+
 </style>
+<script>
+    $("#tab").treetable({ expandable: true });
+
+
+</script>
+
 </body>
 </html>

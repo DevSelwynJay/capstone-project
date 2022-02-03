@@ -1,6 +1,6 @@
 <div>
     <h3 style="color: var(--third-color)" class="">Medicine Inventory</h3>
-    <table class="patients-view">
+    <table class="patients-view" >
         <tbody id="medicine-table">
 
         </tbody>
@@ -55,6 +55,8 @@
                     },
                     tableDidMount: function() {
                         console.log('table did mount')
+
+
                         for (a=0;a<parseInt(window.rowCount_medicine);a++){
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
@@ -63,6 +65,7 @@
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[4]).attr("data-label","Date")
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[5]).attr("data-label","Date Added")
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[6]).attr("data-label","Action")
+
                         }
                         $('.updta').click(function(){
                             var medupdateid = $(this).data('id');
@@ -74,6 +77,7 @@
                                 $('#upmedicineDosage').val(medid.dosage);
                                 $('#upmedcategorySelect').val(medid.category);
                                 $('#updatemedicineStocks').val(medid.stock);
+                                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
                                 $('#updatemedicineMfgDate').val(medid.mfgdate);
                                 $('#updatemedicineExpDate').val(medid.expdate);
                             });
@@ -88,6 +92,9 @@
                                 $('#meds').trigger("focus");
                                 $('#updatemedicineName').val("");
                                 $('#updatemedicineCategory').val("");
+                                $('#upmedSubCategory').val("");
+                                $('#updatemedicineStocks').val("");
+                                $('#updatemedicinecriticalStocks').val("");
                                 $('#updatemedicineStocks').val("");
                                 $('#updatemedicineMfgDate').val("");
                                 $('#updatemedicineExpDate').val("");
@@ -122,6 +129,7 @@
                                 $('#upmedicineDosage').val(medid.dosage);
                                 $('#upmedcategorySelect').val(medid.category);
                                 $('#updatemedicineStocks').val(medid.stock);
+                                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
                                 $('#updatemedicineMfgDate').val(medid.mfgdate);
                                 $('#updatemedicineExpDate').val(medid.expdate);
 
@@ -137,6 +145,9 @@
                                 $('#meds').trigger("focus");
                                 $('#updatemedicineName').val("");
                                 $('#updatemedicineCategory').val("");
+                                $('#upmedSubCategory').val("");
+                                $('#updatemedicineStocks').val("");
+                                $('#updatemedicinecriticalStocks').val("");
                                 $('#updatemedicineStocks').val("");
                                 $('#updatemedicineMfgDate').val("");
                                 $('#updatemedicineExpDate').val("");
@@ -202,6 +213,13 @@
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 $(".gs-table-head tr th span").css("color","white!important");
 
+
+
+
+
+
+
+
             })//
 
 
@@ -220,5 +238,12 @@
             alert(id);
         });
 
+
+
+
+
+
+
     })//document ready
+
 </script>
