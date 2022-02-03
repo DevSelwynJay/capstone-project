@@ -66,6 +66,12 @@ require 'php/DB_Connect.php';
        <link rel="stylesheet" href="notif/notif.css">
 
        <link rel="stylesheet" href="scss/modal.css"/>
+
+       <!--==========DATE PICKER ===========================-->
+
+       <script src="https://cdn.jsdelivr.net/npm/moment@latest/moment.min.js"></script>
+       <link rel="stylesheet" href="js/daterangepicker-master/daterangepicker.css">
+       <script src="js/daterangepicker-master/daterangepicker.js"></script>
    </head>
    <body>
    <section class="global">
@@ -197,10 +203,11 @@ require 'php/DB_Connect.php';
                      <div class="content patients-view-container" style="margin-bottom: 5rem">
                          <div class="flex-box-row justify-content-between">
                              <h3 style="color: var(--third-color)">Patient List</h3>
+
                              <div class="row" style="margin-bottom: 0.5rem;padding: 0 0.5rem 0 0.5rem">
                                  <div class="col-xs-5 flex-box-row align-items-center" style=";margin-right: 0.6rem">
                                      <p class="modal-p" style="margin-right: 0.2rem!important;">Filter:</p>
-                                     <select id="showingFilter" style="">
+                                     <select id="showingFilter" name="showingFilter" style="">
                                          <option value="0" selected>All Patients</option>
                                          <option value="1" >Today's Patient</option>
                                          <option value="2">Yesterday</option>
@@ -240,8 +247,12 @@ require 'php/DB_Connect.php';
                                  </style>
                              </div>
                          </div>
-                         <div class="flex-box-row justify-content-end">
-                             <p class="modal-p-2">Showing <span id="filter-msg">All Patients</span></p>
+                         <div class="row flex-box-row justify-content-end">
+                             <div class="col-lg-3 flex-box-row justify-content-end">
+                                 <i class="fas fa-edit" id="edit-range" style="visibility: hidden"></i><input  value="" placeholder="Set Date Range" type="text" class="search-bar" style="width: fit-content!important;padding: 0!important;margin: 0!important;border: none!important;text-align: start" readonly disabled id="custom-range">
+                             </div>
+<!--                             <p class="modal-p-2">Showing <span id="filter-msg">All Patients</span></p>-->
+
                          </div>
 
 
@@ -459,32 +470,20 @@ Closedropdown.addEventListener('click',function(){
            //table.setData(JSON.parse(data), null, true);
            window.rowCount = JSON.parse(data).length;
            // or Set new data on table, columns is optional.
-           if($(document).width()<=720){
+
                table.setData(JSON.parse(data),{
                    id: "ID",
                    name:"Name",
                    patient_type:"Patient Type",
                    age: "Age",
                    purok:"Purok",
+                   last_consultation:"Last Consulted",
                    account_type: "Reg. Type",
                    // bday: "BirthDay",
 
                    // address:"Address",
                });
-           }
-           else{
-               table.setData(JSON.parse(data),{
-                   id: "ID",
-                   name:"Name",
-                   patient_type:"Patient Type",
-                   age: "Age",
-                   purok:"Purok",
-                   account_type: "Reg. Type",
-                   // bday: "BirthDay",
 
-                   // address:"Address",
-               });
-           }
            // alert(window.rowCount)
            // for (a=0;a<parseInt(window.rowCount);a++){
            //     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
@@ -533,6 +532,63 @@ Closedropdown.addEventListener('click',function(){
            })
        }
 
+       //====Date range code
+       $('#custom-range').daterangepicker({
+           // options here
+       },function(start, end, label) {
+           console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+           let dates = start.format('YYYY-MM-DD')+"%%%"+end.format('YYYY-MM-DD')
+           $.post("php/patientProcesses/filter/customDate.php",{date:dates}).done(function (data) {
+
+               // Push data into existing data
+               console.log(JSON.parse(data))
+               //table.setData(JSON.parse(data), null, true);
+               window.rowCount = JSON.parse(data).length;
+               // or Set new data on table, columns is optional.
+               table.setData(JSON.parse(data),{
+                   id: "ID",
+                   name:"Name",
+                   patient_type:"Patient Type",
+                   age: "Age",
+                   purok:"Purok",
+                   last_consultation:"Last Consulted",
+                   account_type: "Reg. Type",
+                   // bday: "BirthDay",
+
+                   // address:"Address",
+               });
+           })
+       });
+
+       window.applyBtnPressed = false;//nasa labas na
+
+       $('#custom-range').on('hide.daterangepicker',function(ev, picker) {
+           //first time load ni page tapos hinide ng di pa pinipindot apply
+           setTimeout(()=>{
+               if(!window.applyBtnPressed){
+                   // alert("ndi naapply")
+                   $("#custom-range").prop("disabled",true).css("visibility","hidden").prop("placeholder","Select Range")
+                   $("#edit-range").css("visibility","hidden")
+                   $("#showingFilter").val("0").trigger("change")
+               }
+               else {
+                   // alert("naapply")
+               }
+           },300)
+
+       });
+
+       $('#custom-range').on('apply.daterangepicker',function(ev, picker) {
+           window.applyBtnPressed = true;
+       });
+       $('#custom-range').on('cancel.daterangepicker',function(ev, picker) {
+           // alert(123)
+       });
+
+
+
+
+
        //filter table
        // $("#changePurok").change(function (event) {
        //     $(".search-bar").val("")
@@ -562,10 +618,48 @@ Closedropdown.addEventListener('click',function(){
        //
        //
        // })//change purok
+
        $("#showingFilter").change(function () {
+
+           $("#custom-range").prop("disabled",true).css("visibility","hidden").prop("placeholder","Select Range")
+           $("#edit-range").css("visibility","hidden")
+
            let filterValue = $("#showingFilter").val()
+
            if(filterValue=="0"){
                resetTable();//show all of the patient
+           }
+           else if(filterValue=="2"){
+               const today = new Date()
+               const yesterday = new Date(today)
+               yesterday.setDate(yesterday.getDate() - 1)
+               today.toDateString()
+               // yesterday.toDateString()
+               let kahapon = yesterday.toLocaleDateString('en-CA', {year: 'numeric', month: '2-digit', day: '2-digit'})
+               $.post("php/patientProcesses/filter/yesterday.php",{date:kahapon}).done(function (data) {
+
+                   // Push data into existing data
+                   console.log(JSON.parse(data))
+                   //table.setData(JSON.parse(data), null, true);
+                   window.rowCount = JSON.parse(data).length;
+                   // or Set new data on table, columns is optional.
+                   table.setData(JSON.parse(data),{
+                       id: "ID",
+                       name:"Name",
+                       patient_type:"Patient Type",
+                       age: "Age",
+                       purok:"Purok",
+                       last_consultation:"Last Consulted",
+                       account_type: "Reg. Type",
+                       // bday: "BirthDay",
+
+                       // address:"Address",
+                   });
+               })
+           }
+           else if(filterValue=="5"){
+                  $("#custom-range").prop("disabled",false).css("visibility","visible").prop("placeholder","Select Range").trigger("focus")
+                  $("#edit-range").css("visibility","visible")
            }
            else  {
                 filterTable(filterValue);
@@ -586,6 +680,7 @@ Closedropdown.addEventListener('click',function(){
                        patient_type:"Patient Type",
                        age: "Age",
                        purok:"Purok",
+                       last_consultation:"Last Consulted",
                        account_type: "Reg. Type",
                        // bday: "BirthDay",
 
@@ -608,6 +703,7 @@ Closedropdown.addEventListener('click',function(){
                     patient_type:"Patient Type",
                     age: "Age",
                     purok:"Purok",
+                    last_consultation:"Last Consulted",
                     account_type: "Reg. Type",
                     // bday: "BirthDay",
 
@@ -616,9 +712,6 @@ Closedropdown.addEventListener('click',function(){
             })
 
        }
-
-
-
 
 
 });//end of document ready
@@ -660,8 +753,22 @@ Closedropdown.addEventListener('click',function(){
            setTimeout(()=>{
                $('[href="#pop-up-loading-patient"]').trigger("click")
            },500)
-
+            //for first loading
+           $("#custom-range").prop("placeholder","").val("")
        })
    </script>
+
+   <!--filter calendar override css-->
+   <style>
+       .table-condensed tbody tr td, .table-condensed thead tr th{
+           padding: 0.3rem !important;
+       }
+       .table-condensed thead tr th{
+           background: var(--secondary-color)!important;
+       }
+       .table-condensed tr{
+           background: none!important;
+       }
+   </style>
    </body>
 </html>

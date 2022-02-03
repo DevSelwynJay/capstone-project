@@ -6,7 +6,7 @@ require '../DB_Connect.php';
 $response = array();
 
 //select online acc with finished request
-$res = mysqli_query($con,"SELECT * FROM emr_request ORDER BY date_requested DESC");
+$res = mysqli_query($con,"SELECT *,DATE_FORMAT(date_requested,'%Y-%m-%d %r') as date_requested FROM emr_request ORDER BY date_requested DESC");
 while ($row = mysqli_fetch_assoc($res)){
     //logic select lahat ng online acc na may request history ,
     //then iquery ung info sa online patient acc for displaying

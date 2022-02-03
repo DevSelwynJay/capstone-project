@@ -7,7 +7,7 @@ $arr = array();
 $time = $_POST['interval'];
 if($time == 'daily'){
     $time = '1 day';
-    $sql = 'Select * from `medication_record` where `patient_type` = "Infant" and `date_given` > NOW()- interval '.$time.' order by `date_given` asc';
+    $sql = 'Select * from `medication_record` where `patient_type` = "Infant" and DATE_FORMAT(`date_given`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") order by `date_given` asc';
 }
 elseif ($time == 'weekly'){
     $time = '1 week';
@@ -28,12 +28,19 @@ elseif ($time == 'annually'){
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
+else{
+    $datearr = explode(',',$time);
+    $startdate = $datearr[0];
+    $enddate = $datearr[1];
+    $sql = 'Select * from `medication_record` where `patient_type` = "Infant" and date(date_given) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") order by `date_given` asc';
+}
 $patientqry = $sql;
 $result = mysqli_query($con,$patientqry);
 
 while ($row = mysqli_fetch_assoc($result)){
     $id = $row['patient_id'];
     $date = $row['date_given'];
+    $medName = $row['medicine_name'].' ('.$row['dosage'].')';
     $patientqry2 = 'Select * from `walk_in_patient` where `id` = "'.$id.'" ';
     $result2 = mysqli_query($con,$patientqry2);
     if(mysqli_num_rows($result)>0) {
@@ -43,6 +50,7 @@ while ($row = mysqli_fetch_assoc($result)){
             $row['address']= 'Purok ' . $row['purok'] . ' House No.' . $row['house_no'] . ' ' . $row['address'];
             $row['gender'] = $row['gender'];
             $row['date'] = $date;
+            $row['medicineName'] = $medName;
 
             $arr[] = $row;
 

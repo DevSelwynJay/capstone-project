@@ -13,7 +13,7 @@
                     view_button:"Action"
                 }
             ,
-            // searchField: '.search-bar',
+            searchField: '#search-emr-req',
             // responsive: {
             //     720: {
             //         columns: {
@@ -36,6 +36,10 @@
             tableWillUpdate: function() {console.log('table will update')},
             tableDidUpdate: function() {
                 console.log('table did update')
+                if($("#emr-req-cont div .gs-table-body tr").length==0){
+                    $("#emr-req-cont div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                    return
+                }
                 row_click()
                 for (a=0;a<parseInt(window.rowCount_emr_req);a++){
                     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
@@ -174,7 +178,7 @@
                     status:"Status"
                 }
             ,
-            searchField: '.search-bar',
+            searchField: '#search-logs',
             // responsive: {
             //     720: {
             //         columns: {
@@ -196,7 +200,14 @@
             },
             tableWillUpdate: function() {console.log('table will update')},
             tableDidUpdate: function() {
+                $("#approve-emr-req-cont div .gs-table thead tr th").css("background","darkslategrey")
                 console.log('table did update')
+
+                if($("#approve-emr-req-cont div .gs-table-body tr").length==0){
+                    $("#approve-emr-req-cont div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                    return
+                }
+
                 // row_click()
                 for (a=0;a<parseInt(window.rowCount_emr_history);a++){
                     $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
@@ -204,7 +215,7 @@
                     $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[2]).attr("data-label","Date Processed")
                     $($($("#approve-emr-req-cont div .gs-table-body").children()[a]).children()[3]).attr("data-label","Status")
                 }
-                $("#approve-emr-req-cont div .gs-table thead tr th").css("background","darkslategrey")
+
             },
             tableWillUnmount: function() {console.log('table will unmount')},
             tableDidUnmount: function() {console.log('table did unmount')},
@@ -234,7 +245,7 @@
         })//end of get/post method
 
         $("#approve-emr-req-cont div .gs-table thead tr th").css("background","darkslategrey")
-        $(".search-bar").prop("placeholder","Search History")
+        $("#search-logs").prop("placeholder","Search History")
     });//end of document ready
 </script>
 

@@ -11,7 +11,7 @@ $minusClause = "";
 query($con,$symbol,$minusClause);
 }
 else if($val=="2"){
-    $symbol = "=";
+    $symbol = ">=";
     $minusClause = "-interval 1 day";
     query($con,$symbol,$minusClause);
 }
@@ -43,21 +43,22 @@ function query($con,$symbol,$minusClause){
 
         $hasMedConsultation=false;$hasVacConsultation=false;
         $row['last_consultation']="";//gawin none ang value sa dulo pag alang record
+        $row["sort"] = "1999-01-01";//sorting purposes only
 
         //last med result kukunin
-        $r1que= mysqli_query($con,"SELECT*,DATE_FORMAT(date_given,'%Y-%m-%d') as date_given_fd FROM medication_record WHERE patient_id='".$row['id']."' $whereClause2 ORDER BY date_given DESC");
+        $r1que= mysqli_query($con,"SELECT*,date_format(date_given,'%b %d, %Y')as fd, DATE_FORMAT(date_given,'%Y-%m-%d') as date_given_fd FROM medication_record WHERE patient_id='".$row['id']."' $whereClause2 ORDER BY date_given DESC");
         $lastMedConsultation="";
         if ($r1=mysqli_fetch_assoc($r1que)){
             $hasMedConsultation=true;
-            $lastMedConsultation=$r1['date_given'];
+            $lastMedConsultation=$r1['date_given_fd'];
 //            echo json_encode($r1);
         }
         //last vac result kukunin
-        $r1que= mysqli_query($con,"SELECT*,DATE_FORMAT(date_given,'%Y-%m-%d') as date_given_fd FROM vaccination_record WHERE patient_id='".$row['id']."' $whereClause2 ORDER BY date_given DESC");
+        $r1que= mysqli_query($con,"SELECT*,date_format(date_given,'%b %d, %Y')as fd, DATE_FORMAT(date_given,'%Y-%m-%d') as date_given_fd FROM vaccination_record WHERE patient_id='".$row['id']."' $whereClause2 ORDER BY date_given DESC");
         $lastVacConsultation="";
         if ($r1=mysqli_fetch_assoc($r1que)){
             $hasVacConsultation=true;
-            $lastVacConsultation=$r1['date_given'];
+            $lastVacConsultation=$r1['date_given_fd'];
 //            echo json_encode($r1);
         }
 
@@ -66,19 +67,23 @@ function query($con,$symbol,$minusClause){
 //            echo "Both";
             if($lastMedConsultation>$lastVacConsultation){
                 $row['last_consultation'] = $lastMedConsultation;
+                $row["sort"] = $lastMedConsultation;
 //                echo "Med Higher";
             }
             else{
                 $row['last_consultation'] = $lastVacConsultation;
+                $row["sort"] = $lastVacConsultation;
 //                echo "Vaccine Higher";
             }
         }
         else if(!$hasMedConsultation&&$hasVacConsultation){
             $row['last_consultation'] = $lastVacConsultation;
+            $row["sort"] = $lastVacConsultation;
 //            echo "Vaccine Only";
         }
         else if($hasMedConsultation&&!$hasVacConsultation){
             $row['last_consultation'] = $lastMedConsultation;
+            $row["sort"] = $lastMedConsultation;
 //            echo "Med Only";
         }
         else if(!$hasMedConsultation&&!$hasVacConsultation){
@@ -113,6 +118,14 @@ function query($con,$symbol,$minusClause){
 //        echo "<br><br>";
 
     }
+
+    usort( $rowmain, function ($item1, $item2) {
+        return $item2['last_consultation'] <=> $item1['last_consultation'];
+    });
+
+    usort( $rowmain, function ($item1, $item2) {
+        return $item2['sort'] <=> $item1['sort'];
+    });
     echo json_encode($rowmain);
 
 //    $whereClause = "WHERE DATE_FORMAT(date_given,'%Y-%m-%d') $symbol DATE_FORMAT(NOW()$minusClause,'%Y-%m-%d')";

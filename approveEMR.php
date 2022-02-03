@@ -171,11 +171,18 @@
             <!--                        </div>-->
           </div>
 
-          <div class="content patients-view-container">
+          <div class="content patients-view-container" style="padding-top: 0!important;">
             <h1 style="color: var(--third-color);text-align: center"class="margin-top-2 flex-box-row align-items-end justify-content-start">
                 <img src="img/medical-record.png" class="modal-header-icon" style="margin-right: 0.3rem">
                 EMR Request
             </h1>
+              <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
+                  <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                      <div class="search-container search-container-inventory" >
+                          <input style="" type="text" id="search-emr-req" class="form-control search-bar" placeholder="Search EMR Request" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                      </div>
+                  </div>
+              </div>
               <p class="modal-p" style="margin-top: 1.5rem !important;"><span style="color: darkred">Note: </span>The table below shows all of the online patient account who is requesting for EMR (Electronic Medical Record)</p>
 
             <!--                         <h3 class="table-title margin-top-3">-->

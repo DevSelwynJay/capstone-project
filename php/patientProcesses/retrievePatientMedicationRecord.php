@@ -6,6 +6,7 @@ $patientID =$_SESSION['active_individual_patient_ID'];
 $con=null;
 require '../DB_Connect.php';
 $arr = array();
+date_default_timezone_set('Asia/Manila');
 $curr_date = date('Y-m-d');
 $result = mysqli_query($con,"SELECT *, DATE_FORMAT(start_date,'%Y-%m-%d') as start_date_1 , 
        DATE_FORMAT(start_date,'%M %d, %Y') as start_date_formatted,

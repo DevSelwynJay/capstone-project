@@ -6,7 +6,7 @@ require ('../DB_Connect.php');
 $type = $_GET['type'];
 if(isset($_GET['daily'])){
     $time = '1 day';
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and `dateadded` > NOW()- interval '.$time.' ';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
@@ -27,10 +27,30 @@ elseif(isset($_GET['annually'])){
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
+elseif(isset($_GET['customdate'])){
+    $date = $_GET['customdate'];
+    $datearr = explode(',',$date);
+    $date1 = $datearr[0];
+    $startdate = date("Y-m-d", strtotime($date1));
+    $date2 = $datearr[1];
+    $enddate = date("Y-m-d", strtotime($date2));
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
+}
+
 
 $pdfquery = $sql;
 
 $record = mysqli_query($con,$pdfquery);
+
+if($type == 'Medicine'){
+    $type = "Medicine Released";
+}
+elseif($type == 'Vaccine'){
+    $type = "Vaccine Released";
+}
+else{
+    $type = $type;
+}
 
 class PDF extends FPDF{
     function Header()
@@ -67,4 +87,4 @@ while($row = mysqli_fetch_assoc($record)){
 
 }
 
-$pdf->Output('D','Report-'.$datetoday.'.pdf');
+$pdf->Output('D','Report-'.$type.'-'.$datetoday.'.pdf');

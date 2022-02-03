@@ -7,7 +7,7 @@ $arr = array();
 $time = $_POST['interval'];
 if($time == 'daily'){
     $time = '1 day';
-    $sql = "Select * from `medreport` where `type` = 'Vaccine' and `dateadded` > NOW()- interval ".$time." order by `dateadded` asc";
+    $sql = "Select * from `medreport` where `type` = 'Vaccine' and DATE_FORMAT(`dateadded`,'%Y %M %d') = DATE_FORMAT(NOW(),'%Y %M %d') order by `dateadded` asc";
 
 }
 elseif ($time == 'weekly'){
@@ -25,6 +25,12 @@ elseif($time == 'quarterly'){
 elseif ($time == 'annually'){
     $time = '1 year';
     $sql = "Select * from `medreport` where `type` = 'Vaccine' and YEAR(`dateadded`) = YEAR(NOW()) order by `dateadded` asc";
+}
+else{
+    $datearr = explode(',',$time);
+    $startdate = $datearr[0];
+    $enddate = $datearr[1];
+    $sql = "Select * from `medreport` where `type` = 'Vaccine' and date(dateadded) BETWEEN date('".$startdate."') and date('".$enddate."') order by `dateadded` asc";
 }
 $medexpqry = $sql;
 $res = mysqli_query($con,$medexpqry);
