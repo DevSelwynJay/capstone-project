@@ -27,12 +27,12 @@ while ($row = mysqli_fetch_assoc($result)){
     }
     $fullname = $lname . ", " . $fname . " " . $mname;
 
-    $row['name'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
-    $row['email']= $row['email'];
-    $row['contact']= $row['contact_no'];
-    $row['workcat']= $row['role'];
-    $row['status'] = $status;
-    $row['action'] = '<button class="$butID" onclick="adclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
+    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
+    $row['ademail']= $row['email'];
+    $row['adcontact']= $row['contact_no'];
+    $row['adworkcat']= $row['role'];
+    $row['adstatus'] = $status;
+    $row['adaction'] = '<button class="$butID" onclick="adclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
 
     $arr[] = $row;
 

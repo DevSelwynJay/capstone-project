@@ -1,15 +1,15 @@
 <?php
 
 session_start();
-/*
+
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     header("location:index.php",true);
     exit();
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
-*/
-$emm = 'galvezirish17@gmail.com';
-//$emm = 'projectcapstone3m@gmail.com';
+
+//$emm = 'galvezirish17@gmail.com';
+
 //?>
 <!DOCTYPE html>
 <html lang="en">
@@ -248,13 +248,27 @@ $emm = 'galvezirish17@gmail.com';
                     </div>
                     <p id="emmm" hidden class="color-black"><?php echo $emm; ?></p>
                     <h3 class="color-black">Manage Admin Accounts</h3>
+                    <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
+                        <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                            <div class="search-container search-container-inventory" >
+                                <input style="" type="text" id="search-admin" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
                     <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
+                        <div class="reports__individual-container" >
+                            <table class="reports__individual-reports-table">
+                                <tbody id="adtablediv">
+
+                                </tbody>
+                            </table>
+                        </div>
                         <style>
                             #adminTable tr td:nth-child(1), #adminTable th:nth-child(1) {
                                 display: none;
                             }
                         </style>
-                        <table id="adminTable">
+                        <!--<table id="adminTable">
                             <tr>
                                 <th>Admin ID</th>
                                 <th>Name</th>
@@ -264,9 +278,10 @@ $emm = 'galvezirish17@gmail.com';
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
-                            <!--Query Admin accounts-->
-                            <tbody>
+                            Query Admin accounts-->
+                            <!--<tbody>
                             <?php
+                            /*
                             $con=null;
                             include 'php/DB_Connect.php';
                             $adder = 1;
@@ -303,10 +318,10 @@ $emm = 'galvezirish17@gmail.com';
                              ";
                                 //$adder++;
                             }
-                            mysqli_close($con);
+                            mysqli_close($con); */
                             ?>
                             </tbody>
-                        </table>
+                        </table>  -->
                     </div>
                     <div class="cta-wrapper2">
                         <a  id="add-admin-modal" href="#show" rel="modal:open" class="square-btn"><i class="fas fa-plus"></i>Add Admin Account</a>
@@ -369,7 +384,7 @@ $emm = 'galvezirish17@gmail.com';
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
                         <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
                             <div class="search-container search-container-inventory" >
-                                <button class="triggerbut" hidden></button>
+
                                 <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
@@ -441,15 +456,149 @@ $emm = 'galvezirish17@gmail.com';
     </div>
 </section>
 <button id="reload-patient" class="modal-primary-button" type="button" style="display: none">test dyanmic</button>
+<button id="reload-admin" class="modal-primary-button" type="button" style="display: none">test dyanmic2</button>
 <script>
 $("#reload-patient").click(function () {
     displayPtnts();
 })
+$("#reload-admin").click(function () {
+    displayAdmin();
+})
 </script>
 
 <script>
-    function displayPtnts(){//? patient
-        alert("natawag display patients")
+    // *TABLE FOR ADMIN UPDATE
+    function displayAdmin(){//? admin
+        //calls the json data to display admin users
+        $.ajax({
+            url: 'php/superAdminProcesses/loadtablepat.php',
+            type: 'POST',
+            data:{
+
+            },
+            success: function (data, status){
+                //console.log(JSON.parse(data)+"pwd");
+                displayreportadmin(data);
+            }
+        })
+    }
+    function displayreportadmin(data){
+        var record = data;
+        let result = JSON.parse(record);
+        window.rowCount_admins = JSON.parse(record).length;
+        var tableadmin = $('#adtablediv').tableSortable({
+            data: result,
+            searchField: '#search-admin',
+            responsive: {
+                1750: {
+                    columns: {
+                        adname:"Name",
+                        ademail:"Email",
+                        adcontact:"Contact No.",
+                        adworkcat:"Work Category",
+                        adstatus:"Status",
+                        adaction:"Action",
+                    },
+                },
+            },
+            //searchField: '#meds',
+            // responsive: {
+            //     720: {
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     },
+            //     512:{
+            //         columns: {
+            //             // id: "ID",
+            //             name:"Name",
+            //             date:"Date Requested",
+            //             button:"Action"
+            //         },
+            //     }
+            // },
+            rowsPerPage: 5,
+            pagination: true,
+            sorting:false,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+                for (a=0;a<parseInt(window.rowCount_admins);a++){
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                }
+            },
+            tableWillUpdate: function() {
+                console.log('table will update')
+
+            },
+            tableDidUpdate: function() {
+
+                // console.log('table did update');  click_view_button();
+                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                for (a=0;a<parseInt( window.rowCount_admins);a++){
+                    $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                }
+                for (a=0;a<parseInt(window.rowCount_admins);a++){
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                }
+                //thead color
+                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                $(".gs-table-head tr th span").css("color","white!important");
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        if(JSON.parse(record).length==0){
+            $("#adtablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+
+            return
+        }
+        $('#changeRows').on('change', function() {
+            tableadmin.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            tableadmin.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            tableadmin.distroy();
+        })
+
+        $('#refresh').click(function() {
+            tableadmin.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            tableadmin.setPage(1);
+        })
+        //thead color
+        //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+        $(".gs-table-head tr th span").css("color","white!important");
+
+    }
+
+    // *TABLE FOR PATIENT UPDATE
+    function displayPtnts(){//? patient table updater
+        //alert("natawag display patients")
         $.ajax({
             url: 'php/superAdminProcesses/ptientload.php',
             type: 'POST',
@@ -462,7 +611,6 @@ $("#reload-patient").click(function () {
             }
         })
     }
-
     function displayreport(data){
         var record = data;
         let result = JSON.parse(record);
@@ -573,22 +721,112 @@ $("#reload-patient").click(function () {
 
     }
     //displayPtnts();
-    function getpatient(getdata, data){
-        getdata.setData(JSON.parse(data),{
-            name:"Name",
-            email:"Email",
-            status:"Status",
-            action:"Action",
-        });
-    }
+
 
 </script>
 <script>
-
+    //// *Initial caller of admin table display
     jQuery(document).ready(function() {
-        // $(".clickable-row").click(function() {
-        //     window.location = $(this).data("href");
-        // });
+        // *ADMIN DATA Table
+        var tableadmin = $('#adtablediv').tableSortable({
+            data: [],
+            columns: {
+                adname:"Name",
+                ademail:"Email",
+                adcontact:"Contact No.",
+                adworkcat:"Work Category",
+                adstatus:"Status",
+                adaction:"Action",
+            },
+            searchField: '#search-admin',
+
+
+            rowsPerPage: 5,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {
+                console.log('table did update')
+                //resetTable();
+                for (a=0;a<parseInt(window.rowCount_admins);a++){
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+
+                }
+            },
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+        // ?get function that gets json data for admin table
+        $.get('php/superAdminProcesses/loadtablepat.php', function(data) {
+            d = data;
+            // Push data into existing data
+            console.log(JSON.parse(data))
+            //table.setData(JSON.parse(data), null, true);
+            window.rowCount_admins = JSON.parse(data).length;
+            // or Set new data on table, columns is optional.
+            if($(document).width()<=720){
+                tableadmin.setData(JSON.parse(data),{
+                    adname:"Name",
+                    ademail:"Email",
+                    adcontact:"Contact No.",
+                    adworkcat:"Work Category",
+                    adstatus:"Status",
+                    adaction:"Action",
+                });
+            }
+            else{
+                tableadmin.setData(JSON.parse(data),{
+                    adname:"Name",
+                    ademail:"Email",
+                    adcontact:"Contact No.",
+                    adworkcat:"Work Category",
+                    adstatus:"Status",
+                    adaction:"Action",
+                });
+            }
+            // alert(window.rowCount)
+            // for (a=0;a<parseInt(window.rowCount);a++){
+            //     $($($(".gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
+            // }
+            // alert($($($(".gs-table-body").children()[0]).children()[0]).attr("data-label","ID"))
+        })//end of get/post method
+        $('#changeRows').on('change', function() {
+            tableadmin.updateRowsPerPage(parseInt($(this).val(), 10));
+        })
+
+        $('#rerender').click(function() {
+            tableadmin.refresh(true);
+        })
+
+        $('#distory').click(function() {
+            tableadmin.distroy();
+        })
+
+        $('#refresh').click(function() {
+            tableadmin.refresh();
+        })
+
+        $('#setPage2').click(function() {
+            tableadmin.setPage(1);
+        })
+    });//end of document ready
+
+    //// *Initial caller of patient table display
+    jQuery(document).ready(function() {
+        // *PATIENT DATA Table
         var tablepat = $('#pattablediv').tableSortable({
             data: [],
             columns: {
@@ -674,31 +912,9 @@ $("#reload-patient").click(function () {
         $('#setPage2').click(function() {
             table.setPage(1);
         })
-
-            $('.triggerbut').click(function(){
-                console.log('potaaa');
-                $.get('php/superAdminProcesses/ptientload.php', function(data) {
-                    d = data;
-                    // Push data into existing data
-                    console.log(JSON.parse(data))
-                    //table.setData(JSON.parse(data), null, true);
-                    window.rowCount_patients = JSON.parse(data).length;
-                    // or Set new data on table, columns is optional.
-                    tablepat.setData(JSON.parse(data),{
-                        name:"Name",
-                        email:"Email",
-                        status:"Status",
-                        action:"Action",
-                    });
-                })//end of get/post method
-
-            });
-
-
-
-
-
     });//end of document ready
+
+
 
 </script>
 <script>
@@ -838,9 +1054,9 @@ $("#reload-patient").click(function () {
         var page = $(this).attr("id");
         displayUsers(page);
     })
-
 */
 
+/*
     //// *ADMIN BUTTON CLICK
     // *click button activate to get admin ID and name
     $(".butactive").click(function() {
@@ -862,13 +1078,23 @@ $("#reload-patient").click(function () {
         document.getElementById("adminname").value = $text2;
         $('#show-del').modal();
     })
-
-
+*/
 
     // *click button to get patient ID and name
+    function adclick(adminids,adminname, statuses){
+        if(statuses=="Deactivated"){// ?if status is deactivate, activate modal will show
+            document.getElementById("idno3").value = adminids;
+            document.getElementById("adminname3").value = adminname;
+            $('#activemod').modal();
+        }else if (statuses=="Active"){// ?if status is active, deactivate modal will show
+            document.getElementById("idno").value = adminids;
+            document.getElementById("adminname").value = adminname;
+            $('#show-del').modal();
+        }
+    }
 
+    // *click button to get patient ID and name
     function patclick(patids,patname, statuses){
-
         if(statuses=="Active"){// ?if status is active, disable modal will show
             document.getElementById("patidno").value = patids;
             document.getElementById("patname").value = patname;
@@ -878,8 +1104,6 @@ $("#reload-patient").click(function () {
             document.getElementById("patname3").value = patname;
             $('#show-actpat').modal();
         }
-
-
     }
 
 
