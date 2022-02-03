@@ -3,7 +3,7 @@ $con=null;
 require '../DB_Connect.php';
 
 
-$usertable = "SELECT id, first_name, middle_name, last_name, email, account_status, password FROM walk_in_patient where email like '%@%' order by `date_created` asc";
+$usertable = "SELECT id, last_name, first_name, middle_name, email, contact_no, role, account_status FROM admin";
 $result = mysqli_query($con, $usertable);
 
 while ($row = mysqli_fetch_assoc($result)){
@@ -17,20 +17,22 @@ while ($row = mysqli_fetch_assoc($result)){
     if ($stat == 1) {
         $status = "Active";
         $buttonstat = "Deactivate";
-        $butID = "patinactive";
+        $butID = "adinactive";
         // $butclick = "patinactive()";
     } elseif ($stat == 0) {
         $status = "Deactivated";
         $buttonstat = "Activate";
-        $butID = "patactive";
+        $butID = "adactive";
         // $butclick = "patactive()";
     }
     $fullname = $lname . ", " . $fname . " " . $mname;
 
-    $row['name'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
-    $row['email']= $row['email'];
-    $row['status'] = $status;
-    $row['action'] = '<button class="$butID" onclick="patclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
+    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
+    $row['ademail']= $row['email'];
+    $row['adcontact']= $row['contact_no'];
+    $row['adworkcat']= $row['role'];
+    $row['adstatus'] = $status;
+    $row['adaction'] = '<button class="$butID" onclick="adclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
 
     $arr[] = $row;
 

@@ -13,20 +13,7 @@ $(document).ready(function (){
     })
 })
 
-//click table to get admin ID and name
-/*$(document).ready(function (){
-    $("#adminTable").click(function() {
-        var table = document.getElementById('adminTable');
-        for (var i = 1; i < table.rows.length; i++) {
-            $(table.rows[i]).on("click", function () {
-                document.getElementById("idno").value = this.cells[0].innerHTML;
-                document.getElementById("adminname").value = this.cells[1].innerHTML;
-                $('#show-del').modal();
-            })
-        }
-    })
-})
-*/
+
 //?trigger if disable admin modal button is clicked
 $(document).ready(function (){
     $("#disable-admin2").click(function (){
@@ -147,20 +134,20 @@ function checkEmailValidation(email,password,confirmpass){
                 }
 
             } else{
-                    let timerInterval
-                    Swal.fire({
-                        title: 'Email is non-existent!',
-                        timer: 2500,
-                        timerProgressBar: true,
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                        }
-                    }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            console.log('I was closed by the timer')
-                        }
-                    })
+                let timerInterval
+                Swal.fire({
+                    title: 'Email is non-existent!',
+                    timer: 2500,
+                    timerProgressBar: true,
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
                 $('#admin-email').val("");
                 $('#password').val("");
                 $('#conf-pass').val("");
@@ -171,7 +158,6 @@ function checkEmailValidation(email,password,confirmpass){
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
     xhr.send("email="+email);
 }
-
 // Adds the admin account as well as filtering datas
 function addAdmin(){
     var fname = $('#fname').val();
@@ -198,13 +184,15 @@ function addAdmin(){
                     timerProgressBar: true,
                     willClose: () => {
                         clearInterval(timerInterval)
-                        appendTableAdmin();
+                        //appendTableAdmin();
+                        $("#reload-admin").trigger("click")
                     }
                 }).then((result) => {
                     /* Read more about handling dismissals below */
                     if (result.dismiss === Swal.DismissReason.timer) {
                         console.log('I was closed by the timer')
-                        appendTableAdmin();
+                        $("#reload-admin").trigger("click")
+                        //appendTableAdmin();
                     }
                 })
                 //Clear all of the fields upon closing
@@ -247,13 +235,13 @@ function addAdmin(){
 //Appends the new added admin to the row
 function appendTableAdmin() {
     //$.post("php/superAdminProcesses/tableLoad.php")
-       // .done(function (data){
-                //var result = data.toString();
-                //console.log(result);
-            location.reload();
-            //$("#adminTable>tbody").append(result).preventDefault();
-            //$(result).appendTo( "#adminTable>tbody" );
-       // })
+    // .done(function (data){
+    //var result = data.toString();
+    //console.log(result);
+    location.reload();
+    //$("#adminTable>tbody").append(result).preventDefault();
+    //$(result).appendTo( "#adminTable>tbody" );
+    // })
 }
 //// * DISABLE PROCESSESS
 // *DISABLE ADMIN
@@ -264,7 +252,7 @@ function adminDisableCheck(adminIds,adminname){
         const { value: password } = await Swal.fire({
             title: 'Enter your password',
             input: 'password',
-                //customClass: 'swal-wide',
+            //customClass: 'swal-wide',
             inputPlaceholder: 'Enter your password',
             inputAttributes: {
                 //maxlength: 20,
@@ -300,8 +288,8 @@ function checkPassDisable(adminIds,adminname,superEmail,superPass){
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
                         console.log("dito passdisable");
-                        sendmail(adminIds,statt,acttype);
                         disableAdmin(adminIds);
+                        sendmail(adminIds,statt,acttype);
                         let timerInterval
                         Swal.fire({
                             title: adminname+' Deactivated!',
@@ -309,16 +297,16 @@ function checkPassDisable(adminIds,adminname,superEmail,superPass){
                             timerProgressBar: true,
                             willClose: () => {
                                 clearInterval(timerInterval)
-                                appendTableAdmin();
+                                //appendTableAdmin();
                             }
                         }).then((result) => {
                             // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
-                                appendTableAdmin();
+                                //appendTableAdmin();
                             }
                         })
-
+                        $.modal.close();
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved!', '', 'info')
                         $.modal.close();
@@ -354,7 +342,7 @@ function disableAdmin(adminIds){
         .done(function (data){
             console.log("dito disableadmin");
             if(data == 1){
-
+                $("#reload-admin").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
@@ -362,82 +350,6 @@ function disableAdmin(adminIds){
         })
 }
 
-/* ///  DISABLE ADMIN BY BUTTON
-function adminDisableCheck2(adminIds){
-    $.post("php/superAdminProcesses/checkAdminId.php", {adminId:adminIds})
-        .done(function (data){
-            if(data == 1){
-
-                Swal.fire({
-                    title: 'Are you sure you want to archive this account?',
-                    showDenyButton: true,
-                    //showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    // Read more about isConfirmed, isDenied below
-                    if (result.isConfirmed) {
-                        disableAdmin2(adminIds);
-                        $.post("php/superAdminProcesses/adminNameCaller.php", {adminId:adminIds})
-                            .done(function (data){
-                                var session = sessionStorage.getItem("adminCall");
-                                let timerInterval
-                                Swal.fire({
-                                    title: ' Archived Successful!',
-                                    timer: 2500,
-                                    timerProgressBar: true,
-                                    willClose: () => {
-                                        clearInterval(timerInterval)
-                                        appendTableAdmin();
-                                    }
-                                }).then((result) => {
-                                    // Read more about handling dismissals below
-                                    if (result.dismiss === Swal.DismissReason.timer) {
-                                        console.log('I was closed by the timer')
-                                        appendTableAdmin();
-                                    }
-                                })
-                            })
-                    } else if (result.isDenied) {
-                        Swal.fire('Changes are not saved!', '', 'info')
-                        $.modal.close();
-                    }
-                })
-            }else{
-                let timerInterval
-                Swal.fire({
-                    icon: 'error',
-                    title: 'User ID is already in the database!',
-                    timer: 2500,
-                    timerProgressBar: true,
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                }).then((result) => {
-                    // Read more about handling dismissals below
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        console.log('I was closed by the timer')
-                    }
-                })
-                $.modal.close();
-            }
-
-        })
-}
-
-//Disable Admin and transfer the disabled to new DB
-function disableAdmin2(adminIds){
-    $.post("php/superAdminProcesses/disableAdminProcess.php", {adminId:adminIds})
-        .done(function (data){
-            if(data == 1){
-
-            }else{
-                Swal.fire('Unsuccesful!', '', 'error')
-            }
-
-        })
-}
- */
 // * PATIENT DISABLE
 function patientDisableCheck(patientIds,patname){
     (async () => {
@@ -480,8 +392,9 @@ function checkPatDisable (patientIds,patname,superEmail, superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
-                        sendmail(patientIds,statt,acttype);
                         disablePatient(patientIds);
+                        sendmail(patientIds,statt,acttype);
+
                         let timerInterval
                         Swal.fire({
                             title: patname+' Deactivated!',
@@ -489,19 +402,21 @@ function checkPatDisable (patientIds,patname,superEmail, superPass){
                             timerProgressBar: true,
                             willClose: () => {
                                 clearInterval(timerInterval)
-                                appendTableAdmin();
+                                //$('.triggerbut').trigger("click");
+                                //displayPtnts();
                             }
                         }).then((result) => {
                             // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
-                                appendTableAdmin();
+                                //$('.triggerbut').trigger("click");
+                                //displayPtnts();
                             }
                         })
-
+                        $.modal.close();
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved!', '', 'info')
-                        $.modal.close();
+
                     }
                 })
             }else {
@@ -532,7 +447,7 @@ function disablePatient(patientIds){
     $.post("php/superAdminProcesses/disablePatientProcess.php", {patId:patientIds})
         .done(function (data){
             if(data == 1){
-
+                $("#reload-patient").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
@@ -540,81 +455,7 @@ function disablePatient(patientIds){
         })
 }
 
-/* ///  DISABLE Patient BY BUTTON
-function patientDisableCheck2(patientIds){
-    $.post("php/superAdminProcesses/checkPatientId.php", {patId:patientIds})
-        .done(function (data){
-            if(data == 1){
 
-                Swal.fire({
-                    title: 'Are you sure you want to archive this account?',
-                    showDenyButton: true,
-                    //showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    // Read more about isConfirmed, isDenied below
-                    if (result.isConfirmed) {
-                        disablePatient2(patientIds);
-                        //$.post("php/superAdminProcesses/adminNameCaller.php", {patId:patIds})
-                          //  .done(function (data){
-                                var session = $('#session').val();
-                                let timerInterval
-                                Swal.fire({
-                                    title: session+' Archived Successful!',
-                                    timer: 2500,
-                                    timerProgressBar: true,
-                                    willClose: () => {
-                                        clearInterval(timerInterval)
-                                        appendTableAdmin();
-                                    }
-                                }).then((result) => {
-                                    // Read more about handling dismissals below
-                                    if (result.dismiss === Swal.DismissReason.timer) {
-                                        console.log('I was closed by the timer')
-                                        appendTableAdmin();
-                                    }
-                                })
-                           // })
-                    } else if (result.isDenied) {
-                        Swal.fire('Changes are not saved!', '', 'info')
-                        $.modal.close();
-                    }
-                })
-            }else{
-                let timerInterval
-                Swal.fire({
-                    icon: 'error',
-                    title: 'User ID is already in the database!',
-                    timer: 2500,
-                    timerProgressBar: true,
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                }).then((result) => {
-                    // Read more about handling dismissals below
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        console.log('I was closed by the timer')
-                    }
-                })
-                $.modal.close();
-            }
-
-        })
-}
-//Disable patient and transfer the disabled to new DB
-function disablePatient2(patientIds){
-    $.post("php/superAdminProcesses/disablePatientProcess.php", {patId:patientIds})
-        .done(function (data){
-            if(data == 1){
-
-            }else{
-                Swal.fire('Unsuccesful!', '', 'error')
-            }
-
-        })
-}
-*/
 //// * ACTIVATE PROCESSESS
 // * ACTIVATE ADMIN ROW BUTTON
 //Ask for confirmation and calls the php function to check if ID exist and calls the function to disable
@@ -644,26 +485,26 @@ function adminActivationCheck(adminIds,adminname){
 
     })()
 
-/*
-    swal.fire({
-        title: 'Enter Super Admin Password',
-        html:
-            '<input type="password" id="swal-input1" class="swal2-input" style="width: fit-content">',
-        preConfirm: function () {
-            return new Promise(function (resolve) {
-                var swalInput = $('#swal-input1').val();
-                var loggedEmail = document.getElementById('emmm').innerText;
-                checkPass(loggedEmail, swalInput);
-            })
-        }
-    }) */
+    /*
+        swal.fire({
+            title: 'Enter Super Admin Password',
+            html:
+                '<input type="password" id="swal-input1" class="swal2-input" style="width: fit-content">',
+            preConfirm: function () {
+                return new Promise(function (resolve) {
+                    var swalInput = $('#swal-input1').val();
+                    var loggedEmail = document.getElementById('emmm').innerText;
+                    checkPass(loggedEmail, swalInput);
+                })
+            }
+        }) */
 }
 //Activate Admin and update the column status to 1
 function activateAdmin(adminIds){
     $.post("php/superAdminProcesses/statusActivateProcess.php", {adminId:adminIds})
         .done(function (data){
             if(data == 1){
-
+                $("#reload-admin").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
@@ -687,8 +528,8 @@ function checkPassActivate(adminIds,adminname,superEmail,superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
-                        sendmail(adminIds,statt,acttype);
                         activateAdmin(adminIds);
+                        sendmail(adminIds,statt,acttype);
                         let timerInterval
                         Swal.fire({
                             title: adminname+' Activated!',
@@ -696,16 +537,16 @@ function checkPassActivate(adminIds,adminname,superEmail,superPass){
                             timerProgressBar: true,
                             willClose: () => {
                                 clearInterval(timerInterval)
-                                appendTableAdmin();
+                                //appendTableAdmin();
                             }
                         }).then((result) => {
                             // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
-                                appendTableAdmin();
+                                //appendTableAdmin();
                             }
                         })
-
+                        $.modal.close();
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved!', '', 'info')
                         $.modal.close();
@@ -783,7 +624,7 @@ function activatePatient(patientIds){
     $.post("php/superAdminProcesses/patientStatusActivate.php", {patId:patientIds})
         .done(function (data){
             if(data == 1){
-
+                $("#reload-patient").trigger("click")
             }else{
                 Swal.fire('Unsuccesful!', '', 'error')
             }
@@ -807,8 +648,9 @@ function checkPatActivate(patientIds,patname,superEmail, superPass){
                 }).then((result) => {
                     // Read more about isConfirmed, isDenied below
                     if (result.isConfirmed) {
-                        sendmail(patientIds,statt,acttype);
                         activatePatient(patientIds);
+                        sendmail(patientIds,statt,acttype);
+
                         let timerInterval
                         Swal.fire({
                             title: patname+' Activated!',
@@ -816,16 +658,20 @@ function checkPatActivate(patientIds,patname,superEmail, superPass){
                             timerProgressBar: true,
                             willClose: () => {
                                 clearInterval(timerInterval)
-                                appendTableAdmin();
+
+                                //$('.triggerbut').trigger("click");
+                                //displayPtnts();
                             }
                         }).then((result) => {
                             // Read more about handling dismissals below
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log('I was closed by the timer')
-                                appendTableAdmin();
+
+                                //$('.triggerbut').trigger("click");
+                                //displayPtnts();
                             }
                         })
-
+                        $.modal.close();
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved!', '', 'info')
                         $.modal.close();
@@ -855,6 +701,8 @@ function checkPatActivate(patientIds,patname,superEmail, superPass){
         })
 
 }
+
+//sends email to admin or patient if their status is changed
 function sendmail(allId,stat,acttype){
 
     $.post("php/superAdminProcesses/sendEmail.php", {allId:allId,status:stat,acttype:acttype})
