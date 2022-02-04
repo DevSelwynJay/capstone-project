@@ -232,11 +232,12 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                     </div>
                                 </div>
-                                <button id="sam">hehehe</button>
+<!--                                <button id="sam">hehehe</button>-->
                                 <!--Ogie Custom table-->
                                 <div  class="inventory__table-medicine-container" >
+
                                     <table>
-                                        <tbody >
+                                        <tbody>
 <!--                                        <tr>-->
 <!--                                            <th colspan="3">MEDICINE NAME</th>-->
 <!--                                            <th colspan="2">STOCKS</th>-->
@@ -248,16 +249,11 @@ $res2 = mysqli_query($con,$sql);
 <!--                                        </tr>-->
                                         </tbody>
                                     </table>
+                                    <!--wag tanggalin nasa taas-->
 
                                     <div id="inv-table">
 
                                     </div>
-
-
-
-
-
-                                    /*                                include 'inventoryTable.html'*/
 
                                     <button id="nakatago" style="display: none"></button>
                                 </div>

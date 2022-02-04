@@ -29,30 +29,28 @@
                         callback: function (response, pagination) {
                             window.console && console.log(response, pagination);
 
-                            // var dataHtml = '<ul>';
-                            //
-                            // $.each(response, function (index, item) {
-                            //     dataHtml += '<li data-id="'+item.id+'" class="root-inv">' + item.name + '</li>';
-                            // });
-                            //
-                            // dataHtml += '</ul>';
-
                             var dataHtml = '';
 
-                             dataHtml += '<div><th colspan="7" style="text-align: start!important;color: white!important;">Inventory</th></div>'
+                             dataHtml += '<div><th colspan="7" style="text-align: start!important;color: white!important;">Medicine Inventory</th></div>'
+                             //for  title purpose only
+                             dataHtml += "<tbody class='2-root-inv 2-root-inv inv-title' style=';margin-bottom: 1.5rem'><tr class='child-inv child-inv'><td>Name</td><td>Stock</td><td>ID</td><td>Category</td><td>Dosage</td><td>Date Added</td><td>Action</td></tr></tbody>";
 
                             $.each(response, function (index, item) {
 
-                                dataHtml+="<div class='root-inv root-inv-"+item.name+"'>"
+                                dataHtml+="<tbody class='root-inv root-inv-"+item.name+" margin-top-2'>"
 
-                                dataHtml+= "<div  style='text-align: start;color: black'>"
-                                            +"<button class='root-action' data-name='"+item.name+"' style='margin-right: 0.4rem'> Expand </button>"
-                                            +item.name+" "+item.stock+" "+
-                                            "</div>"
+                                dataHtml+= "<tbody  style='text-align: start;color: black'>"+
+                                            "<tr style='background: #DEF1F7;'>" +
+                                                "<td style='text-align: start;'><button class='root-action' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                                "<td><span style='font-weight: 600'>"+item.stock+"</span></td>" +
+                                                "<td colspan='5'></td>" +
+                                                "" +
+                                            "</tr>" +
+                                            "</tbody>"
 
                                 dataHtml+="<tbody class='2-root-inv 2-root-inv-"+item.name+"' style='margin-bottom: 1.5rem'></tbody>"
 
-                                dataHtml+="</div>"
+                                dataHtml+="</tbody>"
 
 
 
@@ -67,13 +65,21 @@
 
                                 $(".child-inv-"+inv_name).remove()
 
-                                if($(this).html()=="Collapse"){
+                                if($(this).attr("data-status")=="collapse"){
 
-                                    $(this).html("Expand")//sa huli to wag iuuna
+                                    // window.expandCount-=1;
+                                    // if(window.expandCount==0){
+                                    //     $(".inv-title").css("display","none")
+                                    // }
+                                    $(this).attr("data-status","expand")
+                                    $(this).html("<i class=\"fas fa-arrow-right\">")//sa huli to wag iuuna (expand icon)
                                     return
                                 }
 
-                                $(this).html("Collapse")//sa huli to wag iuuna
+                                // window.expandCount+=1;
+                                $(".inv-title").css("display","revert")
+                                $(this).attr("data-status","collapse")
+                                $(this).html("<i class=\"fas fa-arrow-down\"></i>")//sa huli to wag iuuna (Collapse)
 
                                 $.post("php/testingCode/retIndiv.php",{name:inv_name}).done(function (data) {
                                     let child = ""
@@ -86,8 +92,8 @@
                                     // alert(length)
 
 
-                                    // child+=;
-                                    $(".2-root-inv-"+inv_name).append("<tr class='child-inv child-inv-"+inv_name+"'><td>ID</td><td>Name</td><td>Category</td><td>Dosage</td><td>Stock</td><td>Date Added</td><td>Action</td></tr>")
+                                    // child+=; table header kada inventory
+                                    // $(".2-root-inv-"+inv_name).append("<tr class='child-inv child-inv-"+inv_name+"'><td>ID</td><td>Name</td><td>Category</td><td>Dosage</td><td>Stock</td><td>Date Added</td><td>Action</td></tr>")
 
                                     for (const resultElement of result) {
 
@@ -101,21 +107,57 @@
 
                                         $(".2-root-inv-"+inv_name).append("" +
                                             "<tr class='child-inv child-inv-"+inv_name+"' style='"+margin+"'>" +
+                                            "<td colspan=''><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+resultElement.name+"</td>" +
+                                            "<td colspan=''>"+resultElement.stock+"</td>" +
                                             "<td colspan=''>"+resultElement.id+"</td>" +
-                                            "<td colspan=''>"+resultElement.name+"</td>" +
                                             "<td colspan=''>"+resultElement.category+" "+resultElement.subcategory+"</td>" +
                                             "<td colspan=''>"+resultElement.dosage+"</td>" +
-                                            "<td colspan=''>"+resultElement.stock+"</td>" +
                                             "<td colspan=''>"+resultElement.dateadded+"</td>" +
-                                            "<td colspan=''><button>Update</button></td>"+
+                                            "<td colspan=''><i data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
                                             "</tr>")
-                                        ctr+=1;
+                                        ctr+=1;//class="fas fa-plus updta"
 
                                     }
                                     // $(".root-inv-"+inv_name).append("</table>")
+                                    $(".update-inv-new").click(function () {
+
+                                            var medupdateid = $(this).data('id');
+                                            $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
+                                                var medid = JSON.parse(data);
+                                                $('#hiddendata').val(medupdateid);
+                                                $('#updatemedicineName').val(medid.name);
+                                                $('#upmedSubCategory').val(medid.subcategory);
+                                                $('#upmedicineDosage').val(medid.dosage);
+                                                $('#upmedcategorySelect').val(medid.category);
+                                                $('#updatemedicineStocks').val(medid.stock);
+                                                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
+                                                $('#updatemedicineMfgDate').val(medid.mfgdate);
+                                                $('#updatemedicineExpDate').val(medid.expdate);
+                                            });
+
+                                            $('#update-modal').modal("show");
+                                            $("#update-modal").modal({
+                                                //escapeClose: false,
+                                                clickClose: false,
+                                                showClose: false
+                                            })
+                                            $('#addupcancel').on("click", function (){
+                                                $('#meds').trigger("focus");
+                                                $('#updatemedicineName').val("");
+                                                $('#updatemedicineCategory').val("");
+                                                $('#upmedSubCategory').val("");
+                                                $('#updatemedicineStocks').val("");
+                                                $('#updatemedicinecriticalStocks').val("");
+                                                $('#updatemedicineStocks').val("");
+                                                $('#updatemedicineMfgDate').val("");
+                                                $('#updatemedicineExpDate').val("");
+                                            })
+
+                                    })
                                 })
 
                             })
+
 
                         }
                     };
@@ -159,5 +201,28 @@
         outline: none;
         background: var(--primary-color);
         color: var(--secondary-color);
+    }
+    .paginationjs-pages{
+        margin-top: 1.5rem;
+    }
+    .paginationjs-page,.J-paginationjs-next,.J-paginationjs-previous{
+        all: revert;
+        display: inline;
+        background: whitesmoke!important;
+        color: var(--third-color)!important;
+        border: none!important;
+        padding: 0.5em 0.5rem!important;
+
+    }
+    .paginationjs-page a,.J-paginationjs-next a,.J-paginationjs-previous a{
+
+    }
+    .J-paginationjs-next,.J-paginationjs-previous{
+        padding: 0 0.5rem;
+        background: darkgrey;
+    }
+    .active{
+        background: var(--primary-color)!important;
+        color: whitesmoke!important;
     }
 </style>

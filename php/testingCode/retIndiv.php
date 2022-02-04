@@ -4,7 +4,7 @@ $name = $_POST['name'];
 $con=null;
 require "../DB_Connect.php";
 $arr = array();
-$res = mysqli_query($con,"SELECT * FROM medinventory where name = '$name' ");
+$res = mysqli_query($con,"SELECT * FROM medinventory where name = '$name' ORDER BY dateadded");
 while ($row=mysqli_fetch_assoc($res)){
 
     $arr[]=$row;
