@@ -11,7 +11,7 @@ if(!$isSearch){
     $res = mysqli_query($con,"SELECT name,SUM(stock) as stock FROM medinventory GROUP by name ORDER BY name ");
 }
 else{
-    $res = mysqli_query($con,"SELECT name,SUM(stock) as stock FROM medinventory WHERE name LIKE '".$val."%' GROUP by name ORDER BY name ");
+    $res = mysqli_query($con,"SELECT name,SUM(stock) as stock FROM medinventory WHERE name LIKE '".$val."%' OR category LIKE '$val%' OR subcategory LIKE '$val%' GROUP by name ORDER BY name ");
 }
 
 $arr = array();
