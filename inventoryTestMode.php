@@ -232,7 +232,7 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                     </div>
                                 </div>
-
+                                <button id="sam">hehehe</button>
                                 <!--Ogie Custom table-->
                                 <div  class="inventory__table-medicine-container" >
                                     <table>
@@ -248,6 +248,7 @@ $res2 = mysqli_query($con,$sql);
 <!--                                        </tr>-->
                                         </tbody>
                                     </table>
+
                                     <div id="inv-table">
 
                                     </div>
