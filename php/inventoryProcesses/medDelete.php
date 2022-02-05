@@ -2,9 +2,6 @@
 session_start();
 $con=null;
 require '../DB_Connect.php';
-
-
-
     $id = $_POST['id'];
     $reportsql = "Select * from `medinventory` where id = '$id'";
     $reportres = mysqli_query($con, $reportsql);

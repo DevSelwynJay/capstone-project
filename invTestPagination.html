@@ -1,11 +1,8 @@
 <script>
     $("#meds").keyup(function () {
-
         $(function() {
-
             (function(name) {
              // alert($("#meds").val())
-
                 $.post("php/testingCode/retrieveInventory.php",{isSearch:true,val:$("#meds").val()}).done(function (data) {
                     let response = JSON.parse(data);
                     var container = $(name);
@@ -22,7 +19,6 @@
 
                         return result;
                     }();
-
                     var options = {
                         dataSource: sources,
                         pageSize: 5,
@@ -90,21 +86,15 @@
                                     let margin=""
                                     console.log(data)
                                     // alert(length)
-
-
                                     // child+=; table header kada inventory
                                     // $(".2-root-inv-"+inv_name).append("<tr class='child-inv child-inv-"+inv_name+"'><td>ID</td><td>Name</td><td>Category</td><td>Dosage</td><td>Stock</td><td>Date Added</td><td>Action</td></tr>")
-
                                     for (const resultElement of result) {
-
                                         if(length==ctr){
                                             margin="margin-bottom:1rem;padding-bottom:1rem"
                                         }
                                         if(ctr==1){
                                             margin="padding-top:1rem"
                                         }
-
-
                                         $(".2-root-inv-"+inv_name).append("" +
                                             "<tr class='child-inv child-inv-"+inv_name+"' style='"+margin+"'>" +
                                             "<td colspan=''><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+resultElement.name+" "+resultElement.dosage+"</td>" +
@@ -117,7 +107,6 @@
                                             "<td colspan=''><i title='edit' data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
                                             "</tr>")
                                         ctr+=1;//class="fas fa-plus updta"
-
                                     }
                                     // $(".root-inv-"+inv_name).append("</table>")
                                     $(".update-inv-new").click(function () {
@@ -153,43 +142,30 @@
                                                 $('#updatemedicineMfgDate').val("");
                                                 $('#updatemedicineExpDate').val("");
                                             })
-
                                     })
                                 })
-
                             })
-
-
                         }
                     };
-
                     //$.pagination(container, options);
-
                     container.addHook('beforeInit', function () {
                         window.console && console.log('beforeInit...');
                     });
                     container.pagination(options);
-
                     container.addHook('beforePageOnClick', function () {
                         window.console && console.log('beforePageOnClick...');
                         //return false
                     });
                 })
-
             })('#inv-table');
-
         })
     })//click function
-
-
-
   $(window).click(function () {
       jQuery('tr').each(function(){
           if( jQuery(this).html() == '&nbsp;' ||jQuery(this).html() == '')
               jQuery(this).remove();
       })
   })
-
     $("#meds").trigger("keyup")
 </script>
 <style>
