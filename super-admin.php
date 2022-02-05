@@ -250,6 +250,12 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     <h3 class="color-black">Manage Admin Accounts</h3>
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
                         <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                            <select id='filterSearch'>
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactivated</option>
+                            </select>
+
                             <div class="search-container search-container-inventory" >
                                 <input style="" type="text" id="search-admin" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                             </div>
@@ -462,6 +468,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         displayPtnts();
     })
     $("#reload-admin").click(function () {
+        $('#filterSearch').val("0");
         displayAdmin();
     })
 </script>
@@ -594,6 +601,71 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
         $(".gs-table-head tr th span").css("color","white!important");
 
+        function resetadmin(){
+            $.get('php/superAdminProcesses/loadtablepat.php', function(data) {
+                d = data;
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount_admins = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+
+                tableadmin.setData(JSON.parse(data), {
+                    adname: "Name",
+                    ademail: "Email",
+                    adcontact: "Contact No.",
+                    adworkcat: "Work Category",
+                    adstatus: "Status",
+                    adaction: "Action",
+                });
+            })
+
+        }
+
+        $("#filterSearch").change(function () {
+            let filterVal = $("#filterSearch").val();
+            console.log("dumaan sa filter");
+            console.log(filterVal);
+            if (filterVal == "0") {
+                resetadmin();
+            } else if (filterVal == "1") {
+                $.post("php/superAdminProcesses/filter.php", {filstat: filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tableadmin.setData(JSON.parse(data), {
+                        adname: "Name",
+                        ademail: "Email",
+                        adcontact: "Contact No.",
+                        adworkcat: "Work Category",
+                        adstatus: "Status",
+                        adaction: "Action",
+                    });
+                })
+            } else if (filterVal == "2") {
+                $.post("php/superAdminProcesses/filter.php", {filstat: filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tableadmin.setData(JSON.parse(data), {
+                        adname: "Name",
+                        ademail: "Email",
+                        adcontact: "Contact No.",
+                        adworkcat: "Work Category",
+                        adstatus: "Status",
+                        adaction: "Action",
+                    });
+                })
+            }
+        })
     }
 
     // *TABLE FOR PATIENT UPDATE
@@ -721,6 +793,7 @@ $emm = $_SESSION['email_session_for_sms_otp'];
 
     }
     //displayPtnts();
+    // !End of patient update
 
 
 </script>
@@ -822,6 +895,75 @@ $emm = $_SESSION['email_session_for_sms_otp'];
         $('#setPage2').click(function() {
             tableadmin.setPage(1);
         })
+
+        function resetadmin(){
+            $.get('php/superAdminProcesses/loadtablepat.php', function(data) {
+                d = data;
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount_admins = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+
+                tableadmin.setData(JSON.parse(data), {
+                    adname: "Name",
+                    ademail: "Email",
+                    adcontact: "Contact No.",
+                    adworkcat: "Work Category",
+                    adstatus: "Status",
+                    adaction: "Action",
+                });
+            })
+
+        }
+
+        $("#filterSearch").change(function () {
+            let filterVal = $("#filterSearch").val();
+            console.log("dumaan sa filter");
+            console.log(filterVal);
+            if(filterVal =="0"){
+                resetadmin();
+            }else if (filterVal == "1"){
+                $.post("php/superAdminProcesses/filter.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tableadmin.setData(JSON.parse(data), {
+                        adname: "Name",
+                        ademail: "Email",
+                        adcontact: "Contact No.",
+                        adworkcat: "Work Category",
+                        adstatus: "Status",
+                        adaction: "Action",
+                    });
+                })
+            }else if (filterVal == "2"){
+                $.post("php/superAdminProcesses/filter.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tableadmin.setData(JSON.parse(data), {
+                        adname: "Name",
+                        ademail: "Email",
+                        adcontact: "Contact No.",
+                        adworkcat: "Work Category",
+                        adstatus: "Status",
+                        adaction: "Action",
+                    });
+                })
+            }
+        })
+
+
+
     });//end of document ready
 
     //// *Initial caller of patient table display
