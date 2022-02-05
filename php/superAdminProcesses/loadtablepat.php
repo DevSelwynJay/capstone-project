@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($result)){
     }
     $fullname = $lname . ", " . $fname . " " . $mname;
 
-    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
+    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['middle_name'];
     $row['ademail']= $row['email'];
     $row['adcontact']= $row['contact_no'];
     $row['adworkcat']= $row['role'];
@@ -35,12 +35,6 @@ while ($row = mysqli_fetch_assoc($result)){
     $row['adaction'] = '<button class="$butID" onclick="adclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
 
     $arr[] = $row;
-
-
-
-
-
-
 
 }
 echo json_encode($arr);

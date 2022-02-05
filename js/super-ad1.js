@@ -64,6 +64,22 @@ $(document).ready(function (){
     })
 })
 */
+/*
+$('#filterSearch').change(function(){
+    var statfil = $('#filterSearch').val();
+    $.ajax({
+        url: 'php/superAdminProcesses/loadtablepat.php',
+        type: 'POST',
+        data:{
+            statfil
+        },
+        success: function (data, status){
+            //console.log(JSON.parse(data)+"pwd");
+            displayreportadmin(data);
+        }
+    })
+});
+*/
 //// * ADD ADMIN PROCESSES
 //check if the fields are empty
 function checkEmpty(){

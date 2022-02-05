@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-
+/*
 if(!isset($_SESSION['email'])||$_SESSION['account_type']!=0){
     header("location:index.php",true);
     exit();
 }
 $emm = $_SESSION['email_session_for_sms_otp'];
-
-//$emm = 'galvezirish17@gmail.com';
+*/
+$emm = 'galvezirish17@gmail.com';
 
 //?>
 <!DOCTYPE html>
@@ -248,8 +248,14 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     </div>
                     <p id="emmm" hidden class="color-black"><?php echo $emm; ?></p>
                     <h3 class="color-black">Manage Admin Accounts</h3>
+
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
                         <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                            <select id='filterSearch'>
+                                <option value=''>-- Select Here--</option>
+                                <option value='Active'>Active</option>
+                                <option value='Deactivated'>Deactivated</option>
+                            </select>
                             <div class="search-container search-container-inventory" >
                                 <input style="" type="text" id="search-admin" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                             </div>
