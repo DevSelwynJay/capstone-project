@@ -278,6 +278,7 @@ $res2 = mysqli_query($con,$sql);
                             include 'inventorylogs.php';
                             ?>
 
+
                         </div>
                         <!--Modals-->
                         <!-- Add New Meds Modal -->
@@ -500,7 +501,9 @@ $res2 = mysqli_query($con,$sql);
             $('#expdate-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').html('');
-            $('#name-incorrect-indcator').html('')
+            $('#name-incorrect-indcator').html('');
+            $('#medicinecriticalStocks').attr('disabled','');
+            $('#medicinecriticalStocks').val('');
         })
         $('#critbtn').on("click",function(){
             $("#crit-modal").modal({
@@ -520,6 +523,8 @@ $res2 = mysqli_query($con,$sql);
                 success:function(data,status){
                     console.log(data);
                     if(data == ''){
+                        $('#medicinecriticalStocks').attr('disabled','');
+                        $('#medicinecriticalStocks').val('');
 
                     }
                     else{
