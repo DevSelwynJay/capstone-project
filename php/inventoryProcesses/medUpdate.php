@@ -27,11 +27,9 @@ if(isset($_POST['id'])){
     $medcritstock=$_POST['updatemedicineCritStocks'];
     $medmfgdate=$_POST['updatemedicineMfgDate'];
     $medexpdate=$_POST['updatemedicineExpDate'];
-
     $name = ucwords($name2);
     $category = ucwords($category2);
     $subcategory = ucwords($subcategory2);
-
     $type = "Update";
     $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`='$id'";
     $result=mysqli_query($con,$updatesql);

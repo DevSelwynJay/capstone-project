@@ -45,18 +45,8 @@ $res2 = mysqli_query($con,$sql);
     <!--Sweet Alert-->
     <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
-
-
-
-
-
-
     <!--Get admin info from session-->
-
     <script>
-
-
-
         $(document).ready(function () {
             $.post('php/admin_session.php').done(
                 function (data) {
@@ -65,13 +55,11 @@ $res2 = mysqli_query($con,$sql);
                 }
             )
         });
-
         //==========FOR NOTIFICATION SCRIPT ===========================
         $(document).ready(function () {
             function getNotif() {
                 $.post("notif/getNotif_1.php").done(function (data) {
                     let notifMessages = JSON.parse(data);//get notif messages
-
                     $(".counter").css("visibility","hidden")//hide first the counter
                     $(".notification-dropdown").html("")//reset notification items
 
@@ -83,7 +71,6 @@ $res2 = mysqli_query($con,$sql);
                     for (const notifMessage of notifMessages) {
                         $(".notification-dropdown").append(notifMessage)
                     }
-
                     //put notification count
                     let notif_count = $(".notification-dropdown li").length;
                     $(".counter").html(notif_count).css("visibility","visible")
@@ -94,10 +81,7 @@ $res2 = mysqli_query($con,$sql);
             setInterval(()=>{
                 getNotif()
             },6000)
-
         })
-
-
     </script>
     <!--Notif Styling--->
     <style>
@@ -124,13 +108,9 @@ $res2 = mysqli_query($con,$sql);
             height: 200px;
         }
     </style>
-
-
-    <!--    Tree Table-->
-    <link href="treeTable/treetable/css/jquery.treetable.css" rel="stylesheet" type="text/css" />
-    <script src="treeTable/treetable/jquery.treetable.js"></script>
-
-
+    <!--Ogie's Tree Table-->
+    <link href="js/new-pagination/pagination.css" rel="stylesheet" type="text/css">
+    <script src="js/new-pagination/pagination.js"></script>
 </head>
 <body>
 <section class="global">
@@ -153,22 +133,17 @@ $res2 = mysqli_query($con,$sql);
                         <?php include 'sidebarFix.html' ?>
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="global__main-content">
             <div class="inner-page-content">
             <div class="col-sm-12 p-0">
-
 <div class="inner-page-nav">
-
     <div class="logo">
         <img src="img/HIS logo blue.png" alt="Logo" class="hide-for-mobile">
         <img src="img/HIS-logo-white.png" alt="Logo" class="hide-for-desktop">
     </div>
-
     <div class="settings">
-
         <a class="notification-toggle">
             <i style="cursor: pointer" class="fa fa-bell-o"></i>
             <span class="counter">3+</span>
@@ -180,12 +155,9 @@ $res2 = mysqli_query($con,$sql);
             <li>Lorem ipsum dolor sit amet consectetur </li>
         </ul>
         <!--UPDATED NOTIF STYLING-->
-
         <a href="profile.php"><i class="fas fa-user-circle"></i></a>
         <a id="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
         <a id="close-dropdown"><i class="fas fa-times"></i></a>
-
-
         <div class="drop-down-settings" id="dropdown">
             <ul>
                 <li><a href="approveEMR.php">Approve EMR</a></li>
@@ -194,11 +166,8 @@ $res2 = mysqli_query($con,$sql);
                 <li><a href="php/sessionDestroy.php">Logout</a></li>
             </ul>
         </div>
-
     </div>
-
 </div>
-
 <!--MOBILE MENU-->
 <div class="menu-mobile " id="menu">
     <ul>
@@ -209,7 +178,6 @@ $res2 = mysqli_query($con,$sql);
         <li class="active"><a href="inventory.php"><i class="fas fa-box"></i></a></li>
     </ul>
 </div>
-
 </div>
                 <div class="col-sm-12">
                     <div class="">
@@ -221,7 +189,6 @@ $res2 = mysqli_query($con,$sql);
                                         <button class="modal-primary-button-2" type="button" id="addbtn"><i class="fas fa-plus" style="margin-right: 0.3rem"></i>Add Medicine</button>
                                         <!--                                <button class="modal-cancel-button" type="button" id="critbtn"><i class="fa fa-times-circle"  style="margin-right: 0.3rem"></i>Out of Stock Medicines</button>-->
                                         <button id="inventory-logs-btn" class="modal-primary-button" style="background: darkslategray!important;margin-left: 0.3rem"><i class="fas fa-history"></i>View Inventory Logs</button>
-
                                     </div>
                                     <div class="col-lg-6 flex-box-row justify-content-lg-end margin-top-1">
                                         <div class="search-container search-container-inventory" >
@@ -229,92 +196,40 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                     </div>
                                 </div>
-
                                 <!--Display ko dito yung Table of MEDS-->
-
                                 <div  class="inventory__table-medicine-container" >
-                                    <table id="tab" class="treeview">
+                                    <table>
                                         <tbody>
-                                        <tr>
-                                            <th>MEDICINE NAME</th>
-                                            <th>STOCKS</th>
-                                            <th>MEDICINE ID</th>
-                                            <th>CATEGORY</th>
-                                            <th>DATE</th>
-                                            <th>DATEADDED</th>
-                                            <th>ACTION</th>
-                                        </tr>
-
-                                        <?php
-
-                                        $ctr1 = 1;
-                                        $ctr2 = 2;
-
-                                        while($row=mysqli_fetch_assoc($res2)){
-                                        $medname = $row['name'];
-                                        $medstocks = $row['stock'];
-                                        ?>
-                                        <tr data-tt-id="<?php echo $ctr1; ?>">
-                                            <td ><?php echo $medname.'('.$row['dosage'].')'; ?></td>
-                                            <td><?php echo $medstocks; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <?php
-                                        $sql2 = "Select * from `medinventory` where name='$medname'";
-                                        $result = mysqli_query($con,$sql2);
-                                        while($row2=mysqli_fetch_assoc($result)){
-                                        ?>
-                                        <tr data-tt-id="<?php echo $ctr2; ?>" data-tt-parent-id="<?php echo $ctr1; ?>">
-                                            <td><?php echo $row2['name'].'('.$row2['dosage'].')'; ?></td>
-                                            <td><?php echo $row2['stock']; ?></td>
-                                            <td><?php echo $row2['id']; ?></td>
-                                            <td><?php echo $row2['category'].'('.$row2['subcategory'].')'; ?></td>
-                                            <td><?php echo $row2['mfgdate'].'-'.$row2['expdate']; ?></td>
-                                            <td><?php echo $row2['dateadded']; ?></td>
-                                            <td><i id="updatebtn" class="fas fa-plus updta"  data-id="<?php echo $row2['id']; ?>" ></i></td>
-                                        </tr>
-                                        <?php
-                                            $ctr2++;
-
-                                        }
-                                            $numrow = mysqli_num_rows($result);
-                                            $ctr1+=$numrow;
-                                        }
-                                        ?>
-
+                                        <!--                                        <tr>-->
+                                        <!--                                            <th colspan="3">MEDICINE NAME</th>-->
+                                        <!--                                            <th colspan="2">STOCKS</th>-->
+                                        <!--                                        <th>MEDICINE ID</th>-->
+                                        <!--                                         <th>CATEGORY</th>-->
+                                        <!--                                       <th>DATE</th>-->
+                                        <!--                                         <th>DATEADDED</th>-->
+                                        <!--                                            <th colspan="2">ACTION</th>-->
+                                        <!--                                        </tr>-->
+                                        </tbody>
                                     </table>
-
-
-
-
-
-/*                                include 'inventoryTable.html'*/
-
-                                <button id="nakatago" style="display: none"></button>
+                                    <!--wag tanggalin nasa taas-->
+                                    <div id="inv-table">
+                                    </div>
+                                    <button id="nakatago" style="display: none"></button>
                                 </div>
-
                                 <div class="inventory__table-toexpire-container"  >
                                 <?php
                                 include 'inventoryToTable.html'?>
                                 <button id="nakatago2" style="display: none"></button>
-
                                 </div>
-
                                 <div class="inventory__table-expired-container" >
                                 <?php
                                 include 'inventoryToExp.html'?>
                                 <button id="nakatago3" style="display: none"></button>
-
                                 </div>
                             </div>
                             <?php
                             include 'inventorylogs.php';
                             ?>
-
                         </div>
                         <!--Modals-->
                         <!-- Add New Meds Modal -->
@@ -323,9 +238,7 @@ $res2 = mysqli_query($con,$sql);
                                 <img class="modal-header-icon-wider" src="img/medicine.png"><p class="modal-title-2">Add New Medicine</p>
                             </div>
                             <div class="modal-content-scrollable">
-
                                 <div class="container-fluid">
-
                                     <div class="row">
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="medicineCategory">Category:</p>
@@ -348,7 +261,6 @@ $res2 = mysqli_query($con,$sql);
                                             <input class="modal-field" type="text" id="medSubCategory" autocomplete="off" placeholder="Medicine Type">
 
                                             <input class="modal-field" type="text" id="vacSubCategory" autocomplete="off" placeholder="Vaccine Type" style="display: none">
-
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="medicineName">Name:</p>
@@ -357,9 +269,7 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="medicineDosage">Dosage:</p><input type="text" id="medicineDosage" class="modal-field" placeholder="Enter  Dosage" autocomplete="off" required>
-
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12" >
@@ -384,16 +294,13 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                         <p class="modal-p" class="error" id="all-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                     </div>
-
                                     <div class="row flex-row justify-content-start" style="display: flex">
                                         <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                                             <a href="#add-modal" rel="modal:close"><button class="modal-cancel-button" id="addcancel" style="margin-right: 0.5rem">Cancel</button></a>
                                             <a><button id="okay-edit-btn" class="modal-primary-button" onclick="addNewMedicine()">Add</button></a>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                         <!-- Update Meds Modal -->
@@ -402,41 +309,23 @@ $res2 = mysqli_query($con,$sql);
                                 <img class="modal-header-icon" src="img/medicine.png"><p class="modal-title">Update Medicine</p>
                             </div>
                             <div class="modal-content-scrollable">
-
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="upmedicineCategory">Category:</p>
                                             <select class="modal-field" id="upmedcategorySelect" >
-
                                                 <option value="Medicine">Medicine</option>
                                                 <option value="Vaccine">Vaccine</option>
                                             </select>
-                                            <!--<script>
-                                                $('#upmedcategorySelect').change(function (){
-                                                    if($('#upmedcategorySelect').val() == "Vaccine"){
-                                                        $('#upmedSubCategory').css("display","none");
-                                                        $('#upvacSubCategory').css("display","block");
-                                                    }
-                                                    else{
-                                                        $('#upvacSubCategory').css("display","none");
-                                                        $('#upmedSubCategory').css("display","block");
-                                                    }
-                                                })
-                                            </script>-->
                                             <input class="modal-field" type="text" id="upmedSubCategory" autocomplete="off" placeholder="Medicine Sub-Category" >
-
                                             <input class="modal-field" type="text" id="upvacSubCategory" autocomplete="off" placeholder="Vaccine Sub-Category" style="display: none" >
-
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineName">Name:</p><input type="text" id="updatemedicineName" class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="upmedicineDosage">Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Dosage" autocomplete="off" >
-
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12" >
@@ -463,7 +352,6 @@ $res2 = mysqli_query($con,$sql);
                                             <a><button id="okay-update-btn" class="modal-primary-button" onclick="medUpdate()">Update</button></a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -486,12 +374,9 @@ $res2 = mysqli_query($con,$sql);
                                             <a><button id="delete-btn" class="modal-primary-button" onclick="medDelete()">Delete</button></a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -500,14 +385,10 @@ $res2 = mysqli_query($con,$sql);
 <script type="text/javascript">
     //Display Automatically
     $(document).ready(function(){
-
-
         $( "#medNameSelect" )
             .selectmenu()
             .selectmenu( "menuWidget" )
             .addClass( "overflow" );
-
-
     });
     //Modals
     $(document).ready(function(){
@@ -538,16 +419,10 @@ $res2 = mysqli_query($con,$sql);
             $('#all-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').html('');
             $('#name-incorrect-indcator').html('')
-        })
-        $('#critbtn').on("click",function(){
-            $("#crit-modal").modal({
-                clickClose:false,
-                showClose:false
-            })
+            $('#medicinecriticalStocks').attr('disabled','');
         })
         $('#medicineName').on("keyup",function(){
             var medName = $('#medicineName').val();
-
             $.ajax({
                 url: "php/inventoryProcesses/checkCriticalStock.php",
                 type:'POST',
@@ -557,7 +432,8 @@ $res2 = mysqli_query($con,$sql);
                 success:function(data,status){
                     console.log(data);
                     if(data == ''){
-
+                        $('#medicinecriticalStocks').attr('disabled','');
+                        $('#medicinecriticalStocks').val('');
                     }
                     else{
                         $('#medicinecriticalStocks').attr('disabled','disabled');
@@ -566,8 +442,7 @@ $res2 = mysqli_query($con,$sql);
                 }
             })
         });
-
-        $('.updta').click(function(){
+        /*$('.updta').click(function(){
             var medupdateid = $(this).data('id');
             $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
                 var medid = JSON.parse(data);
@@ -581,7 +456,6 @@ $res2 = mysqli_query($con,$sql);
                 $('#updatemedicineMfgDate').val(medid.mfgdate);
                 $('#updatemedicineExpDate').val(medid.expdate);
             });
-
             $('#update-modal').modal("show");
             $("#update-modal").modal({
                 //escapeClose: false,
@@ -599,8 +473,8 @@ $res2 = mysqli_query($con,$sql);
                 $('#updatemedicineMfgDate').val("");
                 $('#updatemedicineExpDate').val("");
             })
-        });
-    })
+        });*/
+    });
     function delModal(id){
         $('#hideid').val(id);
         $('#delete-modal').modal("show");
@@ -608,12 +482,9 @@ $res2 = mysqli_query($con,$sql);
             clickClose: false,
             showClose: false
         });
-
-    }
+    };
     function medDelete(){
-
         var id = $('#hideid').val();
-
         $.post("php/inventoryProcesses/medDelete.php",{
             id:id
         },function(data,status){
@@ -621,15 +492,13 @@ $res2 = mysqli_query($con,$sql);
             $('#nakatago').trigger("click");
             $('#nakatago2').trigger("click");
             $('#nakatago3').trigger("click");
-
+            $("#refresh-inv-logs").trigger("click")
             Swal.fire({
                 title:'Medicine Deleted Successfully!',
                 icon:'success'
-
             });
-
         });
-    }
+    };
     function displaymed(){
         display = true;
         $.ajax({
@@ -637,41 +506,34 @@ $res2 = mysqli_query($con,$sql);
             type:'POST',
             data: {data:display},
             success:function(data,status){
-
-
             }
         })
-    }
-
-
+    };
     //Datepicker Validation
     $("#medicineMfgDate").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange:'1970:new Date()',
         maxDate: new Date()
-    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    }).datepicker("option", "dateFormat", "yy-mm-dd");
     $("#medicineMfgDate").focus(function () {
         $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
-    })
+    });
     $("#medicineExpDate").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange:'new Date():2100',
         minDate: new Date()
-    }).datepicker("option", "dateFormat", "yy-mm-dd")
+    }).datepicker("option", "dateFormat", "yy-mm-dd");
     $("#medicineExpDate").focus(function () {
         $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
         $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
         console.log($(this).val())
-    })
-
-
+    });
     //Add New Medicine Function
     function addNewMedicine() {
-
         var medName = $('#medicineName').val();
         var medCategory = $('#medcategorySelect').val();
         var medsubCategory = $('#medSubCategory').val();
@@ -681,81 +543,81 @@ $res2 = mysqli_query($con,$sql);
         var medcritStocks = $('#medicinecriticalStocks').val();
         var medMfgDate = $('#medicineMfgDate').val();
         var medExpDate = $('#medicineExpDate').val();
-
-        if(medCategory == "Medicine"){
+        if (medCategory == "Medicine") {
             var medsubCategory = $('#medSubCategory').val()
-            if(medName == "" || medSubCategory == "" || medStocks == "" || medcritStocks == ""|| medMfgDate == "" || medExpDate == ""||  meddosage == ""){
-                $('#all-incorrect-indcator').css("visibility","visible");
+            if (medName == "" || medSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "") {
+                $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
-            }
-            else {
-
-
+            } else if (medStocks == 0) {
+                $('#all-incorrect-indcator').css("visibility", "visible");
+                $('#all-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
+            } else {
                 $.ajax({
                     url: "php/inventoryProcesses/inventoryAddProc.php",
                     type: 'POST',
                     data: {
                         newMedName: medName,
                         newMedCategory: medCategory,
-                        newMedsubCategory:medsubCategory,
-                        newMedDosage:meddosage,
+                        newMedsubCategory: medsubCategory,
+                        newMedDosage: meddosage,
                         newMedStocks: medStocks,
-                        newMedCritStocks:medcritStocks,
+                        newMedCritStocks: medcritStocks,
                         newMedMfgDate: medMfgDate,
                         newMedExpDate: medExpDate
                     },
                     success: function (data, status) {
                         console.log(status);
                         $("[href='#add-modal']").trigger('click');
-
                         $('#meds').trigger("focus");
                         $('#medicineName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
+                        $('#medicinecriticalStocks').attr("disabled", "");
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
                         $('#medicineMfgDate').val("");
                         $('#medicineExpDate').val("");
-                        $('#name-incorrect-indcator').css("visibility","hidden");
-                        $('#category-incorrect-indcator').css("visibility","hidden");
-                        $('#stock-incorrect-indcator').css("visibility","hidden");
-                        $('#mfgdate-incorrect-indcator').css("visibility","hidden");
-                        $('#expdate-incorrect-indcator').css("visibility","hidden");
-                        $('#all-incorrect-indcator').css("visibility","hidden");
+                        $('#name-incorrect-indcator').css("visibility", "hidden");
+                        $('#category-incorrect-indcator').css("visibility", "hidden");
+                        $('#stock-incorrect-indcator').css("visibility", "hidden");
+                        $('#mfgdate-incorrect-indcator').css("visibility", "hidden");
+                        $('#expdate-incorrect-indcator').css("visibility", "hidden");
+                        $('#all-incorrect-indcator').css("visibility", "hidden");
                         $('#all-incorrect-indcator').html('');
                         $('#name-incorrect-indcator').html('');
                         $('#nakatago').trigger("click");
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
+                        $("#refresh-inv-logs").trigger("click")
+                        $("#meds").val("").trigger("keyup")
                         Swal.fire({
-                            title:'Medicine Added Successfully!',
-                            icon:'success'
+                            title: 'Medicine Added Successfully!',
+                            icon: 'success'
                         })
                     }
                 });
             }
-        }
-        else if(medCategory == "Vaccine"){
+        } else if (medCategory == "Vaccine") {
             var medsubCategory2 = $('#vacSubCategory').val()
-            if(medName == "" || vacSubCategory == "" || medStocks == ""  || medcritStocks == ""|| medMfgDate == "" || medExpDate == ""||  meddosage == ""){
-                $('#all-incorrect-indcator').css("visibility","visible");
+            if (medName == "" || vacSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "") {
+                $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
-            }
-            else {
-
-
+            } else if (medStocks == 0) {
+                $('#all-incorrect-indcator').css("visibility", "visible");
+                $('#all-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
+            } else {
                 $.ajax({
                     url: "php/inventoryProcesses/inventoryAddProc.php",
                     type: 'POST',
                     data: {
                         newMedName: medName,
                         newMedCategory: medCategory,
-                        newMedsubCategory:medsubCategory2,
-                        newMedDosage:meddosage,
+                        newMedsubCategory: medsubCategory2,
+                        newMedDosage: meddosage,
                         newMedStocks: medStocks,
-                        newMedCritStocks:medcritStocks,
+                        newMedCritStocks: medcritStocks,
                         newMedMfgDate: medMfgDate,
                         newMedExpDate: medExpDate
                     },
@@ -767,162 +629,129 @@ $res2 = mysqli_query($con,$sql);
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
+                        $('#medicinecriticalStocks').attr("disabled", "");
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
                         $('#medicineMfgDate').val("");
                         $('#medicineExpDate').val("");
-                        $('#name-incorrect-indcator').css("visibility","hidden");
-                        $('#category-incorrect-indcator').css("visibility","hidden");
-                        $('#stock-incorrect-indcator').css("visibility","hidden");
-                        $('#mfgdate-incorrect-indcator').css("visibility","hidden");
-                        $('#expdate-incorrect-indcator').css("visibility","hidden");
-                        $('#all-incorrect-indcator').css("visibility","hidden");
+                        $('#name-incorrect-indcator').css("visibility", "hidden");
+                        $('#category-incorrect-indcator').css("visibility", "hidden");
+                        $('#stock-incorrect-indcator').css("visibility", "hidden");
+                        $('#mfgdate-incorrect-indcator').css("visibility", "hidden");
+                        $('#expdate-incorrect-indcator').css("visibility", "hidden");
+                        $('#all-incorrect-indcator').css("visibility", "hidden");
                         $('#all-incorrect-indcator').html('');
                         $('#name-incorrect-indcator').html('');
                         $('#nakatago').trigger("click");
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
-
-
-
+                        $("#meds").val("").trigger("keyup")
+                        $("#refresh-inv-logs").trigger("click")
                         Swal.fire({
-                            title:'Vaccine Added Successfully!',
-                            icon:'success'
+                            title: 'Vaccine Added Successfully!',
+                            icon: 'success'
                         })
                     }
                 });
             }
         }
-
-
-
-
-
-        $('#addcancel').on("click", function (){
-            $('#meds').trigger("focus");
-            $('#medicineName').val("");
-            $('#medcategorySelect').selectedIndex = 1;
-            $('#medicineStocks').val("");
-            $('#medicinecriticalStocks').val("");
-            $('#medSubCategory').val("");
-            $('#vacSubCategory').val("");
-            $('#medicineDosage').val("");
-            $('#medicineMfgDate').val("");
-            $('#medicineExpDate').val("");
-            $('#name-incorrect-indcator').css("visibility","hidden");
-            $('#category-incorrect-indcator').css("visibility","hidden");
-            $('#stock-incorrect-indcator').css("visibility","hidden");
-            $('#mfgdate-incorrect-indcator').css("visibility","hidden");
-            $('#expdate-incorrect-indcator').css("visibility","hidden");
-            $('#all-incorrect-indcator').css("visibility","hidden");
-            $('#all-incorrect-indcator').html('');
-            $('#name-incorrect-indcator').html('')
-        })
     }
-    //Below this are the Update Process
-
-    $("#updatemedicineMfgDate").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange:'1970:new Date()',
-        maxDate: new Date()
-    }).datepicker("option", "dateFormat", "yy-mm-dd")
-    $("#updatemedicineMfgDate").focus(function () {
-        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
-        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
-        console.log($(this).val())
-    })
-    $("#updatemedicineExpDate").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange:'new Date():2100',
-        minDate: new Date()
-    }).datepicker("option", "dateFormat", "yy-mm-dd")
-    $("#updatemedicineExpDate").focus(function () {
-        $(".ui-datepicker-month").css("padding","1px").css("margin-right","0.5rem").css("border-radius","0.2rem").css("border","none")
-        $(".ui-datepicker-year").css("padding","1px").css("border-radius","0.2rem").css("border","none")
-        console.log($(this).val())
-    })
-    //Display Update Modal function
-
-    /*function medDisplayUpdateModal(medupdateid){
-        $('#hiddendata').val(medupdateid);
-        $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
-            var medid = JSON.parse(data);
-            $('#updatemedicineName').val(medid.name);
-            $('#upmedSubCategory').val(medid.subcategory);
-            $('#upmedicineDosage').val(medid.dosage);
-            $('#upmedcategorySelect').val(medid.category);
-            $('#updatemedicineStocks').val(medid.stock);
-            $('#updatemedicineMfgDate').val(medid.mfgdate);
-            $('#updatemedicineExpDate').val(medid.expdate);
+        //Below this are the Update Process
+        $("#updatemedicineMfgDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1970:new Date()',
+            maxDate: new Date()
+        }).datepicker("option", "dateFormat", "yy-mm-dd");
+        $("#updatemedicineMfgDate").focus(function () {
+            $(".ui-datepicker-month").css("padding", "1px").css("margin-right", "0.5rem").css("border-radius", "0.2rem").css("border", "none")
+            $(".ui-datepicker-year").css("padding", "1px").css("border-radius", "0.2rem").css("border", "none")
+            console.log($(this).val())
         });
+        $("#updatemedicineExpDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: 'new Date():2100',
+            minDate: new Date()
+        }).datepicker("option", "dateFormat", "yy-mm-dd");
+        $("#updatemedicineExpDate").focus(function () {
+            $(".ui-datepicker-month").css("padding", "1px").css("margin-right", "0.5rem").css("border-radius", "0.2rem").css("border", "none")
+            $(".ui-datepicker-year").css("padding", "1px").css("border-radius", "0.2rem").css("border", "none")
+            console.log($(this).val())
+        });
+        //Display Update Modal function
 
-        $('#update-modal').modal("show");
-        $("#update-modal").modal({
-            //escapeClose: false,
-            clickClose: false,
-            showClose: false
-        })
-        $('#addupcancel').on("click", function (){
-            $('#meds').trigger("focus");
-            $('#updatemedicineName').val("");
-            $('#updatemedicineCategory').val("");
-            $('#updatemedicineStocks').val("");
-            $('#updatemedicineMfgDate').val("");
-            $('#updatemedicineExpDate').val("");
-        })
+        /*function medDisplayUpdateModal(medupdateid){
+            $('#hiddendata').val(medupdateid);
+            $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
+                var medid = JSON.parse(data);
+                $('#updatemedicineName').val(medid.name);
+                $('#upmedSubCategory').val(medid.subcategory);
+                $('#upmedicineDosage').val(medid.dosage);
+                $('#upmedcategorySelect').val(medid.category);
+                $('#updatemedicineStocks').val(medid.stock);
+                $('#updatemedicineMfgDate').val(medid.mfgdate);
+                $('#updatemedicineExpDate').val(medid.expdate);
+            });
 
-    }*/
-
-
-    //Update Medicine Stocks function
-    function medUpdate(){
-        var updatemedicineName=$('#updatemedicineName').val();
-        var updatemedicineCategory=$('#upmedcategorySelect').val();
-        var updatemedicinesubCategory=$('#upmedSubCategory').val();
-        var upmedicineDosage=$('#upmedicineDosage').val();
-        var updatemedicineStocks=$('#updatemedicineStocks').val();
-        var updatemedicineCritStocks=$('#updatemedicinecriticalStocks').val();
-        var updatemedicineMfgDate=$('#updatemedicineMfgDate').val();
-        var updatemedicineExpDate=$('#updatemedicineExpDate').val();
-        var id=$('#hiddendata').val();
-
-        $.post("php/inventoryProcesses/medUpdate.php",{
-            updatemedicineName:updatemedicineName,
-            updatemedicineCategory:updatemedicineCategory,
-            updatemedicinesubCategory:updatemedicinesubCategory,
-            upmedicineDosage:upmedicineDosage,
-            updatemedicineStocks:updatemedicineStocks,
-            updatemedicineCritStocks:updatemedicineCritStocks,
-            updatemedicineMfgDate:updatemedicineMfgDate,
-            updatemedicineExpDate:updatemedicineExpDate,
-            id:id
-        },function(data,status){
-            $("[href='#update-modal']").trigger('click');
-            $('#nakatago').trigger("click");
-            $('#nakatago2').trigger("click");
-            $('#nakatago3').trigger("click");
-
-            Swal.fire({
-                title:'Medicine/Vaccine Updated Successfully!',
-                icon:'success'
+            $('#update-modal').modal("show");
+            $("#update-modal").modal({
+                //escapeClose: false,
+                clickClose: false,
+                showClose: false
+            })
+            $('#addupcancel').on("click", function (){
+                $('#meds').trigger("focus");
+                $('#updatemedicineName').val("");
+                $('#updatemedicineCategory').val("");
+                $('#updatemedicineStocks').val("");
+                $('#updatemedicineMfgDate').val("");
+                $('#updatemedicineExpDate').val("");
             })
 
-        });
-    }
-
-
-
+        }*/
+        //Update Medicine Stocks function
+        function medUpdate()
+        {
+            var updatemedicineName=$('#updatemedicineName').val();
+            var updatemedicineCategory=$('#upmedcategorySelect').val();
+            var updatemedicinesubCategory=$('#upmedSubCategory').val();
+            var upmedicineDosage=$('#upmedicineDosage').val();
+            var updatemedicineStocks=$('#updatemedicineStocks').val();
+            var updatemedicineCritStocks=$('#updatemedicinecriticalStocks').val();
+            var updatemedicineMfgDate=$('#updatemedicineMfgDate').val();
+            var updatemedicineExpDate=$('#updatemedicineExpDate').val();
+            var id=$('#hiddendata').val();
+            $.post("php/inventoryProcesses/medUpdate.php",{
+                updatemedicineName:updatemedicineName,
+                updatemedicineCategory:updatemedicineCategory,
+                updatemedicinesubCategory:updatemedicinesubCategory,
+                upmedicineDosage:upmedicineDosage,
+                updatemedicineStocks:updatemedicineStocks,
+                updatemedicineCritStocks:updatemedicineCritStocks,
+                updatemedicineMfgDate:updatemedicineMfgDate,
+                updatemedicineExpDate:updatemedicineExpDate,
+                id:id
+            },function(data,status){
+                $("[href='#update-modal']").trigger('click');
+                $('#nakatago').trigger("click");
+                $('#nakatago2').trigger("click");
+                $('#nakatago3').trigger("click");
+                $("#meds").val("").trigger("keyup")
+                $("#refresh-inv-logs").trigger("click")
+                Swal.fire({
+                    title:'Medicine/Vaccine Updated Successfully!',
+                    icon:'success'
+                })
+            });
+        };
 
 </script>
-
 <script>
     const dropdown = document.querySelector('#dropdown');
     const dropdownToggle = document.querySelector('#dropdown-toggle');
     const Closedropdown = document.querySelector('#close-dropdown');
-
     dropdownToggle.addEventListener('click',function(){//Conditions
         if(dropdown.classList.contains('open')){ // Close Mobile Menu
             dropdown.classList.remove('open');
@@ -930,26 +759,21 @@ $res2 = mysqli_query($con,$sql);
         else{ // Open Mobile Menu
             dropdown.classList.add('open');
         }});
-
-
     dropdownToggle.addEventListener('click',function(){
         dropdown.classList.add('open');
         dropdownToggle.style.display = "none";
         Closedropdown.style.display = "block"
     });
-
     Closedropdown.addEventListener('click',function(){
         dropdown.classList.remove('open');
         Closedropdown.style.display = "none"
         dropdownToggle.style.display = "block";
     });
-
 </script>
 <script>
     const menu = document.querySelector('#menu');
     const mobileMenu = document.querySelector('#mobile-menu');
     const closeMobileMenu = document.querySelector('#close-mobile-menu');
-
     mobileMenu.addEventListener('click',function(){//Conditions
         if(menu.classList.contains('open')){ // Close Mobile Menu
             menu.classList.remove('open');
@@ -957,26 +781,20 @@ $res2 = mysqli_query($con,$sql);
         else{
             menu.classList.add('open');
         }});
-
-
     mobileMenu.addEventListener('click',function(){
         menu.classList.add('open');
         mobileMenu.style.display = "none";
         closeMobileMenu.style.display = "block"
     });
-
     closeMobileMenu.addEventListener('click',function(){
         menu.classList.remove('open');
         closeMobileMenu.style.display = "none"
         mobileMenu.style.display = "block";
     });
-
 </script>
 <script>
     const toggle = document.querySelector('.notification-toggle');
     const drop = document.querySelector('.notification-dropdown');
-
-
     toggle.addEventListener('click', function () {//Conditions
         if (drop.classList.contains('notification--show')) { // Close Mobile Menu
             drop.classList.remove('notification--show');
@@ -1044,13 +862,15 @@ $res2 = mysqli_query($con,$sql);
         margin: 0;
         -moz-appearance: textfield;
     }
-
 </style>
 <script>
-    $("#tab").treetable({ expandable: true });
-
-
+    //dagdag OGIE=================================================
+    //<i class="fas fa-caret-right"></i>  <i class="fas fa-caret-down"></i>
+    $(window).click(function () {
+        $("[title='Collapse']").html('<i class="fas fa-caret-down"></i>')
+        $("[title='Expand']").html('<i class="fas fa-caret-right"></i>')
+    })
 </script>
-
+<?php include "invTestPagination.html"?>
 </body>
 </html>

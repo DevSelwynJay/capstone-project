@@ -595,6 +595,7 @@ $res2 = mysqli_query($con,$sql);
                 icon:'success'
 
             });
+            $("#refresh-inv-logs").trigger("click")
 
         });
     }
@@ -701,6 +702,9 @@ $res2 = mysqli_query($con,$sql);
                             title:'Medicine Added Successfully!',
                             icon:'success'
                         })
+                        $("#meds").val("").trigger("keyup")
+                        $("#refresh-inv-logs").trigger("click")
+                        // $("[data-status='collpase']").trigger("click")
                     }
                 });
             }
@@ -758,6 +762,8 @@ $res2 = mysqli_query($con,$sql);
                             title:'Vaccine Added Successfully!',
                             icon:'success'
                         })
+                        $("#meds").val("").trigger("keyup")
+                        $("#refresh-inv-logs").trigger("click")
                     }
                 });
             }
@@ -877,7 +883,8 @@ $res2 = mysqli_query($con,$sql);
                 title:'Medicine/Vaccine Updated Successfully!',
                 icon:'success'
             })
-
+            $("#meds").val("").trigger("keyup")
+            $("#refresh-inv-logs").trigger("click")
         });
     }
 
