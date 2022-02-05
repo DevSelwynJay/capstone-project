@@ -591,6 +591,7 @@ $res2 = mysqli_query($con,$sql);
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
                         $("#refresh-inv-logs").trigger("click")
+                        $("#meds").val("").trigger("keyup")
                         Swal.fire({
                             title: 'Medicine Added Successfully!',
                             icon: 'success'
@@ -645,6 +646,7 @@ $res2 = mysqli_query($con,$sql);
                         $('#nakatago').trigger("click");
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
+                        $("#meds").val("").trigger("keyup")
                         $("#refresh-inv-logs").trigger("click")
                         Swal.fire({
                             title: 'Vaccine Added Successfully!',
@@ -736,6 +738,8 @@ $res2 = mysqli_query($con,$sql);
                 $('#nakatago').trigger("click");
                 $('#nakatago2').trigger("click");
                 $('#nakatago3').trigger("click");
+                $("#meds").val("").trigger("keyup")
+                $("#refresh-inv-logs").trigger("click")
                 Swal.fire({
                     title:'Medicine/Vaccine Updated Successfully!',
                     icon:'success'
