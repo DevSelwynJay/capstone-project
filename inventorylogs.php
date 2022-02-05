@@ -140,5 +140,35 @@
         $("#logs-inventory-view-table div .gs-table thead tr th").css("background","darkslategrey")
 
 
+        function refreshLogs() {
+            $.get('logs/inventory-log.php', function(data) {
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                if(JSON.parse(data).length==0){
+                    $("#logs-inventory-view-table div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='3'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Record</h3></td></tr>")
+                    return
+                }
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount_logs_acc_req = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+                table.setData(JSON.parse(data),{
+                    // id: "ID",
+                    action:"Action",
+                    // address:"Address",
+                    // contact_no: "Contact",
+                    // email:'Email',
+                    admin_name:"Admin",
+                    date_occured:"Date"
+                });
+            })
+        }
+
+        $("#refresh-inv-logs").click(function () {
+            refreshLogs()
+        })
+
+
     })//document ready
 </script>
+
+<button style="display: none" id="refresh-inv-logs"></button>
