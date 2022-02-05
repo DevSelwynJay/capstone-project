@@ -31,9 +31,9 @@
 
                             var dataHtml = '';
 
-                             dataHtml += '<div><th colspan="7" style="text-align: start!important;color: white!important;">Medicine Inventory</th></div>'
+                             dataHtml += '<div><th colspan="8" style="text-align: start!important;color: white!important;">Medicine Inventory</th></div>'
                              //for  title purpose only
-                             dataHtml += "<tbody class='2-root-inv 2-root-inv inv-title' style=';margin-bottom: 1.5rem'><tr class='child-inv child-inv'><td>Name</td><td>Stock</td><td>ID</td><td>Category</td><td>Dosage</td><td>Date Added</td><td>Action</td></tr></tbody>";
+                             dataHtml += "<tbody class='2-root-inv 2-root-inv inv-title' style=';margin-bottom: 1.5rem'><tr class='child-inv child-inv'><td>Name</td><td>Stock</td><td>ID</td><td>Category</td><td>Date Added</td><td>Exp. Date</td><td>Action</td></tr></tbody>";
 
                             $.each(response, function (index, item) {
 
@@ -41,7 +41,7 @@
 
                                 dataHtml+= "<tbody  style='text-align: start;color: black'>"+
                                             "<tr style='background: #DEF1F7;'>" +
-                                                "<td style='text-align: start;'><button class='root-action' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                                "<td style='text-align: start;'><button class='root-action' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right tooltip\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
                                                 "<td><span style='font-weight: 600'>"+item.stock+"</span></td>" +
                                                 "<td colspan='5'></td>" +
                                                 "" +
@@ -72,14 +72,14 @@
                                     //     $(".inv-title").css("display","none")
                                     // }
                                     $(this).attr("data-status","expand")
-                                    $(this).html("<i class=\"fas fa-arrow-right\">")//sa huli to wag iuuna (expand icon)
+                                    $(this).html("<i title='expand' class=\"fas fa-arrow-right\">")//sa huli to wag iuuna (expand icon)
                                     return
                                 }
 
                                 // window.expandCount+=1;
                                 $(".inv-title").css("display","revert")
                                 $(this).attr("data-status","collapse")
-                                $(this).html("<i class=\"fas fa-arrow-down\"></i>")//sa huli to wag iuuna (Collapse)
+                                $(this).html("<i title='collapse' class=\"fas fa-arrow-down\"></i>")//sa huli to wag iuuna (Collapse)
 
                                 $.post("php/testingCode/retIndiv.php",{name:inv_name}).done(function (data) {
                                     let child = ""
@@ -107,13 +107,14 @@
 
                                         $(".2-root-inv-"+inv_name).append("" +
                                             "<tr class='child-inv child-inv-"+inv_name+"' style='"+margin+"'>" +
-                                            "<td colspan=''><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+resultElement.name+"</td>" +
+                                            "<td colspan=''><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+resultElement.name+" "+resultElement.dosage+"</td>" +
                                             "<td colspan=''>"+resultElement.stock+"</td>" +
                                             "<td colspan=''>"+resultElement.id+"</td>" +
-                                            "<td colspan=''>"+resultElement.category+" "+resultElement.subcategory+"</td>" +
-                                            "<td colspan=''>"+resultElement.dosage+"</td>" +
+                                            "<td colspan=''>"+resultElement.category+" - "+resultElement.subcategory+"</td>" +
+                                            // "<td colspan=''>"+resultElement.dosage+"</td>" +
                                             "<td colspan=''>"+resultElement.dateadded+"</td>" +
-                                            "<td colspan=''><i data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
+                                            "<td colspan=''>"+resultElement.expdate +"</td>" +
+                                            "<td colspan=''><i title='edit' data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
                                             "</tr>")
                                         ctr+=1;//class="fas fa-plus updta"
 
@@ -192,6 +193,9 @@
     $("#meds").trigger("keyup")
 </script>
 <style>
+    .update-inv-new:hover{
+        color: var(--hover-color)!important;
+    }
     .child-inv {
         background: whitesmoke!important;
     }
@@ -201,6 +205,9 @@
         outline: none;
         background: var(--primary-color);
         color: var(--secondary-color);
+    }
+    .root-action:hover{
+        background: var(--hover-color);
     }
     .paginationjs-pages{
         margin-top: 1.5rem;
