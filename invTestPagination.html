@@ -33,18 +33,20 @@
 
                             $.each(response, function (index, item) {
 
-                                dataHtml+="<tbody class='root-inv root-inv-"+item.name+" margin-top-2'>"
+                                let inv_name = item.name.split(" ").join("-----")//5 -
+
+                                dataHtml+="<tbody class='root-inv root-inv-"+inv_name+" margin-top-2'>"
 
                                 dataHtml+= "<tbody  style='text-align: start;color: black'>"+
                                             "<tr style='background: #DEF1F7;'>" +
-                                                "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                                "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+inv_name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
                                                 "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+"</span></td>" +
                                                 "<td colspan='5'></td>" +
                                                 "" +
                                             "</tr>" +
                                             "</tbody>"
 
-                                dataHtml+="<tbody class='2-root-inv 2-root-inv-"+item.name+"' style='margin-bottom: 1.5rem'></tbody>"
+                                dataHtml+="<tbody class='2-root-inv 2-root-inv-"+inv_name+"' style='margin-bottom: 1.5rem'></tbody>"
 
                                 dataHtml+="</tbody>"
 
@@ -59,6 +61,7 @@
                             $(".root-action").click(function () {
 
                                 let inv_name = $(this).data("name");
+                                // alert(inv_name)
 
                                 $(".child-inv-"+inv_name).remove()
 
@@ -78,7 +81,7 @@
                                 $(this).attr("data-status","collapse")
                                 $(this).html("<i title='collapse' class=\"fas fa-arrow-down\"></i>")//sa huli to wag iuuna (Collapse)
 
-                                $.post("php/testingCode/retIndiv.php",{name:inv_name}).done(function (data) {
+                                $.post("php/testingCode/retIndiv.php",{name:inv_name.split("-----").join(" ")}).done(function (data) {
                                     let child = ""
                                     //ung sa drop down pababa
                                     let result = JSON.parse(data);
