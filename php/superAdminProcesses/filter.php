@@ -35,7 +35,7 @@ while ($row = mysqli_fetch_assoc($result)){
     }
     $fullname = $lname . ", " . $fname . " " . $mname;
 
-    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
+    $row['adname'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['middle_name'];
     $row['ademail']= $row['email'];
     $row['adcontact']= $row['contact_no'];
     $row['adworkcat']= $row['role'];

@@ -389,6 +389,11 @@ $emm = 'galvezirish17@gmail.com';
                     <h3 class="color-black">Manage Patient Accounts</h3>
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
                         <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
+                            <select id='filterpat'>
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactivated</option>
+                            </select>
                             <div class="search-container search-container-inventory" >
 
                                 <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
@@ -465,6 +470,7 @@ $emm = 'galvezirish17@gmail.com';
 <button id="reload-admin" class="modal-primary-button" type="button" style="display: none">test dyanmic2</button>
 <script>
 $("#reload-patient").click(function () {
+    $('#filterpat').val("0");
     displayPtnts();
 })
 $("#reload-admin").click(function () {
@@ -549,20 +555,21 @@ $("#reload-admin").click(function () {
 
             },
             tableDidUpdate: function() {
+                    // console.log('table did update');  click_view_button();
+                    //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
+                    for (a=0;a<parseInt( window.rowCount_admins);a++){
+                        $($($("#adtablediv div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                    }
+                    for (a=0;a<parseInt(window.rowCount_admins);a++){
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
+                        $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                    }
 
-                // console.log('table did update');  click_view_button();
-                //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
-                for (a=0;a<parseInt( window.rowCount_admins);a++){
-                    $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
-                }
-                for (a=0;a<parseInt(window.rowCount_admins);a++){
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
-                }
+
                 //thead color
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 $(".gs-table-head tr th span").css("color","white!important");
@@ -574,7 +581,7 @@ $("#reload-admin").click(function () {
             }
         });
         if(JSON.parse(record).length==0){
-            $("#adtablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='4'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
+            $("#adtablediv div .gs-table tbody").html("").append("<tr style='pointer-events: none'><td colspan='6'><h3 style='text-align: center;width: 100%;color: var(--third-color)'>No Records</h3></td></tr>")
 
             return
         }
@@ -744,7 +751,7 @@ $("#reload-admin").click(function () {
                 // console.log('table did update');  click_view_button();
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 for (a=0;a<parseInt( window.rowCount_patients);a++){
-                    $($($("#table-vaccine div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
+                    $($($("#pattablediv div .gs-table-body").children()[a]).children()[0]).css("font-weight","500")
                 }
                 for (a=0;a<parseInt(window.rowCount_patients);a++){
                     $($($("#pattablediv .gs-table-body").children()[a]).children()[0]).attr("data-label","Name")
@@ -791,6 +798,65 @@ $("#reload-admin").click(function () {
         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
         $(".gs-table-head tr th span").css("color","white!important");
 
+        function resetpatient(){
+            $.get('php/superAdminProcesses/ptientload.php', function(data) {
+                d = data;
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount_admins = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+
+                tablepat.setData(JSON.parse(data),{
+                    name:"Name",
+                    email:"Email",
+                    status:"Status",
+                    action:"Action",
+                });
+            })
+
+        }
+
+        $("#filterpat").change(function () {
+            let filterVal = $("#filterpat").val();
+            console.log("dumaan sa filter");
+            console.log(filterVal);
+            if(filterVal =="0"){
+                resetpatient();
+            }else if (filterVal == "1"){
+                $.post("php/superAdminProcesses/tableLoad.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tablepat.setData(JSON.parse(data),{
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    });
+                })
+            }else if (filterVal == "2"){
+                $.post("php/superAdminProcesses/tableLoad.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tablepat.setData(JSON.parse(data),{
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    });
+                })
+            }
+        })
     }
     //displayPtnts();
     // !End of patient update
@@ -844,7 +910,7 @@ $("#reload-admin").click(function () {
         });
         // ?get function that gets json data for admin table
         $.get('php/superAdminProcesses/loadtablepat.php', function(data) {
-            d = data;
+            var d = data;
             // Push data into existing data
             console.log(JSON.parse(data))
             //table.setData(JSON.parse(data), null, true);
@@ -876,6 +942,7 @@ $("#reload-admin").click(function () {
             // }
             // alert($($($(".gs-table-body").children()[0]).children()[0]).attr("data-label","ID"))
         })//end of get/post method
+
         $('#changeRows').on('change', function() {
             tableadmin.updateRowsPerPage(parseInt($(this).val(), 10));
         })
@@ -925,7 +992,7 @@ $("#reload-admin").click(function () {
                 resetadmin();
             }else if (filterVal == "1"){
                 $.post("php/superAdminProcesses/filter.php",{filstat:filterVal}).done(function (data) {
-                    d = data;
+                    var d = data;
                     // Push data into existing data
                     console.log(JSON.parse(data))
                     //table.setData(JSON.parse(data), null, true);
@@ -943,7 +1010,7 @@ $("#reload-admin").click(function () {
                 })
             }else if (filterVal == "2"){
                 $.post("php/superAdminProcesses/filter.php",{filstat:filterVal}).done(function (data) {
-                    d = data;
+                    var d = data;
                     // Push data into existing data
                     console.log(JSON.parse(data))
                     //table.setData(JSON.parse(data), null, true);
@@ -1007,7 +1074,7 @@ $("#reload-admin").click(function () {
             }
         });
         $.get('php/superAdminProcesses/ptientload.php', function(data) {
-            d = data;
+            var d = data;
             // Push data into existing data
             console.log(JSON.parse(data))
             //table.setData(JSON.parse(data), null, true);
@@ -1035,25 +1102,86 @@ $("#reload-admin").click(function () {
             // }
             // alert($($($(".gs-table-body").children()[0]).children()[0]).attr("data-label","ID"))
         })//end of get/post method
+
         $('#changeRows').on('change', function() {
-            table.updateRowsPerPage(parseInt($(this).val(), 10));
+            tablepat.updateRowsPerPage(parseInt($(this).val(), 10));
         })
 
         $('#rerender').click(function() {
-            table.refresh(true);
+            tablepat.refresh(true);
         })
 
         $('#distory').click(function() {
-            table.distroy();
+            tablepat.distroy();
         })
 
         $('#refresh').click(function() {
-            table.refresh();
+            tablepat.refresh();
         })
 
         $('#setPage2').click(function() {
-            table.setPage(1);
+            tablepat.setPage(1);
         })
+        function resetpatient(){
+            $.get('php/superAdminProcesses/ptientload.php', function(data) {
+                d = data;
+                // Push data into existing data
+                console.log(JSON.parse(data))
+                //table.setData(JSON.parse(data), null, true);
+                window.rowCount_admins = JSON.parse(data).length;
+                // or Set new data on table, columns is optional.
+
+                tablepat.setData(JSON.parse(data),{
+                    name:"Name",
+                    email:"Email",
+                    status:"Status",
+                    action:"Action",
+                });
+            })
+
+        }
+
+        $("#filterpat").change(function () {
+            let filterVal = $("#filterpat").val();
+            console.log("dumaan sa filter");
+            console.log(filterVal);
+            if(filterVal =="0"){
+                resetpatient();
+            }else if (filterVal == "1"){
+                $.post("php/superAdminProcesses/tableLoad.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tablepat.setData(JSON.parse(data),{
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    });
+                })
+            }else if (filterVal == "2"){
+                $.post("php/superAdminProcesses/tableLoad.php",{filstat:filterVal}).done(function (data) {
+                    d = data;
+                    // Push data into existing data
+                    console.log(JSON.parse(data))
+                    //table.setData(JSON.parse(data), null, true);
+                    window.rowCount_admins = JSON.parse(data).length;
+                    // or Set new data on table, columns is optional.
+
+                    tablepat.setData(JSON.parse(data),{
+                        name:"Name",
+                        email:"Email",
+                        status:"Status",
+                        action:"Action",
+                    });
+                })
+            }
+        })
+
     });//end of document ready
 
 

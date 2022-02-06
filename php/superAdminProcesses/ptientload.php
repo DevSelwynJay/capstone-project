@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($result)){
                 }
             $fullname = $lname . ", " . $fname . " " . $mname;
 
-            $row['name'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['first_name'];
+            $row['name'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['middle_name'];
             $row['email']= $row['email'];
             $row['status'] = $status;
             $row['action'] = '<button class="$butID" onclick="patclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';

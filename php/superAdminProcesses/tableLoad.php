@@ -2,91 +2,52 @@
 $con=null;
 require '../DB_Connect.php';
 
-$ctr=1;
-$rpp = 5;
-$page = '';
-$usertab ='';
-if (isset($_POST['page'])){
-    $page = $_POST['page'];
-}
-else{
-    $page = 1;
+$filstat = $_POST['filstat'];
+
+if($filstat == "1"){
+    $sts = "1";
+}elseif ($filstat == "2"){
+    $sts = "0";
 }
 
-$start_from = ($page -1 )*$rpp;
-$usertable = "SELECT id, first_name, middle_name, last_name, email, account_status, password FROM walk_in_patient where email like '%@%' order by `date_created` asc limit $start_from, $rpp";
+
+$usertable = "SELECT id, first_name, middle_name, last_name, email, account_status, password FROM walk_in_patient where email like '%@%' and account_status = '$sts' order by `date_created` asc";
 $result = mysqli_query($con, $usertable);
-$usertab = '<h3 class="margin-top-2" style="color:var(--third-color);font-weight: bold"></h3>
-    
-    <tbody>
-      <tr class="title">
-                    <th class="column_sort" id="pid" data-order="desc" style="cursor:pointer;">First Name</th>
-                    <th class="column_sort" id="pfname" data-order="desc" style="cursor:pointer;">Middle Name</th>
-                    <th class="column_sort" id="pmname" data-order="desc" style="cursor:pointer;">Last Name</th>
-                    <th class="column_sort" id="plname" data-order="desc" style="cursor:pointer;">Email</th>
-                    <th class="column_sort" id="pemail" data-order="desc" style="cursor:pointer;">Status</th>
-                    <th class="column_sort" id="pact" data-order="desc" style="cursor:pointer;">Action</th>
-                </tr>
-    ';
-if(mysqli_num_rows($result)> 0) {
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $ctr++;
-        $id = $row['id'];
-        $fname = $row['first_name'];
-        $mname = $row['middle_name'];
-        $lname = $row['last_name'];
-        $email = $row['email'];
-        $stat = $row['account_status'];
-        if($stat==1){
-            $status="Active";
-            $buttonstat = "Deactivate";
-            $butID = "patinactive";
-           // $butclick = "patinactive()";
-        }elseif ($stat==0){
-            $status="Deactivated";
-            $buttonstat = "Activate";
-            $butID = "patactive";
-           // $butclick = "patactive()";
-        }
+while ($row = mysqli_fetch_assoc($result)){
 
-        $fullname = $lname .", ".$fname. " ". $mname;
-
-            $usertab .= '<tr>
-            <td class="patdata1"  scope="row" data-label="User ID">' . $id . '</td>
-            <td class="patdata2" data-label="Full Name" >' . $fullname . '</td>
-            <td data-label="First Name">' . $fname . '</td>
-            <td data-label="Middle Name">' . $mname . '</td>
-            <td data-label="Last Name">' . $lname . '</td>
-            <td data-label="Email">' . $email . '</td>
-            <td data-label="Status">' . $status . '</td>
-            <td data-label="Action"><button class="$butID" onclick="patclick(\''.str_replace("'", "\\'", $id).'\', \''.str_replace("'", "\\'", $fullname).'\', \''.str_replace("'", "\\'", $status).'\')">' . $buttonstat . '</button></td>
-            </tr>
-            ';
-
+    $id = $row['id'];
+    $fname = $row['first_name'];
+    $mname = $row['middle_name'];
+    $lname = $row['last_name'];
+    $stat = $row['account_status'];
+    if ($stat == 1) {
+        $status = "Active";
+        $buttonstat = "Deactivate";
+        $butID = "patinactive";
+        // $butclick = "patinactive()";
+    } elseif ($stat == 0) {
+        $status = "Deactivated";
+        $buttonstat = "Activate";
+        $butID = "patactive";
+        // $butclick = "patactive()";
     }
+    $fullname = $lname . ", " . $fname . " " . $mname;
 
+    $row['name'] = $row['last_name'] . ', ' . $row['first_name'] . ' ' . $row['middle_name'];
+    $row['email']= $row['email'];
+    $row['status'] = $status;
+    $row['action'] = '<button class="$butID" onclick="patclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
 
-    $usertab .= '</tbody><br><div align="center">';
-    $page_query = "SELECT id, first_name, middle_name, last_name, email, account_status FROM walk_in_patient where email like '%@%' order by `date_created` asc ";
-    $page_result = mysqli_query($con, $page_query);
-    $total_records = mysqli_num_rows($page_result);
-    $total_pages = ceil($total_records / $rpp);
-    if($total_records <= $rpp){
+    $arr[] = $row;
 
-    }
-    else{
-        for($i =1;$i<=($total_pages);$i++){
-            $usertab .= '<span class="pagination_link" style="cursor:pointer;padding:6px;border:1px solid #ccc;"id="'.$i.'">'.$i.'</span>';
-        }
-    }
-    echo $usertab;
 }
-else{
-    $str = "Currently Zero Account...";
-    $usertab .= '<tr><td colspan="6">' . $str . '</td>
-            </tr>';
-    echo $usertab;
-}
+//if (mysqli_num_rows($result) == 0){
+
+//}else{
+    echo json_encode($arr);
+//}
+
+
 
 ?>
