@@ -259,7 +259,8 @@ $res2 = mysqli_query($con,$sql);
                                                     }
                                                 })
                                             </script>
-                                            <input class="modal-field" type="text" id="medSubCategory" autocomplete="off" placeholder="Medicine Type">
+                                            <p class="modal-p" for="medicineCategory">Type:</p>
+                                            <input class="modal-field tooltip" title="Ex. Antibiotics, Antidiarrheal, child immunization etc" type="text" id="medSubCategory" autocomplete="off" placeholder="Type">
 
                                             <input class="modal-field" type="text" id="vacSubCategory" autocomplete="off" placeholder="Vaccine Type" style="display: none">
                                         </div>
@@ -269,7 +270,7 @@ $res2 = mysqli_query($con,$sql);
                                             <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="medicineDosage">Dosage:</p><input type="text" id="medicineDosage" class="modal-field" placeholder="Enter  Dosage" autocomplete="off" required>
+                                            <p class="modal-p" for="medicineDosage">Dosage:</p><input type="text" id="medicineDosage" class="modal-field tooltip" title="Please include unit of measurement (ex. 500mg, 120ml)" placeholder="ex. 500mg" autocomplete="off" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -879,15 +880,11 @@ $res2 = mysqli_query($con,$sql);
         margin: 0;
         -moz-appearance: textfield;
     }
+    .ui-datepicker-calendar thead tr th{
+        background: var(--secondary-color)!important;
+    }
 </style>
-<script>
-    //dagdag OGIE=================================================
-    //<i class="fas fa-caret-right"></i>  <i class="fas fa-caret-down"></i>
-    $(window).click(function () {
-        $("[title='Collapse']").html('<i class="fas fa-caret-down"></i>')
-        $("[title='Expand']").html('<i class="fas fa-caret-right"></i>')
-    })
-</script>
+
 <?php include "invTestPagination.html"?>
 
 
