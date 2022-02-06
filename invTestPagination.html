@@ -37,7 +37,7 @@
 
                                 dataHtml+= "<tbody  style='text-align: start;color: black'>"+
                                             "<tr style='background: #DEF1F7;'>" +
-                                                "<td style='text-align: start;'><button class='root-action' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right tooltip\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                                "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
                                                 "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+"</span></td>" +
                                                 "<td colspan='5'></td>" +
                                                 "" +
@@ -50,8 +50,9 @@
 
 
 
-                            });
 
+                            });
+                            tooltip()
                             container.prev().html(dataHtml);
 
                             //expand was click
@@ -101,10 +102,10 @@
                                         let stock = resultElement.stock;
                                         let critstock = resultElement.criticalstock;
                                         if(parseInt(stock)>parseInt(critstock)){
-                                            stockUI="<span style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                            stockUI="<span class='tooltip' style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
                                         }
                                         else {
-                                            stockUI="<span style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                            stockUI="<span class='tooltip' style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
                                         }
 
                                         $(".2-root-inv-"+inv_name).append("" +
@@ -120,6 +121,7 @@
                                             "</tr>")
                                         ctr+=1;//class="fas fa-plus updta"
                                     }
+                                    tooltip()
                                     // $(".root-inv-"+inv_name).append("</table>")
                                     $(".update-inv-new").click(function () {
 
@@ -159,6 +161,7 @@
                                     })
                                 })
                             })
+                            tooltip()
                         }
                     };
                     //$.pagination(container, options);
@@ -223,3 +226,26 @@
         color: whitesmoke!important;
     }
 </style>
+
+<!--tooltip for important fields-->
+<script>
+function tooltip() {
+    let tooltips = {
+        position: {
+            my: "center bottom-20",
+            at: "center top",
+            using: function (position, feedback) {
+                $(this).css(position);
+                $("<div>")
+                    .addClass("arrow")
+                    .addClass(feedback.vertical)
+                    .addClass(feedback.horizontal)
+                    .appendTo(this);
+            }
+        }
+    }
+    $('.tooltip').tooltip(tooltips);
+}
+
+
+</script>

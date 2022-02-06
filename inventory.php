@@ -36,6 +36,7 @@ $res2 = mysqli_query($con,$sql);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--Jquery UI css and js-->
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+<!--    <link rel="stylesheet" href="scss/tooltip.css">-->
     <script src="jquery-ui/jquery-ui.js"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" href="scss/scrollbar_loading.css">
@@ -888,5 +889,7 @@ $res2 = mysqli_query($con,$sql);
     })
 </script>
 <?php include "invTestPagination.html"?>
+
+
 </body>
 </html>
