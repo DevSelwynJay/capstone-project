@@ -371,7 +371,7 @@ $emm = 'galvezirish17@gmail.com';
                                 <label for="patname3" style="color:#6D6D6DFF">Patient:</label>
                                 <input type="text" id="patname3" disabled placeholder="" />
                             </div>
-                            <a href="#show-actpat" rel="modal:open" id="activate-patient2" class="button-square"><i class="fas fa-plus"></i>Activate Account</a>
+                            <a href="#show-actpat" rel="modal:open" id="activate-patient2" class="button-square">Activate Account</a>
                         </form>
                     </div>
                 </div>
