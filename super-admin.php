@@ -558,8 +558,8 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[5]).attr("data-label","Action")
                 }
             },
             tableWillUpdate: function() {
@@ -577,8 +577,8 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[5]).attr("data-label","Action")
                 }
 
 
@@ -909,8 +909,8 @@ $emm = $_SESSION['email_session_for_sms_otp'];
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[1]).attr("data-label","Email")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Contact No")
                     $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Work Category")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[2]).attr("data-label","Status")
-                    $($($("#adtablediv .gs-table-body").children()[a]).children()[3]).attr("data-label","Action")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[4]).attr("data-label","Status")
+                    $($($("#adtablediv .gs-table-body").children()[a]).children()[5]).attr("data-label","Action")
 
                 }
             },
