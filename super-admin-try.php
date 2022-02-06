@@ -249,16 +249,22 @@ $emm = 'galvezirish17@gmail.com';
                     <p id="emmm" hidden class="color-black"><?php echo $emm; ?></p>
                     <h3 class="color-black">Manage Admin Accounts</h3>
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
-                        <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
-                                <select id='filterSearch'>
+                        <div class="col-lg-12 flex-box-row row justify-content-md-end">
+                            <div class="col-lg-2 col-sm-4 margin-top-1">
+                                <select id='filterSearch' class="search-bar">
                                     <option value="0">All</option>
                                     <option value="1">Active</option>
                                     <option value="2">Deactivated</option>
                                 </select>
-
-                            <div class="search-container search-container-inventory" >
-                                <input style="" type="text" id="search-admin" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
                             </div>
+                            <div class="col-lg-4 col-sm-4 margin-top-1">
+                                <div class="search-container search-container-inventory" >
+                                    <input style="" type="text" id="search-admin" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                                </div>
+                            </div>
+
+
+
                         </div>
                     </div>
                     <div id="tableAdmin"  style="max-height: 50vh;overflow-y: auto">
@@ -388,16 +394,22 @@ $emm = 'galvezirish17@gmail.com';
                 <div class="col-sm-12 super-admin--container">
                     <h3 class="color-black">Manage Patient Accounts</h3>
                     <div class="row flex-box-row justify-content-lg-end" style="margin-bottom: 1rem">
-                        <div class="col-lg-5 col-md-6 flex-box-row justify-content-md-end">
-                            <select id='filterpat'>
-                                <option value="0">All</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactivated</option>
-                            </select>
-                            <div class="search-container search-container-inventory" >
-
-                                <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                        <div class="col-lg-12 flex-box-row row justify-content-md-end">
+                            <div class="col-lg-2 col-sm-4 margin-top-1">
+                                <select id='filterpat' class="search-bar">
+                                    <option value="0">All</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Deactivated</option>
+                                </select>
                             </div>
+                            <div class="col-lg-4 col-sm-4 margin-top-1">
+                                <div class="search-container search-container-inventory" >
+                                    <input style="" type="text" id="search-pat" class="form-control search-bar" placeholder="Search" autocomplete="off"> <a href="#"><i class="fas fa-search"></i></a>
+                                </div>
+                            </div>
+
+
+
                         </div>
                     </div>
                     <div id ="patTable" style="max-height: 70vh;overflow-y: auto">

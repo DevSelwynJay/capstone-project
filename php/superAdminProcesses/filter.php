@@ -16,7 +16,6 @@ $result = mysqli_query($con, $usertable);
 
 while ($row = mysqli_fetch_assoc($result)){
 
-
     $id = $row['id'];
     $fname = $row['first_name'];
     $mname = $row['middle_name'];
@@ -43,12 +42,6 @@ while ($row = mysqli_fetch_assoc($result)){
     $row['adaction'] = '<button class="$butID" onclick="adclick(\'' . str_replace("'", "\\'", $id) . '\', \'' . str_replace("'", "\\'", $fullname) . '\', \'' . str_replace("'", "\\'", $status) . '\')">' . $buttonstat . '</button>';
 
     $arr[] = $row;
-
-
-
-
-
-
 
 }
 echo json_encode($arr);
