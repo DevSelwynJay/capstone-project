@@ -20,7 +20,7 @@ foreach ($tables as $table){
         $queryPatientName = mysqli_query($con,"SELECT * FROM walk_in_patient WHERE id = '". $row['patient_id']. "'");
 
         if($r2=mysqli_fetch_assoc($queryPatientName)){
-            $row['patient_name'] = $r2['first_name']." ".$r2['middle_name']." ".$r2['last_name'];
+            $row['patient_name'] = $r2['first_name']." ".$r2['middle_name']." ".$r2['last_name']." ".$r2['suffix'];
         }
 
         //for action message
