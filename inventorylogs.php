@@ -5,12 +5,8 @@
 </script>
 <div class="modal modal-full-width" id="pop-up-logs-inventory">
     <div class="content patients-view-container margin-top-3">
-
-
         <h3 style="color: var(--third-color)" class=""><i class="fas fa-history"></i>Inventory Logs</h3>
-
         <?php require 'logs/logs-search.html'?>
-
         <table class="patients-view">
             <tbody id="logs-inventory-view-table">
             <tr class="patients-view-title">
@@ -38,8 +34,6 @@
         </table>
     </div>
 </div>
-
-
 <script>
     $(document).ready(function () {
         var table = $('#logs-inventory-view-table').tableSortable({
@@ -120,26 +114,20 @@
         $('#changeRows').on('change', function() {
             table.updateRowsPerPage(parseInt($(this).val(), 10));
         })
-
         $('#rerender').click(function() {
             table.refresh(true);
         })
-
         $('#distory').click(function() {
             table.distroy();
         })
-
         $('#refresh').click(function() {
             table.refresh();
         })
-
         $('#setPage2').click(function() {
             table.setPage(1);
         })
         //thead color
         $("#logs-inventory-view-table div .gs-table thead tr th").css("background","darkslategrey")
-
-
         function refreshLogs() {
             $.get('logs/inventory-log.php', function(data) {
                 // Push data into existing data
@@ -162,13 +150,9 @@
                 });
             })
         }
-
         $("#refresh-inv-logs").click(function () {
             refreshLogs()
         })
-
-
     })//document ready
 </script>
-
 <button style="display: none" id="refresh-inv-logs"></button>

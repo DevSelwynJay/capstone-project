@@ -3,12 +3,10 @@ session_start();
 $con = null;
 require '../DB_Connect.php';
 $arr = array();
-
 $time = $_POST['interval'];
 if($time == 'daily'){
     $time = '1 day';
     $sql = "Select * from `medreport` where `type` = 'Add' and DATE_FORMAT(`dateadded`,'%Y %M %d') = DATE_FORMAT(NOW(),'%Y %M %d') order by `dateadded` asc";
-
 }
 elseif ($time == 'weekly'){
     $sql = "Select * from `medreport` where `type` = 'Add' and yearweek(`dateadded`) = yearweek(NOW()) order by `dateadded` asc";
@@ -40,10 +38,5 @@ $res = mysqli_query($con,$medexpqry);
         $row['category'] = $row['category'].'('.$row['subcategory'].')';
         $arr[] = $row;
     }
-
 echo json_encode($arr);
-
-
-
-
 ?>

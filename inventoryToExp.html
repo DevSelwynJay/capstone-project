@@ -2,14 +2,11 @@
     <h3 style="color: var(--third-color)" class="">Medicine Expired</h3>
     <table class="patients-view">
         <tbody id="medicine-expire-table">
-
         </tbody>
     </table>
 </div>
-
 <script>
     $(document).ready(function () {
-
         function displayExpTable(){
             $.post('php/inventoryP/displayExpTab2.php').done(function (data){
                 let result = JSON.parse(data);
@@ -55,7 +52,6 @@
                             $($($("#medicine-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
                             $($($("#medicine-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Action")
                         }
-
                         $('.deletebtnt').click(function(){
                             var delid = $(this).data('id');
                             $('#hideid').val(delid);
@@ -78,7 +74,6 @@
                             $($($("#medicine-expire-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
                             $($($("#medicine-expire-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Action")
                         }
-
                         //thead color
                         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                         $(".gs-table-head tr th span").css("color","white!important");
@@ -131,34 +126,26 @@
                 $('#changeRows').on('change', function() {
                     table.updateRowsPerPage(parseInt($(this).val(), 10));
                 })
-
                 $('#rerender').click(function() {
                     table.refresh(true);
                 })
-
                 $('#distory').click(function() {
                     table.distroy();
                 })
-
                 $('#refresh').click(function() {
                     table.refresh();
                 })
-
                 $('#setPage2').click(function() {
                     table.setPage(1);
                 })
                 //thead color
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 $(".gs-table-head tr th span").css("color","white!important");
-
             })//
         }
-
-
         displayExpTable()
         $('#nakatago3').click(function(){
             displayExpTable();
         });
-
     })//document ready
 </script>

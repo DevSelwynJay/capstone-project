@@ -2,11 +2,9 @@
     <h3 style="color: var(--third-color)" class="">Medicine to Expire</h3>
     <table class="patients-view">
         <tbody id="medicine-to-expire-table">
-
         </tbody>
     </table>
 </div>
-
 <script>
     $(document).ready(function () {
 
@@ -118,35 +116,26 @@
                 $('#changeRows').on('change', function() {
                     table.updateRowsPerPage(parseInt($(this).val(), 10));
                 })
-
                 $('#rerender').click(function() {
                     table.refresh(true);
                 })
-
                 $('#distory').click(function() {
                     table.distroy();
                 })
-
                 $('#refresh').click(function() {
                     table.refresh();
                 })
-
                 $('#setPage2').click(function() {
                     table.setPage(1);
                 })
                 //thead color
                 //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                 $(".gs-table-head tr th span").css("color","white!important");
-
             })//
         }
-
         displayToExpTable()
         $('#nakatago2').click(function(){
             displayToExpTable();
         });
-
-
-
     })//document ready
 </script>

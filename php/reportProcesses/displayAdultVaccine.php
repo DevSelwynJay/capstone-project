@@ -3,8 +3,6 @@ session_start();
 $con = null;
 require '../DB_Connect.php';
 $arr = array();
-
-
 $time = $_POST['interval'];
 if($time == 'daily'){
     $time = '1 day';
@@ -13,7 +11,6 @@ if($time == 'daily'){
 elseif ($time == 'weekly'){
     $time = '1 week';
     $sql = 'Select * from `vaccination_record` where `patient_type` = "Adult" and yearweek(`date_given`) = yearweek(NOW()) order by `date_given` asc';
-
 }
 elseif ($time == 'monthly'){
     $sql = 'Select * from `vaccination_record` where `patient_type` = "Adult" and MONTH(`date_given`) = MONTH(NOW()) order by `date_given` asc';
@@ -46,20 +43,13 @@ $result = mysqli_query($con,$patientqry);
         $result2 = mysqli_query($con,$patientqry2);
         if(mysqli_num_rows($result)>0) {
             while ($row = mysqli_fetch_assoc($result2)) {
-
                 $row['name'] = $row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name'];
                 $row['address']= 'Purok ' . $row['purok'] . ' House No.' . $row['house_no'] . ' ' . $row['address'];
                 $row['gender'] = $row['gender'];
                 $row['date'] = $date;
                 $row['vaccineName'] = $vacName;
-
                 $arr[] = $row;
-
-
             }
-
-
-
         }
     }
 echo json_encode($arr);

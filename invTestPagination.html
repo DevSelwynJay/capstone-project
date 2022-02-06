@@ -38,7 +38,7 @@
                                 dataHtml+= "<tbody  style='text-align: start;color: black'>"+
                                             "<tr style='background: #DEF1F7;'>" +
                                                 "<td style='text-align: start;'><button class='root-action' data-status='expand' data-name='"+item.name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right tooltip\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
-                                                "<td><span style='font-weight: 600'>"+item.stock+"</span></td>" +
+                                                "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+"</span></td>" +
                                                 "<td colspan='5'></td>" +
                                                 "" +
                                             "</tr>" +
@@ -95,16 +95,28 @@
                                         if(ctr==1){
                                             margin="padding-top:1rem"
                                         }
+
+                                        let stockUI="";
+                                        let invName = resultElement.name;
+                                        let stock = resultElement.stock;
+                                        let critstock = resultElement.criticalstock;
+                                        if(parseInt(stock)>parseInt(critstock)){
+                                            stockUI="<span style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                        }
+                                        else {
+                                            stockUI="<span style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                        }
+
                                         $(".2-root-inv-"+inv_name).append("" +
                                             "<tr class='child-inv child-inv-"+inv_name+"' style='"+margin+"'>" +
-                                            "<td colspan=''><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+resultElement.name+" "+resultElement.dosage+"</td>" +
-                                            "<td colspan=''>"+resultElement.stock+"</td>" +
-                                            "<td colspan=''>"+resultElement.id+"</td>" +
-                                            "<td colspan=''>"+resultElement.category+" - "+resultElement.subcategory+"</td>" +
+                                            "<td colspan='' data-label='Name'><i class=\"fas fa-capsules\" style='margin-right: 0.4rem'></i>"+invName+" "+resultElement.dosage+"</td>" +
+                                            "<td colspan='' data-label='Stocks'>"+stockUI+"</td>" +
+                                            "<td colspan='' data-label='ID'>"+resultElement.id+"</td>" +
+                                            "<td colspan='' data-label='Category'>"+resultElement.category+" - "+resultElement.subcategory+"</td>" +
                                             // "<td colspan=''>"+resultElement.dosage+"</td>" +
-                                            "<td colspan=''>"+resultElement.dateadded+"</td>" +
-                                            "<td colspan=''>"+resultElement.expdate +"</td>" +
-                                            "<td colspan=''><i title='edit' data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
+                                            "<td colspan='' data-label='Date Added'>"+resultElement.dateadded+"</td>" +
+                                            "<td colspan='' data-label='EXP. Date'>"+resultElement.expdate +"</td>" +
+                                            "<td colspan='' data-label='Action'><i title='edit' data-id='"+resultElement.id+"'  class=\"fas fa-pen-square fa-2x update-inv-new\" style='color: var(--primary-color)'></i></td>"+
                                             "</tr>")
                                         ctr+=1;//class="fas fa-plus updta"
                                     }
@@ -141,6 +153,8 @@
                                                 $('#updatemedicineStocks').val("");
                                                 $('#updatemedicineMfgDate').val("");
                                                 $('#updatemedicineExpDate').val("");
+                                                $('#upall-incorrect-indcator').css("display", "none");
+                                                $('#upall-incorrect-indcator').html('');
                                             })
                                     })
                                 })

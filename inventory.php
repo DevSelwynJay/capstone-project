@@ -345,7 +345,9 @@ $res2 = mysqli_query($con,$sql);
                                             <input type="text" id="updatemedicineExpDate" contenteditable="false"  class="modal-field" autocomplete="off" >
                                             <input type="hidden" id="hiddendata" >
                                         </div>
+                                        <p class="modal-p" class="error" id="upall-incorrect-indcator" style="color: red; display: none"></p>
                                     </div>
+
                                     <div class="row flex-row justify-content-start" style="display: flex">
                                         <div class="col-sm-12 flex-box-row justify-content-end align-items-end margin-top-1">
                                             <a href="#update-modal" rel="modal:close"><button class="modal-cancel-button" id="addupcancel" style="margin-right: 0.5rem">Cancel</button></a>
@@ -392,7 +394,6 @@ $res2 = mysqli_query($con,$sql);
     });
     //Modals
     $(document).ready(function(){
-        displaymed();
         $('#addbtn').on("click",function (){
             $("#add-modal").modal({
                 //escapeClose: false,
@@ -432,7 +433,7 @@ $res2 = mysqli_query($con,$sql);
                 success:function(data,status){
                     console.log(data);
                     if(data == ''){
-                        $('#medicinecriticalStocks').attr('disabled','');
+                        $('#medicinecriticalStocks').removeAttr('disabled');
                         $('#medicinecriticalStocks').val('');
                     }
                     else{
@@ -548,10 +549,12 @@ $res2 = mysqli_query($con,$sql);
             if (medName == "" || medSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "") {
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
-            } else if (medStocks == 0) {
+            }
+            else if (medStocks == 0) {
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
-            } else {
+            }
+            else {
                 $.ajax({
                     url: "php/inventoryProcesses/inventoryAddProc.php",
                     type: 'POST',
@@ -605,6 +608,10 @@ $res2 = mysqli_query($con,$sql);
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
             } else if (medStocks == 0) {
+                $('#all-incorrect-indcator').css("visibility", "visible");
+                $('#all-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
+            }
+            else if (medcritStocks == 0) {
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
             } else {
@@ -723,30 +730,39 @@ $res2 = mysqli_query($con,$sql);
             var updatemedicineMfgDate=$('#updatemedicineMfgDate').val();
             var updatemedicineExpDate=$('#updatemedicineExpDate').val();
             var id=$('#hiddendata').val();
-            $.post("php/inventoryProcesses/medUpdate.php",{
-                updatemedicineName:updatemedicineName,
-                updatemedicineCategory:updatemedicineCategory,
-                updatemedicinesubCategory:updatemedicinesubCategory,
-                upmedicineDosage:upmedicineDosage,
-                updatemedicineStocks:updatemedicineStocks,
-                updatemedicineCritStocks:updatemedicineCritStocks,
-                updatemedicineMfgDate:updatemedicineMfgDate,
-                updatemedicineExpDate:updatemedicineExpDate,
-                id:id
-            },function(data,status){
-                $("[href='#update-modal']").trigger('click');
-                $('#nakatago').trigger("click");
-                $('#nakatago2').trigger("click");
-                $('#nakatago3').trigger("click");
-                $("#meds").val("").trigger("keyup")
-                $("#refresh-inv-logs").trigger("click")
-                Swal.fire({
-                    title:'Medicine/Vaccine Updated Successfully!',
-                    icon:'success'
+            if (updatemedicineName == "" || updatemedicineCategory == "" || updatemedicinesubCategory == "" || updatemedicineStocks == "" || upmedicineDosage == "" || updatemedicineCritStocks == "" || updatemedicineMfgDate == "" || updatemedicineExpDate == "") {
+                $('#upall-incorrect-indcator').css("display", "block");
+                $('#upall-incorrect-indcator').html('Please Fill out all the fields!');
+            }
+            else if (updatemedicineStocks == 0) {
+                $('#upall-incorrect-indcator').css("display", "block");
+                $('#upall-incorrect-indcator').html('Invalid Input! Stock must be greater than 0!');
+            }
+            else {
+                $.post("php/inventoryProcesses/medUpdate.php", {
+                    updatemedicineName: updatemedicineName,
+                    updatemedicineCategory: updatemedicineCategory,
+                    updatemedicinesubCategory: updatemedicinesubCategory,
+                    upmedicineDosage: upmedicineDosage,
+                    updatemedicineStocks: updatemedicineStocks,
+                    updatemedicineCritStocks: updatemedicineCritStocks,
+                    updatemedicineMfgDate: updatemedicineMfgDate,
+                    updatemedicineExpDate: updatemedicineExpDate,
+                    id: id
+                }, function (data, status) {
+                    $("[href='#update-modal']").trigger('click');
+                    $('#nakatago').trigger("click");
+                    $('#nakatago2').trigger("click");
+                    $('#nakatago3').trigger("click");
+                    $("#meds").val("").trigger("keyup")
+                    $("#refresh-inv-logs").trigger("click")
+                    Swal.fire({
+                        title: 'Medicine/Vaccine Updated Successfully!',
+                        icon: 'success'
+                    })
                 })
-            });
+            }
         };
-
 </script>
 <script>
     const dropdown = document.querySelector('#dropdown');
