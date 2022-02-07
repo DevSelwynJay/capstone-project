@@ -32,6 +32,15 @@ while ($row = mysqli_fetch_assoc($res)){
             }
         }
     }
+    else{//wlang medication
+        $getLastVac = mysqli_query($con,"SELECT *,date_format(date_given,'%Y-%m-%d')as fd FROM vaccination_record WHERE patient_id = '".$row['id']."' ORDER BY date_given DESC");
+        if(mysqli_num_rows($getLastVac)>0){
+            if($r2=mysqli_fetch_assoc($getLastVac)){
+                    $row["last_consultation"] = $r2['fd'];
+                    $row["sort"] = $r2['date_given'];//sorting purposes only
+            }
+        }
+    }
     $arr[] = $row;
 }
 
