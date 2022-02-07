@@ -129,27 +129,26 @@ else{
                   <h2>our vision</h2>
                </div>
                <br>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
-               <br><br>
+                <p>In conjunction with our community partners, our Community Health Center's vision is to create a corporation of excellence. We will endeavor to be the finest health center in our state and beyond, providing patients with high-quality, low-cost primary health care at a level that is above and beyond their expectations.</p><br><br>
                <div>
                   <h2>our mission</h2>
                </div>
                <br>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates, qui quis corrupti, porro numquam quod nihil laborum dolor praesentium minus maiores! Illum magnam eum eaque necessitatibus praesentium sunt natus!</p>
+               <p>Sto. Rosario Health Center's objective is to give people of all ages, regardless of income, with compassionate, comprehensive, affordable, and accessible health care. Specifically, our main objectives is to provide a free medication and vaccination to all of the residents of Sto. Rosario.</p>
             </div>
             <div class="col-md-6 about--page_right">
             <small>Please note: This map is not accurate at the moment.</small>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.740603929667!2d120.80889346525676!3d14.839809425147163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396522c40411b89%3A0xfc4e05bc63d5a0b7!2sSanto%20Rosario%2C%20Malolos%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1643610270023!5m2!1sen!2sph" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 <div class="address">
-                <p>address</p>
-                <p>address</p>
-                <p>address</p>
+                <p>Sto. Rosario Paombong Bulacan</p>
+                    <p><b>Land Mark: </b>Ilalim ng Tulay</p>
+                <p></p>
                 </div>
                 <div class="email">
-                    <p>email</p>
+                    <p>storosariohis@gmail.com</p>
                 </div>
                 <div class="contact-number">
-                    <p>contact number</p>
+                    <p>09422698522</p>
                 </div>
             </div>
             </div>
