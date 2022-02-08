@@ -46,6 +46,7 @@ $res2 = mysqli_query($con,$sql);
     <!--Sweet Alert-->
     <script src="sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="sweetalert2-11.1.9/package/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="scss/fixes.css">
     <!--Get admin info from session-->
     <script>
         $(document).ready(function () {
@@ -200,7 +201,7 @@ $res2 = mysqli_query($con,$sql);
                                 <!--Display ko dito yung Table of MEDS-->
                                 <div  class="inventory__table-medicine-container" >
                                     <table>
-                                        <tbody>
+                                        <tbody class="first-tbody">
                                         <!--                                        <tr>-->
                                         <!--                                            <th colspan="3">MEDICINE NAME</th>-->
                                         <!--                                            <th colspan="2">STOCKS</th>-->

@@ -1,0 +1,25 @@
+.inv-title  tr{
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: #02a9f7 !important;
+  }
+.inv-title tr td{
+    color: white !important;
+    font-weight: 700 !important;
+}
+.inv-title tr:hover{
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: #02a9f7 !important;
+}
+ 
+  @media(max-width:1024px){
+    .inv-title {
+        display: none !important;
+      }
+      .inventory__table-medicine-container table tbody:first-child tr{
+          display: none !important;
+      }
+  }
