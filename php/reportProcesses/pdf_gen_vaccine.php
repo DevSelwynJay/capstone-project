@@ -92,7 +92,6 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $datetoday = Date("M-d-Y");
-$pdf->Text(170,40,"$datetoday");
 $pdf->Text(10,40,"Vaccination Reports (".ucfirst($type).")");
 $pdf->Cell(50,10,"Patient Name",0,0,'L');
 $pdf->Cell(0,10,"Patient Description",0,1,'C');

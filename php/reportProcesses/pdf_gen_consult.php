@@ -93,7 +93,6 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $datetoday = Date("M-d-Y");
-$pdf->Text(170,40,"$datetoday");
 $pdf->Text(10,40,"Consultation Reports (".$type.")");
 $w = 70;
 $h = 16;
