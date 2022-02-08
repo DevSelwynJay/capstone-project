@@ -20,6 +20,7 @@ if($res){
     if($row = mysqli_fetch_assoc($res)){
 
         $_SESSION['active_admin_ID']  = $row['id'] ;
+        $_SESSION['active_admin_name'] = $row['first_name']." ".$row['middle_name']." ".$row['last_name'];
 
        echo json_encode(array(
            "admin_id"=>$row['id']
