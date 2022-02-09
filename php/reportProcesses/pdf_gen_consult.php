@@ -95,33 +95,42 @@ $pdf->SetFont('Arial','B',12);
 $datetoday = Date("M-d-Y");
 $pdf->Text(10,40,"Consultation Reports (".$type.")");
 $w = 70;
-$h = 16;
+$h = 10;
 $pdf->Cell(50,10,"Patient Name",0,0,'L');
 $pdf->Cell(0,10,"Patient Description",0,1,'C');
-$pdf->SetFont('Arial','',10);
+
 while($row1 = mysqli_fetch_assoc($record1)){
-    $patient_id = $row1['patient_id'];
-    $date_given = $row1['date_given'];
-    $medicine_name = $row1['medicine_name'];
-    $medicine_dosage = $row1['dosage'];
-    $patqry = 'Select * from `walk_in_patient` where id = "'.$patient_id.'"';
-    $record2 = mysqli_query($con,$patqry);
-        while($row3 = mysqli_fetch_assoc($record2)){
-            $lname = $row3['last_name'];
-            $fname = $row3['first_name'];
-            $mname = $row3['middle_name'];
-            $pat_name = $fname .' '.$mname.' '.$lname;
-            $bday = $row3['birthday'];
-            $purok = $row3['purok'];
-            $house_no = $row3['house_no'];
-            $address = $row3['address'];
-            $comaddress = 'Purok '.$purok.' House No.'.$house_no.' '.$address;
-            $gender = $row3['gender'];
-            $x = $pdf->GetX();
-            $pdf->myCell($w,$h,$x,$pat_name);
-            $pdf->MultiCell(0,5,"Address: ".$comaddress ."\nBirthday: ".$bday."\nGender: " .$gender."\nMedicine Given: ".$medicine_name." (".$medicine_dosage.")"."\nConsultation Date: ".$date_given,"LT",'L');
-            $pdf->isFinished = false;
-        }
+    $admin = $row1['admin_id'];
+    $adminqry = 'Select * from `admin` where id = "'.$admin.'"';
+    $adminrecord = mysqli_query($con,$adminqry);
+    while($row2 = mysqli_fetch_assoc($adminrecord)){
+        $admin_name = $row2['first_name'].' '.$row2['middle_name'].' '.$row2['last_name'];
+        $patient_id = $row1['patient_id'];
+        $date_given = $row1['date_given'];
+        $medicine_name = $row1['medicine_name'];
+        $medicine_dosage = $row1['dosage'];
+        $patqry = 'Select * from `walk_in_patient` where id = "'.$patient_id.'"';
+        $record2 = mysqli_query($con,$patqry);
+            while($row3 = mysqli_fetch_assoc($record2)){
+                $lname = $row3['last_name'];
+                $fname = $row3['first_name'];
+                $mname = $row3['middle_name'];
+                $pat_name = $fname .' '.$mname.' '.$lname;
+                $bday = $row3['birthday'];
+                $purok = $row3['purok'];
+                $house_no = $row3['house_no'];
+                $address = $row3['address'];
+                $comaddress = 'Purok '.$purok.' House No.'.$house_no.' '.$address;
+                $gender = $row3['gender'];
+                $pdf->SetFont('Arial','',14);
+                $x = $pdf->GetX();
+                $pdf->myCell($w,$h,$x,$pat_name);
+                $pdf->SetFont('Arial','',10);
+                $pdf->MultiCell(0,5,"Address: ".$comaddress ."\nBirthday: ".$bday."\nGender: " .$gender."\nMedicine Given: ".$medicine_name." (".$medicine_dosage.")"."\nAdministered By: ".$admin_name."\nConsultation Date: ".$date_given,"LT",'L');
+                $pdf->isFinished = false;
+            }
+    }
+
 }
 $pdf->isFinished = true;
 $pdf->Output('D','Consulation-'.$type.'-'.$datetoday.'.pdf');

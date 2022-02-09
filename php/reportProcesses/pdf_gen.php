@@ -9,23 +9,28 @@ $datetoday = Date("M-d-Y");
 
 if(isset($_GET['daily'])){
     $time = '1 day';
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") GROUP by name ORDER BY name, dateadded asc';
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW())';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW()) ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW()) GROUP by name ORDER BY name, dateadded asc';
 }
 elseif(isset($_GET['monthly'])){
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW())';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW()) ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW()) GROUP by name ORDER BY name, dateadded asc';
     //MONTH(`dateadded`) = MONTH(NOW())
     $time = '1 month';
 }
 elseif(isset($_GET['quarterly'])){
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW())';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW()) ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW()) GROUP by name ORDER BY name, dateadded asc';
     $time = '1 quarter';
 }
 elseif(isset($_GET['annually'])){
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW())';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW()) ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW()) GROUP by name ORDER BY name, dateadded asc';
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
 }
@@ -36,9 +41,11 @@ elseif(isset($_GET['customdate'])){
     $startdate = date("Y-m-d", strtotime($date1));
     $date2 = $datearr[1];
     $enddate = date("Y-m-d", strtotime($date2));
-    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
+    $sql = 'Select * from `medreport` where `type` = "'.$type.'" and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") ORDER BY dateadded asc';
+    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'"  and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") GROUP by name ORDER BY name, dateadded asc';
 }
 $pdfquery = $sql;
+$sumpdfquery = $sql2;
 $record = mysqli_query($con,$pdfquery);
 if($type == 'Medicine'){
     $type = "Medicine Released";
@@ -46,8 +53,14 @@ if($type == 'Medicine'){
 elseif($type == 'Vaccine'){
     $type = "Vaccine Released";
 }
-else{
-    $type = $type;
+elseif($type == "Add"){
+    $type = "Added Medicines";
+}
+elseif($type == "Update"){
+    $type = "Updated Stocks";
+}
+elseif($type == "Delete"){
+    $type = "Deleted Medicine";
 }
 class PDF extends FPDF{
     function Header()
@@ -98,13 +111,24 @@ class PDF extends FPDF{
         }
     }
 }
-
 $pdf = new PDF('p');
 $pdf->AliasNbPages();
 $pdf->isFinished = false;
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Text(10,40,"Medicine Reports (".$type.")");
+$sumresult = mysqli_query($con,$sumpdfquery);
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(50,10,"Summary of Report(".$type.")",0,1,'L');
+$pdf->Cell(50,10,"Medicine Name",0,0,'L');
+$pdf->Cell(50,10,"Total Stocks",0,1,'L');
+$sumrow = mysqli_num_rows($sumresult);
+while($row2 = mysqli_fetch_assoc($sumresult)){
+        $pdf->Cell(50,5,$row2['name'],0,0,'L');
+        $pdf->Cell(50,5,$row2['stock'],0,1,'L');
+}
+$pdf->Ln(10);
+//$pdf->AddPage();
 //$pdf->Text(170,40,"$datetoday");
 $w = 50;
 $h = 16;
@@ -112,14 +136,15 @@ $pdf->Cell(50,10,"Medicine ID",0,0,'L');
 $pdf->Cell(50,10,"Medicine Name",0,0,'L');
 $pdf->Cell(0,10,"Medicine Description",0,1,'C');
 $pdf->SetFont('Arial','',10);
+    while($row = mysqli_fetch_assoc($record)){
+        $x = $pdf->GetX();
+        $pdf->myCell($w,$h,$x,$row['id']);
+        $x = $pdf->GetX();
+        $pdf->myCell($w,$h,$x,$row['name']." (".$row['dosage'].")");
+        $pdf->MultiCell(0,5,"Category: ".$row['category']."\nStocks: ".$row['stock'] ."\nMFG-Date & EXP-Date: " .$row['mfgdate'] ."-". $row['expdate']. "\nDate Occured: ".$row['dateadded'],"LT",'L');
+        $pdf->isFinished = false;
+    }
+$pdf->Ln(10);
 
-while($row = mysqli_fetch_assoc($record)){
-    $x = $pdf->GetX();
-    $pdf->myCell($w,$h,$x,$row['id']);
-    $x = $pdf->GetX();
-    $pdf->myCell($w,$h,$x,$row['name']." (".$row['dosage'].")");
-    $pdf->MultiCell(0,5,"Category: ".$row['category']."\nStocks: ".$row['stock'] ."\nMFG-Date & EXP-Date: " .$row['mfgdate'] ."-". $row['expdate']. "\nDate Occured: ".$row['dateadded'],"LT",'L');
-    $pdf->isFinished = false;
-}
 $pdf->isFinished = true;
 $pdf->Output('D','Report-'.$type.'-'.$datetoday.'.pdf');

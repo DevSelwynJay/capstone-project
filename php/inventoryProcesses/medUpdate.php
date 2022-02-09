@@ -9,6 +9,7 @@ if(isset($_POST['medupdateid'])){
     $result = mysqli_query($con,$medupdatesql);
     $response = array();
     while($row=mysqli_fetch_assoc($result)){
+        //$_SESSION['old_stock'] = $row['stock'];
         $response=$row;
     }
     echo json_encode($response);
@@ -33,6 +34,8 @@ if(isset($_POST['id'])){
     $type = "Update";
     $updatesql = "Update `medinventory` set `name`='$name',`category`='$category',`subcategory`='$subcategory',`dosage`='$dosage',`stock`='$medstock', `mfgdate`='$medmfgdate', `expdate`='$medexpdate' where `id`='$id'";
     $result=mysqli_query($con,$updatesql);
+    /*$oldstock = $_SESSION['old_stock'];
+    */
     $updatesql2 = "Update `medinventory` set `criticalstock`='$medcritstock' where `name` = '$name' ";
     $result2=mysqli_query($con,$updatesql2);
     $reportupdatesql = "Insert into `medreport` (`id`,`name`, `category`,`subcategory`,`dosage`, `stock`, `mfgdate`, `expdate`,`type`) values ('$id','$name','$category','$subcategory','$dosage','$medstock','$medmfgdate','$medexpdate','$type')";
