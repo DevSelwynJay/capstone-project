@@ -71,7 +71,7 @@ require 'php/DB_Connect.php';
                    function (data) {
                        let result = JSON.parse(data)
                        $("#name-sidebar").html(result.admin_name)
-                       $("#modal-admin-name").html("Given by: "+ result.admin_name)
+                       $("#modal-admin-name").html("<span style='font-weight: 550'>Given by: </span>"+ result.admin_name)
                    }
                )
                ///<!--Set patient info to page-->
@@ -84,11 +84,11 @@ require 'php/DB_Connect.php';
                            let name = arrayOfObjectElement.first_name+" "+arrayOfObjectElement.middle_name+
                                " "+arrayOfObjectElement.last_name+ " "+arrayOfObjectElement.suffix
                            $("#name").html(name);
-                           $("#modal-patient-name").html("To: "+name);
+                           $("#modal-patient-name").html("<span style='font-weight: 550'>Patient Name: </span>"+name);
                            $("#update-med-given-to").html(name);
                            $("#update-vac-given-to").html(name);
                            $("#patient-type").html(arrayOfObjectElement.patient_type)
-                           $("#modal-patient-type").html("Type: "+arrayOfObjectElement.patient_type)
+                           $("#modal-patient-type").html("<span style='font-weight: 550'>Patient Type: </span>"+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)
                            $("#age").html(arrayOfObjectElement.age)
                            $("#address").html("Purok "+arrayOfObjectElement.purok +", "+ arrayOfObjectElement.house_no +" "+arrayOfObjectElement.address)

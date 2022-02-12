@@ -28,6 +28,7 @@ $house_no = abs((int)trim($_POST['house_no']));
 $bloodType = $_POST['bloodType'];
 $height = $_POST['height'];
 $weight = $_POST['weight'];
+$allergies = $_POST['allergies'];
 
 $patientType = trim($_POST['patientType']);
 
@@ -118,7 +119,7 @@ $_SESSION['newAddWalkInPatientName'] = $fname." ".$mname." "." ".$lname." ".$suf
 $query = "INSERT INTO walk_in_patient VALUES (
                  2,DEFAULT, '$patientID','$lname','$fname','$mname','$suffix'
                  ,'$gender','$bday','$purok','$house_no','Sto. Rosario Paombong Bulacan'
-                 ,'$occu','$civil','$bloodType','$weight','$height'
+                 ,'$occu','$civil','$bloodType','$weight','$height','$allergies'
                  ,'$patientType','$email','$randomPassword','$contact',''
                  ,DEFAULT 
                                    

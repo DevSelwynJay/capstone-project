@@ -251,8 +251,20 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                              </select>
                                          </div>
                                          <div class="col-sm-6 margin-top-2">
-                                             <p class="modal-p">Occupation</p>
-                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
+                                             <p class="modal-p">Allergies</p>
+                                             <textarea id="allergies" class="search-bar" title="The box is resizable vertically">
+
+                                             </textarea>
+                                             <script>
+                                                 $("#allergies").val("").css({
+                                                     outline:"none",
+                                                     resize:"vertical",
+                                                     width:"100%",
+                                                     height:"10vh",
+                                                     fontFamily:"'Poppins', sans-serif",
+                                                     letterSpacing:"1px"
+                                                 })
+                                             </script>
                                          </div>
                                      </div>
                                      <div class="row">
@@ -266,6 +278,10 @@ if(!isset($_SESSION['email'])||$_SESSION['account_type']!=1){
                                          <div class="col-sm-3 margin-top-2">
                                              <p class="modal-p"><span style="color: red">*</span>Birthday</p>
                                              <input  class="search-bar" type="text"  name="bday" inputmode="none" placeholder="Birthday"  data-toggle="tooltip" data-placement="left" title="Birthday" data-container="body" required readonly/>
+                                         </div>
+                                         <div class="col-sm-6 margin-top-2">
+                                             <p class="modal-p">Occupation</p>
+                                             <input class="search-bar" type="text" name="occupation" placeholder="Optional" data-toggle="tooltip" data-placement="top" title="Occupation" data-container="body"/>
                                          </div>
                                          <script>
                                              $("[name=\"bday\"]").datepicker({
@@ -570,10 +586,10 @@ Closedropdown.addEventListener('click',function(){
             let key = e.which;
             if(key == 13)  // the enter key code
             {
-                $('[name="occupation"]').trigger("focus")
+                $('#allergies').trigger("focus")
             }
         })
-        $('[name="occupation"]').keydown(function (e) {
+        $('#allergies').keydown(function (e) {
             let key = e.which;
             if(key == 13)  // the enter key code
             {
@@ -636,6 +652,7 @@ Closedropdown.addEventListener('click',function(){
           }
           $('[name="height"]').tooltip(tooltips);
           $('[name="weight"]').tooltip(tooltips);
+          $('#allergies').tooltip(tooltips);
 
       </script>
 

@@ -1,27 +1,42 @@
 <div class="modal modal-md-width" id="add-pres-modal">
-    <div class="flex-box-row justify-content-center" style="border-bottom: 2px solid #F4F2F4;padding-bottom: 1rem">
+    <div class="flex-box-row justify-content-center" style="border-bottom: 2px solid #F4F2F4;padding-bottom: 1rem;margin: 0.5rem 15px 0 15px">
         <h4 style="color: var(--third-color);display: flex;align-items: center">
             <img src="img/prescription.png" class="modal-icon-wider" style="margin-right: 0.3rem">
             <!--                <i class="fas fa-file-prescription fa-2x" style="margin-right: 0.5rem"></i>-->
             Prescription
         </h4>
     </div>
-    <div id="modal-upper-info" class="flex-box-row justify-content-center" style="padding-bottom: 1rem;margin-top: 0.5rem">
-        <div class="flex-box-column align-items-start" style="flex: 1 1 50%">
-            <p id="modal-patient-name" class="modal-p-2">To: Alfredo B. Benitez</p>
-            <p id="modal-patient-type" class="modal-p-2">Type: Adult</p>
+    <div id="modal-upper-info" class="row flex-box-row justify-content-center" style="padding-bottom: 1rem;margin: 0.5rem 15px 0 15px;border-bottom: 2px solid #F4F2F4;">
+        <div class="col-sm-6">
+            <p class="modal-p-2"><i class="fas fa-user-alt " style="margin-right: 0.3rem"></i><span id="modal-patient-name" >To: Alfredo B. Benitez</span></p>
         </div>
-        <div class="flex-box-column align-items-end" style="flex: 1 1 50%">
-            <p id="modal-curr-date" class="modal-p-2"></p>
-            <p id="modal-admin-name" class="modal-p-2">Given by: DR kwakwak</p>
+        <div class="col-sm-6 flex-box-row justify-content-between">
+            <p class="modal-p-2"><i class="fas fa-file-alt " style="margin-right: 0.3rem"></i><span id="modal-patient-type" >Type: Adult</span></p>
+            <button class="modal-primary-button" style="zoom: 70%;" title=""><i class="fas fa-allergies" style="margin-right: 0.3rem"></i>View Allergies</button>
         </div>
+        <div class="col-sm-6 flex-box-row justify-content-start padding-left-15">
+            <p class="modal-p-2">
+                <i class="fas fa-hand-holding" style=""></i>
+                <span id="modal-admin-name">Given by: DR kwakwak</span>
+            </p>
+        </div>
+        <div class="col-sm-6 flex-box-row justify-content-start padding-left-15">
+            <p class="modal-p-2">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="modal-curr-date"></span>
+            </p>
+        </div>
+<!--        <div class="flex-box-column align-items-end" style="flex: 1 1 50%">-->
+<!--            <p id="modal-curr-date" class="modal-p-2"></p>-->
+<!--            <p id="modal-admin-name" class="modal-p-2">Given by: DR kwakwak</p>-->
+<!--        </div>-->
         <script>
             let date= new Date()
             const options = {  year: 'numeric', month: 'long', day: 'numeric' };
             $("#modal-curr-date").html(date.toLocaleDateString(undefined,options))
         </script>
     </div>
-    <div class="padding-all-15">
+    <div class="padding-all-15 margin-top-1">
         <!--Searchbar-->
         <div  class="row flex-box-row justify-content-sm-end justify-content-lg-center">
             <div class="col-lg-8 col-md-7 col-sm-8" >

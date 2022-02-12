@@ -21,6 +21,7 @@ $(document).ready(function () {
         let bloodType　=　$("#blood-type").val();
         let height　=　$("#height").val();
         let weight　=　$("#weight").val();
+        let allergies　=　$("#allergies").val();
 
         if (fname == "" || mname == "" || lname == "" ||patientType==""|| civil == "" ||
             gender == "" || bday == "" || purok == "") {
@@ -60,7 +61,7 @@ $(document).ready(function () {
                     gender:gender,
                     bday:bday,
                     purok:purok, house_no:house_no,
-                    bloodType:bloodType, height:height, weight:weight,
+                    bloodType:bloodType, height:height, weight:weight,allergies:allergies,
                     patientType:patientType
                 }).done(
                     function (data) {
