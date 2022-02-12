@@ -117,16 +117,6 @@ $pdf->isFinished = false;
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Text(10,40,"Medicine Reports (".$type.")");
-$sumresult = mysqli_query($con,$sumpdfquery);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(50,10,"Summary of Report(".$type.")",0,1,'L');
-$pdf->Cell(50,10,"Medicine Name",0,0,'L');
-$pdf->Cell(50,10,"Total Stocks",0,1,'L');
-$sumrow = mysqli_num_rows($sumresult);
-while($row2 = mysqli_fetch_assoc($sumresult)){
-        $pdf->Cell(50,5,$row2['name'],0,0,'L');
-        $pdf->Cell(50,5,$row2['stock'],0,1,'L');
-}
 $pdf->Ln(10);
 //$pdf->AddPage();
 //$pdf->Text(170,40,"$datetoday");
