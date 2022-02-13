@@ -14,7 +14,7 @@ if($row = mysqli_fetch_assoc($result)){
     $selectedMedDosage = $row['dosage'];
   $get_curr_stock =  mysqli_query($con,"SELECT *, SUM(stock) as stock_count from medinventory WHERE
                  name = '$selectedMed' AND dosage = '$selectedMedDosage' AND
-                 stock > 0 AND expdate > DATE_FORMAT(NOW(),'%Y-%m-%d') GROUP BY name,dosage");
+                   expdate > DATE_FORMAT(NOW(),'%Y-%m-%d') GROUP BY name,dosage");
   if($curr_stock_row= mysqli_fetch_assoc($get_curr_stock)){
       $curr_stock_row['stock_count'];
   }

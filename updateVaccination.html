@@ -144,7 +144,19 @@
 
     <!--4th row-->
     <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
-        <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-vac-btn">
+        <a href="#pop-up-update-vaccination" rel="modal:close">
+            <button class="modal-cancel-button" id="update-vac-back" style="margin-right: 0.5rem" >
+                <i class="fas fa-times"></i>
+                Cancel
+            </button>
+            <script>
+                $("#update-vac-back").click(function () {
+                    location.href = "#calendar";
+                })
+            </script>
+        </a>
+
+        <button class="modal-primary-button-2" id="update-vac-btn">
             <i class="fas fa-edit"></i>
             Update
         </button>
@@ -181,14 +193,7 @@
 
             })
         </script>
-        <a href="#pop-up-update-vaccination" rel="modal:close">
-            <button class="modal-primary-button" id="update-vac-back">Back</button>
-            <script>
-                $("#update-vac-back").click(function () {
-                    location.href = "#calendar";
-                })
-            </script>
-        </a>
+
     </div>
 </div>
 </div>

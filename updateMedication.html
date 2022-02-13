@@ -248,18 +248,23 @@
   </script>
 
   <div class="flex-box-row justify-content-center" style="padding-top: 1rem">
-    <button class="modal-primary-button-2" style="margin-right: 0.5rem" id="update-med-btn">
-      <i class="fas fa-edit fa-lg"></i>
-      Update
-    </button>
+
     <a href="#pop-up-update-medication" rel="modal:close">
-      <button class="modal-primary-button" id="back">Back</button>
+      <button class="modal-cancel-button" id="back" style="margin-right: 0.5rem">
+        <i class="fas fa-times"></i>
+        Cancel
+      </button>
       <script>
         $("#back").click(function () {
           location.href = "#calendar";
         })
       </script>
     </a>
+
+    <button class="modal-primary-button-2"  id="update-med-btn">
+      <i class="fas fa-edit fa-lg"></i>
+      Update
+    </button>
   </div>
 </div>
 
