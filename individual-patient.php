@@ -56,7 +56,7 @@ require 'php/DB_Connect.php';
        <!--Jquery UI css and js-->
        <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
        <script src="jquery-ui/jquery-ui.js"></script>
-       <link rel="stylesheet" href="scss/tooltip.css">
+<!--       <link rel="stylesheet" href="scss/tooltip.css">-->
        <!--Custom CSS-->
        <link rel="stylesheet" href="scss/scrollbar_loading.css">
        <!--Custom Modal Design-->
@@ -87,6 +87,7 @@ require 'php/DB_Connect.php';
                            $("#modal-patient-name").html("<span style='font-weight: 550'>Patient Name: </span>"+name);
                            $("#update-med-given-to").html(name);
                            $("#update-vac-given-to").html(name);
+                           $("#patient-name-allergies-modal").html(name);
                            $("#patient-type").html(arrayOfObjectElement.patient_type)
                            $("#modal-patient-type").html("<span style='font-weight: 550'>Patient Type: </span>"+arrayOfObjectElement.patient_type)
                            $("#gender").html(arrayOfObjectElement.gender)
@@ -96,6 +97,17 @@ require 'php/DB_Connect.php';
                            $("#blood-type").html(arrayOfObjectElement.blood_type)
                            $("#height").html(arrayOfObjectElement.height)
                            $("#weight").html(arrayOfObjectElement.weight)
+                           if(arrayOfObjectElement.allergies!=""){
+                               $(".allergies-txt").prop("title",arrayOfObjectElement.allergies)
+                               $("#allergies-pres-text-area").val(arrayOfObjectElement.allergies)
+                               window.allergies = arrayOfObjectElement.allergies
+                           }
+                           else{
+                               $(".allergies-txt").prop("title","No Allergies")
+                               $("#allergies-pres-text-area").val("").prop("placeholder","No Allergies")
+                               window.allergies = arrayOfObjectElement.allergies
+                           }
+
 
                            $("#date-reg").html(arrayOfObjectElement.date_reg)
 
@@ -164,6 +176,9 @@ require 'php/DB_Connect.php';
 <!--               }-->
 <!--           });-->
 <!--       </script>-->
+       <!--Tooltip -->
+       <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
+       <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css" rel="stylesheet">
    </head>
    <body>
       <?php require 'add-prescription.html'?>
@@ -479,7 +494,9 @@ require 'updateMedication.html';
 require 'updateVaccination.html';
 require 'edit-patient-info.html';
 require 'edit-patient-info-script.html';
+require 'allergiesModal.html';
 ?>
+
 
    <input type="hidden" id="hidden-refresh-button">
 
@@ -575,6 +592,35 @@ require 'edit-patient-info-script.html';
               },500)
 
           })
+          new jBox('Tooltip', {
+              attach: '.tooltip'
+              ,
+              position: {
+                  x: 'left',
+                  y: 'bottom'
+              },
+          });
+          new jBox('Tooltip', {
+              attach: '#trigger-success-msg'
+              ,
+              trigger:"click",
+              onOpen: function() {
+                  new jBox('Notice', {content: 'Successfully Edited!', color: 'blue'});
+              },
+              // onClose: function() {
+              //     new jBox('Notice', {content: 'Successfully Edited!', color: 'blue',target:"#view-allergies-btn"});
+              // },
+          });
       </script>
+
+      <style>
+          .jBox-Tooltip{
+              color: #2d2929;!important;
+              font-family: "Poppins", sans-serif;
+              max-width: 500px;
+          }
+      </style>
+
+
    </body>
 </html>

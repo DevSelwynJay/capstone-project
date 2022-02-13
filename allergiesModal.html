@@ -1,0 +1,79 @@
+<script>
+  $("#view-allergies-btn").click(function () {
+    $("#pop-up-view-allergies").modal({
+       closeExisting:false,
+       clickClose:false,
+       showClose:false
+    })
+  })
+</script>
+<div class="modal" id="pop-up-view-allergies">
+   <p class="modal-p" style="margin-bottom: 1rem"><i class="fas fa-allergies" style="margin-right: 0.3rem"></i>Allergies of <span id="patient-name-allergies-modal"></span></p>
+
+   <div class="flex-box-row justify-content-end" style="margin-bottom: 0.5rem">
+      <a class="tooltip" title="Edit Allergies" style="margin-right: 0.5rem">
+         <button class="modal-primary-button" style="zoom: 80%">
+            <i class="fas fa-pencil-alt"></i>
+         </button>
+      </a>
+      <a class="tooltip" title="Undo Changes" style="">
+         <button class="modal-primary-button" style="zoom: 80%;background: darkslategray!important;">
+            <i class="fas fa-undo-alt"></i>
+         </button>
+      </a>
+      <script>
+         $("[title='Undo Changes']").click(function () {
+            $("#allergies-pres-text-area").val(window.allergies)
+         })
+      </script>
+
+
+   </div>
+
+   <textarea data-ad-client="" id="allergies-pres-text-area" class="search-bar" title="The box is resizable vertically">
+      sa ano sa itlog
+   </textarea>
+   <script>
+      $("#allergies-pres-text-area").css({
+         outline:"none",
+         resize:"vertical",
+         maxWidth:"100%",
+         width:"100%",
+         height:"30vh",
+         fontFamily:"'Poppins', sans-serif",
+         letterSpacing:"1px"
+      })
+   </script>
+
+   <div class="flex-box-row justify-content-lg-center margin-top-2">
+      <a href="#pop-up-view-allergies" rel="modal:close">
+         <button class="modal-cancel-button" style="zoom:80%;margin-right: 0.5rem">
+            <i class="fas fa-times"></i>
+            Cancel
+         </button>
+      </a>
+
+      <button id="trigger-success-msg" style="display: none"></button>
+
+      <a href="#pop-up-view-allergies" rel="modal:close">
+      <button class="modal-primary-button-2 success-modal-btn" id="update-allergies-btn" style="zoom:80%">
+         <i class="fas fa-edit fa-lg"></i>
+         Update
+      </button>
+      </a>
+
+      <script>
+         //tagal kasi bago magclose haha, triniger ko nalang miaw
+         $("#update-allergies-btn").click(function () {
+            $("#trigger-success-msg").trigger("click")//
+            $("#trigger-success-msg").trigger("click")//double click para maclose
+              setTimeout(()=>{
+                 $(".jBox-Notice-color").trigger("click")
+              },1200)
+         })
+
+      </script>
+
+   </div>
+</div>
+
