@@ -11,13 +11,9 @@
    <p class="modal-p" style="margin-bottom: 1rem"><i class="fas fa-allergies" style="margin-right: 0.3rem"></i>Allergies of <span id="patient-name-allergies-modal"></span></p>
 
    <div class="flex-box-row justify-content-end" style="margin-bottom: 0.5rem">
-      <a class="tooltip" title="Edit Allergies" style="margin-right: 0.5rem">
-         <button class="modal-primary-button" style="zoom: 80%">
-            <i class="fas fa-pencil-alt"></i>
-         </button>
-      </a>
-      <a class="tooltip" title="Undo Changes" style="">
-         <button class="modal-primary-button" style="zoom: 80%;background: darkslategray!important;">
+
+      <a class="tooltip" title="Undo Changes" style="margin-right: 0.5rem">
+         <button class="modal-primary-button" style="zoom: 80%;">
             <i class="fas fa-undo-alt"></i>
          </button>
       </a>
@@ -27,10 +23,21 @@
          })
       </script>
 
+      <a class="tooltip" title="Remove All" >
+         <button class="modal-cancel-button" style="zoom: 80%;background: darkslategray!important;">
+            <i class="far fa-trash-alt"></i>
+         </button>
+      </a>
+      <script>
+         $("[title='Remove All']").click(function () {
+            $("#allergies-pres-text-area").val("")
+         })
+      </script>
+
 
    </div>
 
-   <textarea data-ad-client="" id="allergies-pres-text-area" class="search-bar" title="The box is resizable vertically">
+   <textarea  data-ad-client="" placeholder="No Allergies" id="allergies-pres-text-area" class="search-bar tooltiptop" title="You can update patient's allergies here">
       sa ano sa itlog
    </textarea>
    <script>
@@ -65,12 +72,30 @@
       <script>
          //tagal kasi bago magclose haha, triniger ko nalang miaw
          $("#update-allergies-btn").click(function () {
-            $("#trigger-success-msg").trigger("click")//
-            $("#trigger-success-msg").trigger("click")//double click para maclose
-              setTimeout(()=>{
-                 $(".jBox-Notice-color").trigger("click")
-              },1200)
-         })
+            let allergies = $("#allergies-pres-text-area").val();
+
+            $.post("updateAllergies.php",{
+               text:allergies
+            }).done(function (data) {
+               $("#trigger-success-msg").trigger("click")//
+               $("#trigger-success-msg").trigger("click")//double click para maclose
+               setTimeout(()=>{
+                  $(".jBox-Notice-color").trigger("click")
+               },1200)
+
+               window.allergies = allergies
+
+               if(allergies==""){
+                  $(".allergies-txt").prop("title","No Allergies")
+                  $("#allergies-pres-text-area").val("").prop("placeholder","No Allergies")
+                  return
+               }
+               $(".allergies-txt").prop("title",allergies)
+               $("#allergies-pres-text-area").val(allergies)
+
+            })
+
+         })//end click
 
       </script>
 

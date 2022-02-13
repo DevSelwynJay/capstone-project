@@ -601,6 +601,14 @@ require 'allergiesModal.html';
               },
           });
           new jBox('Tooltip', {
+              attach: '.tooltiptop'
+              ,
+              position: {
+                  x: 'left',
+                  y: 'top'
+              },
+          });
+          new jBox('Tooltip', {
               attach: '#trigger-success-msg'
               ,
               trigger:"click",
