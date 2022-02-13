@@ -172,6 +172,7 @@
                                                 var medid = JSON.parse(data);
                                                 $('#hiddendata').val(medupdateid);
                                                 $('#updatemedicineName').val(medid.name);
+                                                $('#updatemedicineGenName').val(medid.gen_name);
                                                 $('#upmedSubCategory').val(medid.subcategory);
                                                 $('#upmedicineDosage').val(medid.dosage);
                                                 $('#upmedcategorySelect').val(medid.category);
@@ -190,6 +191,7 @@
                                             $('#addupcancel').on("click", function (){
                                                 $('#meds').trigger("focus");
                                                 $('#updatemedicineName').val("");
+                                                $('#updatemedicineGenName').val("");
                                                 $('#updatemedicineCategory').val("");
                                                 $('#upmedSubCategory').val("");
                                                 $('#updatemedicineStocks').val("");

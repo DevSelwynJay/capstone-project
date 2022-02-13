@@ -270,12 +270,12 @@ $res2 = mysqli_query($con,$sql);
                                             <input class="modal-field" type="text" id="vacSubCategory" autocomplete="off" placeholder="Vaccine Type" style="display: none">
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="medicineName">Name:</p>
+                                            <p class="modal-p" for="medicineName">Brand Name:</p>
                                             <input type="text" class="modal-field" id="medicineName" autocomplete="off" placeholder="Enter Medicine/Vaccine Name" required>
                                             <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="medicineGenName">Name:</p>
+                                            <p class="modal-p" for="medicineGenName">Generic Name:</p>
                                             <input type="text" class="modal-field" id="medicineGenName" autocomplete="off" placeholder="Enter Generic Name" required>
                                             <p class="modal-p" class="error" id="genname-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
@@ -333,10 +333,10 @@ $res2 = mysqli_query($con,$sql);
                                             <input class="modal-field" type="text" id="upvacSubCategory" autocomplete="off" placeholder="Vaccine Sub-Category" style="display: none" >
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="updatemedicineName">Name:</p><input type="text" id="updatemedicineName" class="modal-field" autocomplete="off" >
+                                            <p class="modal-p" for="updatemedicineName">Brand Name:</p><input type="text" id="updatemedicineName" class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
-                                            <p class="modal-p" for="updatemedicineGenName">Name:</p><input type="text" id="updatemedicineGenName" class="modal-field" autocomplete="off" >
+                                            <p class="modal-p" for="updatemedicineGenName">Generic Name:</p><input type="text" id="updatemedicineGenName" placeholder="Enter Generic Name" class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="upmedicineDosage">Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Dosage" autocomplete="off" >
@@ -616,6 +616,7 @@ $res2 = mysqli_query($con,$sql);
                         $("[href='#add-modal']").trigger('click');
                         $('#meds').trigger("focus");
                         $('#medicineName').val("");
+                        $('#medicineGenName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
@@ -637,8 +638,8 @@ $res2 = mysqli_query($con,$sql);
                         $('#nakatago').trigger("click");
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
-                        $("#refresh-inv-logs").trigger("click")
-                        $("#meds").val("").trigger("keyup")
+                        $("#refresh-inv-logs").trigger("click");
+                        $("#meds").val("").trigger("keyup");
                         Swal.fire({
                             title: 'Medicine Added Successfully!',
                             icon: 'success'
@@ -678,6 +679,7 @@ $res2 = mysqli_query($con,$sql);
                         $("[href='#add-modal']").trigger('click');
                         $('#meds').trigger("focus");
                         $('#medicineName').val("");
+                        $('#medicineGenName').val("");
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
@@ -699,8 +701,8 @@ $res2 = mysqli_query($con,$sql);
                         $('#nakatago').trigger("click");
                         $('#nakatago2').trigger("click");
                         $('#nakatago3').trigger("click");
-                        $("#meds").val("").trigger("keyup")
-                        $("#refresh-inv-logs").trigger("click")
+                        $("#refresh-inv-logs").trigger("click");
+                        $("#meds").val("").trigger("keyup");
                         Swal.fire({
                             title: 'Vaccine Added Successfully!',
                             icon: 'success'
@@ -768,6 +770,7 @@ $res2 = mysqli_query($con,$sql);
         function medUpdate()
         {
             var updatemedicineName=$('#updatemedicineName').val();
+            var updatemedicineGenName=$('#updatemedicineGenName').val();
             var updatemedicineCategory=$('#upmedcategorySelect').val();
             var updatemedicinesubCategory=$('#upmedSubCategory').val();
             var upmedicineDosage=$('#upmedicineDosage').val();
@@ -787,6 +790,7 @@ $res2 = mysqli_query($con,$sql);
             else {
                 $.post("php/inventoryProcesses/medUpdate.php", {
                     updatemedicineName: updatemedicineName,
+                    updatemedicineGenName:updatemedicineGenName,
                     updatemedicineCategory: updatemedicineCategory,
                     updatemedicinesubCategory: updatemedicinesubCategory,
                     upmedicineDosage: upmedicineDosage,
@@ -800,8 +804,8 @@ $res2 = mysqli_query($con,$sql);
                     $('#nakatago').trigger("click");
                     $('#nakatago2').trigger("click");
                     $('#nakatago3').trigger("click");
-                    $("#meds").val("").trigger("keyup")
-                    $("#refresh-inv-logs").trigger("click")
+                    $("#refresh-inv-logs").trigger("click");
+                    $("#meds").val("").trigger("keyup");
                     Swal.fire({
                         title: 'Medicine/Vaccine Updated Successfully!',
                         icon: 'success'
