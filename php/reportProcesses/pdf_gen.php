@@ -6,33 +6,46 @@ require ('../DB_Connect.php');
 $type = $_GET['type'];
 $admin_id = $_SESSION['active_admin_name'];
 $datetoday = Date("M-d-Y");
-
+$curdate='';
 if(isset($_GET['daily'])){
     $time = '1 day';
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") GROUP by name ORDER BY name, dateadded asc';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and DATE_FORMAT(`dateadded`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") GROUP by name ORDER BY name, dateadded asc';
+    $date = Date("M jS, Y");
+    $curdate = $date;
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW()) ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW()) GROUP by name ORDER BY name, dateadded asc';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and yearweek(`dateadded`) = yearweek(NOW()) GROUP by name ORDER BY name, dateadded asc';
+    $date = Date("oW");
+    list($year, $week) = str_split($date, 4);
+    $date1 = date( "M jS, Y", strtotime($year."W".$week."1") ); // First day of week
+    $date2 = date( "M jS, Y", strtotime($year."W".$week."7") );
+    $curdate = $date1 . ' - '.$date2;
 }
 elseif(isset($_GET['monthly'])){
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW()) ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW()) GROUP by name ORDER BY name, dateadded asc';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and MONTH(`dateadded`) = MONTH(NOW()) GROUP by name ORDER BY name, dateadded asc';
     //MONTH(`dateadded`) = MONTH(NOW())
-    $time = '1 month';
+    $curdate = Date('F, Y');
 }
 elseif(isset($_GET['quarterly'])){
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW()) ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW()) GROUP by name ORDER BY name, dateadded asc';
-    $time = '1 quarter';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and QUARTER(`dateadded`) = QUARTER(NOW()) GROUP by name ORDER BY name, dateadded asc';
+    $date = Date("n");
+    $yearQuarter = ceil($date / 3);
+    $first_date = date('M jS, Y', strtotime(date('Y') . '-' . (($yearQuarter * 3) - 2) . '-1'));
+    $last_date = date('M tS, Y', strtotime(date('Y') . '-' . (($yearQuarter * 3)) . '-1'));
+    $curdate = 'Quarter '.$yearQuarter.' ('. $first_date . ' - '. $last_date.')';
 }
 elseif(isset($_GET['annually'])){
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW()) ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW()) GROUP by name ORDER BY name, dateadded asc';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'" and YEAR(`dateadded`) = YEAR(NOW()) GROUP by name ORDER BY name, dateadded asc';
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
+    $date = Date("Y");
+    $curdate = "Year ".$date;
 }
 elseif(isset($_GET['customdate'])){
     $date = $_GET['customdate'];
@@ -42,10 +55,13 @@ elseif(isset($_GET['customdate'])){
     $date2 = $datearr[1];
     $enddate = date("Y-m-d", strtotime($date2));
     $sql = 'Select * from `medreport` where `type` = "'.$type.'" and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") ORDER BY dateadded asc';
-    $sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'"  and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") GROUP by name ORDER BY name, dateadded asc';
+    //$sql2 = 'Select name,SUM(stock) as stock FROM medreport where `type` = "'.$type.'"  and date(dateadded) BETWEEN date("'.$startdate.'") and date("'.$enddate.'") GROUP by name ORDER BY name, dateadded asc';
+    $startdate2 = date("M jS, Y", strtotime($date1));
+    $enddate2 = date("M jS, Y", strtotime($date2));
+    $curdate = $startdate2 . ' - '. $enddate2;
 }
 $pdfquery = $sql;
-$sumpdfquery = $sql2;
+//$sumpdfquery = $sql2;
 $record = mysqli_query($con,$pdfquery);
 if($type == 'Medicine'){
     $type = "Medicine Released";
@@ -116,7 +132,7 @@ $pdf->AliasNbPages();
 $pdf->isFinished = false;
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
-$pdf->Text(10,40,"Medicine Reports (".$type.")");
+$pdf->Text(10,40,"Medicine Reports (".$type.") - ".$curdate);
 $pdf->Ln(10);
 //$pdf->AddPage();
 //$pdf->Text(170,40,"$datetoday");
@@ -135,6 +151,5 @@ $pdf->SetFont('Arial','',10);
         $pdf->isFinished = false;
     }
 $pdf->Ln(10);
-
 $pdf->isFinished = true;
 $pdf->Output('D','Report-'.$type.'-'.$datetoday.'.pdf');

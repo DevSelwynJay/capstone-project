@@ -8,7 +8,12 @@ $res = mysqli_query($con,"Select id, CONCAT(name,'(',dosage,')') as name, `expda
 while($row=mysqli_fetch_assoc($res)){
     $date = $row['expdate'];
     $remaindays=datediff($datetoday,$date);
-    $row['remaindays']=$remaindays;
+    if($remaindays==1){
+        $row['remaindays']=$remaindays. ' day';
+    }
+    else{
+        $row['remaindays']=$remaindays. ' days';
+    }
     $row['icon']='<i id="exclamation" class="fas fa-exclamation"></i>';
     $arr[]=$row;
 }

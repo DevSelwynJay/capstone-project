@@ -34,21 +34,41 @@
                             $.each(response, function (index, item) {
 
                                 let inv_name = item.name.split(" ").join("-----")//5 -
+                                if(item.stock == 1){
+                                    dataHtml+="<tbody class='root-inv root-inv-"+inv_name+" margin-top-2'>"
 
-                                dataHtml+="<tbody class='root-inv root-inv-"+inv_name+" margin-top-2'>"
+                                    dataHtml+= "<tbody  style='text-align: start;color: black'>"+
+                                        "<tr style='background: #DEF1F7;'>" +
+                                        "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+inv_name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                        "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+" pc</span></td>" +
+                                        "<td colspan='5'></td>" +
+                                        "" +
+                                        "</tr>" +
+                                        "</tbody>"
 
-                                dataHtml+= "<tbody  style='text-align: start;color: black'>"+
-                                            "<tr style='background: #DEF1F7;'>" +
-                                                "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+inv_name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
-                                                "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+"</span></td>" +
-                                                "<td colspan='5'></td>" +
-                                                "" +
-                                            "</tr>" +
-                                            "</tbody>"
+                                    dataHtml+="<tbody class='2-root-inv 2-root-inv-"+inv_name+"' style='margin-bottom: 1.5rem'></tbody>"
 
-                                dataHtml+="<tbody class='2-root-inv 2-root-inv-"+inv_name+"' style='margin-bottom: 1.5rem'></tbody>"
+                                    dataHtml+="</tbody>"
 
-                                dataHtml+="</tbody>"
+                                }
+                                else{
+                                    dataHtml+="<tbody class='root-inv root-inv-"+inv_name+" margin-top-2'>"
+
+                                    dataHtml+= "<tbody  style='text-align: start;color: black'>"+
+                                        "<tr style='background: #DEF1F7;'>" +
+                                        "<td style='text-align: start;'><button class='root-action tooltip' data-status='expand' data-name='"+inv_name+"' style='margin-right: 0.4rem'><i title='expand' class=\"fas fa-arrow-right\"></i></button><span style='font-weight: 600'>"+item.name+"</span></td>" +
+                                        "<td  data-label='Total Stock'><span style='font-weight: 600'>"+item.stock+" pcs</span></td>" +
+                                        "<td colspan='5'></td>" +
+                                        "" +
+                                        "</tr>" +
+                                        "</tbody>"
+
+                                    dataHtml+="<tbody class='2-root-inv 2-root-inv-"+inv_name+"' style='margin-bottom: 1.5rem'></tbody>"
+
+                                    dataHtml+="</tbody>"
+                                }
+
+
 
 
 
@@ -104,15 +124,30 @@
                                         let invName = resultElement.name;
                                         let stock = resultElement.stock;
                                         let critstock = resultElement.criticalstock;
+                                        if(parseInt(stock)==1){
                                         if(parseInt(stock)>parseInt(critstock)){
-                                            stockUI="<span class='tooltip' style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                            stockUI="<span class='tooltip' style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+" pc</span>";
                                         }
                                         else if(parseInt(stock)==0){
                                             stockUI="<span class='tooltip' style='all: inherit;color: red;'>OUT OF STOCKS</span>";
 
                                         }
                                         else {
-                                            stockUI="<span class='tooltip' style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+"</span>";
+                                            stockUI="<span class='tooltip' style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+" pc</span>";
+                                        }
+                                        }
+                                        else{
+                                            if(parseInt(stock)>parseInt(critstock)){
+                                                stockUI="<span class='tooltip' style='all: inherit' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+" pcs</span>";
+                                            }
+                                            else if(parseInt(stock)==0){
+                                                stockUI="<span class='tooltip' style='all: inherit;color: red;'>OUT OF STOCKS</span>";
+
+                                            }
+                                            else {
+                                                stockUI="<span class='tooltip' style='all: inherit;color: red;' title='The critical stock of "+invName+" is "+critstock+"'>"+resultElement.stock+" pcs</span>";
+                                            }
+
                                         }
 
                                         $(".2-root-inv-"+inv_name).append("" +

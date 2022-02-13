@@ -5,28 +5,41 @@ require ('../pdflib/fpdf.php');
 require ('../DB_Connect.php');
 $type = $_GET['type'];
 $admin_id = $_SESSION['active_admin_name'];
+$curdate='';
 if(isset($_GET['daily'])){
     $time = '1 day';
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and DATE_FORMAT(`date_given`,"%Y %M %d") = DATE_FORMAT(NOW(),"%Y %M %d") ';
+    $date = Date("M jS, Y");
+    $curdate = $date;
 }
 elseif(isset($_GET['weekly'])){
     $time = '1 week';
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and yearweek(`date_given`) = yearweek(NOW())';
-
+    $date = Date("oW");
+    list($year, $week) = str_split($date, 4);
+    $date1 = date( "M jS, Y", strtotime($year."W".$week."1") ); // First day of week
+    $date2 = date( "M jS, Y", strtotime($year."W".$week."7") );
+    $curdate = $date1 . ' - '.$date2;
 }
 elseif(isset($_GET['monthly'])){
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and MONTH(`date_given`) = MONTH(NOW())';
     //MONTH(`dateadded`) = MONTH(NOW())
-    $time = '1 month';
+    $curdate = Date('F, Y');
 }
 elseif(isset($_GET['quarterly'])){
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and QUARTER(`date_given`) = QUARTER(NOW())';
-    $time = '1 quarter';
+    $date = Date("n");
+    $yearQuarter = ceil($date / 3);
+    $first_date = date('M jS, Y', strtotime(date('Y') . '-' . (($yearQuarter * 3) - 2) . '-1'));
+    $last_date = date('M tS, Y', strtotime(date('Y') . '-' . (($yearQuarter * 3)) . '-1'));
+    $curdate = 'Quarter '.$yearQuarter.' ('. $first_date . ' - '. $last_date.')';
 }
 elseif(isset($_GET['annually'])){
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and YEAR(`date_given`) = YEAR(NOW())';
     //YEAR(`dateadded`) = YEAR(NOW())
     $time = '1 year';
+    $date = Date("Y");
+    $curdate = "Year ".$date;
 }
 elseif(isset($_GET['customdate'])){
     $date = $_GET['customdate'];
@@ -36,6 +49,9 @@ elseif(isset($_GET['customdate'])){
     $date2 = $datearr[1];
     $enddate = date("Y-m-d", strtotime($date2));
     $sql = 'Select * from `medication_record` where `patient_type` = "'.$type.'" and date(date_given) BETWEEN date("'.$startdate.'") and date("'.$enddate.'")';
+    $startdate2 = date("M jS, Y", strtotime($date1));
+    $enddate2 = date("M jS, Y", strtotime($date2));
+    $curdate = $startdate2 . ' - '. $enddate2;
 }
 $pdfquery = $sql;
 $record1 = mysqli_query($con,$pdfquery);
@@ -93,7 +109,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $datetoday = Date("M-d-Y");
-$pdf->Text(10,40,"Consultation Reports (".$type.")");
+$pdf->Text(10,40,"Consultation Reports (".$type.") - ".$curdate);
 $w = 70;
 $h = 10;
 $pdf->Cell(50,10,"Patient Name",0,0,'L');

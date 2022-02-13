@@ -912,12 +912,19 @@ $res2 = mysqli_query($con,$sql);
         -webkit-transition: all 200ms ease-in-out;
         transition: all 200ms ease-in-out;
     }
+    #deleteicon{
+        color: #ff1515 !important;
+        padding: 0.6rem;
+        border-radius: 0.4rem;
+        font-size: 1.4rem !important;
+        cursor: pointer;
+    }
     #exclamation{
         color: #ff1515 !important;
         padding: 0.6rem;
         border-radius: 0.4rem;
         font-size: 1.4rem !important;
-        cursor: unset !important;
+        cursor: unset!important;
     }
     #medicinecriticalStocks, #medicinecriticalStocks, #updatemedicineStocks{
         -webkit-appearance: none;
