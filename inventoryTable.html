@@ -1,5 +1,5 @@
 <div>
-    <h3 style="color: var(--third-color)" class="">Medicine Inventory</h3>
+    <h3 style="color: var(--third-color)" class="">Critical Stocks</h3>
     <table class="patients-view" >
         <tbody id="medicine-table">
 
@@ -21,14 +21,9 @@
                         {
                             id:"Medicine ID",
                             name:"Medicine Name",
-                            category:"Category",
-                            stock:"No. of Stocks",
-                            mfgdate:"DATE",
-                            dateadded:"DateAdded",
-                            button:"Action"
+                            stock:"Stocks"
                         }
                     ,
-                    searchField: '#meds',
                     // responsive: {
                     //     720: {
                     //         columns: {
@@ -60,46 +55,9 @@
                         for (a=0;a<parseInt(window.rowCount_medicine);a++){
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Category")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[3]).attr("data-label","No. of Stocks")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[4]).attr("data-label","Date")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[5]).attr("data-label","Date Added")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[6]).attr("data-label","Action")
+                            $($($("#medicine-table .gs-table-body").children()[a]).children()[2]).attr("data-label","STOCKS")
 
                         }
-                        $('.updta').click(function(){
-                            var medupdateid = $(this).data('id');
-                            $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
-                                var medid = JSON.parse(data);
-                                $('#hiddendata').val(medupdateid);
-                                $('#updatemedicineName').val(medid.name);
-                                $('#upmedSubCategory').val(medid.subcategory);
-                                $('#upmedicineDosage').val(medid.dosage);
-                                $('#upmedcategorySelect').val(medid.category);
-                                $('#updatemedicineStocks').val(medid.stock);
-                                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
-                                $('#updatemedicineMfgDate').val(medid.mfgdate);
-                                $('#updatemedicineExpDate').val(medid.expdate);
-                            });
-
-                            $('#update-modal').modal("show");
-                            $("#update-modal").modal({
-                                //escapeClose: false,
-                                clickClose: false,
-                                showClose: false
-                            })
-                            $('#addupcancel').on("click", function (){
-                                $('#meds').trigger("focus");
-                                $('#updatemedicineName').val("");
-                                $('#updatemedicineCategory').val("");
-                                $('#upmedSubCategory').val("");
-                                $('#updatemedicineStocks').val("");
-                                $('#updatemedicinecriticalStocks').val("");
-                                $('#updatemedicineStocks').val("");
-                                $('#updatemedicineMfgDate').val("");
-                                $('#updatemedicineExpDate').val("");
-                            })
-                        });
                     },
                     tableWillUpdate: function() {console.log('table will update')},
                     tableDidUpdate: function() {
@@ -109,50 +67,12 @@
                         for (a=0;a<parseInt(window.rowCount_medicine);a++){
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[0]).attr("data-label","ID")
                             $($($("#medicine-table .gs-table-body").children()[a]).children()[1]).attr("data-label","Name")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[2]).attr("data-label","Category")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[3]).attr("data-label","No. of Stocks")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[4]).attr("data-label","Date")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[5]).attr("data-label","Date Added")
-                            $($($("#medicine-table .gs-table-body").children()[a]).children()[6]).attr("data-label","Action")
+                            $($($("#medicine-table .gs-table-body").children()[a]).children()[2]).attr("data-label","STOCKS")
                         }
 
                         //thead color
                         //$("#medicine-table div .gs-table thead tr th").css("background","darkslategrey")
                         $(".gs-table-head tr th span").css("color","white!important");
-                        $('.updta').click(function(){
-                            var medupdateid = $(this).data('id');
-                            $('#hiddendata').val(medupdateid);
-                            $.post("php/inventoryProcesses/medUpdate.php",{medupdateid:medupdateid},function(data,status){
-                                var medid = JSON.parse(data);
-                                $('#updatemedicineName').val(medid.name);
-                                $('#upmedSubCategory').val(medid.subcategory);
-                                $('#upmedicineDosage').val(medid.dosage);
-                                $('#upmedcategorySelect').val(medid.category);
-                                $('#updatemedicineStocks').val(medid.stock);
-                                $('#updatemedicinecriticalStocks').val(medid.criticalstock);
-                                $('#updatemedicineMfgDate').val(medid.mfgdate);
-                                $('#updatemedicineExpDate').val(medid.expdate);
-
-                            });
-
-                            $('#update-modal').modal("show");
-                            $("#update-modal").modal({
-                                //escapeClose: false,
-                                clickClose: false,
-                                showClose: false
-                            })
-                            $('#addupcancel').on("click", function (){
-                                $('#meds').trigger("focus");
-                                $('#updatemedicineName').val("");
-                                $('#updatemedicineCategory').val("");
-                                $('#upmedSubCategory').val("");
-                                $('#updatemedicineStocks').val("");
-                                $('#updatemedicinecriticalStocks').val("");
-                                $('#updatemedicineStocks').val("");
-                                $('#updatemedicineMfgDate').val("");
-                                $('#updatemedicineExpDate').val("");
-                            })
-                        });
                     },
                     tableWillUnmount: function() {console.log('table will unmount')},
                     tableDidUnmount: function() {console.log('table did unmount')},

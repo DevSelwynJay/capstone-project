@@ -216,6 +216,10 @@ $res2 = mysqli_query($con,$sql);
                                     <!--wag tanggalin nasa taas-->
                                     <div id="inv-table">
                                     </div>
+                                </div>
+                                <div  class="inventory__table-toexpire-container" >
+                                    <?php
+                                    include 'inventoryTable.html'?>
                                     <button id="nakatago" style="display: none"></button>
                                 </div>
                                 <div class="inventory__table-toexpire-container"  >
@@ -269,6 +273,11 @@ $res2 = mysqli_query($con,$sql);
                                             <p class="modal-p" for="medicineName">Name:</p>
                                             <input type="text" class="modal-field" id="medicineName" autocomplete="off" placeholder="Enter Medicine/Vaccine Name" required>
                                             <p class="modal-p" class="error" id="name-incorrect-indcator" style="color: red; visibility: hidden"></p>
+                                        </div>
+                                        <div class="col-sm-12" >
+                                            <p class="modal-p" for="medicineGenName">Name:</p>
+                                            <input type="text" class="modal-field" id="medicineGenName" autocomplete="off" placeholder="Enter Generic Name" required>
+                                            <p class="modal-p" class="error" id="genname-incorrect-indcator" style="color: red; visibility: hidden"></p>
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="medicineDosage">Dosage:</p><input type="text" id="medicineDosage" class="modal-field tooltip" title="Please include unit of measurement (ex. 500mg, 120ml)" placeholder="ex. 500mg" autocomplete="off" required>
@@ -325,6 +334,9 @@ $res2 = mysqli_query($con,$sql);
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="updatemedicineName">Name:</p><input type="text" id="updatemedicineName" class="modal-field" autocomplete="off" >
+                                        </div>
+                                        <div class="col-sm-12" >
+                                            <p class="modal-p" for="updatemedicineGenName">Name:</p><input type="text" id="updatemedicineGenName" class="modal-field" autocomplete="off" >
                                         </div>
                                         <div class="col-sm-12" >
                                             <p class="modal-p" for="upmedicineDosage">Dosage:</p><input type="text" id="upmedicineDosage" class="modal-field" placeholder="Enter Dosage" autocomplete="off" >
@@ -407,6 +419,7 @@ $res2 = mysqli_query($con,$sql);
         $('#addcancel').on("click", function (){
             $('#meds').trigger("focus");
             $('#medicineName').val("");
+            $('#medicineGenName').val("");
             $('#medcategorySelect').selectedIndex = 1;
             $('#medicineStocks').val("");
             $('#medicinecriticalStocks').val("");
@@ -423,7 +436,8 @@ $res2 = mysqli_query($con,$sql);
             $('#all-incorrect-indcator').css("visibility","hidden");
             $('#all-incorrect-indcator').html('');
             $('#name-incorrect-indcator').html('')
-            $('#medicinecriticalStocks').attr('disabled','');
+            $('#medicinecriticalStocks').removeAttr('disabled');
+            $('#medicineGenName').removeAttr('disabled');
         })
         $('#medicineName').on("keyup",function(){
             var medName = $('#medicineName').val();
@@ -442,6 +456,30 @@ $res2 = mysqli_query($con,$sql);
                     else{
                         $('#medicinecriticalStocks').attr('disabled','disabled');
                         $('#medicinecriticalStocks').val(data);
+
+                    }
+                }
+            })
+        });
+        $('#medicineName').on("keyup",function(){
+            var medName = $('#medicineName').val();
+            $.ajax({
+                url: "php/inventoryProcesses/checkGenericName.php",
+                type:'POST',
+                data:{
+                    medName:medName
+                },
+                success:function(data,status){
+                    console.log(data);
+                    if(data == ''){
+
+                        $('#medicineGenName').removeAttr('disabled');
+                        $('#medicineGenName').val('');
+                    }
+                    else{
+
+                        $('#medicineGenName').attr('disabled','disabled');
+                        $('#medicineGenName').val(data);
                     }
                 }
             })
@@ -539,6 +577,7 @@ $res2 = mysqli_query($con,$sql);
     //Add New Medicine Function
     function addNewMedicine() {
         var medName = $('#medicineName').val();
+        var medGenName = $('#medicineGenName').val();
         var medCategory = $('#medcategorySelect').val();
         var medsubCategory = $('#medSubCategory').val();
         var medsubCategory2 = $('#vacSubCategory').val();
@@ -549,7 +588,7 @@ $res2 = mysqli_query($con,$sql);
         var medExpDate = $('#medicineExpDate').val();
         if (medCategory == "Medicine") {
             var medsubCategory = $('#medSubCategory').val()
-            if (medName == "" || medSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "") {
+            if (medName == "" || medSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "" || medGenName=="") {
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
             }
@@ -563,6 +602,7 @@ $res2 = mysqli_query($con,$sql);
                     type: 'POST',
                     data: {
                         newMedName: medName,
+                        newMedGenName:medGenName,
                         newMedCategory: medCategory,
                         newMedsubCategory: medsubCategory,
                         newMedDosage: meddosage,
@@ -579,7 +619,8 @@ $res2 = mysqli_query($con,$sql);
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
-                        $('#medicinecriticalStocks').attr("disabled", "");
+                        $('#medicinecriticalStocks').removeAttr('disabled');
+                        $('#medicineGenName').removeAttr('disabled');
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
@@ -607,7 +648,7 @@ $res2 = mysqli_query($con,$sql);
             }
         } else if (medCategory == "Vaccine") {
             var medsubCategory2 = $('#vacSubCategory').val()
-            if (medName == "" || vacSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == "") {
+            if (medName == "" || vacSubCategory == "" || medStocks == "" || medcritStocks == "" || medMfgDate == "" || medExpDate == "" || meddosage == ""|| medGenName=="") {
                 $('#all-incorrect-indcator').css("visibility", "visible");
                 $('#all-incorrect-indcator').html('Please Fill out all the fields!');
             } else if (medStocks == 0) {
@@ -623,6 +664,7 @@ $res2 = mysqli_query($con,$sql);
                     type: 'POST',
                     data: {
                         newMedName: medName,
+                        newMedGenName:medGenName,
                         newMedCategory: medCategory,
                         newMedsubCategory: medsubCategory2,
                         newMedDosage: meddosage,
@@ -639,7 +681,8 @@ $res2 = mysqli_query($con,$sql);
                         $('#medcategorySelect').selectedIndex = 1;
                         $('#medicineStocks').val("");
                         $('#medicinecriticalStocks').val("");
-                        $('#medicinecriticalStocks').attr("disabled", "");
+                        $('#medicinecriticalStocks').removeAttr('disabled');
+                        $('#medicineGenName').removeAttr('disabled');
                         $('#medSubCategory').val("");
                         $('#vacSubCategory').val("");
                         $('#medicineDosage').val("");
